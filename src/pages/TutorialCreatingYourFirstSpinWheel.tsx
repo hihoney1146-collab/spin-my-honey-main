@@ -6,6 +6,8 @@ import {
   Sparkles,
   ArrowRight,
   Lightbulb,
+  Palette,
+  Image as ImageIcon,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -809,29 +811,65 @@ const TutorialCreatingYourFirstSpinWheel = () => {
         </Card>
 
         {/* Related Articles */}
-        <div className="grid md:grid-cols-2 gap-4 mt-8">
+        <div className="grid md:grid-cols-3 gap-4 mt-8">
           <Card className="p-6 bg-primary/5 border border-primary/20">
             <div className="flex items-center gap-3 mb-3">
               <Lightbulb className="h-6 w-6 text-primary" />
+              <h3 className="text-xl font-bold">Next Steps</h3>
+            </div>
+            <p className="text-sm text-muted-foreground mb-4">
+              Customize your wheel with colors and images
+            </p>
+            <div className="space-y-2">
+              <Link
+                to="/tutorial-customizing-spin-wheel-colors"
+                className="block text-sm font-semibold text-primary hover:underline"
+              >
+                Customize Colors →
+              </Link>
+              <Link
+                to="/tutorial-adding-images-to-spin-wheels"
+                className="block text-sm font-semibold text-primary hover:underline"
+              >
+                Add Images →
+              </Link>
+            </div>
+          </Card>
+
+          <Card className="p-6 bg-primary/5 border border-primary/20">
+            <div className="flex items-center gap-3 mb-3">
+              <Sparkles className="h-6 w-6 text-primary" />
               <h3 className="text-xl font-bold">More Tutorials</h3>
             </div>
             <p className="text-sm text-muted-foreground mb-4">
-              Discover advanced tutorials on customization, image uploads, and
-              advanced features.
+              Explore advanced features and management tips
             </p>
-            <Link
-              to="/blog"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
-            >
-              Browse Tutorials
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+            <div className="space-y-2">
+              <Link
+                to="/tutorial-managing-spin-wheel-entries"
+                className="block text-sm font-semibold text-primary hover:underline"
+              >
+                Manage Entries →
+              </Link>
+              <Link
+                to="/tutorial-advanced-spin-wheel-features"
+                className="block text-sm font-semibold text-primary hover:underline"
+              >
+                Advanced Features →
+              </Link>
+              <Link
+                to="/blog"
+                className="block text-sm font-semibold text-primary hover:underline"
+              >
+                All Tutorials →
+              </Link>
+            </div>
           </Card>
 
           <Card className="p-6 bg-primary/5 border border-primary/20">
             <div className="flex items-center gap-3 mb-3">
               <CheckCircle2 className="h-6 w-6 text-primary" />
-              <h3 className="text-xl font-bold">Get Support</h3>
+              <h3 className="text-xl font-bold">Get Help</h3>
             </div>
             <p className="text-sm text-muted-foreground mb-4">
               Having trouble creating your wheel? We're here to help!

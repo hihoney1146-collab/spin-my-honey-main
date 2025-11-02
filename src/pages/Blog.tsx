@@ -7,7 +7,22 @@ import {
   Twitter,
   Instagram,
   Share2,
+  GraduationCap,
+  Gift,
+  Users,
+  Calendar,
+  Zap,
+  Palette,
+  Image as ImageIcon,
+  List,
+  Settings,
+  Briefcase,
+  Heart,
+  GitCompare,
+  ArrowRight,
+  PlayCircle,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Blog = () => {
   return (
@@ -702,6 +717,363 @@ const Blog = () => {
               </div>
             </section>
           </div>
+        </Card>
+
+        {/* Article Directory */}
+        <Card className="p-6 md:p-8 lg:p-10 mt-8 space-y-8">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              Explore Our Guides & Tutorials
+            </h2>
+            <p className="text-muted-foreground">
+              Comprehensive guides, tutorials, case studies, and comparisons to
+              help you master spin wheels
+            </p>
+          </div>
+
+          {/* How-to Guides */}
+          <section>
+            <div className="flex items-center gap-3 mb-6">
+              <PlayCircle className="h-6 w-6 text-primary" />
+              <h3 className="text-xl md:text-2xl font-bold">How-to Guides</h3>
+            </div>
+            <div className="grid md:grid-cols-2 gap-4">
+              <Link
+                to="/how-to-use-spin-wheels-in-classrooms"
+                className="block"
+              >
+                <Card className="p-4 hover:shadow-lg transition-shadow h-full">
+                  <div className="flex items-start gap-3">
+                    <GraduationCap className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold mb-1">
+                        How to Use Spin Wheels in Classrooms
+                      </h4>
+                      <p className="text-sm text-muted-foreground">
+                        Practical strategies for using spin wheels to improve
+                        student engagement and participation
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+              </Link>
+
+              <Link
+                to="/how-to-create-fair-giveaways-with-spin-wheels"
+                className="block"
+              >
+                <Card className="p-4 hover:shadow-lg transition-shadow h-full">
+                  <div className="flex items-start gap-3">
+                    <Gift className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold mb-1">
+                        How to Create Fair Giveaways with Spin Wheels
+                      </h4>
+                      <p className="text-sm text-muted-foreground">
+                        Organize transparent and fair giveaways using spin
+                        wheels
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+              </Link>
+
+              <Link
+                to="/how-to-use-spin-wheels-for-team-building"
+                className="block"
+              >
+                <Card className="p-4 hover:shadow-lg transition-shadow h-full">
+                  <div className="flex items-start gap-3">
+                    <Users className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold mb-1">
+                        How to Use Spin Wheels for Team Building
+                      </h4>
+                      <p className="text-sm text-muted-foreground">
+                        Enhance team building activities with spin wheels
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+              </Link>
+
+              <Link
+                to="/how-to-organize-events-with-random-selection"
+                className="block"
+              >
+                <Card className="p-4 hover:shadow-lg transition-shadow h-full">
+                  <div className="flex items-start gap-3">
+                    <Calendar className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold mb-1">
+                        How to Organize Events with Random Selection
+                      </h4>
+                      <p className="text-sm text-muted-foreground">
+                        Using random selection tools for event organization
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+              </Link>
+
+              <Link
+                to="/how-to-make-decisions-faster-with-spin-wheels"
+                className="block"
+              >
+                <Card className="p-4 hover:shadow-lg transition-shadow h-full">
+                  <div className="flex items-start gap-3">
+                    <Zap className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold mb-1">
+                        How to Make Decisions Faster with Spin Wheels
+                      </h4>
+                      <p className="text-sm text-muted-foreground">
+                        Use spin wheels for faster decision-making
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+              </Link>
+            </div>
+          </section>
+
+          {/* Tutorials */}
+          <section>
+            <div className="flex items-center gap-3 mb-6 mt-8">
+              <BookOpen className="h-6 w-6 text-primary" />
+              <h3 className="text-xl md:text-2xl font-bold">
+                Step-by-Step Tutorials
+              </h3>
+            </div>
+            <div className="grid md:grid-cols-2 gap-4">
+              <Link
+                to="/tutorial-creating-your-first-spin-wheel"
+                className="block"
+              >
+                <Card className="p-4 hover:shadow-lg transition-shadow h-full">
+                  <div className="flex items-start gap-3">
+                    <PlayCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold mb-1">
+                        Tutorial: Creating Your First Spin Wheel
+                      </h4>
+                      <p className="text-sm text-muted-foreground">
+                        Step-by-step guide to creating your first custom spin
+                        wheel
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+              </Link>
+
+              <Link
+                to="/tutorial-customizing-spin-wheel-colors"
+                className="block"
+              >
+                <Card className="p-4 hover:shadow-lg transition-shadow h-full">
+                  <div className="flex items-start gap-3">
+                    <Palette className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold mb-1">
+                        Tutorial: Customizing Spin Wheel Colors
+                      </h4>
+                      <p className="text-sm text-muted-foreground">
+                        Learn how to customize colors effectively
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+              </Link>
+
+              <Link
+                to="/tutorial-adding-images-to-spin-wheels"
+                className="block"
+              >
+                <Card className="p-4 hover:shadow-lg transition-shadow h-full">
+                  <div className="flex items-start gap-3">
+                    <ImageIcon className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold mb-1">
+                        Tutorial: Adding Images to Spin Wheels
+                      </h4>
+                      <p className="text-sm text-muted-foreground">
+                        Discover best practices for adding images to your wheels
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+              </Link>
+
+              <Link
+                to="/tutorial-managing-spin-wheel-entries"
+                className="block"
+              >
+                <Card className="p-4 hover:shadow-lg transition-shadow h-full">
+                  <div className="flex items-start gap-3">
+                    <List className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold mb-1">
+                        Tutorial: Managing Spin Wheel Entries
+                      </h4>
+                      <p className="text-sm text-muted-foreground">
+                        Complete guide to entry management
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+              </Link>
+
+              <Link
+                to="/tutorial-advanced-spin-wheel-features"
+                className="block"
+              >
+                <Card className="p-4 hover:shadow-lg transition-shadow h-full">
+                  <div className="flex items-start gap-3">
+                    <Settings className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold mb-1">
+                        Tutorial: Advanced Spin Wheel Features
+                      </h4>
+                      <p className="text-sm text-muted-foreground">
+                        Power user techniques and professional tips
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+              </Link>
+            </div>
+          </section>
+
+          {/* Case Studies */}
+          <section>
+            <div className="flex items-center gap-3 mb-6 mt-8">
+              <Briefcase className="h-6 w-6 text-primary" />
+              <h3 className="text-xl md:text-2xl font-bold">
+                Real-World Case Studies
+              </h3>
+            </div>
+            <div className="grid md:grid-cols-2 gap-4">
+              <Link to="/case-study-school-using-spin-wheels" className="block">
+                <Card className="p-4 hover:shadow-lg transition-shadow h-full">
+                  <div className="flex items-start gap-3">
+                    <GraduationCap className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold mb-1">
+                        Case Study: Elementary School Transforms Engagement
+                      </h4>
+                      <p className="text-sm text-muted-foreground">
+                        How spin wheels improved participation and fairness
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+              </Link>
+
+              <Link
+                to="/case-study-corporate-event-using-spin-wheels"
+                className="block"
+              >
+                <Card className="p-4 hover:shadow-lg transition-shadow h-full">
+                  <div className="flex items-start gap-3">
+                    <Briefcase className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold mb-1">
+                        Case Study: Corporate Conference Management
+                      </h4>
+                      <p className="text-sm text-muted-foreground">
+                        How spin wheels streamlined a major corporate event
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+              </Link>
+
+              <Link
+                to="/case-study-community-event-using-spin-wheels"
+                className="block"
+              >
+                <Card className="p-4 hover:shadow-lg transition-shadow h-full">
+                  <div className="flex items-start gap-3">
+                    <Heart className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold mb-1">
+                        Case Study: Community Festival Fair Selection
+                      </h4>
+                      <p className="text-sm text-muted-foreground">
+                        Building community trust through transparent selection
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+              </Link>
+            </div>
+          </section>
+
+          {/* Comparisons */}
+          <section>
+            <div className="flex items-center gap-3 mb-6 mt-8">
+              <GitCompare className="h-6 w-6 text-primary" />
+              <h3 className="text-xl md:text-2xl font-bold">Comparisons</h3>
+            </div>
+            <div className="grid md:grid-cols-2 gap-4">
+              <Link
+                to="/comparison-spin-wheel-vs-random-number-generator"
+                className="block"
+              >
+                <Card className="p-4 hover:shadow-lg transition-shadow h-full">
+                  <div className="flex items-start gap-3">
+                    <GitCompare className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold mb-1">
+                        Spin Wheel vs Random Number Generator
+                      </h4>
+                      <p className="text-sm text-muted-foreground">
+                        Which selection method is better for your needs?
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+              </Link>
+
+              <Link
+                to="/comparison-spin-wheel-vs-traditional-methods"
+                className="block"
+              >
+                <Card className="p-4 hover:shadow-lg transition-shadow h-full">
+                  <div className="flex items-start gap-3">
+                    <GitCompare className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold mb-1">
+                        Spin Wheel vs Traditional Selection Methods
+                      </h4>
+                      <p className="text-sm text-muted-foreground">
+                        Why digital random selection outperforms classic methods
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+              </Link>
+
+              <Link
+                to="/comparison-online-vs-physical-spin-wheels"
+                className="block"
+              >
+                <Card className="p-4 hover:shadow-lg transition-shadow h-full">
+                  <div className="flex items-start gap-3">
+                    <GitCompare className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold mb-1">
+                        Online vs Physical Spin Wheels
+                      </h4>
+                      <p className="text-sm text-muted-foreground">
+                        Choosing between digital and physical spinners
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+              </Link>
+            </div>
+          </section>
         </Card>
 
         <Card className="p-8 md:p-10 mt-8 border shadow-sm">

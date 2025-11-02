@@ -563,7 +563,61 @@ const HowToCreateFairGiveawaysWithSpinWheels = () => {
         </Card>
 
         {/* Related Articles */}
-        <div className="grid md:grid-cols-2 gap-4 mt-8">
+        <div className="grid md:grid-cols-3 gap-4 mt-8">
+          <Card className="p-6 bg-primary/5 border border-primary/20">
+            <div className="flex items-center gap-3 mb-3">
+              <Award className="h-6 w-6 text-primary" />
+              <h3 className="text-xl font-bold">Related Guides</h3>
+            </div>
+            <p className="text-sm text-muted-foreground mb-4">
+              Explore more practical guides
+            </p>
+            <div className="space-y-2">
+              <Link
+                to="/how-to-use-spin-wheels-in-classrooms"
+                className="block text-sm font-semibold text-primary hover:underline"
+              >
+                Classroom Use →
+              </Link>
+              <Link
+                to="/how-to-organize-events-with-random-selection"
+                className="block text-sm font-semibold text-primary hover:underline"
+              >
+                Event Organization →
+              </Link>
+              <Link
+                to="/how-to-use-spin-wheels-for-team-building"
+                className="block text-sm font-semibold text-primary hover:underline"
+              >
+                Team Building →
+              </Link>
+            </div>
+          </Card>
+
+          <Card className="p-6 bg-primary/5 border border-primary/20">
+            <div className="flex items-center gap-3 mb-3">
+              <CheckCircle2 className="h-6 w-6 text-primary" />
+              <h3 className="text-xl font-bold">Tutorials</h3>
+            </div>
+            <p className="text-sm text-muted-foreground mb-4">
+              Learn how to create and customize wheels
+            </p>
+            <div className="space-y-2">
+              <Link
+                to="/tutorial-creating-your-first-spin-wheel"
+                className="block text-sm font-semibold text-primary hover:underline"
+              >
+                Creating Your First Wheel →
+              </Link>
+              <Link
+                to="/tutorial-customizing-spin-wheel-colors"
+                className="block text-sm font-semibold text-primary hover:underline"
+              >
+                Customize Colors →
+              </Link>
+            </div>
+          </Card>
+
           <Card className="p-6 bg-primary/5 border border-primary/20">
             <div className="flex items-center gap-3 mb-3">
               <Users className="h-6 w-6 text-primary" />
@@ -577,24 +631,6 @@ const HowToCreateFairGiveawaysWithSpinWheels = () => {
               className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
             >
               Contact Us
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </Card>
-
-          <Card className="p-6 bg-primary/5 border border-primary/20">
-            <div className="flex items-center gap-3 mb-3">
-              <Award className="h-6 w-6 text-primary" />
-              <h3 className="text-xl font-bold">More Guides</h3>
-            </div>
-            <p className="text-sm text-muted-foreground mb-4">
-              Explore our complete collection of guides and tutorials for using
-              spin wheels effectively.
-            </p>
-            <Link
-              to="/blog"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
-            >
-              Browse Guides
               <ArrowRight className="h-4 w-4" />
             </Link>
           </Card>

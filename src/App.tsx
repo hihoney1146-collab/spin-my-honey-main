@@ -32,6 +32,36 @@ const HowToMakeDecisionsFasterWithSpinWheels = lazy(
 const TutorialCreatingYourFirstSpinWheel = lazy(
   () => import("./pages/TutorialCreatingYourFirstSpinWheel")
 );
+const TutorialCustomizingSpinWheelColors = lazy(
+  () => import("./pages/TutorialCustomizingSpinWheelColors")
+);
+const TutorialAddingImagesToSpinWheels = lazy(
+  () => import("./pages/TutorialAddingImagesToSpinWheels")
+);
+const TutorialManagingSpinWheelEntries = lazy(
+  () => import("./pages/TutorialManagingSpinWheelEntries")
+);
+const TutorialAdvancedSpinWheelFeatures = lazy(
+  () => import("./pages/TutorialAdvancedSpinWheelFeatures")
+);
+const CaseStudySchoolUsingSpinWheels = lazy(
+  () => import("./pages/CaseStudySchoolUsingSpinWheels")
+);
+const CaseStudyCorporateEventUsingSpinWheels = lazy(
+  () => import("./pages/CaseStudyCorporateEventUsingSpinWheels")
+);
+const CaseStudyCommunityEventUsingSpinWheels = lazy(
+  () => import("./pages/CaseStudyCommunityEventUsingSpinWheels")
+);
+const ComparisonSpinWheelVsRandomNumberGenerator = lazy(
+  () => import("./pages/ComparisonSpinWheelVsRandomNumberGenerator")
+);
+const ComparisonSpinWheelVsTraditionalMethods = lazy(
+  () => import("./pages/ComparisonSpinWheelVsTraditionalMethods")
+);
+const ComparisonOnlineVsPhysicalSpinWheels = lazy(
+  () => import("./pages/ComparisonOnlineVsPhysicalSpinWheels")
+);
 const Terms = lazy(() => import("./pages/Terms"));
 const Disclaimer = lazy(() => import("./pages/Disclaimer"));
 const NotFound = lazy(() => import("./pages/NotFound"));
@@ -142,6 +172,86 @@ const App = () => (
                 element={
                   <Suspense fallback={<div className="min-h-screen" />}>
                     <TutorialCreatingYourFirstSpinWheel />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/tutorial-customizing-spin-wheel-colors"
+                element={
+                  <Suspense fallback={<div className="min-h-screen" />}>
+                    <TutorialCustomizingSpinWheelColors />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/tutorial-adding-images-to-spin-wheels"
+                element={
+                  <Suspense fallback={<div className="min-h-screen" />}>
+                    <TutorialAddingImagesToSpinWheels />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/tutorial-managing-spin-wheel-entries"
+                element={
+                  <Suspense fallback={<div className="min-h-screen" />}>
+                    <TutorialManagingSpinWheelEntries />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/tutorial-advanced-spin-wheel-features"
+                element={
+                  <Suspense fallback={<div className="min-h-screen" />}>
+                    <TutorialAdvancedSpinWheelFeatures />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/case-study-school-using-spin-wheels"
+                element={
+                  <Suspense fallback={<div className="min-h-screen" />}>
+                    <CaseStudySchoolUsingSpinWheels />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/case-study-corporate-event-using-spin-wheels"
+                element={
+                  <Suspense fallback={<div className="min-h-screen" />}>
+                    <CaseStudyCorporateEventUsingSpinWheels />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/case-study-community-event-using-spin-wheels"
+                element={
+                  <Suspense fallback={<div className="min-h-screen" />}>
+                    <CaseStudyCommunityEventUsingSpinWheels />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/comparison-spin-wheel-vs-random-number-generator"
+                element={
+                  <Suspense fallback={<div className="min-h-screen" />}>
+                    <ComparisonSpinWheelVsRandomNumberGenerator />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/comparison-spin-wheel-vs-traditional-methods"
+                element={
+                  <Suspense fallback={<div className="min-h-screen" />}>
+                    <ComparisonSpinWheelVsTraditionalMethods />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/comparison-online-vs-physical-spin-wheels"
+                element={
+                  <Suspense fallback={<div className="min-h-screen" />}>
+                    <ComparisonOnlineVsPhysicalSpinWheels />
                   </Suspense>
                 }
               />

@@ -520,23 +520,59 @@ const HowToUseSpinWheelsInClassrooms = () => {
         </Card>
 
         {/* Related Articles */}
-        <div className="grid md:grid-cols-2 gap-4 mt-8">
+        <div className="grid md:grid-cols-3 gap-4 mt-8">
           <Card className="p-6 bg-primary/5 border border-primary/20">
             <div className="flex items-center gap-3 mb-3">
               <Lightbulb className="h-6 w-6 text-primary" />
-              <h3 className="text-xl font-bold">Teaching Tips</h3>
+              <h3 className="text-xl font-bold">Related Guides</h3>
             </div>
             <p className="text-sm text-muted-foreground mb-4">
-              Discover more innovative teaching strategies and classroom
-              management techniques.
+              Explore more practical guides
             </p>
-            <Link
-              to="/blog"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
-            >
-              Explore Blog
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+            <div className="space-y-2">
+              <Link
+                to="/how-to-create-fair-giveaways-with-spin-wheels"
+                className="block text-sm font-semibold text-primary hover:underline"
+              >
+                Fair Giveaways →
+              </Link>
+              <Link
+                to="/how-to-use-spin-wheels-for-team-building"
+                className="block text-sm font-semibold text-primary hover:underline"
+              >
+                Team Building →
+              </Link>
+              <Link
+                to="/how-to-organize-events-with-random-selection"
+                className="block text-sm font-semibold text-primary hover:underline"
+              >
+                Event Organization →
+              </Link>
+            </div>
+          </Card>
+
+          <Card className="p-6 bg-primary/5 border border-primary/20">
+            <div className="flex items-center gap-3 mb-3">
+              <CheckCircle2 className="h-6 w-6 text-primary" />
+              <h3 className="text-xl font-bold">Case Studies</h3>
+            </div>
+            <p className="text-sm text-muted-foreground mb-4">
+              See real-world school implementations
+            </p>
+            <div className="space-y-2">
+              <Link
+                to="/case-study-school-using-spin-wheels"
+                className="block text-sm font-semibold text-primary hover:underline"
+              >
+                School Case Study →
+              </Link>
+              <Link
+                to="/tutorial-creating-your-first-spin-wheel"
+                className="block text-sm font-semibold text-primary hover:underline"
+              >
+                Getting Started Tutorial →
+              </Link>
+            </div>
           </Card>
 
           <Card className="p-6 bg-primary/5 border border-primary/20">
