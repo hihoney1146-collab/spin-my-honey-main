@@ -17,21 +17,16 @@
     <!-- DNS Prefetch & Preconnect for performance -->
     <link rel="dns-prefetch" href="https://hihoney.site" />
     <link rel="preconnect" href="https://hihoney.site" crossorigin />
+    <!-- Only preconnect to resources we actually use -->
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
     <link
       rel="preconnect"
       href="https://www.googletagmanager.com"
       crossorigin
     />
-    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
-    <link
-      rel="preconnect"
-      href="https://pagead2.googlesyndication.com"
-      crossorigin
-    />
+    <!-- Removed AdSense preconnect - will add after approval -->
 
-    <!-- Preload critical resources -->
-    <link rel="preload" href="/logo.png" as="image" type="image/png" />
+    <!-- Preload critical resources - removed until logo is optimized -->
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="192x192" href="/logo.png" />
@@ -137,30 +132,40 @@
       }
     </script>
 
-    <!-- Google AdSense -->
-    <script
+    <!-- Google AdSense - Commented out until approval -->
+    <!-- <script
       async
       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5566205600875011"
       crossorigin="anonymous"
-    ></script>
+    ></script> -->
   </head>
 
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
 
-    <!-- Google Analytics (deferred for performance) -->
-    <script>
+    <!-- Google Analytics - Deferred to end of body for performance -->
+    <script
+      defer
+      src="https://www.googletagmanager.com/gtag/js?id=G-XKY49ZCLRS"
+    ></script>
+    <script defer>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
-      gtag("config", "G-XKY49ZCLRS");
+      gtag("config", "G-XKY49ZCLRS", {
+        send_page_view: false,
+      });
+      // Track page view manually after page load
+      if (document.readyState === "complete") {
+        gtag("config", "G-XKY49ZCLRS");
+      } else {
+        window.addEventListener("load", function () {
+          gtag("config", "G-XKY49ZCLRS");
+        });
+      }
     </script>
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-XKY49ZCLRS"
-    ></script>
   </body>
 </html>

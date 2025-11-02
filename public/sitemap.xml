@@ -30,6 +30,50 @@
     <priority>0.7</priority>
   </url>
   
+  <!-- How-to Guides -->
+  <url>
+    <loc>https://hihoney.site/how-to-use-spin-wheels-in-classrooms</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://hihoney.site/how-to-create-fair-giveaways-with-spin-wheels</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://hihoney.site/how-to-use-spin-wheels-for-team-building</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://hihoney.site/how-to-organize-events-with-random-selection</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://hihoney.site/how-to-make-decisions-faster-with-spin-wheels</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- Tutorial Articles -->
+  <url>
+    <loc>https://hihoney.site/tutorial-creating-your-first-spin-wheel</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
   <url>
     <loc>https://hihoney.site/contact</loc>
     <lastmod>2025-10-20</lastmod>
@@ -41,6 +85,13 @@
   <url>
     <loc>https://hihoney.site/privacy</loc>
     <lastmod>2025-10-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  
+  <url>
+    <loc>https://hihoney.site/cookie-policy</loc>
+    <lastmod>2025-01-28</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

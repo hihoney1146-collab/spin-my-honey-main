@@ -1,7 +1,12 @@
 # Hi Honey - Spin Wheel Tool Robots.txt
-# Updated: 2025-10-20
+# Updated: 2025-01-28
 
-# Google Bot
+# Google AdSense Crawler (REQUIRED for AdSense approval)
+User-agent: Mediapartners-Google
+Allow: /
+Crawl-delay: 0
+
+# Google Search Bot
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 0

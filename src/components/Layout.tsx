@@ -54,7 +54,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                   alt="Hi Honey Logo - Spin Wheel Decision Maker"
                   width={48}
                   height={48}
-                  className="h-9 sm:h-10 md:h-11 lg:h-12 w-auto px-1 sm:px-1.5 transform group-hover:scale-110 transition-transform duration-300"
+                  className="h-9 sm:h-10 md:h-11 lg:h-12 w-9 sm:w-10 md:w-11 lg:w-12 px-1 sm:px-1.5 transform group-hover:scale-110 transition-transform duration-300 object-contain"
                   loading="eager"
                 />
               </div>
@@ -288,6 +288,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
               <ul className="space-y-3">
                 {[
                   { to: "/privacy", label: "Privacy Policy" },
+                  { to: "/cookie-policy", label: "Cookie Policy" },
                   { to: "/terms", label: "Terms & Conditions" },
                   { to: "/disclaimer", label: "Disclaimer" },
                 ].map((link) => (
