@@ -308,6 +308,52 @@ export const SpinWheel = () => {
     ctx.rotate((rotation * Math.PI) / 180);
 
     const activeEntries = entries.filter((entry) => entry.active);
+    if (activeEntries.length === 0) {
+      ctx.restore();
+
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+      ctx.fillStyle = "#f8fafc";
+      ctx.fill();
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = "rgba(148, 163, 184, 0.35)";
+      ctx.stroke();
+
+      // Draw pointer even when no entries are active
+      const pointerX = centerX + radius + 5;
+      const pointerY = centerY;
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(pointerX, pointerY);
+      ctx.lineTo(pointerX + 24, pointerY - 18);
+      ctx.lineTo(pointerX + 24, pointerY + 18);
+      ctx.closePath();
+      ctx.fillStyle = "#ef4444";
+      ctx.shadowColor = "rgba(239, 68, 68, 0.35)";
+      ctx.shadowBlur = 12;
+      ctx.shadowOffsetX = 0;
+      ctx.shadowOffsetY = 6;
+      ctx.fill();
+      ctx.restore();
+
+      ctx.beginPath();
+      ctx.moveTo(pointerX, pointerY);
+      ctx.lineTo(pointerX + 24, pointerY - 18);
+      ctx.lineTo(pointerX + 24, pointerY + 18);
+      ctx.closePath();
+      ctx.lineWidth = 2.5;
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.85)";
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(pointerX + 20, pointerY, 6, 0, 2 * Math.PI);
+      ctx.fillStyle = "#ffffff";
+      ctx.shadowColor = "rgba(15, 23, 42, 0.25)";
+      ctx.shadowBlur = 6;
+      ctx.fill();
+
+      return;
+    }
     const sliceAngle = (2 * Math.PI) / activeEntries.length;
 
     activeEntries.forEach((entry, index) => {
@@ -385,14 +431,23 @@ export const SpinWheel = () => {
         ctx.fill();
       }
 
+      // Polished slice separator
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.arc(0, 0, radius, startAngle, endAngle);
+      ctx.closePath();
+      ctx.lineWidth = 1.5;
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.45)";
+      ctx.stroke();
+
       // Draw text
       ctx.save();
       ctx.rotate(startAngle + sliceAngle / 2);
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
 
-      ctx.font = "bold 14px Inter, sans-serif";
-      const textX = radius * 0.65;
+      ctx.font = "bold 16px Inter, sans-serif";
+      const textX = radius * 0.68;
 
       // Subtle text outline for visibility over images
       ctx.strokeStyle = "rgba(0, 0, 0, 0.6)";
@@ -404,6 +459,19 @@ export const SpinWheel = () => {
 
       ctx.restore();
     });
+
+    // Outer rim for elevated finish
+    ctx.beginPath();
+    ctx.arc(0, 0, radius, 0, 2 * Math.PI);
+    ctx.lineWidth = 6;
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.7)";
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(0, 0, radius - 6, 0, 2 * Math.PI);
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = "rgba(148, 163, 184, 0.35)";
+    ctx.stroke();
 
     // Draw center circle
     ctx.beginPath();
@@ -443,13 +511,37 @@ export const SpinWheel = () => {
     // Draw pointer (positioned at the right edge, pointing left into the wheel)
     const pointerX = centerX + radius + 5;
     const pointerY = centerY;
+    ctx.save();
     ctx.beginPath();
     ctx.moveTo(pointerX, pointerY); // Tip of pointer
-    ctx.lineTo(pointerX + 20, pointerY - 15); // Top right
-    ctx.lineTo(pointerX + 20, pointerY + 15); // Bottom right
+    ctx.lineTo(pointerX + 24, pointerY - 18); // Top right
+    ctx.lineTo(pointerX + 24, pointerY + 18); // Bottom right
     ctx.closePath();
     ctx.fillStyle = "#ef4444";
+    ctx.shadowColor = "rgba(239, 68, 68, 0.4)";
+    ctx.shadowBlur = 14;
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 6;
     ctx.fill();
+    ctx.restore();
+
+    ctx.beginPath();
+    ctx.moveTo(pointerX, pointerY);
+    ctx.lineTo(pointerX + 24, pointerY - 18);
+    ctx.lineTo(pointerX + 24, pointerY + 18);
+    ctx.closePath();
+    ctx.lineWidth = 2.5;
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.9)";
+    ctx.stroke();
+
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(pointerX + 20, pointerY, 6, 0, 2 * Math.PI);
+    ctx.fillStyle = "#ffffff";
+    ctx.shadowColor = "rgba(15, 23, 42, 0.2)";
+    ctx.shadowBlur = 6;
+    ctx.fill();
+    ctx.restore();
   };
 
   const addEntry = () => {
@@ -644,24 +736,25 @@ export const SpinWheel = () => {
   return (
     <>
       {/* Wheel Section - Centered */}
-      <div className="flex flex-col items-center justify-center gap-3 sm:gap-4 w-full px-4 sm:px-6 lg:px-8 lg:pr-[360px] xl:pr-[420px] 2xl:pr-[440px]">
+      <div className="flex flex-col items-center justify-center gap-3 sm:gap-4 w-full px-4 sm:px-6 lg:px-8 lg:pr-[420px] xl:pr-[480px] 2xl:pr-[520px]">
         {/* Wheel Card */}
-        <div className="w-full max-w-[240px] xs:max-w-[280px] sm:max-w-[320px] md:max-w-[340px] lg:max-w-[360px] xl:max-w-[400px] 2xl:max-w-[420px] mx-auto relative">
+        <div className="w-full max-w-[300px] xs:max-w-[340px] sm:max-w-[400px] md:max-w-[460px] lg:max-w-[520px] xl:max-w-[560px] 2xl:max-w-[600px] mx-auto relative">
+          <div className="absolute inset-0 -z-10 rounded-full bg-gradient-to-br from-primary/25 via-primary/10 to-transparent blur-3xl opacity-60 pointer-events-none" />
           <canvas
             ref={canvasRef}
-            width={350}
-            height={350}
+            width={480}
+            height={480}
             onClick={spinWheel}
-            className={`w-full h-auto relative transition-transform duration-200 touch-manipulation ${
+            className={`w-full h-auto block rounded-full border-[10px] border-white/80 bg-gradient-to-br from-background/95 via-background/90 to-muted/70 shadow-[0_28px_70px_-32px_rgba(15,23,42,0.65)] ring-1 ring-primary/20 transition-all duration-200 touch-manipulation ${
               isSpinning || activeEntries.length < 2
                 ? "cursor-not-allowed opacity-70"
-                : "cursor-pointer hover:scale-105 active:scale-95"
+                : "cursor-pointer hover:scale-[1.04] active:scale-95 hover:shadow-[0_36px_90px_-38px_rgba(15,23,42,0.7)]"
             }`}
           />
         </div>
 
         {/* Spin Button */}
-        <div className="w-full max-w-[240px] xs:max-w-[280px] sm:max-w-[320px] md:max-w-[340px] lg:max-w-[360px] xl:max-w-[400px] 2xl:max-w-[420px] mx-auto space-y-2">
+        <div className="w-full max-w-[300px] xs:max-w-[340px] sm:max-w-[400px] md:max-w-[460px] lg:max-w-[520px] xl:max-w-[560px] 2xl:max-w-[600px] mx-auto space-y-2">
           <Button
             onClick={spinWheel}
             disabled={isSpinning || activeEntries.length < 2}
@@ -695,7 +788,7 @@ export const SpinWheel = () => {
         {/* Winner Display */}
         {winner && (
           <Card
-            className="p-3 sm:p-4 lg:p-5 w-full max-w-[240px] xs:max-w-[280px] sm:max-w-[320px] md:max-w-[340px] lg:max-w-[360px] xl:max-w-[400px] 2xl:max-w-[420px] mx-auto border-2 shadow-2xl animate-in fade-in zoom-in duration-500 relative overflow-hidden backdrop-blur-sm"
+            className="p-3 sm:p-4 lg:p-5 w-full max-w-[300px] xs:max-w-[340px] sm:max-w-[400px] md:max-w-[460px] lg:max-w-[520px] xl:max-w-[560px] 2xl:max-w-[600px] mx-auto border-2 shadow-2xl animate-in fade-in zoom-in duration-500 relative overflow-hidden backdrop-blur-sm"
             style={{
               backgroundColor: `${winnerColor}10`,
               borderColor: winnerColor,
