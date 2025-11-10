@@ -357,12 +357,27 @@ const Index = () => {
                       </p>
                     </div>
                   </div>
+                  <div className="flex gap-3 items-start">
+                    <div className="flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 bg-primary rounded-full flex items-center justify-center">
+                      <span className="text-sm sm:text-base font-bold text-primary-foreground">
+                        3
+                      </span>
+                    </div>
+                    <div>
+                      <h3 className="text-sm sm:text-base md:text-base font-semibold mb-1 sm:mb-2">
+                        Add Images
+                      </h3>
+                      <p className="text-xs sm:text-sm md:text-sm text-muted-foreground leading-relaxed">
+                        Upload logos or photos to segments so every option stands out at a glance.
+                      </p>
+                    </div>
+                  </div>
                 </div>
                 <div className="space-y-4 sm:space-y-5">
                   <div className="flex gap-3 items-start">
                     <div className="flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 bg-primary rounded-full flex items-center justify-center">
                       <span className="text-sm sm:text-base font-bold text-primary-foreground">
-                        3
+                        4
                       </span>
                     </div>
                     <div>
@@ -378,7 +393,7 @@ const Index = () => {
                   <div className="flex gap-3 items-start">
                     <div className="flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 bg-primary rounded-full flex items-center justify-center">
                       <span className="text-sm sm:text-base font-bold text-primary-foreground">
-                        4
+                        5
                       </span>
                     </div>
                     <div>

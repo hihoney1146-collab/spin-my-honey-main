@@ -44,19 +44,18 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
         <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-14 sm:h-16 md:h-16 lg:h-17">
             {/* Logo */}
-            <Link
-              to="/"
-              className="flex items-center group relative flex-shrink-0"
-            >
-              <div className="relative">
-                <OptimizedImage
-                  src={logo}
-                  alt="Hi Honey Logo - Spin Wheel Decision Maker"
-                  width={48}
-                  height={48}
-                  className="h-9 sm:h-10 md:h-11 lg:h-12 w-9 sm:w-10 md:w-11 lg:w-12 px-1 sm:px-1.5 transform group-hover:scale-110 transition-transform duration-300 object-contain"
-                  loading="eager"
-                />
+            <Link to="/" className="flex items-center group relative flex-shrink-0">
+              <div className="relative flex items-center justify-center">
+                <div className="will-change-transform motion-safe:animate-spin motion-safe:[animation-duration:12s] motion-safe:[animation-timing-function:linear]">
+                  <OptimizedImage
+                    src={logo}
+                    alt="Hi Honey Logo - Spin Wheel Decision Maker"
+                    width={48}
+                    height={48}
+                    className="h-9 sm:h-10 md:h-11 lg:h-12 w-9 sm:w-10 md:w-11 lg:w-12 px-1 sm:px-1.5 transform group-hover:scale-110 transition-transform duration-300 object-contain"
+                    loading="eager"
+                  />
+                </div>
               </div>
               <div className="flex flex-col">
                 <span className="text-base sm:text-lg md:text-lg lg:text-xl xl:text-2xl font-bold leading-tight">
@@ -129,6 +128,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                 >
                   <SheetHeader>
                     <SheetTitle className="flex items-center gap-2">
+                    <div className="will-change-transform motion-safe:animate-spin motion-safe:[animation-duration:12s] motion-safe:[animation-timing-function:linear]">
                       <OptimizedImage
                         src={logo}
                         alt="Hi Honey Logo"
@@ -137,6 +137,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                         className="h-8 w-8"
                         loading="eager"
                       />
+                    </div>
                       <span className="font-bold">
                         <span className="bg-gradient-to-r from-orange-500 via-yellow-500 to-green-500 bg-clip-text text-transparent">
                           Hi
@@ -214,17 +215,16 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10 py-8 sm:py-12 md:py-16">
             {/* Brand Section */}
             <div className="sm:col-span-2 lg:col-span-1">
-              <Link
-                to="/"
-                className="inline-flex items-center gap-2 mb-4 group"
-              >
-                <OptimizedImage
-                  src={logo}
-                  alt="Hi Honey - Free Spin Wheel Tool"
-                  width={40}
-                  height={40}
-                  className="h-10 w-10 transform group-hover:scale-110 transition-transform duration-300"
-                />
+              <Link to="/" className="inline-flex items-center gap-2 mb-4 group">
+                <div className="will-change-transform motion-safe:animate-spin motion-safe:[animation-duration:12s] motion-safe:[animation-timing-function:linear]">
+                  <OptimizedImage
+                    src={logo}
+                    alt="Hi Honey - Free Spin Wheel Tool"
+                    width={40}
+                    height={40}
+                    className="h-10 w-10 transform group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
                 <span className="font-bold text-xl">
                   <span className="bg-gradient-to-r from-orange-500 via-yellow-500 to-green-500 bg-clip-text text-transparent">
                     Hi
@@ -255,8 +255,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
 
             {/* Quick Links */}
             <div>
-              <h3 className="font-semibold text-base mb-4 flex items-center gap-2">
-                <Home className="h-4 w-4 text-primary" />
+              <h3 className="font-semibold text-base mb-4 text-foreground">
                 Quick Links
               </h3>
               <ul className="space-y-3">
@@ -281,8 +280,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
 
             {/* Legal Links */}
             <div>
-              <h3 className="font-semibold text-base mb-4 flex items-center gap-2">
-                <Info className="h-4 w-4 text-primary" />
+              <h3 className="font-semibold text-base mb-4 text-foreground">
                 Legal
               </h3>
               <ul className="space-y-3">
