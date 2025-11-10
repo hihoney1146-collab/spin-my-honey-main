@@ -21,6 +21,7 @@ import {
   GitCompare,
   ArrowRight,
   PlayCircle,
+  FileText,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -1145,6 +1146,19 @@ const Blog = () => {
                 <Instagram className="h-5 w-5 text-pink-600 dark:text-pink-500" />
                 <span className="font-medium text-sm text-foreground">
                   Instagram
+                </span>
+              </a>
+
+              <a
+                href="https://s3.eu-west-1.amazonaws.com/hi-honey-spin-wheel/Spin+Wheel.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-3 px-5 py-3 rounded-lg border-2 border-border hover:border-amber-500 bg-background hover:bg-amber-50 dark:hover:bg-amber-950/30 transition-all duration-200"
+                aria-label="Download the Hi Honey Spin Wheel guide"
+              >
+                <FileText className="h-5 w-5 text-amber-600 dark:text-amber-500" />
+                <span className="font-medium text-sm text-foreground">
+                  Spin Wheel Guide (PDF)
                 </span>
               </a>
             </div>
