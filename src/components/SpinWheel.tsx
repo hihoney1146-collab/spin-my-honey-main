@@ -251,16 +251,23 @@ export const SpinWheel = () => {
   const continuousSpinRef = useRef<number | null>(null);
   const spinAnimationRef = useRef<number | null>(null);
   const rotationRef = useRef<number>(rotation);
+  const entriesRef = useRef<WheelEntry[]>(entries);
+  const loadedImagesRef = useRef<Map<string, HTMLImageElement>>(loadedImages);
 
   // Save entries to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem("spinWheelEntries", JSON.stringify(entries));
+    entriesRef.current = entries;
   }, [entries]);
 
-  // Update rotation ref whenever rotation state changes
+  // Update refs whenever state changes
   useEffect(() => {
     rotationRef.current = rotation;
   }, [rotation]);
+
+  useEffect(() => {
+    loadedImagesRef.current = loadedImages;
+  }, [loadedImages]);
 
   // Draw wheel when entries, rotation, or loadedImages change (only when not animating)
   useEffect(() => {
@@ -280,36 +287,38 @@ export const SpinWheel = () => {
         cancelAnimationFrame(continuousSpinRef.current);
         continuousSpinRef.current = null;
       }
+      // Update state when stopping animation
+      if (!isSpinning && activeEntries.length >= 2) {
+        setRotation(rotationRef.current);
+      }
       return;
     }
 
     // Start continuous slow spin - 0.15 degrees per frame at ~60fps = ~9 degrees/second
-    let currentRotation = rotationRef.current;
+    let animationRotation = rotationRef.current;
     
     const continuousSpin = () => {
-      // Check if we should continue (conditions might have changed)
+      // Check if we should continue using refs (avoid closure issues)
       const shouldContinue = !isSpinning && 
                              canvasRef.current && 
-                             entries.filter((e) => e.active).length >= 2;
+                             entriesRef.current.filter((e) => e.active).length >= 2;
       
       if (!shouldContinue) {
         continuousSpinRef.current = null;
+        // Sync state when stopping
+        setRotation(rotationRef.current);
         return;
       }
       
-      // Update rotation
-      currentRotation = (currentRotation + 0.15) % 360;
-      rotationRef.current = currentRotation;
+      // Update rotation - smooth increment for continuous spin
+      animationRotation = (animationRotation + 0.15) % 360;
+      rotationRef.current = animationRotation;
       
-      // Draw wheel with current rotation - this is the key: draw immediately
-      drawWheel(currentRotation);
+      // Draw wheel directly with current rotation - NO state update during animation!
+      // This ensures 60fps smooth animation without React re-renders
+      drawWheel(animationRotation);
       
-      // Update state (less frequently) - but draw happens every frame
-      if (Math.floor(currentRotation * 10) % 10 === 0) {
-        setRotation(currentRotation);
-      }
-      
-      // Schedule next frame
+      // Schedule next frame immediately
       continuousSpinRef.current = requestAnimationFrame(continuousSpin);
     };
 
@@ -320,6 +329,8 @@ export const SpinWheel = () => {
       if (continuousSpinRef.current !== null) {
         cancelAnimationFrame(continuousSpinRef.current);
         continuousSpinRef.current = null;
+        // Sync state when cleanup
+        setRotation(rotationRef.current);
       }
     };
   }, [isSpinning, entries]);
@@ -369,14 +380,17 @@ export const SpinWheel = () => {
     const radius = Math.min(centerX, centerY) - 20;
 
     // Use custom rotation if provided (for animations), otherwise use state
+    // If using custom rotation (during animation), use refs for all data to avoid closure issues
     const currentRotation = customRotation !== undefined ? customRotation : rotation;
+    const currentEntries = customRotation !== undefined ? entriesRef.current : entries;
+    const currentLoadedImages = customRotation !== undefined ? loadedImagesRef.current : loadedImages;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.save();
     ctx.translate(centerX, centerY);
     ctx.rotate((currentRotation * Math.PI) / 180);
 
-    const activeEntries = entries.filter((entry) => entry.active);
+    const activeEntries = currentEntries.filter((entry) => entry.active);
     if (activeEntries.length === 0) {
       ctx.restore();
 
@@ -436,7 +450,7 @@ export const SpinWheel = () => {
       ctx.closePath();
 
       // Check if image is available
-      const img = entry.imageUrl ? loadedImages.get(entry.id) : null;
+      const img = entry.imageUrl ? currentLoadedImages.get(entry.id) : null;
 
       if (img) {
         // Save context and clip to slice
