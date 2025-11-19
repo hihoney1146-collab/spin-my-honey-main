@@ -262,9 +262,9 @@ export const SpinWheel = () => {
     rotationRef.current = rotation;
   }, [rotation]);
 
-  // Draw wheel when entries, rotation, or loadedImages change
+  // Draw wheel when entries, rotation, or loadedImages change (only when not animating)
   useEffect(() => {
-    // Only draw if not in continuous spin mode (continuous spin handles its own drawing)
+    // Only draw if not in an active animation loop (animations handle their own drawing)
     if (!continuousSpinRef.current && !spinAnimationRef.current) {
       drawWheel();
     }
@@ -273,8 +273,9 @@ export const SpinWheel = () => {
   // Continuous slow spinning when not actively spinning
   useEffect(() => {
     const activeEntries = entries.filter((entry) => entry.active);
+    
+    // Stop continuous spin if spinning or not enough entries
     if (isSpinning || activeEntries.length < 2) {
-      // Stop continuous spin during active spin or if not enough entries
       if (continuousSpinRef.current !== null) {
         cancelAnimationFrame(continuousSpinRef.current);
         continuousSpinRef.current = null;
@@ -282,28 +283,43 @@ export const SpinWheel = () => {
       return;
     }
 
-    // Continuous slow spin - 0.15 degrees per frame at ~60fps = ~9 degrees/second
-    // Use ref to track rotation without causing dependency issues
+    // Start continuous slow spin - 0.15 degrees per frame at ~60fps = ~9 degrees/second
     let currentRotation = rotationRef.current;
+    
     const continuousSpin = () => {
+      // Check if we should continue (conditions might have changed)
+      const shouldContinue = !isSpinning && 
+                             canvasRef.current && 
+                             entries.filter((e) => e.active).length >= 2;
+      
+      if (!shouldContinue) {
+        continuousSpinRef.current = null;
+        return;
+      }
+      
+      // Update rotation
       currentRotation = (currentRotation + 0.15) % 360;
       rotationRef.current = currentRotation;
-      setRotation(currentRotation);
-      // Draw wheel directly with current rotation for smooth continuous animation
+      
+      // Draw wheel with current rotation - this is the key: draw immediately
       drawWheel(currentRotation);
+      
+      // Update state (less frequently) - but draw happens every frame
+      if (Math.floor(currentRotation * 10) % 10 === 0) {
+        setRotation(currentRotation);
+      }
+      
+      // Schedule next frame
       continuousSpinRef.current = requestAnimationFrame(continuousSpin);
     };
 
+    // Start the animation loop immediately
     continuousSpinRef.current = requestAnimationFrame(continuousSpin);
 
     return () => {
       if (continuousSpinRef.current !== null) {
         cancelAnimationFrame(continuousSpinRef.current);
         continuousSpinRef.current = null;
-      }
-      if (spinAnimationRef.current !== null) {
-        cancelAnimationFrame(spinAnimationRef.current);
-        spinAnimationRef.current = null;
       }
     };
   }, [isSpinning, entries]);
