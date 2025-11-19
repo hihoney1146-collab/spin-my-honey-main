@@ -250,15 +250,24 @@ export const SpinWheel = () => {
   >(new Map());
   const continuousSpinRef = useRef<number | null>(null);
   const spinAnimationRef = useRef<number | null>(null);
+  const rotationRef = useRef<number>(rotation);
 
   // Save entries to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem("spinWheelEntries", JSON.stringify(entries));
   }, [entries]);
 
+  // Update rotation ref whenever rotation state changes
+  useEffect(() => {
+    rotationRef.current = rotation;
+  }, [rotation]);
+
   // Draw wheel when entries, rotation, or loadedImages change
   useEffect(() => {
-    drawWheel();
+    // Only draw if not in continuous spin mode (continuous spin handles its own drawing)
+    if (!continuousSpinRef.current && !spinAnimationRef.current) {
+      drawWheel();
+    }
   }, [entries, rotation, loadedImages]);
 
   // Continuous slow spinning when not actively spinning
@@ -273,9 +282,15 @@ export const SpinWheel = () => {
       return;
     }
 
-    // Continuous slow spin - 0.1 degrees per frame at ~60fps = ~6 degrees/second
+    // Continuous slow spin - 0.15 degrees per frame at ~60fps = ~9 degrees/second
+    // Use ref to track rotation without causing dependency issues
+    let currentRotation = rotationRef.current;
     const continuousSpin = () => {
-      setRotation((prev) => (prev + 0.1) % 360);
+      currentRotation = (currentRotation + 0.15) % 360;
+      rotationRef.current = currentRotation;
+      setRotation(currentRotation);
+      // Draw wheel directly with current rotation for smooth continuous animation
+      drawWheel(currentRotation);
       continuousSpinRef.current = requestAnimationFrame(continuousSpin);
     };
 
@@ -690,8 +705,8 @@ export const SpinWheel = () => {
     const extraDegrees = Math.random() * 360;
     const totalRotation = spins * 360 + extraDegrees;
 
-    // Get current rotation at start
-    let currentRotation = rotation;
+    // Get current rotation at start - use ref to get latest value
+    let currentRotation = rotationRef.current;
     // Realistic duration: 5-7 seconds for more dramatic effect
     const duration = 5000 + Math.random() * 2000;
     const startTime = Date.now();
@@ -717,6 +732,7 @@ export const SpinWheel = () => {
         : 0.7 + easeOutExpo((progress - 0.7) / 0.3) * 0.3;
 
       const newRotation = (currentRotation + totalRotation * easedProgress) % 360;
+      rotationRef.current = newRotation;
       setRotation(newRotation);
       
       // Draw wheel directly with current rotation for smooth animation
