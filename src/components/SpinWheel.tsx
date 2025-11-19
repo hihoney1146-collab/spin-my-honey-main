@@ -256,6 +256,7 @@ export const SpinWheel = () => {
     localStorage.setItem("spinWheelEntries", JSON.stringify(entries));
   }, [entries]);
 
+  // Draw wheel when entries, rotation, or loadedImages change
   useEffect(() => {
     drawWheel();
   }, [entries, rotation, loadedImages]);
@@ -272,9 +273,9 @@ export const SpinWheel = () => {
       return;
     }
 
-    // Continuous slow spin - 0.15 degrees per frame at ~60fps = ~9 degrees/second
+    // Continuous slow spin - 0.1 degrees per frame at ~60fps = ~6 degrees/second
     const continuousSpin = () => {
-      setRotation((prev) => (prev + 0.15) % 360);
+      setRotation((prev) => (prev + 0.1) % 360);
       continuousSpinRef.current = requestAnimationFrame(continuousSpin);
     };
 
@@ -325,7 +326,7 @@ export const SpinWheel = () => {
     });
   }, [entries.map((e) => e.id + e.imageUrl).join(",")]);
 
-  const drawWheel = () => {
+  const drawWheel = (customRotation?: number) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -336,10 +337,13 @@ export const SpinWheel = () => {
     const centerY = canvas.height / 2;
     const radius = Math.min(centerX, centerY) - 20;
 
+    // Use custom rotation if provided (for animations), otherwise use state
+    const currentRotation = customRotation !== undefined ? customRotation : rotation;
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.save();
     ctx.translate(centerX, centerY);
-    ctx.rotate((rotation * Math.PI) / 180);
+    ctx.rotate((currentRotation * Math.PI) / 180);
 
     const activeEntries = entries.filter((entry) => entry.active);
     if (activeEntries.length === 0) {
@@ -712,8 +716,11 @@ export const SpinWheel = () => {
         ? easeOutQuart(progress / 0.7) * 0.7
         : 0.7 + easeOutExpo((progress - 0.7) / 0.3) * 0.3;
 
-      const newRotation = currentRotation + totalRotation * easedProgress;
-      setRotation(newRotation % 360);
+      const newRotation = (currentRotation + totalRotation * easedProgress) % 360;
+      setRotation(newRotation);
+      
+      // Draw wheel directly with current rotation for smooth animation
+      drawWheel(newRotation);
 
       if (progress < 1) {
         spinAnimationRef.current = requestAnimationFrame(animate);
