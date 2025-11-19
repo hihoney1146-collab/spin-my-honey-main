@@ -248,6 +248,8 @@ export const SpinWheel = () => {
   const [loadedImages, setLoadedImages] = useState<
     Map<string, HTMLImageElement>
   >(new Map());
+  const continuousSpinRef = useRef<number | null>(null);
+  const spinAnimationRef = useRef<number | null>(null);
 
   // Save entries to localStorage whenever they change
   useEffect(() => {
@@ -257,6 +259,38 @@ export const SpinWheel = () => {
   useEffect(() => {
     drawWheel();
   }, [entries, rotation, loadedImages]);
+
+  // Continuous slow spinning when not actively spinning
+  useEffect(() => {
+    const activeEntries = entries.filter((entry) => entry.active);
+    if (isSpinning || activeEntries.length < 2) {
+      // Stop continuous spin during active spin or if not enough entries
+      if (continuousSpinRef.current !== null) {
+        cancelAnimationFrame(continuousSpinRef.current);
+        continuousSpinRef.current = null;
+      }
+      return;
+    }
+
+    // Continuous slow spin - 0.15 degrees per frame at ~60fps = ~9 degrees/second
+    const continuousSpin = () => {
+      setRotation((prev) => (prev + 0.15) % 360);
+      continuousSpinRef.current = requestAnimationFrame(continuousSpin);
+    };
+
+    continuousSpinRef.current = requestAnimationFrame(continuousSpin);
+
+    return () => {
+      if (continuousSpinRef.current !== null) {
+        cancelAnimationFrame(continuousSpinRef.current);
+        continuousSpinRef.current = null;
+      }
+      if (spinAnimationRef.current !== null) {
+        cancelAnimationFrame(spinAnimationRef.current);
+        spinAnimationRef.current = null;
+      }
+    };
+  }, [isSpinning, entries]);
 
   // Preload images when entries change
   useEffect(() => {
@@ -637,30 +671,54 @@ export const SpinWheel = () => {
     const activeEntries = entries.filter((entry) => entry.active);
     if (isSpinning || activeEntries.length < 2) return;
 
+    // Stop continuous spin
+    if (continuousSpinRef.current !== null) {
+      cancelAnimationFrame(continuousSpinRef.current);
+      continuousSpinRef.current = null;
+    }
+
     setIsSpinning(true);
     setWinner(null);
     playSound("spin");
 
-    const spins = 5 + Math.random() * 5;
+    // More spins for realistic effect (6-10 full rotations)
+    const spins = 6 + Math.random() * 4;
     const extraDegrees = Math.random() * 360;
     const totalRotation = spins * 360 + extraDegrees;
 
+    // Get current rotation at start
     let currentRotation = rotation;
-    const duration = 4000;
+    // Realistic duration: 5-7 seconds for more dramatic effect
+    const duration = 5000 + Math.random() * 2000;
     const startTime = Date.now();
+
+    // Realistic easing function - easeOutQuart for smooth deceleration like physical wheels
+    const easeOutQuart = (t: number): number => {
+      return 1 - Math.pow(1 - t, 4);
+    };
+
+    // Advanced easing that mimics real wheel physics with smooth deceleration
+    const easeOutExpo = (t: number): number => {
+      return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+    };
 
     const animate = () => {
       const elapsed = Date.now() - startTime;
       const progress = Math.min(elapsed / duration, 1);
 
-      const easeOut = 1 - Math.pow(1 - progress, 3);
-      const newRotation = currentRotation + totalRotation * easeOut;
+      // Use combination of easing functions for realistic deceleration
+      // Starts fast, gradually slows down with smooth deceleration curve
+      const easedProgress = progress < 0.7 
+        ? easeOutQuart(progress / 0.7) * 0.7
+        : 0.7 + easeOutExpo((progress - 0.7) / 0.3) * 0.3;
 
+      const newRotation = currentRotation + totalRotation * easedProgress;
       setRotation(newRotation % 360);
 
       if (progress < 1) {
-        requestAnimationFrame(animate);
+        spinAnimationRef.current = requestAnimationFrame(animate);
       } else {
+        // Animation complete
         const finalRotation = newRotation % 360;
         const sliceAngle = 360 / activeEntries.length;
 
@@ -676,6 +734,7 @@ export const SpinWheel = () => {
         setWinnerColor(winningEntry.color);
         setWinnerId(winningEntry.id);
         setIsSpinning(false);
+        spinAnimationRef.current = null;
 
         // Delay sound and confetti slightly for better effect
         setTimeout(() => {
@@ -715,7 +774,7 @@ export const SpinWheel = () => {
       }
     };
 
-    animate();
+    spinAnimationRef.current = requestAnimationFrame(animate);
   };
 
   const activeEntries = entries.filter((entry) => entry.active);
