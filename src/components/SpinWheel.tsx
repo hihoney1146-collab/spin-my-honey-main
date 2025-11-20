@@ -280,7 +280,7 @@ export const SpinWheel = () => {
   // Continuous slow spinning when not actively spinning
   useEffect(() => {
     const activeEntries = entries.filter((entry) => entry.active);
-    
+
     // Stop continuous spin if spinning or not enough entries
     if (isSpinning || activeEntries.length < 2) {
       if (continuousSpinRef.current !== null) {
@@ -296,28 +296,28 @@ export const SpinWheel = () => {
 
     // Start continuous slow spin - 0.15 degrees per frame at ~60fps = ~9 degrees/second
     let animationRotation = rotationRef.current;
-    
+
     const continuousSpin = () => {
       // Check if we should continue using refs (avoid closure issues)
-      const shouldContinue = !isSpinning && 
-                             canvasRef.current && 
-                             entriesRef.current.filter((e) => e.active).length >= 2;
-      
+      const shouldContinue = !isSpinning &&
+        canvasRef.current &&
+        entriesRef.current.filter((e) => e.active).length >= 2;
+
       if (!shouldContinue) {
         continuousSpinRef.current = null;
         // Sync state when stopping
         setRotation(rotationRef.current);
         return;
       }
-      
+
       // Update rotation - smooth increment for continuous spin
       animationRotation = (animationRotation + 0.15) % 360;
       rotationRef.current = animationRotation;
-      
+
       // Draw wheel directly with current rotation - NO state update during animation!
       // This ensures 60fps smooth animation without React re-renders
       drawWheel(animationRotation);
-      
+
       // Schedule next frame immediately
       continuousSpinRef.current = requestAnimationFrame(continuousSpin);
     };
@@ -377,15 +377,33 @@ export const SpinWheel = () => {
 
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
-    const radius = Math.min(centerX, centerY) - 20;
+    // Reduce radius slightly to make room for the rim
+    const radius = Math.min(centerX, centerY) - 25;
 
-    // Use custom rotation if provided (for animations), otherwise use state
-    // If using custom rotation (during animation), use refs for all data to avoid closure issues
     const currentRotation = customRotation !== undefined ? customRotation : rotation;
     const currentEntries = customRotation !== undefined ? entriesRef.current : entries;
     const currentLoadedImages = customRotation !== undefined ? loadedImagesRef.current : loadedImages;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw Outer Rim (Metallic/Gradient effect)
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius + 15, 0, 2 * Math.PI);
+    const rimGradient = ctx.createLinearGradient(centerX - radius, centerY - radius, centerX + radius, centerY + radius);
+    rimGradient.addColorStop(0, "#e2e8f0");
+    rimGradient.addColorStop(0.5, "#94a3b8");
+    rimGradient.addColorStop(1, "#e2e8f0");
+    ctx.fillStyle = rimGradient;
+    ctx.fill();
+
+    // Inner rim shadow
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius + 2, 0, 2 * Math.PI);
+    ctx.fillStyle = "rgba(0,0,0,0.1)";
+    ctx.fill();
+    ctx.restore();
+
     ctx.save();
     ctx.translate(centerX, centerY);
     ctx.rotate((currentRotation * Math.PI) / 180);
@@ -393,50 +411,17 @@ export const SpinWheel = () => {
     const activeEntries = currentEntries.filter((entry) => entry.active);
     if (activeEntries.length === 0) {
       ctx.restore();
-
+      // Empty state wheel
       ctx.beginPath();
       ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
       ctx.fillStyle = "#f8fafc";
       ctx.fill();
       ctx.lineWidth = 4;
-      ctx.strokeStyle = "rgba(148, 163, 184, 0.35)";
+      ctx.strokeStyle = "#cbd5e1";
       ctx.stroke();
-
-      // Draw pointer even when no entries are active
-      const pointerX = centerX + radius + 5;
-      const pointerY = centerY;
-      ctx.save();
-      ctx.beginPath();
-      ctx.moveTo(pointerX, pointerY);
-      ctx.lineTo(pointerX + 24, pointerY - 18);
-      ctx.lineTo(pointerX + 24, pointerY + 18);
-      ctx.closePath();
-      ctx.fillStyle = "#ef4444";
-      ctx.shadowColor = "rgba(239, 68, 68, 0.35)";
-      ctx.shadowBlur = 12;
-      ctx.shadowOffsetX = 0;
-      ctx.shadowOffsetY = 6;
-      ctx.fill();
-      ctx.restore();
-
-      ctx.beginPath();
-      ctx.moveTo(pointerX, pointerY);
-      ctx.lineTo(pointerX + 24, pointerY - 18);
-      ctx.lineTo(pointerX + 24, pointerY + 18);
-      ctx.closePath();
-      ctx.lineWidth = 2.5;
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.85)";
-      ctx.stroke();
-
-      ctx.beginPath();
-      ctx.arc(pointerX + 20, pointerY, 6, 0, 2 * Math.PI);
-      ctx.fillStyle = "#ffffff";
-      ctx.shadowColor = "rgba(15, 23, 42, 0.25)";
-      ctx.shadowBlur = 6;
-      ctx.fill();
-
       return;
     }
+
     const sliceAngle = (2 * Math.PI) / activeEntries.length;
 
     activeEntries.forEach((entry, index) => {
@@ -449,169 +434,172 @@ export const SpinWheel = () => {
       ctx.arc(0, 0, radius, startAngle, endAngle);
       ctx.closePath();
 
-      // Check if image is available
-      const img = entry.imageUrl ? currentLoadedImages.get(entry.id) : null;
+      // Slice Gradient (3D effect)
+      const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, radius);
+      gradient.addColorStop(0, entry.color);
+      gradient.addColorStop(1, adjustColorBrightness(entry.color, -20)); // Darker at edges
+      ctx.fillStyle = gradient;
+      ctx.fill();
 
+      // Image handling
+      const img = entry.imageUrl ? currentLoadedImages.get(entry.id) : null;
       if (img) {
-        // Save context and clip to slice
         ctx.save();
         ctx.clip();
 
-        // Fill background with solid color as fallback
-        ctx.fillStyle = entry.color;
-        ctx.fill();
-
-        // Calculate slice dimensions to fill entire area
         const sliceCenterAngle = startAngle + sliceAngle / 2;
-
-        // Image should cover from near center (leaving space for center circle) to outer edge
-        const innerRadius = 40; // Start after center circle
+        const innerRadius = 45;
         const outerRadius = radius;
         const sliceWidth = outerRadius - innerRadius;
-
-        // Calculate the angular width at the outer edge
         const arcLength = sliceAngle * outerRadius;
 
-        // Position image to fill the slice
         const imgCenterDistance = innerRadius + sliceWidth / 2;
         const imgCenterX = Math.cos(sliceCenterAngle) * imgCenterDistance;
         const imgCenterY = Math.sin(sliceCenterAngle) * imgCenterDistance;
 
-        // Calculate dimensions to cover the slice (object-fit: cover behavior)
         const imgAspect = img.width / img.height;
         const sliceAspect = arcLength / sliceWidth;
-
         let drawWidth, drawHeight;
 
         if (imgAspect > sliceAspect) {
-          // Image is wider - fit to height and crop width
           drawHeight = sliceWidth * 1.4;
           drawWidth = drawHeight * imgAspect;
         } else {
-          // Image is taller - fit to width and crop height
           drawWidth = arcLength * 1.4;
           drawHeight = drawWidth / imgAspect;
         }
 
-        // Rotate image 180 degrees for proper orientation
         ctx.translate(imgCenterX, imgCenterY);
-        ctx.rotate(Math.PI); // 180 degrees rotation
+        ctx.rotate(Math.PI);
         ctx.translate(-imgCenterX, -imgCenterY);
 
-        // Center the image in the slice
         const imgX = imgCenterX - drawWidth / 2;
         const imgY = imgCenterY - drawHeight / 2;
 
-        // Draw image with slight opacity for color blend
-        ctx.globalAlpha = 0.95;
+        ctx.globalAlpha = 0.9;
         ctx.drawImage(img, imgX, imgY, drawWidth, drawHeight);
-        ctx.globalAlpha = 1.0;
-
         ctx.restore();
-      } else {
-        // Draw solid color
-        ctx.fillStyle = entry.color;
-        ctx.fill();
       }
 
-      // Polished slice separator
+      // Slice borders
       ctx.beginPath();
       ctx.moveTo(0, 0);
       ctx.arc(0, 0, radius, startAngle, endAngle);
-      ctx.closePath();
-      ctx.lineWidth = 1.5;
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.45)";
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.3)";
       ctx.stroke();
 
-      // Draw text
+      // Text
       ctx.save();
       ctx.rotate(startAngle + sliceAngle / 2);
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
+      ctx.font = "bold 15px 'Inter', sans-serif";
 
-      ctx.font = "bold 16px Inter, sans-serif";
-      const textX = radius * 0.68;
+      const textX = radius * 0.7;
 
-      // Subtle text outline for visibility over images
-      ctx.strokeStyle = "rgba(0, 0, 0, 0.6)";
-      ctx.lineWidth = 3;
-      ctx.strokeText(entry.text, textX, 0);
+      // Text Shadow
+      ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
+      ctx.shadowBlur = 4;
+      ctx.shadowOffsetX = 1;
+      ctx.shadowOffsetY = 1;
 
       ctx.fillStyle = "#ffffff";
       ctx.fillText(entry.text, textX, 0);
-
       ctx.restore();
     });
 
-    // Draw center circle
+    // Center Hub (3D Button look)
     ctx.beginPath();
-    ctx.arc(0, 0, 35, 0, 2 * Math.PI);
-    ctx.fillStyle = "#ffffff";
+    ctx.arc(0, 0, 30, 0, 2 * Math.PI);
+    const hubGradient = ctx.createRadialGradient(0, -10, 0, 0, 0, 30);
+    hubGradient.addColorStop(0, "#ffffff");
+    hubGradient.addColorStop(1, "#e2e8f0");
+    ctx.fillStyle = hubGradient;
+    ctx.shadowColor = "rgba(0,0,0,0.2)";
+    ctx.shadowBlur = 10;
     ctx.fill();
 
-    // Add 3D shadow effect to center circle
+    // Inner Hub Ring
     ctx.beginPath();
-    ctx.arc(0, 0, 35, 0, 2 * Math.PI);
-    const gradient = ctx.createRadialGradient(0, -10, 5, 0, 0, 35);
-    gradient.addColorStop(0, "rgba(255, 255, 255, 0.3)");
-    gradient.addColorStop(0.5, "rgba(200, 200, 200, 0.1)");
-    gradient.addColorStop(1, "rgba(150, 150, 150, 0.2)");
-    ctx.fillStyle = gradient;
-    ctx.fill();
+    ctx.arc(0, 0, 25, 0, 2 * Math.PI);
+    ctx.strokeStyle = "#cbd5e1";
+    ctx.lineWidth = 1;
+    ctx.stroke();
 
-    // Draw "SPIN" text in center with rotation (slower than wheel for 3D effect)
+    // "SPIN" Text
     ctx.save();
-    ctx.rotate((rotation * 0.3 * Math.PI) / 180); // 30% of wheel speed for 3D depth
-    ctx.fillStyle = "#000000";
-    ctx.font = "bold 14px Inter, sans-serif";
+    ctx.rotate((rotation * 0.3 * Math.PI) / 180);
+    ctx.fillStyle = "#475569";
+    ctx.font = "800 12px 'Inter', sans-serif";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-
-    // Add subtle shadow for 3D effect
-    ctx.shadowColor = "rgba(0, 0, 0, 0.3)";
-    ctx.shadowBlur = 2;
-    ctx.shadowOffsetX = 1;
-    ctx.shadowOffsetY = 1;
-
+    ctx.shadowColor = "transparent";
     ctx.fillText("SPIN", 0, 0);
     ctx.restore();
 
     ctx.restore();
 
-    // Draw pointer (positioned at the right edge, pointing left into the wheel)
-    const pointerX = centerX + radius + 5;
+    // Pointer (Floating effect)
+    const pointerX = centerX + radius + 18;
     const pointerY = centerY;
-    ctx.save();
-    ctx.beginPath();
-    ctx.moveTo(pointerX, pointerY); // Tip of pointer
-    ctx.lineTo(pointerX + 24, pointerY - 18); // Top right
-    ctx.lineTo(pointerX + 24, pointerY + 18); // Bottom right
-    ctx.closePath();
-    ctx.fillStyle = "#ef4444";
-    ctx.shadowColor = "rgba(239, 68, 68, 0.4)";
-    ctx.shadowBlur = 14;
-    ctx.shadowOffsetX = 0;
-    ctx.shadowOffsetY = 6;
-    ctx.fill();
-    ctx.restore();
 
+    ctx.save();
+    // Pointer Shadow
+    ctx.beginPath();
+    ctx.moveTo(pointerX + 2, pointerY + 2);
+    ctx.lineTo(pointerX + 26, pointerY - 16);
+    ctx.lineTo(pointerX + 26, pointerY + 20);
+    ctx.closePath();
+    ctx.fillStyle = "rgba(0,0,0,0.2)";
+    ctx.fill();
+
+    // Pointer Body
     ctx.beginPath();
     ctx.moveTo(pointerX, pointerY);
     ctx.lineTo(pointerX + 24, pointerY - 18);
     ctx.lineTo(pointerX + 24, pointerY + 18);
     ctx.closePath();
-    ctx.lineWidth = 2.5;
-    ctx.strokeStyle = "rgba(255, 255, 255, 0.9)";
+    const pointerGradient = ctx.createLinearGradient(pointerX, pointerY - 18, pointerX + 24, pointerY + 18);
+    pointerGradient.addColorStop(0, "#ef4444");
+    pointerGradient.addColorStop(1, "#dc2626");
+    ctx.fillStyle = pointerGradient;
+    ctx.fill();
+
+    // Pointer Highlight
+    ctx.beginPath();
+    ctx.moveTo(pointerX + 24, pointerY - 18);
+    ctx.lineTo(pointerX + 24, pointerY + 18);
+    ctx.strokeStyle = "rgba(255,255,255,0.4)";
+    ctx.lineWidth = 1;
     ctx.stroke();
 
-    ctx.save();
+    // Pointer Hub
     ctx.beginPath();
     ctx.arc(pointerX + 20, pointerY, 6, 0, 2 * Math.PI);
-    ctx.fillStyle = "#ffffff";
-    ctx.shadowColor = "rgba(15, 23, 42, 0.2)";
-    ctx.shadowBlur = 6;
+    ctx.fillStyle = "#f1f5f9";
     ctx.fill();
     ctx.restore();
+  };
+
+  // Helper to darken colors for gradient
+  const adjustColorBrightness = (hex: string, percent: number) => {
+    let num = parseInt(hex.replace("#", ""), 16),
+      amt = Math.round(2.55 * percent),
+      R = (num >> 16) + amt,
+      B = ((num >> 8) & 0x00ff) + amt,
+      G = (num & 0x0000ff) + amt;
+    return (
+      "#" +
+      (
+        0x1000000 +
+        (R < 255 ? (R < 1 ? 0 : R) : 255) * 0x10000 +
+        (B < 255 ? (B < 1 ? 0 : B) : 255) * 0x100 +
+        (G < 255 ? (G < 1 ? 0 : G) : 255)
+      )
+        .toString(16)
+        .slice(1)
+    );
   };
 
   const addEntry = () => {
@@ -730,42 +718,41 @@ export const SpinWheel = () => {
     setWinner(null);
     playSound("spin");
 
-    // More spins for realistic effect (6-10 full rotations)
-    const spins = 6 + Math.random() * 4;
+    // More spins for realistic effect (8-12 full rotations)
+    const spins = 8 + Math.random() * 4;
     const extraDegrees = Math.random() * 360;
     const totalRotation = spins * 360 + extraDegrees;
 
-    // Get current rotation at start - use ref to get latest value
+    // Get current rotation at start
     let currentRotation = rotationRef.current;
-    // Realistic duration: 5-7 seconds for more dramatic effect
-    const duration = 5000 + Math.random() * 2000;
+    // Longer duration for heavy feel: 6-8 seconds
+    const duration = 6000 + Math.random() * 2000;
     const startTime = Date.now();
 
-    // Realistic easing function - easeOutQuart for smooth deceleration like physical wheels
-    const easeOutQuart = (t: number): number => {
-      return 1 - Math.pow(1 - t, 4);
+    // Custom cubic-bezier(0.25, 0.1, 0.25, 1.0) equivalent for realistic friction
+    // Starts fast, maintains speed briefly, then decays smoothly
+    const easeOutCubic = (t: number): number => {
+      return 1 - Math.pow(1 - t, 3);
     };
 
-    // Advanced easing that mimics real wheel physics with smooth deceleration
-    const easeOutExpo = (t: number): number => {
-      return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+    const easeOutQuart = (t: number): number => {
+      return 1 - Math.pow(1 - t, 4);
     };
 
     const animate = () => {
       const elapsed = Date.now() - startTime;
       const progress = Math.min(elapsed / duration, 1);
 
-      // Use combination of easing functions for realistic deceleration
-      // Starts fast, gradually slows down with smooth deceleration curve
-      const easedProgress = progress < 0.7 
-        ? easeOutQuart(progress / 0.7) * 0.7
-        : 0.7 + easeOutExpo((progress - 0.7) / 0.3) * 0.3;
+      // Hybrid easing: fast start (cubic) blending into long tail (quart)
+      // This mimics the initial torque followed by air resistance/friction
+      const easedProgress = progress < 0.5
+        ? easeOutCubic(progress)
+        : easeOutQuart(progress);
 
       const newRotation = (currentRotation + totalRotation * easedProgress) % 360;
       rotationRef.current = newRotation;
       setRotation(newRotation);
-      
-      // Draw wheel directly with current rotation for smooth animation
+
       drawWheel(newRotation);
 
       if (progress < 1) {
@@ -775,9 +762,8 @@ export const SpinWheel = () => {
         const finalRotation = newRotation % 360;
         const sliceAngle = 360 / activeEntries.length;
 
-        // Pointer is at right (0 degrees), calculate which slice is at that position
-        // The wheel rotates clockwise, so we need to find which slice is at 0 degrees
-        const pointerAngle = 0; // Right side
+        // Pointer is at right (0 degrees)
+        const pointerAngle = 0;
         const adjustedAngle = (360 - finalRotation + pointerAngle) % 360;
         const winningIndex =
           Math.floor(adjustedAngle / sliceAngle) % activeEntries.length;
@@ -789,11 +775,8 @@ export const SpinWheel = () => {
         setIsSpinning(false);
         spinAnimationRef.current = null;
 
-        // Delay sound and confetti slightly for better effect
         setTimeout(() => {
           playSound("win");
-
-          // Show winner dialog with party poppers
           setShowWinnerDialog(true);
 
           // Left side party popper
@@ -837,18 +820,17 @@ export const SpinWheel = () => {
       {/* Wheel Section - Centered */}
       <div className="flex flex-col items-center justify-center gap-3 sm:gap-4 w-full px-4 sm:px-6 lg:px-8 lg:pl-6 lg:pr-[300px] xl:pr-[340px] 2xl:pr-[360px]">
         {/* Wheel Card */}
-        <div className="w-full max-w-[340px] xs:max-w-[380px] sm:max-w-[440px] md:max-w-[500px] lg:max-w-[520px] xl:max-w-[560px] 2xl:max-w-[600px] mx-auto relative">
-          <div className="absolute inset-0 -z-10 rounded-full bg-gradient-to-br from-primary/25 via-primary/10 to-transparent blur-3xl opacity-60 pointer-events-none" />
+        <div className="w-full max-w-[340px] xs:max-w-[380px] sm:max-w-[440px] md:max-w-[500px] lg:max-w-[520px] xl:max-w-[560px] 2xl:max-w-[600px] mx-auto relative group">
+          <div className="absolute inset-0 -z-10 rounded-full bg-gradient-to-br from-primary/20 via-primary/5 to-transparent blur-3xl opacity-50 transition-opacity duration-500 group-hover:opacity-70 pointer-events-none" />
           <canvas
             ref={canvasRef}
             width={480}
             height={480}
             onClick={spinWheel}
-            className={`w-full h-auto block rounded-full bg-gradient-to-br from-white via-background/90 to-muted/50 shadow-[0_28px_70px_-32px_rgba(15,23,42,0.65)] transition-all duration-200 touch-manipulation ${
-              isSpinning || activeEntries.length < 2
-                ? "cursor-not-allowed opacity-70"
-                : "cursor-pointer hover:scale-[1.04] active:scale-95 hover:shadow-[0_36px_90px_-38px_rgba(15,23,42,0.7)]"
-            }`}
+            className={`w-full h-auto block rounded-full shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] transition-all duration-500 touch-manipulation ${isSpinning || activeEntries.length < 2
+              ? "cursor-not-allowed opacity-80 grayscale-[0.2]"
+              : "cursor-pointer hover:scale-[1.02] active:scale-[0.98] hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.2)]"
+              }`}
           />
         </div>
 
@@ -858,18 +840,18 @@ export const SpinWheel = () => {
             onClick={spinWheel}
             disabled={isSpinning || activeEntries.length < 2}
             size="lg"
-            className="text-sm sm:text-base lg:text-lg font-bold px-4 sm:px-6 lg:px-8 py-3 sm:py-4 h-auto bg-gradient-to-r from-primary via-primary to-primary/90 hover:from-primary/90 hover:via-primary hover:to-primary text-primary-foreground w-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none border border-primary-foreground/20 relative overflow-hidden group touch-manipulation"
+            className="text-sm sm:text-base lg:text-lg font-bold px-6 sm:px-8 lg:px-10 py-3 sm:py-4 h-auto bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-primary-foreground w-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none rounded-xl border-t border-white/20 relative overflow-hidden group touch-manipulation tracking-wide"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out" />
             {isSpinning ? (
               <>
-                <div className="animate-spin mr-2 h-4 w-4 sm:h-5 sm:w-5 border-3 border-white border-t-transparent rounded-full relative z-10" />
+                <div className="animate-spin mr-2.5 h-4 w-4 sm:h-5 sm:w-5 border-[3px] border-white/30 border-t-white rounded-full relative z-10" />
                 <span className="relative z-10">Spinning...</span>
               </>
             ) : (
               <>
-                <Play className="mr-2 h-4 w-4 sm:h-5 sm:w-5 fill-current relative z-10" />
-                <span className="relative z-10">Spin the Wheel!</span>
+                <Play className="mr-2.5 h-4 w-4 sm:h-5 sm:w-5 fill-current relative z-10" />
+                <span className="relative z-10">SPIN THE WHEEL</span>
               </>
             )}
           </Button>
@@ -930,25 +912,25 @@ export const SpinWheel = () => {
 
       {/* Controls Section - Right Sidebar */}
       <div className="w-full lg:w-[340px] xl:w-[400px] 2xl:w-[420px] px-4 lg:px-0 mt-8 lg:mt-0 lg:absolute lg:right-0 lg:top-0 lg:z-40">
-        <Card className="p-4 lg:p-5 xl:p-6 bg-card/95 border-2 border-border backdrop-blur-sm relative overflow-hidden w-full flex flex-col">
+        <Card className="p-4 lg:p-6 bg-card/95 border border-border/50 shadow-xl backdrop-blur-xl relative overflow-hidden w-full flex flex-col rounded-2xl h-[calc(100vh-2rem)] lg:h-auto lg:max-h-[calc(100vh-2rem)]">
           {/* Header */}
-          <div className="mb-3 lg:mb-4 relative z-10">
+          <div className="mb-4 relative z-10">
             <div className="flex items-center justify-between mb-2">
-              <div className="flex items-center gap-2">
-                <div className="w-1 h-5 lg:h-6 bg-primary rounded-sm shadow-sm" />
+              <div className="flex items-center gap-2.5">
+                <div className="w-1 h-5 lg:h-6 bg-primary rounded-full shadow-[0_0_10px_rgba(var(--primary),0.5)]" />
                 <h2 className="text-base lg:text-lg font-bold text-foreground tracking-tight">
                   Manage Entries
                 </h2>
               </div>
               <Badge
                 variant="secondary"
-                className="text-xs font-bold px-2 py-0.5 lg:px-2.5 lg:py-1 bg-primary/15 text-primary border border-primary/30 shadow-sm"
+                className="text-xs font-semibold px-2.5 py-0.5 bg-primary/10 text-primary border-0"
               >
                 {activeEntries.length} Active
               </Badge>
             </div>
-            <p className="text-[10px] lg:text-[11px] text-muted-foreground ml-3 leading-relaxed">
-              Add, organize, and control your wheel entries
+            <p className="text-[11px] text-muted-foreground ml-3.5 font-medium">
+              Customize your wheel options below
             </p>
           </div>
 
@@ -1032,15 +1014,14 @@ export const SpinWheel = () => {
                 {entries.length} Total
               </span>
             </label>
-            <div className="space-y-1.5 lg:space-y-2 overflow-y-auto pr-1 lg:pr-1.5 scrollbar-thin scrollbar-thumb-primary/30 scrollbar-track-muted/30 hover:scrollbar-thumb-primary/50 flex-1">
+            <div className="space-y-2 overflow-y-auto pr-1 lg:pr-2 scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent hover:scrollbar-thumb-primary/50 flex-1">
               {entries.map((entry, index) => (
                 <div
                   key={entry.id}
-                  className={`group flex items-center gap-1.5 lg:gap-2 p-2 lg:p-2.5 rounded-lg border-2 transition-all duration-200 ${
-                    entry.active
-                      ? "bg-white/50 dark:bg-background/80 backdrop-blur-sm border-border hover:border-primary hover:bg-white dark:hover:bg-background shadow-sm hover:shadow-md"
-                      : "bg-muted/30 border-muted opacity-60 hover:opacity-80"
-                  }`}
+                  className={`group flex items-center gap-2 p-2 rounded-lg border transition-all duration-200 ${entry.active
+                    ? "bg-card border-border/50 hover:border-primary/30 hover:shadow-sm"
+                    : "bg-muted/30 border-transparent opacity-60 hover:opacity-80"
+                    }`}
                 >
                   {/* Entry Number */}
                   <div className="flex items-center justify-center min-w-[20px] lg:min-w-[24px] h-5 lg:h-6 rounded-md bg-primary/10 border border-primary/20 flex-shrink-0">
@@ -1054,11 +1035,10 @@ export const SpinWheel = () => {
                     onClick={() => toggleEntry(entry.id)}
                     size="icon"
                     variant="ghost"
-                    className={`h-6 w-6 lg:h-7 lg:w-7 flex-shrink-0 transition-all rounded-md ${
-                      entry.active
-                        ? "text-green-600 hover:text-white hover:bg-green-500 border border-green-300"
-                        : "text-muted-foreground hover:text-foreground hover:bg-muted border border-border"
-                    }`}
+                    className={`h-6 w-6 lg:h-7 lg:w-7 flex-shrink-0 transition-all rounded-md ${entry.active
+                      ? "text-green-600 hover:text-white hover:bg-green-500 border border-green-300"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted border border-border"
+                      }`}
                     title={entry.active ? "Deactivate" : "Activate"}
                   >
                     {entry.active ? (
@@ -1109,13 +1089,11 @@ export const SpinWheel = () => {
                     />
                     <label
                       htmlFor={`image-upload-${entry.id}`}
-                      className={`h-6 w-6 lg:h-7 lg:w-7 flex-shrink-0 transition-all rounded-md flex items-center justify-center cursor-pointer ${
-                        entry.imageUrl
-                          ? "text-blue-600 hover:text-white hover:bg-blue-500 border border-blue-300"
-                          : "text-muted-foreground hover:text-foreground hover:bg-muted border border-transparent"
-                      } ${
-                        !entry.active ? "opacity-50 cursor-not-allowed" : ""
-                      }`}
+                      className={`h-6 w-6 lg:h-7 lg:w-7 flex-shrink-0 transition-all rounded-md flex items-center justify-center cursor-pointer ${entry.imageUrl
+                        ? "text-blue-600 hover:text-white hover:bg-blue-500 border border-blue-300"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted border border-transparent"
+                        } ${!entry.active ? "opacity-50 cursor-not-allowed" : ""
+                        }`}
                       title={entry.imageUrl ? "Change image" : "Add image"}
                     >
                       <ImageIcon className="h-3 w-3 lg:h-3.5 lg:w-3.5" />
@@ -1139,9 +1117,8 @@ export const SpinWheel = () => {
                   <Input
                     value={entry.text}
                     onChange={(e) => updateEntry(entry.id, e.target.value)}
-                    className={`flex-1 border-0 bg-transparent focus-visible:ring-1 focus-visible:ring-primary/50 px-1.5 lg:px-2 py-1 h-auto text-xs lg:text-sm font-semibold ${
-                      entry.active ? "text-foreground" : "text-muted-foreground"
-                    }`}
+                    className={`flex-1 border-0 bg-transparent focus-visible:ring-1 focus-visible:ring-primary/50 px-1.5 lg:px-2 py-1 h-auto text-xs lg:text-sm font-semibold ${entry.active ? "text-foreground" : "text-muted-foreground"
+                      }`}
                     disabled={!entry.active}
                     placeholder="Entry name"
                   />
