@@ -30,7 +30,7 @@ const Index = () => {
         />
         <meta
           name="keywords"
-          content="spin wheel, free spin wheel, wheel spinner, random picker, name picker wheel, decision maker wheel, wheel of names, random name generator, online spin wheel, prize wheel, classroom spinner, giveaway wheel, random selector, spin the wheel online, wheel randomizer, pick random name, decision wheel, fortune wheel, yes no wheel, number wheel spinner"
+          content="spin wheel, free spin wheel, random name picker, decision maker wheel, prize wheel generator"
         />
         <link rel="canonical" href="https://hihoney.site/" />
 
@@ -589,6 +589,74 @@ const Index = () => {
                 choices. The possibilities with our{" "}
                 <strong>wheel randomizer</strong> are endless.
               </p>
+
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold mt-6 sm:mt-7 md:mt-8 mb-3 sm:mb-4">
+                How to Create a Custom Spin Wheel
+              </h3>
+              <p className="text-sm sm:text-base text-muted-foreground mb-3 sm:mb-4">
+                Creating your own custom wheel is easy. Start by editing the list of entries. You can type in names, numbers, or any options you like. As you add entries, the wheel updates instantly. You can also customize the appearance by changing colors or adding images to each segment. Once your wheel is ready, simply click "Spin" to let our random algorithm pick a winner.
+              </p>
+
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold mt-6 sm:mt-7 md:mt-8 mb-3 sm:mb-4">
+                Fair and Random Results
+              </h3>
+              <p className="text-sm sm:text-base text-muted-foreground mb-3 sm:mb-4">
+                We use a cryptographically secure random number generator to ensure that every spin is 100% random and fair. Whether you're raffling off a prize or deciding who does the dishes, you can trust our tool to provide an unbiased result.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Visible FAQ Section */}
+        <section
+          id="faq"
+          className="w-full px-4 lg:px-6 py-8 sm:py-12 md:py-14 lg:py-16 bg-background"
+        >
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-8 sm:mb-10 md:mb-12">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 tracking-tight">
+                Frequently Asked Questions
+              </h2>
+              <p className="text-sm sm:text-base md:text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto">
+                Common questions about our free spin wheel tool
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <Card className="p-5 sm:p-6 border-2 border-border/50">
+                <h3 className="text-lg font-bold mb-2">What is a spin wheel?</h3>
+                <p className="text-muted-foreground">
+                  A spin wheel is a digital tool that randomly selects an option from a list of entries by spinning a virtual wheel. It's perfect for making fair, random decisions for classrooms, giveaways, games, and team activities.
+                </p>
+              </Card>
+
+              <Card className="p-5 sm:p-6 border-2 border-border/50">
+                <h3 className="text-lg font-bold mb-2">Is the spin wheel free to use?</h3>
+                <p className="text-muted-foreground">
+                  Yes! Hi Honey's spin wheel is 100% free to use. There are no hidden costs, no registration required, and no limits on how many times you can spin the wheel.
+                </p>
+              </Card>
+
+              <Card className="p-5 sm:p-6 border-2 border-border/50">
+                <h3 className="text-lg font-bold mb-2">How does the spin wheel work?</h3>
+                <p className="text-muted-foreground">
+                  Simply add your entries (names, options, or choices) to the list, customize the colors if desired, and click the spin button. The wheel will randomly spin and select one entry as the winner with confetti celebration.
+                </p>
+              </Card>
+
+              <Card className="p-5 sm:p-6 border-2 border-border/50">
+                <h3 className="text-lg font-bold mb-2">Can I customize the spin wheel?</h3>
+                <p className="text-muted-foreground">
+                  Yes! You can add unlimited entries, customize colors for each entry, enable/disable specific entries, and organize your list with shuffle or sort options.
+                </p>
+              </Card>
+
+              <Card className="p-5 sm:p-6 border-2 border-border/50">
+                <h3 className="text-lg font-bold mb-2">What are common uses for a spin wheel?</h3>
+                <p className="text-muted-foreground">
+                  Spin wheels are commonly used for classroom name picking, giveaway winner selection, team decision making, random student selection, choosing meeting speakers, party games, and family activity decisions.
+                </p>
+              </Card>
             </div>
           </div>
         </section>

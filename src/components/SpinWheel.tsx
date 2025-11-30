@@ -556,6 +556,14 @@ export const SpinWheel = () => {
       setNewEntry("");
       playSoundEffect("click");
       toast.success("Entry added!");
+
+      // Track customization
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        (window as any).gtag('event', 'wheel_customized', {
+          'event_category': 'engagement',
+          'event_label': 'added_option'
+        });
+      }
     }
   };
 
@@ -656,6 +664,15 @@ export const SpinWheel = () => {
     setIsSpinning(true);
     setWinner(null);
     initAudio(); // Ensure audio is ready
+
+    // Track spin event
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'wheel_spin', {
+        'event_category': 'engagement',
+        'event_label': 'user_spun_wheel'
+      });
+    }
+
     // More spins for realistic effect (8-12 full rotations)
     const spins = 8 + Math.random() * 4;
     const extraDegrees = Math.random() * 360;
