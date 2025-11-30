@@ -47,7 +47,7 @@ const defaultColors = [
 
 // Sound synthesis helper functions
 const createTickSound = (ctx: AudioContext) => {
-  // Realistic "Clack" using filtered noise
+  // WheelOfNames style "Tick" (Filtered Noise + High Resonance)
   const bufferSize = ctx.sampleRate * 0.05; // 50ms buffer
   const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
   const data = buffer.getChannelData(0);
@@ -62,8 +62,8 @@ const createTickSound = (ctx: AudioContext) => {
 
   const noiseFilter = ctx.createBiquadFilter();
   noiseFilter.type = 'lowpass';
-  noiseFilter.frequency.value = 1200;
-  noiseFilter.Q.value = 1;
+  noiseFilter.frequency.value = 1000;
+  noiseFilter.Q.value = 5; // Higher resonance for "wood/plastic" tone
 
   const noiseGain = ctx.createGain();
 
@@ -73,36 +73,40 @@ const createTickSound = (ctx: AudioContext) => {
 
   const now = ctx.currentTime;
 
-  // Hard, percussive envelope
-  noiseGain.gain.setValueAtTime(1, now);
-  noiseGain.gain.exponentialRampToValueAtTime(0.01, now + 0.04);
+  // Sharp, short envelope
+  noiseGain.gain.setValueAtTime(0.8, now);
+  noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.03);
 
   noise.start(now);
 };
 
 const createWinSound = (ctx: AudioContext) => {
-  // Success Chime (Major 7th Chord Strum)
-  const notes = [523.25, 659.25, 783.99, 987.77, 1046.50]; // C5, E5, G5, B5, C6
+  // Victory Fanfare (WheelOfNames style)
+  const now = ctx.currentTime;
+
+  // Bright, celebratory chord (C Major Add9)
+  const notes = [523.25, 659.25, 783.99, 1046.50, 1174.66, 1567.98]; // C5, E5, G5, C6, D6, G6
 
   notes.forEach((freq, i) => {
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
 
-    osc.type = 'sine';
+    osc.type = 'triangle'; // Brighter than sine
     osc.frequency.value = freq;
 
     osc.connect(gain);
     gain.connect(ctx.destination);
 
-    const now = ctx.currentTime + (i * 0.08); // Strum effect
-    const duration = 1.5;
+    // Staggered entry
+    const startTime = now + (i * 0.05);
+    const duration = 2.0;
 
-    gain.gain.setValueAtTime(0, now);
-    gain.gain.linearRampToValueAtTime(0.3, now + 0.1);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+    gain.gain.setValueAtTime(0, startTime);
+    gain.gain.linearRampToValueAtTime(0.2, startTime + 0.1);
+    gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
 
-    osc.start(now);
-    osc.stop(now + duration + 0.1);
+    osc.start(startTime);
+    osc.stop(startTime + duration + 0.1);
   });
 };
 
@@ -168,6 +172,7 @@ export const SpinWheel = () => {
   const rotationRef = useRef<number>(rotation);
   const entriesRef = useRef<WheelEntry[]>(entries);
   const loadedImagesRef = useRef<Map<string, HTMLImageElement>>(loadedImages);
+  const lastTickTimeRef = useRef<number>(0); // For rate limiting audio
 
   // Initialize audio context
   const initAudio = () => {
@@ -672,6 +677,7 @@ export const SpinWheel = () => {
       continuousSpinRef.current = null;
     }
 
+    // CRITICAL: Set state immediately to prevent double clicks
     setIsSpinning(true);
     setWinner(null);
     initAudio(); // Ensure audio is ready
@@ -736,13 +742,15 @@ export const SpinWheel = () => {
       const newRotation = (startRotation + totalRotation * easedProgress) % 360;
       rotationRef.current = newRotation;
 
-      // CRITICAL FIX: Do NOT call setRotation here!
-      // setRotation(newRotation); <-- This was causing the re-renders/stutter
-
       // Check for segment change and play tick sound
       const currentSegment = getCurrentSegment(newRotation);
       if (currentSegment !== lastSegmentIndex) {
-        playSoundEffect("tick");
+        // Rate limiting for audio (prevent "rain" effect)
+        const now = Date.now();
+        if (now - lastTickTimeRef.current > 50) { // Max 20 ticks per second
+          playSoundEffect("tick");
+          lastTickTimeRef.current = now;
+        }
         lastSegmentIndex = currentSegment;
       }
 
