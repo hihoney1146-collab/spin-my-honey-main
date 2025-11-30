@@ -34,7 +34,9 @@
       href="https://www.googletagmanager.com"
       crossorigin
     />
-    <!-- Removed AdSense preconnect - will add after approval -->
+    <!-- AdSense DNS Prefetch for performance -->
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
 
     <!-- Preload critical resources - removed until logo is optimized -->
 
@@ -142,12 +144,9 @@
       }
     </script>
 
-    <!-- Google AdSense - Commented out until approval -->
-    <!-- <script
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5566205600875011"
-      crossorigin="anonymous"
-    ></script> -->
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6743166450490221"
+      crossorigin="anonymous"></script>
   </head>
 
   <body>
