@@ -55,21 +55,23 @@ const createTickSound = (ctx: AudioContext) => {
   filter.connect(gainNode);
   gainNode.connect(ctx.destination);
 
-  // Soft click sound
-  oscillator.type = "triangle"; // Softer than square
-  filter.type = "lowpass";
-  filter.frequency.value = 800;
+  // Crisp click sound (High frequency square wave with highpass)
+  oscillator.type = "square"; // Richer harmonics for "click"
+  filter.type = "highpass"; // Remove "heavy" low end
+  filter.frequency.value = 1000; // Only high frequencies
 
   const now = ctx.currentTime;
-  oscillator.frequency.setValueAtTime(400, now);
+  // Slight pitch variation for realism
+  const randomPitch = 1200 + (Math.random() * 100 - 50);
+  oscillator.frequency.setValueAtTime(randomPitch, now);
 
-  // Short, crisp envelope
+  // Extremely short, sharp envelope
   gainNode.gain.setValueAtTime(0, now);
-  gainNode.gain.linearRampToValueAtTime(0.3, now + 0.005);
-  gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+  gainNode.gain.linearRampToValueAtTime(0.15, now + 0.002); // Fast attack
+  gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.03); // Fast decay
 
   oscillator.start(now);
-  oscillator.stop(now + 0.06);
+  oscillator.stop(now + 0.04);
 };
 
 const createWinSound = (ctx: AudioContext) => {
@@ -79,7 +81,7 @@ const createWinSound = (ctx: AudioContext) => {
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
 
-    osc.type = "sine";
+    osc.type = "triangle"; // Softer than square
     osc.frequency.value = freq;
 
     osc.connect(gain);
@@ -673,15 +675,16 @@ export const SpinWheel = () => {
       });
     }
 
-    // More spins for realistic effect (8-12 full rotations)
-    const spins = 8 + Math.random() * 4;
+    // High speed, long duration spin for realistic physics
+    // 40-60 full rotations (very fast start)
+    const spins = 40 + Math.random() * 20;
     const extraDegrees = Math.random() * 360;
     const totalRotation = spins * 360 + extraDegrees;
 
     // Get current rotation at start
     const startRotation = rotationRef.current;
-    // Longer duration for heavy feel: 6-8 seconds
-    const duration = 6000 + Math.random() * 2000;
+    // Long duration: 10-14 seconds
+    const duration = 10000 + Math.random() * 4000;
     const startTime = Date.now();
 
     // Track current segment for tick sounds
