@@ -45,168 +45,179 @@ const defaultColors = [
   "#e91e63", // Pink
 ];
 
+// Individual tick sound for realistic segment passing
+const playTickSound = () => {
+  try {
+    const audioContext = new (window.AudioContext ||
+      (window as any).webkitAudioContext)();
+
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+    const filter = audioContext.createBiquadFilter();
+
+    // Connect: oscillator -> filter -> gain -> destination
+    oscillator.connect(filter);
+    filter.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+
+    // Use square wave for sharper tick sound
+    oscillator.type = "square";
+
+    // Band-pass filter for more realistic wood/plastic tick
+    filter.type = "bandpass";
+    filter.frequency.value = 1200;
+    filter.Q.value = 10; // Narrow band for crisp click sound
+
+    const startTime = audioContext.currentTime;
+    const tickDuration = 0.04;
+
+    // Sharp attack, quick decay for realistic tick
+    oscillator.frequency.setValueAtTime(1200, startTime);
+    gainNode.gain.setValueAtTime(0.15, startTime);
+    gainNode.gain.exponentialRampToValueAtTime(
+      0.001,
+      startTime + tickDuration
+    );
+
+    oscillator.start(startTime);
+    oscillator.stop(startTime + tickDuration);
+  } catch (e) {
+    // Silently fail if audio context not available
+    console.warn('Audio context not available:', e);
+  }
+};
+
 // Enhanced realistic sound effects with improved audio synthesis
 const playSound = (soundType: "spin" | "win" | "click") => {
-  const audioContext = new (window.AudioContext ||
-    (window as any).webkitAudioContext)();
+  try {
+    const audioContext = new (window.AudioContext ||
+      (window as any).webkitAudioContext)();
 
-  switch (soundType) {
-    case "spin":
-      // Create realistic ratchet/tick spinning sound with decreasing speed
-      const tickDuration = 0.05;
-      const tickCount = 35;
+    switch (soundType) {
+      case "spin":
+        // No longer used - replaced by individual tick sounds
+        break;
 
-      for (let i = 0; i < tickCount; i++) {
-        const oscillator = audioContext.createOscillator();
-        const gainNode = audioContext.createGain();
-        const filter = audioContext.createBiquadFilter();
+      case "win":
+        // Create realistic crowd applause with multiple clap layers
+        const clapDuration = 1.5;
+        const clapsPerSecond = 8;
+        const totalClaps = Math.floor(clapDuration * clapsPerSecond);
 
-        // Connect: oscillator -> filter -> gain -> destination
-        oscillator.connect(filter);
-        filter.connect(gainNode);
-        gainNode.connect(audioContext.destination);
+        for (let i = 0; i < totalClaps; i++) {
+          // Create white noise burst for each clap
+          const noise = audioContext.createBufferSource();
+          const bufferSize = Math.floor(audioContext.sampleRate * 0.05);
+          const buffer = audioContext.createBuffer(
+            1,
+            bufferSize,
+            audioContext.sampleRate
+          );
+          const data = buffer.getChannelData(0);
 
-        // Use square wave for sharper tick sound
-        oscillator.type = "square";
+          // Generate pink noise (more natural than white)
+          let b0 = 0,
+            b1 = 0,
+            b2 = 0,
+            b3 = 0,
+            b4 = 0,
+            b5 = 0,
+            b6 = 0;
+          for (let j = 0; j < bufferSize; j++) {
+            const white = Math.random() * 2 - 1;
+            b0 = 0.99886 * b0 + white * 0.0555179;
+            b1 = 0.99332 * b1 + white * 0.0750759;
+            b2 = 0.969 * b2 + white * 0.153852;
+            b3 = 0.8665 * b3 + white * 0.3104856;
+            b4 = 0.55 * b4 + white * 0.5329522;
+            b5 = -0.7616 * b5 - white * 0.016898;
+            data[j] = (b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362) * 0.11;
+            b6 = white * 0.115926;
+          }
 
-        // Band-pass filter for more realistic wood/plastic tick
-        filter.type = "bandpass";
-        filter.frequency.value = 1200 - i * 20; // Decreasing pitch
-        filter.Q.value = 8; // Narrow band for click sound
+          noise.buffer = buffer;
 
-        // Exponential timing for deceleration effect
-        const delay = i < 15 ? i * 0.06 : 15 * 0.06 + (i - 15) * 0.1;
-        const startTime = audioContext.currentTime + delay;
+          // Multi-band filtering for realistic hand clap
+          const lowpass = audioContext.createBiquadFilter();
+          const highpass = audioContext.createBiquadFilter();
+          const gainNode = audioContext.createGain();
 
-        // Sharp attack, quick decay
-        oscillator.frequency.setValueAtTime(1200 - i * 15, startTime);
-        gainNode.gain.setValueAtTime(0.12, startTime);
-        gainNode.gain.exponentialRampToValueAtTime(
-          0.001,
-          startTime + tickDuration
-        );
+          lowpass.type = "lowpass";
+          lowpass.frequency.value = 2000;
+          highpass.type = "highpass";
+          highpass.frequency.value = 400;
 
-        oscillator.start(startTime);
-        oscillator.stop(startTime + tickDuration);
-      }
-      break;
+          noise.connect(highpass);
+          highpass.connect(lowpass);
+          lowpass.connect(gainNode);
+          gainNode.connect(audioContext.destination);
 
-    case "win":
-      // Create realistic crowd applause with multiple clap layers
-      const clapDuration = 1.5;
-      const clapsPerSecond = 8;
-      const totalClaps = Math.floor(clapDuration * clapsPerSecond);
+          // Randomize timing for natural crowd effect
+          const startTime =
+            audioContext.currentTime + i * 0.08 + Math.random() * 0.03;
+          const volume = 0.08 + Math.random() * 0.04;
 
-      for (let i = 0; i < totalClaps; i++) {
-        // Create white noise burst for each clap
-        const noise = audioContext.createBufferSource();
-        const bufferSize = Math.floor(audioContext.sampleRate * 0.05);
-        const buffer = audioContext.createBuffer(
-          1,
-          bufferSize,
-          audioContext.sampleRate
-        );
-        const data = buffer.getChannelData(0);
+          gainNode.gain.setValueAtTime(volume, startTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.001, startTime + 0.08);
 
-        // Generate pink noise (more natural than white)
-        let b0 = 0,
-          b1 = 0,
-          b2 = 0,
-          b3 = 0,
-          b4 = 0,
-          b5 = 0,
-          b6 = 0;
-        for (let j = 0; j < bufferSize; j++) {
-          const white = Math.random() * 2 - 1;
-          b0 = 0.99886 * b0 + white * 0.0555179;
-          b1 = 0.99332 * b1 + white * 0.0750759;
-          b2 = 0.969 * b2 + white * 0.153852;
-          b3 = 0.8665 * b3 + white * 0.3104856;
-          b4 = 0.55 * b4 + white * 0.5329522;
-          b5 = -0.7616 * b5 - white * 0.016898;
-          data[j] = (b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362) * 0.11;
-          b6 = white * 0.115926;
+          noise.start(startTime);
+          noise.stop(startTime + 0.08);
         }
 
-        noise.buffer = buffer;
+        // Add celebratory fanfare with bell-like tones
+        const fanfareTones = [
+          { freq: 523.25, time: 0 }, // C5
+          { freq: 659.25, time: 0.12 }, // E5
+          { freq: 783.99, time: 0.24 }, // G5
+          { freq: 1046.5, time: 0.36 }, // C6
+        ];
 
-        // Multi-band filtering for realistic hand clap
-        const lowpass = audioContext.createBiquadFilter();
-        const highpass = audioContext.createBiquadFilter();
-        const gainNode = audioContext.createGain();
+        fanfareTones.forEach((tone) => {
+          const oscillator = audioContext.createOscillator();
+          const gainNode = audioContext.createGain();
 
-        lowpass.type = "lowpass";
-        lowpass.frequency.value = 2000;
-        highpass.type = "highpass";
-        highpass.frequency.value = 400;
+          oscillator.type = "sine";
+          oscillator.connect(gainNode);
+          gainNode.connect(audioContext.destination);
 
-        noise.connect(highpass);
-        highpass.connect(lowpass);
-        lowpass.connect(gainNode);
-        gainNode.connect(audioContext.destination);
+          const startTime = audioContext.currentTime + tone.time;
+          oscillator.frequency.setValueAtTime(tone.freq, startTime);
+          gainNode.gain.setValueAtTime(0.12, startTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.001, startTime + 0.4);
 
-        // Randomize timing for natural crowd effect
-        const startTime =
-          audioContext.currentTime + i * 0.08 + Math.random() * 0.03;
-        const volume = 0.08 + Math.random() * 0.04;
+          oscillator.start(startTime);
+          oscillator.stop(startTime + 0.4);
+        });
+        break;
 
-        gainNode.gain.setValueAtTime(volume, startTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.001, startTime + 0.08);
+      case "click":
+        // Short, crisp UI click sound
+        const clickOsc = audioContext.createOscillator();
+        const clickGain = audioContext.createGain();
+        const clickFilter = audioContext.createBiquadFilter();
 
-        noise.start(startTime);
-        noise.stop(startTime + 0.08);
-      }
+        clickOsc.type = "sine";
+        clickFilter.type = "lowpass";
+        clickFilter.frequency.value = 2000;
 
-      // Add celebratory fanfare with bell-like tones
-      const fanfareTones = [
-        { freq: 523.25, time: 0 }, // C5
-        { freq: 659.25, time: 0.12 }, // E5
-        { freq: 783.99, time: 0.24 }, // G5
-        { freq: 1046.5, time: 0.36 }, // C6
-      ];
+        clickOsc.connect(clickFilter);
+        clickFilter.connect(clickGain);
+        clickGain.connect(audioContext.destination);
 
-      fanfareTones.forEach((tone) => {
-        const oscillator = audioContext.createOscillator();
-        const gainNode = audioContext.createGain();
+        clickOsc.frequency.setValueAtTime(800, audioContext.currentTime);
+        clickGain.gain.setValueAtTime(0.06, audioContext.currentTime);
+        clickGain.gain.exponentialRampToValueAtTime(
+          0.001,
+          audioContext.currentTime + 0.08
+        );
 
-        oscillator.type = "sine";
-        oscillator.connect(gainNode);
-        gainNode.connect(audioContext.destination);
-
-        const startTime = audioContext.currentTime + tone.time;
-        oscillator.frequency.setValueAtTime(tone.freq, startTime);
-        gainNode.gain.setValueAtTime(0.12, startTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.001, startTime + 0.4);
-
-        oscillator.start(startTime);
-        oscillator.stop(startTime + 0.4);
-      });
-      break;
-
-    case "click":
-      // Short, crisp UI click sound
-      const clickOsc = audioContext.createOscillator();
-      const clickGain = audioContext.createGain();
-      const clickFilter = audioContext.createBiquadFilter();
-
-      clickOsc.type = "sine";
-      clickFilter.type = "lowpass";
-      clickFilter.frequency.value = 2000;
-
-      clickOsc.connect(clickFilter);
-      clickFilter.connect(clickGain);
-      clickGain.connect(audioContext.destination);
-
-      clickOsc.frequency.setValueAtTime(800, audioContext.currentTime);
-      clickGain.gain.setValueAtTime(0.06, audioContext.currentTime);
-      clickGain.gain.exponentialRampToValueAtTime(
-        0.001,
-        audioContext.currentTime + 0.08
-      );
-
-      clickOsc.start();
-      clickOsc.stop(audioContext.currentTime + 0.08);
-      break;
+        clickOsc.start();
+        clickOsc.stop(audioContext.currentTime + 0.08);
+        break;
+    }
+  } catch (e) {
+    // Silently fail if audio context not available
+    console.warn('Audio playback failed:', e);
   }
 };
 
@@ -716,7 +727,6 @@ export const SpinWheel = () => {
 
     setIsSpinning(true);
     setWinner(null);
-    playSound("spin");
 
     // More spins for realistic effect (8-12 full rotations)
     const spins = 8 + Math.random() * 4;
@@ -724,34 +734,58 @@ export const SpinWheel = () => {
     const totalRotation = spins * 360 + extraDegrees;
 
     // Get current rotation at start
-    let currentRotation = rotationRef.current;
+    const startRotation = rotationRef.current;
     // Longer duration for heavy feel: 6-8 seconds
     const duration = 6000 + Math.random() * 2000;
     const startTime = Date.now();
 
-    // Custom cubic-bezier(0.25, 0.1, 0.25, 1.0) equivalent for realistic friction
-    // Starts fast, maintains speed briefly, then decays smoothly
+    // Track current segment for tick sounds
+    const sliceAngle = 360 / activeEntries.length;
+    let lastSegmentIndex = -1;
+
+    // Physics-based easing with realistic deceleration
+    // Combines ease-out-cubic for initial slowdown with ease-out-quint for final gentle stop
     const easeOutCubic = (t: number): number => {
       return 1 - Math.pow(1 - t, 3);
     };
 
-    const easeOutQuart = (t: number): number => {
-      return 1 - Math.pow(1 - t, 4);
+    const easeOutQuint = (t: number): number => {
+      return 1 - Math.pow(1 - t, 5);
+    };
+
+    // Helper to calculate current segment under the pointer
+    const getCurrentSegment = (rotation: number): number => {
+      const pointerAngle = 0; // Pointer is at right (0 degrees)
+      const adjustedAngle = (360 - rotation + pointerAngle) % 360;
+      return Math.floor(adjustedAngle / sliceAngle) % activeEntries.length;
     };
 
     const animate = () => {
       const elapsed = Date.now() - startTime;
       const progress = Math.min(elapsed / duration, 1);
 
-      // Hybrid easing: fast start (cubic) blending into long tail (quart)
-      // This mimics the initial torque followed by air resistance/friction
-      const easedProgress = progress < 0.5
-        ? easeOutCubic(progress)
-        : easeOutQuart(progress);
+      // Enhanced physics-based easing:
+      // - First 30%: ease-out-cubic (quick initial deceleration)
+      // - Last 70%: ease-out-quint (very smooth gradual stop)
+      // This creates the realistic "heavy wheel with friction" feel
+      let easedProgress;
+      if (progress < 0.3) {
+        easedProgress = easeOutCubic(progress / 0.3) * 0.3;
+      } else {
+        const remainingProgress = (progress - 0.3) / 0.7;
+        easedProgress = 0.3 + easeOutQuint(remainingProgress) * 0.7;
+      }
 
-      const newRotation = (currentRotation + totalRotation * easedProgress) % 360;
+      const newRotation = (startRotation + totalRotation * easedProgress) % 360;
       rotationRef.current = newRotation;
       setRotation(newRotation);
+
+      // Check for segment change and play tick sound
+      const currentSegment = getCurrentSegment(newRotation);
+      if (currentSegment !== lastSegmentIndex) {
+        playTickSound();
+        lastSegmentIndex = currentSegment;
+      }
 
       drawWheel(newRotation);
 
@@ -760,13 +794,7 @@ export const SpinWheel = () => {
       } else {
         // Animation complete
         const finalRotation = newRotation % 360;
-        const sliceAngle = 360 / activeEntries.length;
-
-        // Pointer is at right (0 degrees)
-        const pointerAngle = 0;
-        const adjustedAngle = (360 - finalRotation + pointerAngle) % 360;
-        const winningIndex =
-          Math.floor(adjustedAngle / sliceAngle) % activeEntries.length;
+        const winningIndex = getCurrentSegment(finalRotation);
         const winningEntry = activeEntries[winningIndex];
 
         setWinner(winningEntry.text);
