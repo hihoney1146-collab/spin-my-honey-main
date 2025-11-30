@@ -47,53 +47,62 @@ const defaultColors = [
 
 // Sound synthesis helper functions
 const createTickSound = (ctx: AudioContext) => {
-  const oscillator = ctx.createOscillator();
-  const gainNode = ctx.createGain();
-  const filter = ctx.createBiquadFilter();
+  // Realistic "Clack" using filtered noise
+  const bufferSize = ctx.sampleRate * 0.05; // 50ms buffer
+  const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+  const data = buffer.getChannelData(0);
 
-  oscillator.connect(filter);
-  filter.connect(gainNode);
-  gainNode.connect(ctx.destination);
+  // Generate white noise
+  for (let i = 0; i < bufferSize; i++) {
+    data[i] = Math.random() * 2 - 1;
+  }
 
-  // Crisp click sound (High frequency square wave with highpass)
-  oscillator.type = "square"; // Richer harmonics for "click"
-  filter.type = "highpass"; // Remove "heavy" low end
-  filter.frequency.value = 1000; // Only high frequencies
+  const noise = ctx.createBufferSource();
+  noise.buffer = buffer;
+
+  const noiseFilter = ctx.createBiquadFilter();
+  noiseFilter.type = 'lowpass';
+  noiseFilter.frequency.value = 1200;
+  noiseFilter.Q.value = 1;
+
+  const noiseGain = ctx.createGain();
+
+  noise.connect(noiseFilter);
+  noiseFilter.connect(noiseGain);
+  noiseGain.connect(ctx.destination);
 
   const now = ctx.currentTime;
-  // Slight pitch variation for realism
-  const randomPitch = 1200 + (Math.random() * 100 - 50);
-  oscillator.frequency.setValueAtTime(randomPitch, now);
 
-  // Extremely short, sharp envelope
-  gainNode.gain.setValueAtTime(0, now);
-  gainNode.gain.linearRampToValueAtTime(0.15, now + 0.002); // Fast attack
-  gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.03); // Fast decay
+  // Hard, percussive envelope
+  noiseGain.gain.setValueAtTime(1, now);
+  noiseGain.gain.exponentialRampToValueAtTime(0.01, now + 0.04);
 
-  oscillator.start(now);
-  oscillator.stop(now + 0.04);
+  noise.start(now);
 };
 
 const createWinSound = (ctx: AudioContext) => {
-  // Fanfare
-  const tones = [523.25, 659.25, 783.99, 1046.50]; // C Major arpeggio
-  tones.forEach((freq, i) => {
+  // Success Chime (Major 7th Chord Strum)
+  const notes = [523.25, 659.25, 783.99, 987.77, 1046.50]; // C5, E5, G5, B5, C6
+
+  notes.forEach((freq, i) => {
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
 
-    osc.type = "triangle"; // Softer than square
+    osc.type = 'sine';
     osc.frequency.value = freq;
 
     osc.connect(gain);
     gain.connect(ctx.destination);
 
-    const now = ctx.currentTime + (i * 0.1);
+    const now = ctx.currentTime + (i * 0.08); // Strum effect
+    const duration = 1.5;
+
     gain.gain.setValueAtTime(0, now);
-    gain.gain.linearRampToValueAtTime(0.2, now + 0.05);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+    gain.gain.linearRampToValueAtTime(0.3, now + 0.1);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
 
     osc.start(now);
-    osc.stop(now + 0.6);
+    osc.stop(now + duration + 0.1);
   });
 };
 
@@ -726,7 +735,9 @@ export const SpinWheel = () => {
 
       const newRotation = (startRotation + totalRotation * easedProgress) % 360;
       rotationRef.current = newRotation;
-      setRotation(newRotation);
+
+      // CRITICAL FIX: Do NOT call setRotation here!
+      // setRotation(newRotation); <-- This was causing the re-renders/stutter
 
       // Check for segment change and play tick sound
       const currentSegment = getCurrentSegment(newRotation);
@@ -745,6 +756,8 @@ export const SpinWheel = () => {
         const winningIndex = getCurrentSegment(finalRotation);
         const winningEntry = activeEntries[winningIndex];
 
+        // Only update state at the very end
+        setRotation(finalRotation);
         setWinner(winningEntry.text);
         setWinnerColor(winningEntry.color);
         setWinnerId(winningEntry.id);
