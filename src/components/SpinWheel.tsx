@@ -175,7 +175,7 @@ export const SpinWheel = () => {
   const lastTickTimeRef = useRef<number>(0); // For rate limiting audio
   const tickBufferRef = useRef<AudioBuffer | null>(null);
 
-  // Initialize audio context and pre‑create tick buffer
+  // Initialize audio context and pre‑create tick buffer & nodes
   const initAudio = () => {
     if (!audioContextRef.current) {
       const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
@@ -187,15 +187,29 @@ export const SpinWheel = () => {
     if (ctx?.state === 'suspended') {
       ctx.resume();
     }
-    // Create tick buffer once (filtered white noise)
-    if (ctx && !tickBufferRef.current) {
-      const bufferSize = ctx.sampleRate * 0.05; // 50ms
-      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-      const data = buffer.getChannelData(0);
-      for (let i = 0; i < bufferSize; i++) {
-        data[i] = Math.random() * 2 - 1;
+
+    if (ctx) {
+      // Create tick buffer once (filtered white noise)
+      if (!tickBufferRef.current) {
+        const bufferSize = ctx.sampleRate * 0.05; // 50ms
+        const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          data[i] = Math.random() * 2 - 1;
+        }
+        tickBufferRef.current = buffer;
       }
-      tickBufferRef.current = buffer;
+
+      // Create persistent nodes for ticks if they don't exist
+      // We store them on the ref to avoid re-creation
+      if (!(audioContextRef.current as any).tickFilter) {
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.value = 1200; // Sharper click
+        filter.Q.value = 8; // High resonance for "plastic" tone
+        filter.connect(ctx.destination);
+        (audioContextRef.current as any).tickFilter = filter;
+      }
     }
     return ctx;
   };
@@ -205,6 +219,33 @@ export const SpinWheel = () => {
     initAudio();
   }, []);
 
+  const createApplauseSound = (ctx: AudioContext) => {
+    // Simulate applause with multiple noise bursts
+    const clapCount = 15;
+    const duration = 2.0;
+
+    for (let i = 0; i < clapCount; i++) {
+      const start = ctx.currentTime + (Math.random() * duration);
+
+      const osc = ctx.createOscillator(); // Use oscillator for "hand" tone
+      osc.type = 'triangle';
+      osc.frequency.value = 100 + Math.random() * 200;
+
+      const noise = ctx.createBufferSource();
+      noise.buffer = tickBufferRef.current; // Reuse noise buffer
+
+      const gain = ctx.createGain();
+      gain.gain.setValueAtTime(0, start);
+      gain.gain.linearRampToValueAtTime(0.2, start + 0.01);
+      gain.gain.exponentialRampToValueAtTime(0.001, start + 0.1 + Math.random() * 0.1);
+
+      // Mix noise and tone
+      noise.connect(gain);
+      gain.connect(ctx.destination);
+      noise.start(start);
+    }
+  };
+
   const playSoundEffect = (type: 'tick' | 'win' | 'click', segmentIndex?: number) => {
     const ctx = initAudio();
     if (!ctx) return;
@@ -212,11 +253,11 @@ export const SpinWheel = () => {
     try {
       switch (type) {
         case 'tick':
-          // Use pre‑created buffer with optional pitch variation per segment
           playTickSound(ctx, segmentIndex ?? 0);
           break;
         case 'win':
           createWinSound(ctx);
+          createApplauseSound(ctx); // Add applause
           break;
         case 'click':
           createClickSound(ctx);
@@ -227,25 +268,32 @@ export const SpinWheel = () => {
     }
   };
 
-  // Play tick sound using pre‑created buffer and per‑segment pitch variation
+  // Play tick sound using persistent filter to reduce GC
   const playTickSound = (ctx: AudioContext, segmentIndex: number) => {
     if (!tickBufferRef.current) return;
+
     const source = ctx.createBufferSource();
     source.buffer = tickBufferRef.current;
-    // Vary playbackRate slightly based on segment index for tonal variation
+
+    // Vary playbackRate for "musical" flapper effect
     const baseRate = 1.0;
-    const variation = ((segmentIndex % 5) - 2) * 0.05; // -0.1 to +0.1
+    const variation = ((segmentIndex % 5) - 2) * 0.08;
     source.playbackRate.value = baseRate + variation;
-    const filter = ctx.createBiquadFilter();
-    filter.type = 'lowpass';
-    filter.frequency.value = 1000;
-    filter.Q.value = 5;
+
     const gain = ctx.createGain();
-    gain.gain.setValueAtTime(0.8, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.03);
-    source.connect(filter);
-    filter.connect(gain);
-    gain.connect(ctx.destination);
+    // Sharp envelope
+    gain.gain.setValueAtTime(0.6, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.04);
+
+    // Connect: Source -> Gain -> Persistent Filter -> Destination
+    source.connect(gain);
+    const filter = (ctx as any).tickFilter;
+    if (filter) {
+      gain.connect(filter);
+    } else {
+      gain.connect(ctx.destination);
+    }
+
     source.start();
   };
 
