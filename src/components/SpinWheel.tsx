@@ -45,180 +45,72 @@ const defaultColors = [
   "#e91e63", // Pink
 ];
 
-// Individual tick sound for realistic segment passing
-const playTickSound = () => {
-  try {
-    const audioContext = new (window.AudioContext ||
-      (window as any).webkitAudioContext)();
+// Sound synthesis helper functions
+const createTickSound = (ctx: AudioContext) => {
+  const oscillator = ctx.createOscillator();
+  const gainNode = ctx.createGain();
+  const filter = ctx.createBiquadFilter();
 
-    const oscillator = audioContext.createOscillator();
-    const gainNode = audioContext.createGain();
-    const filter = audioContext.createBiquadFilter();
+  oscillator.connect(filter);
+  filter.connect(gainNode);
+  gainNode.connect(ctx.destination);
 
-    // Connect: oscillator -> filter -> gain -> destination
-    oscillator.connect(filter);
-    filter.connect(gainNode);
-    gainNode.connect(audioContext.destination);
+  // Soft click sound
+  oscillator.type = "triangle"; // Softer than square
+  filter.type = "lowpass";
+  filter.frequency.value = 800;
 
-    // Use square wave for sharper tick sound
-    oscillator.type = "square";
+  const now = ctx.currentTime;
+  oscillator.frequency.setValueAtTime(400, now);
 
-    // Band-pass filter for more realistic wood/plastic tick
-    filter.type = "bandpass";
-    filter.frequency.value = 1200;
-    filter.Q.value = 10; // Narrow band for crisp click sound
+  // Short, crisp envelope
+  gainNode.gain.setValueAtTime(0, now);
+  gainNode.gain.linearRampToValueAtTime(0.3, now + 0.005);
+  gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
 
-    const startTime = audioContext.currentTime;
-    const tickDuration = 0.04;
-
-    // Sharp attack, quick decay for realistic tick
-    oscillator.frequency.setValueAtTime(1200, startTime);
-    gainNode.gain.setValueAtTime(0.15, startTime);
-    gainNode.gain.exponentialRampToValueAtTime(
-      0.001,
-      startTime + tickDuration
-    );
-
-    oscillator.start(startTime);
-    oscillator.stop(startTime + tickDuration);
-  } catch (e) {
-    // Silently fail if audio context not available
-    console.warn('Audio context not available:', e);
-  }
+  oscillator.start(now);
+  oscillator.stop(now + 0.06);
 };
 
-// Enhanced realistic sound effects with improved audio synthesis
-const playSound = (soundType: "spin" | "win" | "click") => {
-  try {
-    const audioContext = new (window.AudioContext ||
-      (window as any).webkitAudioContext)();
+const createWinSound = (ctx: AudioContext) => {
+  // Fanfare
+  const tones = [523.25, 659.25, 783.99, 1046.50]; // C Major arpeggio
+  tones.forEach((freq, i) => {
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
 
-    switch (soundType) {
-      case "spin":
-        // No longer used - replaced by individual tick sounds
-        break;
+    osc.type = "sine";
+    osc.frequency.value = freq;
 
-      case "win":
-        // Create realistic crowd applause with multiple clap layers
-        const clapDuration = 1.5;
-        const clapsPerSecond = 8;
-        const totalClaps = Math.floor(clapDuration * clapsPerSecond);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
 
-        for (let i = 0; i < totalClaps; i++) {
-          // Create white noise burst for each clap
-          const noise = audioContext.createBufferSource();
-          const bufferSize = Math.floor(audioContext.sampleRate * 0.05);
-          const buffer = audioContext.createBuffer(
-            1,
-            bufferSize,
-            audioContext.sampleRate
-          );
-          const data = buffer.getChannelData(0);
+    const now = ctx.currentTime + (i * 0.1);
+    gain.gain.setValueAtTime(0, now);
+    gain.gain.linearRampToValueAtTime(0.2, now + 0.05);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
 
-          // Generate pink noise (more natural than white)
-          let b0 = 0,
-            b1 = 0,
-            b2 = 0,
-            b3 = 0,
-            b4 = 0,
-            b5 = 0,
-            b6 = 0;
-          for (let j = 0; j < bufferSize; j++) {
-            const white = Math.random() * 2 - 1;
-            b0 = 0.99886 * b0 + white * 0.0555179;
-            b1 = 0.99332 * b1 + white * 0.0750759;
-            b2 = 0.969 * b2 + white * 0.153852;
-            b3 = 0.8665 * b3 + white * 0.3104856;
-            b4 = 0.55 * b4 + white * 0.5329522;
-            b5 = -0.7616 * b5 - white * 0.016898;
-            data[j] = (b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362) * 0.11;
-            b6 = white * 0.115926;
-          }
+    osc.start(now);
+    osc.stop(now + 0.6);
+  });
+};
 
-          noise.buffer = buffer;
+const createClickSound = (ctx: AudioContext) => {
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
 
-          // Multi-band filtering for realistic hand clap
-          const lowpass = audioContext.createBiquadFilter();
-          const highpass = audioContext.createBiquadFilter();
-          const gainNode = audioContext.createGain();
+  osc.type = "sine";
+  osc.frequency.value = 800;
 
-          lowpass.type = "lowpass";
-          lowpass.frequency.value = 2000;
-          highpass.type = "highpass";
-          highpass.frequency.value = 400;
+  osc.connect(gain);
+  gain.connect(ctx.destination);
 
-          noise.connect(highpass);
-          highpass.connect(lowpass);
-          lowpass.connect(gainNode);
-          gainNode.connect(audioContext.destination);
+  const now = ctx.currentTime;
+  gain.gain.setValueAtTime(0.1, now);
+  gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
 
-          // Randomize timing for natural crowd effect
-          const startTime =
-            audioContext.currentTime + i * 0.08 + Math.random() * 0.03;
-          const volume = 0.08 + Math.random() * 0.04;
-
-          gainNode.gain.setValueAtTime(volume, startTime);
-          gainNode.gain.exponentialRampToValueAtTime(0.001, startTime + 0.08);
-
-          noise.start(startTime);
-          noise.stop(startTime + 0.08);
-        }
-
-        // Add celebratory fanfare with bell-like tones
-        const fanfareTones = [
-          { freq: 523.25, time: 0 }, // C5
-          { freq: 659.25, time: 0.12 }, // E5
-          { freq: 783.99, time: 0.24 }, // G5
-          { freq: 1046.5, time: 0.36 }, // C6
-        ];
-
-        fanfareTones.forEach((tone) => {
-          const oscillator = audioContext.createOscillator();
-          const gainNode = audioContext.createGain();
-
-          oscillator.type = "sine";
-          oscillator.connect(gainNode);
-          gainNode.connect(audioContext.destination);
-
-          const startTime = audioContext.currentTime + tone.time;
-          oscillator.frequency.setValueAtTime(tone.freq, startTime);
-          gainNode.gain.setValueAtTime(0.12, startTime);
-          gainNode.gain.exponentialRampToValueAtTime(0.001, startTime + 0.4);
-
-          oscillator.start(startTime);
-          oscillator.stop(startTime + 0.4);
-        });
-        break;
-
-      case "click":
-        // Short, crisp UI click sound
-        const clickOsc = audioContext.createOscillator();
-        const clickGain = audioContext.createGain();
-        const clickFilter = audioContext.createBiquadFilter();
-
-        clickOsc.type = "sine";
-        clickFilter.type = "lowpass";
-        clickFilter.frequency.value = 2000;
-
-        clickOsc.connect(clickFilter);
-        clickFilter.connect(clickGain);
-        clickGain.connect(audioContext.destination);
-
-        clickOsc.frequency.setValueAtTime(800, audioContext.currentTime);
-        clickGain.gain.setValueAtTime(0.06, audioContext.currentTime);
-        clickGain.gain.exponentialRampToValueAtTime(
-          0.001,
-          audioContext.currentTime + 0.08
-        );
-
-        clickOsc.start();
-        clickOsc.stop(audioContext.currentTime + 0.08);
-        break;
-    }
-  } catch (e) {
-    // Silently fail if audio context not available
-    console.warn('Audio playback failed:', e);
-  }
+  osc.start(now);
+  osc.stop(now + 0.1);
 };
 
 export const SpinWheel = () => {
@@ -259,11 +151,47 @@ export const SpinWheel = () => {
   const [loadedImages, setLoadedImages] = useState<
     Map<string, HTMLImageElement>
   >(new Map());
+  const audioContextRef = useRef<AudioContext | null>(null);
   const continuousSpinRef = useRef<number | null>(null);
   const spinAnimationRef = useRef<number | null>(null);
   const rotationRef = useRef<number>(rotation);
   const entriesRef = useRef<WheelEntry[]>(entries);
   const loadedImagesRef = useRef<Map<string, HTMLImageElement>>(loadedImages);
+
+  // Initialize audio context
+  const initAudio = () => {
+    if (!audioContextRef.current) {
+      const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+      if (AudioContextClass) {
+        audioContextRef.current = new AudioContextClass();
+      }
+    }
+    if (audioContextRef.current?.state === 'suspended') {
+      audioContextRef.current.resume();
+    }
+    return audioContextRef.current;
+  };
+
+  const playSoundEffect = (type: 'tick' | 'win' | 'click') => {
+    const ctx = initAudio();
+    if (!ctx) return;
+
+    try {
+      switch (type) {
+        case 'tick':
+          createTickSound(ctx);
+          break;
+        case 'win':
+          createWinSound(ctx);
+          break;
+        case 'click':
+          createClickSound(ctx);
+          break;
+      }
+    } catch (e) {
+      console.warn('Audio playback error:', e);
+    }
+  };
 
   // Save entries to localStorage whenever they change
   useEffect(() => {
@@ -626,7 +554,7 @@ export const SpinWheel = () => {
         },
       ]);
       setNewEntry("");
-      playSound("click");
+      playSoundEffect("click");
       toast.success("Entry added!");
     }
   };
@@ -634,7 +562,7 @@ export const SpinWheel = () => {
   const removeEntry = (id: string) => {
     if (entries.length > 2) {
       setEntries(entries.filter((entry) => entry.id !== id));
-      playSound("click");
+      playSoundEffect("click");
       toast.success("Entry removed!");
     } else {
       toast.error("You need at least 2 entries!");
@@ -651,7 +579,7 @@ export const SpinWheel = () => {
     setEntries(
       entries.map((entry) => (entry.id === id ? { ...entry, color } : entry))
     );
-    playSound("click");
+    playSoundEffect("click");
   };
 
   const updateEntryImage = (id: string, imageUrl: string) => {
@@ -660,7 +588,7 @@ export const SpinWheel = () => {
         entry.id === id ? { ...entry, imageUrl: imageUrl || undefined } : entry
       )
     );
-    playSound("click");
+    playSoundEffect("click");
   };
 
   const toggleEntry = (id: string) => {
@@ -669,20 +597,20 @@ export const SpinWheel = () => {
         entry.id === id ? { ...entry, active: !entry.active } : entry
       )
     );
-    playSound("click");
+    playSoundEffect("click");
   };
 
   const shuffleEntries = () => {
     const shuffled = [...entries].sort(() => Math.random() - 0.5);
     setEntries(shuffled);
-    playSound("click");
+    playSoundEffect("click");
     toast.success("Entries shuffled!");
   };
 
   const sortEntries = () => {
     const sorted = [...entries].sort((a, b) => a.text.localeCompare(b.text));
     setEntries(sorted);
-    playSound("click");
+    playSoundEffect("click");
     toast.success("Entries sorted alphabetically!");
   };
 
@@ -697,14 +625,14 @@ export const SpinWheel = () => {
       { id: "7", text: "Hanna", color: defaultColors[6], active: true },
     ];
     setEntries(reset);
-    playSound("click");
+    playSoundEffect("click");
     toast.success("Entries reset to defaults!");
   };
 
   const removeWinner = () => {
     if (winnerId && entries.length > 2) {
       setEntries(entries.filter((entry) => entry.id !== winnerId));
-      playSound("click");
+      playSoundEffect("click");
       toast.success(`${winner} removed from the wheel!`);
       setShowWinnerDialog(false);
       setWinner(null);
@@ -727,7 +655,7 @@ export const SpinWheel = () => {
 
     setIsSpinning(true);
     setWinner(null);
-
+    initAudio(); // Ensure audio is ready
     // More spins for realistic effect (8-12 full rotations)
     const spins = 8 + Math.random() * 4;
     const extraDegrees = Math.random() * 360;
@@ -783,7 +711,7 @@ export const SpinWheel = () => {
       // Check for segment change and play tick sound
       const currentSegment = getCurrentSegment(newRotation);
       if (currentSegment !== lastSegmentIndex) {
-        playTickSound();
+        playSoundEffect("tick");
         lastSegmentIndex = currentSegment;
       }
 
@@ -804,7 +732,7 @@ export const SpinWheel = () => {
         spinAnimationRef.current = null;
 
         setTimeout(() => {
-          playSound("win");
+          playSoundEffect("win");
           setShowWinnerDialog(true);
 
           // Left side party popper
