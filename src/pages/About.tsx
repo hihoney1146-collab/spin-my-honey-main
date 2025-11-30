@@ -182,11 +182,11 @@ const About = () => {
               or just want to share how you've used Hi Honey, we're all ears.
             </p>
             <a
-              href="mailto:hihoney1146@gmail.com"
+              href="mailto:chaudhrayadam@gmail.com"
               className="text-lg md:text-xl font-semibold text-primary hover:underline inline-flex items-center gap-2 transition-colors"
             >
               <Mail className="h-5 w-5" />
-              hihoney1146@gmail.com
+              chaudhrayadam@gmail.com
             </a>
             <p className="text-sm md:text-base text-muted-foreground mt-4 max-w-2xl">
               Have a feature suggestion? Found a bug? Want to share your success

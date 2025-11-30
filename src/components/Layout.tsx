@@ -87,10 +87,9 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                     className={`
                       relative px-3 xl:px-4 py-2 rounded-lg font-medium text-sm xl:text-base
                       transition-all duration-300 ease-out
-                      ${
-                        active
-                          ? "text-primary bg-primary/10 shadow-sm"
-                          : "text-foreground/70 hover:text-primary hover:bg-primary/5"
+                      ${active
+                        ? "text-primary bg-primary/10 shadow-sm"
+                        : "text-foreground/70 hover:text-primary hover:bg-primary/5"
                       }
                       whitespace-nowrap
                     `}
@@ -169,11 +168,10 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                           className={`
                           flex items-center gap-3 px-4 py-3 rounded-lg
                           transition-all duration-200
-                          ${
-                            active
+                          ${active
                               ? "bg-primary/10 text-primary font-semibold border-l-4 border-primary"
                               : "text-foreground/70 hover:bg-primary/5 hover:text-primary border-l-4 border-transparent"
-                          }
+                            }
                         `}
                         >
                           <Icon className="h-5 w-5 flex-shrink-0" />
@@ -190,10 +188,10 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                         Need help? Contact us
                       </p>
                       <a
-                        href="mailto:hihoney1146@gmail.com"
+                        href="mailto:chaudhrayadam@gmail.com"
                         className="text-sm font-semibold text-primary hover:underline block text-center"
                       >
-                        hihoney1146@gmail.com
+                        chaudhrayadam@gmail.com
                       </a>
                     </div>
                   </div>
@@ -315,11 +313,11 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                     Email us at:
                   </p>
                   <a
-                    href="mailto:hihoney1146@gmail.com"
+                    href="mailto:chaudhrayadam@gmail.com"
                     className="text-sm font-semibold text-primary hover:underline flex items-center gap-2 group-hover:gap-3 transition-all duration-300"
                   >
                     <Mail className="h-4 w-4 flex-shrink-0" />
-                    <span className="break-all">hihoney1146@gmail.com</span>
+                    <span className="break-all">chaudhrayadam@gmail.com</span>
                   </a>
                 </div>
                 <p className="text-xs text-muted-foreground italic">

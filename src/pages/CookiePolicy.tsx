@@ -520,10 +520,10 @@ const CookiePolicy = () => {
                 <p className="mb-2">
                   <strong>Email:</strong>{" "}
                   <a
-                    href="mailto:hihoney1146@gmail.com"
+                    href="mailto:chaudhrayadam@gmail.com"
                     className="text-primary hover:underline font-semibold"
                   >
-                    hihoney1146@gmail.com
+                    chaudhrayadam@gmail.com
                   </a>
                 </p>
                 <p className="text-sm text-muted-foreground">

@@ -856,7 +856,7 @@ const Terms = () => {
                     <span className="text-primary mt-1">•</span>
                     <span>
                       <strong>Informal Resolution:</strong> We encourage you to
-                      contact us first at hihoney1146@gmail.com to resolve any
+                      contact us first at chaudhrayadam@gmail.com to resolve any
                       issues informally.
                     </span>
                   </li>
@@ -928,10 +928,10 @@ const Terms = () => {
               <Mail className="h-5 w-5 text-primary" />
               <span className="text-muted-foreground">Email:</span>
               <a
-                href="mailto:hihoney1146@gmail.com"
+                href="mailto:chaudhrayadam@gmail.com"
                 className="text-primary hover:underline font-semibold"
               >
-                hihoney1146@gmail.com
+                chaudhrayadam@gmail.com
               </a>
             </div>
             <p className="text-muted-foreground mt-4">

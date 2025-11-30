@@ -385,10 +385,10 @@ const Disclaimer = () => {
               <Mail className="h-5 w-5 text-primary" />
               <span className="font-medium">Email:</span>
               <a
-                href="mailto:hihoney1146@gmail.com"
+                href="mailto:chaudhrayadam@gmail.com"
                 className="text-primary hover:underline font-semibold"
               >
-                hihoney1146@gmail.com
+                chaudhrayadam@gmail.com
               </a>
             </div>
           </section>

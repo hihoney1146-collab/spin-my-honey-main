@@ -71,7 +71,7 @@ const Privacy = () => {
                   <span className="text-primary mt-1">•</span>
                   <span>
                     <strong>Contact Information:</strong> Email address when you
-                    contact us at hihoney1146@gmail.com
+                    contact us at chaudhrayadam@gmail.com
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
@@ -531,10 +531,10 @@ const Privacy = () => {
             <p className="text-muted-foreground mt-4">
               To exercise these rights, please contact us at{" "}
               <a
-                href="mailto:hihoney1146@gmail.com"
+                href="mailto:chaudhrayadam@gmail.com"
                 className="text-primary hover:underline font-semibold"
               >
-                hihoney1146@gmail.com
+                chaudhrayadam@gmail.com
               </a>
               .
             </p>
@@ -637,10 +637,10 @@ const Privacy = () => {
               We do not sell personal information. To exercise your CCPA rights,
               contact us at{" "}
               <a
-                href="mailto:hihoney1146@gmail.com"
+                href="mailto:chaudhrayadam@gmail.com"
                 className="text-primary hover:underline font-semibold"
               >
-                hihoney1146@gmail.com
+                chaudhrayadam@gmail.com
               </a>
               .
             </p>
@@ -694,10 +694,10 @@ const Privacy = () => {
               <Mail className="h-5 w-5 text-primary" />
               <span className="text-muted-foreground">Email:</span>
               <a
-                href="mailto:hihoney1146@gmail.com"
+                href="mailto:chaudhrayadam@gmail.com"
                 className="text-primary hover:underline font-semibold"
               >
-                hihoney1146@gmail.com
+                chaudhrayadam@gmail.com
               </a>
             </div>
             <p className="text-muted-foreground mt-4">

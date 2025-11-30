@@ -53,7 +53,7 @@ const Contact = () => {
       formDataToSend.append("name", validated.name);
       formDataToSend.append("email", validated.email);
       formDataToSend.append("message", validated.message);
-      formDataToSend.append("to", "hihoney1146@gmail.com");
+      formDataToSend.append("to", "chaudhrayadam@gmail.com");
 
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -178,10 +178,10 @@ const Contact = () => {
                     For general inquiries, feedback, or support:
                   </p>
                   <a
-                    href="mailto:hihoney1146@gmail.com"
+                    href="mailto:chaudhrayadam@gmail.com"
                     className="text-primary hover:underline font-semibold"
                   >
-                    hihoney1146@gmail.com
+                    chaudhrayadam@gmail.com
                   </a>
                 </div>
               </div>
