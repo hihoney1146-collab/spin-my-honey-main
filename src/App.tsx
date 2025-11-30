@@ -67,6 +67,7 @@ const Disclaimer = lazy(() => import("./pages/Disclaimer"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Embed = lazy(() => import("./pages/Embed"));
 import { ReferralTracker } from "./components/ReferralTracker";
+import { CookieConsent } from "./components/CookieConsent";
 
 const queryClient = new QueryClient();
 
@@ -84,6 +85,7 @@ const App = () => (
         <ReferralTracker />
         <BrowserRouter>
           <ScrollToTop />
+          <CookieConsent />
           <Routes>
             <Route element={<LayoutWrapper />}>
               <Route path="/" element={<Index />} />
