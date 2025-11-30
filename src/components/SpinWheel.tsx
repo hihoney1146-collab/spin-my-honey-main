@@ -173,8 +173,9 @@ export const SpinWheel = () => {
   const entriesRef = useRef<WheelEntry[]>(entries);
   const loadedImagesRef = useRef<Map<string, HTMLImageElement>>(loadedImages);
   const lastTickTimeRef = useRef<number>(0); // For rate limiting audio
+  const tickBufferRef = useRef<AudioBuffer | null>(null);
 
-  // Initialize audio context
+  // Initialize audio context and pre‑create tick buffer
   const initAudio = () => {
     if (!audioContextRef.current) {
       const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
@@ -182,20 +183,37 @@ export const SpinWheel = () => {
         audioContextRef.current = new AudioContextClass();
       }
     }
-    if (audioContextRef.current?.state === 'suspended') {
-      audioContextRef.current.resume();
+    const ctx = audioContextRef.current;
+    if (ctx?.state === 'suspended') {
+      ctx.resume();
     }
-    return audioContextRef.current;
+    // Create tick buffer once (filtered white noise)
+    if (ctx && !tickBufferRef.current) {
+      const bufferSize = ctx.sampleRate * 0.05; // 50ms
+      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = Math.random() * 2 - 1;
+      }
+      tickBufferRef.current = buffer;
+    }
+    return ctx;
   };
 
-  const playSoundEffect = (type: 'tick' | 'win' | 'click') => {
+  // Pre-warm audio context on component mount
+  useEffect(() => {
+    initAudio();
+  }, []);
+
+  const playSoundEffect = (type: 'tick' | 'win' | 'click', segmentIndex?: number) => {
     const ctx = initAudio();
     if (!ctx) return;
 
     try {
       switch (type) {
         case 'tick':
-          createTickSound(ctx);
+          // Use pre‑created buffer with optional pitch variation per segment
+          playTickSound(ctx, segmentIndex ?? 0);
           break;
         case 'win':
           createWinSound(ctx);
@@ -207,6 +225,28 @@ export const SpinWheel = () => {
     } catch (e) {
       console.warn('Audio playback error:', e);
     }
+  };
+
+  // Play tick sound using pre‑created buffer and per‑segment pitch variation
+  const playTickSound = (ctx: AudioContext, segmentIndex: number) => {
+    if (!tickBufferRef.current) return;
+    const source = ctx.createBufferSource();
+    source.buffer = tickBufferRef.current;
+    // Vary playbackRate slightly based on segment index for tonal variation
+    const baseRate = 1.0;
+    const variation = ((segmentIndex % 5) - 2) * 0.05; // -0.1 to +0.1
+    source.playbackRate.value = baseRate + variation;
+    const filter = ctx.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.value = 1000;
+    filter.Q.value = 5;
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0.8, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.03);
+    source.connect(filter);
+    filter.connect(gain);
+    gain.connect(ctx.destination);
+    source.start();
   };
 
   // Save entries to localStorage whenever they change
@@ -748,7 +788,7 @@ export const SpinWheel = () => {
         // Rate limiting for audio (prevent "rain" effect)
         const now = Date.now();
         if (now - lastTickTimeRef.current > 50) { // Max 20 ticks per second
-          playSoundEffect("tick");
+          playSoundEffect("tick", currentSegment);
           lastTickTimeRef.current = now;
         }
         lastSegmentIndex = currentSegment;
