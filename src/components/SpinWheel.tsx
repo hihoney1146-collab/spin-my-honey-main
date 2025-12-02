@@ -166,101 +166,96 @@ export const SpinWheel = () => {
   const [loadedImages, setLoadedImages] = useState<
     Map<string, HTMLImageElement>
   >(new Map());
-  const audioContextRef = useRef<AudioContext | null>(null);
   const continuousSpinRef = useRef<number | null>(null);
   const spinAnimationRef = useRef<number | null>(null);
   const rotationRef = useRef<number>(rotation);
   const entriesRef = useRef<WheelEntry[]>(entries);
   const loadedImagesRef = useRef<Map<string, HTMLImageElement>>(loadedImages);
   const lastTickTimeRef = useRef<number>(0); // For rate limiting audio
-  const tickBufferRef = useRef<AudioBuffer | null>(null);
 
-  // Initialize audio context and pre‑create tick buffer & nodes
-  const initAudio = () => {
-    if (!audioContextRef.current) {
-      const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
-      if (AudioContextClass) {
-        audioContextRef.current = new AudioContextClass();
-      }
-    }
-    const ctx = audioContextRef.current;
-    if (ctx?.state === 'suspended') {
-      ctx.resume();
-    }
+  // Audio pool for tick sounds (to handle rapid playback)
+  const tickAudioPoolRef = useRef<HTMLAudioElement[]>([]);
+  const tickPoolIndexRef = useRef<number>(0);
+  const winAudioRef = useRef<HTMLAudioElement | null>(null);
+  const clickAudioRef = useRef<HTMLAudioElement | null>(null);
 
-    if (ctx) {
-      // Create tick buffer once (filtered white noise)
-      if (!tickBufferRef.current) {
-        const bufferSize = ctx.sampleRate * 0.05; // 50ms
-        const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-        const data = buffer.getChannelData(0);
-        for (let i = 0; i < bufferSize; i++) {
-          data[i] = Math.random() * 2 - 1;
-        }
-        tickBufferRef.current = buffer;
-      }
-
-      // Create persistent nodes for ticks if they don't exist
-      // We store them on the ref to avoid re-creation
-      if (!(audioContextRef.current as any).tickFilter) {
-        const filter = ctx.createBiquadFilter();
-        filter.type = 'lowpass';
-        filter.frequency.value = 1200; // Sharper click
-        filter.Q.value = 8; // High resonance for "plastic" tone
-        filter.connect(ctx.destination);
-        (audioContextRef.current as any).tickFilter = filter;
-      }
-    }
-    return ctx;
-  };
-
-  // Pre-warm audio context on component mount
+  // Initialize audio on component mount
   useEffect(() => {
-    initAudio();
+    // Create a pool of 10 tick audio elements for smooth rapid playback
+    const tickPool: HTMLAudioElement[] = [];
+    for (let i = 0; i < 10; i++) {
+      const audio = new Audio();
+      // Try to load from public folder first, fallback to data URI
+      audio.src = '/sounds/tick.mp3';
+      audio.volume = 0.5;
+      audio.preload = 'auto';
+
+      // Fallback: If file doesn't exist, we'll use Web Audio synthesis
+      audio.onerror = () => {
+        console.log('Tick sound file not found, using synthesis fallback');
+      };
+
+      tickPool.push(audio);
+    }
+    tickAudioPoolRef.current = tickPool;
+
+    // Win sound
+    const winAudio = new Audio();
+    winAudio.src = '/sounds/win.mp3';
+    winAudio.volume = 0.6;
+    winAudio.preload = 'auto';
+    winAudio.onerror = () => {
+      console.log('Win sound file not found, using synthesis fallback');
+    };
+    winAudioRef.current = winAudio;
+
+    // Click sound (simple beep)
+    const clickAudio = new Audio();
+    clickAudio.volume = 0.3;
+    clickAudioRef.current = clickAudio;
+
+    // Initialize Web Audio as fallback
+    initWebAudioFallback();
   }, []);
 
-  const createApplauseSound = (ctx: AudioContext) => {
-    // Simulate applause with multiple noise bursts
-    const clapCount = 15;
-    const duration = 2.0;
+  // Web Audio fallback for when MP3 files aren't available
+  const audioContextRef = useRef<AudioContext | null>(null);
+  const tickBufferRef = useRef<AudioBuffer | null>(null);
 
-    for (let i = 0; i < clapCount; i++) {
-      const start = ctx.currentTime + (Math.random() * duration);
+  const initWebAudioFallback = () => {
+    const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+    if (AudioContextClass && !audioContextRef.current) {
+      const ctx = new AudioContextClass();
+      audioContextRef.current = ctx;
 
-      const osc = ctx.createOscillator(); // Use oscillator for "hand" tone
-      osc.type = 'triangle';
-      osc.frequency.value = 100 + Math.random() * 200;
+      // Create enhanced tick buffer (better than previous version)
+      const bufferSize = ctx.sampleRate * 0.04; // 40ms
+      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const data = buffer.getChannelData(0);
 
-      const noise = ctx.createBufferSource();
-      noise.buffer = tickBufferRef.current; // Reuse noise buffer
-
-      const gain = ctx.createGain();
-      gain.gain.setValueAtTime(0, start);
-      gain.gain.linearRampToValueAtTime(0.2, start + 0.01);
-      gain.gain.exponentialRampToValueAtTime(0.001, start + 0.1 + Math.random() * 0.1);
-
-      // Mix noise and tone
-      noise.connect(gain);
-      gain.connect(ctx.destination);
-      noise.start(start);
+      for (let i = 0; i < bufferSize; i++) {
+        const t = i / ctx.sampleRate;
+        // Sharp click: 1000Hz sine with fast decay + short noise
+        const sine = Math.sin(2 * Math.PI * 1000 * t);
+        const noise = (Math.random() * 2 - 1) * 0.3;
+        const envelope = Math.exp(-t * 60);
+        data[i] = (sine * 0.7 + noise * 0.3) * envelope;
+      }
+      tickBufferRef.current = buffer;
     }
   };
 
   const playSoundEffect = (type: 'tick' | 'win' | 'click', segmentIndex?: number) => {
-    const ctx = initAudio();
-    if (!ctx) return;
-
     try {
       switch (type) {
         case 'tick':
-          playTickSound(ctx, segmentIndex ?? 0);
+          playTickSound(segmentIndex ?? 0);
           break;
         case 'win':
-          createWinSound(ctx);
-          createApplauseSound(ctx); // Add applause
+          playWinSound();
           break;
         case 'click':
-          createClickSound(ctx);
+          playClickSound();
           break;
       }
     } catch (e) {
@@ -268,33 +263,77 @@ export const SpinWheel = () => {
     }
   };
 
-  // Play tick sound using persistent filter to reduce GC
-  const playTickSound = (ctx: AudioContext, segmentIndex: number) => {
-    if (!tickBufferRef.current) return;
+  const playTickSound = (segmentIndex: number) => {
+    // Try to use audio file first
+    const tickAudio = tickAudioPoolRef.current[tickPoolIndexRef.current];
+    if (tickAudio && tickAudio.src && !tickAudio.src.includes('data:')) {
+      tickAudio.currentTime = 0;
+      tickAudio.playbackRate = 1.0 + ((segmentIndex % 5) - 2) * 0.03; // Subtle variation
+      tickAudio.play().catch(() => {
+        // Fallback to Web Audio if HTML audio fails
+        playTickSoundFallback(segmentIndex);
+      });
+      tickPoolIndexRef.current = (tickPoolIndexRef.current + 1) % tickAudioPoolRef.current.length;
+    } else {
+      // Use Web Audio fallback
+      playTickSoundFallback(segmentIndex);
+    }
+  };
+
+  const playTickSoundFallback = (segmentIndex: number) => {
+    const ctx = audioContextRef.current;
+    if (!ctx || !tickBufferRef.current) return;
+
+    if (ctx.state === 'suspended') {
+      ctx.resume();
+    }
 
     const source = ctx.createBufferSource();
     source.buffer = tickBufferRef.current;
-
-    // Vary playbackRate for "musical" flapper effect
-    const baseRate = 1.0;
-    const variation = ((segmentIndex % 5) - 2) * 0.08;
-    source.playbackRate.value = baseRate + variation;
+    source.playbackRate.value = 1.0 + ((segmentIndex % 5) - 2) * 0.03;
 
     const gain = ctx.createGain();
-    // Sharp envelope
     gain.gain.setValueAtTime(0.6, ctx.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.04);
 
-    // Connect: Source -> Gain -> Persistent Filter -> Destination
     source.connect(gain);
-    const filter = (ctx as any).tickFilter;
-    if (filter) {
-      gain.connect(filter);
+    gain.connect(ctx.destination);
+    source.start();
+  };
+
+  const playWinSound = () => {
+    if (winAudioRef.current && winAudioRef.current.src && !winAudioRef.current.src.includes('data:')) {
+      winAudioRef.current.currentTime = 0;
+      winAudioRef.current.play().catch(() => {
+        // Fallback to synthesis
+        playWinSoundFallback();
+      });
     } else {
-      gain.connect(ctx.destination);
+      playWinSoundFallback();
+    }
+  };
+
+  const playWinSoundFallback = () => {
+    const ctx = audioContextRef.current;
+    if (!ctx) return;
+
+    if (ctx.state === 'suspended') {
+      ctx.resume();
     }
 
-    source.start();
+    // Victory chime
+    createWinSound(ctx);
+  };
+
+  const playClickSound = () => {
+    const ctx = audioContextRef.current;
+    if (!ctx) return;
+
+    if (ctx.state === 'suspended') {
+      ctx.resume();
+    }
+
+    createClickSound(ctx);
   };
 
   // Save entries to localStorage whenever they change
@@ -768,7 +807,6 @@ export const SpinWheel = () => {
     // CRITICAL: Set state immediately to prevent double clicks
     setIsSpinning(true);
     setWinner(null);
-    initAudio(); // Ensure audio is ready
 
     // Track spin event
     if (typeof window !== 'undefined' && (window as any).gtag) {
@@ -795,13 +833,9 @@ export const SpinWheel = () => {
     let lastSegmentIndex = -1;
 
     // Physics-based easing with realistic deceleration
-    // Combines ease-out-cubic for initial slowdown with ease-out-quint for final gentle stop
-    const easeOutCubic = (t: number): number => {
-      return 1 - Math.pow(1 - t, 3);
-    };
-
-    const easeOutQuint = (t: number): number => {
-      return 1 - Math.pow(1 - t, 5);
+    // Single smooth curve to prevent "dual spin" feel
+    const easeOutQuart = (t: number): number => {
+      return 1 - Math.pow(1 - t, 4);
     };
 
     // Helper to calculate current segment under the pointer
@@ -815,17 +849,8 @@ export const SpinWheel = () => {
       const elapsed = Date.now() - startTime;
       const progress = Math.min(elapsed / duration, 1);
 
-      // Enhanced physics-based easing:
-      // - First 30%: ease-out-cubic (quick initial deceleration)
-      // - Last 70%: ease-out-quint (very smooth gradual stop)
-      // This creates the realistic "heavy wheel with friction" feel
-      let easedProgress;
-      if (progress < 0.3) {
-        easedProgress = easeOutCubic(progress / 0.3) * 0.3;
-      } else {
-        const remainingProgress = (progress - 0.3) / 0.7;
-        easedProgress = 0.3 + easeOutQuint(remainingProgress) * 0.7;
-      }
+      // Smooth deceleration using Quartic easing
+      const easedProgress = easeOutQuart(progress);
 
       const newRotation = (startRotation + totalRotation * easedProgress) % 360;
       rotationRef.current = newRotation;
