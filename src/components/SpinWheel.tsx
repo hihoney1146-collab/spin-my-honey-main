@@ -171,85 +171,108 @@ export const SpinWheel = () => {
   const rotationRef = useRef<number>(rotation);
   const entriesRef = useRef<WheelEntry[]>(entries);
   const loadedImagesRef = useRef<Map<string, HTMLImageElement>>(loadedImages);
-  const lastTickTimeRef = useRef<number>(0); // For rate limiting audio
 
-  // Audio pool for tick sounds (to handle rapid playback)
+  // Audio refs - rhythmic spinning background + tick accents + applause
+  const rhythmAudioRef = useRef<HTMLAudioElement | null>(null);
   const tickAudioPoolRef = useRef<HTMLAudioElement[]>([]);
   const tickPoolIndexRef = useRef<number>(0);
   const winAudioRef = useRef<HTMLAudioElement | null>(null);
   const clickAudioRef = useRef<HTMLAudioElement | null>(null);
+  const audioContextRef = useRef<AudioContext | null>(null);
+  const lastTickTimeRef = useRef<number>(0);
 
   // Initialize audio on component mount
   useEffect(() => {
-    // Create a pool of 10 tick audio elements for smooth rapid playback
+    // Continuous rhythmic spinning background sound
+    const rhythmAudio = new Audio('/sounds/spin_rhythm.mp3');
+    rhythmAudio.volume = 0.5;
+    rhythmAudio.loop = true;
+    rhythmAudio.preload = 'auto';
+    rhythmAudioRef.current = rhythmAudio;
+
+    // Create pool of tick sounds for subtle segment accents
     const tickPool: HTMLAudioElement[] = [];
     for (let i = 0; i < 10; i++) {
-      const audio = new Audio();
-      // Try to load from public folder first, fallback to data URI
-      audio.src = '/sounds/tick.mp3';
-      audio.volume = 0.5;
+      const audio = new Audio('/sounds/tick.mp3');
+      audio.volume = 0.15; // Softer ticks over rhythmic background
       audio.preload = 'auto';
-
-      // Fallback: If file doesn't exist, we'll use Web Audio synthesis
-      audio.onerror = () => {
-        console.log('Tick sound file not found, using synthesis fallback');
-      };
-
       tickPool.push(audio);
     }
     tickAudioPoolRef.current = tickPool;
 
-    // Win sound
-    const winAudio = new Audio();
-    winAudio.src = '/sounds/win.mp3';
-    winAudio.volume = 0.6;
+    // Win sound (applause/clapping)
+    const winAudio = new Audio('/sounds/win.mp3');
+    winAudio.volume = 0.7;
     winAudio.preload = 'auto';
-    winAudio.onerror = () => {
-      console.log('Win sound file not found, using synthesis fallback');
-    };
     winAudioRef.current = winAudio;
 
-    // Click sound (simple beep)
+    // Click sound for UI interactions
     const clickAudio = new Audio();
-    clickAudio.volume = 0.3;
+    clickAudio.volume = 0.2;
     clickAudioRef.current = clickAudio;
 
-    // Initialize Web Audio as fallback
-    initWebAudioFallback();
+    // Initialize Web Audio context for fallback
+    const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+    if (AudioContextClass) {
+      audioContextRef.current = new AudioContextClass();
+    }
+
+    return () => {
+      rhythmAudio.pause();
+      winAudio.pause();
+    };
   }, []);
 
-  // Web Audio fallback for when MP3 files aren't available
-  const audioContextRef = useRef<AudioContext | null>(null);
-  const tickBufferRef = useRef<AudioBuffer | null>(null);
-
-  const initWebAudioFallback = () => {
-    const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
-    if (AudioContextClass && !audioContextRef.current) {
-      const ctx = new AudioContextClass();
-      audioContextRef.current = ctx;
-
-      // Create enhanced tick buffer (better than previous version)
-      const bufferSize = ctx.sampleRate * 0.04; // 40ms
-      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-      const data = buffer.getChannelData(0);
-
-      for (let i = 0; i < bufferSize; i++) {
-        const t = i / ctx.sampleRate;
-        // Sharp click: 1000Hz sine with fast decay + short noise
-        const sine = Math.sin(2 * Math.PI * 1000 * t);
-        const noise = (Math.random() * 2 - 1) * 0.3;
-        const envelope = Math.exp(-t * 60);
-        data[i] = (sine * 0.7 + noise * 0.3) * envelope;
-      }
-      tickBufferRef.current = buffer;
+  const startRhythmSound = () => {
+    const rhythmAudio = rhythmAudioRef.current;
+    if (rhythmAudio) {
+      rhythmAudio.currentTime = 0;
+      rhythmAudio.play().catch(() => {});
     }
   };
 
-  const playSoundEffect = (type: 'tick' | 'win' | 'click', segmentIndex?: number) => {
+  const stopRhythmSound = () => {
+    const rhythmAudio = rhythmAudioRef.current;
+    if (rhythmAudio) {
+      // Smooth fade out over 800ms
+      const fadeInterval = setInterval(() => {
+        if (rhythmAudio.volume > 0.05) {
+          rhythmAudio.volume = Math.max(0, rhythmAudio.volume - 0.05);
+        } else {
+          rhythmAudio.pause();
+          rhythmAudio.volume = 0.5; // Reset for next spin
+          clearInterval(fadeInterval);
+        }
+      }, 80);
+    }
+  };
+
+  const playTickSound = (speedMultiplier: number = 1.0) => {
+    const now = Date.now();
+    // Rate limiting: minimum 60ms between ticks (softer, more spaced)
+    if (now - lastTickTimeRef.current < 60) return;
+    lastTickTimeRef.current = now;
+
+    const tickAudio = tickAudioPoolRef.current[tickPoolIndexRef.current];
+    if (tickAudio) {
+      tickAudio.currentTime = 0;
+      tickAudio.playbackRate = Math.max(0.7, Math.min(1.5, speedMultiplier));
+      tickAudio.play().catch(() => {});
+      tickPoolIndexRef.current = (tickPoolIndexRef.current + 1) % tickAudioPoolRef.current.length;
+    }
+  };
+
+  const playSoundEffect = (type: 'rhythm_start' | 'rhythm_stop' | 'tick' | 'win' | 'click', speedMultiplier?: number) => {
     try {
       switch (type) {
+        case 'rhythm_start':
+          startRhythmSound();
+          break;
+        case 'rhythm_stop':
+          stopRhythmSound();
+          break;
         case 'tick':
-          playTickSound(segmentIndex ?? 0);
+          playTickSound(speedMultiplier ?? 1.0);
           break;
         case 'win':
           playWinSound();
@@ -263,76 +286,25 @@ export const SpinWheel = () => {
     }
   };
 
-  const playTickSound = (segmentIndex: number) => {
-    // Try to use audio file first
-    const tickAudio = tickAudioPoolRef.current[tickPoolIndexRef.current];
-    if (tickAudio && tickAudio.src && !tickAudio.src.includes('data:')) {
-      tickAudio.currentTime = 0;
-      tickAudio.playbackRate = 1.0 + ((segmentIndex % 5) - 2) * 0.03; // Subtle variation
-      tickAudio.play().catch(() => {
-        // Fallback to Web Audio if HTML audio fails
-        playTickSoundFallback(segmentIndex);
-      });
-      tickPoolIndexRef.current = (tickPoolIndexRef.current + 1) % tickAudioPoolRef.current.length;
-    } else {
-      // Use Web Audio fallback
-      playTickSoundFallback(segmentIndex);
-    }
-  };
-
-  const playTickSoundFallback = (segmentIndex: number) => {
-    const ctx = audioContextRef.current;
-    if (!ctx || !tickBufferRef.current) return;
-
-    if (ctx.state === 'suspended') {
-      ctx.resume();
-    }
-
-    const source = ctx.createBufferSource();
-    source.buffer = tickBufferRef.current;
-    source.playbackRate.value = 1.0 + ((segmentIndex % 5) - 2) * 0.03;
-
-    const gain = ctx.createGain();
-    gain.gain.setValueAtTime(0.6, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.04);
-
-    source.connect(gain);
-    gain.connect(ctx.destination);
-    source.start();
-  };
-
   const playWinSound = () => {
-    if (winAudioRef.current && winAudioRef.current.src && !winAudioRef.current.src.includes('data:')) {
-      winAudioRef.current.currentTime = 0;
-      winAudioRef.current.play().catch(() => {
+    const winAudio = winAudioRef.current;
+    if (winAudio) {
+      winAudio.currentTime = 0;
+      winAudio.play().catch(() => {
         // Fallback to synthesis
-        playWinSoundFallback();
+        const ctx = audioContextRef.current;
+        if (ctx) {
+          if (ctx.state === 'suspended') ctx.resume();
+          createWinSound(ctx);
+        }
       });
-    } else {
-      playWinSoundFallback();
     }
-  };
-
-  const playWinSoundFallback = () => {
-    const ctx = audioContextRef.current;
-    if (!ctx) return;
-
-    if (ctx.state === 'suspended') {
-      ctx.resume();
-    }
-
-    // Victory chime
-    createWinSound(ctx);
   };
 
   const playClickSound = () => {
     const ctx = audioContextRef.current;
     if (!ctx) return;
-
-    if (ctx.state === 'suspended') {
-      ctx.resume();
-    }
-
+    if (ctx.state === 'suspended') ctx.resume();
     createClickSound(ctx);
   };
 
@@ -828,20 +800,19 @@ export const SpinWheel = () => {
     const duration = 10000 + Math.random() * 4000;
     const startTime = Date.now();
 
-    // Track current segment for tick sounds
     const sliceAngle = 360 / activeEntries.length;
     let lastSegmentIndex = -1;
+    let lastRotation = startRotation;
 
     // Physics-based easing with realistic deceleration
-    // Single smooth curve to prevent "dual spin" feel
     const easeOutQuart = (t: number): number => {
       return 1 - Math.pow(1 - t, 4);
     };
 
     // Helper to calculate current segment under the pointer
-    const getCurrentSegment = (rotation: number): number => {
-      const pointerAngle = 0; // Pointer is at right (0 degrees)
-      const adjustedAngle = (360 - rotation + pointerAngle) % 360;
+    const getCurrentSegment = (rot: number): number => {
+      const pointerAngle = 0;
+      const adjustedAngle = (360 - rot + pointerAngle) % 360;
       return Math.floor(adjustedAngle / sliceAngle) % activeEntries.length;
     };
 
@@ -853,20 +824,21 @@ export const SpinWheel = () => {
       const easedProgress = easeOutQuart(progress);
 
       const newRotation = (startRotation + totalRotation * easedProgress) % 360;
+      
+      // Calculate wheel speed (degrees per frame) for tick sound speed matching
+      const rotationDelta = Math.abs(newRotation - lastRotation);
+      const speedMultiplier = Math.min(2.0, Math.max(0.8, rotationDelta * 8)); // Map rotation speed to playback rate
+      
       rotationRef.current = newRotation;
 
       // Check for segment change and play tick sound
       const currentSegment = getCurrentSegment(newRotation);
       if (currentSegment !== lastSegmentIndex) {
-        // Rate limiting for audio (prevent "rain" effect)
-        const now = Date.now();
-        if (now - lastTickTimeRef.current > 50) { // Max 20 ticks per second
-          playSoundEffect("tick", currentSegment);
-          lastTickTimeRef.current = now;
-        }
+        playSoundEffect("tick", speedMultiplier);
         lastSegmentIndex = currentSegment;
       }
 
+      lastRotation = newRotation;
       drawWheel(newRotation);
 
       if (progress < 1) {

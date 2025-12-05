@@ -1,4 +1,9 @@
-// Placeholder - User can replace these files with professional sounds
-// Recommended: Download from SoundBible.com or Mixkit.co
-// tick.mp3 - Short, crisp wheel tick sound (~50-100ms)
-// win.mp3 - Celebratory victory sound (~2-3 seconds)
+Sound Effects - Mixkit (Free License)
+
+tick.mp3 - Classic wheel tick/click sound (plays as wheel passes segments)
+  Source: mixkit.co
+  License: Free for commercial use, no attribution required
+
+win.mp3 - Professional applause/clapping celebration sound
+  Source: mixkit.co  
+  License: Free for commercial use, no attribution required
