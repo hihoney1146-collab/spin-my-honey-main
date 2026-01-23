@@ -58,19 +58,17 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                 </div>
               </div>
               <div className="flex flex-col">
-                <span className="text-base sm:text-lg md:text-lg lg:text-xl xl:text-2xl font-bold leading-tight">
+                <span className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-bold leading-tight">
                   <span className="bg-gradient-to-r from-orange-500 via-yellow-500 to-green-500 bg-clip-text text-transparent">
-                    Hi
+                    Online
                   </span>
                   <span className="bg-gradient-to-r from-green-500 via-cyan-500 to-blue-500 bg-clip-text text-transparent">
                     {" "}
-                    Ho
+                    Spin
                   </span>
                   <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
-                    ne
-                  </span>
-                  <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
-                    y
+                    {" "}
+                    Wheel
                   </span>
                 </span>
               </div>
@@ -137,19 +135,17 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                           loading="eager"
                         />
                       </div>
-                      <span className="font-bold">
+                      <span className="font-bold text-sm">
                         <span className="bg-gradient-to-r from-orange-500 via-yellow-500 to-green-500 bg-clip-text text-transparent">
-                          Hi
+                          Online
                         </span>
                         <span className="bg-gradient-to-r from-green-500 via-cyan-500 to-blue-500 bg-clip-text text-transparent">
                           {" "}
-                          Ho
+                          Spin
                         </span>
                         <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
-                          ne
-                        </span>
-                        <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
-                          y
+                          {" "}
+                          Wheel
                         </span>
                       </span>
                     </SheetTitle>
@@ -223,19 +219,17 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                     className="h-10 w-10 transform group-hover:scale-110 transition-transform duration-300"
                   />
                 </div>
-                <span className="font-bold text-xl">
+                <span className="font-bold text-base">
                   <span className="bg-gradient-to-r from-orange-500 via-yellow-500 to-green-500 bg-clip-text text-transparent">
-                    Hi
+                    Online
                   </span>
                   <span className="bg-gradient-to-r from-green-500 via-cyan-500 to-blue-500 bg-clip-text text-transparent">
                     {" "}
-                    Ho
+                    Spin
                   </span>
                   <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
-                    ne
-                  </span>
-                  <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
-                    y
+                    {" "}
+                    Wheel
                   </span>
                 </span>
               </Link>
