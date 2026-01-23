@@ -21,53 +21,52 @@ const Index = () => {
     <>
       <Helmet>
         <title>
-          Free Spin Wheel - Random Name Picker & Decision Maker Online | Hi
-          Honey
+          Online Spin Wheel: Free Random Picker for Names, Numbers, and Prizes
         </title>
         <meta
           name="description"
-          content="Free online spin wheel tool for instant random decisions. Perfect spinner for classroom name picking, giveaways, team choices, and fun games. Customize colors, add unlimited entries, and spin the wheel now - 100% free forever!"
+          content="Online Spin Wheel: Free online spin wheel picker for names, numbers, prizes, classroom games, giveaways, and fun random decisions."
         />
         <meta
           name="keywords"
           content="spin wheel, free spin wheel, random name picker, decision maker wheel, prize wheel generator"
         />
-        <link rel="canonical" href="https://hihoney.site/" />
+        <link rel="canonical" href="https://onlinespinwheel.fun/" />
 
-        <meta property="og:title" content="Hi Honey - Free Spin Wheel Tool" />
+        <meta property="og:title" content="Online Spin Wheel - Free Spin Wheel Tool" />
         <meta
           property="og:description"
           content="Make random decisions fun with our interactive spin wheel. Perfect for teachers, teams, and anyone who needs to pick randomly."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://hihoney.site/" />
-        <meta property="og:image" content="https://hihoney.site/logo.png" />
+        <meta property="og:url" content="https://onlinespinwheel.fun/" />
+        <meta property="og:image" content="https://onlinespinwheel.fun/logo.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta
           property="og:image:alt"
-          content="Hi Honey Spin Wheel - Free Random Picker Tool"
+          content="Online Spin Wheel Spin Wheel - Free Random Picker Tool"
         />
-        <meta property="og:site_name" content="Hi Honey" />
+        <meta property="og:site_name" content="Online Spin Wheel" />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Hi Honey - Free Spin Wheel Tool" />
+        <meta name="twitter:title" content="Online Spin Wheel - Free Spin Wheel Tool" />
         <meta
           name="twitter:description"
           content="Make random decisions fun with our interactive spin wheel. Perfect for teachers, teams, and anyone who needs to pick randomly."
         />
-        <meta name="twitter:image" content="https://hihoney.site/logo.png" />
-        <meta name="twitter:site" content="@HiHoney" />
-        <meta name="twitter:creator" content="@HiHoney" />
+        <meta name="twitter:image" content="https://onlinespinwheel.fun/logo.png" />
+        <meta name="twitter:site" content="@OnlineSpinWheel" />
+        <meta name="twitter:creator" content="@OnlineSpinWheel" />
 
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebApplication",
-            name: "Hi Honey Spin Wheel",
+            name: "Online Spin Wheel Spin Wheel",
             description:
               "Free online spin wheel tool for random selection and decision making. Making Decisions Fun, One Spin at a Time.",
-            url: "https://hihoney.site",
+            url: "https://onlinespinwheel.fun",
             applicationCategory: "UtilityApplication",
             offers: {
               "@type": "Offer",
@@ -93,13 +92,13 @@ const Index = () => {
                 "@type": "ListItem",
                 position: 1,
                 name: "Home",
-                item: "https://hihoney.site/",
+                item: "https://onlinespinwheel.fun/",
               },
               {
                 "@type": "ListItem",
                 position: 2,
                 name: "Spin Wheel",
-                item: "https://hihoney.site/#spin-wheel",
+                item: "https://onlinespinwheel.fun/#spin-wheel",
               },
             ],
           })}
@@ -112,42 +111,146 @@ const Index = () => {
             mainEntity: [
               {
                 "@type": "Question",
-                name: "What is a spin wheel?",
+                name: "What is an Online Spin Wheel?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "A spin wheel is a digital tool that randomly selects an option from a list of entries by spinning a virtual wheel. It's perfect for making fair, random decisions for classrooms, giveaways, games, and team activities.",
+                  text: "Online Spin Wheel is a free online tool that lets you add names, numbers, or choices to a colorful wheel and spin to pick a completely random result for games, classes, and giveaways.",
                 },
               },
               {
                 "@type": "Question",
-                name: "Is the spin wheel free to use?",
+                name: "Is Online Spin Wheel free to use?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Yes! Hi Honey's spin wheel is 100% free to use. There are no hidden costs, no registration required, and no limits on how many times you can spin the wheel.",
+                  text: "Yes, Online Spin Wheel is free to use in your browser and does not require any download or subscription for normal spinning and basic customization.",
                 },
               },
               {
                 "@type": "Question",
-                name: "How does the spin wheel work?",
+                name: "Do I need to create an account to use the wheel?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Simply add your entries (names, options, or choices) to the list, customize the colors if desired, and click the spin button. The wheel will randomly spin and select one entry as the winner with confetti celebration.",
+                  text: "No account is required to start using Online Spin Wheel; you can open the page, enter your options, and spin immediately for a quick decision.",
                 },
               },
               {
                 "@type": "Question",
-                name: "Can I customize the spin wheel?",
+                name: "How do I use Online Spin Wheel?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Yes! You can add unlimited entries, customize colors for each entry, enable/disable specific entries, and organize your list with shuffle or sort options.",
+                  text: "Type or paste your list of names, numbers, or options into the input area, customize the wheel if you like, then click the spin button and wait for the pointer to stop on a random result.",
                 },
               },
               {
                 "@type": "Question",
-                name: "What are common uses for a spin wheel?",
+                name: "Can I create a custom online spin wheel with my own colors and labels?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Spin wheels are commonly used for classroom name picking, giveaway winner selection, team decision making, random student selection, choosing meeting speakers, party games, and family activity decisions.",
+                  text: "You can create a custom online spin wheel by adding your own labels and adjusting settings such as the entries and appearance so the wheel matches your activity or brand.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Is there a limit to how many names or options I can add?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Online Spin Wheel supports many entries on a single wheel, so you can use it for small groups or larger lists like classrooms, raffles, or follower giveaways.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Is Online Spin Wheel truly random?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "The wheel relies on a random or pseudo-random algorithm so each entry has an equal chance of being chosen on every spin, making it suitable for fair selection.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Can the same name be selected more than once?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes, if you keep all entries on the wheel, the same name or number can appear again on later spins. You can manually remove winners if you want unique results each time.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Is Online Spin Wheel safe for classroom and student use?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "The tool is designed to run directly in the browser without requiring personal accounts, which makes it practical for teachers who want a simple, engaging random picker for students.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "What data does Online Spin Wheel store?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Entries are typed directly into your browser session, and you control what information you input; following best-practice privacy guidance, tools like this avoid collecting sensitive personal data unnecessarily.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Does Online Spin Wheel work on mobile phones and tablets?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Online Spin Wheel is built to work in modern browsers on desktop, tablets, and smartphones so you can run spins in class, at home, or on the go.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Do I need to install an app or software to use it?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "No installation is required; you simply open this onlinespinwheel.fun website in a browser, making it easy to share the wheel on screens, projectors, and live streams.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Can I use Online Spin Wheel for giveaways and contests?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes, you can paste in participant names or ticket numbers and spin live on screen so audiences can clearly see that winners are picked randomly and transparently.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Is Online Spin Wheel good for classroom activities?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Teachers can use the wheel to call on students, form random groups, pick topics, or decide the order of presentations, turning routine classroom tasks into fun moments.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Can I embed or share Online Spin Wheel in live streams or meetings?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "You can screen-share the wheel in video calls or streaming software so viewers watch the spin in real time, which is popular for Q&A, games, and prize draws.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "How can I make my spins more transparent and trustworthy?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Explain your rules before spinning, show the full wheel on screen, and keep a simple record of winners so participants can see that every result comes from the same fair process.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "How to use the wheel spinner?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Type your entries in the box beside the wheel, click the wheel to spin for a random result, then use Customize to adjust colors, add images, and spin time.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Is my data private?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Online Spin Wheel safeguards your privacy and data with strong security, compliance, and transparent practices.",
                 },
               },
             ],
@@ -167,28 +270,28 @@ const Index = () => {
                 position: 1,
                 name: "Add Your Entries",
                 text: "Add your entries in the list on the right. You can add as many options as you want.",
-                url: "https://hihoney.site/#step-1",
+                url: "https://onlinespinwheel.fun/#step-1",
               },
               {
                 "@type": "HowToStep",
                 position: 2,
                 name: "Customize Colors",
                 text: "Each entry gets a unique color automatically. Edit or remove entries as needed.",
-                url: "https://hihoney.site/#step-2",
+                url: "https://onlinespinwheel.fun/#step-2",
               },
               {
                 "@type": "HowToStep",
                 position: 3,
                 name: "Spin the Wheel",
                 text: "Click the Spin the Wheel button and watch the magic happen.",
-                url: "https://hihoney.site/#step-3",
+                url: "https://onlinespinwheel.fun/#step-3",
               },
               {
                 "@type": "HowToStep",
                 position: 4,
                 name: "Celebrate the Winner",
                 text: "The wheel will spin and randomly select a winner with confetti celebration.",
-                url: "https://hihoney.site/#step-4",
+                url: "https://onlinespinwheel.fun/#step-4",
               },
             ],
           })}
@@ -206,23 +309,22 @@ const Index = () => {
           <div className="max-w-7xl mx-auto text-center mb-4 sm:mb-6 md:mb-8 px-4 sm:px-6 lg:px-8 lg:pr-[360px] xl:pr-[420px] 2xl:pr-[440px]">
             <h1 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mb-2 sm:mb-3 tracking-tight">
               <span className="bg-gradient-to-r from-orange-500 via-yellow-500 to-green-500 bg-clip-text text-transparent">
-                Spin Wh
+                Online Spin
               </span>
               <span className="bg-gradient-to-r from-green-500 via-teal-500 to-blue-500 bg-clip-text text-transparent">
-                eel - Make
+                {" "}Wheel:
               </span>
               <span className="bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 bg-clip-text text-transparent">
                 {" "}
-                Decisions
+                Free Random
               </span>
               <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
                 {" "}
-                Fun!
+                Picker for Names, Numbers, and Prizes
               </span>
             </h1>
             <p className="text-sm sm:text-base md:text-base lg:text-lg text-muted-foreground mb-2 sm:mb-3 max-w-3xl mx-auto leading-relaxed px-2">
-              Free Online Spin Wheel - The Ultimate Random Name Picker &
-              Decision Maker Tool
+              Make fair, fun decisions in seconds with a colorful online spin wheel you can customize for games, classrooms, and giveaways. Add names, numbers, or prizes and let the wheel pick a random winner for you.
             </p>
           </div>
 
@@ -546,62 +648,169 @@ const Index = () => {
           </div>
         </section>
 
-        {/* SEO Content Section - Hidden but crawlable */}
+        {/* SEO Content Section - Blog Style */}
         <section
           id="spin-wheel-seo-content"
           className="w-full px-4 lg:px-6 py-8 sm:py-10 md:py-12 bg-muted/10"
         >
           <div className="max-w-4xl mx-auto">
             <div className="prose prose-lg max-w-none">
+              <p className="text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8 leading-relaxed">
+                <strong>Online Spin Wheel</strong> (also known as a wheel spinner, spin the wheel, or random picker wheel) is a free online tool
+                designed to help you make random selections effortlessly. Whether you need a name picker wheel for your
+                classroom, a decision maker wheel for team meetings, or a fun prize wheel for giveaways, our customizable
+                wheel spinner has you covered.
+              </p>
+
               <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-5 md:mb-6">
-                Spin Wheel: The Ultimate Random Picker Tool
+                What is an Online Spin Wheel?
               </h2>
-              <p className="text-sm sm:text-base text-muted-foreground mb-3 sm:mb-4">
-                Our <strong>spin wheel</strong> (also known as a wheel spinner,
-                wheel of names, or random picker wheel) is a free online tool
-                designed to help you make random selections effortlessly.
-                Whether you need a <strong>name picker wheel</strong> for your
-                classroom, a <strong>decision maker wheel</strong> for team
-                meetings, or a fun <strong>prize wheel</strong> for giveaways,
-                our customizable wheel spinner has you covered.
+              <p className="text-sm sm:text-base text-muted-foreground mb-3 sm:mb-4 leading-relaxed">
+                Online Spin Wheel is a browser‑based wheel you can customize with names, numbers, prizes, or choices, then
+                spin to select one option at random. Unlike physical wheels, you can quickly edit entries, change colors and
+                sounds, and reuse the same wheel on any device without extra hardware. This makes online spin wheels ideal
+                for classrooms, live streams, office games, and social‑media giveaways where a fair, transparent random picker
+                is important.
+              </p>
+              <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-5 leading-relaxed">
+                Common variations include:
+              </p>
+              <ul className="list-disc list-inside space-y-2 text-sm sm:text-base text-muted-foreground mb-6">
+                <li>Online spin wheel decision maker for everyday choices.</li>
+                <li>Online spin wheel game for party challenges and dares.</li>
+                <li>Online spin wheel picker for names, numbers, or prizes.</li>
+              </ul>
+
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-5 md:mb-6 mt-8">
+                Why Use an Online Spin Wheel Decision Maker?
+              </h2>
+              <p className="text-sm sm:text-base text-muted-foreground mb-3 sm:mb-4 leading-relaxed">
+                An online spin wheel decision maker helps when you have several options and want a fun yet unbiased way to
+                choose. Instead of arguing about what to do next, you list the choices on the wheel, hit spin, and let
+                randomness decide in seconds.
+              </p>
+              <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-5 leading-relaxed">
+                Popular decision‑maker uses include:
+              </p>
+              <ul className="list-disc list-inside space-y-2 text-sm sm:text-base text-muted-foreground mb-4">
+                <li>Choosing what game to play, what movie to watch, or where to eat.</li>
+                <li>Picking chores or tasks fairly among friends, family, or roommates.</li>
+                <li>Selecting a random winner for small contests or giveaways.</li>
+              </ul>
+              <p className="text-sm sm:text-base text-muted-foreground mb-6 leading-relaxed">
+                Because everything happens on screen, people can see the wheel in real time, which builds trust and reduces
+                complaints about favoritism.
               </p>
 
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold mt-6 sm:mt-7 md:mt-8 mb-3 sm:mb-4">
-                What Makes Our Spin Wheel Special?
-              </h3>
-              <p className="text-sm sm:text-base text-muted-foreground mb-3 sm:mb-4">
-                Unlike other wheel spinner tools, our{" "}
-                <strong>online spin wheel</strong> offers unlimited
-                customization options. You can add unlimited entries, customize
-                colors for each segment, and even save your wheel
-                configurations. The random picker algorithm ensures truly fair
-                and unbiased selection every time you spin the wheel.
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-5 md:mb-6 mt-8">
+                How Does Our Online Spin Wheel Work?
+              </h2>
+              <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-5 leading-relaxed">
+                Online Spin Wheel was created in 2025 and has been continuously refined to
+                give users a smooth, reliable random‑selection experience. The project is maintained by a full‑stack web
+                developer with 4 years of experience and an SEO/WordPress specialist with 3 years of experience building
+                user‑friendly web tools. Together, this team regularly monitors how Online Spin Wheel performs in real‑world
+                use and makes adjustments to keep the tool fast, fair, and aligned with evolving user needs.
               </p>
 
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold mt-6 sm:mt-7 md:mt-8 mb-3 sm:mb-4">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 mt-6">
                 Perfect for Every Occasion
               </h3>
-              <p className="text-sm sm:text-base text-muted-foreground mb-3 sm:mb-4">
-                Teachers love using our <strong>classroom spinner</strong> for
-                random student selection. Event organizers use it as a{" "}
-                <strong>giveaway wheel</strong> to pick winners fairly. Teams
-                use it as a <strong>decision wheel</strong> to make group
-                choices. The possibilities with our{" "}
-                <strong>wheel randomizer</strong> are endless.
+              <p className="text-sm sm:text-base text-muted-foreground mb-6 leading-relaxed">
+                Teachers love using our <strong>classroom spinner</strong> for random student selection. Event organizers use it as a{" "}
+                <strong>giveaway wheel</strong> to pick winners fairly. Teams use it as a <strong>decision wheel</strong> to make group
+                choices. The possibilities with our <strong>wheel randomizer</strong> are endless.
               </p>
 
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold mt-6 sm:mt-7 md:mt-8 mb-3 sm:mb-4">
-                How to Create a Custom Spin Wheel
-              </h3>
-              <p className="text-sm sm:text-base text-muted-foreground mb-3 sm:mb-4">
-                Creating your own custom wheel is easy. Start by editing the list of entries. You can type in names, numbers, or any options you like. As you add entries, the wheel updates instantly. You can also customize the appearance by changing colors or adding images to each segment. Once your wheel is ready, simply click "Spin" to let our random algorithm pick a winner.
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-5 md:mb-6 mt-8">
+                Online Spin Wheel Games and Classroom Ideas
+              </h2>
+              <p className="text-sm sm:text-base text-muted-foreground mb-3 sm:mb-4 leading-relaxed">
+                Teachers and hosts often search for "online spin wheel game" because the wheel itself becomes the center of
+                an activity. By turning trivia questions, challenges, or rewards into segments on the wheel, you transform simple
+                lessons or meetings into interactive games.
+              </p>
+              <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-5 leading-relaxed">
+                Examples of engaging games:
+              </p>
+              <ul className="list-disc list-inside space-y-2 text-sm sm:text-base text-muted-foreground mb-4">
+                <li>Classroom review: Add vocabulary words or questions to the wheel and spin to choose what the class answers next.</li>
+                <li>Ice‑breaker game: Use an online spin wheel names list to randomly select who introduces themselves or shares a fun fact.</li>
+                <li>Party challenges: Create a wheel with dares or mini‑games and spin whenever the energy drops.</li>
+              </ul>
+              <p className="text-sm sm:text-base text-muted-foreground mb-6 leading-relaxed">
+                For math or probability lessons, some teachers also build an online spin wheel number game so students can
+                visualize randomness, odds, and fractions in a playful way.
               </p>
 
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold mt-6 sm:mt-7 md:mt-8 mb-3 sm:mb-4">
-                Fair and Random Results
-              </h3>
-              <p className="text-sm sm:text-base text-muted-foreground mb-3 sm:mb-4">
-                We use a cryptographically secure random number generator to ensure that every spin is 100% random and fair. Whether you're raffling off a prize or deciding who does the dishes, you can trust our tool to provide an unbiased result.
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-5 md:mb-6 mt-8">
+                Free Online Spin Wheel Benefits
+              </h2>
+              <p className="text-sm sm:text-base text-muted-foreground mb-3 sm:mb-4 leading-relaxed">
+                "Online spin wheel free" is one of the most common searches because people want a tool they can use without
+                sign‑ups or payments. Our free online spin wheel is perfect for teachers, students, small streamers, and anyone
+                running quick contests on social media.
+              </p>
+              <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-5 leading-relaxed">
+                Advantages of a free online spin wheel:
+              </p>
+              <ul className="list-disc list-inside space-y-2 text-sm sm:text-base text-muted-foreground mb-4">
+                <li>No cost or subscription required to access core features.</li>
+                <li>Fast setup with no login, making it ideal for last‑minute games or meetings.</li>
+                <li>Easy sharing via screen‑share, projector, or classroom display so everyone can watch the spin.</li>
+              </ul>
+              <p className="text-sm sm:text-base text-muted-foreground mb-6 leading-relaxed">
+                Even with a free version, it is important to choose the right tool like Online Spin Wheel that clearly explains how
+                randomness works and how user data is handled, which aligns with modern E‑E‑A‑T expectations around trust
+                and transparency.
+              </p>
+
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-5 md:mb-6 mt-8">
+                Online Spin Wheel Picker for Names and Numbers
+              </h2>
+              <p className="text-sm sm:text-base text-muted-foreground mb-3 sm:mb-4 leading-relaxed">
+                When people search for an online spin wheel picker, they usually want a simple way to select a random name or
+                number from a list. A picker is especially useful for classrooms, raffles, and online giveaways where everyone
+                must have a fair chance.
+              </p>
+              <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-5 leading-relaxed">
+                Typical picker workflows:
+              </p>
+              <ul className="list-disc list-inside space-y-2 text-sm sm:text-base text-muted-foreground mb-4">
+                <li>Online spin wheel names: Paste a list of students, participants, or followers, then spin to pick winners or volunteers.</li>
+                <li>Online spin wheel number: Use numbered slots for raffle tickets, exam questions, or lottery‑style games.</li>
+                <li>Multi‑winner mode: Spin multiple times or remove chosen items after each spin to avoid repeats.</li>
+              </ul>
+              <p className="text-sm sm:text-base text-muted-foreground mb-6 leading-relaxed">
+                For best practice, announce the rules before spinning, show the wheel live, and keep a log of winning names or
+                numbers for full transparency.
+              </p>
+
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-5 md:mb-6 mt-8">
+                Why Online Spin Wheel Stands Out
+              </h2>
+              <p className="text-sm sm:text-base text-muted-foreground mb-3 sm:mb-4 leading-relaxed">
+                Online Spin Wheel is designed to be the only tool you need for fair, fun, and fast random choices in classrooms,
+                games, and giveaways. Instead of comparing lots of options, you can focus on getting the best experience from
+                this single, dedicated online spin wheel.
+              </p>
+              <p className="text-sm sm:text-base text-muted-foreground mb-3 sm:mb-4 leading-relaxed">
+                Online Spin Wheel works smoothly on desktop, tablet, and mobile, so you can run spins anywhere you have a
+                browser. The wheel loads quickly, responds without lag, and keeps the experience simple for both casual games
+                and more serious decision‑making.
+              </p>
+              <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-5 leading-relaxed">
+                Key strengths:
+              </p>
+              <ul className="list-disc list-inside space-y-2 text-sm sm:text-base text-muted-foreground mb-4">
+                <li>Device support: Optimized for modern screens so students, participants, or viewers can clearly see every spin.</li>
+                <li>Speed and reliability: Lightweight design that opens fast and spins cleanly to maintain trust and engagement.</li>
+                <li>Customization: Easy controls to add names, numbers, or prizes and adjust your online spin wheel custom setup without a complicated interface.</li>
+                <li>Privacy and clarity: A straightforward experience that avoids unnecessary data collection and focuses on transparent, fair results.</li>
+              </ul>
+              <p className="text-sm sm:text-base text-muted-foreground mb-6 leading-relaxed">
+                When a single tool delivers consistency, fairness, and clarity like this, teachers, creators, and teams can
+                confidently build all their games and decisions around it.
               </p>
             </div>
           </div>
@@ -624,37 +833,128 @@ const Index = () => {
 
             <div className="space-y-4">
               <Card className="p-5 sm:p-6 border-2 border-border/50">
-                <h3 className="text-lg font-bold mb-2">What is a spin wheel?</h3>
+                <h3 className="text-lg font-bold mb-2">What is an Online Spin Wheel?</h3>
                 <p className="text-muted-foreground">
-                  A spin wheel is a digital tool that randomly selects an option from a list of entries by spinning a virtual wheel. It's perfect for making fair, random decisions for classrooms, giveaways, games, and team activities.
+                  Online Spin Wheel is a free online tool that lets you add names, numbers, or choices to a colorful wheel and spin to pick a completely random result for games, classes, and giveaways.
                 </p>
               </Card>
 
               <Card className="p-5 sm:p-6 border-2 border-border/50">
-                <h3 className="text-lg font-bold mb-2">Is the spin wheel free to use?</h3>
+                <h3 className="text-lg font-bold mb-2">Is Online Spin Wheel free to use?</h3>
                 <p className="text-muted-foreground">
-                  Yes! Hi Honey's spin wheel is 100% free to use. There are no hidden costs, no registration required, and no limits on how many times you can spin the wheel.
+                  Yes, Online Spin Wheel is free to use in your browser and does not require any download or subscription for normal spinning and basic customization.
                 </p>
               </Card>
 
               <Card className="p-5 sm:p-6 border-2 border-border/50">
-                <h3 className="text-lg font-bold mb-2">How does the spin wheel work?</h3>
+                <h3 className="text-lg font-bold mb-2">Do I need to create an account to use the wheel?</h3>
                 <p className="text-muted-foreground">
-                  Simply add your entries (names, options, or choices) to the list, customize the colors if desired, and click the spin button. The wheel will randomly spin and select one entry as the winner with confetti celebration.
+                  No account is required to start using Online Spin Wheel; you can open the page, enter your options, and spin immediately for a quick decision.
                 </p>
               </Card>
 
               <Card className="p-5 sm:p-6 border-2 border-border/50">
-                <h3 className="text-lg font-bold mb-2">Can I customize the spin wheel?</h3>
+                <h3 className="text-lg font-bold mb-2">How do I use Online Spin Wheel?</h3>
                 <p className="text-muted-foreground">
-                  Yes! You can add unlimited entries, customize colors for each entry, enable/disable specific entries, and organize your list with shuffle or sort options.
+                  Type or paste your list of names, numbers, or options into the input area, customize the wheel if you like, then click the spin button and wait for the pointer to stop on a random result.
                 </p>
               </Card>
 
               <Card className="p-5 sm:p-6 border-2 border-border/50">
-                <h3 className="text-lg font-bold mb-2">What are common uses for a spin wheel?</h3>
+                <h3 className="text-lg font-bold mb-2">Can I create a custom online spin wheel with my own colors and labels?</h3>
                 <p className="text-muted-foreground">
-                  Spin wheels are commonly used for classroom name picking, giveaway winner selection, team decision making, random student selection, choosing meeting speakers, party games, and family activity decisions.
+                  You can create a custom online spin wheel by adding your own labels and adjusting settings such as the entries and appearance so the wheel matches your activity or brand.
+                </p>
+              </Card>
+
+              <Card className="p-5 sm:p-6 border-2 border-border/50">
+                <h3 className="text-lg font-bold mb-2">Is there a limit to how many names or options I can add?</h3>
+                <p className="text-muted-foreground">
+                  Online Spin Wheel supports many entries on a single wheel, so you can use it for small groups or larger lists like classrooms, raffles, or follower giveaways.
+                </p>
+              </Card>
+
+              <Card className="p-5 sm:p-6 border-2 border-border/50">
+                <h3 className="text-lg font-bold mb-2">Is Online Spin Wheel truly random?</h3>
+                <p className="text-muted-foreground">
+                  The wheel relies on a random or pseudo-random algorithm so each entry has an equal chance of being chosen on every spin, making it suitable for fair selection.
+                </p>
+              </Card>
+
+              <Card className="p-5 sm:p-6 border-2 border-border/50">
+                <h3 className="text-lg font-bold mb-2">Can the same name be selected more than once?</h3>
+                <p className="text-muted-foreground">
+                  Yes, if you keep all entries on the wheel, the same name or number can appear again on later spins. You can manually remove winners if you want unique results each time.
+                </p>
+              </Card>
+
+              <Card className="p-5 sm:p-6 border-2 border-border/50">
+                <h3 className="text-lg font-bold mb-2">Is Online Spin Wheel safe for classroom and student use?</h3>
+                <p className="text-muted-foreground">
+                  The tool is designed to run directly in the browser without requiring personal accounts, which makes it practical for teachers who want a simple, engaging random picker for students.
+                </p>
+              </Card>
+
+              <Card className="p-5 sm:p-6 border-2 border-border/50">
+                <h3 className="text-lg font-bold mb-2">What data does Online Spin Wheel store?</h3>
+                <p className="text-muted-foreground">
+                  Entries are typed directly into your browser session, and you control what information you input; following best-practice privacy guidance, tools like this avoid collecting sensitive personal data unnecessarily.
+                </p>
+              </Card>
+
+              <Card className="p-5 sm:p-6 border-2 border-border/50">
+                <h3 className="text-lg font-bold mb-2">Does Online Spin Wheel work on mobile phones and tablets?</h3>
+                <p className="text-muted-foreground">
+                  Online Spin Wheel is built to work in modern browsers on desktop, tablets, and smartphones so you can run spins in class, at home, or on the go.
+                </p>
+              </Card>
+
+              <Card className="p-5 sm:p-6 border-2 border-border/50">
+                <h3 className="text-lg font-bold mb-2">Do I need to install an app or software to use it?</h3>
+                <p className="text-muted-foreground">
+                  No installation is required; you simply open this onlinespinwheel.fun website in a browser, making it easy to share the wheel on screens, projectors, and live streams.
+                </p>
+              </Card>
+
+              <Card className="p-5 sm:p-6 border-2 border-border/50">
+                <h3 className="text-lg font-bold mb-2">Can I use Online Spin Wheel for giveaways and contests?</h3>
+                <p className="text-muted-foreground">
+                  Yes, you can paste in participant names or ticket numbers and spin live on screen so audiences can clearly see that winners are picked randomly and transparently.
+                </p>
+              </Card>
+
+              <Card className="p-5 sm:p-6 border-2 border-border/50">
+                <h3 className="text-lg font-bold mb-2">Is Online Spin Wheel good for classroom activities?</h3>
+                <p className="text-muted-foreground">
+                  Teachers can use the wheel to call on students, form random groups, pick topics, or decide the order of presentations, turning routine classroom tasks into fun moments.
+                </p>
+              </Card>
+
+              <Card className="p-5 sm:p-6 border-2 border-border/50">
+                <h3 className="text-lg font-bold mb-2">Can I embed or share Online Spin Wheel in live streams or meetings?</h3>
+                <p className="text-muted-foreground">
+                  You can screen-share the wheel in video calls or streaming software so viewers watch the spin in real time, which is popular for Q&A, games, and prize draws.
+                </p>
+              </Card>
+
+              <Card className="p-5 sm:p-6 border-2 border-border/50">
+                <h3 className="text-lg font-bold mb-2">How can I make my spins more transparent and trustworthy?</h3>
+                <p className="text-muted-foreground">
+                  Explain your rules before spinning, show the full wheel on screen, and keep a simple record of winners so participants can see that every result comes from the same fair process.
+                </p>
+              </Card>
+
+              <Card className="p-5 sm:p-6 border-2 border-border/50">
+                <h3 className="text-lg font-bold mb-2">How to use the wheel spinner?</h3>
+                <p className="text-muted-foreground">
+                  Type your entries in the box beside the wheel, click the wheel to spin for a random result, then use Customize to adjust colors, add images, and spin time.
+                </p>
+              </Card>
+
+              <Card className="p-5 sm:p-6 border-2 border-border/50">
+                <h3 className="text-lg font-bold mb-2">Is my data private?</h3>
+                <p className="text-muted-foreground">
+                  Online Spin Wheel safeguards your privacy and data with strong security, compliance, and transparent practices.
                 </p>
               </Card>
             </div>
@@ -669,7 +969,7 @@ const Index = () => {
                 Explore More
               </h2>
               <p className="text-sm sm:text-base md:text-lg text-muted-foreground">
-                Learn more about Hi Honey and how we make decision-making fun
+                Learn more about Online Spin Wheel and how we make decision-making fun
               </p>
             </div>
 
@@ -679,7 +979,7 @@ const Index = () => {
                   <Info className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                 </div>
                 <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3">
-                  About Hi Honey
+                  About Online Spin Wheel
                 </h3>
                 <p className="text-xs sm:text-sm md:text-sm text-muted-foreground mb-3 sm:mb-4 leading-relaxed">
                   Discover our story, mission, and commitment to making choices

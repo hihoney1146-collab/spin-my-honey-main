@@ -77,7 +77,7 @@ const App = () => (
       attribute="class"
       defaultTheme="dark"
       enableSystem={false}
-      storageKey="hihoney-theme"
+      storageKey="onlinespinwheel-theme"
     >
       <TooltipProvider>
         <Toaster />

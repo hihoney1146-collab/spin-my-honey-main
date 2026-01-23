@@ -18,10 +18,10 @@ const NotFound = () => {
   return (
     <>
       <Helmet>
-        <title>404 - Page Not Found | Hi Honey</title>
+        <title>404 - Page Not Found | Online Spin Wheel</title>
         <meta
           name="description"
-          content="The page you're looking for doesn't exist. Return to Hi Honey homepage to use our spin wheel tool."
+          content="The page you're looking for doesn't exist. Return to Online Spin Wheel homepage to use our spin wheel tool."
         />
         <meta name="robots" content="noindex, follow" />
       </Helmet>

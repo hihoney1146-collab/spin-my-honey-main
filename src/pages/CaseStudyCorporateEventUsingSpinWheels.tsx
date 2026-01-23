@@ -9,7 +9,7 @@ const CaseStudyCorporateEventUsingSpinWheels = () => {
       <Helmet>
         <title>
           Case Study: Corporate Conference Improves Event Management with Spin
-          Wheels | Hi Honey
+          Wheels | Online Spin Wheel
         </title>
         <meta
           name="description"
@@ -21,7 +21,7 @@ const CaseStudyCorporateEventUsingSpinWheels = () => {
         />
         <link
           rel="canonical"
-          href="https://hihoney.site/case-study-corporate-event-using-spin-wheels"
+          href="https://onlinespinwheel.fun/case-study-corporate-event-using-spin-wheels"
         />
       </Helmet>
 

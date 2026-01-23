@@ -14,7 +14,7 @@ const ComparisonOnlineVsPhysicalSpinWheels = () => {
     <>
       <Helmet>
         <title>
-          Online vs Physical Spin Wheels: Which Should You Choose? | Hi Honey
+          Online vs Physical Spin Wheels: Which Should You Choose? | Online Spin Wheel
         </title>
         <meta
           name="description"
@@ -26,7 +26,7 @@ const ComparisonOnlineVsPhysicalSpinWheels = () => {
         />
         <link
           rel="canonical"
-          href="https://hihoney.site/comparison-online-vs-physical-spin-wheels"
+          href="https://onlinespinwheel.fun/comparison-online-vs-physical-spin-wheels"
         />
       </Helmet>
 

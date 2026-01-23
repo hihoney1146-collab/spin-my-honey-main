@@ -53,7 +53,7 @@ const Contact = () => {
       formDataToSend.append("name", validated.name);
       formDataToSend.append("email", validated.email);
       formDataToSend.append("message", validated.message);
-      formDataToSend.append("to", "chaudhrayadam@gmail.com");
+      formDataToSend.append("to", "onlinespinwheel@gmail.com");
 
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -83,12 +83,12 @@ const Contact = () => {
   return (
     <>
       <Helmet>
-        <title>Contact Us | Hi Honey</title>
+        <title>Contact Us | Online Spin Wheel</title>
         <meta
           name="description"
-          content="Get in touch with the Hi Honey team. We'd love to hear your feedback, suggestions, or answer any questions you have."
+          content="Get in touch with the Online Spin Wheel team. We'd love to hear your feedback, suggestions, or answer any questions you have."
         />
-        <link rel="canonical" href="https://hihoney.site/contact" />
+        <link rel="canonical" href="https://onlinespinwheel.fun/contact" />
       </Helmet>
 
       <section className="container mx-auto px-4 py-12 max-w-4xl">
@@ -178,10 +178,10 @@ const Contact = () => {
                     For general inquiries, feedback, or support:
                   </p>
                   <a
-                    href="mailto:chaudhrayadam@gmail.com"
+                    href="mailto:onlinespinwheel@gmail.com"
                     className="text-primary hover:underline font-semibold"
                   >
-                    chaudhrayadam@gmail.com
+                    onlinespinwheel@gmail.com
                   </a>
                 </div>
               </div>
@@ -197,7 +197,7 @@ const Contact = () => {
                   <p className="text-muted-foreground">
                     We're always looking to improve! Share your thoughts,
                     suggestions, or report any issues you encounter. Your
-                    feedback helps us make Hi Honey better for everyone.
+                    feedback helps us make Online Spin Wheel better for everyone.
                   </p>
                 </div>
               </div>

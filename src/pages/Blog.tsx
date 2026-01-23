@@ -29,12 +29,12 @@ const Blog = () => {
   return (
     <>
       <Helmet>
-        <title>Blog | Hi Honey</title>
+        <title>Blog | Online Spin Wheel</title>
         <meta
           name="description"
           content="Read our blog for the latest news, tips, and tricks for using spin wheels effectively."
         />
-        <link rel="canonical" href="https://hihoney.site/blog" />
+        <link rel="canonical" href="https://onlinespinwheel.fun/blog" />
       </Helmet>
 
       <article className="container mx-auto px-4 py-8 md:py-12 max-w-5xl">
@@ -709,7 +709,7 @@ const Blog = () => {
                   is to let the wheel decide.
                 </p>
                 <p>
-                  Ready to start spinning? Visit Hi Honey today and discover how
+                  Ready to start spinning? Visit Online Spin Wheel today and discover how
                   easy and fun decision-making can be. Create your custom wheel
                   in seconds, spin with confidence, and embrace the unexpected.
                   After all, life's too short to stress over every little
@@ -1104,7 +1104,7 @@ const Blog = () => {
               </a>
 
               <a
-                href="https://x.com/HiHoney1146P"
+                href="https://x.com/OnlineSpinWheel1146P"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center gap-3 px-5 py-3 rounded-lg border-2 border-border hover:border-blue-500 bg-background hover:bg-blue-50 dark:hover:bg-blue-950/30 transition-all duration-200"
@@ -1117,7 +1117,7 @@ const Blog = () => {
               </a>
 
               <a
-                href="https://www.pinterest.com/hihoney1146/_pins/"
+                href="https://www.pinterest.com/onlinespinwheel1146/_pins/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center gap-3 px-5 py-3 rounded-lg border-2 border-border hover:border-rose-500 bg-background hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-all duration-200"
@@ -1137,7 +1137,7 @@ const Blog = () => {
               </a>
 
               <a
-                href="https://www.instagram.com/hihoney1146/"
+                href="https://www.instagram.com/onlinespinwheel1146/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center gap-3 px-5 py-3 rounded-lg border-2 border-border hover:border-pink-500 bg-background hover:bg-pink-50 dark:hover:bg-pink-950/30 transition-all duration-200"
@@ -1154,7 +1154,7 @@ const Blog = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center gap-3 px-5 py-3 rounded-lg border-2 border-border hover:border-amber-500 bg-background hover:bg-amber-50 dark:hover:bg-amber-950/30 transition-all duration-200"
-                aria-label="Download the Hi Honey Spin Wheel guide"
+                aria-label="Download the Online Spin Wheel Spin Wheel guide"
               >
                 <FileText className="h-5 w-5 text-amber-600 dark:text-amber-500" />
                 <span className="font-medium text-sm text-foreground">
@@ -1171,7 +1171,7 @@ const Blog = () => {
               Ready to Spin?
             </h3>
             <p className="text-center text-muted-foreground mb-4">
-              Create your free customizable spin wheel at Hi Honey and make your
+              Create your free customizable spin wheel at Online Spin Wheel and make your
               next decision an adventure!
             </p>
             <div className="flex justify-center">
@@ -1193,7 +1193,7 @@ const Blog = () => {
             </p>
             <div className="flex justify-center">
               <a
-                href="mailto:chaudhrayadam@gmail.com"
+                href="mailto:onlinespinwheel@gmail.com"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold text-primary border-2 border-primary rounded-lg hover:bg-primary/10 transition-colors"
               >
                 <Mail className="h-5 w-5" />

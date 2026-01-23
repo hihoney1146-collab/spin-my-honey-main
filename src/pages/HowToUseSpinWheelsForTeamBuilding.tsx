@@ -15,7 +15,7 @@ const HowToUseSpinWheelsForTeamBuilding = () => {
     <>
       <Helmet>
         <title>
-          How to Use Spin Wheels for Team Building Activities | Hi Honey
+          How to Use Spin Wheels for Team Building Activities | Online Spin Wheel
         </title>
         <meta
           name="description"
@@ -27,7 +27,7 @@ const HowToUseSpinWheelsForTeamBuilding = () => {
         />
         <link
           rel="canonical"
-          href="https://hihoney.site/how-to-use-spin-wheels-for-team-building"
+          href="https://onlinespinwheel.fun/how-to-use-spin-wheels-for-team-building"
         />
       </Helmet>
 

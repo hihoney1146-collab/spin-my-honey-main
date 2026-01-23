@@ -1,36 +1,194 @@
-# Hi Honey - Spin Wheel Tool Robots.txt
-# Updated: 2025-01-28
-
-# Google AdSense Crawler (REQUIRED for AdSense approval)
-User-agent: Mediapartners-Google
+ onlinespinwheel.fun - Robots.txt Configuration
+# Optimized for: Google, Bing, DuckDuckGo, Perplexity AI, ChatGPT, Claude AI, All AI Platforms
+# Last Updated: 23 January 2026 | Version: 1.0
+# Domain: onlinespinwheel.fun | Hosted on: Vercel
+# ============================================================================
+# SECTION 1: ALLOW ALL LEGITIMATE CRAWLERS (Search Engines & AI Platforms)
+# ============================================================================
+User-agent: *
 Allow: /
-Crawl-delay: 0
-
-# Google Search Bot
+Allow: /blog/
+Allow: /spin-wheel-free
+Allow: /blog/spin-wheel-free
+Allow: /blog/online-spin-wheel
+Allow: /blog/random-name-picker-wheel
+Allow: /about-us
+Allow: /contact-us
+Allow: /privacy-policy
+Allow: /terms-and-conditions
+Allow: /cookie-policy
+# ============================================================================
+# SECTION 2: SPECIFIC INSTRUCTIONS FOR MAJOR SEARCH ENGINES
+# ============================================================================
+# Google Bot (Googlebot & Googlebot Mobile)
 User-agent: Googlebot
+User-agent: Googlebot-Mobile
 Allow: /
+Allow: /blog/
+Allow: /spin-wheel-free
+Allow: /blog/spin-wheel-free
+Allow: /blog/online-spin-wheel
+Allow: /blog/random-name-picker-wheel
 Crawl-delay: 0
-
 # Bing Bot
 User-agent: Bingbot
 Allow: /
-Crawl-delay: 0
-
-# Twitter Bot
-User-agent: Twitterbot
-Allow: /
-
-# Facebook Bot
-User-agent: facebookexternalhit
-Allow: /
-
-# All Other Bots
-User-agent: *
-Allow: /
+Allow: /blog/
+Allow: /spin-wheel-free
+Allow: /blog/spin-wheel-free
+Allow: /blog/online-spin-wheel
+Allow: /blog/random-name-picker-wheel
 Crawl-delay: 1
-
-# Sitemap Location (HTTPS)
-Sitemap: https://hihoney.site/sitemap.xml
-
-# Host Preference (HTTPS only)
-Host: https://hihoney.site
+# DuckDuckGo Bot
+User-agent: DuckDuckBot
+Allow: /
+Allow: /blog/
+Crawl-delay: 1
+# ============================================================================
+# SECTION 3: ALLOW AI PLATFORMS (For AI Overviews & AI Search)
+# ============================================================================
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+Allow: /blog/
+Allow: /spin-wheel-free
+Allow: /blog/spin-wheel-free
+Allow: /blog/online-spin-wheel
+Allow: /blog/random-name-picker-wheel
+Crawl-delay: 1
+# OpenAI (ChatGPT)
+User-agent: GPTBot
+Allow: /
+Allow: /blog/
+Allow: /spin-wheel-free
+Allow: /blog/spin-wheel-free
+Allow: /blog/online-spin-wheel
+Allow: /blog/random-name-picker-wheel
+Crawl-delay: 1
+# Anthropic (Claude AI)
+User-agent: Claude-Web
+Allow: /
+Allow: /blog/
+Allow: /spin-wheel-free
+Allow: /blog/spin-wheel-free
+Allow: /blog/online-spin-wheel
+Allow: /blog/random-name-picker-wheel
+# Google AI Overviews & Bard
+User-agent: Google-Extended
+Allow: /
+Allow: /blog/
+Allow: /spin-wheel-free
+Allow: /blog/spin-wheel-free
+Allow: /blog/online-spin-wheel
+Allow: /blog/random-name-picker-wheel
+# Microsoft Bing AI
+User-agent: Bingbot
+Allow: /
+Allow: /blog/
+Allow: /spin-wheel-free
+Allow: /blog/spin-wheel-free
+Allow: /blog/online-spin-wheel
+Allow: /blog/random-name-picker-wheel
+# ============================================================================
+# SECTION 4: BLOCK HARMFUL & RESOURCE-INTENSIVE BOTS
+# (Same logic as FastVidl configuration)
+# ============================================================================
+User-agent: AhrefsBot
+User-agent: AhrefsBot-Impolite
+Disallow: /
+User-agent: SemrushBot
+User-agent: SemrushBot-BA
+User-agent: SemrushBot-SA
+Disallow: /
+User-agent: MJ12bot
+Disallow: /
+User-agent: DotBot
+Disallow: /
+User-agent: facebookexternalhit
+Disallow: /
+User-agent: YandexBot
+Disallow: /
+User-agent: YandexImageBot
+Disallow: /
+# ============================================================================
+# SECTION 5: DISALLOW SENSITIVE AREAS & PREVENT DUPLICATE INDEXING
+# ============================================================================
+# Block admin/backend areas
+Disallow: /admin/
+Disallow: /admin-panel/
+Disallow: /dashboard/
+# Block build/system directories (Vercel + Next.js)
+Disallow: /api/
+Disallow: /.vercel/
+Disallow: /.next/
+Disallow: /node
+Disallow: /.git/
+modules/
+_
+# Block query parameters that create duplicate content
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+Disallow: /*?*utm
+source=
+_
+Disallow: /*?*utm
+medium=
+_
+Disallow: /*?*utm
+_
+campaign=
+Disallow: /*?*utm
+content=
+_
+Disallow: /*?*utm
+term=
+_
+Disallow: /*?*fbclid=
+Disallow: /*?*gclid=
+Disallow: /*?*msclkid=
+# Block private/temporary directories
+Disallow: /private/
+Disallow: /temp/
+Disallow: /cache/
+Disallow: /tmp/
+# ============================================================================
+# SECTION 6: GLOBAL CRAWL SETTINGS
+# ============================================================================
+# Global crawl delay (polite crawling - 1 second between requests)
+Crawl-delay: 1
+# Request rate (max 1 request per second for all bots)
+Request-rate: 1/1s
+# ============================================================================
+# SECTION 7: SITEMAP LOCATIONS (Critical for AI & Search Engines)
+# ============================================================================
+# Primary Sitemap (all pages)
+Sitemap: https://onlinespinwheel.fun/sitemap.xml
+# ============================================================================
+# SECTION 8: NOTES FOR DEVELOPERS & COMPLIANCE
+# ============================================================================
+# This robots.txt is OPTIMIZED for:
+# ✓ Google Search Console indexing (ensure all URLs return 200 OK)
+# ✓ Bing Webmaster Tools indexing
+# ✓ Google AI Overviews (keywords: spin wheel free, online spin wheel, random name picker wheel)
+# ✓ ChatGPT & OpenAI GPTBot discovery
+# ✓ Perplexity AI visibility
+# ✓ Claude AI (Anthropic) access
+# ✓ Preventing content duplication
+# ✓ Blocking malicious bots
+# ✓ Vercel deployment compatibility
+# Pages that ACTUALLY EXIST on onlinespinwheel.fun:
+# - https://onlinespinwheel.fun/ (home)
+# - https://onlinespinwheel.fun/spin-wheel-free (tool/main keyword page)
+# - https://onlinespinwheel.fun/blog/ (blog hub)
+# - https://onlinespinwheel.fun/blog/spin-wheel-free (blog post)
+# - https://onlinespinwheel.fun/blog/online-spin-wheel (blog post)
+# - https://onlinespinwheel.fun/blog/random-name-picker-wheel (blog post)
+# - https://onlinespinwheel.fun/about-us (company page)
+# - https://onlinespinwheel.fun/contact-us (contact page)
+# - https://onlinespinwheel.fun/privacy-policy (legal page)
+# - https://onlinespinwheel.fun/terms-and-conditions (legal page)
+# - https://onlinespinwheel.fun/cookie-policy (legal page)
+# Hosted on: Vercel
+# Domain: onlinespinwheel.fun
+# Version: 1.0
+# Last Modified: 23 January 2026

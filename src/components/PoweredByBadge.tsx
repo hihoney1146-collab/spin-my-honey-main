@@ -29,14 +29,14 @@ export const PoweredByBadge = ({
 
   return (
     <a
-      href="https://hihoney.site?utm_source=badge&utm_medium=referral&utm_campaign=powered_by"
+      href="https://onlinespinwheel.fun?utm_source=badge&utm_medium=referral&utm_campaign=powered_by"
       target="_blank"
       rel="noopener noreferrer"
       onClick={handleClick}
       className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg font-semibold text-sm transition-all hover:shadow-lg hover:scale-105 ${variants[variant]}`}
     >
       {showIcon && <span className="text-lg">⚡</span>}
-      <span>Powered by Hi Honey</span>
+      <span>Powered by Online Spin Wheel</span>
       <ExternalLink className="h-3 w-3 opacity-70" />
     </a>
   );
@@ -45,22 +45,22 @@ export const PoweredByBadge = ({
 // Component to generate embed code for users
 export const EmbedCodeGenerator = () => {
   const embedCode = `<iframe 
-  src="https://hihoney.site/embed" 
+  src="https://onlinespinwheel.fun/embed" 
   width="500" 
   height="500" 
   frameborder="0"
-  title="Hi Honey Spin Wheel"
+  title="Online Spin Wheel Spin Wheel"
   style="border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"
 ></iframe>
 <div style="text-align: center; margin-top: 12px;">
   <a 
-    href="https://hihoney.site?utm_source=embed&utm_medium=widget&utm_campaign=backlink"
+    href="https://onlinespinwheel.fun?utm_source=embed&utm_medium=widget&utm_campaign=backlink"
     target="_blank"
     rel="noopener noreferrer"
     style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: linear-gradient(to right, #9b87f5, #7e69ab); color: white; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; transition: transform 0.2s;"
   >
     <span>⚡</span>
-    <span>Powered by Hi Honey Spin Wheel</span>
+    <span>Powered by Online Spin Wheel Spin Wheel</span>
   </a>
 </div>`;
 

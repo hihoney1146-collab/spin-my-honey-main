@@ -49,7 +49,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                 <div className="will-change-transform motion-safe:animate-spin motion-safe:[animation-duration:12s] motion-safe:[animation-timing-function:linear]">
                   <OptimizedImage
                     src={logo}
-                    alt="Hi Honey Logo - Spin Wheel Decision Maker"
+                    alt="Online Spin Wheel Logo - Spin Wheel Decision Maker"
                     width={48}
                     height={48}
                     className="h-9 sm:h-10 md:h-11 lg:h-12 w-9 sm:w-10 md:w-11 lg:w-12 px-1 sm:px-1.5 transform group-hover:scale-110 transition-transform duration-300 object-contain"
@@ -130,7 +130,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                       <div className="will-change-transform motion-safe:animate-spin motion-safe:[animation-duration:12s] motion-safe:[animation-timing-function:linear]">
                         <OptimizedImage
                           src={logo}
-                          alt="Hi Honey Logo"
+                          alt="Online Spin Wheel Logo"
                           width={32}
                           height={32}
                           className="h-8 w-8"
@@ -188,10 +188,10 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                         Need help? Contact us
                       </p>
                       <a
-                        href="mailto:chaudhrayadam@gmail.com"
+                        href="mailto:onlinespinwheel@gmail.com"
                         className="text-sm font-semibold text-primary hover:underline block text-center"
                       >
-                        chaudhrayadam@gmail.com
+                        onlinespinwheel@gmail.com
                       </a>
                     </div>
                   </div>
@@ -217,7 +217,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                 <div className="will-change-transform motion-safe:animate-spin motion-safe:[animation-duration:12s] motion-safe:[animation-timing-function:linear]">
                   <OptimizedImage
                     src={logo}
-                    alt="Hi Honey - Free Spin Wheel Tool"
+                    alt="Online Spin Wheel - Free Spin Wheel Tool"
                     width={40}
                     height={40}
                     className="h-10 w-10 transform group-hover:scale-110 transition-transform duration-300"
@@ -313,11 +313,11 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                     Email us at:
                   </p>
                   <a
-                    href="mailto:chaudhrayadam@gmail.com"
+                    href="mailto:onlinespinwheel@gmail.com"
                     className="text-sm font-semibold text-primary hover:underline flex items-center gap-2 group-hover:gap-3 transition-all duration-300"
                   >
                     <Mail className="h-4 w-4 flex-shrink-0" />
-                    <span className="break-all">chaudhrayadam@gmail.com</span>
+                    <span className="break-all">onlinespinwheel@gmail.com</span>
                   </a>
                 </div>
                 <p className="text-xs text-muted-foreground italic">
@@ -331,7 +331,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
           <div className="border-t border-border/50 py-4 sm:py-6">
             <div className="text-center">
               <p className="text-xs sm:text-sm text-muted-foreground">
-                © {new Date().getFullYear()} Hi Honey. All rights reserved.
+                © {new Date().getFullYear()} Online Spin Wheel. All rights reserved.
               </p>
             </div>
           </div>

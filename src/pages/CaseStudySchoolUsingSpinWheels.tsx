@@ -15,7 +15,7 @@ const CaseStudySchoolUsingSpinWheels = () => {
       <Helmet>
         <title>
           Case Study: Elementary School Transforms Classroom Engagement with
-          Spin Wheels | Hi Honey
+          Spin Wheels | Online Spin Wheel
         </title>
         <meta
           name="description"
@@ -27,7 +27,7 @@ const CaseStudySchoolUsingSpinWheels = () => {
         />
         <link
           rel="canonical"
-          href="https://hihoney.site/case-study-school-using-spin-wheels"
+          href="https://onlinespinwheel.fun/case-study-school-using-spin-wheels"
         />
       </Helmet>
 

@@ -118,11 +118,11 @@
     ],
     "pages_meta": {
       "home": "Free online spin wheel tool for instant random decisions",
-      "about": "Learn about Hi Honey - Making Decisions Fun, One Spin at a Time",
+      "about": "Learn about Online Spin Wheel - Making Decisions Fun, One Spin at a Time",
       "blog": "Complete guide to using spin wheels effectively",
-      "contact": "Get in touch with the Hi Honey team",
-      "privacy": "Read Hi Honey's privacy policy",
-      "terms": "Read the terms and conditions for using Hi Honey",
+      "contact": "Get in touch with the Online Spin Wheel team",
+      "privacy": "Read Online Spin Wheel's privacy policy",
+      "terms": "Read the terms and conditions for using Online Spin Wheel",
       "disclaimer": "Understand the limitations and proper use of our service"
     },
     "critical_dns": {
@@ -131,10 +131,10 @@
         "type": "TXT",
         "name": "@",
         "value": "v=spf1 include:_spf.google.com ~all",
-        "purpose": "Prevents email spoofing for hihoney1146@gmail.com domain",
+        "purpose": "Prevents email spoofing for onlinespinwheel@gmail.com domain",
         "priority": "LOW",
         "instructions": [
-          "1. Log in to your domain registrar (where hihoney.site is registered)",
+          "1. Log in to your domain registrar (where onlinespinwheel.fun is registered)",
           "2. Navigate to DNS settings / DNS management",
           "3. Add a new TXT record:",
           "   - Type: TXT",
@@ -142,7 +142,7 @@
           "   - Value: v=spf1 include:_spf.google.com ~all",
           "   - TTL: 3600 (or default)",
           "4. Save changes and wait for DNS propagation (up to 48 hours)",
-          "5. Verify using: dig TXT hihoney.site or nslookup -type=txt hihoney.site"
+          "5. Verify using: dig TXT onlinespinwheel.fun or nslookup -type=txt onlinespinwheel.fun"
         ],
         "note": "This is a DNS configuration, not a code change. Must be done in domain registrar settings."
       },
@@ -151,7 +151,7 @@
         "recommended": true,
         "type": "TXT",
         "name": "_dmarc",
-        "value": "v=DMARC1; p=quarantine; rua=mailto:hihoney1146@gmail.com",
+        "value": "v=DMARC1; p=quarantine; rua=mailto:onlinespinwheel@gmail.com",
         "purpose": "Enhanced email security and reporting"
       }
     },

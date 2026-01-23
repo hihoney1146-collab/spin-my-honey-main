@@ -21,7 +21,7 @@ const CaseStudyCommunityEventUsingSpinWheels = () => {
         />
         <link
           rel="canonical"
-          href="https://hihoney.site/case-study-community-event-using-spin-wheels"
+          href="https://onlinespinwheel.fun/case-study-community-event-using-spin-wheels"
         />
       </Helmet>
 

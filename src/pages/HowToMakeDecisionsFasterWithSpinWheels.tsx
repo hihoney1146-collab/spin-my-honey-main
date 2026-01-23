@@ -7,7 +7,7 @@ const HowToMakeDecisionsFasterWithSpinWheels = () => {
   return (
     <>
       <Helmet>
-        <title>How to Make Decisions Faster with Spin Wheels | Hi Honey</title>
+        <title>How to Make Decisions Faster with Spin Wheels | Online Spin Wheel</title>
         <meta
           name="description"
           content="Learn how spin wheels can help you overcome decision fatigue and make faster, better choices in your personal and professional life. Discover practical strategies for quicker decision-making."
@@ -18,7 +18,7 @@ const HowToMakeDecisionsFasterWithSpinWheels = () => {
         />
         <link
           rel="canonical"
-          href="https://hihoney.site/how-to-make-decisions-faster-with-spin-wheels"
+          href="https://onlinespinwheel.fun/how-to-make-decisions-faster-with-spin-wheels"
         />
       </Helmet>
 

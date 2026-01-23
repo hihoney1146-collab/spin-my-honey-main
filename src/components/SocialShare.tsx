@@ -15,7 +15,7 @@ interface SocialShareProps {
 }
 
 export const SocialShare = ({
-  url = "https://hihoney.site",
+  url = "https://onlinespinwheel.fun",
   title = "Free Spin Wheel - Random Name Picker Online",
   description = "Check out this amazing free spin wheel tool! Perfect for classrooms, giveaways, and team decisions.",
 }: SocialShareProps) => {

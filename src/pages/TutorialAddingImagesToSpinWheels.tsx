@@ -8,7 +8,8 @@ const TutorialAddingImagesToSpinWheels = () => {
     <>
       <Helmet>
         <title>
-          How to Add Images to Spin Wheels - Complete Tutorial | Hi Honey
+          How to Add Images to Spin Wheels - Complete Tutorial | Online Spin
+          Wheel
         </title>
         <meta
           name="description"
@@ -20,7 +21,7 @@ const TutorialAddingImagesToSpinWheels = () => {
         />
         <link
           rel="canonical"
-          href="https://hihoney.site/tutorial-adding-images-to-spin-wheels"
+          href="https://onlinespinwheel.fun/tutorial-adding-images-to-spin-wheels"
         />
       </Helmet>
 

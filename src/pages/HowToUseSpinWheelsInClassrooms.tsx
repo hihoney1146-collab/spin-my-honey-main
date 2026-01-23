@@ -15,7 +15,7 @@ const HowToUseSpinWheelsInClassrooms = () => {
     <>
       <Helmet>
         <title>
-          How to Use Spin Wheels in Classrooms - Complete Guide | Hi Honey
+          How to Use Spin Wheels in Classrooms - Complete Guide | Online Spin Wheel
         </title>
         <meta
           name="description"
@@ -27,7 +27,7 @@ const HowToUseSpinWheelsInClassrooms = () => {
         />
         <link
           rel="canonical"
-          href="https://hihoney.site/how-to-use-spin-wheels-in-classrooms"
+          href="https://onlinespinwheel.fun/how-to-use-spin-wheels-in-classrooms"
         />
       </Helmet>
 

@@ -28,7 +28,7 @@ const HowToCreateFairGiveawaysWithSpinWheels = () => {
         />
         <link
           rel="canonical"
-          href="https://hihoney.site/how-to-create-fair-giveaways-with-spin-wheels"
+          href="https://onlinespinwheel.fun/how-to-create-fair-giveaways-with-spin-wheels"
         />
       </Helmet>
 

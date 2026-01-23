@@ -7,7 +7,7 @@ const TutorialManagingSpinWheelEntries = () => {
   return (
     <>
       <Helmet>
-        <title>Managing Spin Wheel Entries - Complete Guide | Hi Honey</title>
+        <title>Managing Spin Wheel Entries - Complete Guide | Online Spin Wheel</title>
         <meta
           name="description"
           content="Learn how to manage spin wheel entries effectively. Discover how to add, edit, delete, activate, deactivate, and organize entries for optimal wheel functionality."
@@ -18,7 +18,7 @@ const TutorialManagingSpinWheelEntries = () => {
         />
         <link
           rel="canonical"
-          href="https://hihoney.site/tutorial-managing-spin-wheel-entries"
+          href="https://onlinespinwheel.fun/tutorial-managing-spin-wheel-entries"
         />
       </Helmet>
 

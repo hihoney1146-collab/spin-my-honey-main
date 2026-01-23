@@ -16,14 +16,14 @@ const routes = [
   {
     path: "/",
     title:
-      "Free Spin Wheel - Random Name Picker & Decision Maker Online | Hi Honey",
+      "Free Spin Wheel - Random Name Picker & Decision Maker Online | Online Spin Wheel",
   },
-  { path: "/about", title: "About Us - Hi Honey" },
-  { path: "/blog", title: "The Ultimate Guide to Spin Wheel - Hi Honey" },
-  { path: "/contact", title: "Contact Us - Hi Honey Spin Wheel" },
-  { path: "/privacy", title: "Privacy Policy - Hi Honey" },
-  { path: "/terms", title: "Terms and Conditions - Hi Honey" },
-  { path: "/disclaimer", title: "Disclaimer - Hi Honey Spin Wheel" },
+  { path: "/about", title: "About Us - Online Spin Wheel" },
+  { path: "/blog", title: "The Ultimate Guide to Spin Wheel - Online Spin Wheel" },
+  { path: "/contact", title: "Contact Us - Online Spin Wheel" },
+  { path: "/privacy", title: "Privacy Policy - Online Spin Wheel" },
+  { path: "/terms", title: "Terms and Conditions - Online Spin Wheel" },
+  { path: "/disclaimer", title: "Disclaimer - Online Spin Wheel" },
 ];
 
 // Read the main index.html template
@@ -70,7 +70,7 @@ routes.forEach((route) => {
 console.log("\n✨ Static pages generated successfully!");
 console.log("\nPages created:");
 routes.forEach((route) => {
-  console.log(`  📄 https://hihoney.site${route.path}`);
+  console.log(`  📄 https://onlinespinwheel.fun${route.path}`);
 });
 
 console.log(

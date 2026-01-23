@@ -5,9 +5,9 @@ import {
   CheckCircle2,
   Sparkles,
   ArrowRight,
-  Lightbulb,
-  Palette,
-  Image as ImageIcon,
+  Gift,
+  Users,
+  Zap,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -16,20 +16,19 @@ const TutorialCreatingYourFirstSpinWheel = () => {
     <>
       <Helmet>
         <title>
-          Step-by-Step Tutorial: Creating Your First Custom Spin Wheel | Hi
-          Honey
+          Spin Wheel Free: The Easiest Way to Make Fair Decisions Online
         </title>
         <meta
           name="description"
-          content="Follow our detailed step-by-step tutorial to create your first custom spin wheel. Learn how to add entries, customize colors, and use your wheel effectively."
+          content="A spin wheel free tool is one of the fastest ways to make fair decisions, pick random winners, or add excitement to games and events online."
         />
         <meta
           name="keywords"
-          content="spin wheel tutorial, how to create spin wheel, spin wheel guide, custom spin wheel, spin wheel setup, spin wheel instructions"
+          content="spin wheel free, free spin wheel, spin the wheel online free, random name picker wheel, prize wheel spinner, decision wheel"
         />
         <link
           rel="canonical"
-          href="https://hihoney.site/tutorial-creating-your-first-spin-wheel"
+          href="https://onlinespinwheel.fun/tutorial-creating-your-first-spin-wheel"
         />
       </Helmet>
 
@@ -37,14 +36,14 @@ const TutorialCreatingYourFirstSpinWheel = () => {
         <div className="text-center mb-8 md:mb-12">
           <div className="flex justify-center mb-4">
             <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
-              <PlayCircle className="h-8 w-8 text-primary" />
+              <Gift className="h-8 w-8 text-primary" />
             </div>
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 dark:text-white">
-            Step-by-Step Tutorial: Creating Your First Custom Spin Wheel
+            Spin Wheel Free
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground">
-            A Beginner's Guide to Custom Spin Wheel Creation
+            The Easiest Way to Make Fair, Fun Decisions Online
           </p>
         </div>
 
@@ -52,673 +51,180 @@ const TutorialCreatingYourFirstSpinWheel = () => {
           <section>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p className="text-lg">
-                Creating your first custom spin wheel is easier than you might
-                think. Whether you need it for a classroom activity, team
-                meeting, family game night, or personal decision-making, this
-                comprehensive tutorial will walk you through every step of the
-                process.
+                A spin wheel free tool is one of the fastest ways to make fair decisions, pick random winners, or add excitement
+                to games and events. On onlinespinwheel.fun, you can type your options, spin once, and instantly see a clear,
+                unbiased result that everyone can trust.
               </p>
               <p>
-                This guide is designed for complete beginners. By the end,
-                you'll know how to create, customize, and use your own spin
-                wheel for any purpose. We'll cover everything from adding your
-                first entries to advanced customization options.
+                This guide explains what a free spin wheel is, the best ways to use it, and how our small two-person team built a
+                simple, reliable tool you can use every day.
               </p>
             </div>
           </section>
 
           <section>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              What You'll Learn
-            </h2>
-            <div className="grid md:grid-cols-2 gap-4">
-              <Card className="p-4 bg-primary/5 border border-primary/20">
-                <div className="flex items-center gap-3 mb-2">
-                  <CheckCircle2 className="h-5 w-5 text-primary" />
-                  <h3 className="font-semibold">Basic Setup</h3>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  How to add entries and create your first wheel
-                </p>
-              </Card>
-              <Card className="p-4 bg-primary/5 border border-primary/20">
-                <div className="flex items-center gap-3 mb-2">
-                  <Sparkles className="h-5 w-5 text-primary" />
-                  <h3 className="font-semibold">Customization</h3>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Personalizing colors, images, and settings
-                </p>
-              </Card>
-              <Card className="p-4 bg-primary/5 border border-primary/20">
-                <div className="flex items-center gap-3 mb-2">
-                  <PlayCircle className="h-5 w-5 text-primary" />
-                  <h3 className="font-semibold">Usage Tips</h3>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Best practices for spinning and managing your wheel
-                </p>
-              </Card>
-              <Card className="p-4 bg-primary/5 border border-primary/20">
-                <div className="flex items-center gap-3 mb-2">
-                  <Lightbulb className="h-5 w-5 text-primary" />
-                  <h3 className="font-semibold">Advanced Features</h3>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Exploring advanced options and techniques
-                </p>
-              </Card>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Step 1: Getting Started
+              What Is a Spin Wheel Free Tool?
             </h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                Before creating your first spin wheel, you'll need to access a
-                spin wheel tool. For this tutorial, we'll use Hi Honey's free
-                online spin wheel, but these principles apply to most digital
-                spin wheel platforms.
+                A spin wheel free tool is an online random picker that uses a colorful wheel divided into segments for names,
+                prizes, or choices. When you click spin, the wheel rotates and stops at one segment, giving you one clear result
+                without any arguments or confusion.
               </p>
-              <div className="bg-muted/50 rounded-lg p-4 mt-3">
-                <p className="font-semibold mb-2 text-foreground">
-                  Initial Setup:
-                </p>
-                <ol className="space-y-2 text-sm text-muted-foreground ml-4 list-decimal">
-                  <li>Navigate to the spin wheel page</li>
-                  <li>Familiarize yourself with the interface</li>
-                  <li>Locate the "Add Entry" or "Manage Entries" section</li>
-                  <li>Notice the default entries already on the wheel</li>
-                </ol>
-              </div>
-              <p className="mt-4">
-                Most spin wheel tools come with a few default entries to help
-                you understand how they work. You can replace these with your
-                own options immediately.
+              <p>
+                Unlike old-style paper draws or manual lists, a free online wheel spinner works on any device, does not need
+                registration, and can be reused as many times as you like. This makes it ideal for teachers, creators,
+                businesses, and friends who want quick, visual decisions.
+              </p>
+              <p>
+                Common related terms people search for include spin the wheel online free, random name picker wheel, prize
+                wheel spinner, and decision wheel, all describing the same idea with slightly different uses.
               </p>
             </div>
           </section>
 
           <section>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Step 2: Adding Your First Entries
-            </h2>
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-xl md:text-2xl font-semibold mb-3 text-foreground">
-                  Understanding the Entry System
-                </h3>
-                <p className="text-muted-foreground mb-3 leading-relaxed">
-                  Each spin wheel consists of multiple entries—these are the
-                  options that the wheel can randomly select from. Each entry
-                  represents one possibility in your decision-making process.
-                </p>
-                <div className="bg-primary/5 border-l-4 border-primary p-4 rounded-r-lg mt-3">
-                  <p className="font-semibold mb-2 text-foreground">
-                    Example Use Cases:
-                  </p>
-                  <ul className="space-y-2 text-sm text-muted-foreground ml-4">
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>
-                        <strong>Name Picker:</strong> Each entry is a person's
-                        name
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>
-                        <strong>Decision Maker:</strong> Each entry is a choice
-                        option
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>
-                        <strong>Activity Selector:</strong> Each entry is an
-                        activity
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>
-                        <strong>Task Assigner:</strong> Each entry is a task or
-                        responsibility
-                      </span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-xl md:text-2xl font-semibold mb-3 text-foreground">
-                  Adding Entries: Detailed Steps
-                </h3>
-                <div className="bg-muted/50 rounded-lg p-4 mt-3">
-                  <p className="font-semibold mb-3 text-foreground">
-                    Step-by-Step Process:
-                  </p>
-                  <ol className="space-y-3 text-sm text-muted-foreground ml-4 list-decimal">
-                    <li>
-                      <strong>Locate the Entry Input Field:</strong> Find the
-                      text box labeled "Add New Entry" or "Enter name..." in the
-                      controls panel (usually on the right side of the screen).
-                    </li>
-                    <li>
-                      <strong>Type Your First Entry:</strong> Click in the input
-                      field and type the first option you want on your wheel.
-                      For example, if creating a lunch location wheel, type
-                      "Italian Restaurant."
-                    </li>
-                    <li>
-                      <strong>Add the Entry:</strong> Click the "Add" button
-                      (usually featuring a plus icon) or press Enter on your
-                      keyboard. The entry will appear on the wheel and in the
-                      entries list.
-                    </li>
-                    <li>
-                      <strong>Repeat for All Options:</strong> Continue adding
-                      entries until all your options are included. Most spin
-                      wheels support unlimited entries, though readability
-                      decreases with very large numbers (50+ entries).
-                    </li>
-                  </ol>
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-xl md:text-2xl font-semibold mb-3 text-foreground">
-                  Tips for Entry Creation
-                </h3>
-                <ul className="space-y-2 text-sm text-muted-foreground ml-4">
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">•</span>
-                    <span>
-                      <strong>Keep Names Short:</strong> Long entries can be
-                      hard to read on the wheel. Use concise, clear labels.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">•</span>
-                    <span>
-                      <strong>Be Consistent:</strong> Use similar naming styles
-                      (all full names, all first names, etc.) for better visual
-                      consistency.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">•</span>
-                    <span>
-                      <strong>Minimum Two Entries:</strong> You need at least
-                      two entries to spin the wheel. Most tools prevent spinning
-                      with fewer entries.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">•</span>
-                    <span>
-                      <strong>Review Before Spinning:</strong> Double-check that
-                      all intended entries are included before using the wheel.
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Step 3: Understanding Default Features
+              Why We Built Online Spin Wheel
             </h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                Most modern spin wheel tools automatically assign features to
-                your entries. Understanding these defaults helps you know what
-                to expect and what you might want to customize.
+                Online Spin Wheel is run by just two people who built the tool from scratch:
               </p>
               <div className="grid md:grid-cols-2 gap-4 mt-4">
                 <Card className="p-4 bg-primary/5 border border-primary/20">
-                  <h3 className="font-semibold mb-2 text-foreground">
-                    Automatic Color Assignment
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-2">
-                    Each entry automatically receives a unique color from a
-                    predefined palette. This creates visual distinction between
-                    segments.
-                  </p>
-                  <p className="text-xs text-muted-foreground italic">
-                    You can customize these colors later if desired.
+                  <div className="flex items-center gap-3 mb-2">
+                    <Users className="h-5 w-5 text-primary" />
+                    <h3 className="font-semibold">Full-Stack Developer</h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    4 years of experience creating fast, stable web apps.
                   </p>
                 </Card>
                 <Card className="p-4 bg-primary/5 border border-primary/20">
-                  <h3 className="font-semibold mb-2 text-foreground">
-                    Equal Segment Sizes
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-2">
-                    All entries are automatically given equal-sized segments,
-                    ensuring fair probability for each option.
-                  </p>
-                  <p className="text-xs text-muted-foreground italic">
-                    This is essential for fair random selection.
+                  <div className="flex items-center gap-3 mb-2">
+                    <Sparkles className="h-5 w-5 text-primary" />
+                    <h3 className="font-semibold">SEO Specialist</h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    3 years of experience growing websites and improving user experience.
                   </p>
                 </Card>
-                <Card className="p-4 bg-primary/5 border border-primary/20">
-                  <h3 className="font-semibold mb-2 text-foreground">
-                    Active Status
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-2">
-                    All new entries are set to "active" by default, meaning
-                    they're included in spins.
-                  </p>
-                  <p className="text-xs text-muted-foreground italic">
-                    You can deactivate entries temporarily without deleting
-                    them.
-                  </p>
-                </Card>
-                <Card className="p-4 bg-primary/5 border border-primary/20">
-                  <h3 className="font-semibold mb-2 text-foreground">
-                    Auto-Save Functionality
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-2">
-                    Many tools automatically save your wheel configuration to
-                    browser storage, so your entries persist between sessions.
-                  </p>
-                  <p className="text-xs text-muted-foreground italic">
-                    Check your tool's documentation for save features.
-                  </p>
-                </Card>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Step 4: Your First Spin
-            </h2>
-            <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>
-                Once you have at least two entries on your wheel, you're ready
-                for your first spin. The spinning process is simple but
-                exciting—watch as the wheel rotates and comes to rest on one
-                option.
-              </p>
-              <div className="bg-muted/50 rounded-lg p-4 mt-3">
-                <p className="font-semibold mb-3 text-foreground">
-                  How to Spin:
-                </p>
-                <ol className="space-y-2 text-sm text-muted-foreground ml-4 list-decimal">
-                  <li>
-                    <strong>Verify Your Entries:</strong> Check that all desired
-                    entries are visible on the wheel and marked as active.
-                  </li>
-                  <li>
-                    <strong>Locate the Spin Button:</strong> Find the large
-                    "Spin the Wheel!" button, usually located below or near the
-                    wheel display.
-                  </li>
-                  <li>
-                    <strong>Click to Spin:</strong> Click or tap the spin
-                    button. The wheel will begin rotating with a realistic
-                    spinning animation.
-                  </li>
-                  <li>
-                    <strong>Watch the Result:</strong> Observe as the wheel
-                    slows down and eventually stops on one entry. This is your
-                    randomly selected result.
-                  </li>
-                  <li>
-                    <strong>Celebrate the Winner:</strong> Most tools display
-                    the selected entry prominently with celebration effects like
-                    confetti or highlights.
-                  </li>
-                </ol>
               </div>
               <p className="mt-4">
-                <strong>What to Expect:</strong> The spinning animation
-                typically lasts 3-5 seconds, creating anticipation before
-                revealing the result. Sound effects may accompany the spinning
-                for added excitement, though these can usually be muted if
-                needed.
+                Together, we noticed many spin wheel free tools were full of distractions, heavy ads, or confusing controls. Our
+                goal was to create a clean, lightweight online spin wheel that anyone can open in a few seconds, understand
+                instantly, and trust for transparent, fair picks.
               </p>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Step 5: Basic Customization
-            </h2>
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-xl md:text-2xl font-semibold mb-3 text-foreground">
-                  Changing Entry Colors
-                </h3>
-                <p className="text-muted-foreground mb-3 leading-relaxed">
-                  Each entry gets a default color, but you can customize these
-                  to match your preferences, brand colors, or visual themes.
-                </p>
-                <div className="bg-muted/50 rounded-lg p-4 mt-3">
-                  <p className="font-semibold mb-2 text-foreground">
-                    How to Change Colors:
-                  </p>
-                  <ol className="space-y-2 text-sm text-muted-foreground ml-4 list-decimal">
-                    <li>
-                      Locate the color circle next to each entry in the entries
-                      list
-                    </li>
-                    <li>Click on the color circle to open the color picker</li>
-                    <li>Choose your desired color from the color palette</li>
-                    <li>The wheel segment color updates automatically</li>
-                  </ol>
-                </div>
-                <p className="text-sm text-muted-foreground italic mt-3">
-                  <strong>Tip:</strong> Use contrasting colors for adjacent
-                  segments to improve readability. Avoid similar colors next to
-                  each other.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-xl md:text-2xl font-semibold mb-3 text-foreground">
-                  Editing Entry Text
-                </h3>
-                <p className="text-muted-foreground mb-3 leading-relaxed">
-                  Need to fix a typo or change an entry name? Most tools allow
-                  you to edit entries after creation.
-                </p>
-                <div className="bg-muted/50 rounded-lg p-4 mt-3">
-                  <p className="font-semibold mb-2 text-foreground">
-                    Editing Steps:
-                  </p>
-                  <ul className="space-y-2 text-sm text-muted-foreground ml-4">
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>
-                        Click directly on the entry text in the entries list
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>Modify the text in the input field</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>
-                        Press Enter or click outside the field to save
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>
-                        The wheel updates automatically with your changes
-                      </span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-xl md:text-2xl font-semibold mb-3 text-foreground">
-                  Removing Entries
-                </h3>
-                <p className="text-muted-foreground mb-3 leading-relaxed">
-                  To remove an entry from your wheel, most tools provide a
-                  delete or trash icon next to each entry in the list.
-                </p>
-                <div className="bg-primary/5 border-l-4 border-primary p-4 rounded-r-lg mt-3">
-                  <p className="font-semibold mb-2 text-foreground">
-                    Important Note:
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    You typically need at least two entries to spin the wheel.
-                    If you delete entries and only have one remaining, you'll
-                    need to add another before spinning again.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Step 6: Advanced Features
-            </h2>
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-xl md:text-2xl font-semibold mb-3 text-foreground">
-                  Activating and Deactivating Entries
-                </h3>
-                <p className="text-muted-foreground mb-3 leading-relaxed">
-                  Sometimes you want to temporarily exclude entries without
-                  deleting them. The activate/deactivate feature lets you toggle
-                  entries on and off.
-                </p>
-                <div className="bg-muted/50 rounded-lg p-4 mt-3">
-                  <p className="font-semibold mb-2 text-foreground">
-                    Use Cases for Deactivation:
-                  </p>
-                  <ul className="space-y-2 text-sm text-muted-foreground ml-4">
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>
-                        A student has already answered, so you temporarily
-                        remove them from the wheel
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>
-                        A contestant has already won a prize, so you exclude
-                        them from future spins
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>
-                        An option is temporarily unavailable but may be needed
-                        later
-                      </span>
-                    </li>
-                  </ul>
-                </div>
-                <p className="text-sm text-muted-foreground italic mt-3">
-                  <strong>Tip:</strong> Deactivated entries remain in your list
-                  but are excluded from spins. Reactivate them anytime by
-                  clicking the toggle button again.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-xl md:text-2xl font-semibold mb-3 text-foreground">
-                  Adding Images to Entries
-                </h3>
-                <p className="text-muted-foreground mb-3 leading-relaxed">
-                  Some spin wheel tools allow you to add images to entries,
-                  making the wheel more visually engaging. This is especially
-                  useful for classroom activities, branding, or visual learning.
-                </p>
-                <div className="bg-muted/50 rounded-lg p-4 mt-3">
-                  <p className="font-semibold mb-2 text-foreground">
-                    How to Add Images:
-                  </p>
-                  <ol className="space-y-2 text-sm text-muted-foreground ml-4 list-decimal">
-                    <li>
-                      Locate the image icon next to an entry in the entries list
-                    </li>
-                    <li>Click the image icon to open the file picker</li>
-                    <li>
-                      Select an image file from your device (JPG, PNG, or WebP
-                      formats typically supported)
-                    </li>
-                    <li>
-                      The image appears on the wheel segment automatically
-                    </li>
-                    <li>
-                      To remove an image, click the image icon again and clear
-                      the selection
-                    </li>
-                  </ol>
-                </div>
-                <p className="text-sm text-muted-foreground italic mt-3">
-                  <strong>Best Practices:</strong> Use square images for best
-                  display. Keep file sizes reasonable for faster loading. Ensure
-                  images are appropriate for your audience.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-xl md:text-2xl font-semibold mb-3 text-foreground">
-                  Organizing Entries: Shuffle and Sort
-                </h3>
-                <p className="text-muted-foreground mb-3 leading-relaxed">
-                  Most spin wheels include tools to reorganize your entries:
-                  shuffle for random order or sort for alphabetical order.
-                </p>
-                <div className="grid md:grid-cols-2 gap-4 mt-4">
-                  <Card className="p-4 bg-primary/5 border border-primary/20">
-                    <h4 className="font-semibold mb-2 text-foreground">
-                      Shuffle Function
-                    </h4>
-                    <p className="text-sm text-muted-foreground">
-                      Randomly reorders all entries while keeping them all
-                      active. Useful when you want to mix up the visual order of
-                      options.
-                    </p>
-                  </Card>
-                  <Card className="p-4 bg-primary/5 border border-primary/20">
-                    <h4 className="font-semibold mb-2 text-foreground">
-                      Sort Function
-                    </h4>
-                    <p className="text-sm text-muted-foreground">
-                      Arranges entries alphabetically. Helpful for organizing
-                      long lists or finding specific entries quickly.
-                    </p>
-                  </Card>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Step 7: Saving and Reusing Your Wheel
-            </h2>
-            <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                Once you've created a wheel configuration you like, you'll want
-                to save it for future use. Understanding how saving works helps
-                you maintain different wheels for different purposes.
+                Because we actively maintain and test the site, you get a tool that loads quickly, works smoothly on mobile and
+                desktop, and stays aligned with the latest search and AI platform expectations for helpful, people-first content.
               </p>
-              <div className="bg-muted/50 rounded-lg p-4 mt-3">
-                <p className="font-semibold mb-2 text-foreground">
-                  Automatic Saving:
-                </p>
-                <p className="text-sm text-muted-foreground mb-2">
-                  Many modern spin wheel tools automatically save your
-                  configuration to your browser's local storage. This means:
-                </p>
-                <ul className="space-y-2 text-sm text-muted-foreground ml-4">
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">•</span>
-                    <span>
-                      Your wheel persists when you close and reopen the browser
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">•</span>
-                    <span>
-                      Changes are saved automatically as you make them
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">•</span>
-                    <span>
-                      No need to manually save—just create and it's preserved
-                    </span>
-                  </li>
-                </ul>
-              </div>
-              <div className="bg-primary/5 border-l-4 border-primary p-4 rounded-r-lg mt-4">
-                <p className="font-semibold mb-2 text-foreground">
-                  Important Considerations:
-                </p>
-                <ul className="space-y-2 text-sm text-muted-foreground ml-4">
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">•</span>
-                    <span>
-                      <strong>Browser-Specific:</strong> Saved wheels are
-                      typically stored per browser. Switching browsers means
-                      starting fresh unless you manually recreate your wheel.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">•</span>
-                    <span>
-                      <strong>Device-Specific:</strong> Saved wheels usually
-                      don't sync across devices. Each device maintains its own
-                      saved configurations.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">•</span>
-                    <span>
-                      <strong>Clearing Browser Data:</strong> If you clear
-                      browser data or cookies, your saved wheels may be lost.
-                      Consider creating screenshots of important configurations.
-                    </span>
-                  </li>
-                </ul>
-              </div>
             </div>
           </section>
 
           <section>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Step 8: Troubleshooting Common Issues
+              How to Use Our Spin Wheel Free (Step by Step)
             </h2>
+            <p className="text-muted-foreground mb-4">
+              Using onlinespinwheel.fun takes less than a minute, even if it is your first time with a free spin the wheel tool.
+            </p>
+            <div className="space-y-4">
+              <div className="bg-muted/50 rounded-lg p-4">
+                <h3 className="font-semibold mb-2 text-foreground">1. Open the tool</h3>
+                <p className="text-sm text-muted-foreground">
+                  Visit onlinespinwheel.fun in your browser on desktop, tablet, or phone.
+                </p>
+              </div>
+              <div className="bg-muted/50 rounded-lg p-4">
+                <h3 className="font-semibold mb-2 text-foreground">2. Add your options</h3>
+                <p className="text-sm text-muted-foreground">
+                  Type or paste your list of entries into the input area, putting each name, prize, task, or choice on a
+                  separate line.
+                </p>
+              </div>
+              <div className="bg-muted/50 rounded-lg p-4">
+                <h3 className="font-semibold mb-2 text-foreground">3. Adjust basic settings (optional)</h3>
+                <ul className="space-y-2 text-sm text-muted-foreground ml-4">
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    <span>Change wheel colors to match your class, team, or brand.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    <span>Choose whether to remove a result after it is picked or keep it for multiple spins.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    <span>Set sound and spin duration if you want more excitement.</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-muted/50 rounded-lg p-4">
+                <h3 className="font-semibold mb-2 text-foreground">4. Click "Spin"</h3>
+                <p className="text-sm text-muted-foreground">
+                  Watch the wheel spinner rotate and gradually slow down until the pointer lands on one segment, clearly
+                  showing the selected result.
+                </p>
+              </div>
+              <div className="bg-muted/50 rounded-lg p-4">
+                <h3 className="font-semibold mb-2 text-foreground">5. Repeat or reset</h3>
+                <p className="text-sm text-muted-foreground">
+                  For multiple winners, spin again or remove chosen entries so the wheel only picks from remaining
+                  options.
+                </p>
+              </div>
+            </div>
+            <p className="text-sm text-muted-foreground italic mt-4">
+              Because everything runs in your browser, entries are not stored on our servers, which helps keep your use of the
+              random picker wheel private and lightweight.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              Best Ways to Use a Free Spin Wheel
+            </h2>
+            <p className="text-muted-foreground mb-4">
+              People use spin wheel free tools in many creative ways. Here are some popular scenarios that work especially
+              well with onlinespinwheel.fun.
+            </p>
             <div className="space-y-4">
               <Card className="p-4 border-l-4 border-primary">
-                <h3 className="font-semibold mb-2 text-foreground">
-                  Issue: Wheel Won't Spin
-                </h3>
+                <h3 className="font-semibold mb-2 text-foreground">Giveaways and raffles</h3>
                 <p className="text-sm text-muted-foreground">
-                  <strong>Solution:</strong> Ensure you have at least two active
-                  entries on the wheel. Check that entries aren't all
-                  deactivated. Refresh the page if the issue persists.
+                  Paste participant names or usernames and spin the winner picker wheel live on a stream or in a meeting
+                  for full transparency.
                 </p>
               </Card>
-
               <Card className="p-4 border-l-4 border-primary">
-                <h3 className="font-semibold mb-2 text-foreground">
-                  Issue: Can't See Entry Text Clearly
-                </h3>
+                <h3 className="font-semibold mb-2 text-foreground">Classroom name picker</h3>
                 <p className="text-sm text-muted-foreground">
-                  <strong>Solution:</strong> Shorten entry names. Use
-                  contrasting colors for text and background. Increase your
-                  screen size or zoom level if needed.
+                  Teachers can add student names and use the random name wheel to decide who answers, presents, or
+                  chooses the next activity in a fun, fair way.
                 </p>
               </Card>
-
               <Card className="p-4 border-l-4 border-primary">
-                <h3 className="font-semibold mb-2 text-foreground">
-                  Issue: Changes Not Saving
-                </h3>
+                <h3 className="font-semibold mb-2 text-foreground">Team and office decisions</h3>
                 <p className="text-sm text-muted-foreground">
-                  <strong>Solution:</strong> Ensure your browser allows local
-                  storage. Check browser settings if automatic saving isn't
-                  working. Some tools require manual save actions.
+                  Use the decision wheel to assign tasks, pick lunch spots, or choose topics for stand-ups so no one feels
+                  targeted or ignored.
                 </p>
               </Card>
-
               <Card className="p-4 border-l-4 border-primary">
-                <h3 className="font-semibold mb-2 text-foreground">
-                  Issue: Too Many Entries to Read
-                </h3>
+                <h3 className="font-semibold mb-2 text-foreground">Games, parties, and challenges</h3>
                 <p className="text-sm text-muted-foreground">
-                  <strong>Solution:</strong> Consider splitting into multiple
-                  wheels. Use shorter names or abbreviations. Limit wheels to
-                  20-30 entries for optimal readability.
+                  Create a prize wheel free for birthday parties, challenges for game nights, or truth-or-dare prompts that
+                  keep everyone engaged.
+                </p>
+              </Card>
+              <Card className="p-4 border-l-4 border-primary">
+                <h3 className="font-semibold mb-2 text-foreground">Content ideas and productivity</h3>
+                <p className="text-sm text-muted-foreground">
+                  Add writing prompts, workout options, or daily habits and let the online wheel spinner choose what you
+                  focus on next.
                 </p>
               </Card>
             </div>
@@ -726,50 +232,82 @@ const TutorialCreatingYourFirstSpinWheel = () => {
 
           <section>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Step 9: Best Practices for Beginners
+              Why Use Our Spin Wheel Instead of Other Options?
             </h2>
+            <p className="text-muted-foreground mb-4">
+              There are many spin wheel free sites online, but onlinespinwheel.fun is designed to stay simple and user-first.
+            </p>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b">
+                    <th className="text-left p-3 font-semibold">Feature</th>
+                    <th className="text-left p-3 font-semibold">Online Spin Wheel</th>
+                    <th className="text-left p-3 font-semibold">Typical Alternatives</th>
+                  </tr>
+                </thead>
+                <tbody className="text-muted-foreground">
+                  <tr className="border-b">
+                    <td className="p-3">Cost</td>
+                    <td className="p-3">Free to use with no hidden limits</td>
+                    <td className="p-3">May add paywalls or usage caps over time</td>
+                  </tr>
+                  <tr className="border-b">
+                    <td className="p-3">Sign-up</td>
+                    <td className="p-3">No registration or login required</td>
+                    <td className="p-3">Accounts often required for saving wheels</td>
+                  </tr>
+                  <tr className="border-b">
+                    <td className="p-3">Ads & clutter</td>
+                    <td className="p-3">Clean layout focused on the wheel and results</td>
+                    <td className="p-3">Heavy ads or pop-ups around the tool</td>
+                  </tr>
+                  <tr className="border-b">
+                    <td className="p-3">Speed</td>
+                    <td className="p-3">Lightweight build for fast loading</td>
+                    <td className="p-3">Slower pages with extra scripts</td>
+                  </tr>
+                  <tr className="border-b">
+                    <td className="p-3">Customization</td>
+                    <td className="p-3">Easy color and option controls</td>
+                    <td className="p-3">Sometimes locked behind premium tiers</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              Tips for Getting the Most from a Spin Wheel Free Tool
+            </h2>
+            <p className="text-muted-foreground mb-4">
+              To make your spins more useful, keep these simple practices in mind:
+            </p>
             <div className="space-y-4">
               <Card className="p-4 bg-primary/5 border border-primary/20">
-                <h3 className="font-semibold mb-2 text-foreground">
-                  Start Simple
-                </h3>
+                <h3 className="font-semibold mb-2">Keep option names short and clear</h3>
                 <p className="text-sm text-muted-foreground">
-                  Begin with 3-5 entries to get comfortable with the tool.
-                  Gradually add more entries as you become familiar with the
-                  interface and features.
+                  Make them easy to read on the wheel.
                 </p>
               </Card>
-
               <Card className="p-4 bg-primary/5 border border-primary/20">
-                <h3 className="font-semibold mb-2 text-foreground">
-                  Test Before Using
-                </h3>
+                <h3 className="font-semibold mb-2">Group similar options together</h3>
                 <p className="text-sm text-muted-foreground">
-                  Spin your wheel a few times in private before using it in a
-                  real situation. This helps you understand how it works and
-                  ensures everything is configured correctly.
+                  If you have a very long list to avoid clutter.
                 </p>
               </Card>
-
               <Card className="p-4 bg-primary/5 border border-primary/20">
-                <h3 className="font-semibold mb-2 text-foreground">
-                  Keep Entry Names Clear
-                </h3>
+                <h3 className="font-semibold mb-2">Test before professional use</h3>
                 <p className="text-sm text-muted-foreground">
-                  Use descriptive, concise names that participants will
-                  understand immediately. Avoid abbreviations or codes unless
-                  your audience knows what they mean.
+                  Test the wheel once or twice before sharing your screen so you know the animations and timings feel right.
                 </p>
               </Card>
-
               <Card className="p-4 bg-primary/5 border border-primary/20">
-                <h3 className="font-semibold mb-2 text-foreground">
-                  Verify Before Important Uses
-                </h3>
+                <h3 className="font-semibold mb-2">Record for transparency</h3>
                 <p className="text-sm text-muted-foreground">
-                  Double-check that all intended entries are included and
-                  correctly named before using the wheel for important decisions
-                  or activities.
+                  If you are running a public giveaway, record the screen or stream the draw to show that your winner
+                  wheel selection is fair and transparent.
                 </p>
               </Card>
             </div>
@@ -777,112 +315,97 @@ const TutorialCreatingYourFirstSpinWheel = () => {
 
           <section className="bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 rounded-lg p-6 border border-primary/20">
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              You're Ready to Create Your First Wheel!
+              Start Making Fair Decisions Today
             </h2>
-            <p className="text-muted-foreground mb-4 leading-relaxed">
-              You now have all the knowledge you need to create your first
-              custom spin wheel. The process is straightforward: add your
-              entries, customize if desired, and spin to get random results.
-            </p>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              Remember, the best way to learn is by doing. Create a simple wheel
-              right now with a few test entries. Spin it a few times to see how
-              it works. Then create your real wheel for your actual
-              purpose—whether that's choosing lunch, picking students, or making
-              any other decision.
+              Our focus is on a clean interface, fast performance, and honest communication from a small, visible team that
+              works directly with web development and SEO every day. You get a spin wheel free that is simple enough for
+              first-time users and reliable enough for regular use.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
                 to="/"
                 className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
               >
-                Create Your First Wheel Now
+                Try the Free Wheel Now
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 to="/blog"
                 className="inline-flex items-center gap-2 border-2 border-primary text-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary/10 transition-colors"
               >
-                Explore Advanced Tutorials
+                Learn More
                 <PlayCircle className="h-4 w-4" />
               </Link>
             </div>
           </section>
         </Card>
 
-        {/* Related Articles */}
-        <div className="grid md:grid-cols-3 gap-4 mt-8">
-          <Card className="p-6 bg-primary/5 border border-primary/20">
-            <div className="flex items-center gap-3 mb-3">
-              <Lightbulb className="h-6 w-6 text-primary" />
-              <h3 className="text-xl font-bold">Next Steps</h3>
-            </div>
-            <p className="text-sm text-muted-foreground mb-4">
-              Customize your wheel with colors and images
-            </p>
-            <div className="space-y-2">
-              <Link
-                to="/tutorial-customizing-spin-wheel-colors"
-                className="block text-sm font-semibold text-primary hover:underline"
-              >
-                Customize Colors →
-              </Link>
-              <Link
-                to="/tutorial-adding-images-to-spin-wheels"
-                className="block text-sm font-semibold text-primary hover:underline"
-              >
-                Add Images →
-              </Link>
-            </div>
-          </Card>
+        {/* FAQ Section */}
+        <Card className="p-6 md:p-8 lg:p-10 space-y-6">
+          <h2 className="text-2xl md:text-3xl font-bold">
+            Frequently Asked Questions
+          </h2>
 
-          <Card className="p-6 bg-primary/5 border border-primary/20">
-            <div className="flex items-center gap-3 mb-3">
-              <Sparkles className="h-6 w-6 text-primary" />
-              <h3 className="text-xl font-bold">More Tutorials</h3>
-            </div>
-            <p className="text-sm text-muted-foreground mb-4">
-              Explore advanced features and management tips
-            </p>
-            <div className="space-y-2">
-              <Link
-                to="/tutorial-managing-spin-wheel-entries"
-                className="block text-sm font-semibold text-primary hover:underline"
-              >
-                Manage Entries →
-              </Link>
-              <Link
-                to="/tutorial-advanced-spin-wheel-features"
-                className="block text-sm font-semibold text-primary hover:underline"
-              >
-                Advanced Features →
-              </Link>
-              <Link
-                to="/blog"
-                className="block text-sm font-semibold text-primary hover:underline"
-              >
-                All Tutorials →
-              </Link>
-            </div>
-          </Card>
+          <div className="space-y-4">
+            <Card className="p-5 border-2 border-border/50">
+              <h3 className="text-lg font-bold mb-2">Is your spin wheel really free to use?</h3>
+              <p className="text-muted-foreground">
+                Yes, Online Spin Wheel is completely free to use for as many spins and lists as you need. You do not need to
+                create an account or download anything to access the spin wheel online free.
+              </p>
+            </Card>
 
-          <Card className="p-6 bg-primary/5 border border-primary/20">
-            <div className="flex items-center gap-3 mb-3">
-              <CheckCircle2 className="h-6 w-6 text-primary" />
-              <h3 className="text-xl font-bold">Get Help</h3>
-            </div>
-            <p className="text-sm text-muted-foreground mb-4">
-              Having trouble creating your wheel? We're here to help!
-            </p>
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
-            >
-              Contact Us
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </Card>
-        </div>
+            <Card className="p-5 border-2 border-border/50">
+              <h3 className="text-lg font-bold mb-2">Do I need to install an app to use the wheel?</h3>
+              <p className="text-muted-foreground">
+                No, our free wheel spinner works directly in your browser. This means it runs on Windows, macOS, Android, and
+                iOS without any installation, which is convenient for classrooms, offices, and events.
+              </p>
+            </Card>
+
+            <Card className="p-5 border-2 border-border/50">
+              <h3 className="text-lg font-bold mb-2">Can I use the spin wheel to pick random winners for giveaways?</h3>
+              <p className="text-muted-foreground">
+                Yes, you can use the random wheel picker to draw winners from a list of names, emails, or usernames. Many
+                people display the wheel on a live stream or during a meeting so everyone can see the result clearly.
+              </p>
+            </Card>
+
+            <Card className="p-5 border-2 border-border/50">
+              <h3 className="text-lg font-bold mb-2">How many names can I add to the wheel?</h3>
+              <p className="text-muted-foreground">
+                You can add many entries, but for the best readability it is wise to keep the list to a reasonable number of
+                segments. If you have a very large list, consider running several rounds or grouping entries.
+              </p>
+            </Card>
+
+            <Card className="p-5 border-2 border-border/50">
+              <h3 className="text-lg font-bold mb-2">Does Online Spin Wheel store my data?</h3>
+              <p className="text-muted-foreground">
+                Entries you type into the spin wheel free tool run in your browser session. They are intended for immediate use
+                while you are on the page and are not meant to be stored as user profiles.
+              </p>
+            </Card>
+
+            <Card className="p-5 border-2 border-border/50">
+              <h3 className="text-lg font-bold mb-2">Can I use the spin wheel for school, work, and personal events?</h3>
+              <p className="text-muted-foreground">
+                Yes, the same online decision wheel can be used in classrooms, remote teams, events, and casual gatherings.
+                As long as your use follows local rules and platform guidelines, it is a flexible solution for many situations.
+              </p>
+            </Card>
+
+            <Card className="p-5 border-2 border-border/50">
+              <h3 className="text-lg font-bold mb-2">What makes your tool different from other spin wheels?</h3>
+              <p className="text-muted-foreground">
+                Our focus is on a clean interface, fast performance, and honest communication from a small, visible team that
+                works directly with web development and SEO every day. You get a spin wheel free that is simple enough for
+                first-time users and reliable enough for regular use.
+              </p>
+            </Card>
+          </div>
+        </Card>
       </article>
     </>
   );

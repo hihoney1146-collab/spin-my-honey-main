@@ -27,7 +27,7 @@ const ComparisonSpinWheelVsTraditionalMethods = () => {
         />
         <link
           rel="canonical"
-          href="https://hihoney.site/comparison-spin-wheel-vs-traditional-methods"
+          href="https://onlinespinwheel.fun/comparison-spin-wheel-vs-traditional-methods"
         />
       </Helmet>
 

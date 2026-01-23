@@ -14,7 +14,7 @@ const HowToOrganizeEventsWithRandomSelection = () => {
     <>
       <Helmet>
         <title>
-          How to Organize Events with Random Selection Tools | Hi Honey
+          How to Organize Events with Random Selection Tools | Online Spin Wheel
         </title>
         <meta
           name="description"
@@ -26,7 +26,7 @@ const HowToOrganizeEventsWithRandomSelection = () => {
         />
         <link
           rel="canonical"
-          href="https://hihoney.site/how-to-organize-events-with-random-selection"
+          href="https://onlinespinwheel.fun/how-to-organize-events-with-random-selection"
         />
       </Helmet>
 

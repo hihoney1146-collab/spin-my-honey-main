@@ -34,10 +34,10 @@ const Embed = () => {
   return (
     <>
       <Helmet>
-        <title>Embed - Hi Honey Spin Wheel</title>
+        <title>Embed - Online Spin Wheel Spin Wheel</title>
         <meta
           name="description"
-          content="Embed Hi Honey spin wheel on your website for random selections and decision making."
+          content="Embed Online Spin Wheel spin wheel on your website for random selections and decision making."
         />
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>

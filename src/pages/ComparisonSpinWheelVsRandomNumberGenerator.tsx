@@ -14,7 +14,7 @@ const ComparisonSpinWheelVsRandomNumberGenerator = () => {
     <>
       <Helmet>
         <title>
-          Spin Wheel vs Random Number Generator: Which is Better? | Hi Honey
+          Spin Wheel vs Random Number Generator: Which is Better? | Online Spin Wheel
         </title>
         <meta
           name="description"
@@ -26,7 +26,7 @@ const ComparisonSpinWheelVsRandomNumberGenerator = () => {
         />
         <link
           rel="canonical"
-          href="https://hihoney.site/comparison-spin-wheel-vs-random-number-generator"
+          href="https://onlinespinwheel.fun/comparison-spin-wheel-vs-random-number-generator"
         />
       </Helmet>
 
