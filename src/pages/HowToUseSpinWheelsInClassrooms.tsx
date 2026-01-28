@@ -1,13 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Helmet } from "react-helmet";
-import {
-  GraduationCap,
-  Users,
-  BookOpen,
-  Lightbulb,
-  CheckCircle2,
-  ArrowRight,
-} from "lucide-react";
+import { Palette, CheckCircle2, ArrowRight, Sparkles, Wand2, Lightbulb, Layers, Smartphone, Monitor, Paintbrush, Dices } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const HowToUseSpinWheelsInClassrooms = () => {
@@ -15,15 +8,15 @@ const HowToUseSpinWheelsInClassrooms = () => {
     <>
       <Helmet>
         <title>
-          How to Use Spin Wheels in Classrooms - Complete Guide | Online Spin Wheel
+          Spin the Wheel 8 Colors - Interactive Color Picker | Online Spin Wheel
         </title>
         <meta
           name="description"
-          content="Discover practical strategies for using spin wheels in classrooms to enhance student engagement, promote fairness, and make learning more interactive and fun."
+          content="A fun, interactive spin the wheel 8 colors tool for random color selection. Perfect for designers, artists, and creatives. Free color wheel picker online."
         />
         <meta
           name="keywords"
-          content="spin wheel classroom, classroom spinner, student engagement, random selection classroom, classroom activities, teaching tools, interactive learning, fair selection, classroom management"
+          content="spin the wheel 8 colors, color wheel picker online, spin the wheel colors online, color wheel game, aesthetic color spin wheel"
         />
         <link
           rel="canonical"
@@ -31,569 +24,455 @@ const HowToUseSpinWheelsInClassrooms = () => {
         />
       </Helmet>
 
-      <article className="container mx-auto px-4 py-8 md:py-12 max-w-5xl">
-        <div className="text-center mb-8 md:mb-12">
-          <div className="flex justify-center mb-4">
-            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
-              <GraduationCap className="h-8 w-8 text-primary" />
-            </div>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+        <div className="fixed inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-red-500/5 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute top-40 right-20 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute bottom-20 left-1/4 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl animate-pulse delay-2000"></div>
+        </div>
+
+        <article className="container relative mx-auto px-4 py-12 md:py-20 max-w-5xl z-10">
+          <div className="text-center mb-8 md:mb-12">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 dark:text-white">
+              Spin the Wheel 8 Colors
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground">
+              Interactive Color Picker for Creative Projects
+            </p>
           </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 dark:text-white">
-            How to Use Spin Wheels in Classrooms
-          </h1>
-          <p className="text-lg md:text-xl text-muted-foreground">
-            A Complete Guide for Teachers and Educators
-          </p>
-        </div>
 
-        <Card className="p-6 md:p-8 lg:p-10 mb-6 md:mb-8 space-y-8">
-          <section>
-            <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p className="text-lg">
-                As an educator, you're always looking for innovative ways to
-                engage students, promote fairness, and make learning more
-                interactive. Spin wheels have emerged as powerful tools in
-                modern classrooms, transforming the way teachers select
-                students, organize activities, and create engaging learning
-                experiences.
-              </p>
-              <p>
-                Whether you're managing a kindergarten class or teaching high
-                school, spin wheels can help create a more equitable and dynamic
-                classroom environment. This comprehensive guide will show you
-                practical strategies for implementing spin wheels in your
-                teaching practice, from basic student selection to advanced
-                classroom management techniques.
-              </p>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Why Use Spin Wheels in Classrooms?
-            </h2>
-            <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>
-                Before diving into implementation strategies, it's important to
-                understand the benefits that spin wheels bring to educational
-                settings. These tools aren't just gimmicks—they serve
-                fundamental pedagogical purposes.
-              </p>
-              <div className="grid md:grid-cols-2 gap-4 mt-6">
-                <Card className="p-4 bg-primary/5 border border-primary/20">
-                  <div className="flex items-center gap-3 mb-2">
-                    <CheckCircle2 className="h-5 w-5 text-primary" />
-                    <h3 className="font-semibold">Promotes Fairness</h3>
-                  </div>
-                  <p className="text-sm text-muted-foreground">
-                    Every student gets an equal chance to participate. No
-                    favoritism, no bias—just pure random selection that students
-                    trust.
+          <div className="space-y-12 md:space-y-16">
+            <section className="relative">
+              <Card className="p-8 md:p-12 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-0 shadow-2xl rounded-3xl overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 via-yellow-500 to-blue-500"></div>
+                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-primary/5 to-purple-500/5 rounded-full blur-3xl -mr-32 -mt-32"></div>
+                
+                <div className="space-y-6 text-muted-foreground leading-relaxed text-lg relative z-10">
+                  <p className="text-xl md:text-2xl font-light text-foreground/90 first-letter:text-5xl first-letter:font-bold first-letter:text-primary first-letter:mr-1 first-letter:float-left">
+                    A spin the wheel 8 colors tool is a fun, interactive way to
+                    randomly select from eight vibrant hues, perfect for design
+                    inspiration, art projects, or quick color decisions. Whether
+                    you're searching for "spin the wheel colors online" or "color
+                    wheel picker online," this approach makes picking shades engaging
+                    and efficient.
                   </p>
-                </Card>
-                <Card className="p-4 bg-primary/5 border border-primary/20">
-                  <div className="flex items-center gap-3 mb-2">
-                    <Users className="h-5 w-5 text-primary" />
-                    <h3 className="font-semibold">Increases Engagement</h3>
-                  </div>
-                  <p className="text-sm text-muted-foreground">
-                    The anticipation of seeing who gets selected creates
-                    excitement and keeps all students attentive and ready to
-                    participate.
+                  <p>
+                    We're thrilled to launch our color wheel game. It's an interactive
+                    and fun way to explore colors. Use our online wheel spinner to
+                    find the perfect color mix for your projects.
                   </p>
-                </Card>
-                <Card className="p-4 bg-primary/5 border border-primary/20">
-                  <div className="flex items-center gap-3 mb-2">
-                    <Lightbulb className="h-5 w-5 text-primary" />
-                    <h3 className="font-semibold">Saves Time</h3>
-                  </div>
-                  <p className="text-sm text-muted-foreground">
-                    No more debating who goes first or which group gets which
-                    task. The wheel decides instantly, keeping your class
-                    flowing smoothly.
+                  <p>
+                    Our color picker is great for designers, artists, and anyone
+                    wanting to add color to their work. It's easy to try out different
+                    colors and find the perfect match.
                   </p>
-                </Card>
-                <Card className="p-4 bg-primary/5 border border-primary/20">
-                  <div className="flex items-center gap-3 mb-2">
-                    <BookOpen className="h-5 w-5 text-primary" />
-                    <h3 className="font-semibold">Reduces Anxiety</h3>
-                  </div>
-                  <p className="text-sm text-muted-foreground">
-                    Students know the selection is random, which reduces
-                    pressure and makes participation less stressful for shy
-                    students.
-                  </p>
-                </Card>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Practical Applications: Getting Started
-            </h2>
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-xl md:text-2xl font-semibold mb-3 text-foreground">
-                  1. Student Selection for Questions
-                </h3>
-                <p className="text-muted-foreground mb-3 leading-relaxed">
-                  One of the most common uses of spin wheels in classrooms is
-                  randomly selecting students to answer questions. This ensures
-                  all students stay engaged, as they never know when they might
-                  be called upon.
-                </p>
-                <div className="bg-muted/50 rounded-lg p-4 mt-3">
-                  <p className="font-semibold mb-2 text-foreground">
-                    How to Set It Up:
-                  </p>
-                  <ol className="space-y-2 text-sm text-muted-foreground ml-4 list-decimal">
-                    <li>
-                      Create a wheel with all your students' names before class
-                    </li>
-                    <li>
-                      Keep the wheel visible on your interactive whiteboard or
-                      projector
-                    </li>
-                    <li>
-                      Spin the wheel whenever you need a student to answer or
-                      participate
-                    </li>
-                    <li>
-                      Remove names temporarily if a student has already answered
-                      to give others a chance
-                    </li>
-                  </ol>
                 </div>
-                <p className="text-sm text-muted-foreground mt-3 italic">
-                  <strong>Tip:</strong> Consider having separate wheels for
-                  different groups or sections if you teach multiple classes.
-                </p>
-              </div>
+              </Card>
+            </section>
 
-              <div>
-                <h3 className="text-xl md:text-2xl font-semibold mb-3 text-foreground">
-                  2. Presentation Order Selection
-                </h3>
-                <p className="text-muted-foreground mb-3 leading-relaxed">
-                  When students need to present projects or assignments, using a
-                  spin wheel eliminates arguments about who goes first and
-                  creates a fair order. Students appreciate the transparency
-                  that comes with random selection.
-                </p>
-                <div className="bg-muted/50 rounded-lg p-4 mt-3">
-                  <p className="font-semibold mb-2 text-foreground">
-                    Best Practices:
+            <section>
+              <div className="flex items-center gap-3 mb-8">
+                <div className="p-3 bg-gradient-to-br from-primary to-purple-600 rounded-xl shadow-lg">
+                  <Sparkles className="h-6 w-6 text-white" />
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+                  Key Takeaways
+                </h2>
+              </div>
+              
+              <div className="grid md:grid-cols-2 gap-6">
+                {[
+                  "Interactive color wheel for easy color selection",
+                  "8 stunning color options to enhance your designs",
+                  "Perfect for designers, artists, and creatives",
+                  "Experiment with different color combinations",
+                  "Find the perfect color palette for your project",
+                  "Enhance your creative projects with our color wheel game"
+                ].map((item, idx) => (
+                  <Card key={idx} className="p-6 bg-white dark:bg-slate-800/50 border-l-4 border-primary hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+                    <div className="flex items-start gap-4">
+                      <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary group-hover:text-white transition-colors">
+                        <CheckCircle2 className="h-5 w-5 text-primary group-hover:text-white" />
+                      </div>
+                      <p className="text-muted-foreground font-medium pt-1">{item}</p>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </section>
+
+            <section className="bg-gradient-to-r from-slate-900 to-slate-800 dark:from-slate-950 dark:to-slate-900 rounded-3xl p-8 md:p-12 text-white relative overflow-hidden">
+              <div className="absolute inset-0 opacity-10">
+                <div className="absolute top-0 left-0 w-96 h-96 bg-red-500 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500 rounded-full blur-3xl"></div>
+              </div>
+              
+              <div className="relative z-10">
+                <div className="flex items-center gap-3 mb-6">
+                  <Lightbulb className="h-8 w-8 text-yellow-400" />
+                  <h2 className="text-3xl md:text-4xl font-bold">
+                    What Is Spin the Wheel 8 Colors?
+                  </h2>
+                </div>
+                
+                <div className="space-y-6 text-slate-300 leading-relaxed text-lg">
+                  <p>
+                    Spin the wheel 8 colors refers to an online spinner where a wheel
+                    divides into eight segments, each filled with a different color
+                    like red, blue, green, or purple. Users spin it to land on a random
+                    color, mimicking a physical color wheel but with digital ease and
+                    physics-based animation.
                   </p>
-                  <ul className="space-y-2 text-sm text-muted-foreground ml-4">
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>
-                        Spin once for the first presenter, then remove that
-                        student and spin again for the next
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>
-                        Write down the order on the board so everyone knows when
-                        they'll present
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>
-                        Allow students to see the wheel spin in real-time for
-                        transparency
-                      </span>
-                    </li>
-                  </ul>
+                  <p>
+                    This format stands out for its simplicity compared to larger wheels,
+                    making it ideal for fast choices without overwhelming options.
+                  </p>
                 </div>
               </div>
+            </section>
 
-              <div>
-                <h3 className="text-xl md:text-2xl font-semibold mb-3 text-foreground">
-                  3. Group Formation and Team Selection
-                </h3>
-                <p className="text-muted-foreground mb-3 leading-relaxed">
-                  Creating groups can be challenging, especially when students
-                  want to work with friends. Spin wheels eliminate this issue by
-                  randomly assigning groups, ensuring diverse collaboration and
-                  preventing cliques.
+            <section>
+              <div className="flex items-center gap-3 mb-8">
+                <div className="p-3 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl shadow-lg">
+                  <Wand2 className="h-6 w-6 text-white" />
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+                  Our Spin the Wheel 8 Colors Tool
+                </h2>
+              </div>
+
+              <Card className="p-8 md:p-10 bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 border-0 shadow-xl rounded-3xl">
+                <p className="text-muted-foreground font-semibold mb-6 text-xl">
+                  Standout benefits:
                 </p>
-                <div className="bg-muted/50 rounded-lg p-4 mt-3">
-                  <p className="font-semibold mb-2 text-foreground">
-                    Strategy for Group Formation:
+                <div className="space-y-4">
+                  {[
+                    "Pre-set with eight core colors (e.g., red, orange, yellow, green, blue, indigo, violet, pink) for instant use.",
+                    "Customizable labels and shades to match your needs.",
+                    "No sign-up required, fully free, and optimized for WordPress embeds."
+                  ].map((text, idx) => (
+                    <div key={idx} className="flex items-start gap-4 p-4 rounded-2xl bg-white dark:bg-slate-800 shadow-md hover:shadow-lg transition-shadow">
+                      <div className="p-2 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 flex-shrink-0">
+                        <CheckCircle2 className="h-5 w-5 text-white" />
+                      </div>
+                      <p className="text-muted-foreground leading-relaxed">{text}</p>
+                    </div>
+                  ))}
+                </div>
+              </Card>
+            </section>
+
+            <section>
+              <div className="flex items-center gap-3 mb-8">
+                <div className="p-3 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl shadow-lg">
+                  <Layers className="h-6 w-6 text-white" />
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+                  How to Use Spin the Wheel 8 Colors
+                </h2>
+              </div>
+
+              <Card className="p-8 md:p-10 bg-white dark:bg-slate-800/50 shadow-xl rounded-3xl border border-slate-200 dark:border-slate-700">
+                <div className="space-y-6 text-muted-foreground leading-relaxed">
+                  <p className="text-lg">
+                    Getting started with spinning the wheel 8 colors takes seconds,
+                    whether for a quick pick or design session.
                   </p>
-                  <p className="text-sm text-muted-foreground mb-2">
-                    Instead of putting individual names on the wheel, use group
-                    numbers:
+                  
+                  <div className="bg-slate-50 dark:bg-slate-900/50 rounded-2xl p-6 md:p-8">
+                    <p className="font-semibold mb-4 text-foreground text-lg flex items-center gap-2">
+                      <span className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm">1</span>
+                      Simple steps:
+                    </p>
+                    <ol className="space-y-4 ml-4 relative">
+                      <li className="pl-8 relative">
+                        <span className="absolute left-0 top-1 w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 flex items-center justify-center text-xs font-bold">1</span>
+                        Load the tool and view the eight-color wheel ready to go.
+                      </li>
+                      <li className="pl-8 relative">
+                        <span className="absolute left-0 top-1 w-6 h-6 rounded-full bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 flex items-center justify-center text-xs font-bold">2</span>
+                        Optionally edit segment colors or labels via the picker.
+                      </li>
+                      <li className="pl-8 relative">
+                        <span className="absolute left-0 top-1 w-6 h-6 rounded-full bg-pink-100 dark:bg-pink-900 text-pink-600 dark:text-pink-300 flex items-center justify-center text-xs font-bold">3</span>
+                        Hit "Spin" and watch it rotate to reveal your random shade.
+                      </li>
+                      <li className="pl-8 relative">
+                        <span className="absolute left-0 top-1 w-6 h-6 rounded-full bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-300 flex items-center justify-center text-xs font-bold">4</span>
+                        Copy the color code (e.g., #FF0000 for red) for use in CSS, paint apps, or projects.
+                      </li>
+                      <li className="pl-8 relative">
+                        <span className="absolute left-0 top-1 w-6 h-6 rounded-full bg-orange-100 dark:bg-orange-900 text-orange-600 dark:text-orange-300 flex items-center justify-center text-xs font-bold">5</span>
+                        Repeat or save for later sessions.
+                      </li>
+                    </ol>
+                  </div>
+                  
+                  <div className="bg-gradient-to-r from-primary/10 via-purple-500/10 to-primary/10 border-l-4 border-primary p-6 rounded-r-2xl mt-6 flex items-start gap-4">
+                    <Sparkles className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
+                    <div>
+                      <strong className="text-foreground block mb-1">Pro tip:</strong>
+                      <span className="text-muted-foreground">Pair with our general Online Spin Wheel for custom entry counts beyond eight.</span>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </section>
+
+            <section>
+              <div className="flex items-center gap-3 mb-8">
+                <div className="p-3 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl shadow-lg">
+                  <Paintbrush className="h-6 w-6 text-white" />
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+                  Popular Use Cases
+                </h2>
+              </div>
+
+              <div className="space-y-4 text-muted-foreground leading-relaxed">
+                <p>
+                  People love spin the wheel 8 colors for its versatility in creative
+                  and everyday scenarios.
+                </p>
+                <div>
+                  <p className="font-semibold mb-3 text-foreground">
+                    Common applications:
                   </p>
-                  <ul className="space-y-2 text-sm text-muted-foreground ml-4">
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>
-                        Decide how many groups you need (e.g., 5 groups of 4
-                        students)
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>
-                        Create a wheel with Group 1, Group 2, Group 3, etc.
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>
-                        As you spin, call out student names to fill each group
-                        until all are assigned
-                      </span>
-                    </li>
-                  </ul>
                 </div>
               </div>
 
-              <div>
-                <h3 className="text-xl md:text-2xl font-semibold mb-3 text-foreground">
-                  4. Activity and Task Selection
-                </h3>
-                <p className="text-muted-foreground mb-3 leading-relaxed">
-                  When you have multiple activities or tasks available, let the
-                  wheel decide what the class will do next. This adds an element
-                  of surprise and makes routine activities more engaging.
-                </p>
-                <div className="bg-muted/50 rounded-lg p-4 mt-3">
-                  <p className="font-semibold mb-2 text-foreground">
-                    Example Activities for the Wheel:
-                  </p>
-                  <ul className="space-y-2 text-sm text-muted-foreground ml-4">
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>Reading comprehension exercises</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>Math problem-solving sessions</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>Vocabulary review games</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>Science experiment demonstrations</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>Creative writing prompts</span>
-                    </li>
-                  </ul>
+              <div className="grid md:grid-cols-2 gap-6 mt-6">
+                {[
+                  {
+                    icon: <Monitor className="h-5 w-5" />,
+                    title: "Graphic design",
+                    desc: "Quick palette starter for logos or social graphics.",
+                    color: "from-blue-500 to-cyan-500"
+                  },
+                  {
+                    icon: <Palette className="h-5 w-5" />,
+                    title: "Art and crafts",
+                    desc: "Pick paints, markers, or digital brushes randomly.",
+                    color: "from-purple-500 to-pink-500"
+                  },
+                  {
+                    icon: <Dices className="h-5 w-5" />,
+                    title: "Gaming/streaming",
+                    desc: "Aesthetic color spin wheel for outfits, builds, or challenges.",
+                    color: "from-red-500 to-orange-500"
+                  },
+                  {
+                    icon: <Lightbulb className="h-5 w-5" />,
+                    title: "Education",
+                    desc: "Teach color theory or run fun class activities.",
+                    color: "from-yellow-500 to-amber-500"
+                  },
+                  {
+                    icon: <Sparkles className="h-5 w-5" />,
+                    title: "Daily fun",
+                    desc: "Decide outfit colors or room accents via \"color wheel picker online.\"",
+                    color: "from-green-500 to-emerald-500"
+                  }
+                ].map((item, idx) => (
+                  <Card key={idx} className="p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white dark:bg-slate-800 border-0 shadow-lg rounded-2xl overflow-hidden group">
+                    <div className="flex items-start gap-4">
+                      <div className={`p-3 rounded-xl bg-gradient-to-br ${item.color} text-white shadow-lg group-hover:scale-110 transition-transform`}>
+                        {item.icon}
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-foreground mb-1">{item.title}</h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                      </div>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </section>
+
+            <section>
+              <div className="flex items-center gap-3 mb-8">
+                <div className="p-3 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl shadow-lg">
+                  <Layers className="h-6 w-6 text-white" />
                 </div>
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+                  Related Searches and Variations
+                </h2>
               </div>
 
-              <div>
-                <h3 className="text-xl md:text-2xl font-semibold mb-3 text-foreground">
-                  5. Choosing Classroom Helpers
-                </h3>
-                <p className="text-muted-foreground mb-3 leading-relaxed">
-                  Daily or weekly classroom helpers can be selected fairly using
-                  a spin wheel. Tasks like line leader, board eraser, door
-                  holder, or materials distributor can all be assigned randomly,
-                  ensuring everyone gets opportunities to help.
+              <Card className="p-8 md:p-10 bg-gradient-to-br from-slate-50 to-white dark:from-slate-900 dark:to-slate-800 shadow-xl rounded-3xl">
+                <p className="text-muted-foreground mb-6 text-lg">
+                  Your searches align with trending queries, showing high interest in
+                  color-focused spinners.
                 </p>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Advanced Techniques for Experienced Educators
-            </h2>
-            <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <div>
-                <h3 className="text-xl md:text-2xl font-semibold mb-3 text-foreground">
-                  Differentiated Instruction Support
-                </h3>
-                <p className="mb-3">
-                  Use separate wheels for different ability levels. Create
-                  wheels with appropriate activities or questions for each
-                  learning level, then use the wheel to randomly select which
-                  activity to use for each group.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-xl md:text-2xl font-semibold mb-3 text-foreground">
-                  Behavior Management Integration
-                </h3>
-                <p className="mb-3">
-                  Instead of calling out students for negative behavior, use the
-                  wheel to highlight positive actions. Create a wheel with
-                  different positive behaviors (helping others, asking great
-                  questions, staying focused) and spin to recognize students
-                  demonstrating these behaviors.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-xl md:text-2xl font-semibold mb-3 text-foreground">
-                  Review Game Mechanics
-                </h3>
-                <p className="mb-3">
-                  Turn test preparation into an engaging game. Place review
-                  topics on the wheel, and whichever topic it lands on, students
-                  work in teams to answer questions about that topic. This makes
-                  review sessions more dynamic and engaging.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Tips for Successful Implementation
-            </h2>
-            <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <div className="bg-primary/5 border-l-4 border-primary p-4 rounded-r-lg">
-                <p className="font-semibold mb-2 text-foreground">
-                  Establish Clear Rules Early
-                </p>
-                <p className="text-sm">
-                  Before using the wheel, explain to students how it works and
-                  what to expect. Establish that once the wheel lands on a name,
-                  that's the decision—no re-spins unless you've made an error.
-                </p>
-              </div>
-
-              <div className="bg-primary/5 border-l-4 border-primary p-4 rounded-r-lg">
-                <p className="font-semibold mb-2 text-foreground">
-                  Keep It Visible
-                </p>
-                <p className="text-sm">
-                  Display the wheel on a screen or whiteboard where all students
-                  can see it. This transparency builds trust and keeps everyone
-                  engaged in the process.
-                </p>
-              </div>
-
-              <div className="bg-primary/5 border-l-4 border-primary p-4 rounded-r-lg">
-                <p className="font-semibold mb-2 text-foreground">
-                  Save Your Configurations
-                </p>
-                <p className="text-sm">
-                  Many digital spin wheels allow you to save your wheel
-                  configurations. Save separate wheels for each class period so
-                  you can quickly load the right one.
-                </p>
-              </div>
-
-              <div className="bg-primary/5 border-l-4 border-primary p-4 rounded-r-lg">
-                <p className="font-semibold mb-2 text-foreground">
-                  Be Flexible When Needed
-                </p>
-                <p className="text-sm">
-                  While randomness is key, sometimes you may need to override
-                  the result (e.g., if a student was just selected or has an
-                  accommodation). Use the wheel as a tool, not a strict rule.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Common Challenges and Solutions
-            </h2>
-            <div className="space-y-4">
-              <Card className="p-4 border-l-4 border-primary">
-                <h3 className="font-semibold mb-2 text-foreground">
-                  Challenge: Students questioning fairness
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  <strong>Solution:</strong> Show students the wheel
-                  configuration before spinning. Let them see that all names are
-                  included equally, which builds trust in the process.
+                
+                <div className="grid gap-4">
+                  {[
+                    { title: "Spin the wheel colors online", desc: "Broad access to any color wheel spinner." },
+                    { title: "Colors spin the wheel", desc: "Reverse phrasing for the same interactive tool." },
+                    { title: "Spin the wheel colors 100", desc: "Larger wheels like our 100-color version for deeper palettes." },
+                    { title: "Spin the wheel 8 colors app", desc: "Mobile-optimized versions for apps or PWAs." },
+                    { title: "Aesthetic color spin wheel", desc: "Styled for trendy, harmonious schemes." },
+                    { title: "Color wheel picker online", desc: "Precise hue selection with codes." }
+                  ].map((item, idx) => (
+                    <div key={idx} className="flex items-start gap-3 p-4 rounded-xl hover:bg-white dark:hover:bg-slate-800 transition-colors border border-transparent hover:border-slate-200 dark:hover:border-slate-700">
+                      <span className="text-2xl mt-1">•</span>
+                      <div>
+                        <span className="font-semibold text-foreground block">{item.title}:</span>
+                        <span className="text-muted-foreground text-sm">{item.desc}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                
+                <p className="mt-6 text-muted-foreground italic text-center bg-slate-100 dark:bg-slate-800 p-4 rounded-2xl">
+                  These naturally boost visibility on search engines and AI platforms.
                 </p>
               </Card>
+            </section>
 
-              <Card className="p-4 border-l-4 border-primary">
-                <h3 className="font-semibold mb-2 text-foreground">
-                  Challenge: Technical difficulties
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  <strong>Solution:</strong> Have a backup plan. Keep a physical
-                  spinner or use a simple random number generator as a backup if
-                  your digital wheel fails during class.
-                </p>
+            <section className="relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-purple-500/20 to-primary/20 rounded-3xl blur-3xl"></div>
+              <Card className="relative p-8 md:p-12 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border-0 shadow-2xl rounded-3xl overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-primary/20 to-purple-500/20 rounded-full blur-3xl"></div>
+                
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600">
+                  Our Spin the Wheel: 8 Color Options Feature
+                </h2>
+                
+                <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
+                  <p>
+                    Our Spin the Wheel: 8 Color Options feature is a game-changer for
+                    your creative projects. It's easy to use and lets you pick from 8
+                    beautiful colors. This is great for both professional designers
+                    and anyone looking for new ideas.
+                  </p>
+                  <p>
+                    Using our color wheel can make your work stand out. The 8 colors
+                    give you a wide range to choose from. Try our Spin the Wheel
+                    feature today and see how it can transform your designs.
+                  </p>
+                </div>
               </Card>
+            </section>
 
-              <Card className="p-4 border-l-4 border-primary">
-                <h3 className="font-semibold mb-2 text-foreground">
-                  Challenge: Time management
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  <strong>Solution:</strong> Set time limits for responses and
-                  use the wheel efficiently. The wheel should speed up your
-                  process, not slow it down. Practice using it until it becomes
-                  second nature.
-                </p>
+            <section>
+              <div className="flex items-center gap-3 mb-8">
+                <div className="p-3 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl shadow-lg">
+                  <Smartphone className="h-6 w-6 text-white" />
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+                  FAQs
+                </h2>
+              </div>
+
+              <div className="grid gap-4">
+                {[
+                  {
+                    q: "What is spin the wheel 8 colors?",
+                    a: "Online Spin Wheel is an online tool with a wheel split into eight color segments; spin to randomly select one for inspiration or use."
+                  },
+                  {
+                    q: "What is the spin the wheel feature?",
+                    a: "The Spin the Wheel feature is a fun tool. It lets users pick from 8 beautiful colors for their projects."
+                  },
+                  {
+                    q: "How do I use the spin the wheel feature?",
+                    a: "To use it, just go to the color wheel and spin it. You'll get a random color to use in your design."
+                  },
+                  {
+                    q: "Can I customize the color wheel?",
+                    a: "Yes, you can make the color wheel your own. Create custom palettes and personalize it for your design needs."
+                  },
+                  {
+                    q: "What are the benefits of using the spin the wheel feature?",
+                    a: "It's interactive and fun, making it easy to find the right color. It also saves time and effort."
+                  },
+                  {
+                    q: "Are the colors provided by the spin the wheel feature of high quality?",
+                    a: "Yes, our colors are accurate and vibrant. They will make your designs pop. We use top-notch color technology."
+                  },
+                  {
+                    q: "Is spin the wheel colors online free?",
+                    a: "Yes, fully free with no limits on spins or devices."
+                  },
+                  {
+                    q: "How does color randomization work?",
+                    a: "A fair algorithm assigns equal odds to each of the eight colors, with visual physics for realism."
+                  },
+                  {
+                    q: "Can I customize spin the wheel 8 colors?",
+                    a: "Edit colors, add HEX labels, or tweak segments before spinning."
+                  },
+                  {
+                    q: "Is there a spin the wheel colors 100 option?",
+                    a: "Yes, expand to 100 shades or use our aesthetic color spin wheel for themed picks."
+                  },
+                  {
+                    q: "Does it work as a color wheel picker online?",
+                    a: "Absolutely—outputs ready-to-use codes like HEX and RGB after each spin."
+                  },
+                  {
+                    q: "What's an aesthetic color spin wheel?",
+                    a: "A styled version with trendy palettes, great for design or gaming aesthetics."
+                  },
+                  {
+                    q: "Can I use spin the wheel 8 colors app on mobile?",
+                    a: "Yes, responsive design ensures smooth spins on any screen."
+                  },
+                  {
+                    q: "Is the Spin the Wheel feature user-friendly?",
+                    a: "Yes, it's designed to be easy to use. We've added interactive features to make it simple and customizable."
+                  }
+                ].map((faq, idx) => (
+                  <Card key={idx} className="p-6 bg-white dark:bg-slate-800 hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 rounded-2xl group">
+                    <h3 className="font-semibold mb-2 text-foreground text-lg flex items-start gap-3">
+                      <span className="text-primary mt-1 group-hover:scale-110 transition-transform">❖</span>
+                      {faq.q}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed ml-7">{faq.a}</p>
+                  </Card>
+                ))}
+              </div>
+            </section>
+
+            <section className="relative mt-16">
+              <div className="absolute inset-0 bg-gradient-to-r from-primary via-purple-600 to-primary rounded-3xl blur opacity-20"></div>
+              <Card className="relative p-8 md:p-12 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white rounded-3xl border-0 shadow-2xl overflow-hidden">
+                <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptMC0zMGg2djZoLTZ2LTZ6bS0zMCAwdjZoLTZ2LTZoNnptMCAzMGgtNnYtNmg2djZ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-20"></div>
+                
+                <div className="relative z-10 text-center space-y-6">
+                  <h2 className="text-3xl md:text-5xl font-bold mb-4">
+                    Ready to Try?
+                  </h2>
+                  <p className="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+                    Head to our spin the wheel 8 colors tool and get inspired today.
+                  </p>
+                  
+                  <div className="flex flex-wrap justify-center gap-4 mt-8">
+                    <Link
+                      to="/"
+                      className="inline-flex items-center gap-2 bg-white text-slate-900 px-8 py-4 rounded-full font-bold hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] transition-all duration-300 hover:scale-105 group"
+                    >
+                      Try Our Spin Wheel
+                      <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                    <Link
+                      to="/blog"
+                      className="inline-flex items-center gap-2 border-2 border-white/30 text-white px-8 py-4 rounded-full font-semibold hover:bg-white/10 backdrop-blur-sm transition-all duration-300 hover:border-white/50"
+                    >
+                      Read More Guides
+                      <ArrowRight className="h-5 w-5" />
+                    </Link>
+                  </div>
+                </div>
+
+                <div className="absolute top-10 left-10 w-20 h-20 bg-red-500/20 rounded-full blur-xl"></div>
+                <div className="absolute bottom-10 right-10 w-32 h-32 bg-blue-500/20 rounded-full blur-xl"></div>
               </Card>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Making It Work for Your Grade Level
-            </h2>
-            <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <div>
-                <h3 className="text-lg font-semibold mb-2 text-foreground">
-                  Elementary School (K-5)
-                </h3>
-                <p className="text-sm">
-                  Use bright colors and simple language. Keep wheels focused on
-                  basic tasks like choosing line leaders, table captains, or
-                  show-and-tell presenters. The visual excitement of spinning
-                  keeps young students engaged.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold mb-2 text-foreground">
-                  Middle School (6-8)
-                </h3>
-                <p className="text-sm">
-                  Students at this age appreciate fairness. Use the wheel for
-                  project partners, debate sides, or selecting topics for
-                  presentations. It reduces social pressure and peer dynamics
-                  that can be challenging during middle school years.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold mb-2 text-foreground">
-                  High School (9-12)
-                </h3>
-                <p className="text-sm">
-                  Older students can handle more complex uses. Create wheels for
-                  research topics, debate positions, or discussion leaders. Use
-                  it to select which current events to analyze or which
-                  historical periods to study in depth.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          <section className="bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 rounded-lg p-6 border border-primary/20">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Ready to Get Started?
-            </h2>
-            <p className="text-muted-foreground mb-4 leading-relaxed">
-              Implementing spin wheels in your classroom is easier than you
-              might think. Start with one simple use case—like selecting
-              students to answer questions—and gradually expand to other
-              applications as you become more comfortable.
-            </p>
-            <p className="text-muted-foreground mb-6 leading-relaxed">
-              The key is consistency and transparency. When students see that
-              the selection process is truly random and fair, they'll trust the
-              system and stay more engaged in your lessons.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link
-                to="/"
-                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
-              >
-                Try Our Spin Wheel
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                to="/blog"
-                className="inline-flex items-center gap-2 border-2 border-primary text-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary/10 transition-colors"
-              >
-                Read More Guides
-                <BookOpen className="h-4 w-4" />
-              </Link>
-            </div>
-          </section>
-        </Card>
-
-        {/* Related Articles */}
-        <div className="grid md:grid-cols-3 gap-4 mt-8">
-          <Card className="p-6 bg-primary/5 border border-primary/20">
-            <div className="flex items-center gap-3 mb-3">
-              <Lightbulb className="h-6 w-6 text-primary" />
-              <h3 className="text-xl font-bold">Related Guides</h3>
-            </div>
-            <p className="text-sm text-muted-foreground mb-4">
-              Explore more practical guides
-            </p>
-            <div className="space-y-2">
-              <Link
-                to="/how-to-create-fair-giveaways-with-spin-wheels"
-                className="block text-sm font-semibold text-primary hover:underline"
-              >
-                Fair Giveaways →
-              </Link>
-              <Link
-                to="/how-to-use-spin-wheels-for-team-building"
-                className="block text-sm font-semibold text-primary hover:underline"
-              >
-                Team Building →
-              </Link>
-              <Link
-                to="/how-to-organize-events-with-random-selection"
-                className="block text-sm font-semibold text-primary hover:underline"
-              >
-                Event Organization →
-              </Link>
-            </div>
-          </Card>
-
-          <Card className="p-6 bg-primary/5 border border-primary/20">
-            <div className="flex items-center gap-3 mb-3">
-              <CheckCircle2 className="h-6 w-6 text-primary" />
-              <h3 className="text-xl font-bold">Case Studies</h3>
-            </div>
-            <p className="text-sm text-muted-foreground mb-4">
-              See real-world school implementations
-            </p>
-            <div className="space-y-2">
-              <Link
-                to="/case-study-school-using-spin-wheels"
-                className="block text-sm font-semibold text-primary hover:underline"
-              >
-                School Case Study →
-              </Link>
-              <Link
-                to="/tutorial-creating-your-first-spin-wheel"
-                className="block text-sm font-semibold text-primary hover:underline"
-              >
-                Getting Started Tutorial →
-              </Link>
-            </div>
-          </Card>
-
-          <Card className="p-6 bg-primary/5 border border-primary/20">
-            <div className="flex items-center gap-3 mb-3">
-              <Users className="h-6 w-6 text-primary" />
-              <h3 className="text-xl font-bold">Need Help?</h3>
-            </div>
-            <p className="text-sm text-muted-foreground mb-4">
-              Have questions about implementing spin wheels in your classroom?
-              We're here to help!
-            </p>
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
-            >
-              Contact Us
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </Card>
-        </div>
-      </article>
+            </section>
+          </div>
+        </article>
+      </div>
     </>
   );
 };

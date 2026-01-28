@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, MessageSquare, Send, ArrowRight, Shield } from "lucide-react";
+import { Mail, MessageSquare, Send, ArrowRight } from "lucide-react";
 import { Helmet } from "react-helmet";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -215,28 +215,6 @@ const Contact = () => {
           </div>
         </div>
 
-        {/* Next Step Navigation */}
-        <div className="mt-12">
-          <Card className="p-6 md:p-8 bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 border-2 border-primary/20">
-            <div className="text-center mb-4">
-              <h3 className="text-xl md:text-2xl font-bold mb-2">
-                Important Information
-              </h3>
-              <p className="text-muted-foreground">
-                Learn about our disclaimer and how we handle your data
-                responsibly
-              </p>
-            </div>
-            <Link
-              to="/disclaimer"
-              className="flex items-center justify-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mx-auto max-w-sm"
-            >
-              <Shield className="h-5 w-5" />
-              <span>View Disclaimer</span>
-              <ArrowRight className="h-5 w-5" />
-            </Link>
-          </Card>
-        </div>
       </section>
     </>
   );

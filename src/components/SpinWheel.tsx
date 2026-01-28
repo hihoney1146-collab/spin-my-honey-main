@@ -81,32 +81,28 @@ const createTickSound = (ctx: AudioContext) => {
 };
 
 const createWinSound = (ctx: AudioContext) => {
-  // Victory Fanfare (WheelOfNames style)
   const now = ctx.currentTime;
-
-  // Bright, celebratory chord (C Major Add9)
-  const notes = [523.25, 659.25, 783.99, 1046.50, 1174.66, 1567.98]; // C5, E5, G5, C6, D6, G6
+  const notes = [523.25, 659.25, 783.99, 1046.50, 1174.66, 1567.98];
 
   notes.forEach((freq, i) => {
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
 
-    osc.type = 'triangle'; // Brighter than sine
+    osc.type = 'triangle';
     osc.frequency.value = freq;
 
     osc.connect(gain);
     gain.connect(ctx.destination);
 
-    // Staggered entry
     const startTime = now + (i * 0.05);
-    const duration = 2.0;
+    const duration = 0.7;
 
     gain.gain.setValueAtTime(0, startTime);
-    gain.gain.linearRampToValueAtTime(0.2, startTime + 0.1);
+    gain.gain.linearRampToValueAtTime(0.22, startTime + 0.08);
     gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
 
     osc.start(startTime);
-    osc.stop(startTime + duration + 0.1);
+    osc.stop(startTime + duration);
   });
 };
 
@@ -287,17 +283,10 @@ export const SpinWheel = () => {
   };
 
   const playWinSound = () => {
-    const winAudio = winAudioRef.current;
-    if (winAudio) {
-      winAudio.currentTime = 0;
-      winAudio.play().catch(() => {
-        // Fallback to synthesis
-        const ctx = audioContextRef.current;
-        if (ctx) {
-          if (ctx.state === 'suspended') ctx.resume();
-          createWinSound(ctx);
-        }
-      });
+    const ctx = audioContextRef.current;
+    if (ctx) {
+      if (ctx.state === 'suspended') ctx.resume();
+      createWinSound(ctx);
     }
   };
 

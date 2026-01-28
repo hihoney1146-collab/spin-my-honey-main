@@ -20,6 +20,9 @@ const HowToUseSpinWheelsInClassrooms = lazy(
 const HowToCreateFairGiveawaysWithSpinWheels = lazy(
   () => import("./pages/HowToCreateFairGiveawaysWithSpinWheels")
 );
+const SpinWheelFree = lazy(
+  () => import("./pages/SpinWheelFree")
+);
 const HowToUseSpinWheelsForTeamBuilding = lazy(
   () => import("./pages/HowToUseSpinWheelsForTeamBuilding")
 );
@@ -63,7 +66,6 @@ const ComparisonOnlineVsPhysicalSpinWheels = lazy(
   () => import("./pages/ComparisonOnlineVsPhysicalSpinWheels")
 );
 const Terms = lazy(() => import("./pages/Terms"));
-const Disclaimer = lazy(() => import("./pages/Disclaimer"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Embed = lazy(() => import("./pages/Embed"));
 import { ReferralTracker } from "./components/ReferralTracker";
@@ -142,6 +144,14 @@ const App = () => (
                 element={
                   <Suspense fallback={<div className="min-h-screen" />}>
                     <HowToCreateFairGiveawaysWithSpinWheels />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/spin-wheel-free"
+                element={
+                  <Suspense fallback={<div className="min-h-screen" />}>
+                    <SpinWheelFree />
                   </Suspense>
                 }
               />
@@ -262,14 +272,6 @@ const App = () => (
                 element={
                   <Suspense fallback={<div className="min-h-screen" />}>
                     <Terms />
-                  </Suspense>
-                }
-              />
-              <Route
-                path="/disclaimer"
-                element={
-                  <Suspense fallback={<div className="min-h-screen" />}>
-                    <Disclaimer />
                   </Suspense>
                 }
               />

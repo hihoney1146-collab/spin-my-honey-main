@@ -7,7 +7,6 @@ import {
   Info,
   BookOpen,
   Mail,
-  Shield,
   Lock,
 } from "lucide-react";
 import logo from "@/assets/logo.png";
@@ -34,7 +33,6 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
     { to: "/about", label: "About", icon: Info },
     { to: "/blog", label: "Blog", icon: BookOpen },
     { to: "/contact", label: "Contact", icon: Mail },
-    { to: "/disclaimer", label: "Disclaimer", icon: Shield },
     { to: "/privacy", label: "Privacy", icon: Lock },
   ];
 
@@ -42,7 +40,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
     <div className="min-h-screen flex flex-col bg-background">
       <header className="border-b bg-card/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
         <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-14 sm:h-16 md:h-16 lg:h-17">
+          <div className="flex items-center justify-between h-16 sm:h-20 md:h-20 lg:h-24">
             {/* Logo */}
             <Link to="/" className="flex items-center group relative flex-shrink-0">
               <div className="relative flex items-center justify-center">
@@ -58,7 +56,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                 </div>
               </div>
               <div className="flex flex-col">
-                <span className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-bold leading-tight">
+                <span className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold leading-tight">
                   <span className="bg-gradient-to-r from-orange-500 via-yellow-500 to-green-500 bg-clip-text text-transparent">
                     Online
                   </span>
@@ -280,7 +278,6 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                   { to: "/privacy", label: "Privacy Policy" },
                   { to: "/cookie-policy", label: "Cookie Policy" },
                   { to: "/terms", label: "Terms & Conditions" },
-                  { to: "/disclaimer", label: "Disclaimer" },
                 ].map((link) => (
                   <li key={link.to}>
                     <Link

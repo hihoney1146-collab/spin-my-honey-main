@@ -1,4 +1,4 @@
- onlinespinwheel.fun - Robots.txt Configuration
+# onlinespinwheel.fun - Robots.txt Configuration
 # Optimized for: Google, Bing, DuckDuckGo, Perplexity AI, ChatGPT, Claude AI, All AI Platforms
 # Last Updated: 23 January 2026 | Version: 1.0
 # Domain: onlinespinwheel.fun | Hosted on: Vercel
