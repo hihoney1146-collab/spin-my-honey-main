@@ -23,6 +23,9 @@ const HowToCreateFairGiveawaysWithSpinWheels = lazy(
 const SpinWheelFree = lazy(
   () => import("./pages/SpinWheelFree")
 );
+const SpinWheelPicker = lazy(
+  () => import("./pages/SpinWheelPicker")
+);
 const HowToUseSpinWheelsForTeamBuilding = lazy(
   () => import("./pages/HowToUseSpinWheelsForTeamBuilding")
 );
@@ -152,6 +155,14 @@ const App = () => (
                 element={
                   <Suspense fallback={<div className="min-h-screen" />}>
                     <SpinWheelFree />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/spin-wheel-picker"
+                element={
+                  <Suspense fallback={<div className="min-h-screen" />}>
+                    <SpinWheelPicker />
                   </Suspense>
                 }
               />

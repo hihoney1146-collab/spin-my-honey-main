@@ -10,6 +10,7 @@ import {
   FileText,
   Globe,
   Facebook,
+  Shuffle,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -774,6 +775,25 @@ const Blog = () => {
                       </h4>
                       <p className="text-sm text-muted-foreground">
                         The easiest way to make fair, fun decisions online. Free tool for classrooms, giveaways, and events
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+              </Link>
+
+              <Link
+                to="/spin-wheel-picker"
+                className="block"
+              >
+                <Card className="p-4 hover:shadow-lg transition-shadow h-full">
+                  <div className="flex items-start gap-3">
+                    <Shuffle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold mb-1">
+                        Spin Wheel Picker
+                      </h4>
+                      <p className="text-sm text-muted-foreground">
+                        Free online wheel for fair, fun random choices. Add options, spin, and get a result everyone can see.
                       </p>
                     </div>
                   </div>

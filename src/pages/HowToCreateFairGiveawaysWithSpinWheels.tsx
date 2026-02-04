@@ -1,3 +1,5 @@
+
+
 import { Card } from "@/components/ui/card";
 import { Helmet } from "react-helmet";
 import {
@@ -73,10 +75,10 @@ const HowToCreateFairGiveawaysWithSpinWheels = () => {
                     real time.
                   </p>
                   <p>
-                    This in-depth guide explains what a spin wheel winner picker is, how it works, why it is better than manual
+                    This in‑depth guide explains what a spin wheel winner picker is, how it works, why it is better than manual
                     draws, and how to use an online tool step by step. It is written for searchers looking for "spin wheel winner
                     picker", "spin wheel random winner", "spin wheel for giveaway", "wheel of names", and similar queries, but
-                    without keyword stuffing or low-value fluff.
+                    without keyword stuffing or low‑value fluff.
                   </p>
                 </div>
               </Card>
@@ -108,7 +110,7 @@ const HowToCreateFairGiveawaysWithSpinWheels = () => {
                   <ul className="space-y-3 ml-4">
                     <li className="flex items-start gap-3">
                       <span className="text-yellow-400 mt-1">•</span>
-                      <span>Paste your list into the tool.</span>
+                      <span>Paste your list into our tool.</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="text-yellow-400 mt-1">•</span>
@@ -134,7 +136,7 @@ const HowToCreateFairGiveawaysWithSpinWheels = () => {
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="text-yellow-400 mt-1">•</span>
-                      <span><strong>Ease of explanation:</strong> Even non-technical audiences instantly understand how a wheel works.</span>
+                      <span><strong>Ease of explanation:</strong> Even non‑technical audiences instantly understand how a wheel works.</span>
                     </li>
                   </ul>
                   <p className="mt-4">
@@ -158,38 +160,10 @@ const HowToCreateFairGiveawaysWithSpinWheels = () => {
               <Card className="p-8 md:p-10 bg-white dark:bg-slate-800/50 shadow-xl rounded-3xl border border-slate-200 dark:border-slate-700">
                 <div className="space-y-6 text-muted-foreground leading-relaxed">
                   <p>
-                    Most modern spin wheel winner tools follow a two-step logic: first they choose a random winner in code, then
+                    Most modern spin wheel winner tools follow a two‑step logic: first they choose a random winner in code, then
                     they animate the wheel to visually land on that choice. This ensures that what looks like a fun animation is still
-                    backed by a fair random process.
-                  </p>
-                  <p>
-                    A common approach is:
-                  </p>
-                  <ul className="space-y-4 ml-4">
-                    <li className="flex items-start gap-3">
-                      <span className="text-primary mt-1">•</span>
-                      <span>
-                        Use a secure random function in the browser, such as crypto.getRandomValues(), to pick a winner
-                        index from the full list.
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-primary mt-1">•</span>
-                      <span>
-                        Map that index to a segment on the wheel so the tool knows exactly where the pointer should stop.
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-primary mt-1">•</span>
-                      <span>
-                        Play a spinning animation for a set duration, then stop precisely on the chosen segment.
-                      </span>
-                    </li>
-                  </ul>
-                  <p>
-                    This separation between "hidden random selection" and "visible animation" keeps the wheel unbiased even
-                    when you have thousands of entries and can only display a limited number on screen at once. For users, the
-                    experience feels simple: paste entries, spin, and see who wins, with no need to understand the math.
+                    backed by a fair random process. For users, the experience feels simple: paste entries, spin, and see who wins,
+                    with no need to understand the math.
                   </p>
                   <p>
                     Some tools also log the random seed or store a history of spins, which can be useful for audits, disputes, or just
@@ -271,8 +245,8 @@ const HowToCreateFairGiveawaysWithSpinWheels = () => {
 
               <Card className="p-8 md:p-10 bg-white dark:bg-slate-800/50 shadow-xl rounded-3xl border border-slate-200 dark:border-slate-700">
                 <p className="text-muted-foreground mb-6 text-lg">
-                  Not all wheels are equal. The best online spin wheel winner pickers usually share a core feature set that makes
-                  them practical for real-world use.
+                  Not all wheels are equal. Our best online spin wheel winner pickers usually share a core feature set that makes
+                  them practical for real‑world use.
                 </p>
                 <p className="font-semibold mb-6 text-foreground text-lg">
                   Look for these key features:
@@ -280,33 +254,18 @@ const HowToCreateFairGiveawaysWithSpinWheels = () => {
                 <div className="space-y-4">
                   {[
                     {
-                      icon: <FileText className="h-5 w-5" />,
-                      title: "Bulk input",
-                      desc: "The tool should allow you to paste names or emails, one per line, directly from spreadsheets, CSV files, or exported lists. Manual entry is fine for a small class, but bulk input is essential for serious giveaways and large audiences."
-                    },
-                    {
-                      icon: <Users className="h-5 w-5" />,
-                      title: "Multi-winner mode",
-                      desc: "Advanced tools let you choose several winners without repeats by automatically removing each winner after their spin. Some even allow you to set the total number of winners and run the entire sequence in one flow."
-                    },
-                    {
-                      icon: <FileText className="h-5 w-5" />,
-                      title: "Result history",
-                      desc: "A history log of previous winners helps you keep records for your brand, share details with clients, and protect yourself if anyone questions fairness. You should be able to copy, export, or screenshot this history easily."
-                    },
-                    {
                       icon: <Sparkles className="h-5 w-5" />,
                       title: "Customization options",
                       desc: "Being able to change colors, labels, sound effects, and spin speed lets you match the wheel to your brand, event theme, or classroom environment. Small details like muting sound or slowing the wheel down can make a big difference in real use cases."
                     },
                     {
                       icon: <Smartphone className="h-5 w-5" />,
-                      title: "Mobile-friendly layout",
-                      desc: "Many hosts run spins directly from a phone or tablet, especially during live events or on-the-go promotions. A good spin wheel winner picker will be responsive and perform smoothly on smaller screens."
+                      title: "Mobile‑friendly layout",
+                      desc: "Many hosts run spins directly from a phone or tablet, especially during live events or on‑the‑go promotions. A good spin wheel winner picker will be responsive and perform smoothly on smaller screens."
                     },
                     {
                       icon: <CheckCircle2 className="h-5 w-5" />,
-                      title: "No forced sign-up for basic use",
+                      title: "No forced sign‑up for basic use",
                       desc: "People appreciate tools that work right away. While an account can be helpful for saving lists or advanced features, the base experience should not require a complicated registration just to spin a wheel once."
                     }
                   ].map((item, idx) => (
@@ -320,25 +279,6 @@ const HowToCreateFairGiveawaysWithSpinWheels = () => {
                       </div>
                     </div>
                   ))}
-                </div>
-                <div className="mt-6 p-4 bg-slate-50 dark:bg-slate-900/50 rounded-2xl">
-                  <p className="font-semibold mb-3 text-foreground">
-                    If your spin wheel will be used in public events, long-term campaigns, or client projects, it is also worth checking whether the tool supports:
-                  </p>
-                  <ul className="space-y-2 ml-4">
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span className="text-muted-foreground">Embeds via iframe or script so you can place the wheel directly on your own website.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span className="text-muted-foreground">Dark mode or theming for streaming overlays.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span className="text-muted-foreground">Keyboard shortcuts for faster repeated spins.</span>
-                    </li>
-                  </ul>
                 </div>
               </Card>
             </section>
@@ -356,7 +296,7 @@ const HowToCreateFairGiveawaysWithSpinWheels = () => {
               <Card className="p-8 md:p-10 bg-white dark:bg-slate-800/50 shadow-xl rounded-3xl border border-slate-200 dark:border-slate-700">
                 <div className="space-y-6 text-muted-foreground leading-relaxed">
                   <p className="text-lg">
-                    Using a spin wheel winner picker is straightforward, even if you are not technical. Here is a clear workflow you
+                    Using a spin wheel winner picker is straight forward, even if you are not technical. Here is a clear workflow you
                     can follow and adapt to your own event:
                   </p>
                   
@@ -366,7 +306,7 @@ const HowToCreateFairGiveawaysWithSpinWheels = () => {
                         <span className="absolute left-0 top-1 w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 flex items-center justify-center text-xs font-bold">1</span>
                         <div>
                           <strong className="text-foreground block mb-1">Prepare your list</strong>
-                          <span>Collect participant names, emails, IDs, or options in a single column in Google Sheets or Excel. Remove obvious duplicates, filter out ineligible entries, and double-check spelling if you plan to display names publicly.</span>
+                          <span>Collect participant names, emails, IDs. Remove obvious duplicates, filter out ineligible entries, and double‑check spelling if you plan to display names publicly.</span>
                         </div>
                       </li>
                       <li className="pl-8 relative">
@@ -421,20 +361,6 @@ const HowToCreateFairGiveawaysWithSpinWheels = () => {
                               <span>When it stops, read out the winner's name clearly and show it on screen long enough for people to see.</span>
                             </li>
                           </ul>
-                        </div>
-                      </li>
-                      <li className="pl-8 relative">
-                        <span className="absolute left-0 top-1 w-6 h-6 rounded-full bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-300 flex items-center justify-center text-xs font-bold">6</span>
-                        <div>
-                          <strong className="text-foreground block mb-1">Save or export the result</strong>
-                          <span>Use the result history, export feature, or simple screenshots to save the winner for your records. For giveaways, keeping proof protects you if anyone questions the outcome later, and can also be used as social content.</span>
-                        </div>
-                      </li>
-                      <li className="pl-8 relative">
-                        <span className="absolute left-0 top-1 w-6 h-6 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-300 flex items-center justify-center text-xs font-bold">7</span>
-                        <div>
-                          <strong className="text-foreground block mb-1">Repeat if needed</strong>
-                          <span>If you need more winners, repeat the spin with previous winners removed or use the built-in multi-winner mode. Make sure to communicate how many winners you will draw so your audience understands the process.</span>
                         </div>
                       </li>
                     </ol>
@@ -507,63 +433,19 @@ const HowToCreateFairGiveawaysWithSpinWheels = () => {
                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-primary/20 to-purple-500/20 rounded-full blur-3xl"></div>
                 
                 <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600">
-                  Our Spin Wheel for Winner Tool
+                  A Spin Wheel for Winner
                 </h2>
                 
                 <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
                   <p>
-                    Our spin wheel for the winner is lightweight, fast, and built for real-world use like giveaways. We focus on clean
-                    code and optimization so it ranks well and performs smoothly.
-                  </p>
-                  <p className="font-semibold text-foreground">
-                    Unique perks:
-                  </p>
-                  <ul className="space-y-2 ml-4">
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>Paste names easily; spins fairly every time.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>Free, no sign-ups, unlimited use.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>Embed on WordPress for contests or streams.</span>
-                    </li>
-                  </ul>
-                  <p className="mt-4 font-semibold text-foreground">
-                    Standout Features
+                    A spin wheel for winner is an interactive online tool that randomly selects a winner from a list of names or
+                    entries, adding excitement to giveaways, contests, and raffles. Perfect for those searching "spin wheel winner
+                    picker" or "spin wheel random winner," it ensures fairness with visual spins everyone can see.
                   </p>
                   <p>
-                    Designed for queries like "spin wheel for winner online" or "wheel of names," our tool packs pro features into a
-                    simple interface.
+                    For giveaways, record the spin to prove fairness. Spin a winner today with our reliable tool and elevate your next
+                    event!
                   </p>
-                  <p className="font-semibold text-foreground">
-                    Top features:
-                  </p>
-                  <ul className="space-y-2 ml-4">
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>Bulk name input: Add hundreds of entries fast.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>Custom spins: Adjust speed, sounds, or colors.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>Result history: Track past winners for transparency.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>Multi-winner mode: Pick several without repeats.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>Voice announcer option for live excitement.</span>
-                    </li>
-                  </ul>
                 </div>
               </Card>
             </section>
@@ -650,7 +532,7 @@ const HowToCreateFairGiveawaysWithSpinWheels = () => {
                     Spin a Winner Today
                   </h2>
                   <p className="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-                    Spin a winner today with our reliable tool and elevate your next event!
+                    For giveaways, record the spin to prove fairness. Spin a winner today with our reliable tool and elevate your next event!
                   </p>
                   
                   <div className="flex flex-wrap justify-center gap-4 mt-8">

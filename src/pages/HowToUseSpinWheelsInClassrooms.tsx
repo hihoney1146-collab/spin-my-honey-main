@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Helmet } from "react-helmet";
-import { Palette, CheckCircle2, ArrowRight, Sparkles, Wand2, Lightbulb, Layers, Smartphone, Monitor, Paintbrush, Dices } from "lucide-react";
+import { Palette, CheckCircle2, ArrowRight, Sparkles, Wand2, Lightbulb, Layers, Monitor, Paintbrush, Dices } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const HowToUseSpinWheelsInClassrooms = () => {
@@ -149,7 +149,7 @@ const HowToUseSpinWheelsInClassrooms = () => {
                   {[
                     "Pre-set with eight core colors (e.g., red, orange, yellow, green, blue, indigo, violet, pink) for instant use.",
                     "Customizable labels and shades to match your needs.",
-                    "No sign-up required, fully free, and optimized for WordPress embeds."
+                    "No sign-up required, fully free."
                   ].map((text, idx) => (
                     <div key={idx} className="flex items-start gap-4 p-4 rounded-2xl bg-white dark:bg-slate-800 shadow-md hover:shadow-lg transition-shadow">
                       <div className="p-2 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 flex-shrink-0">
@@ -301,10 +301,12 @@ const HowToUseSpinWheelsInClassrooms = () => {
 
               <Card className="p-8 md:p-10 bg-gradient-to-br from-slate-50 to-white dark:from-slate-900 dark:to-slate-800 shadow-xl rounded-3xl">
                 <p className="text-muted-foreground mb-6 text-lg">
-                  Your searches align with trending queries, showing high interest in
+                  Your searches align with trending queries like those in the attached image, showing high interest in
                   color-focused spinners.
                 </p>
-                
+                <p className="font-semibold mb-3 text-foreground">
+                  Covered variations:
+                </p>
                 <div className="grid gap-4">
                   {[
                     { title: "Spin the wheel colors online", desc: "Broad access to any color wheel spinner." },
@@ -323,10 +325,6 @@ const HowToUseSpinWheelsInClassrooms = () => {
                     </div>
                   ))}
                 </div>
-                
-                <p className="mt-6 text-muted-foreground italic text-center bg-slate-100 dark:bg-slate-800 p-4 rounded-2xl">
-                  These naturally boost visibility on search engines and AI platforms.
-                </p>
               </Card>
             </section>
 
@@ -334,7 +332,6 @@ const HowToUseSpinWheelsInClassrooms = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-purple-500/20 to-primary/20 rounded-3xl blur-3xl"></div>
               <Card className="relative p-8 md:p-12 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border-0 shadow-2xl rounded-3xl overflow-hidden">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-primary/20 to-purple-500/20 rounded-full blur-3xl"></div>
-                
                 <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600">
                   Our Spin the Wheel: 8 Color Options Feature
                 </h2>
@@ -355,86 +352,6 @@ const HowToUseSpinWheelsInClassrooms = () => {
               </Card>
             </section>
 
-            <section>
-              <div className="flex items-center gap-3 mb-8">
-                <div className="p-3 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl shadow-lg">
-                  <Smartphone className="h-6 w-6 text-white" />
-                </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-                  FAQs
-                </h2>
-              </div>
-
-              <div className="grid gap-4">
-                {[
-                  {
-                    q: "What is spin the wheel 8 colors?",
-                    a: "Online Spin Wheel is an online tool with a wheel split into eight color segments; spin to randomly select one for inspiration or use."
-                  },
-                  {
-                    q: "What is the spin the wheel feature?",
-                    a: "The Spin the Wheel feature is a fun tool. It lets users pick from 8 beautiful colors for their projects."
-                  },
-                  {
-                    q: "How do I use the spin the wheel feature?",
-                    a: "To use it, just go to the color wheel and spin it. You'll get a random color to use in your design."
-                  },
-                  {
-                    q: "Can I customize the color wheel?",
-                    a: "Yes, you can make the color wheel your own. Create custom palettes and personalize it for your design needs."
-                  },
-                  {
-                    q: "What are the benefits of using the spin the wheel feature?",
-                    a: "It's interactive and fun, making it easy to find the right color. It also saves time and effort."
-                  },
-                  {
-                    q: "Are the colors provided by the spin the wheel feature of high quality?",
-                    a: "Yes, our colors are accurate and vibrant. They will make your designs pop. We use top-notch color technology."
-                  },
-                  {
-                    q: "Is spin the wheel colors online free?",
-                    a: "Yes, fully free with no limits on spins or devices."
-                  },
-                  {
-                    q: "How does color randomization work?",
-                    a: "A fair algorithm assigns equal odds to each of the eight colors, with visual physics for realism."
-                  },
-                  {
-                    q: "Can I customize spin the wheel 8 colors?",
-                    a: "Edit colors, add HEX labels, or tweak segments before spinning."
-                  },
-                  {
-                    q: "Is there a spin the wheel colors 100 option?",
-                    a: "Yes, expand to 100 shades or use our aesthetic color spin wheel for themed picks."
-                  },
-                  {
-                    q: "Does it work as a color wheel picker online?",
-                    a: "Absolutely—outputs ready-to-use codes like HEX and RGB after each spin."
-                  },
-                  {
-                    q: "What's an aesthetic color spin wheel?",
-                    a: "A styled version with trendy palettes, great for design or gaming aesthetics."
-                  },
-                  {
-                    q: "Can I use spin the wheel 8 colors app on mobile?",
-                    a: "Yes, responsive design ensures smooth spins on any screen."
-                  },
-                  {
-                    q: "Is the Spin the Wheel feature user-friendly?",
-                    a: "Yes, it's designed to be easy to use. We've added interactive features to make it simple and customizable."
-                  }
-                ].map((faq, idx) => (
-                  <Card key={idx} className="p-6 bg-white dark:bg-slate-800 hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 rounded-2xl group">
-                    <h3 className="font-semibold mb-2 text-foreground text-lg flex items-start gap-3">
-                      <span className="text-primary mt-1 group-hover:scale-110 transition-transform">❖</span>
-                      {faq.q}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed ml-7">{faq.a}</p>
-                  </Card>
-                ))}
-              </div>
-            </section>
-
             <section className="relative mt-16">
               <div className="absolute inset-0 bg-gradient-to-r from-primary via-purple-600 to-primary rounded-3xl blur opacity-20"></div>
               <Card className="relative p-8 md:p-12 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white rounded-3xl border-0 shadow-2xl overflow-hidden">
@@ -445,7 +362,7 @@ const HowToUseSpinWheelsInClassrooms = () => {
                     Ready to Try?
                   </h2>
                   <p className="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-                    Head to our spin the wheel 8 colors tool and get inspired today.
+                    Ready to try? Head to our spin the wheel 8 colors tool and get inspired today.
                   </p>
                   
                   <div className="flex flex-wrap justify-center gap-4 mt-8">

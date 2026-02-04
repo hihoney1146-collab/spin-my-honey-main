@@ -1,3 +1,5 @@
+
+
 import { Card } from "@/components/ui/card";
 import { Helmet } from "react-helmet";
 import {
@@ -70,12 +72,12 @@ const SpinWheelFree = () => {
                 
                 <div className="space-y-6 text-muted-foreground leading-relaxed text-lg relative z-10">
                   <p className="text-xl md:text-2xl font-light text-foreground/90 first-letter:text-5xl first-letter:font-bold first-letter:text-primary first-letter:mr-1 first-letter:float-left">
-                    A spin wheel free tool is one of the fastest ways to make fair decisions, pick random winners, or add excitement
-                    to games and events. On onlinespinwheel.fun, you can type your options, spin once, and instantly see a clear,
-                    unbiased result that everyone can trust.
+                    Our spin wheel free tool is one of the fastest ways to make fair decisions, pick random winners, or add
+                    excitement to games and events. On onlinespinwheel.fun, you can type your options, spin once, and instantly
+                    see a clear, unbiased result that everyone can trust.
                   </p>
                   <p>
-                    This guide explains what a free spin wheel is, the best ways to use it, and how our small two-person team built a
+                    This guide explains what a free spin wheel is, the best ways to use it, and how our small two‑person team built a
                     simple, reliable tool you can use every day.
                   </p>
                 </div>
@@ -92,18 +94,18 @@ const SpinWheelFree = () => {
                 <div className="flex items-center gap-3 mb-6">
                   <Lightbulb className="h-8 w-8 text-yellow-400" />
                   <h2 className="text-3xl md:text-4xl font-bold">
-                    What Is a Spin Wheel Free Tool?
+                    What is a Spin Wheel Free Tool?
                   </h2>
                 </div>
                 
                 <div className="space-y-6 text-slate-300 leading-relaxed text-lg">
                   <p>
-                    A spin wheel free tool is an online random picker that uses a colorful wheel divided into segments for names,
+                    Our spin wheel free tool is an online random picker that uses a colorful wheel divided into segments for names,
                     prizes, or choices. When you click spin, the wheel rotates and stops at one segment, giving you one clear result
                     without any arguments or confusion.
                   </p>
                   <p>
-                    Unlike old-style paper draws or manual lists, a free online wheel spinner works on any device, does not need
+                    Unlike old‑style paper draws or manual lists, a free online wheel spinner works on any device, does not need
                     registration, and can be reused as many times as you like. This makes it ideal for teachers, creators,
                     businesses, and friends who want quick, visual decisions.
                   </p>
@@ -138,7 +140,7 @@ const SpinWheelFree = () => {
                         </div>
                         <div>
                           <h3 className="font-bold text-foreground mb-2">Full-Stack Developer</h3>
-                          <p className="text-sm">4 years of experience creating fast, stable web apps</p>
+                          <p className="text-sm">One full‑stack developer with 4 years of experience creating fast, stable web apps.</p>
                         </div>
                       </div>
                     </Card>
@@ -148,8 +150,8 @@ const SpinWheelFree = () => {
                           <TrendingUp className="h-6 w-6" />
                         </div>
                         <div>
-                          <h3 className="font-bold text-foreground mb-2">SEO & WordPress Specialist</h3>
-                          <p className="text-sm">3 years of experience growing websites and improving user experience</p>
+                          <h3 className="font-bold text-foreground mb-2">SEO and WordPress Specialist</h3>
+                          <p className="text-sm">One SEO and WordPress specialist with 3 years of experience growing websites and improving user experience.</p>
                         </div>
                       </div>
                     </Card>
@@ -161,7 +163,7 @@ const SpinWheelFree = () => {
                   </p>
                   <p>
                     Because we actively maintain and test the site, you get a tool that loads quickly, works smoothly on mobile and
-                    desktop, and stays aligned with the latest search and AI platform expectations for helpful, people-first content.
+                    desktop, and stays aligned with the latest search and AI platform expectations for helpful, people‑first content.
                   </p>
                 </div>
               </Card>
@@ -410,9 +412,6 @@ const SpinWheelFree = () => {
                     </div>
                   ))}
                 </div>
-                <p className="mt-6 text-muted-foreground italic text-center bg-slate-100 dark:bg-slate-800 p-4 rounded-2xl">
-                  These steps help your audience trust the process and enjoy the visual experience.
-                </p>
               </Card>
             </section>
 
