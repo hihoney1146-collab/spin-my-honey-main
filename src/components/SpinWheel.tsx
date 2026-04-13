@@ -45,6 +45,13 @@ const defaultColors = [
   "#e91e63", // Pink
 ];
 
+const fewEntryColors: Record<number, string[]> = {
+  1: ["#3498db"],
+  2: ["#e74c3c", "#3498db"],
+  3: ["#e74c3c", "#2ecc71", "#3498db"],
+  4: ["#e74c3c", "#2ecc71", "#3498db", "#f39c12"],
+};
+
 // Sound synthesis helper functions
 const createTickSound = (ctx: AudioContext) => {
   // WheelOfNames style "Tick" (Filtered Noise + High Resonance)
@@ -312,12 +319,26 @@ export const SpinWheel = () => {
     loadedImagesRef.current = loadedImages;
   }, [loadedImages]);
 
-  // Draw wheel when entries, rotation, or loadedImages change (only when not animating)
+  // Draw wheel when entries, rotation, or loadedImages change (only when not animating);
+  // ResizeObserver keeps slice label font scaling in sync when the canvas CSS size changes
   useEffect(() => {
-    // Only draw if not in an active animation loop (animations handle their own drawing)
+    const canvas = canvasRef.current;
+    const redraw = () => {
+      if (!continuousSpinRef.current && !spinAnimationRef.current) {
+        drawWheel();
+      }
+    };
+
     if (!continuousSpinRef.current && !spinAnimationRef.current) {
       drawWheel();
     }
+
+    if (!canvas) return;
+    const ro = new ResizeObserver(() => {
+      requestAnimationFrame(redraw);
+    });
+    ro.observe(canvas);
+    return () => ro.disconnect();
   }, [entries, rotation, loadedImages]);
 
   // Continuous slow spinning when not actively spinning
@@ -427,6 +448,16 @@ export const SpinWheel = () => {
     const currentEntries = customRotation !== undefined ? entriesRef.current : entries;
     const currentLoadedImages = customRotation !== undefined ? loadedImagesRef.current : loadedImages;
 
+    const entryCount = currentEntries.filter((e) => e.active).length || 1;
+    const maxFontForSlice = Math.floor(
+      2 * radius * Math.sin(Math.PI / entryCount) * 0.28,
+    );
+    const segmentFontPx = Math.min(
+      Math.round(radius * 0.12),
+      Math.max(12, maxFontForSlice),
+    );
+    const spinFontPx = Math.round(segmentFontPx * 0.55);
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // Draw Outer Rim (Metallic/Gradient effect)
@@ -477,10 +508,14 @@ export const SpinWheel = () => {
       ctx.arc(0, 0, radius, startAngle, endAngle);
       ctx.closePath();
 
-      // Slice Gradient (3D effect)
+      // Slice Gradient (3D effect) — use high-contrast palette when ≤4 entries
+      const sliceColor =
+        activeEntries.length <= 4 && fewEntryColors[activeEntries.length]
+          ? fewEntryColors[activeEntries.length][index]
+          : entry.color;
       const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, radius);
-      gradient.addColorStop(0, entry.color);
-      gradient.addColorStop(1, adjustColorBrightness(entry.color, -20)); // Darker at edges
+      gradient.addColorStop(0, sliceColor);
+      gradient.addColorStop(1, adjustColorBrightness(sliceColor, -20));
       ctx.fillStyle = gradient;
       ctx.fill();
 
@@ -532,23 +567,42 @@ export const SpinWheel = () => {
       ctx.strokeStyle = "rgba(255, 255, 255, 0.3)";
       ctx.stroke();
 
-      // Text
+      // Text — auto-scaled to fit within the slice
       ctx.save();
       ctx.rotate(startAngle + sliceAngle / 2);
+
+      const maxTextWidth = radius * 0.52;
+      const minFont = 8;
+      let fontSize = segmentFontPx;
+      ctx.font = `bold ${fontSize}px 'Inter', sans-serif`;
+
+      while (
+        ctx.measureText(entry.text).width > maxTextWidth &&
+        fontSize > minFont
+      ) {
+        fontSize -= 1;
+        ctx.font = `bold ${fontSize}px 'Inter', sans-serif`;
+      }
+
+      let label = entry.text;
+      if (ctx.measureText(label).width > maxTextWidth) {
+        while (ctx.measureText(label + "…").width > maxTextWidth && label.length > 1) {
+          label = label.slice(0, -1);
+        }
+        label += "…";
+      }
+
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
-      ctx.font = "bold 15px 'Inter', sans-serif";
 
-      const textX = radius * 0.7;
+      const textX = radius * 0.62;
 
-      // Text Shadow
-      ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
-      ctx.shadowBlur = 4;
+      ctx.shadowColor = "rgba(0, 0, 0, 0.6)";
+      ctx.shadowBlur = 3;
       ctx.shadowOffsetX = 1;
       ctx.shadowOffsetY = 1;
-
       ctx.fillStyle = "#ffffff";
-      ctx.fillText(entry.text, textX, 0);
+      ctx.fillText(label, textX, 0);
       ctx.restore();
     });
 
@@ -574,7 +628,7 @@ export const SpinWheel = () => {
     ctx.save();
     ctx.rotate((rotation * 0.3 * Math.PI) / 180);
     ctx.fillStyle = "#475569";
-    ctx.font = "800 12px 'Inter', sans-serif";
+    ctx.font = `800 ${spinFontPx}px 'Inter', sans-serif`;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.shadowColor = "transparent";
@@ -583,44 +637,67 @@ export const SpinWheel = () => {
 
     ctx.restore();
 
-    // Pointer (Floating effect)
-    const pointerX = centerX + radius + 18;
-    const pointerY = centerY;
+    // Pointer — sits on the right edge of the wheel, color matches the current slice
+    const pointerAngle = 0; // points right (3 o'clock)
+    const rotRad = (currentRotation * Math.PI) / 180;
+    let pointerColor = "#ef4444";
+    if (activeEntries.length > 0) {
+      const sliceArc = (2 * Math.PI) / activeEntries.length;
+      const normAngle =
+        ((pointerAngle - rotRad) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI);
+      const hitIndex = Math.floor(normAngle / sliceArc) % activeEntries.length;
+      const hitEntry = activeEntries[hitIndex];
+      pointerColor =
+        activeEntries.length <= 4 && fewEntryColors[activeEntries.length]
+          ? fewEntryColors[activeEntries.length][hitIndex]
+          : hitEntry.color;
+    }
+
+    const ptrTipX = centerX + radius - 4;
+    const ptrTipY = centerY;
+    const ptrLength = 36;
+    const ptrHalfWidth = 18;
 
     ctx.save();
-    // Pointer Shadow
+    // Shadow
+    ctx.shadowColor = "rgba(0,0,0,0.35)";
+    ctx.shadowBlur = 8;
+    ctx.shadowOffsetX = 2;
+    ctx.shadowOffsetY = 2;
+
+    // Body — triangle pointing left into the wheel
     ctx.beginPath();
-    ctx.moveTo(pointerX + 2, pointerY + 2);
-    ctx.lineTo(pointerX + 26, pointerY - 16);
-    ctx.lineTo(pointerX + 26, pointerY + 20);
+    ctx.moveTo(ptrTipX, ptrTipY);
+    ctx.lineTo(ptrTipX + ptrLength, ptrTipY - ptrHalfWidth);
+    ctx.lineTo(ptrTipX + ptrLength, ptrTipY + ptrHalfWidth);
     ctx.closePath();
-    ctx.fillStyle = "rgba(0,0,0,0.2)";
+    const ptrGrad = ctx.createLinearGradient(
+      ptrTipX, ptrTipY - ptrHalfWidth,
+      ptrTipX, ptrTipY + ptrHalfWidth,
+    );
+    ptrGrad.addColorStop(0, adjustColorBrightness(pointerColor, 20));
+    ptrGrad.addColorStop(1, adjustColorBrightness(pointerColor, -30));
+    ctx.fillStyle = ptrGrad;
     ctx.fill();
 
-    // Pointer Body
-    ctx.beginPath();
-    ctx.moveTo(pointerX, pointerY);
-    ctx.lineTo(pointerX + 24, pointerY - 18);
-    ctx.lineTo(pointerX + 24, pointerY + 18);
-    ctx.closePath();
-    const pointerGradient = ctx.createLinearGradient(pointerX, pointerY - 18, pointerX + 24, pointerY + 18);
-    pointerGradient.addColorStop(0, "#ef4444");
-    pointerGradient.addColorStop(1, "#dc2626");
-    ctx.fillStyle = pointerGradient;
-    ctx.fill();
+    // Outline for definition
+    ctx.lineWidth = 1.5;
+    ctx.strokeStyle = "rgba(0,0,0,0.25)";
+    ctx.stroke();
 
-    // Pointer Highlight
+    // Highlight edge
     ctx.beginPath();
-    ctx.moveTo(pointerX + 24, pointerY - 18);
-    ctx.lineTo(pointerX + 24, pointerY + 18);
-    ctx.strokeStyle = "rgba(255,255,255,0.4)";
+    ctx.moveTo(ptrTipX, ptrTipY);
+    ctx.lineTo(ptrTipX + ptrLength, ptrTipY - ptrHalfWidth);
+    ctx.strokeStyle = "rgba(255,255,255,0.5)";
     ctx.lineWidth = 1;
     ctx.stroke();
 
-    // Pointer Hub
+    // Small circle hub on the back of the pointer
     ctx.beginPath();
-    ctx.arc(pointerX + 20, pointerY, 6, 0, 2 * Math.PI);
-    ctx.fillStyle = "#f1f5f9";
+    ctx.arc(ptrTipX + ptrLength - 8, ptrTipY, 5, 0, 2 * Math.PI);
+    ctx.fillStyle = "rgba(255,255,255,0.6)";
+    ctx.shadowColor = "transparent";
     ctx.fill();
     ctx.restore();
   };
@@ -682,8 +759,9 @@ export const SpinWheel = () => {
   };
 
   const updateEntry = (id: string, text: string) => {
+    const capped = text.slice(0, 20);
     setEntries(
-      entries.map((entry) => (entry.id === id ? { ...entry, text } : entry))
+      entries.map((entry) => (entry.id === id ? { ...entry, text: capped } : entry))
     );
   };
 
@@ -898,7 +976,7 @@ export const SpinWheel = () => {
             width={480}
             height={480}
             onClick={spinWheel}
-            className={`w-full h-auto block rounded-full shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] transition-all duration-500 touch-manipulation ${isSpinning || activeEntries.length < 2
+            className={`w-full h-auto block text-base rounded-full shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] transition-all duration-500 touch-manipulation ${isSpinning || activeEntries.length < 2
               ? "cursor-not-allowed opacity-80 grayscale-[0.2]"
               : "cursor-pointer hover:scale-[1.02] active:scale-[0.98] hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.2)]"
               }`}
@@ -1143,6 +1221,16 @@ export const SpinWheel = () => {
                     <input
                       type="file"
                       accept="image/*"
+                      aria-label={
+                        entry.imageUrl
+                          ? "Change image for this wheel entry"
+                          : "Add image to this wheel entry"
+                      }
+                      title={
+                        entry.imageUrl
+                          ? "Change image for this wheel entry"
+                          : "Add image to this wheel entry"
+                      }
                       onChange={(e) => {
                         const file = e.target.files?.[0];
                         if (file) {
@@ -1188,6 +1276,7 @@ export const SpinWheel = () => {
                   <Input
                     value={entry.text}
                     onChange={(e) => updateEntry(entry.id, e.target.value)}
+                    maxLength={20}
                     className={`flex-1 border-0 bg-transparent focus-visible:ring-1 focus-visible:ring-primary/50 px-1.5 lg:px-2 py-1 h-auto text-xs lg:text-sm font-semibold ${entry.active ? "text-foreground" : "text-muted-foreground"
                       }`}
                     disabled={!entry.active}
@@ -1261,15 +1350,17 @@ export const SpinWheel = () => {
               >
                 Close
               </Button>
-              <Button
-                onClick={removeWinner}
-                size="lg"
-                variant="destructive"
-                className="flex-1 text-sm lg:text-base"
-              >
-                <Trash2 className="mr-2 h-3.5 w-3.5 lg:h-4 lg:w-4" />
-                Remove Winner
-              </Button>
+              {entries.length > 2 && (
+                <Button
+                  onClick={removeWinner}
+                  size="lg"
+                  variant="destructive"
+                  className="flex-1 text-sm lg:text-base"
+                >
+                  <Trash2 className="mr-2 h-3.5 w-3.5 lg:h-4 lg:w-4" />
+                  Remove Winner
+                </Button>
+              )}
             </div>
           </div>
         </DialogContent>
