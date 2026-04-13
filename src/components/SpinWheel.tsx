@@ -183,8 +183,9 @@ export const SpinWheel = () => {
   const sliceColorsRef = useRef<string[]>([]);
 
   const audioContextRef = useRef<AudioContext | null>(null);
+  const audioWarmedRef = useRef(false);
+  const isSpinningRef = useRef(false);
 
-  // Lazy-init AudioContext on first user gesture
   const getAudioCtx = (): AudioContext | null => {
     if (!audioContextRef.current) {
       const Ctor = window.AudioContext || (window as any).webkitAudioContext;
@@ -193,6 +194,24 @@ export const SpinWheel = () => {
     const ctx = audioContextRef.current;
     if (ctx && ctx.state === "suspended") ctx.resume();
     return ctx;
+  };
+
+  // Pre-warm audio pipeline on first interaction so first spin has zero cold start
+  const warmUpAudio = () => {
+    if (audioWarmedRef.current) return;
+    audioWarmedRef.current = true;
+    const ctx = getAudioCtx();
+    if (ctx) {
+      ensureTickBuffer(ctx);
+      // Play a silent gain node to fully activate the audio graph
+      const g = ctx.createGain();
+      g.gain.value = 0;
+      g.connect(ctx.destination);
+      const o = ctx.createOscillator();
+      o.connect(g);
+      o.start();
+      o.stop(ctx.currentTime + 0.01);
+    }
   };
 
   const triggerHaptic = (style: "light" | "medium" | "heavy" = "light") => {
@@ -655,7 +674,9 @@ export const SpinWheel = () => {
 
   const spinWheel = () => {
     const activeEntries = entries.filter((entry) => entry.active);
-    if (isSpinning || activeEntries.length < 2) return;
+    if (isSpinningRef.current || activeEntries.length < 2) return;
+
+    warmUpAudio();
 
     // Stop continuous spin
     if (continuousSpinRef.current !== null) {
@@ -663,7 +684,8 @@ export const SpinWheel = () => {
       continuousSpinRef.current = null;
     }
 
-    // CRITICAL: Set state immediately to prevent double clicks
+    // Block via ref immediately (no React render), then sync state
+    isSpinningRef.current = true;
     setIsSpinning(true);
     setWinner(null);
     triggerHaptic("medium");
@@ -739,6 +761,7 @@ export const SpinWheel = () => {
         setWinner(winningEntry.text);
         setWinnerColor(winningEntry.color);
         setWinnerId(winningEntry.id);
+        isSpinningRef.current = false;
         setIsSpinning(false);
         spinAnimationRef.current = null;
 
@@ -788,16 +811,17 @@ export const SpinWheel = () => {
       <div className="flex flex-col items-center justify-center gap-3 sm:gap-4 w-full px-4 sm:px-6 lg:px-8 lg:pl-6 lg:pr-[300px] xl:pr-[340px] 2xl:pr-[360px]">
         {/* Wheel Card */}
         <div
-          className="w-full max-w-[380px] xs:max-w-[420px] sm:max-w-[500px] md:max-w-[560px] lg:max-w-[580px] xl:max-w-[620px] 2xl:max-w-[660px] mx-auto relative group"
+          className="w-full max-w-[380px] xs:max-w-[420px] sm:max-w-[500px] md:max-w-[560px] lg:max-w-[580px] xl:max-w-[620px] 2xl:max-w-[660px] mx-auto relative"
           onClick={spinWheel}
+          onTouchStart={warmUpAudio}
+          onPointerDown={warmUpAudio}
         >
-          <div className="absolute inset-0 -z-10 rounded-full bg-gradient-to-br from-primary/20 via-primary/5 to-transparent blur-3xl opacity-50 transition-opacity duration-500 group-hover:opacity-70 pointer-events-none" />
           <canvas
             ref={canvasRef}
             width={480}
             height={480}
-            className={`w-full h-auto block text-base rounded-full shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] touch-manipulation will-change-transform ${isSpinning || activeEntries.length < 2
-              ? "cursor-not-allowed opacity-80 grayscale-[0.2]"
+            className={`w-full h-auto block text-base rounded-full shadow-lg touch-manipulation will-change-transform ${isSpinning || activeEntries.length < 2
+              ? "cursor-not-allowed"
               : "cursor-pointer"
               }`}
           />
@@ -820,6 +844,8 @@ export const SpinWheel = () => {
         <div className="w-full max-w-[380px] xs:max-w-[420px] sm:max-w-[500px] md:max-w-[560px] lg:max-w-[580px] xl:max-w-[620px] 2xl:max-w-[660px] mx-auto space-y-2">
           <Button
             onClick={spinWheel}
+            onTouchStart={warmUpAudio}
+            onPointerDown={warmUpAudio}
             disabled={isSpinning || activeEntries.length < 2}
             size="lg"
             className="text-sm sm:text-base lg:text-lg font-bold px-6 sm:px-8 lg:px-10 py-3 sm:py-4 h-auto bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-primary-foreground w-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none rounded-xl border-t border-white/20 relative overflow-hidden group touch-manipulation tracking-wide"
