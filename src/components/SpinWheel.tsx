@@ -176,6 +176,9 @@ export const SpinWheel = () => {
   const loadedImagesRef = useRef<Map<string, HTMLImageElement>>(loadedImages);
   const wheelCacheRef = useRef<HTMLCanvasElement | null>(null);
   const wheelCacheDirtyRef = useRef(true);
+  const rimCacheRef = useRef<HTMLCanvasElement | null>(null);
+  const activeEntriesCacheRef = useRef<WheelEntry[]>([]);
+  const sliceColorsRef = useRef<string[]>([]);
 
   // Audio refs - rhythmic spinning background + tick accents + applause
   const rhythmAudioRef = useRef<HTMLAudioElement | null>(null);
@@ -253,9 +256,10 @@ export const SpinWheel = () => {
   };
 
   const playTickSound = (speedMultiplier: number = 1.0) => {
-    const now = Date.now();
-    // Rate limiting: minimum 60ms between ticks (softer, more spaced)
-    if (now - lastTickTimeRef.current < 60) return;
+    const now = performance.now();
+    // Aggressive throttle on mobile: min 100ms between ticks at high speed, 60ms at low speed
+    const minGap = speedMultiplier > 1.2 ? 100 : 60;
+    if (now - lastTickTimeRef.current < minGap) return;
     lastTickTimeRef.current = now;
 
     const tickAudio = tickAudioPoolRef.current[tickPoolIndexRef.current];
@@ -607,10 +611,42 @@ export const SpinWheel = () => {
     ctx.fillText("SPIN", 0, 0);
 
     ctx.restore();
+
+    // Cache active entries and their resolved slice colors for per-frame pointer lookup
+    activeEntriesCacheRef.current = activeEntries;
+    const colors: string[] = [];
+    activeEntries.forEach((entry, i) => {
+      colors.push(
+        entryCount <= 4 && fewEntryColors[entryCount]
+          ? fewEntryColors[entryCount][i]
+          : entry.color,
+      );
+    });
+    sliceColorsRef.current = colors;
+
+    // Pre-render static rim to its own cache
+    let rimCanvas = rimCacheRef.current;
+    if (!rimCanvas || rimCanvas.width !== size) {
+      rimCanvas = document.createElement("canvas");
+      rimCanvas.width = size;
+      rimCanvas.height = size;
+      rimCacheRef.current = rimCanvas;
+    }
+    const rimCtx = rimCanvas.getContext("2d")!;
+    rimCtx.clearRect(0, 0, size, size);
+    rimCtx.beginPath();
+    rimCtx.arc(centerX, centerY, radius + 15, 0, 2 * Math.PI);
+    rimCtx.fillStyle = "#cbd5e1";
+    rimCtx.fill();
+    rimCtx.beginPath();
+    rimCtx.arc(centerX, centerY, radius + 2, 0, 2 * Math.PI);
+    rimCtx.fillStyle = "rgba(0,0,0,0.1)";
+    rimCtx.fill();
+
     wheelCacheDirtyRef.current = false;
   };
 
-  // Lightweight per-frame draw: blit cached wheel image (rotated) + pointer
+  // Ultra-lightweight per-frame draw: two image blits + one flat triangle
   const drawWheel = (customRotation?: number) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -627,22 +663,13 @@ export const SpinWheel = () => {
     const centerY = canvas.height / 2;
     const radius = Math.min(centerX, centerY) - 25;
     const currentRotation = customRotation !== undefined ? customRotation : rotation;
-    const currentEntries = customRotation !== undefined ? entriesRef.current : entries;
-    const activeEntries = currentEntries.filter((e) => e.active);
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Outer rim (static, cheap single arc)
-    ctx.save();
-    ctx.beginPath();
-    ctx.arc(centerX, centerY, radius + 15, 0, 2 * Math.PI);
-    ctx.fillStyle = "#cbd5e1";
-    ctx.fill();
-    ctx.beginPath();
-    ctx.arc(centerX, centerY, radius + 2, 0, 2 * Math.PI);
-    ctx.fillStyle = "rgba(0,0,0,0.1)";
-    ctx.fill();
-    ctx.restore();
+    // Blit cached rim
+    if (rimCacheRef.current) {
+      ctx.drawImage(rimCacheRef.current, 0, 0);
+    }
 
     // Blit cached wheel face with rotation
     ctx.save();
@@ -651,54 +678,30 @@ export const SpinWheel = () => {
     ctx.drawImage(offscreen, -centerX, -centerY);
     ctx.restore();
 
-    // Pointer — lightweight: simple triangle + one gradient
+    // Pointer — flat fill, no shadow, no gradient (max mobile perf)
+    const cachedColors = sliceColorsRef.current;
     let pointerColor = "#ef4444";
-    if (activeEntries.length > 0) {
-      const sliceArc = (2 * Math.PI) / activeEntries.length;
+    if (cachedColors.length > 0) {
+      const sliceArc = (2 * Math.PI) / cachedColors.length;
       const rotRad = (currentRotation * Math.PI) / 180;
       const normAngle = (((-rotRad) % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
-      const hitIndex = Math.floor(normAngle / sliceArc) % activeEntries.length;
-      pointerColor =
-        activeEntries.length <= 4 && fewEntryColors[activeEntries.length]
-          ? fewEntryColors[activeEntries.length][hitIndex]
-          : activeEntries[hitIndex].color;
+      const hitIndex = Math.floor(normAngle / sliceArc) % cachedColors.length;
+      pointerColor = cachedColors[hitIndex];
     }
 
     const ptrTipX = centerX + radius - 4;
     const ptrTipY = centerY;
-    const ptrLength = 36;
-    const ptrHalfWidth = 18;
 
-    ctx.save();
-    ctx.shadowColor = "rgba(0,0,0,0.35)";
-    ctx.shadowBlur = 8;
-    ctx.shadowOffsetX = 2;
-    ctx.shadowOffsetY = 2;
     ctx.beginPath();
     ctx.moveTo(ptrTipX, ptrTipY);
-    ctx.lineTo(ptrTipX + ptrLength, ptrTipY - ptrHalfWidth);
-    ctx.lineTo(ptrTipX + ptrLength, ptrTipY + ptrHalfWidth);
+    ctx.lineTo(ptrTipX + 36, ptrTipY - 18);
+    ctx.lineTo(ptrTipX + 36, ptrTipY + 18);
     ctx.closePath();
-    const ptrGrad = ctx.createLinearGradient(ptrTipX, ptrTipY - ptrHalfWidth, ptrTipX, ptrTipY + ptrHalfWidth);
-    ptrGrad.addColorStop(0, adjustColorBrightness(pointerColor, 20));
-    ptrGrad.addColorStop(1, adjustColorBrightness(pointerColor, -30));
-    ctx.fillStyle = ptrGrad;
+    ctx.fillStyle = pointerColor;
     ctx.fill();
-    ctx.lineWidth = 1.5;
-    ctx.strokeStyle = "rgba(0,0,0,0.25)";
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = "#ffffff";
     ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(ptrTipX, ptrTipY);
-    ctx.lineTo(ptrTipX + ptrLength, ptrTipY - ptrHalfWidth);
-    ctx.strokeStyle = "rgba(255,255,255,0.5)";
-    ctx.lineWidth = 1;
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.arc(ptrTipX + ptrLength - 8, ptrTipY, 5, 0, 2 * Math.PI);
-    ctx.fillStyle = "rgba(255,255,255,0.6)";
-    ctx.shadowColor = "transparent";
-    ctx.fill();
-    ctx.restore();
   };
 
   // Helper to darken colors for gradient
