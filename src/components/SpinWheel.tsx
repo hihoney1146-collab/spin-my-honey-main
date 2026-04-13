@@ -52,64 +52,69 @@ const fewEntryColors: Record<number, string[]> = {
   4: ["#e74c3c", "#2ecc71", "#3498db", "#f39c12"],
 };
 
-// Sound synthesis helper functions
-const createTickSound = (ctx: AudioContext) => {
-  // WheelOfNames style "Tick" (Filtered Noise + High Resonance)
-  const bufferSize = ctx.sampleRate * 0.05; // 50ms buffer
-  const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-  const data = buffer.getChannelData(0);
-
-  // Generate white noise
-  for (let i = 0; i < bufferSize; i++) {
-    data[i] = Math.random() * 2 - 1;
+// Pre-generate tick buffer once per AudioContext (zero-latency playback)
+let tickBuffer: AudioBuffer | null = null;
+const ensureTickBuffer = (ctx: AudioContext) => {
+  if (tickBuffer && tickBuffer.sampleRate === ctx.sampleRate) return tickBuffer;
+  const len = Math.floor(ctx.sampleRate * 0.012); // 12ms — crisp click
+  const buf = ctx.createBuffer(1, len, ctx.sampleRate);
+  const d = buf.getChannelData(0);
+  for (let i = 0; i < len; i++) {
+    const t = i / ctx.sampleRate;
+    // Sharp attack sine burst at 3200Hz + harmonic, fast decay
+    const env = Math.exp(-t * 500);
+    d[i] = env * (Math.sin(2 * Math.PI * 3200 * t) * 0.6 +
+                  Math.sin(2 * Math.PI * 1200 * t) * 0.4);
   }
+  tickBuffer = buf;
+  return buf;
+};
 
-  const noise = ctx.createBufferSource();
-  noise.buffer = buffer;
-
-  const noiseFilter = ctx.createBiquadFilter();
-  noiseFilter.type = 'lowpass';
-  noiseFilter.frequency.value = 1000;
-  noiseFilter.Q.value = 5; // Higher resonance for "wood/plastic" tone
-
-  const noiseGain = ctx.createGain();
-
-  noise.connect(noiseFilter);
-  noiseFilter.connect(noiseGain);
-  noiseGain.connect(ctx.destination);
-
-  const now = ctx.currentTime;
-
-  // Sharp, short envelope
-  noiseGain.gain.setValueAtTime(0.8, now);
-  noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.03);
-
-  noise.start(now);
+const playTick = (ctx: AudioContext, volume: number = 0.5) => {
+  const buf = ensureTickBuffer(ctx);
+  const src = ctx.createBufferSource();
+  src.buffer = buf;
+  const gain = ctx.createGain();
+  gain.gain.value = Math.min(1, Math.max(0.1, volume));
+  src.connect(gain);
+  gain.connect(ctx.destination);
+  src.start(0);
 };
 
 const createWinSound = (ctx: AudioContext) => {
   const now = ctx.currentTime;
-  const notes = [523.25, 659.25, 783.99, 1046.50, 1174.66, 1567.98];
-
-  notes.forEach((freq, i) => {
+  // Celebratory ascending fanfare — two layers for richness
+  const melody = [523.25, 659.25, 783.99, 1046.50];
+  melody.forEach((freq, i) => {
+    ["triangle", "sine"].forEach((type) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = type as OscillatorType;
+      osc.frequency.value = freq;
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      const t = now + i * 0.08;
+      gain.gain.setValueAtTime(0, t);
+      gain.gain.linearRampToValueAtTime(type === "triangle" ? 0.18 : 0.1, t + 0.04);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.6);
+      osc.start(t);
+      osc.stop(t + 0.6);
+    });
+  });
+  // Final shimmer chord
+  [1318.5, 1568, 2093].forEach((freq) => {
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
-
-    osc.type = 'triangle';
+    osc.type = "sine";
     osc.frequency.value = freq;
-
     osc.connect(gain);
     gain.connect(ctx.destination);
-
-    const startTime = now + (i * 0.05);
-    const duration = 0.7;
-
-    gain.gain.setValueAtTime(0, startTime);
-    gain.gain.linearRampToValueAtTime(0.22, startTime + 0.08);
-    gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
-
-    osc.start(startTime);
-    osc.stop(startTime + duration);
+    const t = now + 0.35;
+    gain.gain.setValueAtTime(0, t);
+    gain.gain.linearRampToValueAtTime(0.12, t + 0.06);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + 1.2);
+    osc.start(t);
+    osc.stop(t + 1.2);
   });
 };
 
@@ -177,147 +182,52 @@ export const SpinWheel = () => {
   const loadedImagesRef = useRef<Map<string, HTMLImageElement>>(loadedImages);
   const sliceColorsRef = useRef<string[]>([]);
 
-  // Audio refs - rhythmic spinning background + tick accents + applause
-  const rhythmAudioRef = useRef<HTMLAudioElement | null>(null);
-  const tickAudioPoolRef = useRef<HTMLAudioElement[]>([]);
-  const tickPoolIndexRef = useRef<number>(0);
-  const winAudioRef = useRef<HTMLAudioElement | null>(null);
-  const clickAudioRef = useRef<HTMLAudioElement | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
-  const lastTickTimeRef = useRef<number>(0);
 
-  // Initialize audio on component mount
-  useEffect(() => {
-    // Continuous rhythmic spinning background sound
-    const rhythmAudio = new Audio('/sounds/spin_rhythm.mp3');
-    rhythmAudio.volume = 0.5;
-    rhythmAudio.loop = true;
-    rhythmAudio.preload = 'auto';
-    rhythmAudioRef.current = rhythmAudio;
-
-    // Create pool of tick sounds for subtle segment accents
-    const tickPool: HTMLAudioElement[] = [];
-    for (let i = 0; i < 10; i++) {
-      const audio = new Audio('/sounds/tick.mp3');
-      audio.volume = 0.15; // Softer ticks over rhythmic background
-      audio.preload = 'auto';
-      tickPool.push(audio);
+  // Lazy-init AudioContext on first user gesture
+  const getAudioCtx = (): AudioContext | null => {
+    if (!audioContextRef.current) {
+      const Ctor = window.AudioContext || (window as any).webkitAudioContext;
+      if (Ctor) audioContextRef.current = new Ctor();
     }
-    tickAudioPoolRef.current = tickPool;
-
-    // Win sound (applause/clapping)
-    const winAudio = new Audio('/sounds/win.mp3');
-    winAudio.volume = 0.7;
-    winAudio.preload = 'auto';
-    winAudioRef.current = winAudio;
-
-    // Click sound for UI interactions
-    const clickAudio = new Audio();
-    clickAudio.volume = 0.2;
-    clickAudioRef.current = clickAudio;
-
-    // Initialize Web Audio context for fallback
-    const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
-    if (AudioContextClass) {
-      audioContextRef.current = new AudioContextClass();
-    }
-
-    return () => {
-      rhythmAudio.pause();
-      winAudio.pause();
-    };
-  }, []);
-
-  const startRhythmSound = () => {
-    const rhythmAudio = rhythmAudioRef.current;
-    if (rhythmAudio) {
-      rhythmAudio.currentTime = 0;
-      rhythmAudio.play().catch(() => {});
-    }
-  };
-
-  const stopRhythmSound = () => {
-    const rhythmAudio = rhythmAudioRef.current;
-    if (rhythmAudio) {
-      // Smooth fade out over 800ms
-      const fadeInterval = setInterval(() => {
-        if (rhythmAudio.volume > 0.05) {
-          rhythmAudio.volume = Math.max(0, rhythmAudio.volume - 0.05);
-        } else {
-          rhythmAudio.pause();
-          rhythmAudio.volume = 0.5; // Reset for next spin
-          clearInterval(fadeInterval);
-        }
-      }, 80);
-    }
+    const ctx = audioContextRef.current;
+    if (ctx && ctx.state === "suspended") ctx.resume();
+    return ctx;
   };
 
   const triggerHaptic = (style: "light" | "medium" | "heavy" = "light") => {
     try {
       if (navigator.vibrate) {
-        const ms = style === "heavy" ? 30 : style === "medium" ? 15 : 8;
-        navigator.vibrate(ms);
+        navigator.vibrate(style === "heavy" ? 30 : style === "medium" ? 15 : 6);
       }
     } catch {}
   };
 
-  const playTickSound = (speedMultiplier: number = 1.0) => {
-    const now = performance.now();
-    // Scale throttle: fast spin → skip more ticks, slow spin → play every one
-    const minGap = Math.min(120, Math.max(30, 30 / Math.max(speedMultiplier, 0.3)));
-    if (now - lastTickTimeRef.current < minGap) return;
-    lastTickTimeRef.current = now;
-
+  // Zero-latency tick: Web Audio pre-buffered, no throttle
+  const playTickSound = (volume: number = 0.5) => {
+    const ctx = getAudioCtx();
+    if (ctx) playTick(ctx, volume);
     triggerHaptic("light");
-
-    const tickAudio = tickAudioPoolRef.current[tickPoolIndexRef.current];
-    if (tickAudio) {
-      tickAudio.currentTime = 0;
-      tickAudio.playbackRate = Math.max(0.7, Math.min(1.5, speedMultiplier));
-      tickAudio.play().catch(() => {});
-      tickPoolIndexRef.current = (tickPoolIndexRef.current + 1) % tickAudioPoolRef.current.length;
-    }
-  };
-
-  const playSoundEffect = (type: 'rhythm_start' | 'rhythm_stop' | 'tick' | 'win' | 'click', speedMultiplier?: number) => {
-    try {
-      switch (type) {
-        case 'rhythm_start':
-          startRhythmSound();
-          break;
-        case 'rhythm_stop':
-          stopRhythmSound();
-          break;
-        case 'tick':
-          playTickSound(speedMultiplier ?? 1.0);
-          break;
-        case 'win':
-          playWinSound();
-          break;
-        case 'click':
-          playClickSound();
-          break;
-      }
-    } catch (e) {
-      console.warn('Audio playback error:', e);
-    }
   };
 
   const playWinSound = () => {
+    const ctx = getAudioCtx();
+    if (ctx) createWinSound(ctx);
     triggerHaptic("heavy");
-    const ctx = audioContextRef.current;
-    if (ctx) {
-      if (ctx.state === 'suspended') ctx.resume();
-      createWinSound(ctx);
-    }
   };
 
   const playClickSound = () => {
+    const ctx = getAudioCtx();
+    if (ctx) createClickSound(ctx);
     triggerHaptic("medium");
-    const ctx = audioContextRef.current;
-    if (!ctx) return;
-    if (ctx.state === 'suspended') ctx.resume();
-    createClickSound(ctx);
+  };
+
+  const playSoundEffect = (type: "tick" | "win" | "click", volume?: number) => {
+    try {
+      if (type === "tick") playTickSound(volume ?? 0.5);
+      else if (type === "win") playWinSound();
+      else if (type === "click") playClickSound();
+    } catch {}
   };
 
   // Save entries to localStorage whenever they change
@@ -766,58 +676,50 @@ export const SpinWheel = () => {
       });
     }
 
-    // High speed, long duration spin for realistic physics
-    // 40-60 full rotations (very fast start)
-    const spins = 40 + Math.random() * 20;
+    // WheelOfNames-style physics: moderate rotations, smooth cubic deceleration
+    const spins = 8 + Math.random() * 6; // 8-14 full rotations
     const extraDegrees = Math.random() * 360;
     const totalRotation = spins * 360 + extraDegrees;
 
-    // Get current rotation at start
     const startRotation = rotationRef.current;
-    // Long duration: 10-14 seconds
-    const duration = 10000 + Math.random() * 4000;
+    const duration = 6000 + Math.random() * 2000; // 6-8 seconds
     const startTime = performance.now();
 
     const sliceAngle = 360 / activeEntries.length;
     let lastSegmentIndex = -1;
-    let lastRotation = startRotation;
 
-    // Physics-based easing with realistic deceleration
-    const easeOutQuart = (t: number): number => {
-      return 1 - Math.pow(1 - t, 4);
-    };
-
-    // Helper to calculate current segment under the pointer
     const getCurrentSegment = (rot: number): number => {
-      const pointerAngle = 0;
-      const adjustedAngle = (360 - rot + pointerAngle) % 360;
-      return Math.floor(adjustedAngle / sliceAngle) % activeEntries.length;
+      return Math.floor(((360 - rot) % 360 + 360) % 360 / sliceAngle) % activeEntries.length;
     };
+
+    // Smooth power curve — feels like real friction
+    const ease = (t: number): number => 1 - Math.pow(1 - t, 3.5);
 
     const animate = (now: number) => {
       const elapsed = now - startTime;
       const progress = Math.min(elapsed / duration, 1);
-
-      // Smooth deceleration using Quartic easing
-      const easedProgress = easeOutQuart(progress);
+      const easedProgress = ease(progress);
 
       const newRotation = (startRotation + totalRotation * easedProgress) % 360;
-      
-      // Calculate wheel speed (degrees per frame), handling 360→0 wrap
-      let rotationDelta = Math.abs(newRotation - lastRotation);
-      if (rotationDelta > 180) rotationDelta = 360 - rotationDelta;
-      const speedMultiplier = Math.min(2.0, Math.max(0.8, rotationDelta * 8));
-      
       rotationRef.current = newRotation;
 
-      // Check for segment change and play tick sound
+      // Tick on EVERY segment crossing — volume fades as wheel slows
       const currentSegment = getCurrentSegment(newRotation);
       if (currentSegment !== lastSegmentIndex) {
-        playSoundEffect("tick", speedMultiplier);
+        const speed = 1 - progress; // 1 at start, 0 at end
+        const volume = 0.15 + speed * 0.45; // louder when fast, softer when slow
+        playSoundEffect("tick", volume);
+        // Pointer bounce
+        const ptr = pointerRef.current;
+        if (ptr) {
+          ptr.style.transform = "translateY(-50%) translateX(30%) scale(0.85)";
+          requestAnimationFrame(() => {
+            ptr.style.transform = "translateY(-50%) translateX(30%) scale(1)";
+          });
+        }
         lastSegmentIndex = currentSegment;
       }
 
-      lastRotation = newRotation;
       setCanvasRotation(newRotation);
       updatePointerColor(newRotation);
 
@@ -899,7 +801,7 @@ export const SpinWheel = () => {
               : "cursor-pointer"
               }`}
           />
-          {/* Pointer — pure HTML, sits outside canvas rotation, GPU composited */}
+          {/* Pointer — pure HTML, bounces on each tick */}
           <div
             ref={pointerRef}
             className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-[30%] w-0 h-0 pointer-events-none"
@@ -908,6 +810,8 @@ export const SpinWheel = () => {
               borderBottom: "18px solid transparent",
               borderRight: "36px solid #ef4444",
               filter: "drop-shadow(2px 1px 2px rgba(0,0,0,0.3))",
+              transition: "transform 80ms ease-out, border-right-color 60ms",
+              willChange: "transform",
             }}
           />
         </div>
