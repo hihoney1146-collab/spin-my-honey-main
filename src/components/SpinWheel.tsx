@@ -817,7 +817,7 @@ export const SpinWheel = () => {
             ref={canvasRef}
             width={480}
             height={480}
-            className={`w-full h-auto block text-base rounded-full shadow-lg touch-manipulation will-change-transform ${isSpinning || activeEntries.length < 2
+            className={`w-full h-auto block text-base rounded-full touch-manipulation will-change-transform ${isSpinning || activeEntries.length < 2
               ? "cursor-not-allowed"
               : "cursor-pointer"
               }`}
