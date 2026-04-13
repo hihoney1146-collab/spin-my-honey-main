@@ -252,12 +252,23 @@ export const SpinWheel = () => {
     }
   };
 
+  const triggerHaptic = (style: "light" | "medium" | "heavy" = "light") => {
+    try {
+      if (navigator.vibrate) {
+        const ms = style === "heavy" ? 30 : style === "medium" ? 15 : 8;
+        navigator.vibrate(ms);
+      }
+    } catch {}
+  };
+
   const playTickSound = (speedMultiplier: number = 1.0) => {
     const now = performance.now();
-    // Aggressive throttle on mobile: min 100ms between ticks at high speed, 60ms at low speed
-    const minGap = speedMultiplier > 1.2 ? 100 : 60;
+    // Scale throttle: fast spin → skip more ticks, slow spin → play every one
+    const minGap = Math.min(120, Math.max(30, 30 / Math.max(speedMultiplier, 0.3)));
     if (now - lastTickTimeRef.current < minGap) return;
     lastTickTimeRef.current = now;
+
+    triggerHaptic("light");
 
     const tickAudio = tickAudioPoolRef.current[tickPoolIndexRef.current];
     if (tickAudio) {
@@ -293,6 +304,7 @@ export const SpinWheel = () => {
   };
 
   const playWinSound = () => {
+    triggerHaptic("heavy");
     const ctx = audioContextRef.current;
     if (ctx) {
       if (ctx.state === 'suspended') ctx.resume();
@@ -301,6 +313,7 @@ export const SpinWheel = () => {
   };
 
   const playClickSound = () => {
+    triggerHaptic("medium");
     const ctx = audioContextRef.current;
     if (!ctx) return;
     if (ctx.state === 'suspended') ctx.resume();
@@ -743,6 +756,7 @@ export const SpinWheel = () => {
     // CRITICAL: Set state immediately to prevent double clicks
     setIsSpinning(true);
     setWinner(null);
+    triggerHaptic("medium");
 
     // Track spin event
     if (typeof window !== 'undefined' && (window as any).gtag) {
@@ -789,9 +803,10 @@ export const SpinWheel = () => {
 
       const newRotation = (startRotation + totalRotation * easedProgress) % 360;
       
-      // Calculate wheel speed (degrees per frame) for tick sound speed matching
-      const rotationDelta = Math.abs(newRotation - lastRotation);
-      const speedMultiplier = Math.min(2.0, Math.max(0.8, rotationDelta * 8)); // Map rotation speed to playback rate
+      // Calculate wheel speed (degrees per frame), handling 360→0 wrap
+      let rotationDelta = Math.abs(newRotation - lastRotation);
+      if (rotationDelta > 180) rotationDelta = 360 - rotationDelta;
+      const speedMultiplier = Math.min(2.0, Math.max(0.8, rotationDelta * 8));
       
       rotationRef.current = newRotation;
 
