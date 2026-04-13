@@ -7,7 +7,6 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import {
-  Plus,
   Trash2,
   Play,
   Shuffle,
@@ -175,7 +174,6 @@ export const SpinWheel = () => {
     ];
   });
 
-  const [newEntry, setNewEntry] = useState("");
   const [bulkPasteText, setBulkPasteText] = useState("");
   const [entriesPageIndex, setEntriesPageIndex] = useState(0);
   /** Large screens: entries list starts collapsed so the panel does not overlap page content */
@@ -596,33 +594,6 @@ export const SpinWheel = () => {
         .toString(16)
         .slice(1)
     );
-  };
-
-  const addEntry = () => {
-    const trimmed = newEntry.trim().slice(0, MAX_ENTRY_TEXT_LEN);
-    if (trimmed) {
-      const colorIndex = entries.length % defaultColors.length;
-      setEntries([
-        ...entries,
-        {
-          id: Date.now().toString(),
-          text: trimmed,
-          color: defaultColors[colorIndex],
-          active: true,
-        },
-      ]);
-      setNewEntry("");
-      playSoundEffect("click");
-      toast.success("Entry added!");
-
-      // Track customization
-      if (typeof window !== 'undefined' && (window as any).gtag) {
-        (window as any).gtag('event', 'wheel_customized', {
-          'event_category': 'engagement',
-          'event_label': 'added_option'
-        });
-      }
-    }
   };
 
   const addBulkEntries = () => {
@@ -1046,36 +1017,11 @@ export const SpinWheel = () => {
               </Badge>
             </div>
             <p className="text-[11px] text-muted-foreground ml-3.5 font-medium">
-              Customize your wheel options below
+              Paste entries below or edit them in the list
             </p>
           </div>
 
           <Separator className="mb-3 lg:mb-4 flex-shrink-0" />
-
-          {/* Add New Entry */}
-          <div className="mb-3 lg:mb-4 relative z-10 flex-shrink-0">
-            <label className="text-[10px] lg:text-[11px] font-bold text-foreground/80 mb-1.5 lg:mb-2 flex items-center gap-1.5 uppercase tracking-wide">
-              <div className="w-1 h-1 rounded-full bg-primary" />
-              Add New Entry
-            </label>
-            <div className="flex gap-2">
-              <Input
-                value={newEntry}
-                onChange={(e) => setNewEntry(e.target.value)}
-                onKeyPress={(e) => e.key === "Enter" && addEntry()}
-                placeholder="Enter name..."
-                className="flex-1 h-9 lg:h-10 text-xs lg:text-sm border-2 border-border focus:border-primary bg-background/80 backdrop-blur-sm transition-all shadow-sm focus:shadow-md focus:ring-2 focus:ring-primary/20"
-              />
-              <Button
-                onClick={addEntry}
-                size="sm"
-                className="px-3 lg:px-4 h-9 lg:h-10 bg-primary hover:bg-primary/90 shadow-md hover:shadow-lg transition-all font-semibold text-primary-foreground"
-              >
-                <Plus className="h-3.5 w-3.5 lg:h-4 lg:w-4 mr-1" />
-                <span className="text-xs lg:text-sm">Add</span>
-              </Button>
-            </div>
-          </div>
 
           {/* Bulk paste — one entry per line */}
           <div className="mb-3 lg:mb-4 relative z-10 flex-shrink-0">
@@ -1099,9 +1045,9 @@ export const SpinWheel = () => {
               type="button"
               onClick={addBulkEntries}
               disabled={isSpinning}
-              variant="secondary"
+              variant="outline"
               size="sm"
-              className="mt-2 w-full h-9 lg:h-10 text-xs lg:text-sm font-semibold border-2 border-border hover:border-primary/40 hover:bg-primary/5"
+              className="mt-2 w-full h-9 lg:h-10 text-xs lg:text-sm font-semibold border-2 border-primary/35 bg-background text-foreground shadow-sm hover:bg-primary/10 hover:text-foreground hover:border-primary/55 [&_svg]:text-foreground dark:border-border dark:hover:border-primary/40"
             >
               <ListPlus className="h-3.5 w-3.5 lg:h-4 lg:w-4 mr-1.5" />
               Add all lines to wheel
@@ -1174,8 +1120,11 @@ export const SpinWheel = () => {
             <button
               type="button"
               id="entries-list-heading"
-              aria-expanded={desktopEntriesListExpanded}
-              aria-controls="entries-list-panel"
+              aria-label={
+                desktopEntriesListExpanded
+                  ? "Collapse entries list"
+                  : "Expand entries list"
+              }
               onClick={() => setDesktopEntriesListExpanded((o) => !o)}
               className="hidden lg:flex text-[11px] font-bold text-foreground/80 mb-2 w-full items-center justify-between gap-2 uppercase tracking-wide flex-shrink-0 rounded-lg text-left cursor-pointer px-2 py-1.5 -mx-2 hover:bg-muted/70 transition-colors"
             >
@@ -1216,7 +1165,7 @@ export const SpinWheel = () => {
                   No Entries Yet
                 </p>
                 <p className="text-[10px] lg:text-[11px] text-muted-foreground leading-relaxed">
-                  Add some names above to get started
+                  Paste one name per line here, then tap Add all lines to wheel
                 </p>
               </div>
             ) : (
