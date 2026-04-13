@@ -216,8 +216,9 @@ export const SpinWheel = () => {
 
   const triggerHaptic = (style: "light" | "medium" | "heavy" = "light") => {
     try {
-      if (navigator.vibrate) {
-        navigator.vibrate(style === "heavy" ? 30 : style === "medium" ? 15 : 6);
+      if (typeof navigator.vibrate === "function") {
+        const ms = style === "heavy" ? 80 : style === "medium" ? 40 : 15;
+        navigator.vibrate(ms);
       }
     } catch {}
   };
