@@ -302,32 +302,10 @@ const Index = () => {
       <article>
         <section
           id="spin-wheel"
-          className="w-full py-4 sm:py-6 md:py-8 lg:py-10 bg-gradient-to-b from-background to-muted/20 relative"
+          className="w-full pt-2 sm:pt-3 md:pt-4 lg:pt-5 pb-4 sm:pb-6 md:pb-8 lg:pb-10 bg-gradient-to-b from-background to-muted/20 relative"
           itemScope
           itemType="https://schema.org/WebPageElement"
         >
-          <div className="max-w-7xl mx-auto text-center mb-4 sm:mb-6 md:mb-8 px-4 sm:px-6 lg:px-8 lg:pr-[360px] xl:pr-[420px] 2xl:pr-[440px]">
-            <h1 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mb-2 sm:mb-3 tracking-tight">
-              <span className="bg-gradient-to-r from-orange-500 via-yellow-500 to-green-500 bg-clip-text text-transparent">
-                Online Spin
-              </span>
-              <span className="bg-gradient-to-r from-green-500 via-teal-500 to-blue-500 bg-clip-text text-transparent">
-                {" "}Wheel:
-              </span>
-              <span className="bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 bg-clip-text text-transparent">
-                {" "}
-                Free Random
-              </span>
-              <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
-                {" "}
-                Picker for Names, Numbers, and Prizes
-              </span>
-            </h1>
-            <p className="text-sm sm:text-base md:text-base lg:text-lg text-muted-foreground mb-2 sm:mb-3 max-w-3xl mx-auto leading-relaxed px-2">
-              Make fair, fun decisions in seconds with a colorful online spin wheel you can customize for games, classrooms, and giveaways. Add names, numbers, or prizes and let the wheel pick a random winner for you.
-            </p>
-          </div>
-
           <SpinWheel />
         </section>
 

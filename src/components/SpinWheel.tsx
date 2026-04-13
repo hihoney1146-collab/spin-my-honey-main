@@ -968,7 +968,7 @@ export const SpinWheel = () => {
       {/* Wheel Section - Centered */}
       <div className="flex flex-col items-center justify-center gap-3 sm:gap-4 w-full px-4 sm:px-6 lg:px-8 lg:pl-6 lg:pr-[300px] xl:pr-[340px] 2xl:pr-[360px]">
         {/* Wheel Card */}
-        <div className="w-full max-w-[340px] xs:max-w-[380px] sm:max-w-[440px] md:max-w-[500px] lg:max-w-[520px] xl:max-w-[560px] 2xl:max-w-[600px] mx-auto relative group">
+        <div className="w-full max-w-[380px] xs:max-w-[420px] sm:max-w-[500px] md:max-w-[560px] lg:max-w-[580px] xl:max-w-[620px] 2xl:max-w-[660px] mx-auto relative group">
           <div className="absolute inset-0 -z-10 rounded-full bg-gradient-to-br from-primary/20 via-primary/5 to-transparent blur-3xl opacity-50 transition-opacity duration-500 group-hover:opacity-70 pointer-events-none" />
           <canvas
             ref={canvasRef}
@@ -983,7 +983,7 @@ export const SpinWheel = () => {
         </div>
 
         {/* Spin Button */}
-        <div className="w-full max-w-[340px] xs:max-w-[380px] sm:max-w-[440px] md:max-w-[500px] lg:max-w-[520px] xl:max-w-[560px] 2xl:max-w-[600px] mx-auto space-y-2">
+        <div className="w-full max-w-[380px] xs:max-w-[420px] sm:max-w-[500px] md:max-w-[560px] lg:max-w-[580px] xl:max-w-[620px] 2xl:max-w-[660px] mx-auto space-y-2">
           <Button
             onClick={spinWheel}
             disabled={isSpinning || activeEntries.length < 2}
@@ -1017,7 +1017,7 @@ export const SpinWheel = () => {
         {/* Winner Display */}
         {winner && (
           <Card
-            className="p-3 sm:p-4 lg:p-5 w-full max-w-[340px] xs:max-w-[380px] sm:max-w-[440px] md:max-w-[500px] lg:max-w-[520px] xl:max-w-[560px] 2xl:max-w-[600px] mx-auto border-2 shadow-2xl animate-in fade-in zoom-in duration-500 relative overflow-hidden backdrop-blur-sm"
+            className="p-3 sm:p-4 lg:p-5 w-full max-w-[380px] xs:max-w-[420px] sm:max-w-[500px] md:max-w-[560px] lg:max-w-[580px] xl:max-w-[620px] 2xl:max-w-[660px] mx-auto border-2 shadow-2xl animate-in fade-in zoom-in duration-500 relative overflow-hidden backdrop-blur-sm"
             style={{
               backgroundColor: `${winnerColor}10`,
               borderColor: winnerColor,
