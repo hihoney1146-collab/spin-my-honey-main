@@ -166,6 +166,7 @@ export const SpinWheel = () => {
   const [winnerColor, setWinnerColor] = useState<string>("");
   const [winnerId, setWinnerId] = useState<string>("");
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const pointerRef = useRef<HTMLDivElement>(null);
   const [loadedImages, setLoadedImages] = useState<
     Map<string, HTMLImageElement>
   >(new Map());
@@ -174,10 +175,6 @@ export const SpinWheel = () => {
   const rotationRef = useRef<number>(rotation);
   const entriesRef = useRef<WheelEntry[]>(entries);
   const loadedImagesRef = useRef<Map<string, HTMLImageElement>>(loadedImages);
-  const wheelCacheRef = useRef<HTMLCanvasElement | null>(null);
-  const wheelCacheDirtyRef = useRef(true);
-  const rimCacheRef = useRef<HTMLCanvasElement | null>(null);
-  const activeEntriesCacheRef = useRef<WheelEntry[]>([]);
   const sliceColorsRef = useRef<string[]>([]);
 
   // Audio refs - rhythmic spinning background + tick accents + applause
@@ -310,11 +307,10 @@ export const SpinWheel = () => {
     createClickSound(ctx);
   };
 
-  // Save entries to localStorage whenever they change + invalidate wheel cache
+  // Save entries to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem("spinWheelEntries", JSON.stringify(entries));
     entriesRef.current = entries;
-    wheelCacheDirtyRef.current = true;
   }, [entries]);
 
   // Update refs whenever state changes
@@ -324,86 +320,47 @@ export const SpinWheel = () => {
 
   useEffect(() => {
     loadedImagesRef.current = loadedImages;
-    wheelCacheDirtyRef.current = true;
   }, [loadedImages]);
 
-  // Draw wheel when entries, rotation, or loadedImages change (only when not animating);
-  // ResizeObserver keeps slice label font scaling in sync when the canvas CSS size changes
+  // Redraw static wheel when entries or images change; ResizeObserver handles resize
   useEffect(() => {
+    drawWheel();
+    setCanvasRotation(rotationRef.current);
+    updatePointerColor(rotationRef.current);
+
     const canvas = canvasRef.current;
-    const redraw = () => {
-      if (!continuousSpinRef.current && !spinAnimationRef.current) {
-        drawWheel();
-      }
-    };
-
-    if (!continuousSpinRef.current && !spinAnimationRef.current) {
-      drawWheel();
-    }
-
     if (!canvas) return;
-    const ro = new ResizeObserver(() => {
-      wheelCacheDirtyRef.current = true;
-      requestAnimationFrame(redraw);
-    });
+    const ro = new ResizeObserver(() => requestAnimationFrame(drawWheel));
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [entries, rotation, loadedImages]);
+  }, [entries, loadedImages]);
 
-  // Continuous slow spinning when not actively spinning
+  // Continuous slow idle spin — CSS transform only, zero canvas work
   useEffect(() => {
-    const activeEntries = entries.filter((entry) => entry.active);
+    const active = entries.filter((e) => e.active);
 
-    // Stop continuous spin if spinning or not enough entries
-    if (isSpinning || activeEntries.length < 2) {
+    if (isSpinning || active.length < 2) {
       if (continuousSpinRef.current !== null) {
         cancelAnimationFrame(continuousSpinRef.current);
         continuousSpinRef.current = null;
       }
-      // Update state when stopping animation
-      if (!isSpinning && activeEntries.length >= 2) {
-        setRotation(rotationRef.current);
-      }
       return;
     }
 
-    // Start continuous slow spin - 0.15 degrees per frame at ~60fps = ~9 degrees/second
-    let animationRotation = rotationRef.current;
-
-    const continuousSpin = () => {
-      // Check if we should continue using refs (avoid closure issues)
-      const shouldContinue = !isSpinning &&
-        canvasRef.current &&
-        entriesRef.current.filter((e) => e.active).length >= 2;
-
-      if (!shouldContinue) {
-        continuousSpinRef.current = null;
-        // Sync state when stopping
-        setRotation(rotationRef.current);
-        return;
-      }
-
-      // Update rotation - smooth increment for continuous spin
-      animationRotation = (animationRotation + 0.15) % 360;
-      rotationRef.current = animationRotation;
-
-      // Draw wheel directly with current rotation - NO state update during animation!
-      // This ensures 60fps smooth animation without React re-renders
-      drawWheel(animationRotation);
-
-      // Schedule next frame immediately
-      continuousSpinRef.current = requestAnimationFrame(continuousSpin);
+    let deg = rotationRef.current;
+    const tick = () => {
+      deg = (deg + 0.15) % 360;
+      rotationRef.current = deg;
+      setCanvasRotation(deg);
+      updatePointerColor(deg);
+      continuousSpinRef.current = requestAnimationFrame(tick);
     };
-
-    // Start the animation loop immediately
-    continuousSpinRef.current = requestAnimationFrame(continuousSpin);
+    continuousSpinRef.current = requestAnimationFrame(tick);
 
     return () => {
       if (continuousSpinRef.current !== null) {
         cancelAnimationFrame(continuousSpinRef.current);
         continuousSpinRef.current = null;
-        // Sync state when cleanup
-        setRotation(rotationRef.current);
       }
     };
   }, [isSpinning, entries]);
@@ -441,11 +398,14 @@ export const SpinWheel = () => {
     });
   }, [entries.map((e) => e.id + e.imageUrl).join(",")]);
 
-  // Build the offscreen wheel face (slices, text, images, hub) — called only when
-  // entries, images, or canvas size change, NOT every animation frame.
-  const buildWheelCache = () => {
+  // Draw the static wheel face (rim + slices + text + hub) directly onto the
+  // visible canvas. Called only when entries/images change — never during animation.
+  // Rotation is handled entirely by CSS transform on the canvas element.
+  const drawWheel = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
     const size = canvas.width;
     const centerX = size / 2;
@@ -455,16 +415,17 @@ export const SpinWheel = () => {
     const curEntries = entriesRef.current;
     const curImages = loadedImagesRef.current;
 
-    let offscreen = wheelCacheRef.current;
-    if (!offscreen || offscreen.width !== size) {
-      offscreen = document.createElement("canvas");
-      offscreen.width = size;
-      offscreen.height = size;
-      wheelCacheRef.current = offscreen;
-    }
-
-    const ctx = offscreen.getContext("2d")!;
     ctx.clearRect(0, 0, size, size);
+
+    // Rim
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius + 15, 0, 2 * Math.PI);
+    ctx.fillStyle = "#cbd5e1";
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius + 2, 0, 2 * Math.PI);
+    ctx.fillStyle = "rgba(0,0,0,0.1)";
+    ctx.fill();
 
     const activeEntries = curEntries.filter((e) => e.active);
     if (activeEntries.length === 0) {
@@ -475,7 +436,7 @@ export const SpinWheel = () => {
       ctx.lineWidth = 4;
       ctx.strokeStyle = "#cbd5e1";
       ctx.stroke();
-      wheelCacheDirtyRef.current = false;
+      sliceColorsRef.current = [];
       return;
     }
 
@@ -490,7 +451,17 @@ export const SpinWheel = () => {
     const spinFontPx = Math.round(segmentFontPx * 0.55);
     const sliceAngle = (2 * Math.PI) / entryCount;
 
-    // Draw centered at origin then translate
+    // Build slice-color lookup for pointer
+    const colors: string[] = [];
+    activeEntries.forEach((entry, i) => {
+      colors.push(
+        entryCount <= 4 && fewEntryColors[entryCount]
+          ? fewEntryColors[entryCount][i]
+          : entry.color,
+      );
+    });
+    sliceColorsRef.current = colors;
+
     ctx.save();
     ctx.translate(centerX, centerY);
 
@@ -503,10 +474,7 @@ export const SpinWheel = () => {
       ctx.arc(0, 0, radius, startAngle, endAngle);
       ctx.closePath();
 
-      const sliceColor =
-        entryCount <= 4 && fewEntryColors[entryCount]
-          ? fewEntryColors[entryCount][index]
-          : entry.color;
+      const sliceColor = colors[index];
       const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, radius);
       gradient.addColorStop(0, sliceColor);
       gradient.addColorStop(1, adjustColorBrightness(sliceColor, -20));
@@ -522,7 +490,6 @@ export const SpinWheel = () => {
         ctx.arc(0, 0, radius, startAngle, endAngle);
         ctx.closePath();
         ctx.clip();
-
         const sliceCenterAngle = startAngle + sliceAngle / 2;
         const innerRadius = 45;
         const sliceWidth = radius - innerRadius;
@@ -595,7 +562,6 @@ export const SpinWheel = () => {
     hubGrad.addColorStop(1, "#e2e8f0");
     ctx.fillStyle = hubGrad;
     ctx.fill();
-
     ctx.shadowColor = "transparent";
     ctx.beginPath();
     ctx.arc(0, 0, 25, 0, 2 * Math.PI);
@@ -611,97 +577,26 @@ export const SpinWheel = () => {
     ctx.fillText("SPIN", 0, 0);
 
     ctx.restore();
-
-    // Cache active entries and their resolved slice colors for per-frame pointer lookup
-    activeEntriesCacheRef.current = activeEntries;
-    const colors: string[] = [];
-    activeEntries.forEach((entry, i) => {
-      colors.push(
-        entryCount <= 4 && fewEntryColors[entryCount]
-          ? fewEntryColors[entryCount][i]
-          : entry.color,
-      );
-    });
-    sliceColorsRef.current = colors;
-
-    // Pre-render static rim to its own cache
-    let rimCanvas = rimCacheRef.current;
-    if (!rimCanvas || rimCanvas.width !== size) {
-      rimCanvas = document.createElement("canvas");
-      rimCanvas.width = size;
-      rimCanvas.height = size;
-      rimCacheRef.current = rimCanvas;
-    }
-    const rimCtx = rimCanvas.getContext("2d")!;
-    rimCtx.clearRect(0, 0, size, size);
-    rimCtx.beginPath();
-    rimCtx.arc(centerX, centerY, radius + 15, 0, 2 * Math.PI);
-    rimCtx.fillStyle = "#cbd5e1";
-    rimCtx.fill();
-    rimCtx.beginPath();
-    rimCtx.arc(centerX, centerY, radius + 2, 0, 2 * Math.PI);
-    rimCtx.fillStyle = "rgba(0,0,0,0.1)";
-    rimCtx.fill();
-
-    wheelCacheDirtyRef.current = false;
   };
 
-  // Ultra-lightweight per-frame draw: two image blits + one flat triangle
-  const drawWheel = (customRotation?: number) => {
+  // Update pointer color based on current rotation (no canvas work)
+  const updatePointerColor = (deg: number) => {
+    const ptr = pointerRef.current;
+    if (!ptr) return;
+    const colors = sliceColorsRef.current;
+    if (colors.length === 0) return;
+    const sliceArc = 360 / colors.length;
+    const normAngle = ((360 - deg) % 360 + 360) % 360;
+    const hitIndex = Math.floor(normAngle / sliceArc) % colors.length;
+    ptr.style.borderRightColor = colors[hitIndex];
+  };
+
+  // Apply CSS rotation to the canvas (GPU-composited, zero canvas redraws)
+  const setCanvasRotation = (deg: number) => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    if (wheelCacheDirtyRef.current || !wheelCacheRef.current) {
-      buildWheelCache();
+    if (canvas) {
+      canvas.style.transform = `rotate(${deg}deg)`;
     }
-    const offscreen = wheelCacheRef.current;
-    if (!offscreen) return;
-
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
-    const radius = Math.min(centerX, centerY) - 25;
-    const currentRotation = customRotation !== undefined ? customRotation : rotation;
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Blit cached rim
-    if (rimCacheRef.current) {
-      ctx.drawImage(rimCacheRef.current, 0, 0);
-    }
-
-    // Blit cached wheel face with rotation
-    ctx.save();
-    ctx.translate(centerX, centerY);
-    ctx.rotate((currentRotation * Math.PI) / 180);
-    ctx.drawImage(offscreen, -centerX, -centerY);
-    ctx.restore();
-
-    // Pointer — flat fill, no shadow, no gradient (max mobile perf)
-    const cachedColors = sliceColorsRef.current;
-    let pointerColor = "#ef4444";
-    if (cachedColors.length > 0) {
-      const sliceArc = (2 * Math.PI) / cachedColors.length;
-      const rotRad = (currentRotation * Math.PI) / 180;
-      const normAngle = (((-rotRad) % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
-      const hitIndex = Math.floor(normAngle / sliceArc) % cachedColors.length;
-      pointerColor = cachedColors[hitIndex];
-    }
-
-    const ptrTipX = centerX + radius - 4;
-    const ptrTipY = centerY;
-
-    ctx.beginPath();
-    ctx.moveTo(ptrTipX, ptrTipY);
-    ctx.lineTo(ptrTipX + 36, ptrTipY - 18);
-    ctx.lineTo(ptrTipX + 36, ptrTipY + 18);
-    ctx.closePath();
-    ctx.fillStyle = pointerColor;
-    ctx.fill();
-    ctx.lineWidth = 2;
-    ctx.strokeStyle = "#ffffff";
-    ctx.stroke();
   };
 
   // Helper to darken colors for gradient
@@ -908,7 +803,8 @@ export const SpinWheel = () => {
       }
 
       lastRotation = newRotation;
-      drawWheel(newRotation);
+      setCanvasRotation(newRotation);
+      updatePointerColor(newRotation);
 
       if (progress < 1) {
         spinAnimationRef.current = requestAnimationFrame(animate);
@@ -918,7 +814,10 @@ export const SpinWheel = () => {
         const winningIndex = getCurrentSegment(finalRotation);
         const winningEntry = activeEntries[winningIndex];
 
-        // Only update state at the very end
+        // Sync CSS rotation + pointer, then update React state
+        rotationRef.current = finalRotation;
+        setCanvasRotation(finalRotation);
+        updatePointerColor(finalRotation);
         setRotation(finalRotation);
         setWinner(winningEntry.text);
         setWinnerColor(winningEntry.color);
@@ -971,17 +870,30 @@ export const SpinWheel = () => {
       {/* Wheel Section - Centered */}
       <div className="flex flex-col items-center justify-center gap-3 sm:gap-4 w-full px-4 sm:px-6 lg:px-8 lg:pl-6 lg:pr-[300px] xl:pr-[340px] 2xl:pr-[360px]">
         {/* Wheel Card */}
-        <div className="w-full max-w-[380px] xs:max-w-[420px] sm:max-w-[500px] md:max-w-[560px] lg:max-w-[580px] xl:max-w-[620px] 2xl:max-w-[660px] mx-auto relative group">
+        <div
+          className="w-full max-w-[380px] xs:max-w-[420px] sm:max-w-[500px] md:max-w-[560px] lg:max-w-[580px] xl:max-w-[620px] 2xl:max-w-[660px] mx-auto relative group"
+          onClick={spinWheel}
+        >
           <div className="absolute inset-0 -z-10 rounded-full bg-gradient-to-br from-primary/20 via-primary/5 to-transparent blur-3xl opacity-50 transition-opacity duration-500 group-hover:opacity-70 pointer-events-none" />
           <canvas
             ref={canvasRef}
             width={480}
             height={480}
-            onClick={spinWheel}
-            className={`w-full h-auto block text-base rounded-full shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] transition-all duration-500 touch-manipulation ${isSpinning || activeEntries.length < 2
+            className={`w-full h-auto block text-base rounded-full shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] touch-manipulation will-change-transform ${isSpinning || activeEntries.length < 2
               ? "cursor-not-allowed opacity-80 grayscale-[0.2]"
-              : "cursor-pointer hover:scale-[1.02] active:scale-[0.98] hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.2)]"
+              : "cursor-pointer"
               }`}
+          />
+          {/* Pointer — pure HTML, sits outside canvas rotation, GPU composited */}
+          <div
+            ref={pointerRef}
+            className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-[30%] w-0 h-0 pointer-events-none"
+            style={{
+              borderTop: "18px solid transparent",
+              borderBottom: "18px solid transparent",
+              borderRight: "36px solid #ef4444",
+              filter: "drop-shadow(2px 1px 2px rgba(0,0,0,0.3))",
+            }}
           />
         </div>
 
