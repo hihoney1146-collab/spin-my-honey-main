@@ -21,6 +21,7 @@ import {
   ListPlus,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
   ListX,
 } from "lucide-react";
 import confetti from "canvas-confetti";
@@ -177,6 +178,8 @@ export const SpinWheel = () => {
   const [newEntry, setNewEntry] = useState("");
   const [bulkPasteText, setBulkPasteText] = useState("");
   const [entriesPageIndex, setEntriesPageIndex] = useState(0);
+  /** Large screens: entries list starts collapsed so the panel does not overlap page content */
+  const [desktopEntriesListExpanded, setDesktopEntriesListExpanded] = useState(false);
   const [isSpinning, setIsSpinning] = useState(false);
   const [rotation, setRotation] = useState(0);
   const [winner, setWinner] = useState<string | null>(null);
@@ -1157,18 +1160,53 @@ export const SpinWheel = () => {
 
           <Separator className="mb-3 lg:mb-4 flex-shrink-0" />
 
-          {/* Entries List — paginated, 10 rows per page (no full-panel scroll) */}
+          {/* Entries List — paginated; lg+ collapsible header so the panel stays short and avoids overlapping page content */}
           <div className="relative z-10 flex flex-col">
-            <label className="text-[10px] lg:text-[11px] font-bold text-foreground/80 mb-1.5 lg:mb-2 flex items-center justify-between uppercase tracking-wide flex-shrink-0">
+            <div className="lg:hidden text-[10px] font-bold text-foreground/80 mb-1.5 flex items-center justify-between uppercase tracking-wide flex-shrink-0">
               <span className="flex items-center gap-1.5">
                 <div className="w-1 h-1 rounded-full bg-primary" />
                 Entries List
               </span>
-              <span className="text-muted-foreground font-bold text-[9px] lg:text-[10px] bg-muted px-1.5 lg:px-2 py-0.5 rounded-full">
+              <span className="text-muted-foreground font-bold text-[9px] bg-muted px-1.5 py-0.5 rounded-full">
                 {entries.length} Total
               </span>
-            </label>
+            </div>
+            <button
+              type="button"
+              id="entries-list-heading"
+              aria-expanded={desktopEntriesListExpanded}
+              aria-controls="entries-list-panel"
+              onClick={() => setDesktopEntriesListExpanded((o) => !o)}
+              className="hidden lg:flex text-[11px] font-bold text-foreground/80 mb-2 w-full items-center justify-between gap-2 uppercase tracking-wide flex-shrink-0 rounded-lg text-left cursor-pointer px-2 py-1.5 -mx-2 hover:bg-muted/70 transition-colors"
+            >
+              <span className="flex items-center gap-1.5 min-w-0">
+                <div className="w-1 h-1 rounded-full bg-primary flex-shrink-0" />
+                <span className="truncate">Entries List</span>
+                <span className="text-[9px] font-normal normal-case text-muted-foreground truncate">
+                  {desktopEntriesListExpanded ? "Hide" : "Expand"}
+                </span>
+              </span>
+              <span className="flex items-center gap-1.5 flex-shrink-0">
+                <span className="text-muted-foreground font-bold text-[10px] bg-muted px-2 py-0.5 rounded-full">
+                  {entries.length} Total
+                </span>
+                <ChevronDown
+                  className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${desktopEntriesListExpanded ? "rotate-180" : ""}`}
+                  aria-hidden
+                />
+              </span>
+            </button>
 
+            <div
+              id="entries-list-panel"
+              role="region"
+              aria-label="Entries list"
+              className={
+                desktopEntriesListExpanded
+                  ? "block"
+                  : "max-lg:block lg:hidden"
+              }
+            >
             {entries.length === 0 ? (
               <div className="text-center py-6 lg:py-8 px-3 lg:px-4 border-2 border-dashed border-primary/30 rounded-lg bg-primary/5 backdrop-blur-sm">
                 <div className="text-3xl lg:text-4xl mb-2 lg:mb-3 animate-bounce">
@@ -1360,6 +1398,7 @@ export const SpinWheel = () => {
                 </div>
               </>
             )}
+            </div>
           </div>
         </Card>
       </div>
