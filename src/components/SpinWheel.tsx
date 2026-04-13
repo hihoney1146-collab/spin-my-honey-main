@@ -19,6 +19,9 @@ import {
   X,
   Image as ImageIcon,
   ListPlus,
+  ChevronLeft,
+  ChevronRight,
+  ListX,
 } from "lucide-react";
 import confetti from "canvas-confetti";
 import { toast } from "sonner";
@@ -57,6 +60,7 @@ const fewEntryColors: Record<number, string[]> = {
 
 const MAX_ENTRY_TEXT_LEN = 20;
 const MAX_BULK_LINES = 400;
+const ENTRIES_PAGE_SIZE = 10;
 
 // Pre-generate tick buffer once per AudioContext (zero-latency playback)
 let tickBuffer: AudioBuffer | null = null;
@@ -172,6 +176,7 @@ export const SpinWheel = () => {
 
   const [newEntry, setNewEntry] = useState("");
   const [bulkPasteText, setBulkPasteText] = useState("");
+  const [entriesPageIndex, setEntriesPageIndex] = useState(0);
   const [isSpinning, setIsSpinning] = useState(false);
   const [rotation, setRotation] = useState(0);
   const [winner, setWinner] = useState<string | null>(null);
@@ -273,6 +278,11 @@ export const SpinWheel = () => {
     loadedImagesRef.current = loadedImages;
   }, [loadedImages]);
 
+  useEffect(() => {
+    const maxPage = Math.max(0, Math.ceil(entries.length / ENTRIES_PAGE_SIZE) - 1);
+    setEntriesPageIndex((p) => Math.min(p, maxPage));
+  }, [entries.length]);
+
   // Redraw static wheel when entries or images change; ResizeObserver handles resize
   useEffect(() => {
     drawWheel();
@@ -289,8 +299,10 @@ export const SpinWheel = () => {
   // Continuous slow idle spin — CSS transform only, zero canvas work
   useEffect(() => {
     const active = entries.filter((e) => e.active);
+    // Empty wheel (watermark): spin forever. Single active slice: no idle spin.
+    const idleSpinAllowed = active.length === 0 || active.length >= 2;
 
-    if (isSpinning || active.length < 2) {
+    if (isSpinning || !idleSpinAllowed) {
       if (continuousSpinRef.current !== null) {
         cancelAnimationFrame(continuousSpinRef.current);
         continuousSpinRef.current = null;
@@ -372,11 +384,26 @@ export const SpinWheel = () => {
     if (activeEntries.length === 0) {
       ctx.beginPath();
       ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
-      ctx.fillStyle = "#f8fafc";
+      ctx.fillStyle = resolvedTheme === "dark" ? "#1e293b" : "#f8fafc";
       ctx.fill();
       ctx.lineWidth = 1.5;
-      ctx.strokeStyle = "#94a3b8";
+      ctx.strokeStyle = resolvedTheme === "dark" ? "#475569" : "#94a3b8";
       ctx.stroke();
+
+      const isDark = resolvedTheme === "dark";
+      // Centered watermark only (no separate hint copy)
+      ctx.save();
+      ctx.translate(centerX, centerY);
+      ctx.rotate(-Math.PI / 5.5);
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      const wmPx = Math.round(radius * 0.3);
+      ctx.font = `800 ${wmPx}px Inter, system-ui, sans-serif`;
+      ctx.fillStyle = isDark ? "rgba(248, 250, 252, 0.055)" : "rgba(15, 23, 42, 0.045)";
+      ctx.fillText("ADD", 0, -wmPx * 0.42);
+      ctx.fillText("ENTRIES", 0, wmPx * 0.42);
+      ctx.restore();
+
       sliceColorsRef.current = [];
       return;
     }
@@ -710,6 +737,28 @@ export const SpinWheel = () => {
     toast.success("Entries reset to defaults!");
   };
 
+  const clearAllEntries = () => {
+    if (entries.length === 0) return;
+    if (
+      !window.confirm(
+        "Remove every entry from the wheel? Use Reset afterward if you want the sample names back.",
+      )
+    ) {
+      return;
+    }
+    setEntries([]);
+    setWinner(null);
+    setWinnerId("");
+    setWinnerColor("");
+    setShowWinnerDialog(false);
+    setEntriesPageIndex(0);
+    rotationRef.current = 0;
+    setRotation(0);
+    setCanvasRotation(0);
+    playSoundEffect("click");
+    toast.success("All entries cleared.");
+  };
+
   const removeWinner = () => {
     if (winnerId && entries.length > 2) {
       setEntries(entries.filter((entry) => entry.id !== winnerId));
@@ -856,6 +905,11 @@ export const SpinWheel = () => {
   };
 
   const activeEntries = entries.filter((entry) => entry.active);
+  const entriesTotalPages = Math.max(1, Math.ceil(entries.length / ENTRIES_PAGE_SIZE));
+  const pagedEntries = entries.slice(
+    entriesPageIndex * ENTRIES_PAGE_SIZE,
+    entriesPageIndex * ENTRIES_PAGE_SIZE + ENTRIES_PAGE_SIZE,
+  );
 
   return (
     <>
@@ -880,7 +934,7 @@ export const SpinWheel = () => {
           {/* Pointer — pure HTML, bounces on each tick */}
           <div
             ref={pointerRef}
-            className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-[30%] w-0 h-0 pointer-events-none dark:drop-shadow-[2px_2px_3px_rgba(0,0,0,0.45)]"
+            className={`absolute top-1/2 right-0 -translate-y-1/2 translate-x-[30%] w-0 h-0 pointer-events-none dark:drop-shadow-[2px_2px_3px_rgba(0,0,0,0.45)] ${activeEntries.length === 0 ? "opacity-0" : "opacity-100"}`}
             style={{
               borderTop: "18px solid transparent",
               borderBottom: "18px solid transparent",
@@ -971,7 +1025,7 @@ export const SpinWheel = () => {
 
       {/* Controls Section - Right Sidebar */}
       <div className="w-full lg:w-[340px] xl:w-[400px] 2xl:w-[420px] px-4 lg:px-0 mt-8 lg:mt-0 lg:absolute lg:right-0 lg:top-0 lg:z-40">
-        <Card className="p-4 lg:p-6 bg-card/95 border border-border/50 shadow-xl backdrop-blur-xl relative overflow-hidden w-full flex flex-col rounded-2xl min-h-0 h-[calc(100dvh-2rem)] lg:h-[calc(100vh-2rem)] lg:max-h-[calc(100vh-2rem)]">
+        <Card className="p-4 lg:p-6 bg-card/95 border border-border/50 shadow-xl backdrop-blur-xl relative overflow-hidden w-full flex flex-col rounded-2xl">
           {/* Header */}
           <div className="mb-4 relative z-10 flex-shrink-0">
             <div className="flex items-center justify-between mb-2">
@@ -995,9 +1049,8 @@ export const SpinWheel = () => {
 
           <Separator className="mb-3 lg:mb-4 flex-shrink-0" />
 
-          <div className="flex-1 min-h-0 overflow-y-auto overscroll-y-contain pr-0.5 lg:pr-1 scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent hover:scrollbar-thumb-primary/50">
           {/* Add New Entry */}
-          <div className="mb-3 lg:mb-4 relative z-10">
+          <div className="mb-3 lg:mb-4 relative z-10 flex-shrink-0">
             <label className="text-[10px] lg:text-[11px] font-bold text-foreground/80 mb-1.5 lg:mb-2 flex items-center gap-1.5 uppercase tracking-wide">
               <div className="w-1 h-1 rounded-full bg-primary" />
               Add New Entry
@@ -1022,7 +1075,7 @@ export const SpinWheel = () => {
           </div>
 
           {/* Bulk paste — one entry per line */}
-          <div className="mb-3 lg:mb-4 relative z-10">
+          <div className="mb-3 lg:mb-4 relative z-10 flex-shrink-0">
             <label className="text-[10px] lg:text-[11px] font-bold text-foreground/80 mb-1.5 lg:mb-2 flex items-center gap-1.5 uppercase tracking-wide">
               <div className="w-1 h-1 rounded-full bg-primary" />
               Bulk add entries
@@ -1053,12 +1106,12 @@ export const SpinWheel = () => {
           </div>
 
           {/* Action Buttons */}
-          <div className="mb-3 lg:mb-4 relative z-10">
+          <div className="mb-3 lg:mb-4 relative z-10 flex-shrink-0">
             <label className="text-[10px] lg:text-[11px] font-bold text-foreground/80 mb-1.5 lg:mb-2 flex items-center gap-1.5 uppercase tracking-wide">
               <div className="w-1 h-1 rounded-full bg-primary" />
               Quick Actions
             </label>
-            <div className="grid grid-cols-3 gap-1.5 lg:gap-2">
+            <div className="grid grid-cols-2 gap-1.5 lg:gap-2">
               <Button
                 onClick={shuffleEntries}
                 disabled={isSpinning}
@@ -1084,19 +1137,29 @@ export const SpinWheel = () => {
                 disabled={isSpinning}
                 variant="outline"
                 size="sm"
-                className="h-8 lg:h-9 text-[10px] lg:text-[11px] font-bold hover:bg-red-50 hover:border-red-500 hover:text-red-600 transition-all border-2 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+                className="h-8 lg:h-9 text-[10px] lg:text-[11px] font-bold hover:bg-amber-50 hover:border-amber-500 hover:text-amber-700 transition-all border-2 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <RotateCcw className="h-3 w-3 lg:h-3.5 lg:w-3.5 mr-0.5 lg:mr-1" />
                 Reset
               </Button>
+              <Button
+                onClick={clearAllEntries}
+                disabled={isSpinning || entries.length === 0}
+                variant="outline"
+                size="sm"
+                className="h-8 lg:h-9 text-[10px] lg:text-[11px] font-bold hover:bg-red-50 hover:border-red-500 hover:text-red-600 transition-all border-2 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <ListX className="h-3 w-3 lg:h-3.5 lg:w-3.5 mr-0.5 lg:mr-1" />
+                Clear all
+              </Button>
             </div>
           </div>
 
-          <Separator className="mb-3 lg:mb-4" />
+          <Separator className="mb-3 lg:mb-4 flex-shrink-0" />
 
-          {/* Entries List */}
-          <div className="relative z-10 pb-1">
-            <label className="text-[10px] lg:text-[11px] font-bold text-foreground/80 mb-1.5 lg:mb-2 flex items-center justify-between uppercase tracking-wide">
+          {/* Entries List — paginated, 10 rows per page (no full-panel scroll) */}
+          <div className="relative z-10 flex flex-col">
+            <label className="text-[10px] lg:text-[11px] font-bold text-foreground/80 mb-1.5 lg:mb-2 flex items-center justify-between uppercase tracking-wide flex-shrink-0">
               <span className="flex items-center gap-1.5">
                 <div className="w-1 h-1 rounded-full bg-primary" />
                 Entries List
@@ -1105,8 +1168,65 @@ export const SpinWheel = () => {
                 {entries.length} Total
               </span>
             </label>
-            <div className="space-y-2">
-              {entries.map((entry, index) => (
+
+            {entries.length === 0 ? (
+              <div className="text-center py-6 lg:py-8 px-3 lg:px-4 border-2 border-dashed border-primary/30 rounded-lg bg-primary/5 backdrop-blur-sm">
+                <div className="text-3xl lg:text-4xl mb-2 lg:mb-3 animate-bounce">
+                  🎯
+                </div>
+                <p className="text-xs lg:text-sm font-bold text-foreground mb-1 lg:mb-1.5">
+                  No Entries Yet
+                </p>
+                <p className="text-[10px] lg:text-[11px] text-muted-foreground leading-relaxed">
+                  Add some names above to get started
+                </p>
+              </div>
+            ) : (
+              <>
+                {entriesTotalPages > 1 && (
+                  <div className="flex items-center justify-between gap-2 mb-2 flex-shrink-0">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      className="h-8 px-2 lg:px-2.5"
+                      disabled={entriesPageIndex <= 0}
+                      onClick={() => setEntriesPageIndex((p) => Math.max(0, p - 1))}
+                      aria-label="Previous page of entries"
+                    >
+                      <ChevronLeft className="h-4 w-4" />
+                    </Button>
+                    <span className="text-[10px] lg:text-[11px] font-semibold text-muted-foreground tabular-nums">
+                      Page {entriesPageIndex + 1} of {entriesTotalPages}
+                      <span className="text-muted-foreground/70 font-normal">
+                        {" "}
+                        · {entriesPageIndex * ENTRIES_PAGE_SIZE + 1}–
+                        {Math.min(
+                          (entriesPageIndex + 1) * ENTRIES_PAGE_SIZE,
+                          entries.length,
+                        )}
+                      </span>
+                    </span>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      className="h-8 px-2 lg:px-2.5"
+                      disabled={entriesPageIndex >= entriesTotalPages - 1}
+                      onClick={() =>
+                        setEntriesPageIndex((p) =>
+                          Math.min(entriesTotalPages - 1, p + 1),
+                        )
+                      }
+                      aria-label="Next page of entries"
+                    >
+                      <ChevronRight className="h-4 w-4" />
+                    </Button>
+                  </div>
+                )}
+
+                <div className="space-y-2">
+              {pagedEntries.map((entry, index) => (
                 <div
                   key={entry.id}
                   className={`group flex items-center gap-2 p-2 rounded-lg border transition-all duration-200 ${entry.active
@@ -1114,10 +1234,10 @@ export const SpinWheel = () => {
                     : "bg-muted/30 border-transparent opacity-60 hover:opacity-80"
                     }`}
                 >
-                  {/* Entry Number */}
+                  {/* Entry Number (global index) */}
                   <div className="flex items-center justify-center min-w-[20px] lg:min-w-[24px] h-5 lg:h-6 rounded-md bg-primary/10 border border-primary/20 flex-shrink-0">
                     <span className="text-[9px] lg:text-[10px] font-bold text-primary">
-                      {index + 1}
+                      {entriesPageIndex * ENTRIES_PAGE_SIZE + index + 1}
                     </span>
                   </div>
 
@@ -1237,22 +1357,9 @@ export const SpinWheel = () => {
                   </Button>
                 </div>
               ))}
-            </div>
-          </div>
-
-          {entries.length === 0 && (
-            <div className="text-center py-6 lg:py-8 px-3 lg:px-4 border-2 border-dashed border-primary/30 rounded-lg bg-primary/5 backdrop-blur-sm relative z-10">
-              <div className="text-3xl lg:text-4xl mb-2 lg:mb-3 animate-bounce">
-                🎯
-              </div>
-              <p className="text-xs lg:text-sm font-bold text-foreground mb-1 lg:mb-1.5">
-                No Entries Yet
-              </p>
-              <p className="text-[10px] lg:text-[11px] text-muted-foreground leading-relaxed">
-                Add some names above to get started
-              </p>
-            </div>
-          )}
+                </div>
+              </>
+            )}
           </div>
         </Card>
       </div>
