@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -17,6 +18,7 @@ import {
   PartyPopper,
   X,
   Image as ImageIcon,
+  ListPlus,
 } from "lucide-react";
 import confetti from "canvas-confetti";
 import { toast } from "sonner";
@@ -52,6 +54,9 @@ const fewEntryColors: Record<number, string[]> = {
   3: ["#e74c3c", "#2ecc71", "#3498db"],
   4: ["#e74c3c", "#2ecc71", "#3498db", "#f39c12"],
 };
+
+const MAX_ENTRY_TEXT_LEN = 20;
+const MAX_BULK_LINES = 400;
 
 // Pre-generate tick buffer once per AudioContext (zero-latency playback)
 let tickBuffer: AudioBuffer | null = null;
@@ -166,6 +171,7 @@ export const SpinWheel = () => {
   });
 
   const [newEntry, setNewEntry] = useState("");
+  const [bulkPasteText, setBulkPasteText] = useState("");
   const [isSpinning, setIsSpinning] = useState(false);
   const [rotation, setRotation] = useState(0);
   const [winner, setWinner] = useState<string | null>(null);
@@ -563,13 +569,14 @@ export const SpinWheel = () => {
   };
 
   const addEntry = () => {
-    if (newEntry.trim()) {
+    const trimmed = newEntry.trim().slice(0, MAX_ENTRY_TEXT_LEN);
+    if (trimmed) {
       const colorIndex = entries.length % defaultColors.length;
       setEntries([
         ...entries,
         {
           id: Date.now().toString(),
-          text: newEntry.trim(),
+          text: trimmed,
           color: defaultColors[colorIndex],
           active: true,
         },
@@ -588,6 +595,50 @@ export const SpinWheel = () => {
     }
   };
 
+  const addBulkEntries = () => {
+    const parsed = bulkPasteText
+      .split(/\r?\n/)
+      .map((line) => line.trim())
+      .filter((line) => line.length > 0)
+      .map((line) => line.slice(0, MAX_ENTRY_TEXT_LEN));
+
+    if (parsed.length === 0) {
+      toast.error("Add at least one line with text.");
+      return;
+    }
+
+    const lines = parsed.slice(0, MAX_BULK_LINES);
+    if (parsed.length > MAX_BULK_LINES) {
+      toast.message(`Only the first ${MAX_BULK_LINES} lines were added.`);
+    }
+
+    setEntries((prev) => {
+      let colorIdx = prev.length;
+      const additions: WheelEntry[] = lines.map((text, i) => ({
+        id: `${Date.now()}-${i}-${Math.random().toString(36).slice(2, 9)}`,
+        text,
+        color: defaultColors[colorIdx++ % defaultColors.length],
+        active: true,
+      }));
+      return [...prev, ...additions];
+    });
+    setBulkPasteText("");
+    playSoundEffect("click");
+    toast.success(`Added ${lines.length} entr${lines.length === 1 ? "y" : "ies"}.`);
+
+    if (typeof window !== "undefined") {
+      (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag?.(
+        "event",
+        "wheel_customized",
+        {
+          event_category: "engagement",
+          event_label: "bulk_added_options",
+          value: lines.length,
+        },
+      );
+    }
+  };
+
   const removeEntry = (id: string) => {
     if (entries.length > 2) {
       setEntries(entries.filter((entry) => entry.id !== id));
@@ -599,7 +650,7 @@ export const SpinWheel = () => {
   };
 
   const updateEntry = (id: string, text: string) => {
-    const capped = text.slice(0, 20);
+    const capped = text.slice(0, MAX_ENTRY_TEXT_LEN);
     setEntries(
       entries.map((entry) => (entry.id === id ? { ...entry, text: capped } : entry))
     );
@@ -920,9 +971,9 @@ export const SpinWheel = () => {
 
       {/* Controls Section - Right Sidebar */}
       <div className="w-full lg:w-[340px] xl:w-[400px] 2xl:w-[420px] px-4 lg:px-0 mt-8 lg:mt-0 lg:absolute lg:right-0 lg:top-0 lg:z-40">
-        <Card className="p-4 lg:p-6 bg-card/95 border border-border/50 shadow-xl backdrop-blur-xl relative overflow-hidden w-full flex flex-col rounded-2xl h-[calc(100vh-2rem)] lg:h-auto lg:max-h-[calc(100vh-2rem)]">
+        <Card className="p-4 lg:p-6 bg-card/95 border border-border/50 shadow-xl backdrop-blur-xl relative overflow-hidden w-full flex flex-col rounded-2xl min-h-0 h-[calc(100dvh-2rem)] lg:h-[calc(100vh-2rem)] lg:max-h-[calc(100vh-2rem)]">
           {/* Header */}
-          <div className="mb-4 relative z-10">
+          <div className="mb-4 relative z-10 flex-shrink-0">
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2.5">
                 <div className="w-1 h-5 lg:h-6 bg-primary rounded-full shadow-[0_0_10px_rgba(var(--primary),0.5)]" />
@@ -942,8 +993,9 @@ export const SpinWheel = () => {
             </p>
           </div>
 
-          <Separator className="mb-3 lg:mb-4" />
+          <Separator className="mb-3 lg:mb-4 flex-shrink-0" />
 
+          <div className="flex-1 min-h-0 overflow-y-auto overscroll-y-contain pr-0.5 lg:pr-1 scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent hover:scrollbar-thumb-primary/50">
           {/* Add New Entry */}
           <div className="mb-3 lg:mb-4 relative z-10">
             <label className="text-[10px] lg:text-[11px] font-bold text-foreground/80 mb-1.5 lg:mb-2 flex items-center gap-1.5 uppercase tracking-wide">
@@ -967,6 +1019,37 @@ export const SpinWheel = () => {
                 <span className="text-xs lg:text-sm">Add</span>
               </Button>
             </div>
+          </div>
+
+          {/* Bulk paste — one entry per line */}
+          <div className="mb-3 lg:mb-4 relative z-10">
+            <label className="text-[10px] lg:text-[11px] font-bold text-foreground/80 mb-1.5 lg:mb-2 flex items-center gap-1.5 uppercase tracking-wide">
+              <div className="w-1 h-1 rounded-full bg-primary" />
+              Bulk add entries
+            </label>
+            <p className="text-[10px] text-muted-foreground mb-2 leading-snug">
+              Paste a list — one option per line (from Notes, Excel, etc.). Longer names are trimmed to{" "}
+              {MAX_ENTRY_TEXT_LEN} characters. Up to {MAX_BULK_LINES} lines at once.
+            </p>
+            <Textarea
+              value={bulkPasteText}
+              onChange={(e) => setBulkPasteText(e.target.value)}
+              placeholder={"Alice\nBob\nCharlie"}
+              rows={5}
+              className="min-h-[120px] lg:min-h-[160px] text-xs lg:text-sm border-2 border-border focus-visible:border-primary bg-background/80 backdrop-blur-sm resize-y font-medium leading-relaxed placeholder:text-muted-foreground/70"
+              aria-label="Paste multiple wheel entries, one per line"
+            />
+            <Button
+              type="button"
+              onClick={addBulkEntries}
+              disabled={isSpinning}
+              variant="secondary"
+              size="sm"
+              className="mt-2 w-full h-9 lg:h-10 text-xs lg:text-sm font-semibold border-2 border-border hover:border-primary/40 hover:bg-primary/5"
+            >
+              <ListPlus className="h-3.5 w-3.5 lg:h-4 lg:w-4 mr-1.5" />
+              Add all lines to wheel
+            </Button>
           </div>
 
           {/* Action Buttons */}
@@ -1012,7 +1095,7 @@ export const SpinWheel = () => {
           <Separator className="mb-3 lg:mb-4" />
 
           {/* Entries List */}
-          <div className="relative z-10 flex-1 flex flex-col min-h-0">
+          <div className="relative z-10 pb-1">
             <label className="text-[10px] lg:text-[11px] font-bold text-foreground/80 mb-1.5 lg:mb-2 flex items-center justify-between uppercase tracking-wide">
               <span className="flex items-center gap-1.5">
                 <div className="w-1 h-1 rounded-full bg-primary" />
@@ -1022,7 +1105,7 @@ export const SpinWheel = () => {
                 {entries.length} Total
               </span>
             </label>
-            <div className="space-y-2 overflow-y-auto pr-1 lg:pr-2 scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent hover:scrollbar-thumb-primary/50 flex-1">
+            <div className="space-y-2">
               {entries.map((entry, index) => (
                 <div
                   key={entry.id}
@@ -1135,7 +1218,7 @@ export const SpinWheel = () => {
                   <Input
                     value={entry.text}
                     onChange={(e) => updateEntry(entry.id, e.target.value)}
-                    maxLength={20}
+                    maxLength={MAX_ENTRY_TEXT_LEN}
                     className={`flex-1 border-0 bg-transparent focus-visible:ring-1 focus-visible:ring-primary/50 px-1.5 lg:px-2 py-1 h-auto text-xs lg:text-sm font-semibold ${entry.active ? "text-foreground" : "text-muted-foreground"
                       }`}
                     disabled={!entry.active}
@@ -1170,6 +1253,7 @@ export const SpinWheel = () => {
               </p>
             </div>
           )}
+          </div>
         </Card>
       </div>
 
