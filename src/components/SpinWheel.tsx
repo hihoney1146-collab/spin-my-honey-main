@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
@@ -137,6 +138,7 @@ const createClickSound = (ctx: AudioContext) => {
 };
 
 export const SpinWheel = () => {
+  const { resolvedTheme } = useTheme();
   const [entries, setEntries] = useState<WheelEntry[]>(() => {
     // Load from localStorage or use defaults
     const saved = localStorage.getItem("spinWheelEntries");
@@ -276,7 +278,7 @@ export const SpinWheel = () => {
     const ro = new ResizeObserver(() => requestAnimationFrame(drawWheel));
     ro.observe(canvas);
     return () => ro.disconnect();
-  }, [entries, loadedImages]);
+  }, [entries, loadedImages, resolvedTheme]);
 
   // Continuous slow idle spin — CSS transform only, zero canvas work
   useEffect(() => {
@@ -492,9 +494,10 @@ export const SpinWheel = () => {
     ctx.lineWidth = 1.25;
     ctx.stroke();
 
-    // Center hub
-    ctx.shadowColor = "rgba(0,0,0,0.2)";
-    ctx.shadowBlur = 10;
+    // Center hub — drop shadow only in dark mode (light mode: no glow under wheel)
+    const hubUseShadow = resolvedTheme === "dark";
+    ctx.shadowColor = hubUseShadow ? "rgba(0,0,0,0.2)" : "transparent";
+    ctx.shadowBlur = hubUseShadow ? 10 : 0;
     ctx.beginPath();
     ctx.arc(0, 0, 30, 0, 2 * Math.PI);
     const hubGrad = ctx.createRadialGradient(0, -10, 0, 0, 0, 30);
@@ -826,12 +829,11 @@ export const SpinWheel = () => {
           {/* Pointer — pure HTML, bounces on each tick */}
           <div
             ref={pointerRef}
-            className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-[30%] w-0 h-0 pointer-events-none"
+            className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-[30%] w-0 h-0 pointer-events-none dark:drop-shadow-[2px_2px_3px_rgba(0,0,0,0.45)]"
             style={{
               borderTop: "18px solid transparent",
               borderBottom: "18px solid transparent",
               borderRight: "36px solid #ef4444",
-              filter: "drop-shadow(2px 1px 2px rgba(0,0,0,0.3))",
               transition: "transform 80ms ease-out, border-right-color 60ms",
               willChange: "transform",
             }}
