@@ -40,23 +40,26 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
     <div className="min-h-screen flex flex-col bg-background">
       <header className="border-b bg-card/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
         <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 sm:h-20 md:h-20 lg:h-24">
-            {/* Logo */}
-            <Link to="/" className="flex items-center group relative flex-shrink-0">
-              <div className="relative flex items-center justify-center">
+          <div className="flex items-center justify-between min-h-[4.25rem] h-[4.25rem] sm:h-20 md:h-20 lg:h-24">
+            {/* Logo — larger on small screens for readability */}
+            <Link
+              to="/"
+              className="flex items-center gap-2 sm:gap-2.5 group relative flex-shrink-0 min-w-0"
+            >
+              <div className="relative flex items-center justify-center flex-shrink-0">
                 <div className="will-change-transform motion-safe:animate-spin motion-safe:[animation-duration:12s] motion-safe:[animation-timing-function:linear]">
                   <OptimizedImage
                     src={logo}
                     alt="Online Spin Wheel Logo - Spin Wheel Decision Maker"
-                    width={48}
-                    height={48}
-                    className="h-9 sm:h-10 md:h-11 lg:h-12 w-9 sm:w-10 md:w-11 lg:w-12 px-1 sm:px-1.5 transform group-hover:scale-110 transition-transform duration-300 object-contain"
+                    width={56}
+                    height={56}
+                    className="h-12 w-12 sm:h-11 md:h-12 lg:h-14 sm:w-11 md:w-12 lg:w-14 px-0.5 sm:px-1 transform group-hover:scale-110 transition-transform duration-300 object-contain"
                     loading="eager"
                   />
                 </div>
               </div>
-              <div className="flex flex-col">
-                <span className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold leading-tight">
+              <div className="flex flex-col min-w-0">
+                <span className="text-xl sm:text-xl md:text-2xl lg:text-2xl xl:text-3xl font-bold leading-tight">
                   <span className="bg-gradient-to-r from-orange-500 via-yellow-500 to-green-500 bg-clip-text text-transparent">
                     Online
                   </span>
@@ -127,13 +130,13 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                         <OptimizedImage
                           src={logo}
                           alt="Online Spin Wheel Logo"
-                          width={32}
-                          height={32}
-                          className="h-8 w-8"
+                          width={40}
+                          height={40}
+                          className="h-10 w-10"
                           loading="eager"
                         />
                       </div>
-                      <span className="font-bold text-sm">
+                      <span className="font-bold text-base">
                         <span className="bg-gradient-to-r from-orange-500 via-yellow-500 to-green-500 bg-clip-text text-transparent">
                           Online
                         </span>

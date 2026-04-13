@@ -340,7 +340,7 @@ export const SpinWheel = () => {
     });
   }, [entries.map((e) => e.id + e.imageUrl).join(",")]);
 
-  // Draw the static wheel face (rim + slices + text + hub) directly onto the
+  // Draw the static wheel face (thin outer stroke + slices + text + hub) onto the
   // visible canvas. Called only when entries/images change — never during animation.
   // Rotation is handled entirely by CSS transform on the canvas element.
   const drawWheel = () => {
@@ -352,22 +352,12 @@ export const SpinWheel = () => {
     const size = canvas.width;
     const centerX = size / 2;
     const centerY = size / 2;
-    const radius = Math.min(centerX, centerY) - 25;
+    const radius = Math.min(centerX, centerY) - 8;
 
     const curEntries = entriesRef.current;
     const curImages = loadedImagesRef.current;
 
     ctx.clearRect(0, 0, size, size);
-
-    // Rim
-    ctx.beginPath();
-    ctx.arc(centerX, centerY, radius + 15, 0, 2 * Math.PI);
-    ctx.fillStyle = "#cbd5e1";
-    ctx.fill();
-    ctx.beginPath();
-    ctx.arc(centerX, centerY, radius + 2, 0, 2 * Math.PI);
-    ctx.fillStyle = "rgba(0,0,0,0.1)";
-    ctx.fill();
 
     const activeEntries = curEntries.filter((e) => e.active);
     if (activeEntries.length === 0) {
@@ -375,8 +365,8 @@ export const SpinWheel = () => {
       ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
       ctx.fillStyle = "#f8fafc";
       ctx.fill();
-      ctx.lineWidth = 4;
-      ctx.strokeStyle = "#cbd5e1";
+      ctx.lineWidth = 1.5;
+      ctx.strokeStyle = "#94a3b8";
       ctx.stroke();
       sliceColorsRef.current = [];
       return;
@@ -457,12 +447,12 @@ export const SpinWheel = () => {
         ctx.restore();
       }
 
-      // Slice border
+      // Slice border — thin divider
       ctx.beginPath();
       ctx.moveTo(0, 0);
       ctx.arc(0, 0, radius, startAngle, endAngle);
-      ctx.lineWidth = 1;
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.3)";
+      ctx.lineWidth = 0.75;
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.35)";
       ctx.stroke();
 
       // Text — auto-scaled
@@ -493,6 +483,13 @@ export const SpinWheel = () => {
       ctx.fillText(label, radius * 0.62, 0);
       ctx.restore();
     });
+
+    // Thin outer rim (stroke only — no thick filled donut)
+    ctx.beginPath();
+    ctx.arc(0, 0, radius, 0, 2 * Math.PI);
+    ctx.strokeStyle = "rgba(15, 23, 42, 0.28)";
+    ctx.lineWidth = 1.25;
+    ctx.stroke();
 
     // Center hub
     ctx.shadowColor = "rgba(0,0,0,0.2)";
