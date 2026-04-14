@@ -489,7 +489,7 @@ const SpinWheelFree = () => {
                       <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
                     </Link>
                     <Link
-                      to="/blog"
+                      to="/#spin-wheel-seo-content"
                       className="inline-flex items-center gap-2 border-2 border-white/30 text-white px-8 py-4 rounded-full font-semibold hover:bg-white/10 backdrop-blur-sm transition-all duration-300 hover:border-white/50"
                     >
                       Read More Guides

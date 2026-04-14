@@ -7,11 +7,7 @@
 # ============================================================================
 User-agent: *
 Allow: /
-Allow: /blog/
 Allow: /spin-wheel-free
-Allow: /blog/spin-wheel-free
-Allow: /blog/online-spin-wheel
-Allow: /blog/random-name-picker-wheel
 Allow: /about-us
 Allow: /contact-us
 Allow: /privacy-policy
@@ -24,25 +20,16 @@ Allow: /cookie-policy
 User-agent: Googlebot
 User-agent: Googlebot-Mobile
 Allow: /
-Allow: /blog/
 Allow: /spin-wheel-free
-Allow: /blog/spin-wheel-free
-Allow: /blog/online-spin-wheel
-Allow: /blog/random-name-picker-wheel
 Crawl-delay: 0
 # Bing Bot
 User-agent: Bingbot
 Allow: /
-Allow: /blog/
 Allow: /spin-wheel-free
-Allow: /blog/spin-wheel-free
-Allow: /blog/online-spin-wheel
-Allow: /blog/random-name-picker-wheel
 Crawl-delay: 1
 # DuckDuckGo Bot
 User-agent: DuckDuckBot
 Allow: /
-Allow: /blog/
 Crawl-delay: 1
 # ============================================================================
 # SECTION 3: ALLOW AI PLATFORMS (For AI Overviews & AI Search)
@@ -50,45 +37,25 @@ Crawl-delay: 1
 # Perplexity AI
 User-agent: PerplexityBot
 Allow: /
-Allow: /blog/
 Allow: /spin-wheel-free
-Allow: /blog/spin-wheel-free
-Allow: /blog/online-spin-wheel
-Allow: /blog/random-name-picker-wheel
 Crawl-delay: 1
 # OpenAI (ChatGPT)
 User-agent: GPTBot
 Allow: /
-Allow: /blog/
 Allow: /spin-wheel-free
-Allow: /blog/spin-wheel-free
-Allow: /blog/online-spin-wheel
-Allow: /blog/random-name-picker-wheel
 Crawl-delay: 1
 # Anthropic (Claude AI)
 User-agent: Claude-Web
 Allow: /
-Allow: /blog/
 Allow: /spin-wheel-free
-Allow: /blog/spin-wheel-free
-Allow: /blog/online-spin-wheel
-Allow: /blog/random-name-picker-wheel
 # Google AI Overviews & Bard
 User-agent: Google-Extended
 Allow: /
-Allow: /blog/
 Allow: /spin-wheel-free
-Allow: /blog/spin-wheel-free
-Allow: /blog/online-spin-wheel
-Allow: /blog/random-name-picker-wheel
 # Microsoft Bing AI
 User-agent: Bingbot
 Allow: /
-Allow: /blog/
 Allow: /spin-wheel-free
-Allow: /blog/spin-wheel-free
-Allow: /blog/online-spin-wheel
-Allow: /blog/random-name-picker-wheel
 # ============================================================================
 # SECTION 4: BLOCK HARMFUL & RESOURCE-INTENSIVE BOTS
 # (Same logic as FastVidl configuration)
@@ -179,10 +146,6 @@ Sitemap: https://onlinespinwheel.fun/sitemap.xml
 # Pages that ACTUALLY EXIST on onlinespinwheel.fun:
 # - https://onlinespinwheel.fun/ (home)
 # - https://onlinespinwheel.fun/spin-wheel-free (tool/main keyword page)
-# - https://onlinespinwheel.fun/blog/ (blog hub)
-# - https://onlinespinwheel.fun/blog/spin-wheel-free (blog post)
-# - https://onlinespinwheel.fun/blog/online-spin-wheel (blog post)
-# - https://onlinespinwheel.fun/blog/random-name-picker-wheel (blog post)
 # - https://onlinespinwheel.fun/about-us (company page)
 # - https://onlinespinwheel.fun/contact-us (contact page)
 # - https://onlinespinwheel.fun/privacy-policy (legal page)

@@ -4,7 +4,6 @@
 export const prerenderRoutes = [
   "/",
   "/about",
-  "/blog",
   "/contact",
   "/privacy",
   "/terms",

@@ -19,7 +19,6 @@ const routes = [
       "Free Spin Wheel - Random Name Picker & Decision Maker Online | Online Spin Wheel",
   },
   { path: "/about", title: "About Us - Online Spin Wheel" },
-  { path: "/blog", title: "The Ultimate Guide to Spin Wheel - Online Spin Wheel" },
   { path: "/contact", title: "Contact Us - Online Spin Wheel" },
   { path: "/privacy", title: "Privacy Policy - Online Spin Wheel" },
   { path: "/terms", title: "Terms and Conditions - Online Spin Wheel" },

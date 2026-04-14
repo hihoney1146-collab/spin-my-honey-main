@@ -522,7 +522,7 @@ const HowToMakeDecisionsFasterWithSpinWheels = () => {
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                to="/blog"
+                to="/#spin-wheel-seo-content"
                 className="inline-flex items-center gap-2 border-2 border-primary text-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary/10 transition-colors"
               >
                 More Decision-Making Tips
@@ -544,7 +544,7 @@ const HowToMakeDecisionsFasterWithSpinWheels = () => {
               development.
             </p>
             <Link
-              to="/blog"
+              to="/#spin-wheel-seo-content"
               className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
             >
               Browse All Guides

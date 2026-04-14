@@ -520,7 +520,7 @@ const ComparisonSpinWheelVsRandomNumberGenerator = () => {
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                to="/blog"
+                to="/#spin-wheel-seo-content"
                 className="inline-flex items-center gap-2 border-2 border-primary text-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary/10 transition-colors"
               >
                 Read More Comparisons
@@ -542,7 +542,7 @@ const ComparisonSpinWheelVsRandomNumberGenerator = () => {
               method.
             </p>
             <Link
-              to="/blog"
+              to="/#spin-wheel-seo-content"
               className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
             >
               Browse Comparisons

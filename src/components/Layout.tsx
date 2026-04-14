@@ -5,7 +5,6 @@ import {
   X,
   Home,
   Info,
-  BookOpen,
   Mail,
   Lock,
 } from "lucide-react";
@@ -31,7 +30,6 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   const navLinks = [
     { to: "/", label: "Home", icon: Home },
     { to: "/about", label: "About", icon: Info },
-    { to: "/blog", label: "Blog", icon: BookOpen },
     { to: "/contact", label: "Contact", icon: Mail },
     { to: "/privacy", label: "Privacy", icon: Lock },
   ];
@@ -255,7 +253,6 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                 {[
                   { to: "/", label: "Home" },
                   { to: "/about", label: "About Us" },
-                  { to: "/blog", label: "Blog" },
                   { to: "/contact", label: "Contact" },
                 ].map((link) => (
                   <li key={link.to}>

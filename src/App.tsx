@@ -11,7 +11,6 @@ import Index from "./pages/Index";
 // Lazy load non-critical pages for better initial load performance
 const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
-const Blog = lazy(() => import("./pages/Blog"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const CookiePolicy = lazy(() => import("./pages/CookiePolicy"));
 const HowToUseSpinWheelsInClassrooms = lazy(
@@ -107,14 +106,6 @@ const App = () => (
                 element={
                   <Suspense fallback={<div className="min-h-screen" />}>
                     <Contact />
-                  </Suspense>
-                }
-              />
-              <Route
-                path="/blog"
-                element={
-                  <Suspense fallback={<div className="min-h-screen" />}>
-                    <Blog />
                   </Suspense>
                 }
               />
