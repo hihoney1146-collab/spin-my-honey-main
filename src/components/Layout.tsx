@@ -7,6 +7,7 @@ import {
   Info,
   Mail,
   Lock,
+  FileText,
 } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { Button } from "@/components/ui/button";
@@ -32,6 +33,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
     { to: "/about", label: "About", icon: Info },
     { to: "/contact", label: "Contact", icon: Mail },
     { to: "/privacy", label: "Privacy", icon: Lock },
+    { to: "/disclaimer", label: "Disclaimer", icon: FileText },
   ];
 
   return (
@@ -278,6 +280,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                   { to: "/privacy", label: "Privacy Policy" },
                   { to: "/cookie-policy", label: "Cookie Policy" },
                   { to: "/terms", label: "Terms & Conditions" },
+                  { to: "/disclaimer", label: "Disclaimer" },
                 ].map((link) => (
                   <li key={link.to}>
                     <Link

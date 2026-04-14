@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Helmet } from "react-helmet";
-import { Shield, Mail, ArrowRight, FileText } from "lucide-react";
+import { ArrowRight, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Privacy = () => {
@@ -10,14 +10,14 @@ const Privacy = () => {
         <title>Privacy Policy - Online Spin Wheel</title>
         <meta
           name="description"
-          content="Read Online Spin Wheel's privacy policy to understand how we protect your privacy while using our spin wheel tool."
+          content="Privacy Policy for Online Spin Wheel (onlinespinwheel.fun), operated by Auroxa Tech: what we collect, cookies, ads, CCPA/CPRA, GDPR, COPPA, and how to contact us."
         />
         <link rel="canonical" href="https://onlinespinwheel.fun/privacy" />
       </Helmet>
 
       <article className="container mx-auto px-4 py-8 md:py-12 max-w-5xl">
         <div className="text-center mb-8 md:mb-12">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 dark:text-white">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-gray-900 dark:text-white">
             Privacy Policy
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground">
@@ -27,437 +27,436 @@ const Privacy = () => {
 
         <Card className="p-6 md:p-8 lg:p-10 mb-6 md:mb-8 space-y-8">
           <section>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              This Privacy Policy describes how Online Spin Wheel (&quot;we&quot;,
+              &quot;us&quot; or &quot;our&quot;), operated by Auroxa Tech, collects, uses and
+              protects information when you use our website and tools at{" "}
+              <a
+                href="https://onlinespinwheel.fun"
+                className="text-primary hover:underline font-medium"
+              >
+                https://onlinespinwheel.fun
+              </a>
+              .
+            </p>
             <p className="text-muted-foreground leading-relaxed">
-              This Privacy Policy describes how Online Spin Wheel ("Online Spin Wheel", "we", "us", or "our") collects, uses,
-              and protects information when you use our website and tools at https://onlinespinwheel.fun. By using our
-              website, you agree to the practices described in this policy.
+              By using our website, you agree to the collection and use of
+              information in accordance with this policy.
             </p>
           </section>
 
           <section>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              1. Who we are
+              Information We Collect
             </h2>
-            <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>
-                Online Spin Wheel is a free, browser-based random picker that lets you add names, numbers, and choices to a
-                wheel and spin for a random result. Our goal is to provide a simple, fair, and fun decision-making tool for
-                classrooms, communities, and creators worldwide.
-              </p>
-              <p>
-                If you have any questions about this Privacy Policy, you can contact us at:{" "}
-                <a href="mailto:onlinespinwheel@gmail.com" className="text-primary hover:underline font-semibold">
-                  onlinespinwheel@gmail.com
-                </a>
-              </p>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              2. Information we collect
-            </h2>
-            <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>
-                Because Online Spin Wheel is designed to work directly in your browser, most entries (names, numbers, prizes)
-                stay on your device and are not sent to us as personal data. However, like most websites, we may process
-                limited technical and usage data:
-              </p>
-              <ul className="space-y-2 ml-4">
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>Basic device and browser information (e.g., browser type, operating system, language).</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>Approximate location based on IP address, where required for security, analytics, or legal compliance.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>Usage data such as pages visited, time spent on pages, and interactions with buttons or features.</span>
-                </li>
-              </ul>
-              <p>If you contact us (for example via email or contact form), we may collect:</p>
-              <ul className="space-y-2 ml-4">
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>Name or nickname you provide.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>Email address.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>The content of your message and any attachments.</span>
-                </li>
-              </ul>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              3. How we collect information
-            </h2>
-            <p className="text-muted-foreground mb-4">
-              We collect information in three main ways:
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              Because Online Spin Wheel is designed to work directly in your
+              browser, the actual inputs (names, numbers, prizes) you type into
+              the wheel remain on your local device and are not collected by our
+              servers. However, to keep our site running and to serve relevant
+              advertisements, we collect the following data:
             </p>
-            <ul className="space-y-2 text-muted-foreground ml-4">
+            <ul className="space-y-3 text-muted-foreground ml-1">
               <li className="flex items-start gap-2">
-                <span className="text-primary mt-1">•</span>
-                <span><strong>Directly from you:</strong> When you contact us, send feedback, or request support.</span>
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  <strong className="text-foreground">Log Data:</strong> Like most
+                  website operators, we collect information that your browser sends
+                  whenever you visit our site. This may include your
+                  computer&apos;s Internet Protocol (IP) address, browser type,
+                  browser version, the pages of our site that you visit, the time
+                  and date of your visit and the time spent on those pages.
+                </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-primary mt-1">•</span>
-                <span><strong>Automatically:</strong> Through cookies, log files, and similar technologies when you use our website.</span>
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  <strong className="text-foreground">Device Information:</strong>{" "}
+                  We may collect information about the device you are using,
+                  including the operating system and unique device identifiers.
+                </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-primary mt-1">•</span>
-                <span><strong>From third-party tools:</strong> Such as analytics or hosting providers that help us run and improve the site.</span>
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  <strong className="text-foreground">Contact Information:</strong>{" "}
+                  If you reach out to us via email for support or inquiries, we
+                  will collect your email address and the contents of your message.
+                </span>
               </li>
             </ul>
           </section>
 
           <section>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              4. How we use your information
+              Cookies and Web Beacons
             </h2>
-            <p className="text-muted-foreground mb-4">
-              We use the information we collect to:
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              Online Spin Wheel uses &quot;cookies&quot; and similar tracking technologies
+              (like web beacons and pixels) to track activity on our service and
+              hold certain information.
             </p>
-            <ul className="space-y-2 text-muted-foreground ml-4">
+            <ul className="space-y-3 text-muted-foreground ml-1">
               <li className="flex items-start gap-2">
-                <span className="text-primary mt-1">•</span>
-                <span>Operate, maintain, and improve Online Spin Wheel.</span>
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  <strong className="text-foreground">Essential Cookies:</strong>{" "}
+                  Necessary for the website to function properly.
+                </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-primary mt-1">•</span>
-                <span>Monitor performance, detect errors, and keep the website secure and reliable.</span>
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  <strong className="text-foreground">
+                    Analytical/Performance Cookies:
+                  </strong>{" "}
+                  Allow us to recognize and count the number of visitors and see how
+                  visitors move around our website.
+                </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-primary mt-1">•</span>
-                <span>Understand how users interact with our tool so we can improve features and usability.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary mt-1">•</span>
-                <span>Respond to your questions, feedback, or support requests.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary mt-1">•</span>
-                <span>Comply with legal obligations and enforce our terms.</span>
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  <strong className="text-foreground">
+                    Targeting/Advertising Cookies:
+                  </strong>{" "}
+                  Used to deliver advertisements more relevant to you and your
+                  interests.
+                </span>
               </li>
             </ul>
-            <p className="text-muted-foreground mt-4 font-semibold">
-              We do not sell your personal information.
+          </section>
+
+          <section>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              Google AdSense, Ezoic and Programmatic Advertising
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              To keep our tool 100% free, we use third-party advertising companies
+              to serve ads when you visit our website. These companies (including
+              Google AdSense and Ezoic/Google AdX) use programmatic advertising and
+              real-time bidding to show you relevant ads.
             </p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              5. How we share information
-            </h2>
-            <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>
-                We only share information with third parties when necessary to operate and improve Online Spin Wheel, or when
-                required by law. These third parties may include:
-              </p>
-              <ul className="space-y-2 ml-4">
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>Hosting providers and server infrastructure.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>Analytics and performance monitoring tools.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>Service providers that help us send emails or manage support.</span>
-                </li>
-              </ul>
-              <p>All such providers are required to handle your information securely and only for the purposes we specify.</p>
-              <p className="font-semibold">We do not sell personal information to third parties.</p>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              6. Consent
-            </h2>
-            <p className="text-muted-foreground">
-              By using our website, you hereby consent to our Privacy Policy and agree to its terms.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              7. Cookies and Web Beacons
-            </h2>
-            <p className="text-muted-foreground">
-              Like any other website, Online Spin Wheel uses 'cookies'. These cookies are used to store information including
-              visitors' preferences, and the pages on the website that the visitor accessed or visited. The information is used
-              to optimize the users' experience by customizing our web page content based on visitors' browser type and/or
-              other information.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              8. Google DoubleClick DART Cookie
-            </h2>
-            <p className="text-muted-foreground">
-              Google is one of the third-party vendors on our site. It also uses cookies, known as DART cookies, to serve ads
-              to our site visitors based upon their visits to www.website.com and other sites on the internet. However, visitors
-              may choose to decline the use of DART cookies by visiting the Google ad and content network Privacy Policy at
-              the following URL – <a href="https://policies.google.com/technologies/ads" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">https://policies.google.com/technologies/ads</a>
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              9. Our Advertising Partners
-            </h2>
-            <div className="space-y-4 text-muted-foreground">
-              <p>
-                Some advertisers on our site may use cookies and web beacons. Our advertising partners are listed below.
-                Each of our advertising partners has its own Privacy Policy for their policies on user data. For easier access, we
-                hyperlinked to their Privacy Policies below.
-              </p>
-              <ul className="ml-4">
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>
-                    Google <a href="https://policies.google.com/technologies/ads" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">https://policies.google.com/technologies/ads</a>
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              10. Advertising Partners Privacy Policies
-            </h2>
-            <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>
-                You may consult this list to find the Privacy Policy for each of the advertising partners of Online Spin Wheel.
-              </p>
-              <p>
-                Third-party ad servers or ad networks use technologies like cookies, JavaScript, or Web Beacons that are used
-                in their respective advertisements and links that appear on Online Spin Wheel, which are sent directly to users'
-                browsers. They automatically receive your IP address when this occurs. These technologies are used to
-                measure the effectiveness of their advertising campaigns and/or to personalize the advertising content that
-                you see on websites that you visit.
-              </p>
-              <p>
-                Note that Online Spin Wheel has no access to or control over these cookies that are used by third-party
-                advertisers.
-              </p>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              11. Third Party Privacy Policies
-            </h2>
-            <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>
-                Online Spin Wheel's Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you to
-                consult the respective Privacy Policies of these third-party ad servers for more detailed information. It may
-                include their practices and instructions about how to opt out of certain options.
-              </p>
-              <p>
-                You can choose to disable cookies through your individual browser options. To know more detailed information
-                about cookie management with specific web browsers, it can be found on the browsers' respective websites.
-              </p>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              12. CCPA Privacy Rights (Do Not Sell My Personal Information)
-            </h2>
-            <p className="text-muted-foreground mb-4">
-              Under the CCPA, among other rights, California consumers have the right to:
-            </p>
-            <ul className="space-y-2 text-muted-foreground ml-4 mb-4">
+            <h3 className="text-lg md:text-xl font-semibold mb-3 text-foreground">
+              Google DoubleClick DART Cookie:
+            </h3>
+            <ul className="space-y-3 text-muted-foreground ml-1 mb-4">
               <li className="flex items-start gap-2">
-                <span className="text-primary mt-1">•</span>
-                <span>Request that a business that collects a consumer's personal data disclose the categories and specific pieces of personal data that a business has collected about consumers.</span>
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  Google, as a third-party vendor, uses cookies to serve ads on our
+                  site.
+                </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-primary mt-1">•</span>
-                <span>Request that a business deletes any personal data about the consumer that a business has collected.</span>
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  Google&apos;s use of the DART cookie enables it and its partners to
+                  serve ads to our users based on their visit to our site and other
+                  sites on the Internet.
+                </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-primary mt-1">•</span>
-                <span>Request that a business that sells a consumer's personal data, not sell the consumer's personal data.</span>
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  Users may opt out of the use of the DART cookie by visiting the
+                  Google Ad and Content Network privacy policy at:{" "}
+                  <a
+                    href="https://policies.google.com/technologies/ads"
+                    className="text-primary hover:underline break-all"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    https://policies.google.com/technologies/ads
+                  </a>
+                </span>
               </li>
             </ul>
-            <p className="text-muted-foreground">
-              If you make a request, we have one month to respond to you. If you would like to exercise any of these rights,
-              please contact us.
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              <strong className="text-foreground">Ezoic and Ad Exchange (AdX):</strong>{" "}
+              We may partner with Ezoic to manage our programmatic ad delivery. These
+              third-party ad servers or ad networks use technologies like cookies,
+              JavaScript or Web Beacons in their respective advertisements and links
+              that appear on Online Spin Wheel. They automatically receive your IP
+              address when this occurs. These technologies are used to measure the
+              effectiveness of their advertising campaigns and/or to personalize the
+              advertising content that you see.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              <strong className="text-foreground">Note:</strong> Online Spin Wheel has
+              no access to or control over these cookies that are used by
+              third-party advertisers.
             </p>
           </section>
 
           <section>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              13. GDPR Data Protection Rights
+              Opting Out of Personalized Advertising
             </h2>
-            <p className="text-muted-foreground mb-4">
-              We would like to make sure you are fully aware of all of your data protection rights. Every user is entitled
-              to the following:
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              You have the right to opt out of personalized advertising. You can
+              manage your cookie preferences and opt out of targeted ads through the
+              following resources:
             </p>
-            <ul className="space-y-2 text-muted-foreground ml-4 mb-4">
+            <ul className="space-y-3 text-muted-foreground ml-1">
               <li className="flex items-start gap-2">
-                <span className="text-primary mt-1">•</span>
-                <span><strong>The right to access</strong> – You have the right to request copies of your personal data. We may charge you a small fee for this service.</span>
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  <strong className="text-foreground">Google Ads Settings:</strong>{" "}
+                  <a
+                    href="https://myadcenter.google.com/"
+                    className="text-primary hover:underline break-all"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    https://myadcenter.google.com/
+                  </a>
+                </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-primary mt-1">•</span>
-                <span><strong>The right to rectification</strong> – You have the right to request that we correct any information you believe is inaccurate. You also have the right to request that we complete the information you believe is incomplete.</span>
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  <strong className="text-foreground">
+                    Network Advertising Initiative (NAI):
+                  </strong>{" "}
+                  <a
+                    href="https://optout.networkadvertising.org/"
+                    className="text-primary hover:underline break-all"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    https://optout.networkadvertising.org/
+                  </a>
+                </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-primary mt-1">•</span>
-                <span><strong>The right to erasure</strong> – You have the right to request that we erase your personal data, under certain conditions.</span>
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  <strong className="text-foreground">
+                    Digital Advertising Alliance (DAA):
+                  </strong>{" "}
+                  <a
+                    href="https://optout.aboutads.info/"
+                    className="text-primary hover:underline break-all"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    https://optout.aboutads.info/
+                  </a>
+                </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-primary mt-1">•</span>
-                <span><strong>The right to restrict processing</strong> – You have the right to request that we restrict the processing of your personal data, under certain conditions.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary mt-1">•</span>
-                <span><strong>The right to object to processing</strong> – You have the right to object to our processing of your personal data, under certain conditions.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary mt-1">•</span>
-                <span><strong>The right to data portability</strong> – You have the right to request that we transfer the data that we have collected to another organization, or directly to you, under certain conditions.</span>
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  You can also choose to disable cookies through your individual
+                  browser options.
+                </span>
               </li>
             </ul>
-            <p className="text-muted-foreground">
-              If you make a request, we have one month to respond to you. If you would like to exercise any of these
-              rights, please contact us.
+          </section>
+
+          <section>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              CCPA/CPRA Privacy Rights (For California Residents)
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              Under the California Consumer Privacy Act (CCPA) and the California
+              Privacy Rights Act (CPRA), California residents have specific rights
+              regarding their personal information:
+            </p>
+            <ul className="space-y-3 text-muted-foreground ml-1 mb-4">
+              <li className="flex items-start gap-2">
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  <strong className="text-foreground">Right to Know:</strong> You can
+                  request disclosure of the categories and specific pieces of
+                  personal data we have collected about you.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  <strong className="text-foreground">Right to Delete:</strong> You
+                  can request the deletion of your personal data.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  <strong className="text-foreground">
+                    Right to Opt-Out of Sale:
+                  </strong>{" "}
+                  We do not sell your personal data to third parties. However,
+                  sharing data with advertising networks may be considered a
+                  &quot;sale&quot; under CCPA. You can request that we do not
+                  &quot;sell&quot; or share your personal information.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  <strong className="text-foreground">
+                    Right to Non-Discrimination:
+                  </strong>{" "}
+                  We will not discriminate against you for exercising your privacy
+                  rights.
+                </span>
+              </li>
+            </ul>
+            <p className="text-muted-foreground leading-relaxed">
+              If you would like to exercise any of these rights, please contact us.
+              We have one month to respond to your request.
             </p>
           </section>
 
           <section>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              14. Data retention
+              GDPR Data Protection Rights (For EEA/UK Residents)
             </h2>
-            <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>
-                We keep personal information only for as long as necessary to fulfil the purposes described in this policy, or as
-                required by law.
-              </p>
-              <ul className="space-y-2 ml-4">
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>Contact emails and support messages may be stored for a reasonable period to follow up and improve our services.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>Technical logs may be kept for a limited time for security, troubleshooting, and analytics, then deleted or anonymized.</span>
-                </li>
-              </ul>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              15. Data security
-            </h2>
-            <p className="text-muted-foreground">
-              We use reasonable technical and organizational measures to protect your information, including HTTPS
-              encryption and secure hosting. While no system can be 100% secure, we work to reduce risks of unauthorized
-              access, misuse, or disclosure.
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              If you are a resident of the European Economic Area (EEA) or the
+              United Kingdom, you have the following data protection rights:
+            </p>
+            <ul className="space-y-3 text-muted-foreground ml-1 mb-4">
+              <li className="flex items-start gap-2">
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  <strong className="text-foreground">The right to access:</strong> You
+                  have the right to request copies of your personal data.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  <strong className="text-foreground">The right to rectification:</strong>{" "}
+                  You have the right to request that we correct any information you
+                  believe is inaccurate or incomplete.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  <strong className="text-foreground">The right to erasure:</strong> You
+                  have the right to request that we erase your personal data, under
+                  certain conditions.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  <strong className="text-foreground">
+                    The right to restrict processing:
+                  </strong>{" "}
+                  You have the right to request that we restrict the processing of
+                  your personal data, under certain conditions.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  <strong className="text-foreground">
+                    The right to object to processing:
+                  </strong>{" "}
+                  You have the right to object to our processing of your personal
+                  data, under certain conditions.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  <strong className="text-foreground">
+                    The right to data portability:
+                  </strong>{" "}
+                  You have the right to request that we transfer the data we have
+                  collected to another organization or directly to you, under
+                  certain conditions.
+                </span>
+              </li>
+            </ul>
+            <p className="text-muted-foreground leading-relaxed">
+              We rely on your explicit consent (via our Cookie Consent Banner) to
+              process non-essential advertising cookies. You can withdraw this
+              consent at any time.
             </p>
           </section>
 
           <section>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              16. Your rights and choices
+              Children&apos;s Privacy (COPPA Compliance)
             </h2>
-            <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>Depending on your location, you may have certain rights regarding your personal data, such as:</p>
-              <ul className="space-y-2 ml-4 mb-4">
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>The right to access the personal data we hold about you.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>The right to correct or update inaccurate information.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>The right to request deletion of your personal data, subject to legal obligations.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>The right to object to or restrict certain types of processing.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>The right to withdraw consent where processing is based on consent.</span>
-                </li>
-              </ul>
-              <p>
-                To exercise these rights, contact us at <a href="mailto:onlinespinwheel@gmail.com" className="text-primary hover:underline font-semibold">onlinespinwheel@gmail.com</a>. We may need to verify your identity before responding.
-              </p>
-              <p>
-                If you are located in the EEA/UK, you also have the right to lodge a complaint with your local data protection
-                authority.
-              </p>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              17. Children's privacy
-            </h2>
-            <p className="text-muted-foreground">
-              Online Spin Wheel is not intended for children under 13 (or the minimum age in your country) without
-              supervision from a parent, teacher, or guardian. We do not knowingly collect personal information from children.
-              If you believe a child has provided us with personal data, please contact us so we can delete it.
+            <p className="text-muted-foreground leading-relaxed">
+              Our website complies with the Children&apos;s Online Privacy Protection
+              Act (COPPA). Online Spin Wheel does not knowingly collect personally
+              identifiable information from children under the age of 13. If you are
+              a parent or guardian and you are aware that your child has provided us
+              with personal data, please contact us immediately so we can remove that
+              information from our servers.
             </p>
           </section>
 
           <section>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              18. International data transfers
+              Third-Party Privacy Policies
             </h2>
-            <p className="text-muted-foreground">
-              Our website may be hosted on servers located outside your country. By using Online Spin Wheel, you
-              understand that your information may be processed in countries that may have different data protection laws
-              than your own, but we will protect your information as described in this policy.
+            <p className="text-muted-foreground leading-relaxed">
+              Our Privacy Policy does not apply to other advertisers or websites. We
+              advise you to consult the respective Privacy Policies of these
+              third-party ad servers for more detailed information on their
+              practices and opt-out instructions.
             </p>
           </section>
 
           <section>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              21. How to contact us
+              Changes to This Privacy Policy
             </h2>
-            <div className="space-y-4 text-muted-foreground">
-              <p>
-                If you have any questions, concerns, or requests about this Privacy Policy or how we handle your data, please
-                contact us at:
-              </p>
-              <div className="flex items-center gap-2 text-lg">
-                <Mail className="h-5 w-5 text-primary" />
-                <span>Email:</span>
-                <a
-                  href="mailto:onlinespinwheel@gmail.com"
-                  className="text-primary hover:underline font-semibold"
-                >
-                  onlinespinwheel@gmail.com
-                </a>
-              </div>
-              <p>Website: <a href="https://onlinespinwheel.fun" className="text-primary hover:underline">https://onlinespinwheel.fun</a></p>
-              <p className="text-sm">
-                For stricter compliance (GDPR, CCPA, etc.), consider running this text through a dedicated generator or legal
-                service and enabling a cookie banner if you use non-essential cookies or analytics.
-              </p>
-            </div>
+            <p className="text-muted-foreground leading-relaxed">
+              We may update our Privacy Policy from time to time. We will notify you
+              of any changes by posting the new Privacy Policy on this page and
+              updating the &quot;Effective Date&quot; at the top. You are advised to review
+              this Privacy Policy periodically for any changes.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">Contact Us</h2>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              If you have any questions, concerns or requests regarding this Privacy
+              Policy or how your data is handled, please reach out to us:
+            </p>
+            <ul className="space-y-3 text-muted-foreground ml-1">
+              <li className="flex items-start gap-2">
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  <strong className="text-foreground">Email:</strong>{" "}
+                  <a
+                    href="mailto:onlinespinwheel@gmail.com"
+                    className="text-primary hover:underline font-semibold"
+                  >
+                    onlinespinwheel@gmail.com
+                  </a>
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  <strong className="text-foreground">Website:</strong>{" "}
+                  <a
+                    href="https://onlinespinwheel.fun"
+                    className="text-primary hover:underline break-all"
+                  >
+                    https://onlinespinwheel.fun
+                  </a>
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  <strong className="text-foreground">Operated by:</strong> Auroxa
+                  Tech
+                </span>
+              </li>
+            </ul>
           </section>
 
           <div className="bg-primary/5 p-6 md:p-8 rounded-lg border border-primary/20 mt-8">
@@ -467,24 +466,33 @@ const Privacy = () => {
           </div>
         </Card>
 
-        {/* Next Step Navigation */}
         <Card className="p-6 md:p-8 bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 border-2 border-primary/20 mt-8">
           <div className="text-center mb-4">
             <h3 className="text-xl md:text-2xl font-bold mb-2">
               Know Your Rights
             </h3>
             <p className="text-muted-foreground">
-              Review our terms and conditions to understand your rights and responsibilities
+              Review our terms, disclaimer, and related policies
             </p>
           </div>
-          <Link
-            to="/terms"
-            className="flex items-center justify-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mx-auto max-w-sm"
-          >
-            <FileText className="h-5 w-5" />
-            <span>Terms & Conditions</span>
-            <ArrowRight className="h-5 w-5" />
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch max-w-xl mx-auto">
+            <Link
+              to="/terms"
+              className="flex items-center justify-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl"
+            >
+              <FileText className="h-5 w-5" />
+              <span>Terms &amp; Conditions</span>
+              <ArrowRight className="h-5 w-5" />
+            </Link>
+            <Link
+              to="/disclaimer"
+              className="flex items-center justify-center gap-2 border-2 border-primary text-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary/10 transition-all"
+            >
+              <FileText className="h-5 w-5" />
+              <span>Disclaimer</span>
+              <ArrowRight className="h-5 w-5" />
+            </Link>
+          </div>
         </Card>
       </article>
     </>
