@@ -26,13 +26,20 @@ const About = () => {
         </div>
 
         <Card className="p-6 md:p-8 lg:p-10 mb-6 md:mb-8">
-          <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+          <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4">
             Welcome to onlinespinwheel.fun. We are a small team of developers,
             educators, and digital creators who got tired of slow spinners,
             cluttered layouts, and unclear randomness claims. In 2025, we
             launched Online Spin Wheel as a straightforward, beautifully
             designed way to make random choices, pick contest winners, and
             gamify classrooms without hassle.
+          </p>
+          <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+            We understand how frustrating it is when a simple decision turns
+            into a long argument or when an online giveaway loses trust because
+            the random picker looked fake. That is why we built a seamless
+            solution that works flawlessly on any device, making decisions both
+            transparent and exciting.
           </p>
         </Card>
 
@@ -53,9 +60,10 @@ const About = () => {
               Rawalpindi, Pakistan, and support users around the world.
             </p>
             <p className="text-base md:text-lg">
-              Our wheel does not jump to a result. It spins and slows naturally
-              using momentum and friction simulation, giving a transparent and
-              trustworthy experience every time.
+              We have handled tens of thousands of spins without a hitch. Our
+              wheel does not jump to a result. It spins and slows naturally
+              with momentum and friction simulation. No hidden scripts, no
+              favoritism, just the fair result you need.
             </p>
           </div>
         </Card>
@@ -99,8 +107,8 @@ const About = () => {
                 </h3>
               </div>
               <p className="text-sm md:text-base text-muted-foreground">
-                We use `crypto.getRandomValues()` for hardware-level entropy so
-                each spin is unpredictable and mathematically fair.
+                We use crypto.getRandomValues() for hardware-level random seeds.
+                Every spin is unpredictable and mathematically fair.
               </p>
             </Card>
             <Card className="p-4 bg-primary/5 border border-primary/20">
@@ -112,7 +120,7 @@ const About = () => {
               </div>
               <p className="text-sm md:text-base text-muted-foreground">
                 The wheel simulates momentum and friction, so it spins and
-                decelerates naturally instead of snapping to a winner.
+                decelerates naturally instead of abruptly snapping to a winner.
               </p>
             </Card>
             <Card className="p-4 bg-primary/5 border border-primary/20 sm:col-span-2">
@@ -123,8 +131,8 @@ const About = () => {
                 </h3>
               </div>
               <p className="text-sm md:text-base text-muted-foreground">
-                Every segment gets the same chance based on its angle. No hidden
-                weighting, no favoritism.
+                Every segment chance is calculated from its angle, guaranteeing
+                equal probability for all entries.
               </p>
             </Card>
           </div>
@@ -134,18 +142,19 @@ const About = () => {
           <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
             Our Vision & Commitment
           </h2>
+          <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4">
+            We started this project after noticing the web was full of slow,
+            ad-heavy spinners that frustrated users. Our goal was to build a
+            clean, trustworthy alternative. Our commitment to you is simple:
+          </p>
           <ul className="space-y-3 text-base md:text-lg text-muted-foreground">
             <li className="flex items-start gap-3">
               <span className="text-primary mt-1 text-xl">•</span>
-              <span>100% free and unlimited with no sign-up requirement</span>
+              <span>100% Free & Unlimited with no premium tiers or hidden caps</span>
             </li>
             <li className="flex items-start gap-3">
               <span className="text-primary mt-1 text-xl">•</span>
-              <span>Accessible on desktop, tablet, and modern mobile devices</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="text-primary mt-1 text-xl">•</span>
-              <span>Fast, private, and easy to use for classrooms, events, and giveaways</span>
+              <span>Universally accessible on desktop, tablet, and mobile</span>
             </li>
           </ul>
         </Card>
@@ -168,9 +177,12 @@ const About = () => {
               Get In Touch
             </h2>
             <p className="text-base md:text-lg text-muted-foreground mb-4 max-w-2xl leading-relaxed">
-              We love hearing from our community and typically reply within
-              24-48 hours.
+              We are here to help and love hearing from our community.
             </p>
+            <ul className="text-base md:text-lg text-muted-foreground space-y-2 mb-4">
+              <li>Email: onlinespinwheel@gmail.com</li>
+              <li>Response time: typically within 24-48 hours</li>
+            </ul>
             <a
               href="mailto:onlinespinwheel@gmail.com"
               className="text-lg md:text-xl font-semibold text-primary hover:underline inline-flex items-center gap-2 transition-colors"
@@ -178,6 +190,11 @@ const About = () => {
               <Mail className="h-5 w-5" />
               onlinespinwheel@gmail.com
             </a>
+            <p className="text-sm md:text-base text-muted-foreground mt-4 max-w-2xl">
+              Thank you for choosing Online Spin Wheel as your trusted
+              decision-maker. We remain committed to keeping your experience
+              fast, fair, and free.
+            </p>
           </div>
         </Card>
 
