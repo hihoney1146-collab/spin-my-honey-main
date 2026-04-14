@@ -68,9 +68,9 @@ const TutorialManagingSpinWheelEntries = () => {
                   Adding New Entries
                 </h3>
                 <p className="text-muted-foreground mb-3 leading-relaxed">
-                  To add a new entry, locate the input field in the entries
-                  section (usually labeled "Add New Entry" or "Enter name...").
-                  Type your entry name and press Enter or click the Add button.
+                  To add entries now, use the bulk entries textarea in the
+                  entries section. Paste one option per line, then click
+                  "Add all lines to wheel" to import them at once.
                 </p>
                 <div className="bg-muted/50 rounded-lg p-4 mt-3">
                   <p className="font-semibold mb-2 text-foreground">
@@ -83,7 +83,7 @@ const TutorialManagingSpinWheelEntries = () => {
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-primary mt-1">•</span>
-                      <span>Press Enter after typing to add quickly</span>
+                      <span>Paste one item per line for clean bulk imports</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-primary mt-1">•</span>
