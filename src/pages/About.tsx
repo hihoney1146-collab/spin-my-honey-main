@@ -27,134 +27,104 @@ const About = () => {
 
         <Card className="p-6 md:p-8 lg:p-10 mb-6 md:mb-8">
           <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-            Welcome to Online Spin Wheel. We are a small, dedicated team building simple tools that make random choices
-            fair, fun, and effortless for everyone. Our mission is to make fair random choices accessible to classrooms,
-            communities, and creators worldwide.
+            Welcome to onlinespinwheel.fun. We are a small team of developers,
+            educators, and digital creators who got tired of slow spinners,
+            cluttered layouts, and unclear randomness claims. In 2025, we
+            launched Online Spin Wheel as a straightforward, beautifully
+            designed way to make random choices, pick contest winners, and
+            gamify classrooms without hassle.
           </p>
         </Card>
 
         <Card className="p-6 md:p-8 lg:p-10 mb-6 md:mb-8">
           <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
-            Who We Are
+            Our Story
           </h2>
           <div className="space-y-4 text-muted-foreground leading-relaxed">
             <p className="text-base md:text-lg">
-              Online Spin Wheel was launched in 2025 as a browser-based random picker for names, numbers, and prizes
-              that works on any modern device. Behind the wheel is a full-stack web developer with 4 years of experience and
-              an SEO/WordPress specialist with 3 years of experience building fast, user-friendly web tools.
+              It started with a simple giveaway problem: picking a fair winner
+              without forcing users into logins, subscriptions, or bloated
+              interfaces. We built a clean, mathematically fair wheel that runs
+              instantly in the browser with no app required.
             </p>
             <p className="text-base md:text-lg">
-              Together, this team focuses on reliability, clear UX, and honest communication rather than bloated features you never use.
+              Today, teachers, creators, and businesses use it daily because it
+              stays fast, private, and free. We proudly operate from
+              Rawalpindi, Pakistan, and support users around the world.
+            </p>
+            <p className="text-base md:text-lg">
+              Our wheel does not jump to a result. It spins and slows naturally
+              using momentum and friction simulation, giving a transparent and
+              trustworthy experience every time.
             </p>
           </div>
         </Card>
 
         <Card className="p-6 md:p-8 lg:p-10 mb-6 md:mb-8">
           <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
-            What We Do
+            Meet the Team
           </h2>
-          <p className="text-base md:text-lg text-muted-foreground mb-4 leading-relaxed">
-            Online Spin Wheel helps teachers, event hosts, creators, and teams make unbiased decisions with a visual
-            wheel instead of arguments, favoritism, or manual draws. You can paste in names or numbers, spin live on
-            screen, and let everyone see that the result is random and transparent. The tool is free to use, requires no login
-            for normal spinning, and is designed to be ready in seconds for last-minute classes, meetings, or streams.
-          </p>
-          <p className="text-base md:text-lg text-muted-foreground mb-4 leading-relaxed">
-            Online Spin Wheel is a free, easy-to-use wheel spinner that helps you make random selections with style.
-            Whether you're:
-          </p>
           <ul className="space-y-3 text-base md:text-lg text-muted-foreground">
             <li className="flex items-start gap-3">
               <span className="text-primary mt-1 text-xl">•</span>
-              <span>Choosing tonight's dinner destination</span>
+              <span>Tabish Irfan — CEO & Founder, Auroxa Tech</span>
             </li>
             <li className="flex items-start gap-3">
               <span className="text-primary mt-1 text-xl">•</span>
-              <span>Picking a movie for family night</span>
+              <span>Hammas Ali — CTO & Co-founder, Auroxa Tech</span>
             </li>
             <li className="flex items-start gap-3">
               <span className="text-primary mt-1 text-xl">•</span>
-              <span>Selecting winners for giveaways</span>
+              <span>
+                Raja Jahangir — SEO, Custom Websites & Growth Specialist
+              </span>
             </li>
             <li className="flex items-start gap-3">
               <span className="text-primary mt-1 text-xl">•</span>
-              <span>Deciding classroom activities</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="text-primary mt-1 text-xl">•</span>
-              <span>Assigning team tasks</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="text-primary mt-1 text-xl">•</span>
-              <span>Making any choice that needs a fair, random outcome</span>
+              <span>Abdal Khalid — Social Media & Community Expert</span>
             </li>
           </ul>
-          <p className="text-base md:text-lg text-muted-foreground mt-4 leading-relaxed">
-            Our customizable wheel puts the power in your hands while adding an element of excitement to every decision.
-          </p>
         </Card>
 
         <Card className="p-6 md:p-8 lg:p-10 mb-6 md:mb-8">
           <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
-            Why We Built This
-          </h2>
-          <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-            Online Spin Wheel started after noticing that many online spinners were cluttered with confusing ads, slow
-            loading times, or unclear rules about how randomness and data were handled. The goal was to create a clean,
-            trustworthy wheel that teachers could safely use in class, streamers could show on camera, and organizers
-            could rely on for fair giveaways. Every update aims to keep the wheel simple enough for beginners but flexible
-            enough for power users who run regular games and contests.
-          </p>
-        </Card>
-
-        <Card className="p-6 md:p-8 lg:p-10 mb-6 md:mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
-            Why Choose Online Spin Wheel?
+            The Science of Fairness
           </h2>
           <div className="grid sm:grid-cols-2 gap-4 md:gap-6">
             <Card className="p-4 bg-primary/5 border border-primary/20">
               <div className="flex items-center gap-3 mb-2">
-                <Zap className="h-5 w-5 text-primary" />
-                <h3 className="text-lg md:text-xl font-semibold">Simple & Intuitive</h3>
+                <Shield className="h-5 w-5 text-primary" />
+                <h3 className="text-lg md:text-xl font-semibold">
+                  Cryptographic Security
+                </h3>
               </div>
               <p className="text-sm md:text-base text-muted-foreground">
-                No complicated setup or registration required. Just add your options and spin!
+                We use `crypto.getRandomValues()` for hardware-level entropy so
+                each spin is unpredictable and mathematically fair.
               </p>
             </Card>
             <Card className="p-4 bg-primary/5 border border-primary/20">
               <div className="flex items-center gap-3 mb-2">
-                <Shield className="h-5 w-5 text-primary" />
-                <h3 className="text-lg md:text-xl font-semibold">Completely Free</h3>
+                <Zap className="h-5 w-5 text-primary" />
+                <h3 className="text-lg md:text-xl font-semibold">
+                  Real-World Physics
+                </h3>
               </div>
               <p className="text-sm md:text-base text-muted-foreground">
-                We believe everyone should have access to great decision-making tools without barriers.
+                The wheel simulates momentum and friction, so it spins and
+                decelerates naturally instead of snapping to a winner.
               </p>
             </Card>
-            <Card className="p-4 bg-primary/5 border border-primary/20">
+            <Card className="p-4 bg-primary/5 border border-primary/20 sm:col-span-2">
               <div className="flex items-center gap-3 mb-2">
                 <Users className="h-5 w-5 text-primary" />
-                <h3 className="text-lg md:text-xl font-semibold">Customizable</h3>
+                <h3 className="text-lg md:text-xl font-semibold">
+                  Equal Probability
+                </h3>
               </div>
               <p className="text-sm md:text-base text-muted-foreground">
-                Personalize your wheel with different colors, options, and settings to match your needs.
-              </p>
-            </Card>
-            <Card className="p-4 bg-primary/5 border border-primary/20">
-              <div className="flex items-center gap-3 mb-2">
-                <Shield className="h-5 w-5 text-primary" />
-                <h3 className="text-lg md:text-xl font-semibold">Fair & Random</h3>
-              </div>
-              <p className="text-sm md:text-base text-muted-foreground">
-                Our algorithm ensures every spin is truly random and unbiased.
-              </p>
-            </Card>
-            <Card className="p-4 bg-primary/5 border border-primary/20">
-              <div className="flex items-center gap-3 mb-2">
-                <Zap className="h-5 w-5 text-primary" />
-                <h3 className="text-lg md:text-xl font-semibold">Mobile-Friendly</h3>
-              </div>
-              <p className="text-sm md:text-base text-muted-foreground">
-                Spin the wheel anywhere, anytime, from any device.
+                Every segment gets the same chance based on its angle. No hidden
+                weighting, no favoritism.
               </p>
             </Card>
           </div>
@@ -162,32 +132,32 @@ const About = () => {
 
         <Card className="p-6 md:p-8 lg:p-10 mb-6 md:mb-8">
           <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
-            How We Ensure Fairness and Safety
+            Our Vision & Commitment
           </h2>
-          <div className="space-y-4 text-muted-foreground leading-relaxed">
-            <p className="text-base md:text-lg">
-              The wheel uses a random or pseudo-random algorithm so each entry has an equal chance to be selected on
-              every spin, making it suitable for draws, name picking, and task assignment. Entries are typed directly into your
-              browser session, and you stay in control of what information you enter, following best-practice guidance to
-              avoid collecting sensitive personal data unnecessarily.
-            </p>
-            <p className="text-base md:text-lg">
-              Online Spin Wheel is hosted over HTTPS and is regularly checked for performance and stability to offer a smooth
-              experience during live use.
-            </p>
-          </div>
+          <ul className="space-y-3 text-base md:text-lg text-muted-foreground">
+            <li className="flex items-start gap-3">
+              <span className="text-primary mt-1 text-xl">•</span>
+              <span>100% free and unlimited with no sign-up requirement</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-primary mt-1 text-xl">•</span>
+              <span>Accessible on desktop, tablet, and modern mobile devices</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-primary mt-1 text-xl">•</span>
+              <span>Fast, private, and easy to use for classrooms, events, and giveaways</span>
+            </li>
+          </ul>
         </Card>
 
         <Card className="p-6 md:p-8 lg:p-10 mb-6 md:mb-8">
           <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
-            Our Promise to You
+            Partner With Auroxa Tech
           </h2>
           <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-            Online Spin Wheel is committed to keeping the core wheel free, fast, and easy to use so you can focus on your
-            class, event, or community instead of the tool. Feedback from teachers, students, streamers, and organizers
-            directly shapes future improvements, ensuring the wheel continues to match real-world needs. Clear contact
-            details and a transparent privacy policy are provided so you always know who is behind the tool and how your
-            data is treated.
+            If you like the technology behind our wheel, our team at Auroxa
+            Tech can build custom interactive tools, advanced web portals, and
+            agentic AI solutions integrated into your business platforms.
           </p>
         </Card>
 
@@ -195,11 +165,11 @@ const About = () => {
           <div className="flex flex-col items-center text-center">
             <Mail className="h-12 w-12 md:h-16 md:w-16 text-primary mb-4" />
             <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
-              Contact us with any questions or suggestions
+              Get In Touch
             </h2>
             <p className="text-base md:text-lg text-muted-foreground mb-4 max-w-2xl leading-relaxed">
-              We'd love to hear from you! Whether you have questions, feedback,
-              or just want to share how you've used Online Spin Wheel, we're all ears.
+              We love hearing from our community and typically reply within
+              24-48 hours.
             </p>
             <a
               href="mailto:onlinespinwheel@gmail.com"

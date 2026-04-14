@@ -21,11 +21,12 @@ const Index = () => {
     <>
       <Helmet>
         <title>
-          Online Spin Wheel: Free Random Picker for Names, Numbers, and Prizes
+          Online Spin Wheel - Free Customizable Random Picker for Names, Numbers
+          & Prizes
         </title>
         <meta
           name="description"
-          content="Online Spin Wheel: Free online spin wheel picker for names, numbers, prizes, classroom games, giveaways, and fun random decisions."
+          content="Free customizable online spin wheel. Add names or numbers, click spin, get instant random results. No account needed. Spin now at onlinespinwheel.fun!"
         />
         <meta
           name="keywords"
@@ -306,7 +307,17 @@ const Index = () => {
           itemScope
           itemType="https://schema.org/WebPageElement"
         >
+          <h1 className="sr-only">
+            Online Spin Wheel - Free Customizable Random Picker for Names,
+            Numbers & Prizes
+          </h1>
           <SpinWheel />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-3 sm:mt-4">
+            <p className="text-[11px] sm:text-xs text-muted-foreground/90">
+              Expertly verified resource by Raja Jahangir (SEO Expert), powered
+              by Auroxa Tech. Last updated: April 14, 2026.
+            </p>
+          </div>
         </section>
 
         <section
