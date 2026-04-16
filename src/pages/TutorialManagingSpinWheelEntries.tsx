@@ -453,7 +453,7 @@ const TutorialManagingSpinWheelEntries = () => {
               Questions about managing entries? We're here to help!
             </p>
             <Link
-              to="/contact"
+              to="/contact-us"
               className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
             >
               Contact Us

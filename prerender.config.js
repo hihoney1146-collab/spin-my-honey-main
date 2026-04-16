@@ -3,10 +3,10 @@
 
 export const prerenderRoutes = [
   "/",
-  "/about",
-  "/contact",
-  "/privacy",
-  "/terms",
+  "/about-us",
+  "/contact-us",
+  "/privacy-policy",
+  "/terms-and-conditions",
   "/disclaimer",
 ];
 

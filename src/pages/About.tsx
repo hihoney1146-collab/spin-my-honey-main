@@ -2,6 +2,11 @@ import { Card } from "@/components/ui/card";
 import { Helmet } from "react-helmet";
 import { Mail, ArrowRight, Users, Shield, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
+import { OptimizedImage } from "@/components/OptimizedImage";
+import tabishCeo from "@/assets/Tabish-CEO.jpeg";
+import hammasCto from "@/assets/Hammas-CTO.jpeg";
+import jahangirSeo from "@/assets/Jahangir-SEO.jpeg";
+import abdalSocial from "@/assets/Abdal-Social_Media.jpeg";
 
 const About = () => {
   return (
@@ -12,7 +17,7 @@ const About = () => {
           name="description"
           content="Learn about Online Spin Wheel. We are a small, dedicated team building simple tools that make random choices fair, fun, and effortless for everyone."
         />
-        <link rel="canonical" href="https://onlinespinwheel.fun/about" />
+        <link rel="canonical" href="https://onlinespinwheel.fun/about-us" />
       </Helmet>
 
       <article className="container mx-auto px-4 py-8 md:py-12 max-w-5xl">
@@ -72,26 +77,109 @@ const About = () => {
           <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
             Meet the Team
           </h2>
-          <ul className="space-y-3 text-base md:text-lg text-muted-foreground">
-            <li className="flex items-start gap-3">
-              <span className="text-primary mt-1 text-xl">•</span>
-              <span>Tabish Irfan — CEO & Founder, Auroxa Tech</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="text-primary mt-1 text-xl">•</span>
-              <span>Hammas Ali — CTO & Co-founder, Auroxa Tech</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="text-primary mt-1 text-xl">•</span>
-              <span>
-                Raja Jahangir — SEO, Custom Websites & Growth Specialist
-              </span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="text-primary mt-1 text-xl">•</span>
-              <span>Abdal Khalid — Social Media & Community Expert</span>
-            </li>
-          </ul>
+          <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6">
+            Our cross-functional team combines product strategy, engineering,
+            growth, and community expertise to keep Online Spin Wheel fast,
+            fair, and user-focused.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+            <Card className="overflow-hidden border border-border/70 bg-card/70 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow">
+              <div className="aspect-[4/3] overflow-hidden bg-muted">
+                <OptimizedImage
+                  src={tabishCeo}
+                  alt="Tabish Irfan - CEO and Founder"
+                  className="h-full w-full object-cover"
+                  width={640}
+                  height={480}
+                  loading="lazy"
+                />
+              </div>
+              <div className="p-4 md:p-5">
+                <p className="text-[11px] uppercase tracking-wide text-primary font-semibold mb-1">
+                  Leadership
+                </p>
+                <h3 className="text-lg md:text-xl font-bold leading-tight">
+                  Tabish Irfan
+                </h3>
+                <p className="text-sm md:text-base text-muted-foreground mt-1">
+                  CEO &amp; Founder, Auroxa Tech
+                </p>
+              </div>
+            </Card>
+
+            <Card className="overflow-hidden border border-border/70 bg-card/70 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow">
+              <div className="aspect-[4/3] overflow-hidden bg-muted">
+                <OptimizedImage
+                  src={hammasCto}
+                  alt="Hammas Ali - CTO and Co-founder"
+                  className="h-full w-full object-cover"
+                  width={640}
+                  height={480}
+                  loading="lazy"
+                />
+              </div>
+              <div className="p-4 md:p-5">
+                <p className="text-[11px] uppercase tracking-wide text-primary font-semibold mb-1">
+                  Engineering
+                </p>
+                <h3 className="text-lg md:text-xl font-bold leading-tight">
+                  Hammas Ali
+                </h3>
+                <p className="text-sm md:text-base text-muted-foreground mt-1">
+                  CTO &amp; Co-founder, Auroxa Tech
+                </p>
+              </div>
+            </Card>
+
+            <Card className="overflow-hidden border border-border/70 bg-card/70 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow">
+              <div className="aspect-[4/3] overflow-hidden bg-muted">
+                <OptimizedImage
+                  src={jahangirSeo}
+                  alt="Raja Jahangir - SEO and growth specialist"
+                  className="h-full w-full object-cover"
+                  width={640}
+                  height={480}
+                  loading="lazy"
+                />
+              </div>
+              <div className="p-4 md:p-5">
+                <p className="text-[11px] uppercase tracking-wide text-primary font-semibold mb-1">
+                  Growth
+                </p>
+                <h3 className="text-lg md:text-xl font-bold leading-tight">
+                  Raja Jahangir
+                </h3>
+                <p className="text-sm md:text-base text-muted-foreground mt-1">
+                  SEO, Custom Websites &amp; Growth Specialist
+                </p>
+              </div>
+            </Card>
+
+            <Card className="overflow-hidden border border-border/70 bg-card/70 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow">
+              <div className="aspect-[4/3] overflow-hidden bg-muted">
+                <OptimizedImage
+                  src={abdalSocial}
+                  alt="Abdal Khalid - Social media and community expert"
+                  className="h-full w-full object-cover"
+                  width={640}
+                  height={480}
+                  loading="lazy"
+                />
+              </div>
+              <div className="p-4 md:p-5">
+                <p className="text-[11px] uppercase tracking-wide text-primary font-semibold mb-1">
+                  Community
+                </p>
+                <h3 className="text-lg md:text-xl font-bold leading-tight">
+                  Abdal Khalid
+                </h3>
+                <p className="text-sm md:text-base text-muted-foreground mt-1">
+                  Social Media &amp; Community Expert
+                </p>
+              </div>
+            </Card>
+          </div>
         </Card>
 
         <Card className="p-6 md:p-8 lg:p-10 mb-6 md:mb-8">
@@ -209,7 +297,7 @@ const About = () => {
             </p>
           </div>
           <Link
-            to="/contact"
+            to="/contact-us"
             className="flex items-center justify-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mx-auto max-w-sm"
           >
             <Mail className="h-5 w-5" />

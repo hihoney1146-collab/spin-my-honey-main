@@ -18,10 +18,10 @@ const routes = [
     title:
       "Free Spin Wheel - Random Name Picker & Decision Maker Online | Online Spin Wheel",
   },
-  { path: "/about", title: "About Us - Online Spin Wheel" },
-  { path: "/contact", title: "Contact Us - Online Spin Wheel" },
-  { path: "/privacy", title: "Privacy Policy - Online Spin Wheel" },
-  { path: "/terms", title: "Terms and Conditions - Online Spin Wheel" },
+  { path: "/about-us", title: "About Us - Online Spin Wheel" },
+  { path: "/contact-us", title: "Contact Us - Online Spin Wheel" },
+  { path: "/privacy-policy", title: "Privacy Policy - Online Spin Wheel" },
+  { path: "/terms-and-conditions", title: "Terms and Conditions - Online Spin Wheel" },
   { path: "/disclaimer", title: "Disclaimer - Online Spin Wheel" },
 ];
 

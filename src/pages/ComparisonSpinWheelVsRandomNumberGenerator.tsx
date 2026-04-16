@@ -559,7 +559,7 @@ const ComparisonSpinWheelVsRandomNumberGenerator = () => {
               Questions about which selection method to use? We're here to help!
             </p>
             <Link
-              to="/contact"
+              to="/contact-us"
               className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
             >
               Contact Us

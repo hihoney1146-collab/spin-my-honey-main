@@ -333,7 +333,7 @@ const CookiePolicy = () => {
             <p className="text-muted-foreground leading-relaxed">
               For more detailed information on how we handle your data, please read
               our full{" "}
-              <Link to="/privacy" className="text-primary hover:underline font-medium">
+              <Link to="/privacy-policy" className="text-primary hover:underline font-medium">
                 Privacy Policy
               </Link>
               .
@@ -348,7 +348,7 @@ const CookiePolicy = () => {
           </div>
           <div className="flex flex-col sm:flex-row flex-wrap gap-3 justify-center items-stretch max-w-2xl mx-auto">
             <Link
-              to="/privacy"
+              to="/privacy-policy"
               className="flex items-center justify-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-all"
             >
               <Shield className="h-5 w-5" />
@@ -356,7 +356,7 @@ const CookiePolicy = () => {
               <ArrowRight className="h-5 w-5" />
             </Link>
             <Link
-              to="/terms"
+              to="/terms-and-conditions"
               className="flex items-center justify-center gap-2 border-2 border-primary text-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary/10 transition-all"
             >
               <FileText className="h-5 w-5" />

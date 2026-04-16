@@ -60,7 +60,7 @@ export const CookieConsent = () => {
                                     </Link>{" "}
                                     and{" "}
                                     <Link
-                                        to="/privacy"
+                                        to="/privacy-policy"
                                         className="text-primary hover:underline font-medium"
                                     >
                                         Privacy Policy

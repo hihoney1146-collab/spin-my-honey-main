@@ -311,12 +311,6 @@ const Index = () => {
             Numbers & Prizes
           </h1>
           <SpinWheel />
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-3 sm:mt-4">
-            <p className="text-[11px] sm:text-xs text-muted-foreground/90">
-              Expertly Verified Resource Written by Raja Jahangir, (SEO Expert).
-              Powered by Auroxa Tech. Last Updated: 14 Apr 2026.
-            </p>
-          </div>
         </section>
 
         <section
@@ -1236,7 +1230,7 @@ const Index = () => {
                   spin at a time.
                 </p>
                 <Link
-                  to="/about"
+                  to="/about-us"
                   className="inline-flex items-center gap-1.5 sm:gap-2 text-sm sm:text-base text-primary hover:underline font-semibold"
                 >
                   Learn More
@@ -1256,7 +1250,7 @@ const Index = () => {
                   from you. Get in touch with our friendly support team today.
                 </p>
                 <Link
-                  to="/contact"
+                  to="/contact-us"
                   className="inline-flex items-center gap-1.5 sm:gap-2 text-sm sm:text-base text-primary hover:underline font-semibold"
                 >
                   Contact Us

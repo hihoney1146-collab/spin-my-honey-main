@@ -88,7 +88,7 @@ const Contact = () => {
           name="description"
           content="Get in touch with the Online Spin Wheel team. We'd love to hear your feedback, suggestions, or answer any questions you have."
         />
-        <link rel="canonical" href="https://onlinespinwheel.fun/contact" />
+        <link rel="canonical" href="https://onlinespinwheel.fun/contact-us" />
       </Helmet>
 
       <section className="container mx-auto px-4 py-12 max-w-4xl">

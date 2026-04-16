@@ -30,9 +30,9 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
 
   const navLinks = [
     { to: "/", label: "Home", icon: Home },
-    { to: "/about", label: "About", icon: Info },
-    { to: "/contact", label: "Contact", icon: Mail },
-    { to: "/privacy", label: "Privacy", icon: Lock },
+    { to: "/about-us", label: "About", icon: Info },
+    { to: "/contact-us", label: "Contact", icon: Mail },
+    { to: "/privacy-policy", label: "Privacy", icon: Lock },
     { to: "/disclaimer", label: "Disclaimer", icon: FileText },
   ];
 
@@ -254,8 +254,8 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
               <ul className="space-y-3">
                 {[
                   { to: "/", label: "Home" },
-                  { to: "/about", label: "About Us" },
-                  { to: "/contact", label: "Contact" },
+                  { to: "/about-us", label: "About Us" },
+                  { to: "/contact-us", label: "Contact" },
                 ].map((link) => (
                   <li key={link.to}>
                     <Link
@@ -277,9 +277,9 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
               </h3>
               <ul className="space-y-3">
                 {[
-                  { to: "/privacy", label: "Privacy Policy" },
+                  { to: "/privacy-policy", label: "Privacy Policy" },
                   { to: "/cookie-policy", label: "Cookie Policy" },
-                  { to: "/terms", label: "Terms & Conditions" },
+                  { to: "/terms-and-conditions", label: "Terms & Conditions" },
                   { to: "/disclaimer", label: "Disclaimer" },
                 ].map((link) => (
                   <li key={link.to}>

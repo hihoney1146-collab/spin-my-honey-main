@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { LayoutWrapper } from "@/components/LayoutWrapper";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ScrollToTop } from "@/components/ScrollToTop";
@@ -95,7 +95,7 @@ const App = () => (
             <Route element={<LayoutWrapper />}>
               <Route path="/" element={<Index />} />
               <Route
-                path="/about"
+                path="/about-us"
                 element={
                   <Suspense fallback={<div className="min-h-screen" />}>
                     <About />
@@ -103,7 +103,7 @@ const App = () => (
                 }
               />
               <Route
-                path="/contact"
+                path="/contact-us"
                 element={
                   <Suspense fallback={<div className="min-h-screen" />}>
                     <Contact />
@@ -111,7 +111,7 @@ const App = () => (
                 }
               />
               <Route
-                path="/privacy"
+                path="/privacy-policy"
                 element={
                   <Suspense fallback={<div className="min-h-screen" />}>
                     <Privacy />
@@ -271,7 +271,7 @@ const App = () => (
                 }
               />
               <Route
-                path="/terms"
+                path="/terms-and-conditions"
                 element={
                   <Suspense fallback={<div className="min-h-screen" />}>
                     <Terms />
@@ -295,6 +295,10 @@ const App = () => (
                 </Suspense>
               }
             />
+            <Route path="/about" element={<Navigate to="/about-us" replace />} />
+            <Route path="/contact" element={<Navigate to="/contact-us" replace />} />
+            <Route path="/privacy" element={<Navigate to="/privacy-policy" replace />} />
+            <Route path="/terms" element={<Navigate to="/terms-and-conditions" replace />} />
             <Route
               path="*"
               element={

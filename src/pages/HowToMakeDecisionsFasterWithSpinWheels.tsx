@@ -562,7 +562,7 @@ const HowToMakeDecisionsFasterWithSpinWheels = () => {
               to help!
             </p>
             <Link
-              to="/contact"
+              to="/contact-us"
               className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
             >
               Contact Us

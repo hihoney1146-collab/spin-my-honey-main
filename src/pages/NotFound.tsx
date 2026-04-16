@@ -54,7 +54,7 @@ const NotFound = () => {
           </div>
 
           <div className="grid sm:grid-cols-2 gap-4 mb-8">
-            <Link to="/about" className="text-left">
+            <Link to="/about-us" className="text-left">
               <Card className="p-4 hover:shadow-lg transition-shadow cursor-pointer h-full">
                 <div className="flex items-start gap-3">
                   <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
@@ -70,7 +70,7 @@ const NotFound = () => {
               </Card>
             </Link>
 
-            <Link to="/contact" className="text-left">
+            <Link to="/contact-us" className="text-left">
               <Card className="p-4 hover:shadow-lg transition-shadow cursor-pointer h-full">
                 <div className="flex items-start gap-3">
                   <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
@@ -105,7 +105,7 @@ const NotFound = () => {
 
           <p className="text-sm text-muted-foreground">
             If you believe this is an error, please{" "}
-            <Link to="/contact" className="text-primary hover:underline">
+            <Link to="/contact-us" className="text-primary hover:underline">
               contact us
             </Link>
             .

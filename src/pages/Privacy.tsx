@@ -12,7 +12,7 @@ const Privacy = () => {
           name="description"
           content="Privacy Policy for Online Spin Wheel (onlinespinwheel.fun), operated by Auroxa Tech: what we collect, cookies, ads, CCPA/CPRA, GDPR, COPPA, and how to contact us."
         />
-        <link rel="canonical" href="https://onlinespinwheel.fun/privacy" />
+        <link rel="canonical" href="https://onlinespinwheel.fun/privacy-policy" />
       </Helmet>
 
       <article className="container mx-auto px-4 py-8 md:py-12 max-w-5xl">
@@ -477,7 +477,7 @@ const Privacy = () => {
           </div>
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch max-w-xl mx-auto">
             <Link
-              to="/terms"
+              to="/terms-and-conditions"
               className="flex items-center justify-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl"
             >
               <FileText className="h-5 w-5" />

@@ -213,7 +213,7 @@ const Disclaimer = () => {
           </div>
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center max-w-lg mx-auto">
             <Link
-              to="/terms"
+              to="/terms-and-conditions"
               className="flex items-center justify-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-all"
             >
               <FileText className="h-5 w-5" />
@@ -221,7 +221,7 @@ const Disclaimer = () => {
               <ArrowRight className="h-5 w-5" />
             </Link>
             <Link
-              to="/privacy"
+              to="/privacy-policy"
               className="flex items-center justify-center gap-2 border-2 border-primary text-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary/10 transition-all"
             >
               <FileText className="h-5 w-5" />
