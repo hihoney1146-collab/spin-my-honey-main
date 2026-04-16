@@ -97,7 +97,7 @@ const Index = () => {
               {
                 "@type": "ListItem",
                 position: 2,
-                name: "Spin Wheel",
+                name: "Online Spin Wheel",
                 item: "https://onlinespinwheel.fun/#spin-wheel",
               },
             ],
