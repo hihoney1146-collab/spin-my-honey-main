@@ -85,17 +85,19 @@ const About = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
             <Card className="overflow-hidden border border-border/70 bg-card/70 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow">
-              <div className="aspect-[4/3] overflow-hidden bg-muted">
-                <OptimizedImage
-                  src={tabishCeo}
-                  alt="Tabish Irfan - CEO and Founder"
-                  className="h-full w-full object-cover"
-                  width={640}
-                  height={480}
-                  loading="lazy"
-                />
+              <div className="flex justify-center pt-5 md:pt-6">
+                <div className="h-36 w-36 md:h-44 md:w-44 rounded-full overflow-hidden bg-muted border border-border/60">
+                  <OptimizedImage
+                    src={tabishCeo}
+                    alt="Tabish Irfan - CEO and Founder"
+                    className="h-full w-full object-cover object-center"
+                    width={320}
+                    height={320}
+                    loading="lazy"
+                  />
+                </div>
               </div>
-              <div className="p-4 md:p-5">
+              <div className="p-4 md:p-5 text-center">
                 <p className="text-[11px] uppercase tracking-wide text-primary font-semibold mb-1">
                   Leadership
                 </p>
@@ -109,17 +111,19 @@ const About = () => {
             </Card>
 
             <Card className="overflow-hidden border border-border/70 bg-card/70 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow">
-              <div className="aspect-[4/3] overflow-hidden bg-muted">
-                <OptimizedImage
-                  src={hammasCto}
-                  alt="Hammas Ali - CTO and Co-founder"
-                  className="h-full w-full object-cover"
-                  width={640}
-                  height={480}
-                  loading="lazy"
-                />
+              <div className="flex justify-center pt-5 md:pt-6">
+                <div className="h-36 w-36 md:h-44 md:w-44 rounded-full overflow-hidden bg-muted border border-border/60">
+                  <OptimizedImage
+                    src={hammasCto}
+                    alt="Hammas Ali - CTO and Co-founder"
+                    className="h-full w-full object-cover object-center"
+                    width={320}
+                    height={320}
+                    loading="lazy"
+                  />
+                </div>
               </div>
-              <div className="p-4 md:p-5">
+              <div className="p-4 md:p-5 text-center">
                 <p className="text-[11px] uppercase tracking-wide text-primary font-semibold mb-1">
                   Engineering
                 </p>
@@ -133,17 +137,19 @@ const About = () => {
             </Card>
 
             <Card className="overflow-hidden border border-border/70 bg-card/70 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow">
-              <div className="aspect-[4/3] overflow-hidden bg-muted">
-                <OptimizedImage
-                  src={jahangirSeo}
-                  alt="Raja Jahangir - SEO and growth specialist"
-                  className="h-full w-full object-cover"
-                  width={640}
-                  height={480}
-                  loading="lazy"
-                />
+              <div className="flex justify-center pt-5 md:pt-6">
+                <div className="h-36 w-36 md:h-44 md:w-44 rounded-full overflow-hidden bg-muted border border-border/60">
+                  <OptimizedImage
+                    src={jahangirSeo}
+                    alt="Raja Jahangir - SEO and growth specialist"
+                    className="h-full w-full object-cover object-center"
+                    width={320}
+                    height={320}
+                    loading="lazy"
+                  />
+                </div>
               </div>
-              <div className="p-4 md:p-5">
+              <div className="p-4 md:p-5 text-center">
                 <p className="text-[11px] uppercase tracking-wide text-primary font-semibold mb-1">
                   Growth
                 </p>
@@ -157,17 +163,19 @@ const About = () => {
             </Card>
 
             <Card className="overflow-hidden border border-border/70 bg-card/70 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow">
-              <div className="aspect-[4/3] overflow-hidden bg-muted">
-                <OptimizedImage
-                  src={abdalSocial}
-                  alt="Abdal Khalid - Social media and community expert"
-                  className="h-full w-full object-cover"
-                  width={640}
-                  height={480}
-                  loading="lazy"
-                />
+              <div className="flex justify-center pt-5 md:pt-6">
+                <div className="h-36 w-36 md:h-44 md:w-44 rounded-full overflow-hidden bg-muted border border-border/60">
+                  <OptimizedImage
+                    src={abdalSocial}
+                    alt="Abdal Khalid - Social media and community expert"
+                    className="h-full w-full object-cover object-center"
+                    width={320}
+                    height={320}
+                    loading="lazy"
+                  />
+                </div>
               </div>
-              <div className="p-4 md:p-5">
+              <div className="p-4 md:p-5 text-center">
                 <p className="text-[11px] uppercase tracking-wide text-primary font-semibold mb-1">
                   Community
                 </p>
