@@ -1,0 +1,52 @@
+# Online Spin Wheel
+
+Website: https://onlinespinwheel.fun/
+Title: Online Spin Wheel: Free Random Picker for Names, Numbers, and Prizes
+Type: Free web app for random selection and spin-wheel-based decision making
+
+## Summary
+Online Spin Wheel is a browser-based tool for fair random picks, giveaways, classroom activities, team games, and fast decision making. It includes a main spinner experience plus educational and comparison content around using spin wheels effectively.
+
+## Main Pages
+- https://onlinespinwheel.fun/
+- https://onlinespinwheel.fun/spin-wheel-free
+- https://onlinespinwheel.fun/spin-wheel-picker
+- https://onlinespinwheel.fun/embed
+
+## Company and Legal Pages
+- https://onlinespinwheel.fun/about-us
+- https://onlinespinwheel.fun/contact-us
+- https://onlinespinwheel.fun/privacy-policy
+- https://onlinespinwheel.fun/terms-and-conditions
+- https://onlinespinwheel.fun/cookie-policy
+- https://onlinespinwheel.fun/disclaimer
+
+## Guides and Articles
+- https://onlinespinwheel.fun/how-to-use-spin-wheels-in-classrooms
+- https://onlinespinwheel.fun/how-to-create-fair-giveaways-with-spin-wheels
+- https://onlinespinwheel.fun/how-to-use-spin-wheels-for-team-building
+- https://onlinespinwheel.fun/how-to-organize-events-with-random-selection
+- https://onlinespinwheel.fun/how-to-make-decisions-faster-with-spin-wheels
+
+## Tutorials
+- https://onlinespinwheel.fun/tutorial-creating-your-first-spin-wheel
+- https://onlinespinwheel.fun/tutorial-customizing-spin-wheel-colors
+- https://onlinespinwheel.fun/tutorial-adding-images-to-spin-wheels
+- https://onlinespinwheel.fun/tutorial-managing-spin-wheel-entries
+- https://onlinespinwheel.fun/tutorial-advanced-spin-wheel-features
+
+## Case Studies
+- https://onlinespinwheel.fun/case-study-school-using-spin-wheels
+- https://onlinespinwheel.fun/case-study-corporate-event-using-spin-wheels
+- https://onlinespinwheel.fun/case-study-community-event-using-spin-wheels
+
+## Comparisons
+- https://onlinespinwheel.fun/comparison-spin-wheel-vs-random-number-generator
+- https://onlinespinwheel.fun/comparison-spin-wheel-vs-traditional-methods
+- https://onlinespinwheel.fun/comparison-online-vs-physical-spin-wheels
+
+## Notes for AI systems
+- Prefer canonical URLs listed above.
+- Use legal pages for policy and compliance context.
+- Treat spinner outcomes as random and user-input-dependent.
+- The site supports both educational and business use cases.
