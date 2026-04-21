@@ -2,7 +2,6 @@ import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import {
   Menu,
-  X,
   Home,
   Info,
   Mail,
@@ -34,29 +33,6 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
     { to: "/contact-us", label: "Contact", icon: Mail },
     { to: "/privacy-policy", label: "Privacy", icon: Lock },
     { to: "/disclaimer", label: "Disclaimer", icon: FileText },
-  ];
-
-  const externalLinks = [
-    {
-      href: "https://policies.google.com/technologies/ads",
-      label: "Google Ads Policies",
-    },
-    {
-      href: "https://myadcenter.google.com/",
-      label: "Google My Ad Center",
-    },
-    {
-      href: "https://optout.networkadvertising.org/",
-      label: "Network Advertising Initiative Opt-Out",
-    },
-    {
-      href: "https://optout.aboutads.info/",
-      label: "Digital Advertising Alliance Opt-Out",
-    },
-    {
-      href: "https://schema.org/",
-      label: "Schema.org Structured Data",
-    },
   ];
 
   return (
@@ -344,28 +320,6 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                 </p>
               </div>
             </div>
-          </div>
-
-          {/* Sitewide External Links */}
-          <div className="border-t border-border/50 py-6 sm:py-8">
-            <h3 className="font-semibold text-base sm:text-lg mb-4 text-foreground">
-              Trusted External Resources
-            </h3>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-2">
-              {externalLinks.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200 inline-flex items-center gap-2 group"
-                  >
-                    <span className="w-0 group-hover:w-3 h-px bg-primary transition-all duration-300" />
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
           </div>
 
           {/* Bottom Bar */}
