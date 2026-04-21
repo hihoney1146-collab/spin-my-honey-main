@@ -36,83 +36,6 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
     { to: "/disclaimer", label: "Disclaimer", icon: FileText },
   ];
 
-  const allPageLinks = [
-    { to: "/", label: "Home" },
-    { to: "/spin-wheel-free", label: "Spin Wheel Free" },
-    { to: "/spin-wheel-picker", label: "Spin Wheel Picker" },
-    { to: "/embed", label: "Embed" },
-    { to: "/about-us", label: "About Us" },
-    { to: "/contact-us", label: "Contact Us" },
-    { to: "/privacy-policy", label: "Privacy Policy" },
-    { to: "/terms-and-conditions", label: "Terms & Conditions" },
-    { to: "/cookie-policy", label: "Cookie Policy" },
-    { to: "/disclaimer", label: "Disclaimer" },
-    {
-      to: "/how-to-use-spin-wheels-in-classrooms",
-      label: "How to Use Spin Wheels in Classrooms",
-    },
-    {
-      to: "/how-to-create-fair-giveaways-with-spin-wheels",
-      label: "How to Create Fair Giveaways",
-    },
-    {
-      to: "/how-to-use-spin-wheels-for-team-building",
-      label: "How to Use Spin Wheels for Team Building",
-    },
-    {
-      to: "/how-to-organize-events-with-random-selection",
-      label: "How to Organize Events with Random Selection",
-    },
-    {
-      to: "/how-to-make-decisions-faster-with-spin-wheels",
-      label: "How to Make Decisions Faster",
-    },
-    {
-      to: "/tutorial-creating-your-first-spin-wheel",
-      label: "Tutorial: First Spin Wheel",
-    },
-    {
-      to: "/tutorial-customizing-spin-wheel-colors",
-      label: "Tutorial: Customize Colors",
-    },
-    {
-      to: "/tutorial-adding-images-to-spin-wheels",
-      label: "Tutorial: Add Images",
-    },
-    {
-      to: "/tutorial-managing-spin-wheel-entries",
-      label: "Tutorial: Manage Entries",
-    },
-    {
-      to: "/tutorial-advanced-spin-wheel-features",
-      label: "Tutorial: Advanced Features",
-    },
-    {
-      to: "/case-study-school-using-spin-wheels",
-      label: "Case Study: School",
-    },
-    {
-      to: "/case-study-corporate-event-using-spin-wheels",
-      label: "Case Study: Corporate Event",
-    },
-    {
-      to: "/case-study-community-event-using-spin-wheels",
-      label: "Case Study: Community Event",
-    },
-    {
-      to: "/comparison-spin-wheel-vs-random-number-generator",
-      label: "Comparison: Random Number Generator",
-    },
-    {
-      to: "/comparison-spin-wheel-vs-traditional-methods",
-      label: "Comparison: Traditional Methods",
-    },
-    {
-      to: "/comparison-online-vs-physical-spin-wheels",
-      label: "Comparison: Online vs Physical",
-    },
-  ];
-
   const externalLinks = [
     {
       href: "https://policies.google.com/technologies/ads",
@@ -421,26 +344,6 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                 </p>
               </div>
             </div>
-          </div>
-
-          {/* Sitewide Internal Links */}
-          <div className="border-t border-border/50 py-6 sm:py-8">
-            <h3 className="font-semibold text-base sm:text-lg mb-4 text-foreground">
-              Explore All Pages
-            </h3>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-2">
-              {allPageLinks.map((link) => (
-                <li key={link.to}>
-                  <Link
-                    to={link.to}
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200 inline-flex items-center gap-2 group"
-                  >
-                    <span className="w-0 group-hover:w-3 h-px bg-primary transition-all duration-300" />
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
           </div>
 
           {/* Sitewide External Links */}
