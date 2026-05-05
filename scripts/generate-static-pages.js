@@ -12,7 +12,7 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const routes = [
+const baseRoutes = [
   {
     path: "/",
     title:
@@ -24,6 +24,22 @@ const routes = [
   { path: "/terms-and-conditions", title: "Terms and Conditions - Online Spin Wheel" },
   { path: "/disclaimer", title: "Disclaimer - Online Spin Wheel" },
 ];
+
+const wheelJsonPath = path.join(__dirname, "../src/generated/wheelPages.json");
+let programmaticRoutes = [];
+if (fs.existsSync(wheelJsonPath)) {
+  try {
+    const wheelPages = JSON.parse(fs.readFileSync(wheelJsonPath, "utf-8"));
+    programmaticRoutes = wheelPages.map((p) => ({
+      path: `/${p.slug}`,
+      title: p.title || "Online Spin Wheel",
+    }));
+  } catch (e) {
+    console.warn("⚠️ Could not read wheelPages.json:", e.message);
+  }
+}
+
+const routes = [...baseRoutes, ...programmaticRoutes];
 
 // Read the main index.html template
 const distPath = path.resolve(__dirname, "../dist");

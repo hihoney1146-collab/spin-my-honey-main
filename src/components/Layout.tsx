@@ -253,8 +253,6 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
               <ul className="space-y-3">
                 {[
                   { to: "/", label: "Home" },
-                  { to: "/spin-wheel-free", label: "Spin Wheel Free" },
-                  { to: "/spin-wheel-picker", label: "Spin Wheel Picker" },
                   { to: "/about-us", label: "About Us" },
                   { to: "/contact-us", label: "Contact" },
                 ].map((link) => (

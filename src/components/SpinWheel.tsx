@@ -146,9 +146,28 @@ const createClickSound = (ctx: AudioContext) => {
   osc.stop(now + 0.1);
 };
 
-export const SpinWheel = () => {
+export type SpinWheelProps = {
+  /** When set, seeds wheel slices from CSV/programmatic pages and skips global localStorage load/save. */
+  presetOptionLabels?: string[];
+};
+
+export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
   const { resolvedTheme } = useTheme();
+  const usePreset =
+    Array.isArray(presetOptionLabels) && presetOptionLabels.length > 0;
+
   const [entries, setEntries] = useState<WheelEntry[]>(() => {
+    if (
+      Array.isArray(presetOptionLabels) &&
+      presetOptionLabels.length > 0
+    ) {
+      return presetOptionLabels.map((text, i) => ({
+        id: `preset-${i + 1}`,
+        text,
+        color: defaultColors[i % defaultColors.length],
+        active: true,
+      }));
+    }
     // Load from localStorage or use defaults
     const saved = localStorage.getItem("spinWheelEntries");
     if (saved) {
@@ -264,11 +283,13 @@ export const SpinWheel = () => {
     } catch {}
   };
 
-  // Save entries to localStorage whenever they change
+  // Save entries to localStorage whenever they change (skip preset/programmatic wheels)
   useEffect(() => {
-    localStorage.setItem("spinWheelEntries", JSON.stringify(entries));
+    if (!usePreset) {
+      localStorage.setItem("spinWheelEntries", JSON.stringify(entries));
+    }
     entriesRef.current = entries;
-  }, [entries]);
+  }, [entries, usePreset]);
 
   // Update refs whenever state changes
   useEffect(() => {
