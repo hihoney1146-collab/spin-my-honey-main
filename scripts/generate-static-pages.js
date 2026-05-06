@@ -35,19 +35,19 @@ const baseRoutes = [
   },
   {
     path: "/blog/best-icebreaker-games-office-meetings",
-    title: "10 Best Icebreaker Games for Office Meetings | Online Spin Wheel",
+    title: "10 Best Icebreaker Games for Office Meetings to Energize Your Team",
   },
   {
     path: "/blog/best-spin-wheel-games-for-students",
-    title: "7 Best Spin the Wheel Games for Students | Online Spin Wheel",
+    title: "7 Best Spin the Wheel Games for Students to Boost Engagement",
   },
   {
     path: "/blog/fun-ways-decide-where-to-eat-couples",
-    title: "7 Fun Ways to Decide Where to Eat for Couples | Online Spin Wheel",
+    title: "7 Fun Ways to Decide Where to Eat for Couples (No More Arguments!)",
   },
   {
     path: "/blog/virtual-secret-santa-online",
-    title: "How to Organize a Virtual Secret Santa Online | Online Spin Wheel",
+    title: "How to Organize a Virtual Secret Santa Online",
   },
 ];
 
