@@ -19,6 +19,32 @@ const fixedRoutes = [
   { path: "/spin-wheel-free", changefreq: "weekly", priority: "0.95" },
   { path: "/spin-wheel-picker", changefreq: "weekly", priority: "0.95" },
   { path: "/all-spin-wheels", changefreq: "weekly", priority: "0.88" },
+  { path: "/blog", changefreq: "weekly", priority: "0.82" },
+  {
+    path: "/blog/random-name-picker-fair-fun-easy",
+    changefreq: "monthly",
+    priority: "0.78",
+  },
+  {
+    path: "/blog/best-icebreaker-games-office-meetings",
+    changefreq: "monthly",
+    priority: "0.78",
+  },
+  {
+    path: "/blog/best-spin-wheel-games-for-students",
+    changefreq: "monthly",
+    priority: "0.78",
+  },
+  {
+    path: "/blog/fun-ways-decide-where-to-eat-couples",
+    changefreq: "monthly",
+    priority: "0.78",
+  },
+  {
+    path: "/blog/virtual-secret-santa-online",
+    changefreq: "monthly",
+    priority: "0.78",
+  },
   { path: "/about-us", changefreq: "monthly", priority: "0.8" },
   { path: "/contact-us", changefreq: "monthly", priority: "0.7" },
   { path: "/embed", changefreq: "monthly", priority: "0.65" },

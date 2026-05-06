@@ -16,12 +16,14 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import {
   WHEEL_HUB_PATH,
+  BLOG_INDEX_PATH,
   toolLinks,
   guideLinks,
   tutorialLinks,
   comparisonLinks,
   caseStudyLinks,
   getFeaturedWheelLinks,
+  getBlogPostLinks,
 } from "@/lib/siteInternalLinks";
 
 const Index = () => {
@@ -1281,6 +1283,29 @@ const Index = () => {
                   <p className="font-semibold text-foreground mb-2">Tools</p>
                   <ul className="space-y-1.5">
                     {toolLinks.map((item) => (
+                      <li key={item.to}>
+                        <Link
+                          to={item.to}
+                          className="text-muted-foreground hover:text-primary transition-colors"
+                        >
+                          {item.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <p className="font-semibold text-foreground mb-2">Blog</p>
+                  <ul className="space-y-1.5">
+                    <li>
+                      <Link
+                        to={BLOG_INDEX_PATH}
+                        className="font-semibold text-primary hover:underline"
+                      >
+                        All posts
+                      </Link>
+                    </li>
+                    {getBlogPostLinks().map((item) => (
                       <li key={item.to}>
                         <Link
                           to={item.to}

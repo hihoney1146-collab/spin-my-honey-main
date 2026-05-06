@@ -1,11 +1,25 @@
+import { getAllBlogPosts } from "@/data/blogPosts";
 import { getAllWheelSlugs, getWheelPageBySlug } from "@/lib/wheelPages";
-
-export const WHEEL_HUB_PATH = "/all-spin-wheels";
 
 export type SiteLinkItem = {
   to: string;
   label: string;
 };
+
+export const WHEEL_HUB_PATH = "/all-spin-wheels";
+
+export const BLOG_INDEX_PATH = "/blog";
+
+/** Footer / manifest links for published blog posts (derived from data). */
+export function getBlogPostLinks(): SiteLinkItem[] {
+  return getAllBlogPosts().map((p) => {
+    const short = p.title.split("|")[0].trim();
+    return {
+      to: `${BLOG_INDEX_PATH}/${p.slug}`,
+      label: short.length > 46 ? `${short.slice(0, 43)}…` : short,
+    };
+  });
+}
 
 export const toolLinks: SiteLinkItem[] = [
   { to: "/spin-wheel-free", label: "Spin Wheel Free" },

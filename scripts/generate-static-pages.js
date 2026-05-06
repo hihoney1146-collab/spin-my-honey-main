@@ -27,6 +27,28 @@ const baseRoutes = [
     path: "/all-spin-wheels",
     title: "All specialty spin wheels | Online Spin Wheel",
   },
+  { path: "/blog", title: "Blog | Online Spin Wheel" },
+  {
+    path: "/blog/random-name-picker-fair-fun-easy",
+    title:
+      "How a Random Name Picker Makes Decisions Fair, Fun & Easy | Online Spin Wheel",
+  },
+  {
+    path: "/blog/best-icebreaker-games-office-meetings",
+    title: "10 Best Icebreaker Games for Office Meetings | Online Spin Wheel",
+  },
+  {
+    path: "/blog/best-spin-wheel-games-for-students",
+    title: "7 Best Spin the Wheel Games for Students | Online Spin Wheel",
+  },
+  {
+    path: "/blog/fun-ways-decide-where-to-eat-couples",
+    title: "7 Fun Ways to Decide Where to Eat for Couples | Online Spin Wheel",
+  },
+  {
+    path: "/blog/virtual-secret-santa-online",
+    title: "How to Organize a Virtual Secret Santa Online | Online Spin Wheel",
+  },
 ];
 
 const wheelJsonPath = path.join(__dirname, "../src/generated/wheelPages.json");

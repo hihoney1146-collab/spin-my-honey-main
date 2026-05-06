@@ -70,6 +70,8 @@ const ComparisonOnlineVsPhysicalSpinWheels = lazy(
 const Terms = lazy(() => import("./pages/Terms"));
 const Disclaimer = lazy(() => import("./pages/Disclaimer"));
 const AllSpinWheelsPage = lazy(() => import("./pages/AllSpinWheelsPage"));
+const BlogIndex = lazy(() => import("./pages/BlogIndex"));
+const BlogPost = lazy(() => import("./pages/BlogPost"));
 const WheelProgrammaticPage = lazy(
   () => import("./pages/WheelProgrammaticPage")
 );
@@ -295,6 +297,22 @@ const App = () => (
                 element={
                   <Suspense fallback={<div className="min-h-screen" />}>
                     <AllSpinWheelsPage />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/blog"
+                element={
+                  <Suspense fallback={<div className="min-h-screen" />}>
+                    <BlogIndex />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/blog/:slug"
+                element={
+                  <Suspense fallback={<div className="min-h-screen" />}>
+                    <BlogPost />
                   </Suspense>
                 }
               />

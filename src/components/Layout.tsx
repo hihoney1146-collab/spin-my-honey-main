@@ -7,6 +7,7 @@ import {
   Mail,
   Lock,
   FileText,
+  BookOpen,
 } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { Button } from "@/components/ui/button";
@@ -22,23 +23,34 @@ import { SocialShare } from "./SocialShare";
 import { ThemeToggle } from "./ThemeToggle";
 import {
   WHEEL_HUB_PATH,
+  BLOG_INDEX_PATH,
   toolLinks,
   guideLinks,
   tutorialLinks,
   caseStudyLinks,
   comparisonLinks,
   getFeaturedWheelLinks,
+  getBlogPostLinks,
 } from "@/lib/siteInternalLinks";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) => {
+    if (path === BLOG_INDEX_PATH) {
+      return (
+        location.pathname === BLOG_INDEX_PATH ||
+        location.pathname.startsWith(`${BLOG_INDEX_PATH}/`)
+      );
+    }
+    return location.pathname === path;
+  };
 
   const navLinks = [
     { to: "/", label: "Home", icon: Home },
     { to: "/about-us", label: "About", icon: Info },
+    { to: BLOG_INDEX_PATH, label: "Blog", icon: BookOpen },
     { to: "/contact-us", label: "Contact", icon: Mail },
     { to: "/privacy-policy", label: "Privacy", icon: Lock },
     { to: "/disclaimer", label: "Disclaimer", icon: FileText },
@@ -263,6 +275,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                 {[
                   { to: "/", label: "Home" },
                   { to: "/about-us", label: "About Us" },
+                  { to: BLOG_INDEX_PATH, label: "Blog" },
                   { to: "/contact-us", label: "Contact" },
                 ].map((link) => (
                   <li key={link.to}>
@@ -333,7 +346,32 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
             <h3 className="font-semibold text-base sm:text-lg mb-6 text-foreground text-center sm:text-left">
               Explore the site
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-7 gap-8">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-3">
+                  Blog
+                </p>
+                <ul className="space-y-2">
+                  <li>
+                    <Link
+                      to={BLOG_INDEX_PATH}
+                      className="text-sm font-semibold text-primary hover:underline"
+                    >
+                      All posts
+                    </Link>
+                  </li>
+                  {getBlogPostLinks().map((link) => (
+                    <li key={link.to}>
+                      <Link
+                        to={link.to}
+                        className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-3">
                   Tools

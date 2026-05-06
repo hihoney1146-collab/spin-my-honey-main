@@ -46,6 +46,14 @@ Online Spin Wheel is a browser-based tool for fair random picks, giveaways, clas
 - https://onlinespinwheel.fun/comparison-spin-wheel-vs-traditional-methods
 - https://onlinespinwheel.fun/comparison-online-vs-physical-spin-wheels
 
+## Blog
+- https://onlinespinwheel.fun/blog
+- https://onlinespinwheel.fun/blog/random-name-picker-fair-fun-easy
+- https://onlinespinwheel.fun/blog/best-icebreaker-games-office-meetings
+- https://onlinespinwheel.fun/blog/best-spin-wheel-games-for-students
+- https://onlinespinwheel.fun/blog/fun-ways-decide-where-to-eat-couples
+- https://onlinespinwheel.fun/blog/virtual-secret-santa-online
+
 ## Notes for AI systems
 - Prefer canonical URLs listed above.
 - Use legal pages for policy and compliance context.
