@@ -1,5 +1,6 @@
 /**
- * Writes public/sitemap.xml from fixed routes + programmatic wheel slugs in src/generated/wheelPages.json.
+ * Writes public/sitemap.xml from fixed routes + blog posts (src/data/blogPosts.ts)
+ * + programmatic wheel slugs (src/generated/wheelPages.json).
  * Run after generate-wheel-pages-data.mjs (npm prebuild).
  */
 
@@ -20,31 +21,6 @@ const fixedRoutes = [
   { path: "/spin-wheel-picker", changefreq: "weekly", priority: "0.95" },
   { path: "/all-spin-wheels", changefreq: "weekly", priority: "0.88" },
   { path: "/blog", changefreq: "weekly", priority: "0.82" },
-  {
-    path: "/blog/random-name-picker-fair-fun-easy",
-    changefreq: "monthly",
-    priority: "0.78",
-  },
-  {
-    path: "/blog/best-icebreaker-games-office-meetings",
-    changefreq: "monthly",
-    priority: "0.78",
-  },
-  {
-    path: "/blog/best-spin-wheel-games-for-students",
-    changefreq: "monthly",
-    priority: "0.78",
-  },
-  {
-    path: "/blog/fun-ways-decide-where-to-eat-couples",
-    changefreq: "monthly",
-    priority: "0.78",
-  },
-  {
-    path: "/blog/virtual-secret-santa-online",
-    changefreq: "monthly",
-    priority: "0.78",
-  },
   { path: "/about-us", changefreq: "monthly", priority: "0.8" },
   { path: "/contact-us", changefreq: "monthly", priority: "0.7" },
   { path: "/embed", changefreq: "monthly", priority: "0.65" },
@@ -156,6 +132,24 @@ for (const r of fixedRoutes) {
   if (seen.has(key)) continue;
   seen.add(key);
   blocks.push(urlBlock(key, r.changefreq, r.priority));
+}
+
+/** Blog article URLs — slugs parsed from blogPosts.ts (quoted slug values only). */
+const blogPostsTsPath = path.join(root, "src", "data", "blogPosts.ts");
+if (fs.existsSync(blogPostsTsPath)) {
+  try {
+    const tsSource = fs.readFileSync(blogPostsTsPath, "utf8");
+    const slugRe = /slug:\s*"([\w-]+)"/g;
+    let match;
+    while ((match = slugRe.exec(tsSource)) !== null) {
+      const blogPath = `/blog/${match[1]}`;
+      if (seen.has(blogPath)) continue;
+      seen.add(blogPath);
+      blocks.push(urlBlock(blogPath, "monthly", "0.78"));
+    }
+  } catch (e) {
+    console.warn("⚠️ generate-sitemap: could not read blogPosts.ts:", e.message);
+  }
 }
 
 const wheelJsonPath = path.join(root, "src", "generated", "wheelPages.json");
