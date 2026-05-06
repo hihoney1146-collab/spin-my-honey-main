@@ -34,3 +34,21 @@ export function getWheelPageBySlug(slug: string | undefined): WheelPageRecord | 
   if (!slug) return null;
   return bySlug.get(slug) ?? null;
 }
+
+/** All programmatic wheel records (CSV order). */
+export function getAllWheelRecords(): WheelPageRecord[] {
+  return pages.slice();
+}
+
+/** Same category first, then others; excludes current slug. */
+export function getRelatedWheelPages(
+  slug: string,
+  limit: number
+): WheelPageRecord[] {
+  const current = bySlug.get(slug);
+  if (!current) return [];
+  const others = pages.filter((p) => p.slug !== slug);
+  const sameCat = others.filter((p) => p.category === current.category);
+  const diffCat = others.filter((p) => p.category !== current.category);
+  return [...sameCat, ...diffCat].slice(0, limit);
+}

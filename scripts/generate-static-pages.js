@@ -23,6 +23,10 @@ const baseRoutes = [
   { path: "/privacy-policy", title: "Privacy Policy - Online Spin Wheel" },
   { path: "/terms-and-conditions", title: "Terms and Conditions - Online Spin Wheel" },
   { path: "/disclaimer", title: "Disclaimer - Online Spin Wheel" },
+  {
+    path: "/all-spin-wheels",
+    title: "All specialty spin wheels | Online Spin Wheel",
+  },
 ];
 
 const wheelJsonPath = path.join(__dirname, "../src/generated/wheelPages.json");

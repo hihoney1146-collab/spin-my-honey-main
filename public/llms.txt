@@ -11,6 +11,7 @@ Online Spin Wheel is a browser-based tool for fair random picks, giveaways, clas
 - https://onlinespinwheel.fun/
 - https://onlinespinwheel.fun/spin-wheel-free
 - https://onlinespinwheel.fun/spin-wheel-picker
+- https://onlinespinwheel.fun/all-spin-wheels
 - https://onlinespinwheel.fun/embed
 
 ## Company and Legal Pages

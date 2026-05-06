@@ -20,6 +20,15 @@ import {
 import { OptimizedImage } from "./OptimizedImage";
 import { SocialShare } from "./SocialShare";
 import { ThemeToggle } from "./ThemeToggle";
+import {
+  WHEEL_HUB_PATH,
+  toolLinks,
+  guideLinks,
+  tutorialLinks,
+  caseStudyLinks,
+  comparisonLinks,
+  getFeaturedWheelLinks,
+} from "@/lib/siteInternalLinks";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
@@ -316,6 +325,124 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                 <p className="text-xs text-muted-foreground italic">
                   We typically respond within 24-48 hours
                 </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-border/50 py-8 sm:py-10">
+            <h3 className="font-semibold text-base sm:text-lg mb-6 text-foreground text-center sm:text-left">
+              Explore the site
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-8">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-3">
+                  Tools
+                </p>
+                <ul className="space-y-2">
+                  {toolLinks.map((link) => (
+                    <li key={link.to}>
+                      <Link
+                        to={link.to}
+                        className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-3">
+                  Guides
+                </p>
+                <ul className="space-y-2">
+                  {guideLinks.map((link) => (
+                    <li key={link.to}>
+                      <Link
+                        to={link.to}
+                        className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-3">
+                  Tutorials
+                </p>
+                <ul className="space-y-2">
+                  {tutorialLinks.map((link) => (
+                    <li key={link.to}>
+                      <Link
+                        to={link.to}
+                        className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-3">
+                  Case studies
+                </p>
+                <ul className="space-y-2">
+                  {caseStudyLinks.map((link) => (
+                    <li key={link.to}>
+                      <Link
+                        to={link.to}
+                        className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-3">
+                  Comparisons
+                </p>
+                <ul className="space-y-2">
+                  {comparisonLinks.map((link) => (
+                    <li key={link.to}>
+                      <Link
+                        to={link.to}
+                        className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-3">
+                  Specialty wheels
+                </p>
+                <ul className="space-y-2">
+                  {getFeaturedWheelLinks().map((link) => (
+                    <li key={link.to}>
+                      <Link
+                        to={link.to}
+                        className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                  <li>
+                    <Link
+                      to={WHEEL_HUB_PATH}
+                      className="text-sm font-semibold text-primary hover:underline"
+                    >
+                      View all wheels
+                    </Link>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>

@@ -14,6 +14,15 @@ import {
 } from "lucide-react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import {
+  WHEEL_HUB_PATH,
+  toolLinks,
+  guideLinks,
+  tutorialLinks,
+  comparisonLinks,
+  caseStudyLinks,
+  getFeaturedWheelLinks,
+} from "@/lib/siteInternalLinks";
 
 const Index = () => {
   return (
@@ -1258,6 +1267,114 @@ const Index = () => {
                 </Link>
               </Card>
             </div>
+
+            <Card className="mt-8 sm:mt-10 p-6 sm:p-8 max-w-5xl mx-auto border-primary/15">
+              <h3 className="text-lg sm:text-xl font-bold mb-2 text-center sm:text-left">
+                Tools, guides, and specialty wheels
+              </h3>
+              <p className="text-sm text-muted-foreground mb-6 text-center sm:text-left">
+                Jump to our free tools, in-depth guides, comparisons, and ready-made
+                decision wheels—everything is one click away.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-sm">
+                <div>
+                  <p className="font-semibold text-foreground mb-2">Tools</p>
+                  <ul className="space-y-1.5">
+                    {toolLinks.map((item) => (
+                      <li key={item.to}>
+                        <Link
+                          to={item.to}
+                          className="text-muted-foreground hover:text-primary transition-colors"
+                        >
+                          {item.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <p className="font-semibold text-foreground mb-2">Guides</p>
+                  <ul className="space-y-1.5">
+                    {guideLinks.map((item) => (
+                      <li key={item.to}>
+                        <Link
+                          to={item.to}
+                          className="text-muted-foreground hover:text-primary transition-colors"
+                        >
+                          {item.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <p className="font-semibold text-foreground mb-2">Tutorials</p>
+                  <ul className="space-y-1.5">
+                    {tutorialLinks.map((item) => (
+                      <li key={item.to}>
+                        <Link
+                          to={item.to}
+                          className="text-muted-foreground hover:text-primary transition-colors"
+                        >
+                          {item.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <p className="font-semibold text-foreground mb-2">Comparisons</p>
+                  <ul className="space-y-1.5">
+                    {comparisonLinks.map((item) => (
+                      <li key={item.to}>
+                        <Link
+                          to={item.to}
+                          className="text-muted-foreground hover:text-primary transition-colors"
+                        >
+                          {item.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <p className="font-semibold text-foreground mb-2">Case studies</p>
+                  <ul className="space-y-1.5">
+                    {caseStudyLinks.map((item) => (
+                      <li key={item.to}>
+                        <Link
+                          to={item.to}
+                          className="text-muted-foreground hover:text-primary transition-colors"
+                        >
+                          {item.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="sm:col-span-2 lg:col-span-1">
+                  <p className="font-semibold text-foreground mb-2">Featured wheels</p>
+                  <ul className="space-y-1.5">
+                    {getFeaturedWheelLinks().map((item) => (
+                      <li key={item.to}>
+                        <Link
+                          to={item.to}
+                          className="text-muted-foreground hover:text-primary transition-colors"
+                        >
+                          {item.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    to={WHEEL_HUB_PATH}
+                    className="inline-flex mt-3 text-sm font-semibold text-primary hover:underline"
+                  >
+                    View all specialty wheels →
+                  </Link>
+                </div>
+              </div>
+            </Card>
           </div>
         </section>
       </article>

@@ -2,7 +2,8 @@ import { Helmet } from "react-helmet";
 import { Link, useParams } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { SpinWheel } from "@/components/SpinWheel";
-import { getWheelPageBySlug } from "@/lib/wheelPages";
+import { getWheelPageBySlug, getRelatedWheelPages } from "@/lib/wheelPages";
+import { WHEEL_HUB_PATH } from "@/lib/siteInternalLinks";
 import { Home, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -39,6 +40,7 @@ const WheelProgrammaticPage = () => {
   const keywords = [page.keywordPrimary, page.keywordSecondary]
     .filter(Boolean)
     .join(", ");
+  const related = getRelatedWheelPages(page.slug, 6);
 
   return (
     <>
@@ -95,6 +97,54 @@ const WheelProgrammaticPage = () => {
             }
           />
         </div>
+
+        <Card className="p-5 md:p-6 mb-8 border-primary/15">
+          <h2 className="text-lg font-bold mb-3">More on Online Spin Wheel</h2>
+          <p className="text-sm text-muted-foreground mb-4">
+            Build your own slices or browse every specialty wheel we publish.
+          </p>
+          <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+            <li>
+              <Link
+                to="/spin-wheel-free"
+                className="font-medium text-primary hover:underline"
+              >
+                Custom spin wheel (editor)
+              </Link>
+            </li>
+            <li>
+              <Link
+                to={WHEEL_HUB_PATH}
+                className="font-medium text-primary hover:underline"
+              >
+                All specialty wheels
+              </Link>
+            </li>
+            <li>
+              <Link to="/spin-wheel-picker" className="font-medium text-primary hover:underline">
+                Spin wheel picker
+              </Link>
+            </li>
+          </ul>
+        </Card>
+
+        {related.length > 0 ? (
+          <Card className="p-5 md:p-6 mb-8">
+            <h2 className="text-lg font-bold mb-3">Related wheels</h2>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+              {related.map((w) => (
+                <li key={w.slug}>
+                  <Link
+                    to={`/${w.slug}`}
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    {w.keywordPrimary || w.h1}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Card>
+        ) : null}
 
         <div className="space-y-6 md:space-y-8">
           <Card className="p-6 md:p-8">

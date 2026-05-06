@@ -18,6 +18,7 @@ const fixedRoutes = [
   { path: "/", changefreq: "daily", priority: "1.0" },
   { path: "/spin-wheel-free", changefreq: "weekly", priority: "0.95" },
   { path: "/spin-wheel-picker", changefreq: "weekly", priority: "0.95" },
+  { path: "/all-spin-wheels", changefreq: "weekly", priority: "0.88" },
   { path: "/about-us", changefreq: "monthly", priority: "0.8" },
   { path: "/contact-us", changefreq: "monthly", priority: "0.7" },
   { path: "/embed", changefreq: "monthly", priority: "0.65" },
