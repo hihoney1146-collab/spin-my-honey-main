@@ -400,22 +400,22 @@ const TutorialManagingSpinWheelEntries = () => {
             </p>
             <div className="space-y-2">
               <Link
-                to="/tutorial-creating-your-first-spin-wheel"
+                to="/all-spin-wheels"
                 className="block text-sm font-semibold text-primary hover:underline"
               >
-                Creating Your First Wheel →
+                Browse all specialty wheels →
               </Link>
               <Link
-                to="/tutorial-customizing-spin-wheel-colors"
+                to="/blog"
                 className="block text-sm font-semibold text-primary hover:underline"
               >
-                Customize Colors →
+                Read tips & guides on the blog →
               </Link>
               <Link
-                to="/tutorial-advanced-spin-wheel-features"
+                to="/tutorial-adding-images-to-spin-wheels"
                 className="block text-sm font-semibold text-primary hover:underline"
               >
-                Advanced Features →
+                Add images to wheels →
               </Link>
             </div>
           </Card>
@@ -430,16 +430,22 @@ const TutorialManagingSpinWheelEntries = () => {
             </p>
             <div className="space-y-2">
               <Link
-                to="/how-to-use-spin-wheels-in-classrooms"
+                to="/blog"
                 className="block text-sm font-semibold text-primary hover:underline"
               >
-                Classroom Use →
+                Blog guides →
               </Link>
               <Link
-                to="/how-to-organize-events-with-random-selection"
+                to="/comparison-spin-wheel-vs-traditional-methods"
                 className="block text-sm font-semibold text-primary hover:underline"
               >
-                Event Organization →
+                Wheel vs traditional methods →
+              </Link>
+              <Link
+                to="/case-study-community-event-using-spin-wheels"
+                className="block text-sm font-semibold text-primary hover:underline"
+              >
+                Community event case study →
               </Link>
             </div>
           </Card>

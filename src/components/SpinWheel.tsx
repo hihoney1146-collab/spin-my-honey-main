@@ -62,6 +62,28 @@ const MAX_ENTRY_TEXT_LEN = 20;
 const MAX_BULK_LINES = 400;
 const ENTRIES_PAGE_SIZE = 10;
 
+/** Logical coordinate space for all drawing; buffer is this × DPR × display scale. */
+const WHEEL_LOGICAL_PX = 480;
+const MAX_CANVAS_DPR = 3;
+
+function syncCanvasPhysicalSize(canvas: HTMLCanvasElement): number {
+  const rect = canvas.getBoundingClientRect();
+  const cssW = rect.width;
+  if (!cssW || !Number.isFinite(cssW) || cssW < 1) {
+    return 0;
+  }
+  const dpr =
+    typeof window !== "undefined"
+      ? Math.min(window.devicePixelRatio || 1, MAX_CANVAS_DPR)
+      : 1;
+  const px = Math.max(2, Math.round(cssW * dpr));
+  if (canvas.width !== px || canvas.height !== px) {
+    canvas.width = px;
+    canvas.height = px;
+  }
+  return px / WHEEL_LOGICAL_PX;
+}
+
 // Pre-generate tick buffer once per AudioContext (zero-latency playback)
 let tickBuffer: AudioBuffer | null = null;
 const ensureTickBuffer = (ctx: AudioContext) => {
@@ -389,18 +411,26 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
   const drawWheel = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
 
-    const size = canvas.width;
+    const scale = syncCanvasPhysicalSize(canvas);
+    if (scale <= 0) return;
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.scale(scale, scale);
+    ctx.imageSmoothingEnabled = true;
+    if ("imageSmoothingQuality" in ctx) {
+      ctx.imageSmoothingQuality = "high";
+    }
+
+    const size = WHEEL_LOGICAL_PX;
     const centerX = size / 2;
     const centerY = size / 2;
     const radius = Math.min(centerX, centerY) - 8;
 
     const curEntries = entriesRef.current;
     const curImages = loadedImagesRef.current;
-
-    ctx.clearRect(0, 0, size, size);
 
     const activeEntries = curEntries.filter((e) => e.active);
     if (activeEntries.length === 0) {
@@ -593,7 +623,8 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
   const setCanvasRotation = (deg: number) => {
     const canvas = canvasRef.current;
     if (canvas) {
-      canvas.style.transform = `rotate(${deg}deg)`;
+      // translateZ(0) promotes a crisp composited layer when rotating (avoids softening).
+      canvas.style.transform = `rotate(${deg}deg) translateZ(0)`;
     }
   };
 
@@ -919,9 +950,7 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
         >
           <canvas
             ref={canvasRef}
-            width={480}
-            height={480}
-            className={`w-full h-auto block text-base rounded-full touch-manipulation will-change-transform ${isSpinning || activeEntries.length < 2
+            className={`w-full h-auto max-w-full aspect-square block rounded-full touch-manipulation [transform-origin:center] [image-rendering:auto] ${isSpinning || activeEntries.length < 2
               ? "cursor-not-allowed"
               : "cursor-pointer"
               }`}

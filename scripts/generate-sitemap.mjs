@@ -2,6 +2,9 @@
  * Writes public/sitemap.xml from fixed routes + blog posts (src/data/blogPosts.ts)
  * + programmatic wheel slugs (src/generated/wheelPages.json).
  * Run after generate-wheel-pages-data.mjs (npm prebuild).
+ *
+ * Intentionally omitted (redirects or noindex): /spin-wheel-free, /spin-wheel-picker,
+ * removed how-to/tutorial/corporate-case URLs, /embed (meta robots noindex).
  */
 
 import fs from "fs";
@@ -17,66 +20,17 @@ const lastmod = new Date().toISOString().slice(0, 10);
 /** @type {{ path: string; changefreq: string; priority: string }[]} */
 const fixedRoutes = [
   { path: "/", changefreq: "daily", priority: "1.0" },
-  { path: "/spin-wheel-free", changefreq: "weekly", priority: "0.95" },
-  { path: "/spin-wheel-picker", changefreq: "weekly", priority: "0.95" },
   { path: "/all-spin-wheels", changefreq: "weekly", priority: "0.88" },
   { path: "/blog", changefreq: "weekly", priority: "0.82" },
   { path: "/about-us", changefreq: "monthly", priority: "0.8" },
   { path: "/contact-us", changefreq: "monthly", priority: "0.7" },
-  { path: "/embed", changefreq: "monthly", priority: "0.65" },
-  { path: "/how-to-use-spin-wheels-in-classrooms", changefreq: "monthly", priority: "0.75" },
-  {
-    path: "/how-to-create-fair-giveaways-with-spin-wheels",
-    changefreq: "monthly",
-    priority: "0.75",
-  },
-  {
-    path: "/how-to-use-spin-wheels-for-team-building",
-    changefreq: "monthly",
-    priority: "0.75",
-  },
-  {
-    path: "/how-to-organize-events-with-random-selection",
-    changefreq: "monthly",
-    priority: "0.75",
-  },
-  {
-    path: "/how-to-make-decisions-faster-with-spin-wheels",
-    changefreq: "monthly",
-    priority: "0.75",
-  },
-  {
-    path: "/tutorial-creating-your-first-spin-wheel",
-    changefreq: "monthly",
-    priority: "0.75",
-  },
-  {
-    path: "/tutorial-customizing-spin-wheel-colors",
-    changefreq: "monthly",
-    priority: "0.75",
-  },
   {
     path: "/tutorial-adding-images-to-spin-wheels",
     changefreq: "monthly",
     priority: "0.75",
   },
   {
-    path: "/tutorial-managing-spin-wheel-entries",
-    changefreq: "monthly",
-    priority: "0.75",
-  },
-  {
-    path: "/tutorial-advanced-spin-wheel-features",
-    changefreq: "monthly",
-    priority: "0.75",
-  },
-  {
     path: "/case-study-school-using-spin-wheels",
-    changefreq: "monthly",
-    priority: "0.72",
-  },
-  {
-    path: "/case-study-corporate-event-using-spin-wheels",
     changefreq: "monthly",
     priority: "0.72",
   },

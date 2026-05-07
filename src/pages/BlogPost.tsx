@@ -10,6 +10,9 @@ import { buildBlogTableOfContents } from "@/lib/blogToc";
 const SITE_ORIGIN = "https://onlinespinwheel.fun";
 const AUROXA_TECH_URL = "https://auroxatech.com";
 const ABOUT_AUTHOR_PATH = "/about-us";
+/** Same profile referenced in PDF “Connect with Raja on LinkedIn”. */
+const RAJA_LINKEDIN_URL = "https://www.linkedin.com/in/raja-jahangir-596401245";
+const RAJA_LINKEDIN_PHRASE = "Connect with Raja on LinkedIn";
 
 /** PDF-style body copy: line height ~1.6, space between paragraphs */
 const pBody =
@@ -29,6 +32,25 @@ function formatBlogDate(isoDate: string): string {
     month: "long",
     day: "numeric",
   });
+}
+
+function paragraphWithOptionalLinkedIn(para: string) {
+  const i = para.indexOf(RAJA_LINKEDIN_PHRASE);
+  if (i === -1) return para;
+  return (
+    <>
+      {para.slice(0, i)}
+      <a
+        href={RAJA_LINKEDIN_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-medium text-primary underline underline-offset-2 hover:opacity-90"
+      >
+        {RAJA_LINKEDIN_PHRASE}
+      </a>
+      {para.slice(i + RAJA_LINKEDIN_PHRASE.length)}
+    </>
+  );
 }
 
 function renderListItem(text: string) {
@@ -144,16 +166,9 @@ const BlogPost = () => {
         </nav>
 
         <header className="mb-10 space-y-4 text-foreground">
-          <h1 className="m-0 text-base sm:text-lg font-bold leading-snug">
-            <span className="font-bold">Title:</span>{" "}
-            <span className="font-bold text-2xl sm:text-[1.75rem] leading-snug">
-              {metaTitle}
-            </span>
+          <h1 className="m-0 text-2xl sm:text-[1.75rem] font-bold leading-snug text-foreground">
+            {metaTitle}
           </h1>
-          <p className="m-0 text-base leading-[1.6]">
-            <span className="font-bold text-foreground">Meta Description:</span>{" "}
-            <span className="font-normal text-muted-foreground">{post.metaDescription}</span>
-          </p>
           <p className="m-0 text-base leading-[1.6] text-muted-foreground">
             Written by{" "}
             <Link
@@ -201,9 +216,9 @@ const BlogPost = () => {
             <h2 className="mt-0 mb-4 text-[1.65rem] font-bold leading-snug text-foreground sm:text-[1.75rem]">
               Table of Contents
             </h2>
-            <ol className="list-decimal space-y-2 pl-6 text-base leading-[1.6] text-muted-foreground marker:font-normal marker:text-foreground">
+            <ol className="m-0 list-none space-y-2 p-0 text-base leading-[1.6] text-muted-foreground">
               {tocRoots.map((root) => (
-                <li key={root.blockIndex} className="pl-1 text-foreground">
+                <li key={root.blockIndex} className="text-foreground">
                   <a
                     href={`#${sectionDomId(root.blockIndex)}`}
                     className="font-medium text-primary underline underline-offset-2 hover:opacity-90"
@@ -227,7 +242,7 @@ const BlogPost = () => {
                 </li>
               ))}
               {post.faqs && post.faqs.length > 0 && faqSectionNumber > 0 ? (
-                <li className="pl-1">
+                <li>
                   <a
                     href="#frequently-asked-questions"
                     className="font-medium text-primary underline underline-offset-2 hover:opacity-90"
@@ -286,7 +301,7 @@ const BlogPost = () => {
                           key={j}
                           className={`${pBody} ${isPoweredLine ? "italic" : ""}`}
                         >
-                          {para}
+                          {isPoweredLine ? para : paragraphWithOptionalLinkedIn(para)}
                         </p>
                       );
                     })}
@@ -315,29 +330,26 @@ const BlogPost = () => {
         </div>
 
         {post.faqs && post.faqs.length > 0 ? (
-          <>
-            <hr
-              className="my-12 h-1 border-0 bg-foreground"
-              aria-hidden
-            />
-            <section id="frequently-asked-questions" className="scroll-mt-28">
-              <h2 className="mb-6 text-[1.65rem] font-bold leading-snug text-foreground sm:text-[1.75rem]">
-                {faqSectionNumber > 0
-                  ? `${faqSectionNumber}. Frequently Asked Questions`
-                  : "Frequently Asked Questions"}
-              </h2>
-              <dl className="m-0 space-y-8">
-                {post.faqs.map((faq, idx) => (
-                  <div key={idx}>
-                    <dt className="mb-2 text-lg font-bold leading-snug text-foreground">
-                      {faq.q}
-                    </dt>
-                    <dd className={`${pBody} m-0 text-muted-foreground`}>{faq.a}</dd>
-                  </div>
-                ))}
-              </dl>
-            </section>
-          </>
+          <section
+            id="frequently-asked-questions"
+            className="scroll-mt-28 mt-10 sm:mt-12 md:mt-14"
+          >
+            <h2 className="mb-6 text-[1.65rem] font-bold leading-snug text-foreground sm:text-[1.75rem]">
+              {faqSectionNumber > 0
+                ? `${faqSectionNumber}. Frequently Asked Questions`
+                : "Frequently Asked Questions"}
+            </h2>
+            <dl className="m-0 space-y-8">
+              {post.faqs.map((faq, idx) => (
+                <div key={idx}>
+                  <dt className="mb-2 text-lg font-bold leading-snug text-foreground">
+                    {faq.q}
+                  </dt>
+                  <dd className={`${pBody} m-0 text-muted-foreground`}>{faq.a}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
         ) : null}
 
         <footer className="mt-12 flex flex-wrap gap-3 border-t border-border pt-8">
@@ -348,7 +360,7 @@ const BlogPost = () => {
             </Link>
           </Button>
           <Button asChild>
-            <Link to="/spin-wheel-free">Try the spin wheel</Link>
+            <Link to="/all-spin-wheels">Browse spin wheels</Link>
           </Button>
         </footer>
       </article>

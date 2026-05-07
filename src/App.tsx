@@ -13,47 +13,11 @@ const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const CookiePolicy = lazy(() => import("./pages/CookiePolicy"));
-const HowToUseSpinWheelsInClassrooms = lazy(
-  () => import("./pages/HowToUseSpinWheelsInClassrooms")
-);
-const HowToCreateFairGiveawaysWithSpinWheels = lazy(
-  () => import("./pages/HowToCreateFairGiveawaysWithSpinWheels")
-);
-const SpinWheelFree = lazy(
-  () => import("./pages/SpinWheelFree")
-);
-const SpinWheelPicker = lazy(
-  () => import("./pages/SpinWheelPicker")
-);
-const HowToUseSpinWheelsForTeamBuilding = lazy(
-  () => import("./pages/HowToUseSpinWheelsForTeamBuilding")
-);
-const HowToOrganizeEventsWithRandomSelection = lazy(
-  () => import("./pages/HowToOrganizeEventsWithRandomSelection")
-);
-const HowToMakeDecisionsFasterWithSpinWheels = lazy(
-  () => import("./pages/HowToMakeDecisionsFasterWithSpinWheels")
-);
-const TutorialCreatingYourFirstSpinWheel = lazy(
-  () => import("./pages/TutorialCreatingYourFirstSpinWheel")
-);
-const TutorialCustomizingSpinWheelColors = lazy(
-  () => import("./pages/TutorialCustomizingSpinWheelColors")
-);
 const TutorialAddingImagesToSpinWheels = lazy(
   () => import("./pages/TutorialAddingImagesToSpinWheels")
 );
-const TutorialManagingSpinWheelEntries = lazy(
-  () => import("./pages/TutorialManagingSpinWheelEntries")
-);
-const TutorialAdvancedSpinWheelFeatures = lazy(
-  () => import("./pages/TutorialAdvancedSpinWheelFeatures")
-);
 const CaseStudySchoolUsingSpinWheels = lazy(
   () => import("./pages/CaseStudySchoolUsingSpinWheels")
-);
-const CaseStudyCorporateEventUsingSpinWheels = lazy(
-  () => import("./pages/CaseStudyCorporateEventUsingSpinWheels")
 );
 const CaseStudyCommunityEventUsingSpinWheels = lazy(
   () => import("./pages/CaseStudyCommunityEventUsingSpinWheels")
@@ -133,76 +97,52 @@ const App = () => (
                 }
               />
               <Route
-                path="/how-to-use-spin-wheels-in-classrooms"
-                element={
-                  <Suspense fallback={<div className="min-h-screen" />}>
-                    <HowToUseSpinWheelsInClassrooms />
-                  </Suspense>
-                }
-              />
-              <Route
-                path="/how-to-create-fair-giveaways-with-spin-wheels"
-                element={
-                  <Suspense fallback={<div className="min-h-screen" />}>
-                    <HowToCreateFairGiveawaysWithSpinWheels />
-                  </Suspense>
-                }
-              />
-              <Route
                 path="/spin-wheel-free"
-                element={
-                  <Suspense fallback={<div className="min-h-screen" />}>
-                    <SpinWheelFree />
-                  </Suspense>
-                }
+                element={<Navigate to="/all-spin-wheels" replace />}
               />
               <Route
                 path="/spin-wheel-picker"
-                element={
-                  <Suspense fallback={<div className="min-h-screen" />}>
-                    <SpinWheelPicker />
-                  </Suspense>
-                }
+                element={<Navigate to="/all-spin-wheels" replace />}
+              />
+              <Route
+                path="/how-to-use-spin-wheels-in-classrooms"
+                element={<Navigate to="/blog" replace />}
+              />
+              <Route
+                path="/how-to-create-fair-giveaways-with-spin-wheels"
+                element={<Navigate to="/blog" replace />}
               />
               <Route
                 path="/how-to-use-spin-wheels-for-team-building"
-                element={
-                  <Suspense fallback={<div className="min-h-screen" />}>
-                    <HowToUseSpinWheelsForTeamBuilding />
-                  </Suspense>
-                }
+                element={<Navigate to="/blog" replace />}
               />
               <Route
                 path="/how-to-organize-events-with-random-selection"
-                element={
-                  <Suspense fallback={<div className="min-h-screen" />}>
-                    <HowToOrganizeEventsWithRandomSelection />
-                  </Suspense>
-                }
+                element={<Navigate to="/blog" replace />}
               />
               <Route
                 path="/how-to-make-decisions-faster-with-spin-wheels"
-                element={
-                  <Suspense fallback={<div className="min-h-screen" />}>
-                    <HowToMakeDecisionsFasterWithSpinWheels />
-                  </Suspense>
-                }
+                element={<Navigate to="/blog" replace />}
               />
               <Route
                 path="/tutorial-creating-your-first-spin-wheel"
-                element={
-                  <Suspense fallback={<div className="min-h-screen" />}>
-                    <TutorialCreatingYourFirstSpinWheel />
-                  </Suspense>
-                }
+                element={<Navigate to="/tutorial-adding-images-to-spin-wheels" replace />}
               />
               <Route
                 path="/tutorial-customizing-spin-wheel-colors"
-                element={
-                  <Suspense fallback={<div className="min-h-screen" />}>
-                    <TutorialCustomizingSpinWheelColors />
-                  </Suspense>
-                }
+                element={<Navigate to="/tutorial-adding-images-to-spin-wheels" replace />}
+              />
+              <Route
+                path="/tutorial-managing-spin-wheel-entries"
+                element={<Navigate to="/tutorial-adding-images-to-spin-wheels" replace />}
+              />
+              <Route
+                path="/tutorial-advanced-spin-wheel-features"
+                element={<Navigate to="/tutorial-adding-images-to-spin-wheels" replace />}
+              />
+              <Route
+                path="/case-study-corporate-event-using-spin-wheels"
+                element={<Navigate to="/blog" replace />}
               />
               <Route
                 path="/tutorial-adding-images-to-spin-wheels"
@@ -213,34 +153,10 @@ const App = () => (
                 }
               />
               <Route
-                path="/tutorial-managing-spin-wheel-entries"
-                element={
-                  <Suspense fallback={<div className="min-h-screen" />}>
-                    <TutorialManagingSpinWheelEntries />
-                  </Suspense>
-                }
-              />
-              <Route
-                path="/tutorial-advanced-spin-wheel-features"
-                element={
-                  <Suspense fallback={<div className="min-h-screen" />}>
-                    <TutorialAdvancedSpinWheelFeatures />
-                  </Suspense>
-                }
-              />
-              <Route
                 path="/case-study-school-using-spin-wheels"
                 element={
                   <Suspense fallback={<div className="min-h-screen" />}>
                     <CaseStudySchoolUsingSpinWheels />
-                  </Suspense>
-                }
-              />
-              <Route
-                path="/case-study-corporate-event-using-spin-wheels"
-                element={
-                  <Suspense fallback={<div className="min-h-screen" />}>
-                    <CaseStudyCorporateEventUsingSpinWheels />
                   </Suspense>
                 }
               />

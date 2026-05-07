@@ -9,8 +9,6 @@ Online Spin Wheel is a browser-based tool for fair random picks, giveaways, clas
 
 ## Main Pages
 - https://onlinespinwheel.fun/
-- https://onlinespinwheel.fun/spin-wheel-free
-- https://onlinespinwheel.fun/spin-wheel-picker
 - https://onlinespinwheel.fun/all-spin-wheels
 - https://onlinespinwheel.fun/embed
 
@@ -22,23 +20,11 @@ Online Spin Wheel is a browser-based tool for fair random picks, giveaways, clas
 - https://onlinespinwheel.fun/cookie-policy
 - https://onlinespinwheel.fun/disclaimer
 
-## Guides and Articles
-- https://onlinespinwheel.fun/how-to-use-spin-wheels-in-classrooms
-- https://onlinespinwheel.fun/how-to-create-fair-giveaways-with-spin-wheels
-- https://onlinespinwheel.fun/how-to-use-spin-wheels-for-team-building
-- https://onlinespinwheel.fun/how-to-organize-events-with-random-selection
-- https://onlinespinwheel.fun/how-to-make-decisions-faster-with-spin-wheels
-
 ## Tutorials
-- https://onlinespinwheel.fun/tutorial-creating-your-first-spin-wheel
-- https://onlinespinwheel.fun/tutorial-customizing-spin-wheel-colors
 - https://onlinespinwheel.fun/tutorial-adding-images-to-spin-wheels
-- https://onlinespinwheel.fun/tutorial-managing-spin-wheel-entries
-- https://onlinespinwheel.fun/tutorial-advanced-spin-wheel-features
 
 ## Case Studies
 - https://onlinespinwheel.fun/case-study-school-using-spin-wheels
-- https://onlinespinwheel.fun/case-study-corporate-event-using-spin-wheels
 - https://onlinespinwheel.fun/case-study-community-event-using-spin-wheels
 
 ## Comparisons

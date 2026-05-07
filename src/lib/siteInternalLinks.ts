@@ -22,54 +22,15 @@ export function getBlogPostLinks(): SiteLinkItem[] {
 }
 
 export const toolLinks: SiteLinkItem[] = [
-  { to: "/spin-wheel-free", label: "Spin Wheel Free" },
-  { to: "/spin-wheel-picker", label: "Spin Wheel Picker" },
   { to: "/embed", label: "Embed widget" },
 ];
 
-export const guideLinks: SiteLinkItem[] = [
-  {
-    to: "/how-to-use-spin-wheels-in-classrooms",
-    label: "Spin wheels in classrooms",
-  },
-  {
-    to: "/how-to-create-fair-giveaways-with-spin-wheels",
-    label: "Fair giveaways with spin wheels",
-  },
-  {
-    to: "/how-to-use-spin-wheels-for-team-building",
-    label: "Team building with spin wheels",
-  },
-  {
-    to: "/how-to-organize-events-with-random-selection",
-    label: "Events and random selection",
-  },
-  {
-    to: "/how-to-make-decisions-faster-with-spin-wheels",
-    label: "Faster decisions with spin wheels",
-  },
-];
+export const guideLinks: SiteLinkItem[] = [];
 
 export const tutorialLinks: SiteLinkItem[] = [
   {
-    to: "/tutorial-creating-your-first-spin-wheel",
-    label: "Your first spin wheel",
-  },
-  {
-    to: "/tutorial-customizing-spin-wheel-colors",
-    label: "Customize wheel colors",
-  },
-  {
     to: "/tutorial-adding-images-to-spin-wheels",
     label: "Add images to wheels",
-  },
-  {
-    to: "/tutorial-managing-spin-wheel-entries",
-    label: "Manage wheel entries",
-  },
-  {
-    to: "/tutorial-advanced-spin-wheel-features",
-    label: "Advanced wheel features",
   },
 ];
 
@@ -77,10 +38,6 @@ export const caseStudyLinks: SiteLinkItem[] = [
   {
     to: "/case-study-school-using-spin-wheels",
     label: "School case study",
-  },
-  {
-    to: "/case-study-corporate-event-using-spin-wheels",
-    label: "Corporate event case study",
   },
   {
     to: "/case-study-community-event-using-spin-wheels",

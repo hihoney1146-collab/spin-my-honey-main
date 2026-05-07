@@ -101,28 +101,15 @@ const WheelProgrammaticPage = () => {
         <Card className="p-5 md:p-6 mb-8 border-primary/15">
           <h2 className="text-lg font-bold mb-3">More on Online Spin Wheel</h2>
           <p className="text-sm text-muted-foreground mb-4">
-            Build your own slices or browse every specialty wheel we publish.
+            Browse every specialty wheel we publish.
           </p>
           <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
-            <li>
-              <Link
-                to="/spin-wheel-free"
-                className="font-medium text-primary hover:underline"
-              >
-                Custom spin wheel (editor)
-              </Link>
-            </li>
             <li>
               <Link
                 to={WHEEL_HUB_PATH}
                 className="font-medium text-primary hover:underline"
               >
                 All specialty wheels
-              </Link>
-            </li>
-            <li>
-              <Link to="/spin-wheel-picker" className="font-medium text-primary hover:underline">
-                Spin wheel picker
               </Link>
             </li>
           </ul>

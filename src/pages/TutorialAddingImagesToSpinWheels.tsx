@@ -455,22 +455,22 @@ const TutorialAddingImagesToSpinWheels = () => {
             </p>
             <div className="space-y-2">
               <Link
-                to="/tutorial-creating-your-first-spin-wheel"
+                to="/all-spin-wheels"
                 className="block text-sm font-semibold text-primary hover:underline"
               >
-                Creating Your First Wheel →
+                Browse all specialty wheels →
               </Link>
               <Link
-                to="/tutorial-customizing-spin-wheel-colors"
+                to="/blog"
                 className="block text-sm font-semibold text-primary hover:underline"
               >
-                Customize Colors →
+                Read tips & guides on the blog →
               </Link>
               <Link
-                to="/tutorial-managing-spin-wheel-entries"
+                to="/"
                 className="block text-sm font-semibold text-primary hover:underline"
               >
-                Manage Entries →
+                Try the home spin wheel →
               </Link>
             </div>
           </Card>
@@ -485,16 +485,22 @@ const TutorialAddingImagesToSpinWheels = () => {
             </p>
             <div className="space-y-2">
               <Link
-                to="/how-to-use-spin-wheels-in-classrooms"
+                to="/blog"
                 className="block text-sm font-semibold text-primary hover:underline"
               >
-                Classroom Use →
+                Blog guides →
               </Link>
               <Link
-                to="/how-to-create-fair-giveaways-with-spin-wheels"
+                to="/comparison-online-vs-physical-spin-wheels"
                 className="block text-sm font-semibold text-primary hover:underline"
               >
-                Fair Giveaways →
+                Online vs physical wheels →
+              </Link>
+              <Link
+                to="/case-study-school-using-spin-wheels"
+                className="block text-sm font-semibold text-primary hover:underline"
+              >
+                School case study →
               </Link>
             </div>
           </Card>
