@@ -35,7 +35,7 @@ const BlogIndex = () => {
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-foreground">
             Guides & ideas
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-[1.6] m-0">
             Practical articles on fair random selection, classrooms, teams, couples, and
             celebrations—powered by Online Spin Wheel.
           </p>
@@ -54,10 +54,10 @@ const BlogIndex = () => {
                       <h2 className="text-xl md:text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors leading-snug">
                         {post.title.split("|")[0].trim()}
                       </h2>
-                      <p className="text-muted-foreground leading-relaxed mb-4">
+                      <p className="text-muted-foreground m-0 mb-4 text-base md:text-lg leading-[1.6] last:mb-0">
                         {post.excerpt}
                       </p>
-                      <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+                      <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground leading-[1.6]">
                         <span className="inline-flex items-center gap-1.5">
                           <User className="h-4 w-4 shrink-0 text-primary/80" />
                           {post.author}

@@ -1,12 +1,58 @@
+import { Fragment } from "react";
 import { Helmet } from "react-helmet";
 import { Link, useParams } from "react-router-dom";
-import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Calendar, User, ArrowLeft, Home } from "lucide-react";
+import { ArrowLeft, Home } from "lucide-react";
 import { BLOG_INDEX_PATH } from "@/lib/siteInternalLinks";
 import { getBlogPostBySlug } from "@/data/blogPosts";
+import { buildBlogTableOfContents } from "@/lib/blogToc";
 
 const SITE_ORIGIN = "https://onlinespinwheel.fun";
+const AUROXA_TECH_URL = "https://auroxatech.com";
+const ABOUT_AUTHOR_PATH = "/about-us";
+
+/** PDF-style body copy: line height ~1.6, space between paragraphs */
+const pBody =
+  "text-base md:text-lg text-muted-foreground leading-[1.6] m-0 mb-4 last:mb-0";
+
+function splitQuickSummary(excerpt: string): string[] {
+  const idx = excerpt.indexOf(". ");
+  if (idx === -1) return [excerpt];
+  const first = excerpt.slice(0, idx + 1).trim();
+  const rest = excerpt.slice(idx + 2).trim();
+  return rest ? [first, rest] : [first];
+}
+
+function formatBlogDate(isoDate: string): string {
+  return new Date(isoDate + "T12:00:00").toLocaleDateString(undefined, {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+
+function renderListItem(text: string) {
+  const numbered = text.match(/^(\d+\.\s+[^:]+:\s*)([\s\S]*)$/);
+  const bullet = text.match(/^(●\s+[^:]+:\s*)([\s\S]*)$/);
+  const prefixMatch = numbered || bullet;
+  if (prefixMatch) {
+    return (
+      <li className="mb-3 pl-0 text-base md:text-lg leading-[1.6] text-muted-foreground">
+        <strong className="font-semibold text-foreground">{prefixMatch[1]}</strong>
+        <span>{prefixMatch[2]}</span>
+      </li>
+    );
+  }
+  return (
+    <li className="mb-2 list-none text-base md:text-lg text-muted-foreground leading-[1.6]">
+      {text}
+    </li>
+  );
+}
+
+function isNumberedHeading(heading: string | undefined): boolean {
+  return !!heading && /^\d+\.\s/.test(heading);
+}
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -44,7 +90,14 @@ const BlogPost = () => {
   }
 
   const canonical = `${SITE_ORIGIN}${BLOG_INDEX_PATH}/${post.slug}`;
-  const headline = post.title.split("|")[0].trim();
+  const metaTitle = post.title.split("|")[0].trim();
+  const authorParsed = post.author.match(/^(.+?)\s*\(([^)]+)\)\s*$/);
+  const authorDisplayName = authorParsed?.[1]?.trim() ?? post.author;
+  const authorRole = authorParsed?.[2]?.trim();
+
+  const { roots: tocRoots, faqSectionNumber, sectionDomId } = buildBlogTableOfContents(post);
+  const summaryParagraphs = splitQuickSummary(post.excerpt);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -80,7 +133,7 @@ const BlogPost = () => {
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
 
-      <article className="container mx-auto px-4 py-8 md:py-12 max-w-5xl">
+      <article className="container mx-auto px-4 py-8 md:py-12 max-w-[800px]">
         <nav className="mb-8">
           <Button asChild variant="ghost" size="sm" className="-ml-3 text-muted-foreground">
             <Link to={BLOG_INDEX_PATH} className="inline-flex items-center gap-2">
@@ -90,71 +143,204 @@ const BlogPost = () => {
           </Button>
         </nav>
 
-        <header className="mb-8 md:mb-10">
-          <h1 className="text-3xl sm:text-4xl md:text-[2.5rem] font-bold text-foreground leading-tight mb-6">
-            {headline}
+        <header className="mb-10 space-y-4 text-foreground">
+          <h1 className="m-0 text-base sm:text-lg font-bold leading-snug">
+            <span className="font-bold">Title:</span>{" "}
+            <span className="font-bold text-2xl sm:text-[1.75rem] leading-snug">
+              {metaTitle}
+            </span>
           </h1>
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground border-b border-border/60 pb-6">
-            <span className="inline-flex items-center gap-2">
-              <User className="h-4 w-4 text-primary/80" />
-              {post.author}
-            </span>
-            <span className="inline-flex items-center gap-2">
-              <Calendar className="h-4 w-4 text-primary/80" />
-              Last updated{" "}
-              {new Date(post.updated + "T12:00:00").toLocaleDateString(undefined, {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </span>
-          </div>
-          <p className="mt-6 text-lg text-muted-foreground leading-relaxed">{post.excerpt}</p>
+          <p className="m-0 text-base leading-[1.6]">
+            <span className="font-bold text-foreground">Meta Description:</span>{" "}
+            <span className="font-normal text-muted-foreground">{post.metaDescription}</span>
+          </p>
+          <p className="m-0 text-base leading-[1.6] text-muted-foreground">
+            Written by{" "}
+            <Link
+              to={ABOUT_AUTHOR_PATH}
+              className="font-medium text-primary underline underline-offset-2 hover:opacity-90"
+            >
+              {authorDisplayName}
+            </Link>
+            {authorRole ? (
+              <>
+                {" "}
+                (<span className="text-muted-foreground">{authorRole}</span>).
+              </>
+            ) : (
+              "."
+            )}{" "}
+            Powered by{" "}
+            <a
+              href={AUROXA_TECH_URL}
+              className="font-medium text-primary underline underline-offset-2 hover:opacity-90"
+              rel="noopener noreferrer"
+            >
+              Auroxa Tech
+            </a>
+            . Last Updated: {formatBlogDate(post.updated)}.
+          </p>
         </header>
 
-        <div className="space-y-6 md:space-y-8 prose prose-neutral dark:prose-invert max-w-none">
-          {post.blocks.map((block, i) => (
-            <Card key={i} className="p-6 md:p-8 border-border/60">
-              {block.heading ? (
-                <h2 className="text-2xl md:text-3xl font-bold mt-0 mb-4 text-foreground">
-                  {block.heading}
-                </h2>
-              ) : null}
-              <div className="space-y-4 text-muted-foreground leading-relaxed">
-                {block.paragraphs.map((para, j) => (
-                  <p key={j} className="text-base md:text-lg m-0">
-                    {para}
-                  </p>
-                ))}
-              </div>
-              {block.list && block.list.length > 0 ? (
-                <ul className="mt-6 space-y-2 list-disc pl-5 text-base md:text-lg text-muted-foreground">
-                  {block.list.map((item, k) => (
-                    <li key={k}>{item}</li>
-                  ))}
-                </ul>
-              ) : null}
-            </Card>
+        <section className="mb-10" aria-labelledby="quick-summary-heading">
+          <h2
+            id="quick-summary-heading"
+            className="mt-0 mb-4 text-[1.65rem] font-bold leading-snug text-foreground sm:text-[1.75rem]"
+          >
+            Quick Summary
+          </h2>
+          {summaryParagraphs.map((para, i) => (
+            <p key={i} className={pBody}>
+              {para}
+            </p>
           ))}
+        </section>
+
+        {tocRoots.length > 0 ? (
+          <nav className="mb-12" aria-label="Table of contents">
+            <h2 className="mt-0 mb-4 text-[1.65rem] font-bold leading-snug text-foreground sm:text-[1.75rem]">
+              Table of Contents
+            </h2>
+            <ol className="list-decimal space-y-2 pl-6 text-base leading-[1.6] text-muted-foreground marker:font-normal marker:text-foreground">
+              {tocRoots.map((root) => (
+                <li key={root.blockIndex} className="pl-1 text-foreground">
+                  <a
+                    href={`#${sectionDomId(root.blockIndex)}`}
+                    className="font-medium text-primary underline underline-offset-2 hover:opacity-90"
+                  >
+                    {root.label}
+                  </a>
+                  {root.children.length > 0 ? (
+                    <ul className="mt-2 list-[circle] space-y-1 pl-6 marker:text-foreground">
+                      {root.children.map((ch) => (
+                        <li key={ch.blockIndex}>
+                          <a
+                            href={`#${sectionDomId(ch.blockIndex)}`}
+                            className="font-medium text-primary underline underline-offset-2 hover:opacity-90"
+                          >
+                            {ch.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
+                </li>
+              ))}
+              {post.faqs && post.faqs.length > 0 && faqSectionNumber > 0 ? (
+                <li className="pl-1">
+                  <a
+                    href="#frequently-asked-questions"
+                    className="font-medium text-primary underline underline-offset-2 hover:opacity-90"
+                  >
+                    {faqSectionNumber}. Frequently Asked Questions
+                  </a>
+                </li>
+              ) : null}
+            </ol>
+          </nav>
+        ) : null}
+
+        <div className="blog-pdf-body">
+          {post.blocks.map((block, i) => {
+            const prev = post.blocks[i - 1];
+            const prevSub =
+              !!prev?.heading && !isNumberedHeading(prev.heading);
+            const currSub =
+              !!block.heading && !isNumberedHeading(block.heading);
+            const showSubsectionRule =
+              i > 0 && prevSub && currSub && !!block.heading && !!prev?.heading;
+
+            const numbered = isNumberedHeading(block.heading);
+            const HeadingTag: "h2" | "h3" = numbered ? "h2" : "h3";
+            const h2Class =
+              i === 0 && numbered
+                ? "mt-0 mb-4 scroll-mt-28 text-[1.65rem] font-bold leading-snug text-foreground sm:text-[1.75rem]"
+                : "mt-10 mb-4 scroll-mt-28 text-[1.65rem] font-bold leading-snug text-foreground sm:text-[1.75rem]";
+            const h3Class =
+              "mt-8 mb-3 scroll-mt-28 text-xl font-bold leading-snug text-foreground";
+
+            return (
+              <div key={i}>
+                {showSubsectionRule ? (
+                  <hr
+                    className="mb-8 mt-2 h-1 border-0 bg-foreground"
+                    aria-hidden
+                  />
+                ) : null}
+                <section>
+                  {block.heading ? (
+                    <HeadingTag
+                      id={sectionDomId(i)}
+                      className={numbered ? h2Class : h3Class}
+                    >
+                      {block.heading}
+                    </HeadingTag>
+                  ) : null}
+                  <div>
+                    {block.paragraphs.map((para, j) => {
+                      const isPoweredLine = para
+                        .trimStart()
+                        .startsWith("Proudly Powered by");
+                      return (
+                        <p
+                          key={j}
+                          className={`${pBody} ${isPoweredLine ? "italic" : ""}`}
+                        >
+                          {para}
+                        </p>
+                      );
+                    })}
+                  </div>
+                  {block.list && block.list.length > 0 ? (
+                    block.list.some((item) => /^\d+\.\s|^●\s/.test(item)) ? (
+                      <ul className="mt-4 list-none space-y-0 pl-0">
+                        {block.list.map((item, k) => (
+                          <Fragment key={k}>{renderListItem(item)}</Fragment>
+                        ))}
+                      </ul>
+                    ) : (
+                      <ul className="mt-6 space-y-2 list-disc pl-5 text-base md:text-lg leading-[1.6] text-muted-foreground">
+                        {block.list.map((item, k) => (
+                          <li key={k} className="mb-1 last:mb-0">
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    )
+                  ) : null}
+                </section>
+              </div>
+            );
+          })}
         </div>
 
         {post.faqs && post.faqs.length > 0 ? (
-          <Card className="mt-8 md:mt-10 p-6 md:p-8 border-border/60">
-            <h2 className="text-2xl md:text-3xl font-bold mb-6 text-foreground">FAQ</h2>
-            <dl className="space-y-6 m-0">
-              {post.faqs.map((faq, i) => (
-                <div key={i}>
-                  <dt className="font-semibold text-foreground mb-2">{faq.q}</dt>
-                  <dd className="text-muted-foreground leading-relaxed m-0 text-base md:text-lg">
-                    {faq.a}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </Card>
+          <>
+            <hr
+              className="my-12 h-1 border-0 bg-foreground"
+              aria-hidden
+            />
+            <section id="frequently-asked-questions" className="scroll-mt-28">
+              <h2 className="mb-6 text-[1.65rem] font-bold leading-snug text-foreground sm:text-[1.75rem]">
+                {faqSectionNumber > 0
+                  ? `${faqSectionNumber}. Frequently Asked Questions`
+                  : "Frequently Asked Questions"}
+              </h2>
+              <dl className="m-0 space-y-8">
+                {post.faqs.map((faq, idx) => (
+                  <div key={idx}>
+                    <dt className="mb-2 text-lg font-bold leading-snug text-foreground">
+                      {faq.q}
+                    </dt>
+                    <dd className={`${pBody} m-0 text-muted-foreground`}>{faq.a}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+          </>
         ) : null}
 
-        <footer className="mt-10 pt-8 border-t border-border/60 flex flex-wrap gap-3">
+        <footer className="mt-12 flex flex-wrap gap-3 border-t border-border pt-8">
           <Button asChild variant="outline">
             <Link to={BLOG_INDEX_PATH} className="inline-flex items-center gap-2">
               <ArrowLeft className="h-4 w-4" />
