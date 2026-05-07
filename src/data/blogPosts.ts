@@ -186,10 +186,10 @@ export const blogPosts: BlogPost[] = [
           "To ensure your activities are successful and well-received by the staff, keep these professional tips in mind:",
         ],
         list: [
-          "Keep it Brief: An icebreaker should take up no more than 5 to 10 minutes of your meeting. If it drags on, it becomes a distraction rather than an energizer.",
-          "Make it Inclusive: Ensure the games do not rely on specific physical abilities or deep cultural knowledge that some team members might not possess.",
-          "Keep it Professional: Always choose questions and prompts that are HR-friendly. Avoid politics, religion, or overly personal relationship questions to maintain a safe, respectful environment.",
-          "Read the Room: If the team is clearly stressed about an impending deadline, opt for a very quick, low-energy check-in rather than a loud, demanding game.",
+          "● Keep it Brief: An icebreaker should take up no more than 5 to 10 minutes of your meeting. If it drags on, it becomes a distraction rather than an energizer.",
+          "● Make it Inclusive: Ensure the games do not rely on specific physical abilities or deep cultural knowledge that some team members might not possess.",
+          "● Keep it Professional: Always choose questions and prompts that are HR-friendly. Avoid politics, religion, or overly personal relationship questions to maintain a safe, respectful environment.",
+          "● Read the Room: If the team is clearly stressed about an impending deadline, opt for a very quick, low-energy check-in rather than a loud, demanding game.",
         ],
       },
       {
@@ -284,10 +284,10 @@ export const blogPosts: BlogPost[] = [
           "Setting up a wheel for your classroom is incredibly easy. You don't need any technical expertise to get started:",
         ],
         list: [
-          "Choose your topic: Decide whether you are reviewing a subject, assigning tasks, or playing a game.",
-          "Input your data: Paste your list of words, numbers, or student names into the wheel's text box.",
-          "Customize: Adjust the colors and settings to make it visually appealing for your specific age group.",
-          "Spin and learn: Project the wheel onto your screen, hit the spin button, and let the fun begin!",
+          "1. Choose your topic: Decide whether you are reviewing a subject, assigning tasks, or playing a game.",
+          "2. Input your data: Paste your list of words, numbers, or student names into the wheel's text box.",
+          "3. Customize: Adjust the colors and settings to make it visually appealing for your specific age group.",
+          "4. Spin and learn: Project the wheel onto your screen, hit the spin button, and let the fun begin!",
         ],
       },
       {
@@ -394,10 +394,10 @@ export const blogPosts: BlogPost[] = [
           "Setting up a spin the wheel food game takes less than 30 seconds. Here is how you do it:",
         ],
         list: [
-          "Brainstorm: Have both partners quickly name three places they would not mind eating at.",
-          "Enter the Choices: Type those six options into your free online spin wheel.",
-          "Spin: Click the spin button and watch the magic happen.",
-          "No Take-Backs: You must agree beforehand that whatever the wheel selects is the absolute final decision. No reshuffling!",
+          "1. Brainstorm: Have both partners quickly name three places they would not mind eating at.",
+          "2. Enter the Choices: Type those six options into your free online spin wheel.",
+          "3. Spin: Click the spin button and watch the magic happen.",
+          "4. No Take-Backs: You must agree beforehand that whatever the wheel selects is the absolute final decision. No reshuffling!",
         ],
       },
       {
