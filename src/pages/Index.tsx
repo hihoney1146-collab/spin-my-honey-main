@@ -1,4 +1,5 @@
 import { SpinWheel } from "@/components/SpinWheel";
+import { WheelDirectory } from "@/components/WheelDirectory";
 import { Card } from "@/components/ui/card";
 import {
   Sparkles,
@@ -1200,6 +1201,8 @@ const Index = () => {
             </div>
           </div>
         </section>
+
+        <WheelDirectory />
       </article>
     </>
   );

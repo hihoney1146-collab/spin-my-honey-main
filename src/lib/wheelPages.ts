@@ -52,3 +52,37 @@ export function getRelatedWheelPages(
   const diffCat = others.filter((p) => p.category !== current.category);
   return [...sameCat, ...diffCat].slice(0, limit);
 }
+
+export type WheelCategoryGroup = {
+  category: string;
+  items: WheelPageRecord[];
+};
+
+/**
+ * All wheels from CSV (via wheelPages.json), grouped by Category.
+ * Categories sorted A–Z; "Other" last. Wheels within a category sorted by primary keyword.
+ */
+export function getWheelsGroupedByCategory(): WheelCategoryGroup[] {
+  const records = getAllWheelRecords().filter((p) => p.slug);
+  const map = new Map<string, WheelPageRecord[]>();
+  for (const p of records) {
+    const raw = (p.category ?? "").trim();
+    const cat = raw.length > 0 ? raw : "Other";
+    if (!map.has(cat)) map.set(cat, []);
+    map.get(cat)!.push(p);
+  }
+  for (const [, items] of map) {
+    items.sort((a, b) =>
+      (a.keywordPrimary || a.slug).localeCompare(b.keywordPrimary || b.slug, undefined, {
+        sensitivity: "base",
+      }),
+    );
+  }
+  const groups = [...map.entries()].map(([category, items]) => ({ category, items }));
+  groups.sort((a, b) => {
+    if (a.category === "Other") return 1;
+    if (b.category === "Other") return -1;
+    return a.category.localeCompare(b.category, undefined, { sensitivity: "base" });
+  });
+  return groups;
+}
