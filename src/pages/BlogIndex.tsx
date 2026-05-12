@@ -4,6 +4,11 @@ import { Card } from "@/components/ui/card";
 import { ArrowRight, Calendar, User } from "lucide-react";
 import { BLOG_INDEX_PATH } from "@/lib/siteInternalLinks";
 import { getAllBlogPosts } from "@/data/blogPosts";
+import {
+  getBlogFeaturedImageSrc,
+  getBlogFeaturedImageWebpSrc,
+} from "@/lib/blogFeaturedImages";
+import { OptimizedImage } from "@/components/OptimizedImage";
 
 const SITE_ORIGIN = "https://onlinespinwheel.fun";
 
@@ -42,17 +47,33 @@ const BlogIndex = () => {
         </header>
 
         <ul className="space-y-6 md:space-y-8 list-none p-0 m-0">
-          {posts.map((post) => (
-            <li key={post.slug}>
-              <Card className="overflow-hidden border-border/60 hover:border-primary/30 transition-colors">
+          {posts.map((post) => {
+            const thumb = getBlogFeaturedImageSrc(post.slug);
+            const thumbWebp = getBlogFeaturedImageWebpSrc(post.slug);
+            const shortTitle = post.title.split("|")[0].trim();
+            return (
+              <li key={post.slug}>
+                <Card className="overflow-hidden border-border/60 hover:border-primary/30 transition-colors">
                 <Link
                   to={`${BLOG_INDEX_PATH}/${post.slug}`}
-                  className="block p-6 md:p-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-xl"
+                  className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset rounded-xl"
                 >
-                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                  {thumb ? (
+                    <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-border/50 bg-muted/30">
+                      <OptimizedImage
+                        src={thumb}
+                        webpSrc={thumbWebp}
+                        alt={shortTitle}
+                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                        loading="lazy"
+                      />
+                    </div>
+                  ) : null}
+                  <div className="p-6 md:p-8">
+                    <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                     <div className="min-w-0 flex-1">
                       <h2 className="text-xl md:text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors leading-snug">
-                        {post.title.split("|")[0].trim()}
+                        {shortTitle}
                       </h2>
                       <p className="text-muted-foreground m-0 mb-4 text-base md:text-lg leading-[1.6] last:mb-0">
                         {post.excerpt}
@@ -77,11 +98,13 @@ const BlogIndex = () => {
                       Read article
                       <ArrowRight className="h-4 w-4" />
                     </span>
+                    </div>
                   </div>
                 </Link>
-              </Card>
-            </li>
-          ))}
+                </Card>
+              </li>
+            );
+          })}
         </ul>
       </article>
     </>

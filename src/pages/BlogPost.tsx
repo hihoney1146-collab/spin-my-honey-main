@@ -6,6 +6,12 @@ import { ArrowLeft, Home } from "lucide-react";
 import { BLOG_INDEX_PATH } from "@/lib/siteInternalLinks";
 import { getBlogPostBySlug } from "@/data/blogPosts";
 import { buildBlogTableOfContents } from "@/lib/blogToc";
+import {
+  getBlogFeaturedImageSrc,
+  getBlogFeaturedImageWebpSrc,
+  getBlogFeaturedImageAbsoluteUrl,
+} from "@/lib/blogFeaturedImages";
+import { OptimizedImage } from "@/components/OptimizedImage";
 
 const SITE_ORIGIN = "https://onlinespinwheel.fun";
 const AUROXA_TECH_URL = "https://auroxatech.com";
@@ -113,6 +119,9 @@ const BlogPost = () => {
 
   const canonical = `${SITE_ORIGIN}${BLOG_INDEX_PATH}/${post.slug}`;
   const metaTitle = post.title.split("|")[0].trim();
+  const featuredSrc = getBlogFeaturedImageSrc(post.slug);
+  const featuredWebp = getBlogFeaturedImageWebpSrc(post.slug);
+  const featuredAbsolute = getBlogFeaturedImageAbsoluteUrl(post.slug, SITE_ORIGIN);
   const authorParsed = post.author.match(/^(.+?)\s*\(([^)]+)\)\s*$/);
   const authorDisplayName = authorParsed?.[1]?.trim() ?? post.author;
   const authorRole = authorParsed?.[2]?.trim();
@@ -136,6 +145,7 @@ const BlogPost = () => {
       url: SITE_ORIGIN,
     },
     mainEntityOfPage: canonical,
+    ...(featuredAbsolute ? { image: featuredAbsolute } : {}),
   };
 
   return (
@@ -149,6 +159,13 @@ const BlogPost = () => {
         <meta property="og:type" content="article" />
         <meta property="og:url" content={canonical} />
         <meta property="article:modified_time" content={`${post.updated}T12:00:00`} />
+        {featuredAbsolute ? (
+          <>
+            <meta property="og:image" content={featuredAbsolute} />
+            <meta property="og:image:alt" content={metaTitle} />
+            <meta name="twitter:image" content={featuredAbsolute} />
+          </>
+        ) : null}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={post.title} />
         <meta name="twitter:description" content={post.metaDescription} />
@@ -196,6 +213,21 @@ const BlogPost = () => {
             . Last Updated: {formatBlogDate(post.updated)}.
           </p>
         </header>
+
+        {featuredSrc ? (
+          <div className="mb-10 overflow-hidden rounded-xl border border-border/60 bg-muted/20 shadow-sm">
+            <div className="aspect-[16/9] w-full bg-muted/40">
+              <OptimizedImage
+                src={featuredSrc}
+                webpSrc={featuredWebp}
+                alt={metaTitle}
+                className="h-full w-full object-cover"
+                loading="eager"
+                fetchPriority="high"
+              />
+            </div>
+          </div>
+        ) : null}
 
         <section className="mb-10" aria-labelledby="quick-summary-heading">
           <h2

@@ -939,8 +939,9 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
 
   return (
     <>
-      {/* Wheel Section - Centered */}
-      <div className="flex flex-col items-center justify-center gap-3 sm:gap-4 w-full px-4 sm:px-6 lg:px-8 lg:pl-6 lg:pr-[300px] xl:pr-[340px] 2xl:pr-[360px]">
+      {/* Grid on lg+: wheel + panel share the row (no extra empty strip next to the scrollbar). */}
+      <div className="w-full px-4 sm:px-6 lg:px-6 xl:px-8 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_340px] xl:grid-cols-[minmax(0,1fr)_400px] 2xl:grid-cols-[minmax(0,1fr)_420px] gap-8 lg:gap-5 xl:gap-6 items-start">
+        <div className="flex flex-col items-center justify-center gap-3 sm:gap-4 w-full min-w-0">
         {/* Wheel Card */}
         <div
           className="w-full max-w-[380px] xs:max-w-[420px] sm:max-w-[500px] md:max-w-[560px] lg:max-w-[580px] xl:max-w-[620px] 2xl:max-w-[660px] mx-auto relative"
@@ -1045,10 +1046,10 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
             </div>
           </Card>
         )}
-      </div>
+        </div>
 
-      {/* Controls Section - Right Sidebar */}
-      <div className="w-full lg:w-[340px] xl:w-[400px] 2xl:w-[420px] px-4 lg:px-0 mt-8 lg:mt-0 lg:absolute lg:right-0 lg:top-0 lg:z-40">
+        {/* Controls Section — right column on large screens */}
+        <div className="w-full min-w-0 mt-8 lg:mt-0 lg:z-40">
         <Card className="p-4 lg:p-6 bg-card/95 border border-border/50 shadow-xl backdrop-blur-xl relative overflow-hidden w-full flex flex-col rounded-2xl">
           {/* Header */}
           <div className="mb-4 relative z-10 flex-shrink-0">
@@ -1400,6 +1401,7 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
             </div>
           </div>
         </Card>
+        </div>
       </div>
 
       {/* Winner Dialog */}

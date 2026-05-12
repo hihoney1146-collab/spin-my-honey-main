@@ -92,6 +92,7 @@ const WheelProgrammaticPage = () => {
 
         <div className="mb-10">
           <SpinWheel
+            key={page.slug}
             presetOptionLabels={
               page.wheelOptions.length > 0 ? page.wheelOptions : undefined
             }

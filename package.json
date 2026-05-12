@@ -9,6 +9,7 @@
   },
   "scripts": {
     "dev": "vite",
+    "optimize:blog-images": "node scripts/optimize-blog-featured-images.mjs",
     "prebuild": "node scripts/generate-wheel-pages-data.mjs && node scripts/generate-sitemap.mjs",
     "build": "vite build && node scripts/generate-static-pages.js",
     "build:dev": "vite build --mode development",
@@ -88,6 +89,7 @@
     "globals": "^15.15.0",
     "lovable-tagger": "^1.1.10",
     "postcss": "^8.5.6",
+    "sharp": "^0.33.5",
     "tailwindcss": "^3.4.17",
     "terser": "^5.44.0",
     "typescript": "^5.8.3",

@@ -6,10 +6,6 @@ import {
   Users,
   Shuffle,
   Zap,
-  GraduationCap,
-  Briefcase,
-  PartyPopper,
-  Home,
 } from "lucide-react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
@@ -494,140 +490,6 @@ const Index = () => {
           </div>
         </section>
 
-        <section
-          id="spin-wheel-uses"
-          className="w-full px-4 lg:px-6 py-8 sm:py-12 md:py-14 lg:py-16 bg-gradient-to-b from-muted/30 to-background"
-        >
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-8 sm:mb-10 md:mb-12">
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 md:mb-5 tracking-tight">
-                Popular Uses for Our Spin Wheel
-              </h2>
-              <p className="text-sm sm:text-base md:text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto">
-                Discover how our spin wheel can transform decision-making across
-                different settings
-              </p>
-            </div>
-            <div className="grid md:grid-cols-2 gap-5 sm:gap-6 md:gap-7">
-              <Card className="p-5 sm:p-6 md:p-7 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border-2 border-border/50 bg-white/80 dark:bg-background/80 backdrop-blur-sm">
-                <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-5">
-                  <div className="w-11 h-11 sm:w-12 sm:h-12 md:w-13 md:h-13 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
-                    <GraduationCap className="w-6 h-6 sm:w-6.5 h-6.5 md:w-7 md:h-7 text-white" />
-                  </div>
-                  <h3 className="text-base sm:text-lg md:text-xl font-bold">
-                    Education
-                  </h3>
-                </div>
-                <ul className="space-y-2.5 sm:space-y-3 text-xs sm:text-sm md:text-sm text-muted-foreground">
-                  <li className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full flex-shrink-0"></div>
-                    Random student selection for questions
-                  </li>
-                  <li className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full flex-shrink-0"></div>
-                    Picking presentation orders
-                  </li>
-                  <li className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full flex-shrink-0"></div>
-                    Selecting group leaders
-                  </li>
-                  <li className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full flex-shrink-0"></div>
-                    Choosing classroom activities
-                  </li>
-                </ul>
-              </Card>
-
-              <Card className="p-5 sm:p-6 md:p-7 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border-2 border-border/50 bg-white/80 dark:bg-background/80 backdrop-blur-sm">
-                <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-5">
-                  <div className="w-11 h-11 sm:w-12 sm:h-12 md:w-13 md:h-13 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center shadow-lg">
-                    <Briefcase className="w-6 h-6 sm:w-6.5 h-6.5 md:w-7 md:h-7 text-white" />
-                  </div>
-                  <h3 className="text-base sm:text-lg md:text-xl font-bold">
-                    Business
-                  </h3>
-                </div>
-                <ul className="space-y-2.5 sm:space-y-3 text-xs sm:text-sm md:text-sm text-muted-foreground">
-                  <li className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full flex-shrink-0"></div>
-                    Team meeting ice breakers
-                  </li>
-                  <li className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full flex-shrink-0"></div>
-                    Selecting meeting speakers
-                  </li>
-                  <li className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full flex-shrink-0"></div>
-                    Choosing lunch locations
-                  </li>
-                  <li className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full flex-shrink-0"></div>
-                    Giveaway winner selection
-                  </li>
-                </ul>
-              </Card>
-
-              <Card className="p-5 sm:p-6 md:p-7 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border-2 border-border/50 bg-white/80 dark:bg-background/80 backdrop-blur-sm">
-                <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-5">
-                  <div className="w-11 h-11 sm:w-12 sm:h-12 md:w-13 md:h-13 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-                    <PartyPopper className="w-6 h-6 sm:w-6.5 h-6.5 md:w-7 md:h-7 text-white" />
-                  </div>
-                  <h3 className="text-base sm:text-lg md:text-xl font-bold">
-                    Entertainment
-                  </h3>
-                </div>
-                <ul className="space-y-2.5 sm:space-y-3 text-xs sm:text-sm md:text-sm text-muted-foreground">
-                  <li className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full flex-shrink-0"></div>
-                    Party game decisions
-                  </li>
-                  <li className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full flex-shrink-0"></div>
-                    Movie night selections
-                  </li>
-                  <li className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full flex-shrink-0"></div>
-                    Restaurant choices
-                  </li>
-                  <li className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full flex-shrink-0"></div>
-                    Truth or dare spinner
-                  </li>
-                </ul>
-              </Card>
-
-              <Card className="p-5 sm:p-6 md:p-7 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border-2 border-border/50 bg-white/80 dark:bg-background/80 backdrop-blur-sm">
-                <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-5">
-                  <div className="w-11 h-11 sm:w-12 sm:h-12 md:w-13 md:h-13 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
-                    <Home className="w-6 h-6 sm:w-6.5 h-6.5 md:w-7 md:h-7 text-white" />
-                  </div>
-                  <h3 className="text-base sm:text-lg md:text-xl font-bold">
-                    Family
-                  </h3>
-                </div>
-                <ul className="space-y-2.5 sm:space-y-3 text-xs sm:text-sm md:text-sm text-muted-foreground">
-                  <li className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-orange-500 rounded-full flex-shrink-0"></div>
-                    Chore assignment
-                  </li>
-                  <li className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-orange-500 rounded-full flex-shrink-0"></div>
-                    Deciding family activities
-                  </li>
-                  <li className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-orange-500 rounded-full flex-shrink-0"></div>
-                    Picking who goes first in games
-                  </li>
-                  <li className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-orange-500 rounded-full flex-shrink-0"></div>
-                    Settling friendly disputes
-                  </li>
-                </ul>
-              </Card>
-            </div>
-          </div>
-        </section>
-
         {/* SEO Content Section - Updated Long-form Guide */}
         <section
           id="spin-wheel-seo-content"
@@ -635,7 +497,7 @@ const Index = () => {
         >
           <div className="max-w-4xl mx-auto">
             <div className="prose prose-lg max-w-none">
-              <p className="text-[11px] sm:text-xs text-muted-foreground/90 mb-3 sm:mb-4 leading-relaxed">
+              <p className="text-base sm:text-lg text-muted-foreground/90 mb-3 sm:mb-4 leading-relaxed">
                 Expertly Verified Resource Written by Raja Jahangir, (SEO Expert).
                 Powered by Auroxa Tech. Last Updated: 14 Apr 2026.
               </p>
