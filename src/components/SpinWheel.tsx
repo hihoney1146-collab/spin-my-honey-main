@@ -25,6 +25,7 @@ import {
 } from "lucide-react";
 import confetti from "canvas-confetti";
 import { toast } from "sonner";
+import { gtagEvent } from "@/lib/analytics";
 import {
   Dialog,
   DialogContent,
@@ -196,7 +197,7 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
       try {
         const parsed = JSON.parse(saved);
         // Ensure all entries have active property
-        return parsed.map((entry: any) => ({
+        return (parsed as WheelEntry[]).map((entry) => ({
           ...entry,
           active: entry.active !== undefined ? entry.active : true,
         }));
@@ -243,7 +244,7 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
 
   const getAudioCtx = (): AudioContext | null => {
     if (!audioContextRef.current) {
-      const Ctor = window.AudioContext || (window as any).webkitAudioContext;
+      const Ctor = window.AudioContext || window.webkitAudioContext;
       if (Ctor) audioContextRef.current = new Ctor();
     }
     const ctx = audioContextRef.current;
@@ -275,7 +276,9 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
         const ms = style === "heavy" ? 80 : style === "medium" ? 40 : 15;
         navigator.vibrate(ms);
       }
-    } catch {}
+    } catch {
+      /* vibration unsupported */
+    }
   };
 
   // Zero-latency tick: Web Audio pre-buffered, no throttle
@@ -302,7 +305,9 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
       if (type === "tick") playTickSound(volume ?? 0.5);
       else if (type === "win") playWinSound();
       else if (type === "click") playClickSound();
-    } catch {}
+    } catch {
+      /* audio optional */
+    }
   };
 
   // Save entries to localStorage whenever they change (skip preset/programmatic wheels)
@@ -630,11 +635,11 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
 
   // Helper to darken colors for gradient
   const adjustColorBrightness = (hex: string, percent: number) => {
-    let num = parseInt(hex.replace("#", ""), 16),
-      amt = Math.round(2.55 * percent),
-      R = (num >> 16) + amt,
-      B = ((num >> 8) & 0x00ff) + amt,
-      G = (num & 0x0000ff) + amt;
+    const num = parseInt(hex.replace("#", ""), 16);
+    const amt = Math.round(2.55 * percent);
+    const R = (num >> 16) + amt;
+    const B = ((num >> 8) & 0x00ff) + amt;
+    const G = (num & 0x0000ff) + amt;
     return (
       "#" +
       (
@@ -818,12 +823,10 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
     triggerHaptic("medium");
 
     // Track spin event
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', 'wheel_spin', {
-        'event_category': 'engagement',
-        'event_label': 'user_spun_wheel'
-      });
-    }
+    gtagEvent("wheel_spin", {
+      event_category: "engagement",
+      event_label: "user_spun_wheel",
+    });
 
     // WheelOfNames-style physics: moderate rotations, smooth cubic deceleration
     const spins = 8 + Math.random() * 6; // 8-14 full rotations
@@ -943,14 +946,19 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
       <div className="w-full px-4 sm:px-6 lg:px-6 xl:px-8 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_340px] xl:grid-cols-[minmax(0,1fr)_400px] 2xl:grid-cols-[minmax(0,1fr)_420px] gap-8 lg:gap-5 xl:gap-6 items-start">
         <div className="flex flex-col items-center justify-center gap-3 sm:gap-4 w-full min-w-0">
         {/* Wheel Card */}
-        <div
-          className="w-full max-w-[380px] xs:max-w-[420px] sm:max-w-[500px] md:max-w-[560px] lg:max-w-[580px] xl:max-w-[620px] 2xl:max-w-[660px] mx-auto relative"
+        <button
+          type="button"
+          className="w-full max-w-[380px] xs:max-w-[420px] sm:max-w-[500px] md:max-w-[560px] lg:max-w-[580px] xl:max-w-[620px] 2xl:max-w-[660px] mx-auto relative block rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed"
           onClick={spinWheel}
           onTouchStart={warmUpAudio}
           onPointerDown={warmUpAudio}
+          disabled={isSpinning || activeEntries.length < 2}
+          aria-label="Spin the wheel"
         >
           <canvas
             ref={canvasRef}
+            role="img"
+            aria-label="Spin wheel showing your entries. Use the Spin the Wheel button below to spin."
             className={`w-full h-auto max-w-full aspect-square block rounded-full touch-manipulation [transform-origin:center] [image-rendering:auto] ${isSpinning || activeEntries.length < 2
               ? "cursor-not-allowed"
               : "cursor-pointer"
@@ -968,7 +976,7 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
               willChange: "transform",
             }}
           />
-        </div>
+        </button>
 
         {/* Spin Button */}
         <div className="w-full max-w-[380px] xs:max-w-[420px] sm:max-w-[500px] md:max-w-[560px] lg:max-w-[580px] xl:max-w-[620px] 2xl:max-w-[660px] mx-auto space-y-2">

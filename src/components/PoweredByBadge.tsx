@@ -1,4 +1,5 @@
 import { ExternalLink } from "lucide-react";
+import { gtagEvent } from "@/lib/analytics";
 
 interface PoweredByBadgeProps {
   variant?: "default" | "minimal" | "gradient";
@@ -11,13 +12,11 @@ export const PoweredByBadge = ({
 }: PoweredByBadgeProps) => {
   const handleClick = () => {
     // Track badge clicks
-    if (typeof window !== "undefined" && (window as any).gtag) {
-      (window as any).gtag("event", "powered_by_click", {
-        event_category: "parasite_seo",
-        event_label: "badge_backlink",
-        value: 1,
-      });
-    }
+    gtagEvent("powered_by_click", {
+      event_category: "parasite_seo",
+      event_label: "badge_backlink",
+      value: 1,
+    });
   };
 
   const variants = {
@@ -67,13 +66,11 @@ export const EmbedCodeGenerator = () => {
   const copyToClipboard = () => {
     navigator.clipboard.writeText(embedCode);
     
-    if (typeof window !== "undefined" && (window as any).gtag) {
-      (window as any).gtag("event", "embed_code_generated", {
-        event_category: "parasite_seo",
-        event_label: "widget_distribution",
-        value: 1,
-      });
-    }
+    gtagEvent("embed_code_generated", {
+      event_category: "parasite_seo",
+      event_label: "widget_distribution",
+      value: 1,
+    });
   };
 
   return (

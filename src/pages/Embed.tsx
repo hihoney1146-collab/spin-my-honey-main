@@ -2,31 +2,29 @@ import { SpinWheel } from "@/components/SpinWheel";
 import { PoweredByBadge } from "@/components/PoweredByBadge";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet";
+import { gtagEvent } from "@/lib/analytics";
 
 const Embed = () => {
   useEffect(() => {
     // Track embed page views
-    if (typeof window !== "undefined" && (window as any).gtag) {
-      (window as any).gtag("event", "embed_view", {
-        event_category: "parasite_seo",
-        event_label: "widget_impression",
-        value: 1,
-      });
-    }
+    gtagEvent("embed_view", {
+      event_category: "parasite_seo",
+      event_label: "widget_impression",
+      value: 1,
+    });
 
     // Track parent domain for backlink source tracking
     if (window.parent !== window) {
       try {
         const parentUrl = document.referrer;
-        if (parentUrl && (window as any).gtag) {
-          (window as any).gtag("event", "embed_parent_domain", {
+        if (parentUrl) {
+          gtagEvent("embed_parent_domain", {
             event_category: "parasite_seo",
             event_label: new URL(parentUrl).hostname,
-            referrer: parentUrl,
           });
         }
-      } catch (e) {
-        // Cross-origin restriction
+      } catch {
+        /* cross-origin referrer blocked */
       }
     }
   }, []);

@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { lazy, Suspense } from "react";
 import Index from "./pages/Index";
+import BlogPost from "./pages/BlogPost";
 // Lazy load non-critical pages for better initial load performance
 const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
@@ -35,7 +36,6 @@ const Terms = lazy(() => import("./pages/Terms"));
 const Disclaimer = lazy(() => import("./pages/Disclaimer"));
 const AllSpinWheelsPage = lazy(() => import("./pages/AllSpinWheelsPage"));
 const BlogIndex = lazy(() => import("./pages/BlogIndex"));
-const BlogPost = lazy(() => import("./pages/BlogPost"));
 const WheelProgrammaticPage = lazy(
   () => import("./pages/WheelProgrammaticPage")
 );
@@ -43,6 +43,7 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const Embed = lazy(() => import("./pages/Embed"));
 import { ReferralTracker } from "./components/ReferralTracker";
 import { CookieConsent } from "./components/CookieConsent";
+import { PageLoadingFallback } from "./components/PageLoadingFallback";
 
 const queryClient = new QueryClient();
 
@@ -67,7 +68,7 @@ const App = () => (
               <Route
                 path="/about-us"
                 element={
-                  <Suspense fallback={<div className="min-h-screen" />}>
+                  <Suspense fallback={<PageLoadingFallback />}>
                     <About />
                   </Suspense>
                 }
@@ -75,7 +76,7 @@ const App = () => (
               <Route
                 path="/contact-us"
                 element={
-                  <Suspense fallback={<div className="min-h-screen" />}>
+                  <Suspense fallback={<PageLoadingFallback />}>
                     <Contact />
                   </Suspense>
                 }
@@ -83,7 +84,7 @@ const App = () => (
               <Route
                 path="/privacy-policy"
                 element={
-                  <Suspense fallback={<div className="min-h-screen" />}>
+                  <Suspense fallback={<PageLoadingFallback />}>
                     <Privacy />
                   </Suspense>
                 }
@@ -91,7 +92,7 @@ const App = () => (
               <Route
                 path="/cookie-policy"
                 element={
-                  <Suspense fallback={<div className="min-h-screen" />}>
+                  <Suspense fallback={<PageLoadingFallback />}>
                     <CookiePolicy />
                   </Suspense>
                 }
@@ -147,7 +148,7 @@ const App = () => (
               <Route
                 path="/tutorial-adding-images-to-spin-wheels"
                 element={
-                  <Suspense fallback={<div className="min-h-screen" />}>
+                  <Suspense fallback={<PageLoadingFallback />}>
                     <TutorialAddingImagesToSpinWheels />
                   </Suspense>
                 }
@@ -155,7 +156,7 @@ const App = () => (
               <Route
                 path="/case-study-school-using-spin-wheels"
                 element={
-                  <Suspense fallback={<div className="min-h-screen" />}>
+                  <Suspense fallback={<PageLoadingFallback />}>
                     <CaseStudySchoolUsingSpinWheels />
                   </Suspense>
                 }
@@ -163,7 +164,7 @@ const App = () => (
               <Route
                 path="/case-study-community-event-using-spin-wheels"
                 element={
-                  <Suspense fallback={<div className="min-h-screen" />}>
+                  <Suspense fallback={<PageLoadingFallback />}>
                     <CaseStudyCommunityEventUsingSpinWheels />
                   </Suspense>
                 }
@@ -171,7 +172,7 @@ const App = () => (
               <Route
                 path="/comparison-spin-wheel-vs-random-number-generator"
                 element={
-                  <Suspense fallback={<div className="min-h-screen" />}>
+                  <Suspense fallback={<PageLoadingFallback />}>
                     <ComparisonSpinWheelVsRandomNumberGenerator />
                   </Suspense>
                 }
@@ -179,7 +180,7 @@ const App = () => (
               <Route
                 path="/comparison-spin-wheel-vs-traditional-methods"
                 element={
-                  <Suspense fallback={<div className="min-h-screen" />}>
+                  <Suspense fallback={<PageLoadingFallback />}>
                     <ComparisonSpinWheelVsTraditionalMethods />
                   </Suspense>
                 }
@@ -187,7 +188,7 @@ const App = () => (
               <Route
                 path="/comparison-online-vs-physical-spin-wheels"
                 element={
-                  <Suspense fallback={<div className="min-h-screen" />}>
+                  <Suspense fallback={<PageLoadingFallback />}>
                     <ComparisonOnlineVsPhysicalSpinWheels />
                   </Suspense>
                 }
@@ -195,7 +196,7 @@ const App = () => (
               <Route
                 path="/terms-and-conditions"
                 element={
-                  <Suspense fallback={<div className="min-h-screen" />}>
+                  <Suspense fallback={<PageLoadingFallback />}>
                     <Terms />
                   </Suspense>
                 }
@@ -203,7 +204,7 @@ const App = () => (
               <Route
                 path="/disclaimer"
                 element={
-                  <Suspense fallback={<div className="min-h-screen" />}>
+                  <Suspense fallback={<PageLoadingFallback />}>
                     <Disclaimer />
                   </Suspense>
                 }
@@ -211,7 +212,7 @@ const App = () => (
               <Route
                 path="/all-spin-wheels"
                 element={
-                  <Suspense fallback={<div className="min-h-screen" />}>
+                  <Suspense fallback={<PageLoadingFallback />}>
                     <AllSpinWheelsPage />
                   </Suspense>
                 }
@@ -219,23 +220,16 @@ const App = () => (
               <Route
                 path="/blog"
                 element={
-                  <Suspense fallback={<div className="min-h-screen" />}>
+                  <Suspense fallback={<PageLoadingFallback />}>
                     <BlogIndex />
                   </Suspense>
                 }
               />
-              <Route
-                path="/blog/:slug"
-                element={
-                  <Suspense fallback={<div className="min-h-screen" />}>
-                    <BlogPost />
-                  </Suspense>
-                }
-              />
+              <Route path="/blog/:slug" element={<BlogPost />} />
               <Route
                 path="/:slug"
                 element={
-                  <Suspense fallback={<div className="min-h-screen" />}>
+                  <Suspense fallback={<PageLoadingFallback />}>
                     <WheelProgrammaticPage />
                   </Suspense>
                 }
@@ -244,7 +238,7 @@ const App = () => (
             <Route
               path="/embed"
               element={
-                <Suspense fallback={<div className="min-h-screen" />}>
+                <Suspense fallback={<PageLoadingFallback />}>
                   <Embed />
                 </Suspense>
               }
@@ -256,7 +250,7 @@ const App = () => (
             <Route
               path="*"
               element={
-                <Suspense fallback={<div className="min-h-screen" />}>
+                <Suspense fallback={<PageLoadingFallback />}>
                   <NotFound />
                 </Suspense>
               }

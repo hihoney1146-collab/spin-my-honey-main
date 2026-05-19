@@ -10,6 +10,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { collectBlogSlugs } from "./blog-data-sources.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -88,22 +89,11 @@ for (const r of fixedRoutes) {
   blocks.push(urlBlock(key, r.changefreq, r.priority));
 }
 
-/** Blog article URLs — slugs parsed from blogPosts.ts (quoted slug values only). */
-const blogPostsTsPath = path.join(root, "src", "data", "blogPosts.ts");
-if (fs.existsSync(blogPostsTsPath)) {
-  try {
-    const tsSource = fs.readFileSync(blogPostsTsPath, "utf8");
-    const slugRe = /slug:\s*"([\w-]+)"/g;
-    let match;
-    while ((match = slugRe.exec(tsSource)) !== null) {
-      const blogPath = `/blog/${match[1]}`;
-      if (seen.has(blogPath)) continue;
-      seen.add(blogPath);
-      blocks.push(urlBlock(blogPath, "monthly", "0.78"));
-    }
-  } catch (e) {
-    console.warn("⚠️ generate-sitemap: could not read blogPosts.ts:", e.message);
-  }
+for (const slug of collectBlogSlugs(root)) {
+  const blogPath = `/blog/${slug}`;
+  if (seen.has(blogPath)) continue;
+  seen.add(blogPath);
+  blocks.push(urlBlock(blogPath, "monthly", "0.78"));
 }
 
 const wheelJsonPath = path.join(root, "src", "generated", "wheelPages.json");

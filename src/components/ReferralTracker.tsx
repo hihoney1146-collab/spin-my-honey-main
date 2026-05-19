@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { gtagEvent } from "@/lib/analytics";
 
 export const ReferralTracker = () => {
   useEffect(() => {
@@ -30,11 +31,10 @@ export const ReferralTracker = () => {
         referrer.toLowerCase().includes(platform.domain)
       );
 
-      if (parasitePlatform && (window as any).gtag) {
-        (window as any).gtag("event", "parasite_seo_referral", {
+      if (parasitePlatform) {
+        gtagEvent("parasite_seo_referral", {
           event_category: "parasite_seo",
           event_label: parasitePlatform.name,
-          referrer: referrer,
           value: 1,
         });
 
@@ -44,12 +44,10 @@ export const ReferralTracker = () => {
       }
 
       // Track UTM parameters from parasite SEO campaigns
-      if (utmSource && (window as any).gtag) {
-        (window as any).gtag("event", "utm_tracking", {
+      if (utmSource) {
+        gtagEvent("utm_tracking", {
           event_category: "campaign",
-          utm_source: utmSource,
-          utm_medium: utmMedium || "unknown",
-          utm_campaign: utmCampaign || "unknown",
+          event_label: `${utmSource}|${utmMedium || "unknown"}|${utmCampaign || "unknown"}`,
         });
 
         // Mark as parasite SEO traffic if from known sources

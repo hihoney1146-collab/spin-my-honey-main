@@ -1,4 +1,5 @@
 // UTM tracking links for parasite SEO campaigns
+import { gtagEvent } from "@/lib/analytics";
 
 export const utmLinks = {
   // Medium article links
@@ -77,12 +78,10 @@ export const generateUTMLink = (
 
 // Track when UTM links are used
 export const trackUTMUsage = (platform: string) => {
-  if (typeof window !== "undefined" && (window as any).gtag) {
-    (window as any).gtag("event", "utm_link_generated", {
-      event_category: "parasite_seo",
-      event_label: platform,
-      value: 1,
-    });
-  }
+  gtagEvent("utm_link_generated", {
+    event_category: "parasite_seo",
+    event_label: platform,
+    value: 1,
+  });
 };
 

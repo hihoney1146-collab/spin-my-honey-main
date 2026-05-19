@@ -53,10 +53,11 @@ const WheelProgrammaticPage = () => {
         <meta property="og:description" content={page.metaDescription} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonical} />
-        <meta property="og:image" content={`${SITE_ORIGIN}/logo.png`} />
+        <meta property="og:image" content={`${SITE_ORIGIN}/og-image.png`} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={page.title} />
         <meta name="twitter:description" content={page.metaDescription} />
+        <meta name="twitter:image" content={`${SITE_ORIGIN}/og-image.png`} />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -67,6 +68,22 @@ const WheelProgrammaticPage = () => {
             headline: page.h1,
           })}
         </script>
+        {page.faqs && page.faqs.length > 0 ? (
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: page.faqs.map((faq) => ({
+                "@type": "Question",
+                name: faq.q,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: faq.a,
+                },
+              })),
+            })}
+          </script>
+        ) : null}
       </Helmet>
 
       <article className="container mx-auto px-4 py-8 md:py-12 max-w-5xl">

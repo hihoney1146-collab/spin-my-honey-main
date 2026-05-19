@@ -1,21 +1,7 @@
-export type BlogContentBlock = {
-  heading?: string;
-  paragraphs: string[];
-  list?: string[];
-};
+import type { BlogPost } from "./blogTypes";
+import { additionalBlogPosts } from "./blogPostsAdditional";
 
-export type BlogFaq = { q: string; a: string };
-
-export type BlogPost = {
-  slug: string;
-  title: string;
-  metaDescription: string;
-  excerpt: string;
-  author: string;
-  updated: string;
-  blocks: BlogContentBlock[];
-  faqs?: BlogFaq[];
-};
+export type { BlogContentBlock, BlogFaq, BlogPost } from "./blogTypes";
 
 export const blogPosts: BlogPost[] = [
   {
@@ -542,6 +528,7 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  ...additionalBlogPosts,
 ];
 
 const bySlug = new Map(blogPosts.map((p) => [p.slug, p]));

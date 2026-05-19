@@ -129,13 +129,108 @@ const Privacy = () => {
 
           <section>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Google AdSense, Ezoic and Programmatic Advertising
+              Local browser storage
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              To keep our tool 100% free, we use third-party advertising companies
-              to serve ads when you visit our website. These companies (including
-              Google AdSense and Ezoic/Google AdX) use programmatic advertising and
-              real-time bidding to show you relevant ads.
+              To improve your experience without creating an account, we use your
+              browser&apos;s <strong className="text-foreground">localStorage</strong>{" "}
+              for:
+            </p>
+            <ul className="space-y-3 text-muted-foreground ml-1 mb-4">
+              <li className="flex items-start gap-2">
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  <strong className="text-foreground">Wheel entries:</strong> names,
+                  options, and settings you add on the main wheel (not sent to our
+                  servers).
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  <strong className="text-foreground">Cookie consent choice:</strong>{" "}
+                  whether you accepted or declined non-essential cookies.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  <strong className="text-foreground">Referral attribution:</strong>{" "}
+                  basic referrer/UTM values when you arrive from a campaign link.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  <strong className="text-foreground">Theme preference:</strong> light
+                  or dark mode selection.
+                </span>
+              </li>
+            </ul>
+            <p className="text-muted-foreground leading-relaxed">
+              You can clear this data anytime through your browser settings. If
+              storage is blocked (private browsing), the site may still work but
+              preferences may not persist.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              Contact form processing (Web3Forms)
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              When you submit our contact form, your name, email, and message are
+              sent to <strong className="text-foreground">Web3Forms</strong> (
+              <a
+                href="https://web3forms.com"
+                className="text-primary hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                web3forms.com
+              </a>
+              ) so we can receive your inquiry by email. Do not send sensitive
+              personal data through the form.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              Google Analytics, Consent Mode, and Google AdSense
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              To keep our tool free, we use Google services that may set cookies or
+              use similar technologies:
+            </p>
+            <ul className="space-y-3 text-muted-foreground ml-1 mb-4">
+              <li className="flex items-start gap-2">
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  <strong className="text-foreground">Google Analytics:</strong> helps
+                  us understand aggregated traffic and usage.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  <strong className="text-foreground">Google AdSense:</strong> may
+                  show ads and use cookies for ad delivery and measurement.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary mt-1.5 flex-shrink-0">●</span>
+                <span>
+                  <strong className="text-foreground">Google Consent Mode:</strong> we
+                  load advertising and analytics tags with consent defaults set to
+                  denied until you accept cookies in our banner; your choice updates
+                  consent through <code className="text-xs">gtag(&apos;consent&apos;, &apos;update&apos;, …)</code>.
+                </span>
+              </li>
+            </ul>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              Our custom cookie banner is not a Google-certified CMP. Users in the
+              EEA, UK, and Switzerland may need additional controls for personalized
+              ads under local rules.
             </p>
             <h3 className="text-lg md:text-xl font-semibold mb-3 text-foreground">
               Google DoubleClick DART Cookie:
@@ -172,20 +267,25 @@ const Privacy = () => {
                 </span>
               </li>
             </ul>
-            <p className="text-muted-foreground leading-relaxed mb-4">
-              <strong className="text-foreground">Ezoic and Ad Exchange (AdX):</strong>{" "}
-              We may partner with Ezoic to manage our programmatic ad delivery. These
-              third-party ad servers or ad networks use technologies like cookies,
-              JavaScript or Web Beacons in their respective advertisements and links
-              that appear on Online Spin Wheel. They automatically receive your IP
-              address when this occurs. These technologies are used to measure the
-              effectiveness of their advertising campaigns and/or to personalize the
-              advertising content that you see.
-            </p>
             <p className="text-muted-foreground leading-relaxed">
-              <strong className="text-foreground">Note:</strong> Online Spin Wheel has
-              no access to or control over these cookies that are used by
-              third-party advertisers.
+              <strong className="text-foreground">Note:</strong> Online Spin Wheel does
+              not control third-party cookies set by Google or other ad/analytics
+              partners. Use the opt-out links below or our footer{" "}
+              <strong className="text-foreground">Cookie settings</strong> to change
+              your on-site consent choice.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              Do Not Track and Global Privacy Control
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              We do not respond to all browser &quot;Do Not Track&quot; (DNT) signals in
+              a uniform way because industry standards vary. Where supported, we aim
+              to respect Global Privacy Control (GPC) as a request to limit sale or
+              sharing of personal information. You can also decline non-essential
+              cookies in our banner and manage ads through Google&apos;s tools below.
             </p>
           </section>
 

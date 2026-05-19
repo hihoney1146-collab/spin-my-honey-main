@@ -10,10 +10,11 @@
   "scripts": {
     "dev": "vite",
     "optimize:blog-images": "node scripts/optimize-blog-featured-images.mjs",
-    "prebuild": "node scripts/generate-wheel-pages-data.mjs && node scripts/generate-sitemap.mjs",
-    "build": "vite build && node scripts/generate-static-pages.js",
+    "generate:public-images": "node scripts/generate-public-images.mjs",
+    "prebuild": "node scripts/generate-wheel-pages-data.mjs && node scripts/generate-sitemap.mjs && node scripts/generate-public-images.mjs",
+    "build": "vite build && node scripts/generate-static-pages.mjs",
     "build:dev": "vite build --mode development",
-    "build:prod": "vite build && node scripts/generate-static-pages.js",
+    "build:prod": "vite build && node scripts/generate-static-pages.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },

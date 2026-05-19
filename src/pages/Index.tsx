@@ -22,10 +22,6 @@ const Index = () => {
           name="description"
           content="Free customizable online spin wheel. Add names or numbers, click spin, get instant random results. No account needed. Spin now at onlinespinwheel.fun!"
         />
-        <meta
-          name="keywords"
-          content="spin wheel, free spin wheel, random name picker, decision maker wheel, prize wheel generator"
-        />
         <link rel="canonical" href="https://onlinespinwheel.fun/" />
 
         <meta property="og:title" content="Online Spin Wheel - Free Spin Wheel Tool" />
@@ -35,7 +31,7 @@ const Index = () => {
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://onlinespinwheel.fun/" />
-        <meta property="og:image" content="https://onlinespinwheel.fun/logo.png" />
+        <meta property="og:image" content="https://onlinespinwheel.fun/og-image.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta
@@ -50,7 +46,7 @@ const Index = () => {
           name="twitter:description"
           content="Make random decisions fun with our interactive spin wheel. Perfect for teachers, teams, and anyone who needs to pick randomly."
         />
-        <meta name="twitter:image" content="https://onlinespinwheel.fun/logo.png" />
+        <meta name="twitter:image" content="https://onlinespinwheel.fun/og-image.png" />
         <meta name="twitter:site" content="@OnlineSpinWheel" />
         <meta name="twitter:creator" content="@OnlineSpinWheel" />
 
@@ -68,13 +64,6 @@ const Index = () => {
               price: "0",
               priceCurrency: "USD",
             },
-            aggregateRating: {
-              "@type": "AggregateRating",
-              ratingValue: "4.8",
-              ratingCount: "2847",
-            },
-            keywords:
-              "spin wheel, random picker, name picker wheel, wheel of names, decision maker, wheel spinner",
           })}
         </script>
 

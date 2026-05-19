@@ -1,65 +1,22 @@
-# -------------------------------------------------------------
 # Robots.txt for Online Spin Wheel (onlinespinwheel.fun)
-# Optimized for: Next.js & Vercel Deployment
-# Verified for: Google AdSense & Ezoic Approval
-# Last Updated: April 16, 2026
-# -------------------------------------------------------------
+# Vite + Vercel SPA — last updated May 2026
 
 User-agent: *
 Allow: /
 
-# Explicitly Allow Real Pages (Updated to match your live slugs)
-Allow: /about-us
-Allow: /contact-us
-Allow: /disclaimer
-Allow: /privacy-policy
-Allow: /terms-and-conditions
-Allow: /cookie-policy
+# Widget embed is allowed but should not be indexed as primary content
+Disallow: /embed
 
-# -------------------------------------------------------------
-# NEXT.JS & RENDERING RULES (CRITICAL)
-# -------------------------------------------------------------
-# We allow static assets so Google can render the Spin Wheel UI
-Allow: /_next/static/
-Allow: /_next/image/
-
-# Block backend and internal data to save crawl budget
-Disallow: /api/
-Disallow: /_next/data/
-Disallow: /admin/
-Disallow: /dashboard/
-
-# -------------------------------------------------------------
-# AI & SEARCH ENGINE CRAWLERS
-# -------------------------------------------------------------
-User-agent: Googlebot
-User-agent: Googlebot-Image
-User-agent: Bingbot
-User-agent: PerplexityBot
-User-agent: GPTBot
-User-agent: ChatGPT-User
-Allow: /
-
-# -------------------------------------------------------------
-# BLOCK COMPETITOR RESEARCH BOTS (FastVidl Logic)
-# -------------------------------------------------------------
-User-agent: AhrefsBot
-User-agent: SemrushBot
-User-agent: MJ12bot
-User-agent: DotBot
-User-agent: YandexBot
-Disallow: /
-
-# -------------------------------------------------------------
-# PREVENT DUPLICATE CONTENT (Query Parameters)
-# -------------------------------------------------------------
+# Block common tracking query parameters from creating duplicate URLs
 Disallow: /*?*utm_source=
 Disallow: /*?*utm_medium=
 Disallow: /*?*utm_campaign=
 Disallow: /*?*fbclid=
 Disallow: /*?*gclid=
 
-# -------------------------------------------------------------
-# SITEMAP
-# -------------------------------------------------------------
+User-agent: Googlebot
+User-agent: Googlebot-Image
+User-agent: Bingbot
+Allow: /
+
 Sitemap: https://onlinespinwheel.fun/sitemap.xml

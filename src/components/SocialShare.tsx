@@ -1,4 +1,5 @@
 import { Facebook, Twitter, Linkedin, Share2 } from "lucide-react";
+import { gtagEvent } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -43,13 +44,11 @@ export const SocialShare = ({
 
   const handleShare = (platform: string, link: string) => {
     // Track share event in Google Analytics
-    if (typeof window !== "undefined" && (window as any).gtag) {
-      (window as any).gtag("event", "share", {
-        event_category: "social_share",
-        event_label: platform,
-        value: 1,
-      });
-    }
+    gtagEvent("share", {
+      event_category: "social_share",
+      event_label: platform,
+      value: 1,
+    });
     
     window.open(link, "_blank", "width=600,height=400");
   };

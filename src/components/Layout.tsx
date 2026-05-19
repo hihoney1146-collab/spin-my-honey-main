@@ -22,6 +22,7 @@ import { OptimizedImage } from "./OptimizedImage";
 import { SocialShare } from "./SocialShare";
 import { ThemeToggle } from "./ThemeToggle";
 import { BLOG_INDEX_PATH, WHEEL_HUB_PATH } from "@/lib/siteInternalLinks";
+import { openCookieSettings } from "@/lib/cookieConsentEvents";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
@@ -335,10 +336,17 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
 
           {/* Bottom Bar */}
           <div className="border-t border-border/50 py-4 sm:py-6">
-            <div className="text-center">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-center">
               <p className="text-xs sm:text-sm text-muted-foreground">
                 © {new Date().getFullYear()} Online Spin Wheel. All rights reserved.
               </p>
+              <button
+                type="button"
+                onClick={openCookieSettings}
+                className="text-xs sm:text-sm text-muted-foreground hover:text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
+              >
+                Cookie settings
+              </button>
             </div>
           </div>
         </div>

@@ -77,7 +77,7 @@ const Disclaimer = () => {
             </p>
             <p className="text-muted-foreground leading-relaxed mb-4">
               We partner with third-party advertising networks, including Google
-              AdSense and Ezoic (Google AdX), to display programmatic advertisements
+              Google AdSense, to display advertisements
               on our site. Please note:
             </p>
             <ul className="space-y-3 text-muted-foreground ml-1">

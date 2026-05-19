@@ -1,4 +1,4 @@
-import type { BlogPost } from "@/data/blogPosts";
+import type { BlogPost } from "@/data/blogTypes";
 
 export type TocChild = { label: string; blockIndex: number };
 

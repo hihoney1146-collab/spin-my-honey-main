@@ -10,7 +10,7 @@ const CookiePolicy = () => {
         <title>Cookie Policy - Online Spin Wheel</title>
         <meta
           name="description"
-          content="Cookie Policy for Online Spin Wheel (onlinespinwheel.fun), operated by Auroxa Tech: types of cookies, AdSense and Ezoic, how to manage cookies, DNT, and contact."
+          content="Cookie Policy for Online Spin Wheel: cookie types, Google AdSense and Consent Mode, localStorage, how to manage cookies, DNT/GPC, and contact."
         />
         <link rel="canonical" href="https://onlinespinwheel.fun/cookie-policy" />
       </Helmet>
@@ -129,8 +129,8 @@ const CookiePolicy = () => {
                       Targeting &amp; Advertising
                     </td>
                     <td className="p-3">
-                      Used to deliver personalized programmatic ads via our advertising
-                      partners (such as Google AdSense and Ezoic).
+                      Used to deliver ads and measure campaigns via Google AdSense and
+                      related Google advertising technologies.
                     </td>
                     <td className="p-3">
                       Google DoubleClick DART, Ad IDs based on browsing habits.
@@ -144,14 +144,36 @@ const CookiePolicy = () => {
 
           <section>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Third-Party Cookies (AdSense &amp; Ezoic)
+              Local storage (not always a cookie)
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              To keep Online Spin Wheel 100% free for users, we partner with
-              third-party advertising networks, including Google AdSense and Ezoic
-              (Google AdX). These partners may set cookies independently to serve
-              relevant advertisements based on your prior visits to our site or other
-              websites on the internet.
+              We also store data in your browser&apos;s localStorage for wheel entries,
+              your cookie consent choice, theme preference, and basic referral
+              attribution. This stays on your device unless you clear site data.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              Google Consent Mode
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              Advertising and analytics tags load with Google Consent Mode defaults set
+              to denied until you choose Accept or Decline in our banner. Your choice
+              updates consent signals for ad_storage, analytics_storage, and related
+              flags. Our banner is a custom implementation—not a Google-certified CMP for
+              the EEA/UK/CH.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              Third-Party Cookies (Google AdSense &amp; Analytics)
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              To keep Online Spin Wheel free, Google AdSense and Google Analytics may set
+              cookies or use similar technologies to serve ads, measure traffic, and
+              understand how the site is used.
             </p>
             <ul className="space-y-3 text-muted-foreground ml-1">
               <li className="flex items-start gap-2">
@@ -194,11 +216,11 @@ const CookiePolicy = () => {
               <li className="flex items-start gap-2">
                 <span className="text-primary mt-1.5 flex-shrink-0">●</span>
                 <span>
-                  <strong className="text-foreground">Consent Banner:</strong> Upon your
-                  first visit to our site, you will see a cookie consent banner allowing
-                  you to accept or reject non-essential cookies. Rejecting them may
-                  disable personalized ads and analytics, but the wheel will still
-                  function.
+                  <strong className="text-foreground">Consent banner &amp; Cookie settings:</strong>{" "}
+                  On first visit you can accept or decline non-essential cookies. Use
+                  <strong className="text-foreground"> Cookie settings</strong> in the
+                  site footer anytime to reopen the banner and change your choice.
+                  Declining limits personalized ads and analytics; the wheel still works.
                 </span>
               </li>
               <li className="flex items-start gap-2">
@@ -261,9 +283,11 @@ const CookiePolicy = () => {
               <li className="flex items-start gap-2">
                 <span className="text-primary mt-1.5 flex-shrink-0">●</span>
                 <span>
-                  <strong className="text-foreground">Do Not Track (DNT):</strong> We
-                  honor browser-level &quot;Do Not Track&quot; signals wherever technically
-                  feasible.
+                  <strong className="text-foreground">Do Not Track (DNT) &amp; GPC:</strong>{" "}
+                  We do not treat all DNT signals uniformly. Where supported, Global
+                  Privacy Control (GPC) is honored as a request to limit sale/sharing of
+                  personal information. Use our cookie banner and Google opt-out tools
+                  for advertising controls.
                 </span>
               </li>
             </ul>
