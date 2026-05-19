@@ -2,15 +2,20 @@
 <html lang="en" prefix="og: https://ogp.me/ns#">
 
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BC9MWXJEBQ"></script>
+  <!-- Google tag (gtag.js) with consent defaults; CookieConsent updates this after user choice. -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied'
+    });
     gtag('js', new Date());
-
-    gtag('config', 'G-BC9MWXJEBQ');
+    gtag('config', 'G-BC9MWXJEBQ', { anonymize_ip: true });
   </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BC9MWXJEBQ"></script>
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -65,9 +70,6 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://onlinespinwheel.fun/" />
 
-  <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID"
-    crossorigin="anonymous"></script>
   <meta property="og:locale" content="en_US" />
   <meta property="og:image" content="https://onlinespinwheel.fun/logo.png" />
   <meta property="og:image:width" content="1200" />
@@ -120,34 +122,13 @@
     </script>
 
   <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6743166450490221"
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2823129698767735"
     crossorigin="anonymous"></script>
 </head>
 
 <body>
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
-
-  <!-- Google Analytics - Deferred to end of body for performance -->
-  <script defer src="https://www.googletagmanager.com/gtag/js?id=G-XKY49ZCLRS"></script>
-  <script defer>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
-    gtag("config", "G-XKY49ZCLRS", {
-      send_page_view: false,
-    });
-    // Track page view manually after page load
-    if (document.readyState === "complete") {
-      gtag("config", "G-XKY49ZCLRS");
-    } else {
-      window.addEventListener("load", function () {
-        gtag("config", "G-XKY49ZCLRS");
-      });
-    }
-  </script>
 </body>
 
 </html>

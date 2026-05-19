@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import { BLOG_INDEX_PATH, WHEEL_HUB_PATH } from "@/lib/siteInternalLinks";
 const Index = () => {
   return (
     <>
@@ -529,6 +530,25 @@ const Index = () => {
                 where it works best. We have written this guide in simple
                 language so everyone can understand and use these amazing tools.
                 Let us get started.
+              </p>
+              <p className="text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8 leading-relaxed">
+                For deeper navigation, explore our{" "}
+                <Link to={WHEEL_HUB_PATH} className="font-medium text-primary hover:underline">
+                  full specialty wheel directory
+                </Link>
+                , compare popular tools in the{" "}
+                <Link to={BLOG_INDEX_PATH} className="font-medium text-primary hover:underline">
+                  Online Spin Wheel blog
+                </Link>
+                , or jump straight into focused tools like the{" "}
+                <Link to="/random-name-picker-wheel" className="font-medium text-primary hover:underline">
+                  random name picker wheel
+                </Link>{" "}
+                and{" "}
+                <Link to="/yes-or-no-wheel" className="font-medium text-primary hover:underline">
+                  yes or no wheel
+                </Link>
+                .
               </p>
 
               <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-5 md:mb-6">

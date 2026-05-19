@@ -3,12 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, MessageSquare, Send, ArrowRight } from "lucide-react";
+import { Building2, Clock, Mail, MapPin, MessageSquare, Send } from "lucide-react";
 import { Helmet } from "react-helmet";
 import { useState } from "react";
 import { toast } from "sonner";
 import { z } from "zod";
-import { Link } from "react-router-dom";
+
+const SITE_ORIGIN = "https://onlinespinwheel.fun";
 
 const contactSchema = z.object({
   name: z
@@ -86,9 +87,30 @@ const Contact = () => {
         <title>Contact Us | Online Spin Wheel</title>
         <meta
           name="description"
-          content="Get in touch with the Online Spin Wheel team. We'd love to hear your feedback, suggestions, or answer any questions you have."
+          content="Contact Online Spin Wheel, operated by Auroxa Tech. Reach our team for support, feedback, business inquiries, privacy questions, and advertising-related requests."
         />
-        <link rel="canonical" href="https://onlinespinwheel.fun/contact-us" />
+        <link rel="canonical" href={`${SITE_ORIGIN}/contact-us`} />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            name: "Contact Online Spin Wheel",
+            url: `${SITE_ORIGIN}/contact-us`,
+            about: {
+              "@type": "Organization",
+              name: "Online Spin Wheel",
+              legalName: "Auroxa Tech",
+              url: SITE_ORIGIN,
+              email: "onlinespinwheel@gmail.com",
+              areaServed: "Worldwide",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Rawalpindi",
+                addressCountry: "PK",
+              },
+            },
+          })}
+        </script>
       </Helmet>
 
       <section className="container mx-auto px-4 py-12 max-w-4xl">
@@ -199,6 +221,33 @@ const Contact = () => {
                     suggestions, or report any issues you encounter. Your
                     feedback helps us make Online Spin Wheel better for everyone.
                   </p>
+                </div>
+              </div>
+            </Card>
+
+            <Card className="p-6">
+              <h3 className="font-semibold text-lg mb-4">Business Information</h3>
+              <div className="space-y-4 text-sm text-muted-foreground">
+                <div className="flex items-start gap-3">
+                  <Building2 className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                  <div>
+                    <p className="font-medium text-foreground">Operator</p>
+                    <p>Online Spin Wheel is operated by Auroxa Tech.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <MapPin className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                  <div>
+                    <p className="font-medium text-foreground">Operational base</p>
+                    <p>Rawalpindi, Pakistan. We serve users worldwide online.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Clock className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                  <div>
+                    <p className="font-medium text-foreground">Response time</p>
+                    <p>Most support, privacy, and business emails receive a reply within 24-48 hours.</p>
+                  </div>
                 </div>
               </div>
             </Card>

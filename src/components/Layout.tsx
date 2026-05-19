@@ -21,7 +21,7 @@ import {
 import { OptimizedImage } from "./OptimizedImage";
 import { SocialShare } from "./SocialShare";
 import { ThemeToggle } from "./ThemeToggle";
-import { BLOG_INDEX_PATH } from "@/lib/siteInternalLinks";
+import { BLOG_INDEX_PATH, WHEEL_HUB_PATH } from "@/lib/siteInternalLinks";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
@@ -264,6 +264,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
               <ul className="space-y-3">
                 {[
                   { to: "/", label: "Home" },
+                  { to: WHEEL_HUB_PATH, label: "All Spin Wheels" },
                   { to: "/about-us", label: "About Us" },
                   { to: BLOG_INDEX_PATH, label: "Blog" },
                   { to: "/contact-us", label: "Contact" },

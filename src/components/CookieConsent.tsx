@@ -5,12 +5,39 @@ import { X, Cookie } from "lucide-react";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
+type ConsentState = "granted" | "denied";
+
+declare global {
+    interface Window {
+        gtag?: (...args: unknown[]) => void;
+    }
+}
+
+function updateGoogleConsent(consent: ConsentState) {
+    if (typeof window === "undefined" || !window.gtag) return;
+
+    window.gtag("consent", "update", {
+        ad_storage: consent,
+        ad_user_data: consent,
+        ad_personalization: consent,
+        analytics_storage: consent,
+    });
+}
+
 export const CookieConsent = () => {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
         // Check if user has already made a choice
         const consent = localStorage.getItem("cookie-consent");
+        if (consent === "accepted") {
+            updateGoogleConsent("granted");
+            return;
+        }
+        if (consent === "declined") {
+            updateGoogleConsent("denied");
+            return;
+        }
         if (!consent) {
             // Show banner after a small delay for better UX
             const timer = setTimeout(() => setIsVisible(true), 1000);
@@ -20,11 +47,13 @@ export const CookieConsent = () => {
 
     const handleAccept = () => {
         localStorage.setItem("cookie-consent", "accepted");
+        updateGoogleConsent("granted");
         setIsVisible(false);
     };
 
     const handleDecline = () => {
         localStorage.setItem("cookie-consent", "declined");
+        updateGoogleConsent("denied");
         setIsVisible(false);
     };
 
