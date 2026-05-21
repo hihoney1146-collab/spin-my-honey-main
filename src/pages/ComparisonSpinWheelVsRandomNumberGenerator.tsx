@@ -49,8 +49,8 @@ const ComparisonSpinWheelVsRandomNumberGenerator = () => {
           <section>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p className="text-lg">
-                When you need to make a random selection—whether choosing a
-                winner, assigning tasks, or picking from multiple options—you
+                When you need to make a random selection, whether choosing a
+                winner, assigning tasks, or picking from multiple options, you
                 have several tools available. Two of the most common are spin
                 wheels and random number generators. Both create random
                 outcomes, but they differ significantly in presentation,

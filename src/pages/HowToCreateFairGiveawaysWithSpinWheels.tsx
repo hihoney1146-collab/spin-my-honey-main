@@ -492,11 +492,11 @@ const HowToCreateFairGiveawaysWithSpinWheels = () => {
                   },
                   {
                     q: "Can I use spin wheel for winner app on mobile?",
-                    a: "Fully responsive—works great on phones, tablets, or desktops."
+                    a: "Fully responsive, works great on phones, tablets, or desktops."
                   },
                   {
                     q: "What's a good spin wheel giveaway winner setup?",
-                    a: "Enter participant names/emails, spin live, record for proof—ideal for Instagram or streams."
+                    a: "Enter participant names/emails, spin live, record for proof, ideal for Instagram or streams."
                   },
                   {
                     q: "How to choose multiple winners with spin wheel choose winner?",

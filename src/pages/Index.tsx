@@ -488,8 +488,25 @@ const Index = () => {
           <div className="max-w-4xl mx-auto">
             <div className="prose prose-lg max-w-none">
               <p className="text-base sm:text-lg text-muted-foreground/90 mb-3 sm:mb-4 leading-relaxed">
-                Expertly Verified Resource Written by Raja Jahangir, (SEO Expert).
-                Powered by Auroxa Tech. Last Updated: 14 Apr 2026.
+                Expertly Verified Resource Written by{" "}
+                <a
+                  href="https://www.linkedin.com/in/raja-jahangir"
+                  target="_blank"
+                  rel="noopener noreferrer author"
+                  className="font-medium text-primary underline underline-offset-2 hover:opacity-90"
+                >
+                  Raja Jahangir
+                </a>
+                , (SEO Expert). Powered by{" "}
+                <a
+                  href="https://auroxatech.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-primary underline underline-offset-2 hover:opacity-90"
+                >
+                  Auroxa Tech
+                </a>
+                . Last Updated: 14 Apr 2026.
               </p>
               <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-5 leading-relaxed">
                 Have you ever needed to make a quick decision but could not
@@ -1063,11 +1080,27 @@ const Index = () => {
                 that answers real questions and solves real problems.
               </p>
               <p className="text-sm sm:text-base text-muted-foreground mb-2 leading-relaxed">
-                Raja Jahangir, SEO Expert Bringing years of SEO experience,
-                Raja ensures that Online Spin Wheel remains user centric,
-                privacy focused and easily accessible to the thousands of users
-                searching for reliable spin wheel solutions every month. Connect
-                with Raja Jahangir on LinkedIn.
+                <a
+                  href="https://www.linkedin.com/in/raja-jahangir"
+                  target="_blank"
+                  rel="noopener noreferrer author"
+                  className="font-medium text-primary underline underline-offset-2 hover:opacity-90"
+                >
+                  Raja Jahangir
+                </a>
+                , SEO Expert. Bringing years of SEO experience, Raja ensures that
+                Online Spin Wheel remains user centric, privacy focused and easily
+                accessible to the thousands of users searching for reliable spin
+                wheel solutions every month.{" "}
+                <a
+                  href="https://www.linkedin.com/in/raja-jahangir"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-primary underline underline-offset-2 hover:opacity-90"
+                >
+                  Connect with Raja Jahangir on LinkedIn
+                </a>
+                .
               </p>
             </div>
           </div>

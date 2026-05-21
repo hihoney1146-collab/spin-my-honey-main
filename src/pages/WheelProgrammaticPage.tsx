@@ -6,8 +6,13 @@ import { getWheelPageBySlug, getRelatedWheelPages } from "@/lib/wheelPages";
 import { WHEEL_HUB_PATH } from "@/lib/siteInternalLinks";
 import { Home, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const SITE_ORIGIN = "https://onlinespinwheel.fun";
+import {
+  SITE_ORIGIN,
+  webPageJsonLd,
+  webApplicationJsonLd,
+  faqPageJsonLd,
+  organizationJsonLd,
+} from "@/lib/schema";
 
 const WheelProgrammaticPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -59,31 +64,31 @@ const WheelProgrammaticPage = () => {
         <meta name="twitter:description" content={page.metaDescription} />
         <meta name="twitter:image" content={`${SITE_ORIGIN}/og-image.png`} />
         <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            name: page.title,
-            description: page.metaDescription,
-            url: canonical,
-            headline: page.h1,
-          })}
+          {JSON.stringify([
+            organizationJsonLd(),
+            webPageJsonLd({
+              name: page.title,
+              description: page.metaDescription,
+              url: canonical,
+              headline: page.h1,
+            }),
+            webApplicationJsonLd({
+              name: page.h1,
+              description: page.metaDescription,
+              url: canonical,
+            }),
+            ...(page.faqs?.length
+              ? [
+                  faqPageJsonLd(
+                    page.faqs.map((f) => ({
+                      q: f.question,
+                      a: f.answer,
+                    })),
+                  ),
+                ]
+              : []),
+          ])}
         </script>
-        {page.faqs && page.faqs.length > 0 ? (
-          <script type="application/ld+json">
-            {JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "FAQPage",
-              mainEntity: page.faqs.map((faq) => ({
-                "@type": "Question",
-                name: faq.q,
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: faq.a,
-                },
-              })),
-            })}
-          </script>
-        ) : null}
       </Helmet>
 
       <article className="container mx-auto px-4 py-8 md:py-12 max-w-5xl">

@@ -24,7 +24,7 @@ export function WheelDirectory() {
             Browse Our Full Collection
           </h2>
           <p className="mt-3 text-sm sm:text-base text-muted-foreground leading-relaxed">
-            Explore every specialty spin wheel—organized by category. Each link opens that
+            Explore every specialty spin wheel, organized by category. Each link opens that
             wheel&apos;s dedicated page using its primary topic as the label.
           </p>
         </header>

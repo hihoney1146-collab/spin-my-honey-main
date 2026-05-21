@@ -47,6 +47,13 @@ export const fixedRouteMeta = [
       "Learn about Online Spin Wheel, operated by Auroxa Tech. Fair, fast, free random selection for classrooms, teams, and giveaways.",
   },
   {
+    path: "/author/raja-jahangir",
+    title: "Raja Jahangir | SEO & Growth Specialist | Online Spin Wheel",
+    description:
+      "Author profile of Raja Jahangir, SEO and growth specialist for Online Spin Wheel and Auroxa Tech.",
+    ogType: "profile",
+  },
+  {
     path: "/contact-us",
     title: "Contact Us | Online Spin Wheel",
     description:

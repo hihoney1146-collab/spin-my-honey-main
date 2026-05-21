@@ -1089,7 +1089,7 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
               Bulk add entries
             </label>
             <p className="text-[10px] text-muted-foreground mb-2 leading-snug">
-              Paste a list — one option per line (from Notes, Excel, etc.). Longer names are trimmed to{" "}
+              Paste a list, one option per line (from Notes, Excel, etc.). Longer names are trimmed to{" "}
               {MAX_ENTRY_TEXT_LEN} characters. Up to {MAX_BULK_LINES} lines at once.
             </p>
             <Textarea

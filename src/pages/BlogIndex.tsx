@@ -22,13 +22,13 @@ const BlogIndex = () => {
         <title>Blog | Online Spin Wheel</title>
         <meta
           name="description"
-          content="Tips and guides for random name pickers, classroom spin wheels, office icebreakers, couples' dinner decisions, and virtual Secret Santa—fair decisions made fun."
+          content="Tips and guides for random name pickers, classroom spin wheels, office icebreakers, couples' dinner decisions, and virtual Secret Santa, fair decisions made fun."
         />
         <link rel="canonical" href={canonical} />
         <meta property="og:title" content="Blog | Online Spin Wheel" />
         <meta
           property="og:description"
-          content="Fair picks, classroom ideas, team icebreakers, date-night spins, and holiday gifting—all with spin wheels."
+          content="Fair picks, classroom ideas, team icebreakers, date-night spins, and holiday gifting, all with spin wheels."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonical} />
@@ -42,7 +42,7 @@ const BlogIndex = () => {
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-[1.6] m-0">
             Practical articles on fair random selection, classrooms, teams, couples, and
-            celebrations—powered by Online Spin Wheel.
+            celebrations, powered by Online Spin Wheel.
           </p>
         </header>
 

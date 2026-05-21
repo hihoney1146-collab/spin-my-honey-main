@@ -52,7 +52,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
       <header className="border-b bg-card/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
         <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between min-h-[4.25rem] h-[4.25rem] sm:h-20 md:h-20 lg:h-24">
-            {/* Logo — larger on small screens for readability */}
+            {/* Logo. Larger on small screens for readability */}
             <Link
               to="/"
               className="flex items-center gap-2 sm:gap-2.5 group relative flex-shrink-0 min-w-0"
@@ -66,6 +66,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                     height={56}
                     className="h-12 w-12 sm:h-11 md:h-12 lg:h-14 sm:w-11 md:w-12 lg:w-14 px-0.5 sm:px-1 transform group-hover:scale-110 transition-transform duration-300 object-contain"
                     loading="eager"
+                    fetchPriority="high"
                   />
                 </div>
               </div>
@@ -267,6 +268,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                   { to: "/", label: "Home" },
                   { to: WHEEL_HUB_PATH, label: "All Spin Wheels" },
                   { to: "/about-us", label: "About Us" },
+                  { to: "/author/raja-jahangir", label: "Author" },
                   { to: BLOG_INDEX_PATH, label: "Blog" },
                   { to: "/contact-us", label: "Contact" },
                 ].map((link) => (

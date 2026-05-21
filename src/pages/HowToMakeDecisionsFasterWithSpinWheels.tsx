@@ -44,7 +44,7 @@ const HowToMakeDecisionsFasterWithSpinWheels = () => {
                 Modern life presents us with countless decisions every day: what
                 to eat for lunch, which task to tackle first, where to go on
                 vacation, which project to prioritize. This constant stream of
-                choices can lead to decision fatigue—a state where making even
+                choices can lead to decision fatigue, a state where making even
                 simple decisions becomes mentally exhausting and overwhelming.
               </p>
               <p>
@@ -67,7 +67,7 @@ const HowToMakeDecisionsFasterWithSpinWheels = () => {
                 Research shows that our ability to make quality decisions
                 deteriorates throughout the day as we use up mental energy on
                 countless small choices. This phenomenon, called decision
-                fatigue, affects everyone—from executives making strategic
+                fatigue, affects everyone, from executives making strategic
                 choices to students selecting study topics.
               </p>
               <div className="bg-muted/50 rounded-lg p-4 mt-4">
@@ -322,7 +322,7 @@ const HowToMakeDecisionsFasterWithSpinWheels = () => {
                 <p className="text-muted-foreground mb-3 leading-relaxed">
                   When you find yourself stuck researching or comparing options
                   indefinitely, the wheel forces action. Sometimes moving
-                  forward—even in a random direction—is better than staying
+                  forward, even in a random direction, is better than staying
                   stuck in indecision.
                 </p>
                 <div className="bg-muted/50 rounded-lg p-4 mt-3">
@@ -385,7 +385,7 @@ const HowToMakeDecisionsFasterWithSpinWheels = () => {
                   <h3 className="font-semibold">Builds Confidence</h3>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  Making decisions—even random ones—builds confidence and
+                  Making decisions, even random ones, builds confidence and
                   momentum. You learn that most choices work out fine, reducing
                   fear of making wrong decisions.
                 </p>
@@ -478,8 +478,8 @@ const HowToMakeDecisionsFasterWithSpinWheels = () => {
                   Start Small
                 </h3>
                 <p className="text-sm text-muted-foreground">
-                  Begin with very low-stakes decisions—like what to have for
-                  lunch—to build comfort with the process. Gradually expand to
+                  Begin with very low-stakes decisions, like what to have for
+                  lunch, to build comfort with the process. Gradually expand to
                   more significant choices as you see how well it works.
                 </p>
               </Card>
@@ -508,7 +508,7 @@ const HowToMakeDecisionsFasterWithSpinWheels = () => {
               truly matter.
             </p>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              Start small with one simple decision—maybe what to have for lunch
+              Start small with one simple decision, maybe what to have for lunch
               or which task to tackle first. Notice how liberating it feels to
               let the wheel decide. Then gradually expand to other areas where
               you find yourself stuck choosing.

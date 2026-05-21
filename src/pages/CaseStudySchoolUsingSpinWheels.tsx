@@ -166,11 +166,11 @@ const CaseStudySchoolUsingSpinWheels = () => {
                     </li>
                     <li>
                       Explained the system to students: "The wheel decides
-                      randomly—everyone gets an equal chance"
+                      randomly, everyone gets an equal chance"
                     </li>
                     <li>
                       Established a rule: "Once the wheel lands, that's our
-                      selection—no re-spins unless there's an error"
+                      selection, no re-spins unless there's an error"
                     </li>
                     <li>
                       Used the wheel consistently for all question-answer
@@ -398,19 +398,19 @@ const CaseStudySchoolUsingSpinWheels = () => {
                   <div className="space-y-2 text-sm text-muted-foreground">
                     <p className="italic">
                       "I like that everyone gets a turn. It's fair."
-                      <span className="not-italic"> — Third grader</span>
+                      <span className="not-italic">, Third grader</span>
                     </p>
                     <p className="italic">
                       "It's exciting when the wheel spins. I pay attention
                       more."
-                      <span className="not-italic"> — Student</span>
+                      <span className="not-italic">, Student</span>
                     </p>
                     <p className="italic">
                       "Before, I was scared to raise my hand. Now I know I'll
                       get picked randomly, so I try harder."
                       <span className="not-italic">
                         {" "}
-                        — Previously quiet student
+                       , Previously quiet student
                       </span>
                     </p>
                   </div>
@@ -488,7 +488,7 @@ const CaseStudySchoolUsingSpinWheels = () => {
                 </h3>
                 <p className="text-sm text-muted-foreground">
                   While consistency matters, Sarah learned to recognize when
-                  flexibility was appropriate—for example, if a student had
+                  flexibility was appropriate, for example, if a student had
                   already answered multiple times or needed accommodation.
                   Balance randomness with reasonableness.
                 </p>
@@ -499,8 +499,8 @@ const CaseStudySchoolUsingSpinWheels = () => {
                   Technology Reliability
                 </h3>
                 <p className="text-sm text-muted-foreground">
-                  Sarah always had a backup plan—a physical spinner or simple
-                  name-drawing method—in case of technical issues. This ensured
+                  Sarah always had a backup plan, a physical spinner or simple
+                  name-drawing method, in case of technical issues. This ensured
                   the system never disrupted lessons.
                 </p>
               </Card>
@@ -616,8 +616,8 @@ const CaseStudySchoolUsingSpinWheels = () => {
               implementing spin wheels using the best practices outlined here.
             </p>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              Start with one simple use case—like student selection for
-              questions—and gradually expand to other applications as you become
+              Start with one simple use case, like student selection for
+              questions, and gradually expand to other applications as you become
               comfortable with the tool. Consistency and transparency will help
               you achieve similar success.
             </p>

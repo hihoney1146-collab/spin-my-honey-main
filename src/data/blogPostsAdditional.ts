@@ -25,7 +25,7 @@ export const additionalBlogPosts: BlogPost[] = [
         list: [
           "Import names from your roster (first names only if privacy matters).",
           "Test spin before students arrive to check projector size.",
-          "Use mute-friendly celebrations—confetti is fun but optional.",
+          "Use mute-friendly celebrations, confetti is fun but optional.",
           "Link to our specialty classroom wheels from the all-spin-wheels hub when you need presets.",
         ],
       },
@@ -49,7 +49,7 @@ export const additionalBlogPosts: BlogPost[] = [
         heading: "Document the draw",
         paragraphs: [
           "Record your screen while the wheel spins and publish the clip in your story or winner announcement. Show the full entry list before spinning when possible.",
-          "State eligibility, dates, and how you'll contact the winner in your official rules post—not only in comments.",
+          "State eligibility, dates, and how you'll contact the winner in your official rules post, not only in comments.",
         ],
       },
       {
@@ -64,9 +64,9 @@ export const additionalBlogPosts: BlogPost[] = [
     slug: "yes-no-decision-wheel-when-to-use",
     title: "Yes or No Decision Wheel: When It Actually Helps",
     metaDescription:
-      "Stuck between two choices? A yes/no decision wheel breaks tie fatigue—use cases for couples, teams, and quick personal decisions.",
+      "Stuck between two choices? A yes/no decision wheel breaks tie fatigue, use cases for couples, teams, and quick personal decisions.",
     excerpt:
-      "Decision fatigue is real. A yes/no wheel works best for low-stakes choices where either outcome is acceptable. Here's when to spin—and when to slow down and think.",
+      "Decision fatigue is real. A yes/no wheel works best for low-stakes choices where either outcome is acceptable. Here's when to spin, and when to slow down and think.",
     author: "Raja Jahangir (SEO Expert)",
     updated: "2026-05-19",
     blocks: [
@@ -80,7 +80,7 @@ export const additionalBlogPosts: BlogPost[] = [
       {
         heading: "When not to spin",
         paragraphs: [
-          "Medical, legal, financial, or safety decisions deserve research—not randomness. Use the wheel for fun and momentum, not irreversible commitments.",
+          "Medical, legal, financial, or safety decisions deserve research, not randomness. Use the wheel for fun and momentum, not irreversible commitments.",
         ],
       },
     ],
@@ -89,7 +89,7 @@ export const additionalBlogPosts: BlogPost[] = [
     slug: "random-number-picker-use-cases",
     title: "Random Number Picker Use Cases Beyond Lottery Style",
     metaDescription:
-      "Random number wheels for classrooms, games, raffles, and simulations—how to pick ranges, avoid duplicates, and explain fairness.",
+      "Random number wheels for classrooms, games, raffles, and simulations, how to pick ranges, avoid duplicates, and explain fairness.",
     excerpt:
       "Number wheels aren't just for lotteries. Teachers, DMs, and event hosts use bounded random numbers for turns, tables, and mini games.",
     author: "Raja Jahangir (SEO Expert)",
@@ -135,7 +135,7 @@ export const additionalBlogPosts: BlogPost[] = [
       {
         heading: "Equal slices, equal odds",
         paragraphs: [
-          "Each active entry should occupy one slice with equal angle. Removing winners after a draw prevents repeat picks—that's a feature, not bias.",
+          "Each active entry should occupy one slice with equal angle. Removing winners after a draw prevents repeat picks, that's a feature, not bias.",
           "We don't run server-side 'house wins' logic; outcomes are generated in your session using standard random APIs in the browser.",
         ],
       },
@@ -147,7 +147,7 @@ export const additionalBlogPosts: BlogPost[] = [
     metaDescription:
       "Energize remote and in-person meetings with a team meeting spinner: question wheels, role pickers, and agenda-friendly icebreakers.",
     excerpt:
-      "Short icebreakers reduce awkward starts. Use a question wheel, assign presenters randomly, or pick who shares a win first—under five minutes total.",
+      "Short icebreakers reduce awkward starts. Use a question wheel, assign presenters randomly, or pick who shares a win first, under five minutes total.",
     author: "Raja Jahangir (SEO Expert)",
     updated: "2026-05-19",
     blocks: [
@@ -173,7 +173,7 @@ export const additionalBlogPosts: BlogPost[] = [
       {
         heading: "Setting up a fair rotation",
         paragraphs: [
-          "List every recurring task—not just the unpopular ones. Include quick wins so spins feel balanced.",
+          "List every recurring task, not just the unpopular ones. Include quick wins so spins feel balanced.",
           "Agree on swap rules upfront: trades are OK if both people consent.",
         ],
       },
@@ -183,7 +183,7 @@ export const additionalBlogPosts: BlogPost[] = [
     slug: "restaurant-picker-couples-friends",
     title: "Restaurant Picker for Couples and Friend Groups",
     metaDescription:
-      "End 'where should we eat' debates with a restaurant picker wheel—tips for cuisines, budgets, and dietary restrictions.",
+      "End 'where should we eat' debates with a restaurant picker wheel, tips for cuisines, budgets, and dietary restrictions.",
     excerpt:
       "When everyone says 'I don't care,' a restaurant picker wheel breaks the stalemate. Add cuisines you will all eat, then spin once and commit.",
     author: "Raja Jahangir (SEO Expert)",
@@ -211,7 +211,7 @@ export const additionalBlogPosts: BlogPost[] = [
       {
         heading: "Seasonal use cases",
         paragraphs: [
-          "Secret Santa: spin for draw order, not names—pair with our virtual Secret Santa guide for remote teams.",
+          "Secret Santa: spin for draw order, not names, pair with our virtual Secret Santa guide for remote teams.",
           "Classroom celebrations: pick songs, games, or table groups without favoritism.",
         ],
       },

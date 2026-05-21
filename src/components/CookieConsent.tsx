@@ -11,6 +11,7 @@ import {
 } from "@/lib/consentStorage";
 import { COOKIE_SETTINGS_OPEN } from "@/lib/cookieConsentEvents";
 import { gtagConsentUpdate } from "@/lib/analytics";
+import { loadAdSenseScript } from "@/lib/loadAdSense";
 
 type ConsentState = "granted" | "denied";
 
@@ -30,6 +31,9 @@ export const CookieConsent = () => {
     writeCookieConsent(value);
     setStoredChoice(value);
     gtagConsentUpdate(consentToGtag(value));
+    if (value === "accepted") {
+      loadAdSenseScript();
+    }
     setIsVisible(false);
   }, []);
 
@@ -38,6 +42,9 @@ export const CookieConsent = () => {
     setStoredChoice(existing);
     if (existing) {
       gtagConsentUpdate(consentToGtag(existing));
+      if (existing === "accepted") {
+        loadAdSenseScript();
+      }
       return;
     }
     const timer = setTimeout(() => setIsVisible(true), 1000);

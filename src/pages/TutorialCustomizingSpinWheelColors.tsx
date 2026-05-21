@@ -363,7 +363,7 @@ const TutorialCustomizingSpinWheelColors = () => {
             <Card className="p-5 border-2 border-border/50">
               <h3 className="text-lg font-bold mb-2">Does it work as a color wheel picker online?</h3>
               <p className="text-muted-foreground">
-                Absolutely—outputs ready-to-use codes like HEX and RGB after each spin.
+                Absolutely, outputs ready-to-use codes like HEX and RGB after each spin.
               </p>
             </Card>
 

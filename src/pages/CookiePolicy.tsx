@@ -158,11 +158,11 @@ const CookiePolicy = () => {
               Google Consent Mode
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Advertising and analytics tags load with Google Consent Mode defaults set
-              to denied until you choose Accept or Decline in our banner. Your choice
-              updates consent signals for ad_storage, analytics_storage, and related
-              flags. Our banner is a custom implementation—not a Google-certified CMP for
-              the EEA/UK/CH.
+              Google Analytics loads with Consent Mode defaults set to denied until you
+              choose Accept or Decline. The Google AdSense script loads only if you
+              choose Accept. Your choice updates consent signals for ad_storage,
+              analytics_storage, and related flags. Our banner is a custom implementation,
+              not a Google-certified CMP for the EEA/UK/CH.
             </p>
           </section>
 
@@ -171,9 +171,10 @@ const CookiePolicy = () => {
               Third-Party Cookies (Google AdSense &amp; Analytics)
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              To keep Online Spin Wheel free, Google AdSense and Google Analytics may set
-              cookies or use similar technologies to serve ads, measure traffic, and
-              understand how the site is used.
+              To keep Online Spin Wheel free, Google Analytics may run after page load with
+              consent-aware settings. Google AdSense runs only after you accept cookies and
+              may set cookies or use similar technologies to serve ads. Both may measure
+              traffic and understand how the site is used.
             </p>
             <ul className="space-y-3 text-muted-foreground ml-1">
               <li className="flex items-start gap-2">

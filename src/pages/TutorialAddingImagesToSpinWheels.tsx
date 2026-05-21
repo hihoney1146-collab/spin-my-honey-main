@@ -317,7 +317,7 @@ const TutorialAddingImagesToSpinWheels = () => {
                   Activity Wheels
                 </h3>
                 <p className="mb-3">
-                  Create wheels with activity images—sports, hobbies, or
+                  Create wheels with activity images, sports, hobbies, or
                   exercises. Visual representation helps participants understand
                   options quickly.
                 </p>

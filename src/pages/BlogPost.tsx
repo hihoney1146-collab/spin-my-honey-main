@@ -12,12 +12,19 @@ import {
   getBlogFeaturedImageAbsoluteUrl,
 } from "@/lib/blogFeaturedImages";
 import { OptimizedImage } from "@/components/OptimizedImage";
+import {
+  SITE_ORIGIN,
+  RAJA_AUTHOR,
+  articleJsonLd,
+  faqPageJsonLd,
+  organizationJsonLd,
+} from "@/lib/schema";
 
-const SITE_ORIGIN = "https://onlinespinwheel.fun";
+const AUTHOR_PATH = RAJA_AUTHOR.url.replace(SITE_ORIGIN, "");
 const AUROXA_TECH_URL = "https://auroxatech.com";
 const ABOUT_AUTHOR_PATH = "/about-us";
 /** Same profile referenced in PDF “Connect with Raja on LinkedIn”. */
-const RAJA_LINKEDIN_URL = "https://www.linkedin.com/in/raja-jahangir-596401245";
+const RAJA_LINKEDIN_URL = "https://www.linkedin.com/in/raja-jahangir";
 const RAJA_LINKEDIN_PHRASE = "Connect with Raja on LinkedIn";
 
 /** PDF-style body copy: line height ~1.6, space between paragraphs */
@@ -129,24 +136,18 @@ const BlogPost = () => {
   const { roots: tocRoots, faqSectionNumber, sectionDomId } = buildBlogTableOfContents(post);
   const summaryParagraphs = splitQuickSummary(post.excerpt);
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: post.title,
-    description: post.metaDescription,
-    dateModified: post.updated,
-    author: {
-      "@type": "Person",
-      name: post.author,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "Online Spin Wheel",
-      url: SITE_ORIGIN,
-    },
-    mainEntityOfPage: canonical,
-    ...(featuredAbsolute ? { image: featuredAbsolute } : {}),
-  };
+  const jsonLd = [
+    organizationJsonLd(),
+    articleJsonLd({
+      title: post.title,
+      description: post.metaDescription,
+      url: canonical,
+      dateModified: post.updated,
+      image: featuredAbsolute,
+      authorName: RAJA_AUTHOR.name,
+    }),
+    ...(post.faqs?.length ? [faqPageJsonLd(post.faqs)] : []),
+  ];
 
   return (
     <>
@@ -189,7 +190,7 @@ const BlogPost = () => {
           <p className="m-0 text-base leading-[1.6] text-muted-foreground">
             Written by{" "}
             <Link
-              to={ABOUT_AUTHOR_PATH}
+              to={AUTHOR_PATH}
               className="font-medium text-primary underline underline-offset-2 hover:opacity-90"
             >
               {authorDisplayName}

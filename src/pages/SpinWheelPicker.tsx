@@ -87,7 +87,7 @@ const SpinWheelPicker = () => {
                 <div className="space-y-6 text-slate-300 leading-relaxed text-lg">
                   <p>
                     A spin wheel picker (also called a spin wheel picker tool, random picker wheel, or online spin wheel) is a digital
-                    wheel divided into colored segments. Each segment represents an option you add—like student names,
+                    wheel divided into colored segments. Each segment represents an option you add, like student names,
                     giveaway prizes, tasks, or choices.
                   </p>
                   <p>
@@ -297,7 +297,7 @@ const SpinWheelPicker = () => {
                     {
                       icon: <Sparkles className="h-5 w-5" />,
                       title: "Everyday choices",
-                      desc: "Turn small daily decisions—like what movie to watch or which workout to do—into a quick spin with the wheel picker.",
+                      desc: "Turn small daily decisions, like what movie to watch or which workout to do, into a quick spin with the wheel picker.",
                       color: "from-green-500 to-emerald-500"
                     }
                   ].map((item, idx) => (

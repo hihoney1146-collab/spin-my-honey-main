@@ -55,7 +55,7 @@ const HowToUseSpinWheelsForTeamBuilding = () => {
                 can create the most meaningful connections. Spin wheels have
                 proven to be powerful instruments for breaking down barriers,
                 encouraging participation, and injecting energy into workplace
-                environments—whether in-person or virtual.
+                environments, whether in-person or virtual.
               </p>
               <p>
                 From ice-breaker activities at the start of meetings to
@@ -76,7 +76,7 @@ const HowToUseSpinWheelsForTeamBuilding = () => {
               <p>
                 Team building requires creating environments where everyone
                 feels comfortable participating. Traditional methods of
-                selection—like volunteering or hand-raising—can create social
+                selection, like volunteering or hand-raising, can create social
                 pressure and exclude quieter team members. Spin wheels eliminate
                 these barriers.
               </p>
@@ -522,13 +522,13 @@ const HowToUseSpinWheelsForTeamBuilding = () => {
               Team building doesn't have to be complicated or expensive.
               Sometimes, the simplest tools create the most meaningful
               connections. Spin wheels offer an easy, fair, and engaging way to
-              bring your team together—whether you're in the same office or
+              bring your team together, whether you're in the same office or
               scattered across the globe.
             </p>
             <p className="text-muted-foreground mb-6 leading-relaxed">
               Start with one simple activity and gradually expand your use as
               your team becomes comfortable with the tool. The key is
-              consistency and transparency—when team members see that selection
+              consistency and transparency, when team members see that selection
               is truly random and fair, they'll trust the process and engage
               more fully.
             </p>

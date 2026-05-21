@@ -7,6 +7,7 @@ import tabishCeo from "@/assets/Tabish-CEO.jpeg";
 import hammasCto from "@/assets/Hammas-CTO.jpeg";
 import jahangirSeo from "@/assets/Jahangir-SEO.jpeg";
 import abdalSocial from "@/assets/Abdal-Social_Media.jpeg";
+import { AUROXA_TECH_URL, TEAM_LINKEDIN, editorialAttributionClass } from "@/lib/teamLinks";
 
 const About = () => {
   return (
@@ -65,7 +66,7 @@ const About = () => {
               Rawalpindi, Pakistan, and support users around the world.
             </p>
             <p className="text-base md:text-lg">
-              We have handled tens of thousands of spins without a hitch. Our
+              We have handled many thousands of spins without a hitch. Our
               wheel does not jump to a result. It spins and slows naturally
               with momentum and friction simulation. No hidden scripts, no
               favoritism, just the fair result you need.
@@ -102,10 +103,25 @@ const About = () => {
                   Leadership
                 </p>
                 <h3 className="text-lg md:text-xl font-bold leading-tight">
-                  Tabish Irfan
+                  <a
+                    href={TEAM_LINKEDIN.tabishIrfan}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={editorialAttributionClass}
+                  >
+                    Tabish Irfan
+                  </a>
                 </h3>
                 <p className="text-sm md:text-base text-muted-foreground mt-1">
-                  CEO &amp; Founder, Auroxa Tech
+                  CEO &amp; Founder,{" "}
+                  <a
+                    href={AUROXA_TECH_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={editorialAttributionClass}
+                  >
+                    Auroxa Tech
+                  </a>
                 </p>
               </div>
             </Card>
@@ -128,10 +144,25 @@ const About = () => {
                   Engineering
                 </p>
                 <h3 className="text-lg md:text-xl font-bold leading-tight">
-                  Hammas Ali
+                  <a
+                    href={TEAM_LINKEDIN.hammasAli}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={editorialAttributionClass}
+                  >
+                    Hammas Ali
+                  </a>
                 </h3>
                 <p className="text-sm md:text-base text-muted-foreground mt-1">
-                  CTO &amp; Co-founder, Auroxa Tech
+                  CTO &amp; Co-founder,{" "}
+                  <a
+                    href={AUROXA_TECH_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={editorialAttributionClass}
+                  >
+                    Auroxa Tech
+                  </a>
                 </p>
               </div>
             </Card>
@@ -154,10 +185,33 @@ const About = () => {
                   Growth
                 </p>
                 <h3 className="text-lg md:text-xl font-bold leading-tight">
-                  Raja Jahangir
+                  <a
+                    href={TEAM_LINKEDIN.rajaJahangir}
+                    target="_blank"
+                    rel="noopener noreferrer author"
+                    className={editorialAttributionClass}
+                  >
+                    Raja Jahangir
+                  </a>
                 </h3>
                 <p className="text-sm md:text-base text-muted-foreground mt-1">
-                  SEO, Custom Websites &amp; Growth Specialist
+                  SEO &amp; Growth Specialist
+                </p>
+                <p className="text-xs text-primary font-medium mt-2 flex flex-wrap justify-center gap-x-2 gap-y-1">
+                  <Link to="/author/raja-jahangir" className="hover:underline">
+                    View author profile
+                  </Link>
+                  <span className="text-muted-foreground" aria-hidden>
+                    ·
+                  </span>
+                  <a
+                    href={TEAM_LINKEDIN.rajaJahangir}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={editorialAttributionClass}
+                  >
+                    LinkedIn
+                  </a>
                 </p>
               </div>
             </Card>
@@ -180,10 +234,17 @@ const About = () => {
                   Community
                 </p>
                 <h3 className="text-lg md:text-xl font-bold leading-tight">
-                  Abdal Khalid
+                  <a
+                    href={TEAM_LINKEDIN.abdalKhalid}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={editorialAttributionClass}
+                  >
+                    Abdal Khalid
+                  </a>
                 </h3>
                 <p className="text-sm md:text-base text-muted-foreground mt-1">
-                  Social Media &amp; Community Expert
+                  Social Media Expert
                 </p>
               </div>
             </Card>

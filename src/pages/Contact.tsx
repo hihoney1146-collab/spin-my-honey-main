@@ -133,6 +133,7 @@ const Contact = () => {
                 <Input
                   id="name"
                   type="text"
+                  aria-label="Your name"
                   value={formData.name}
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
@@ -148,6 +149,7 @@ const Contact = () => {
                 <Input
                   id="email"
                   type="email"
+                  aria-label="Your email address"
                   value={formData.email}
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
@@ -162,6 +164,7 @@ const Contact = () => {
                 <Label htmlFor="message">Message *</Label>
                 <Textarea
                   id="message"
+                  aria-label="Your message"
                   value={formData.message}
                   onChange={(e) =>
                     setFormData({ ...formData, message: e.target.value })

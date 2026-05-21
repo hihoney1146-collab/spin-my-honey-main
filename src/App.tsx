@@ -9,6 +9,7 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 import { lazy, Suspense } from "react";
 import Index from "./pages/Index";
 import BlogPost from "./pages/BlogPost";
+import AuthorRajaJahangir from "./pages/AuthorRajaJahangir";
 // Lazy load non-critical pages for better initial load performance
 const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
@@ -226,6 +227,7 @@ const App = () => (
                 }
               />
               <Route path="/blog/:slug" element={<BlogPost />} />
+              <Route path="/author/raja-jahangir" element={<AuthorRajaJahangir />} />
               <Route
                 path="/:slug"
                 element={

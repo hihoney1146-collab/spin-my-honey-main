@@ -366,7 +366,7 @@ const TutorialManagingSpinWheelEntries = () => {
             <p className="text-muted-foreground mb-6 leading-relaxed">
               Practice these management techniques regularly, and you'll find
               that maintaining your wheels becomes second nature. The key is
-              consistency and organization—well-managed entries create
+              consistency and organization, well-managed entries create
               well-functioning wheels.
             </p>
             <div className="flex flex-wrap gap-4">

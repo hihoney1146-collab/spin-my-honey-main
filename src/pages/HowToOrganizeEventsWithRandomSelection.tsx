@@ -107,7 +107,7 @@ const HowToOrganizeEventsWithRandomSelection = () => {
                     <h3 className="font-semibold">Ensures Fairness</h3>
                   </div>
                   <p className="text-sm text-muted-foreground">
-                    No favoritism, no bias—just transparent random selection
+                    No favoritism, no bias, just transparent random selection
                     that everyone can see and trust. This builds participant
                     confidence in the event process.
                   </p>
@@ -547,8 +547,8 @@ const HowToOrganizeEventsWithRandomSelection = () => {
             <p className="text-muted-foreground mb-4 leading-relaxed">
               Random selection tools can transform how you organize events,
               making them more fair, efficient, and engaging. Start with one
-              simple application—like selecting Q&A participants or assigning
-              workshop groups—and gradually expand to other uses as you become
+              simple application, like selecting Q&A participants or assigning
+              workshop groups, and gradually expand to other uses as you become
               comfortable with the process.
             </p>
             <p className="text-muted-foreground mb-6 leading-relaxed">

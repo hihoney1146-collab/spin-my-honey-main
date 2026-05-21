@@ -388,18 +388,18 @@ const CaseStudyCommunityEventUsingSpinWheels = () => {
                     <p className="italic">
                       "We could actually see the wheel spin and see who won. It
                       was completely fair and transparent. No questions asked."
-                      <span className="not-italic"> — Festival attendee</span>
+                      <span className="not-italic">, Festival attendee</span>
                     </p>
                     <p className="italic">
                       "My daughter entered the coloring contest and even though
                       she didn't win, we all enjoyed watching the wheel spin. It
                       was fun and fair."
-                      <span className="not-italic"> — Parent</span>
+                      <span className="not-italic">, Parent</span>
                     </p>
                     <p className="italic">
                       "Finally, a selection process we can all trust. This is
                       how it should be done."
-                      <span className="not-italic"> — Long-time resident</span>
+                      <span className="not-italic">, Long-time resident</span>
                     </p>
                   </div>
                 </Card>
@@ -414,7 +414,7 @@ const CaseStudyCommunityEventUsingSpinWheels = () => {
                     excitement, and everyone could see that selections were
                     completely fair. It was a complete game-changer for
                     community trust."
-                    <span className="not-italic"> — Festival organizer</span>
+                    <span className="not-italic">, Festival organizer</span>
                   </p>
                 </Card>
               </div>
@@ -534,7 +534,7 @@ const CaseStudyCommunityEventUsingSpinWheels = () => {
               </p>
               <p>
                 The success of this implementation shows that transparency isn't
-                just about fairness—it's about building community relationships
+                just about fairness, it's about building community relationships
                 and creating engaging experiences that bring people together.
                 The visual element of spinning creates excitement and
                 demonstrates commitment to fairness in ways that traditional

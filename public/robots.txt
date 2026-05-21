@@ -1,13 +1,9 @@
-# Robots.txt for Online Spin Wheel (onlinespinwheel.fun)
-# Vite + Vercel SPA — last updated May 2026
+# Online Spin Wheel (onlinespinwheel.fun)
+# Dynamic robots.txt — search engines and AI crawlers
 
 User-agent: *
 Allow: /
-
-# Widget embed is allowed but should not be indexed as primary content
 Disallow: /embed
-
-# Block common tracking query parameters from creating duplicate URLs
 Disallow: /*?*utm_source=
 Disallow: /*?*utm_medium=
 Disallow: /*?*utm_campaign=
@@ -17,6 +13,17 @@ Disallow: /*?*gclid=
 User-agent: Googlebot
 User-agent: Googlebot-Image
 User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: OAI-SearchBot
+User-agent: anthropic-ai
+User-agent: ClaudeBot
+User-agent: Claude-Web
+User-agent: Google-Extended
+User-agent: PerplexityBot
+User-agent: Applebot-Extended
 Allow: /
 
 Sitemap: https://onlinespinwheel.fun/sitemap.xml

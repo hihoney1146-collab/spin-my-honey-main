@@ -17,13 +17,13 @@ const AllSpinWheelsPage = () => {
         <title>All specialty spin wheels | Online Spin Wheel</title>
         <meta
           name="description"
-          content="Browse every free specialty spin wheel on Online Spin Wheel—decision wheels, classroom pickers, party games, yes/no tools, and more. Open any wheel and spin in your browser."
+          content="Browse every free specialty spin wheel on Online Spin Wheel, decision wheels, classroom pickers, party games, yes/no tools, and more. Open any wheel and spin in your browser."
         />
         <link rel="canonical" href={`${SITE_ORIGIN}/all-spin-wheels`} />
         <meta property="og:title" content="All specialty spin wheels | Online Spin Wheel" />
         <meta
           property="og:description"
-          content="Browse every free specialty spin wheel—decision wheels, pickers, games, and more."
+          content="Browse every free specialty spin wheel, decision wheels, pickers, games, and more."
         />
         <meta property="og:url" content={`${SITE_ORIGIN}/all-spin-wheels`} />
         <meta property="og:image" content={`${SITE_ORIGIN}/og-image.png`} />
@@ -56,7 +56,7 @@ const AllSpinWheelsPage = () => {
               main spin wheel
             </Link>{" "}
             for a blank slate, or jump to a specialty wheel when you already know the
-            format—classroom name picker, yes/no decision, random number, party game, or
+            format, classroom name picker, yes/no decision, random number, party game, or
             team icebreaker.
           </p>
           <p>
@@ -73,8 +73,8 @@ const AllSpinWheelsPage = () => {
             choose to share results yourself.
           </p>
           <p>
-            For deeper guides—fair giveaways, classroom pickers, Secret Santa, and
-            meeting icebreakers—see our{" "}
+            For deeper guides, fair giveaways, classroom pickers, Secret Santa, and
+            meeting icebreakers, see our{" "}
             <Link to={BLOG_INDEX_PATH} className="text-primary hover:underline font-medium">
               blog
             </Link>

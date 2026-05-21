@@ -53,8 +53,8 @@ const CaseStudyCorporateEventUsingSpinWheels = () => {
               </p>
               <p>
                 This case study examines how the planning committee implemented
-                spin wheels throughout the event lifecycle—from pre-event
-                planning through live event management—and the measurable
+                spin wheels throughout the event lifecycle, from pre-event
+                planning through live event management, and the measurable
                 improvements in efficiency, fairness, and participant
                 satisfaction. The results demonstrate how simple random
                 selection tools can transform complex event management
@@ -459,8 +459,7 @@ const CaseStudyCorporateEventUsingSpinWheels = () => {
             </h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                Following the successful 2023 conference, TechVenture Inc.
-                adopted spin wheels for other corporate events and activities.
+                Following the successful 2023 conference, TechVenture Inc. Adopted spin wheels for other corporate events and activities.
               </p>
               <div className="bg-muted/50 rounded-lg p-4 mt-3">
                 <p className="font-semibold mb-2 text-foreground">
@@ -512,7 +511,7 @@ const CaseStudyCorporateEventUsingSpinWheels = () => {
               </p>
               <p>
                 The success of this implementation shows that spin wheels aren't
-                just tools for classrooms or small events—they're powerful
+                just tools for classrooms or small events, they're powerful
                 solutions for corporate event management at scale. The
                 transparency and fairness they provide eliminate conflicts,
                 improve satisfaction, and save significant time for organizers.
@@ -566,8 +565,8 @@ const CaseStudyCorporateEventUsingSpinWheels = () => {
               implementing spin wheels to improve efficiency and fairness.
             </p>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              Start with one application—like speaker schedule assignment or Q&A
-              management—and gradually expand to other uses. The transparency
+              Start with one application, like speaker schedule assignment or Q&A
+              management, and gradually expand to other uses. The transparency
               and fairness spin wheels provide will transform your event
               management experience.
             </p>
