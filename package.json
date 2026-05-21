@@ -18,6 +18,7 @@
     "build:prod": "vite build && node scripts/generate-static-pages.mjs",
     "lint": "eslint .",
     "verify:ads-txt": "node scripts/verify-ads-txt.mjs",
+    "verify:sitemap": "node scripts/verify-sitemap.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
