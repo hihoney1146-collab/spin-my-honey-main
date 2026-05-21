@@ -337,7 +337,15 @@ const About = () => {
               We are here to help and love hearing from our community.
             </p>
             <ul className="text-base md:text-lg text-muted-foreground space-y-2 mb-4">
-              <li>Email: onlinespinwheel@gmail.com</li>
+              <li>
+                Email:{" "}
+                <a
+                  href="mailto:onlinespinwheel@gmail.com"
+                  className="text-primary hover:underline font-medium"
+                >
+                  onlinespinwheel@gmail.com
+                </a>
+              </li>
               <li>Response time: typically within 24-48 hours</li>
             </ul>
             <a

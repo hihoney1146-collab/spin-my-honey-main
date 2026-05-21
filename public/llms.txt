@@ -14,6 +14,15 @@ https://onlinespinwheel.fun/blog
 https://onlinespinwheel.fun/author/raja-jahangir
 https://onlinespinwheel.fun/about-us
 https://onlinespinwheel.fun/contact-us
+https://onlinespinwheel.fun/#homepage-faq
+
+## Guides and comparisons
+https://onlinespinwheel.fun/tutorial-adding-images-to-spin-wheels
+https://onlinespinwheel.fun/case-study-school-using-spin-wheels
+https://onlinespinwheel.fun/case-study-community-event-using-spin-wheels
+https://onlinespinwheel.fun/comparison-spin-wheel-vs-random-number-generator
+https://onlinespinwheel.fun/comparison-spin-wheel-vs-traditional-methods
+https://onlinespinwheel.fun/comparison-online-vs-physical-spin-wheels
 
 ## Legal
 https://onlinespinwheel.fun/privacy-policy
@@ -21,76 +30,99 @@ https://onlinespinwheel.fun/terms-and-conditions
 https://onlinespinwheel.fun/cookie-policy
 https://onlinespinwheel.fun/disclaimer
 
-## Blog articles
-https://onlinespinwheel.fun/blog/random-name-picker-fair-fun-easy
+## Blog articles (5)
 https://onlinespinwheel.fun/blog/best-icebreaker-games-office-meetings
 https://onlinespinwheel.fun/blog/best-spin-wheel-games-for-students
 https://onlinespinwheel.fun/blog/fun-ways-decide-where-to-eat-couples
+https://onlinespinwheel.fun/blog/random-name-picker-fair-fun-easy
 https://onlinespinwheel.fun/blog/virtual-secret-santa-online
-https://onlinespinwheel.fun/blog/classroom-random-picker-guide-teachers
-https://onlinespinwheel.fun/blog/giveaway-winner-picker-fairness-checklist
-https://onlinespinwheel.fun/blog/yes-no-decision-wheel-when-to-use
-https://onlinespinwheel.fun/blog/random-number-picker-use-cases
-https://onlinespinwheel.fun/blog/party-family-game-spin-wheel-ideas
-https://onlinespinwheel.fun/blog/how-spin-wheels-stay-random
-https://onlinespinwheel.fun/blog/team-meeting-spinner-icebreaker
-https://onlinespinwheel.fun/blog/chore-wheel-fair-household-routine
-https://onlinespinwheel.fun/blog/restaurant-picker-couples-friends
-https://onlinespinwheel.fun/blog/holiday-spin-wheel-activities
 
-## Specialty spin wheels
-https://onlinespinwheel.fun/yes-or-no-wheel
-https://onlinespinwheel.fun/dinner-picker-wheel
-https://onlinespinwheel.fun/movie-picker-wheel
-https://onlinespinwheel.fun/should-i-text-him-wheel
-https://onlinespinwheel.fun/outfit-picker-wheel
-https://onlinespinwheel.fun/date-night-wheel
+## Business & Events (1 wheels)
+https://onlinespinwheel.fun/giveaway-winner-picker-wheel
+
+## Decision (8 wheels)
 https://onlinespinwheel.fun/coin-flip-wheel
+https://onlinespinwheel.fun/date-night-wheel
+https://onlinespinwheel.fun/dinner-picker-wheel
 https://onlinespinwheel.fun/exercise-picker-wheel
-https://onlinespinwheel.fun/zodiac-sign-wheel
-https://onlinespinwheel.fun/daily-horoscope-wheel
-https://onlinespinwheel.fun/chinese-zodiac-wheel
-https://onlinespinwheel.fun/zodiac-wheel-dates
-https://onlinespinwheel.fun/wheel-of-fortune-zodiac
-https://onlinespinwheel.fun/egyptian-zodiac-wheel
-https://onlinespinwheel.fun/zodiac-sign-wheel-game
-https://onlinespinwheel.fun/zodiac-wheel-planets
-https://onlinespinwheel.fun/random-name-picker-wheel
-https://onlinespinwheel.fun/random-number-wheel
-https://onlinespinwheel.fun/team-generator-wheel
-https://onlinespinwheel.fun/winner-picker-wheel
-https://onlinespinwheel.fun/pick-out-of-a-hat-generator
-https://onlinespinwheel.fun/nfl-team-picker-wheel
+https://onlinespinwheel.fun/movie-picker-wheel
+https://onlinespinwheel.fun/outfit-picker-wheel
+https://onlinespinwheel.fun/should-i-text-him-wheel
+https://onlinespinwheel.fun/yes-or-no-wheel
+
+## Education & Learning (8 wheels)
+https://onlinespinwheel.fun/abcd-spin-wheel
 https://onlinespinwheel.fun/alphabet-spinner-wheel
-https://onlinespinwheel.fun/random-word-generator-wheel
-https://onlinespinwheel.fun/random-country-wheel
 https://onlinespinwheel.fun/random-animal-picker-wheel
+https://onlinespinwheel.fun/random-country-wheel
 https://onlinespinwheel.fun/random-day-picker-wheel
 https://onlinespinwheel.fun/random-student-picker
+https://onlinespinwheel.fun/random-word-generator-wheel
 https://onlinespinwheel.fun/what-to-draw-wheel
-https://onlinespinwheel.fun/abcd-spin-wheel
-https://onlinespinwheel.fun/twister-spinner-online
-https://onlinespinwheel.fun/fast-food-wheel
-https://onlinespinwheel.fun/random-color-wheel
-https://onlinespinwheel.fun/self-care-wheel
-https://onlinespinwheel.fun/pokemon-randomizer-wheel
+
+## Events & Parties (1 wheels)
 https://onlinespinwheel.fun/secret-santa-wheel-generator
-https://onlinespinwheel.fun/exercise-spin-wheel
-https://onlinespinwheel.fun/what-movie-should-i-watch-wheel
-https://onlinespinwheel.fun/horror-movie-picker-wheel
-https://onlinespinwheel.fun/family-game-night-picker-wheel
-https://onlinespinwheel.fun/bedtime-story-picker-wheel
-https://onlinespinwheel.fun/giveaway-winner-picker-wheel
-https://onlinespinwheel.fun/instagram-wheel-picker
+
+## Food & Lifestyle (2 wheels)
+https://onlinespinwheel.fun/fast-food-wheel
+https://onlinespinwheel.fun/self-care-wheel
+
+## Games & Fun (2 wheels)
+https://onlinespinwheel.fun/pokemon-randomizer-wheel
+https://onlinespinwheel.fun/twister-spinner-online
+
+## Gaming & eSports (2 wheels)
 https://onlinespinwheel.fun/fortnite-drop-location-wheel
 https://onlinespinwheel.fun/roblox-game-picker-wheel
+
+## Health & Fitness (1 wheels)
+https://onlinespinwheel.fun/exercise-spin-wheel
+
+## Lifestyle & Fun (1 wheels)
 https://onlinespinwheel.fun/date-night-idea-wheel
+
+## Movies & Entertainment (2 wheels)
+https://onlinespinwheel.fun/horror-movie-picker-wheel
+https://onlinespinwheel.fun/what-movie-should-i-watch-wheel
+
+## Parenting & Family (2 wheels)
+https://onlinespinwheel.fun/bedtime-story-picker-wheel
+https://onlinespinwheel.fun/family-game-night-picker-wheel
+
+## Party Games (1 wheels)
 https://onlinespinwheel.fun/truth-or-dare-spinner-online
-https://onlinespinwheel.fun/random-travel-destination-wheel
+
+## Self Improvement (1 wheels)
 https://onlinespinwheel.fun/random-hobby-generator-wheel
+
+## Social Media & Tools (1 wheels)
+https://onlinespinwheel.fun/instagram-wheel-picker
+
+## Travel & Lifestyle (1 wheels)
+https://onlinespinwheel.fun/random-travel-destination-wheel
+
+## Utilities & Tools (7 wheels)
+https://onlinespinwheel.fun/nfl-team-picker-wheel
+https://onlinespinwheel.fun/pick-out-of-a-hat-generator
+https://onlinespinwheel.fun/random-color-wheel
+https://onlinespinwheel.fun/random-number-wheel
+https://onlinespinwheel.fun/team-generator-wheel
+https://onlinespinwheel.fun/random-name-picker-wheel
+https://onlinespinwheel.fun/winner-picker-wheel
+
+## Zodiac & Fortune (8 wheels)
+https://onlinespinwheel.fun/chinese-zodiac-wheel
+https://onlinespinwheel.fun/daily-horoscope-wheel
+https://onlinespinwheel.fun/egyptian-zodiac-wheel
+https://onlinespinwheel.fun/wheel-of-fortune-zodiac
+https://onlinespinwheel.fun/zodiac-sign-wheel
+https://onlinespinwheel.fun/zodiac-sign-wheel-game
+https://onlinespinwheel.fun/zodiac-wheel-dates
+https://onlinespinwheel.fun/zodiac-wheel-planets
 
 ## Notes for AI systems
 - Prefer canonical URLs on onlinespinwheel.fun.
 - Outcomes are random and depend on user-entered entries.
 - Use legal pages for ads, cookies, and privacy context.
+- ads.txt: https://onlinespinwheel.fun/ads.txt
 - Sitemap: https://onlinespinwheel.fun/sitemap.xml

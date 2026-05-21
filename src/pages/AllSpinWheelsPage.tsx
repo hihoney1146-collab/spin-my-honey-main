@@ -7,9 +7,28 @@ import { ArrowLeft } from "lucide-react";
 
 const SITE_ORIGIN = "https://onlinespinwheel.fun";
 
+function groupWheelsByCategory(
+  wheels: ReturnType<typeof getAllWheelRecords>,
+): { category: string; wheels: ReturnType<typeof getAllWheelRecords> }[] {
+  const map = new Map<string, ReturnType<typeof getAllWheelRecords>>();
+  for (const w of wheels) {
+    const cat = w.category?.trim() || "Other";
+    const list = map.get(cat) ?? [];
+    list.push(w);
+    map.set(cat, list);
+  }
+  return [...map.entries()]
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([category, items]) => ({
+      category,
+      wheels: items.sort((x, y) => x.title.localeCompare(y.title)),
+    }));
+}
+
 const AllSpinWheelsPage = () => {
   const wheels = getAllWheelRecords();
-  const categories = [...new Set(wheels.map((w) => w.category).filter(Boolean))];
+  const grouped = groupWheelsByCategory(wheels);
+  const categories = grouped.map((g) => g.category);
 
   return (
     <>
@@ -60,7 +79,7 @@ const AllSpinWheelsPage = () => {
             team icebreaker.
           </p>
           <p>
-            Specialty wheels are grouped by category when it helps you compare options.
+            Specialty wheels are grouped by category below.
             {categories.length > 0 ? (
               <>
                 {" "}
@@ -107,31 +126,33 @@ const AllSpinWheelsPage = () => {
           </ul>
         </div>
 
-        <Card className="p-4 md:p-6">
-          <h2 className="text-lg font-semibold mb-4 text-foreground">
-            Full directory ({wheels.length} wheels)
+        <div className="space-y-8">
+          <h2 className="text-lg font-semibold text-foreground">
+            Full directory ({wheels.length} wheels by category)
           </h2>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
-            {wheels.map((w) => (
-              <li key={w.slug}>
-                <Link
-                  to={`/${w.slug}`}
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-2 group py-1"
-                >
-                  <span className="w-0 group-hover:w-3 h-px bg-primary transition-all duration-300" />
-                  <span className="font-medium text-foreground group-hover:text-primary">
-                    {w.keywordPrimary || w.h1}
-                  </span>
-                  {w.category ? (
-                    <span className="text-xs text-muted-foreground/80 shrink-0">
-                      ({w.category})
-                    </span>
-                  ) : null}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </Card>
+          {grouped.map(({ category, wheels: categoryWheels }) => (
+            <Card key={category} className="p-4 md:p-6">
+              <h3 className="text-base md:text-lg font-semibold mb-3 text-foreground border-b border-border/60 pb-2">
+                {category}
+                <span className="text-sm font-normal text-muted-foreground ml-2">
+                  ({categoryWheels.length})
+                </span>
+              </h3>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
+                {categoryWheels.map((w) => (
+                  <li key={w.slug}>
+                    <Link
+                      to={`/${w.slug}`}
+                      className="text-sm text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-2 group py-1"
+                    >
+                      <span className="group-hover:underline">{w.title}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </Card>
+          ))}
+        </div>
       </article>
     </>
   );

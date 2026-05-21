@@ -10,7 +10,32 @@ import {
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { BLOG_INDEX_PATH, WHEEL_HUB_PATH } from "@/lib/siteInternalLinks";
+import { getAllBlogPosts } from "@/data/blogPosts";
+
+const FEATURED_BLOG_SLUGS = [
+  "random-name-picker-fair-fun-easy",
+  "best-icebreaker-games-office-meetings",
+  "virtual-secret-santa-online",
+] as const;
+
+const TOC_ITEMS: { label: string; id: string }[] = [
+  { label: "Exploring the Online Spin Wheel", id: "exploring-online-spin-wheel" },
+  { label: "Everything About Random Name Picker Tools", id: "random-name-picker-tools" },
+  { label: "Exciting Spin Wheel Games for Everyone", id: "exciting-spin-wheel-games" },
+  {
+    label: "Understanding Online Spin Wheel Decision Makers",
+    id: "understanding-decision-makers",
+  },
+  { label: "Essential Features and Common Mistakes", id: "essential-features" },
+  { label: "Conclusion", id: "seo-conclusion" },
+  { label: "Frequently Asked Questions", id: "homepage-faq" },
+  { label: "Meet the Team", id: "meet-the-team" },
+];
 const Index = () => {
+  const featuredPosts = FEATURED_BLOG_SLUGS.map((slug) =>
+    getAllBlogPosts().find((p) => p.slug === slug),
+  ).filter((p): p is NonNullable<typeof p> => Boolean(p));
+
   return (
     <>
       <Helmet>
@@ -489,14 +514,7 @@ const Index = () => {
             <div className="prose prose-lg max-w-none">
               <p className="text-base sm:text-lg text-muted-foreground/90 mb-3 sm:mb-4 leading-relaxed">
                 Expertly Verified Resource Written by{" "}
-                <a
-                  href="https://www.linkedin.com/in/raja-jahangir"
-                  target="_blank"
-                  rel="noopener noreferrer author"
-                  className="font-medium text-primary underline underline-offset-2 hover:opacity-90"
-                >
-                  Raja Jahangir
-                </a>
+                <span className="font-medium text-foreground">Raja Jahangir</span>
                 , (SEO Expert). Powered by{" "}
                 <a
                   href="https://auroxatech.com"
@@ -577,17 +595,22 @@ const Index = () => {
                 Table of Contents
               </h2>
               <ol className="list-decimal list-inside space-y-1 text-sm sm:text-base text-muted-foreground mb-8">
-                <li>Exploring the Online Spin Wheel</li>
-                <li>Everything About Random Name Picker Tools</li>
-                <li>Exciting Spin Wheel Games for Everyone</li>
-                <li>Understanding Online Spin Wheel Decision Makers</li>
-                <li>Essential Features and Common Mistakes</li>
-                <li>Conclusion</li>
-                <li>Frequently Asked Questions</li>
-                <li>Meet the Team</li>
+                {TOC_ITEMS.map((item) => (
+                  <li key={item.id}>
+                    <a
+                      href={`#${item.id}`}
+                      className="text-primary hover:underline font-medium"
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
               </ol>
 
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-5 md:mb-6">
+              <h2
+                id="exploring-online-spin-wheel"
+                className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-5 md:mb-6 scroll-mt-24"
+              >
                 Exploring the Online Spin Wheel
               </h2>
               <p className="text-sm sm:text-base text-muted-foreground mb-4 leading-relaxed">
@@ -707,7 +730,10 @@ const Index = () => {
                 visual experience.
               </p>
 
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-5 md:mb-6">
+              <h2
+                id="random-name-picker-tools"
+                className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-5 md:mb-6 scroll-mt-24"
+              >
                 Everything About Random Name Picker Tools
               </h2>
               <p className="text-sm sm:text-base text-muted-foreground mb-4 leading-relaxed">
@@ -777,7 +803,10 @@ const Index = () => {
                 perfectly on any device with an internet connection.
               </p>
 
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-5 md:mb-6">
+              <h2
+                id="exciting-spin-wheel-games"
+                className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-5 md:mb-6 scroll-mt-24"
+              >
                 Exciting Spin Wheel Games for Everyone
               </h2>
               <p className="text-sm sm:text-base text-muted-foreground mb-4 leading-relaxed">
@@ -843,7 +872,10 @@ const Index = () => {
                 the physical fun of the outdoors.
               </p>
 
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-5 md:mb-6">
+              <h2
+                id="understanding-decision-makers"
+                className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-5 md:mb-6 scroll-mt-24"
+              >
                 Understanding Online Spin Wheel Decision Makers
               </h2>
               <p className="text-sm sm:text-base text-muted-foreground mb-4 leading-relaxed">
@@ -924,7 +956,10 @@ const Index = () => {
                 more fun to use.
               </p>
 
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-5 md:mb-6">
+              <h2
+                id="essential-features"
+                className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-5 md:mb-6 scroll-mt-24"
+              >
                 Essential Features and Common Mistakes
               </h2>
               <p className="text-sm sm:text-base text-muted-foreground mb-3 leading-relaxed">
@@ -950,7 +985,10 @@ const Index = () => {
                 important live event.
               </p>
 
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-5 md:mb-6">
+              <h2
+                id="seo-conclusion"
+                className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-5 md:mb-6 scroll-mt-24"
+              >
                 Conclusion
               </h2>
               <p className="text-sm sm:text-base text-muted-foreground mb-4 leading-relaxed">
@@ -974,7 +1012,10 @@ const Index = () => {
                 the thrilling spin.
               </p>
 
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-5 md:mb-6">
+              <h2
+                id="homepage-faq"
+                className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-5 md:mb-6 scroll-mt-24"
+              >
                 Frequently Asked Questions
               </h2>
               <div className="space-y-4 mb-8">
@@ -1068,7 +1109,10 @@ const Index = () => {
                 </Card>
               </div>
 
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-5 md:mb-6">
+              <h2
+                id="meet-the-team"
+                className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-5 md:mb-6 scroll-mt-24"
+              >
                 Meet the Team
               </h2>
               <p className="text-sm sm:text-base text-muted-foreground mb-3 leading-relaxed">
@@ -1080,31 +1124,58 @@ const Index = () => {
                 that answers real questions and solves real problems.
               </p>
               <p className="text-sm sm:text-base text-muted-foreground mb-2 leading-relaxed">
-                <a
-                  href="https://www.linkedin.com/in/raja-jahangir"
-                  target="_blank"
-                  rel="noopener noreferrer author"
-                  className="font-medium text-primary underline underline-offset-2 hover:opacity-90"
-                >
-                  Raja Jahangir
-                </a>
+                <span className="font-medium text-foreground">Raja Jahangir</span>
                 , SEO Expert. Bringing years of SEO experience, Raja ensures that
                 Online Spin Wheel remains user centric, privacy focused and easily
                 accessible to the thousands of users searching for reliable spin
-                wheel solutions every month.{" "}
-                <a
-                  href="https://www.linkedin.com/in/raja-jahangir"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-medium text-primary underline underline-offset-2 hover:opacity-90"
-                >
-                  Connect with Raja Jahangir on LinkedIn
-                </a>
-                .
+                wheel solutions every month.
               </p>
             </div>
           </div>
         </section>
+
+        {featuredPosts.length > 0 && (
+          <section
+            id="featured-blog-posts"
+            className="w-full px-4 lg:px-6 py-8 sm:py-10 bg-background border-t border-border/40"
+          >
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 text-foreground">
+                From our blog
+              </h2>
+              <p className="text-sm sm:text-base text-muted-foreground mb-6">
+                Guides for fair picks, team icebreakers, and seasonal giveaways.
+              </p>
+              <ul className="grid gap-4 sm:grid-cols-1 md:grid-cols-3">
+                {featuredPosts.map((post) => (
+                  <li key={post.slug}>
+                    <Card className="p-5 h-full border-2 border-border/50 hover:border-primary/40 transition-colors">
+                      <Link
+                        to={`${BLOG_INDEX_PATH}/${post.slug}`}
+                        className="block group"
+                      >
+                        <h3 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors mb-2 line-clamp-2">
+                          {post.title.replace(/\s*\|\s*Online Spin Wheel\s*$/i, "")}
+                        </h3>
+                        <p className="text-sm text-muted-foreground line-clamp-3">
+                          {post.excerpt}
+                        </p>
+                        <span className="inline-block mt-3 text-sm font-medium text-primary group-hover:underline">
+                          Read article →
+                        </span>
+                      </Link>
+                    </Card>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-6 text-sm text-muted-foreground">
+                <Link to={BLOG_INDEX_PATH} className="text-primary hover:underline font-medium">
+                  View all blog posts
+                </Link>
+              </p>
+            </div>
+          </section>
+        )}
 
         <WheelDirectory />
       </article>

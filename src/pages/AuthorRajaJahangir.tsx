@@ -77,7 +77,11 @@ const AuthorRajaJahangir = () => {
 
         <Card className="p-6 md:p-8 space-y-4 text-muted-foreground leading-relaxed">
           <p>
-            Raja Jahangir leads SEO and digital growth for Online Spin Wheel. With more
+            Raja Jahangir leads SEO and digital growth for{" "}
+            <Link to="/" className="font-medium text-primary underline underline-offset-2 hover:opacity-90">
+              Online Spin Wheel
+            </Link>
+            . With more
             than three years of hands-on experience in search strategy, he focuses on
             fast pages, clear user journeys, and privacy-respecting tools that teachers,
             creators, and small businesses can trust.

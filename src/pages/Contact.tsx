@@ -5,6 +5,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Building2, Clock, Mail, MapPin, MessageSquare, Send } from "lucide-react";
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
+import { AUROXA_TECH_URL } from "@/lib/teamLinks";
 import { useState } from "react";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -235,14 +237,31 @@ const Contact = () => {
                   <Building2 className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                   <div>
                     <p className="font-medium text-foreground">Operator</p>
-                    <p>Online Spin Wheel is operated by Auroxa Tech.</p>
+                    <p>
+                      <Link to="/" className="text-primary hover:underline font-medium">
+                        Online Spin Wheel
+                      </Link>{" "}
+                      is operated by{" "}
+                      <a
+                        href={AUROXA_TECH_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary hover:underline font-medium"
+                      >
+                        Auroxa Tech
+                      </a>
+                      .
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <MapPin className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                   <div>
                     <p className="font-medium text-foreground">Operational base</p>
-                    <p>Rawalpindi, Pakistan. We serve users worldwide online.</p>
+                    <p>
+                      <strong className="text-foreground">Rawalpindi, Pakistan</strong>.
+                      {" "}We serve users worldwide online.
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
@@ -261,7 +280,13 @@ const Contact = () => {
                 <li>• Be as specific as possible when reporting issues</li>
                 <li>• Include your device type and browser if relevant</li>
                 <li>• We typically respond within 24-48 hours</li>
-                <li>• Check our FAQ section before contacting us</li>
+                <li>
+                  • Check our{" "}
+                  <Link to="/#homepage-faq" className="text-primary hover:underline font-medium">
+                    FAQ section
+                  </Link>{" "}
+                  on the homepage before contacting us
+                </li>
               </ul>
             </Card>
           </div>

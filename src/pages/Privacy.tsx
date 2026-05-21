@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Helmet } from "react-helmet";
 import { ArrowRight, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
+import { AUROXA_TECH_URL } from "@/lib/teamLinks";
 
 const Privacy = () => {
   return (
@@ -552,8 +553,15 @@ const Privacy = () => {
               <li className="flex items-start gap-2">
                 <span className="text-primary mt-1.5 flex-shrink-0">●</span>
                 <span>
-                  <strong className="text-foreground">Operated by:</strong> Auroxa
-                  Tech
+                  <strong className="text-foreground">Operated by:</strong>{" "}
+                  <a
+                    href={AUROXA_TECH_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline font-medium"
+                  >
+                    Auroxa Tech
+                  </a>
                 </span>
               </li>
             </ul>

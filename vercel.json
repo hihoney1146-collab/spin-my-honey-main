@@ -1,9 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
-    { "source": "/sitemap.xml", "destination": "/api/sitemap" },
-    { "source": "/robots.txt", "destination": "/api/robots" },
-    { "source": "/llms.txt", "destination": "/api/llms" },
     { "source": "/ads.txt", "destination": "/api/ads" },
     { "source": "/logo.png", "destination": "/logo.png" },
     { "source": "/og-image.png", "destination": "/og-image.png" },

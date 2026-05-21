@@ -51,6 +51,36 @@ export function loadWheelSlugsFromCsv(root = getProjectRoot()) {
   return slugs;
 }
 
+/** @returns {{ category: string, wheels: { slug: string, title: string }[] }[]} */
+export function loadWheelsGroupedByCategory(root = getProjectRoot()) {
+  const jsonPath = path.join(root, "src", "generated", "wheelPages.json");
+  let wheels = [];
+  if (fs.existsSync(jsonPath)) {
+    wheels = JSON.parse(fs.readFileSync(jsonPath, "utf-8"));
+  } else {
+    wheels = loadWheelSlugsFromCsv(root).map((slug) => ({
+      slug,
+      title: slug,
+      category: "Other",
+    }));
+  }
+
+  const map = new Map();
+  for (const w of wheels) {
+    const cat = (w.category || "Other").trim();
+    const list = map.get(cat) ?? [];
+    list.push({ slug: w.slug, title: w.title || w.slug });
+    map.set(cat, list);
+  }
+
+  return [...map.entries()]
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([category, items]) => ({
+      category,
+      wheels: items.sort((x, y) => (x.title || x.slug).localeCompare(y.title || y.slug)),
+    }));
+}
+
 export const FIXED_ROUTES = [
   { path: "/", changefreq: "daily", priority: "1.0" },
   { path: "/all-spin-wheels", changefreq: "weekly", priority: "0.88" },
@@ -178,8 +208,14 @@ Sitemap: ${SITE}/sitemap.xml
 }
 
 export function buildLlmsTxt(root = getProjectRoot()) {
-  const wheels = loadWheelSlugsFromCsv(root);
-  const blogs = collectBlogSlugs(root);
+  const groupedWheels = loadWheelsGroupedByCategory(root);
+  const blogs = collectBlogSlugs(root).sort();
+  const guidePaths = FIXED_ROUTES.filter((r) =>
+    ["/tutorial-adding-images-to-spin-wheels", "/case-study-school-using-spin-wheels", "/case-study-community-event-using-spin-wheels", "/comparison-spin-wheel-vs-random-number-generator", "/comparison-spin-wheel-vs-traditional-methods", "/comparison-online-vs-physical-spin-wheels"].includes(
+      r.path,
+    ),
+  );
+
   const lines = [
     "# Online Spin Wheel",
     "",
@@ -197,6 +233,10 @@ export function buildLlmsTxt(root = getProjectRoot()) {
     `${SITE}/author/raja-jahangir`,
     `${SITE}/about-us`,
     `${SITE}/contact-us`,
+    `${SITE}/#homepage-faq`,
+    "",
+    "## Guides and comparisons",
+    ...guidePaths.map((r) => `${SITE}${r.path}`),
     "",
     "## Legal",
     `${SITE}/privacy-policy`,
@@ -204,18 +244,27 @@ export function buildLlmsTxt(root = getProjectRoot()) {
     `${SITE}/cookie-policy`,
     `${SITE}/disclaimer`,
     "",
-    "## Blog articles",
+    "## Blog articles (5)",
     ...blogs.map((s) => `${SITE}/blog/${s}`),
-    "",
-    "## Specialty spin wheels",
-    ...wheels.map((s) => `${SITE}/${s}`),
+  ];
+
+  for (const { category, wheels } of groupedWheels) {
+    lines.push("", `## ${category} (${wheels.length} wheels)`);
+    for (const w of wheels) {
+      lines.push(`${SITE}/${w.slug}`);
+    }
+  }
+
+  lines.push(
     "",
     "## Notes for AI systems",
     "- Prefer canonical URLs on onlinespinwheel.fun.",
     "- Outcomes are random and depend on user-entered entries.",
     "- Use legal pages for ads, cookies, and privacy context.",
+    "- ads.txt: " + `${SITE}/ads.txt`,
     "- Sitemap: " + `${SITE}/sitemap.xml`,
     "",
-  ];
+  );
+
   return lines.join("\n");
 }

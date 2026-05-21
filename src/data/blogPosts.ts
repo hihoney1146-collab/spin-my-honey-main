@@ -1,5 +1,4 @@
 import type { BlogPost } from "./blogTypes";
-import { additionalBlogPosts } from "./blogPostsAdditional";
 
 export type { BlogContentBlock, BlogFaq, BlogPost } from "./blogTypes";
 
@@ -528,7 +527,6 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
-  ...additionalBlogPosts,
 ];
 
 const bySlug = new Map(blogPosts.map((p) => [p.slug, p]));
