@@ -4,7 +4,7 @@
     { "source": "/sitemap.xml", "destination": "/api/sitemap" },
     { "source": "/robots.txt", "destination": "/api/robots" },
     { "source": "/llms.txt", "destination": "/api/llms" },
-    { "source": "/ads.txt", "destination": "/ads.txt" },
+    { "source": "/ads.txt", "destination": "/api/ads" },
     { "source": "/logo.png", "destination": "/logo.png" },
     { "source": "/og-image.png", "destination": "/og-image.png" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
@@ -38,6 +38,19 @@
         {
           "key": "Content-Type",
           "value": "text/plain; charset=utf-8"
+        }
+      ]
+    },
+    {
+      "source": "/ads.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, s-maxage=86400"
         }
       ]
     },
