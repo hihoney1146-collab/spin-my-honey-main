@@ -158,9 +158,9 @@ const CookiePolicy = () => {
               Google Consent Mode
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Google Analytics loads with Consent Mode defaults set to denied until you
-              choose Accept or Decline. The Google AdSense script loads only if you
-              choose Accept. Your choice updates consent signals for ad_storage,
+              Google Analytics and the AdSense script load with Consent Mode defaults
+              set to denied until you choose Accept or Decline. Personalized ads and
+              ad-related storage apply only after Accept. Your choice updates consent signals for ad_storage,
               analytics_storage, and related flags. Our banner is a custom implementation,
               not a Google-certified CMP for the EEA/UK/CH.
             </p>
@@ -172,8 +172,8 @@ const CookiePolicy = () => {
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
               To keep Online Spin Wheel free, Google Analytics may run after page load with
-              consent-aware settings. Google AdSense runs only after you accept cookies and
-              may set cookies or use similar technologies to serve ads. Both may measure
+              consent-aware settings. Google AdSense is included in the page with Consent Mode;
+              it may set cookies or serve ads according to your cookie choice. Both may measure
               traffic and understand how the site is used.
             </p>
             <ul className="space-y-3 text-muted-foreground ml-1">
