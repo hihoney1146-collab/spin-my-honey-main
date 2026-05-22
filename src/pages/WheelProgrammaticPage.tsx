@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { SpinWheel } from "@/components/SpinWheel";
 import { getWheelPageBySlug, getRelatedWheelPages } from "@/lib/wheelPages";
 import { WHEEL_HUB_PATH } from "@/lib/siteInternalLinks";
-import { Home, ArrowLeft } from "lucide-react";
+import { Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   SITE_ORIGIN,
@@ -12,6 +12,7 @@ import {
   webApplicationJsonLd,
   faqPageJsonLd,
   organizationJsonLd,
+  breadcrumbListJsonLd,
 } from "@/lib/schema";
 
 const WheelProgrammaticPage = () => {
@@ -42,10 +43,16 @@ const WheelProgrammaticPage = () => {
   }
 
   const canonical = `${SITE_ORIGIN}/${page.slug}`;
+  const hubUrl = `${SITE_ORIGIN}${WHEEL_HUB_PATH}`;
   const keywords = [page.keywordPrimary, page.keywordSecondary]
     .filter(Boolean)
     .join(", ");
   const related = getRelatedWheelPages(page.slug, 6);
+  const breadcrumbItems = [
+    { name: "Home", url: `${SITE_ORIGIN}/` },
+    { name: "All Spin Wheels", url: hubUrl },
+    { name: page.h1 },
+  ];
 
   return (
     <>
@@ -66,6 +73,7 @@ const WheelProgrammaticPage = () => {
         <script type="application/ld+json">
           {JSON.stringify([
             organizationJsonLd(),
+            breadcrumbListJsonLd(breadcrumbItems),
             webPageJsonLd({
               name: page.title,
               description: page.metaDescription,
@@ -92,14 +100,28 @@ const WheelProgrammaticPage = () => {
       </Helmet>
 
       <article className="container mx-auto px-4 py-8 md:py-12 max-w-5xl">
-        <nav className="mb-6">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back to Online Spin Wheel
-          </Link>
+        <nav aria-label="Breadcrumb" className="mb-6">
+          <ol className="flex flex-wrap items-center gap-1 text-sm text-muted-foreground">
+            <li>
+              <Link to="/" className="hover:text-primary transition-colors">
+                Home
+              </Link>
+            </li>
+            <li aria-hidden="true" className="px-1">
+              /
+            </li>
+            <li>
+              <Link to={WHEEL_HUB_PATH} className="hover:text-primary transition-colors">
+                All Spin Wheels
+              </Link>
+            </li>
+            <li aria-hidden="true" className="px-1">
+              /
+            </li>
+            <li className="text-foreground font-medium truncate max-w-[min(100%,20rem)]">
+              {page.h1}
+            </li>
+          </ol>
         </nav>
 
         {page.category ? (
