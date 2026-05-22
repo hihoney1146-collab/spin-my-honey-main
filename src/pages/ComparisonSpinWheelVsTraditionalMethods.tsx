@@ -8,6 +8,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { SITE_ORIGIN, RAJA_AUTHOR, organizationJsonLd, articleJsonLd, breadcrumbListJsonLd } from "@/lib/schema";
 
 const ComparisonSpinWheelVsTraditionalMethods = () => {
   return (
@@ -29,6 +30,23 @@ const ComparisonSpinWheelVsTraditionalMethods = () => {
           rel="canonical"
           href="https://onlinespinwheel.fun/comparison-spin-wheel-vs-traditional-methods"
         />
+        <script type="application/ld+json">
+          {JSON.stringify([
+            organizationJsonLd(),
+            breadcrumbListJsonLd([
+              { name: "Home", url: `${SITE_ORIGIN}/` },
+              { name: "Comparisons", url: `${SITE_ORIGIN}/` },
+              { name: "Spin Wheel vs Traditional Selection Methods" },
+            ]),
+            articleJsonLd({
+              title: "Spin Wheel vs Traditional Selection Methods: Complete Comparison | Hi Honey",
+              description: "Compare spin wheels with traditional selection methods like drawing names, picking straws, and coin flips. Discover why digital spin wheels offer superior fairness and transparency.",
+              url: "https://onlinespinwheel.fun/comparison-spin-wheel-vs-traditional-methods",
+              dateModified: "2026-05-10",
+              authorName: RAJA_AUTHOR.name,
+            }),
+          ])}
+        </script>
       </Helmet>
 
       <article className="container mx-auto px-4 py-8 md:py-12 max-w-5xl">

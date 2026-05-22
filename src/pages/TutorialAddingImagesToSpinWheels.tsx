@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Helmet } from "react-helmet";
 import { Image, CheckCircle2, Upload, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { SITE_ORIGIN, RAJA_AUTHOR, organizationJsonLd, articleJsonLd, breadcrumbListJsonLd } from "@/lib/schema";
 
 const TutorialAddingImagesToSpinWheels = () => {
   return (
@@ -23,6 +24,23 @@ const TutorialAddingImagesToSpinWheels = () => {
           rel="canonical"
           href="https://onlinespinwheel.fun/tutorial-adding-images-to-spin-wheels"
         />
+        <script type="application/ld+json">
+          {JSON.stringify([
+            organizationJsonLd(),
+            breadcrumbListJsonLd([
+              { name: "Home", url: `${SITE_ORIGIN}/` },
+              { name: "Tutorials", url: `${SITE_ORIGIN}/` },
+              { name: "How to Add Images to Spin Wheels" },
+            ]),
+            articleJsonLd({
+              title: "How to Add Images to Spin Wheels - Complete Tutorial | Online Spin Wheel",
+              description: "Learn how to add images to your spin wheel entries. Discover best practices for image selection, file formats, sizing, and creating visually engaging wheels.",
+              url: "https://onlinespinwheel.fun/tutorial-adding-images-to-spin-wheels",
+              dateModified: "2026-05-10",
+              authorName: RAJA_AUTHOR.name,
+            }),
+          ])}
+        </script>
       </Helmet>
 
       <article className="container mx-auto px-4 py-8 md:py-12 max-w-5xl">

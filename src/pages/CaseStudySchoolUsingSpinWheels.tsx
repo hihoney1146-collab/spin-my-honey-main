@@ -8,6 +8,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { SITE_ORIGIN, RAJA_AUTHOR, organizationJsonLd, articleJsonLd, breadcrumbListJsonLd } from "@/lib/schema";
 
 const CaseStudySchoolUsingSpinWheels = () => {
   return (
@@ -29,6 +30,23 @@ const CaseStudySchoolUsingSpinWheels = () => {
           rel="canonical"
           href="https://onlinespinwheel.fun/case-study-school-using-spin-wheels"
         />
+        <script type="application/ld+json">
+          {JSON.stringify([
+            organizationJsonLd(),
+            breadcrumbListJsonLd([
+              { name: "Home", url: `${SITE_ORIGIN}/` },
+              { name: "Case Studies", url: `${SITE_ORIGIN}/` },
+              { name: "Elementary School Transforms Classroom Engagement" },
+            ]),
+            articleJsonLd({
+              title: "Case Study: Elementary School Transforms Classroom Engagement with Spin Wheels | Online Spin Wheel",
+              description: "Discover how a midwestern elementary school dramatically improved student engagement, participation, and fairness in classrooms using spin wheels for random student selection.",
+              url: "https://onlinespinwheel.fun/case-study-school-using-spin-wheels",
+              dateModified: "2026-05-10",
+              authorName: RAJA_AUTHOR.name,
+            }),
+          ])}
+        </script>
       </Helmet>
 
       <article className="container mx-auto px-4 py-8 md:py-12 max-w-5xl">

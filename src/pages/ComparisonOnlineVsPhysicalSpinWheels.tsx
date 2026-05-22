@@ -8,6 +8,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { SITE_ORIGIN, RAJA_AUTHOR, organizationJsonLd, articleJsonLd, breadcrumbListJsonLd } from "@/lib/schema";
 
 const ComparisonOnlineVsPhysicalSpinWheels = () => {
   return (
@@ -28,6 +29,23 @@ const ComparisonOnlineVsPhysicalSpinWheels = () => {
           rel="canonical"
           href="https://onlinespinwheel.fun/comparison-online-vs-physical-spin-wheels"
         />
+        <script type="application/ld+json">
+          {JSON.stringify([
+            organizationJsonLd(),
+            breadcrumbListJsonLd([
+              { name: "Home", url: `${SITE_ORIGIN}/` },
+              { name: "Comparisons", url: `${SITE_ORIGIN}/` },
+              { name: "Online vs Physical Spin Wheels" },
+            ]),
+            articleJsonLd({
+              title: "Online vs Physical Spin Wheels: Which Should You Choose? | Online Spin Wheel",
+              description: "Compare online digital spin wheels with physical spin wheels. Discover the pros and cons of each type and learn which is better for your specific needs and use cases.",
+              url: "https://onlinespinwheel.fun/comparison-online-vs-physical-spin-wheels",
+              dateModified: "2026-05-10",
+              authorName: RAJA_AUTHOR.name,
+            }),
+          ])}
+        </script>
       </Helmet>
 
       <article className="container mx-auto px-4 py-8 md:py-12 max-w-5xl">

@@ -318,11 +318,70 @@ const About = () => {
 
         <Card className="p-6 md:p-8 lg:p-10 mb-6 md:mb-8">
           <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
+            Editorial Standards & Content Review
+          </h2>
+          <div className="space-y-4 text-muted-foreground leading-relaxed">
+            <p className="text-base md:text-lg">
+              Every piece of content on Online Spin Wheel is written, reviewed,
+              and maintained by our in-house team. We follow a consistent
+              editorial process to ensure accuracy, clarity, and trustworthiness:
+            </p>
+            <ul className="space-y-3 text-base md:text-lg">
+              <li className="flex items-start gap-3">
+                <Shield className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                <span>
+                  <strong className="text-foreground">Fact-checking:</strong> All
+                  technical claims about randomness, probability, and fairness
+                  are verified against the Web Crypto API specification and
+                  standard probability theory.
+                </span>
+              </li>
+              <li className="flex items-start gap-3">
+                <Users className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                <span>
+                  <strong className="text-foreground">Peer review:</strong> Blog
+                  posts and guides are reviewed by at least one other team member
+                  before publication to catch errors and improve clarity.
+                </span>
+              </li>
+              <li className="flex items-start gap-3">
+                <Zap className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                <span>
+                  <strong className="text-foreground">Regular updates:</strong>{" "}
+                  Published content is reviewed quarterly and updated when tools,
+                  best practices, or user feedback warrant changes. Every article
+                  shows a "Last Updated" date.
+                </span>
+              </li>
+            </ul>
+            <p className="text-base md:text-lg">
+              If you spot an error or have a suggestion, email us at{" "}
+              <a
+                href="mailto:onlinespinwheel@gmail.com"
+                className="text-primary hover:underline font-medium"
+              >
+                onlinespinwheel@gmail.com
+              </a>{" "}
+              and we will review it within 48 hours.
+            </p>
+          </div>
+        </Card>
+
+        <Card className="p-6 md:p-8 lg:p-10 mb-6 md:mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
             Partner With Auroxa Tech
           </h2>
           <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-            If you like the technology behind our wheel, our team at Auroxa
-            Tech can build custom interactive tools, advanced web portals, and
+            If you like the technology behind our wheel, our team at{" "}
+            <a
+              href={AUROXA_TECH_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline font-medium"
+            >
+              Auroxa Tech
+            </a>{" "}
+            can build custom interactive tools, advanced web portals, and
             agentic AI solutions integrated into your business platforms.
           </p>
         </Card>

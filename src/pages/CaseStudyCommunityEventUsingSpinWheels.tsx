@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Helmet } from "react-helmet";
 import { Users, Heart, TrendingUp, ArrowRight, Award } from "lucide-react";
 import { Link } from "react-router-dom";
+import { SITE_ORIGIN, RAJA_AUTHOR, organizationJsonLd, articleJsonLd, breadcrumbListJsonLd } from "@/lib/schema";
 
 const CaseStudyCommunityEventUsingSpinWheels = () => {
   return (
@@ -23,6 +24,23 @@ const CaseStudyCommunityEventUsingSpinWheels = () => {
           rel="canonical"
           href="https://onlinespinwheel.fun/case-study-community-event-using-spin-wheels"
         />
+        <script type="application/ld+json">
+          {JSON.stringify([
+            organizationJsonLd(),
+            breadcrumbListJsonLd([
+              { name: "Home", url: `${SITE_ORIGIN}/` },
+              { name: "Case Studies", url: `${SITE_ORIGIN}/` },
+              { name: "Community Festival Fair Selection" },
+            ]),
+            articleJsonLd({
+              title: "Case Study: Community Festival Improves Fairness with Spin Wheels | Hi Honey",
+              description: "Learn how a community festival used spin wheels to ensure fair contest winner selection, transparent prize distribution, and improved community trust in event processes.",
+              url: "https://onlinespinwheel.fun/case-study-community-event-using-spin-wheels",
+              dateModified: "2026-05-10",
+              authorName: RAJA_AUTHOR.name,
+            }),
+          ])}
+        </script>
       </Helmet>
 
       <article className="container mx-auto px-4 py-8 md:py-12 max-w-5xl">

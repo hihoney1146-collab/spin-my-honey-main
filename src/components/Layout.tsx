@@ -21,7 +21,14 @@ import {
 import { OptimizedImage } from "./OptimizedImage";
 import { SocialShare } from "./SocialShare";
 import { ThemeToggle } from "./ThemeToggle";
-import { BLOG_INDEX_PATH, WHEEL_HUB_PATH } from "@/lib/siteInternalLinks";
+import {
+  BLOG_INDEX_PATH,
+  WHEEL_HUB_PATH,
+  comparisonLinks,
+  tutorialLinks,
+  caseStudyLinks,
+  getFeaturedWheelLinks,
+} from "@/lib/siteInternalLinks";
 import { openCookieSettings } from "@/lib/cookieConsentEvents";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
@@ -219,7 +226,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Main Footer Content */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10 py-8 sm:py-12 md:py-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-8 py-8 sm:py-12 md:py-16">
             {/* Brand Section */}
             <div className="sm:col-span-2 lg:col-span-1">
               <Link to="/" className="inline-flex items-center gap-2 mb-4 group">
@@ -272,6 +279,45 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                   { to: BLOG_INDEX_PATH, label: "Blog" },
                   { to: "/contact-us", label: "Contact" },
                 ].map((link) => (
+                  <li key={link.to}>
+                    <Link
+                      to={link.to}
+                      className="text-sm text-muted-foreground hover:text-primary transition-all duration-200 inline-flex items-center gap-2 group"
+                    >
+                      <span className="w-0 group-hover:w-4 h-px bg-primary transition-all duration-300" />
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Resources — tutorials, comparisons, case studies */}
+            <div>
+              <h3 className="font-semibold text-base mb-4 text-foreground">
+                Resources
+              </h3>
+              <ul className="space-y-3">
+                {[...tutorialLinks, ...comparisonLinks, ...caseStudyLinks].map(
+                  (link) => (
+                    <li key={link.to}>
+                      <Link
+                        to={link.to}
+                        className="text-sm text-muted-foreground hover:text-primary transition-all duration-200 inline-flex items-center gap-2 group"
+                      >
+                        <span className="w-0 group-hover:w-4 h-px bg-primary transition-all duration-300" />
+                        {link.label}
+                      </Link>
+                    </li>
+                  ),
+                )}
+              </ul>
+
+              <h3 className="font-semibold text-base mb-3 mt-6 text-foreground">
+                Popular Wheels
+              </h3>
+              <ul className="space-y-3">
+                {getFeaturedWheelLinks().map((link) => (
                   <li key={link.to}>
                     <Link
                       to={link.to}

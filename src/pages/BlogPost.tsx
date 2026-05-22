@@ -3,8 +3,9 @@ import { Helmet } from "react-helmet";
 import { Link, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Home } from "lucide-react";
-import { BLOG_INDEX_PATH } from "@/lib/siteInternalLinks";
+import { BLOG_INDEX_PATH, WHEEL_HUB_PATH } from "@/lib/siteInternalLinks";
 import { getBlogPostBySlug } from "@/data/blogPosts";
+import { getWheelPageBySlug } from "@/lib/wheelPages";
 import { buildBlogTableOfContents } from "@/lib/blogToc";
 import {
   getBlogFeaturedImageSrc,
@@ -88,6 +89,42 @@ function renderListItem(text: string) {
 function isNumberedHeading(heading: string | undefined): boolean {
   return !!heading && /^\d+\.\s/.test(heading);
 }
+
+const BLOG_RELATED_WHEELS: Record<string, string[]> = {
+  "random-name-picker-fair-fun-easy": [
+    "random-name-picker-wheel",
+    "random-student-picker",
+    "winner-picker-wheel",
+    "pick-out-of-a-hat-generator",
+    "team-generator-wheel",
+  ],
+  "best-icebreaker-games-office-meetings": [
+    "truth-or-dare-spinner-online",
+    "team-generator-wheel",
+    "random-name-picker-wheel",
+    "twister-spinner-online",
+  ],
+  "best-spin-wheel-games-for-students": [
+    "random-student-picker",
+    "alphabet-spinner-wheel",
+    "random-word-generator-wheel",
+    "abcd-spin-wheel",
+    "what-to-draw-wheel",
+  ],
+  "fun-ways-decide-where-to-eat-couples": [
+    "dinner-picker-wheel",
+    "fast-food-wheel",
+    "date-night-wheel",
+    "date-night-idea-wheel",
+    "movie-picker-wheel",
+  ],
+  "virtual-secret-santa-online": [
+    "secret-santa-wheel-generator",
+    "random-name-picker-wheel",
+    "giveaway-winner-picker-wheel",
+    "family-game-night-picker-wheel",
+  ],
+};
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -385,6 +422,39 @@ const BlogPost = () => {
           </section>
         ) : null}
 
+        {(() => {
+          const slugs = BLOG_RELATED_WHEELS[post.slug] ?? [];
+          const wheels = slugs
+            .map((s) => getWheelPageBySlug(s))
+            .filter(Boolean) as Array<{ slug: string; keywordPrimary: string; h1: string; metaDescription: string }>;
+          if (wheels.length === 0) return null;
+          return (
+            <section className="mt-10 rounded-xl border border-primary/15 bg-primary/5 p-6 md:p-8">
+              <h2 className="text-xl font-bold mb-4">Try These Wheels</h2>
+              <p className="text-sm text-muted-foreground mb-4">
+                Put what you just read into practice with these free tools:
+              </p>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {wheels.map((w) => (
+                  <li key={w.slug}>
+                    <Link
+                      to={`/${w.slug}`}
+                      className="group block rounded-lg border border-border bg-card p-4 hover:border-primary/40 transition-colors"
+                    >
+                      <span className="font-medium text-primary group-hover:underline">
+                        {w.keywordPrimary || w.h1}
+                      </span>
+                      <p className="text-xs text-muted-foreground mt-1 line-clamp-2">
+                        {w.metaDescription}
+                      </p>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          );
+        })()}
+
         <footer className="mt-12 flex flex-wrap gap-3 border-t border-border pt-8">
           <Button asChild variant="outline">
             <Link to={BLOG_INDEX_PATH} className="inline-flex items-center gap-2">
@@ -393,7 +463,7 @@ const BlogPost = () => {
             </Link>
           </Button>
           <Button asChild>
-            <Link to="/all-spin-wheels">Browse spin wheels</Link>
+            <Link to={WHEEL_HUB_PATH}>Browse spin wheels</Link>
           </Button>
         </footer>
       </article>

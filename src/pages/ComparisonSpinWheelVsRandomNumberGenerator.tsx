@@ -8,6 +8,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { SITE_ORIGIN, RAJA_AUTHOR, organizationJsonLd, articleJsonLd, breadcrumbListJsonLd } from "@/lib/schema";
 
 const ComparisonSpinWheelVsRandomNumberGenerator = () => {
   return (
@@ -28,6 +29,23 @@ const ComparisonSpinWheelVsRandomNumberGenerator = () => {
           rel="canonical"
           href="https://onlinespinwheel.fun/comparison-spin-wheel-vs-random-number-generator"
         />
+        <script type="application/ld+json">
+          {JSON.stringify([
+            organizationJsonLd(),
+            breadcrumbListJsonLd([
+              { name: "Home", url: `${SITE_ORIGIN}/` },
+              { name: "Comparisons", url: `${SITE_ORIGIN}/` },
+              { name: "Spin Wheel vs Random Number Generator" },
+            ]),
+            articleJsonLd({
+              title: "Spin Wheel vs Random Number Generator: Which is Better? | Online Spin Wheel",
+              description: "Compare spin wheels and random number generators for fair selection. Discover the pros and cons of each method and learn when to use which tool for optimal results.",
+              url: "https://onlinespinwheel.fun/comparison-spin-wheel-vs-random-number-generator",
+              dateModified: "2026-05-10",
+              authorName: RAJA_AUTHOR.name,
+            }),
+          ])}
+        </script>
       </Helmet>
 
       <article className="container mx-auto px-4 py-8 md:py-12 max-w-5xl">
