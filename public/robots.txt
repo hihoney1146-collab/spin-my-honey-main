@@ -1,5 +1,5 @@
-# Online Spin Wheel (onlinespinwheel.fun)
-# Dynamic robots.txt — search engines and AI crawlers
+# https://onlinespinwheel.fun
+# Vite + Vercel — all public pages crawlable; embed and tracking params excluded
 
 User-agent: *
 Allow: /
@@ -9,21 +9,5 @@ Disallow: /*?*utm_medium=
 Disallow: /*?*utm_campaign=
 Disallow: /*?*fbclid=
 Disallow: /*?*gclid=
-
-User-agent: Googlebot
-User-agent: Googlebot-Image
-User-agent: Bingbot
-Allow: /
-
-User-agent: GPTBot
-User-agent: ChatGPT-User
-User-agent: OAI-SearchBot
-User-agent: anthropic-ai
-User-agent: ClaudeBot
-User-agent: Claude-Web
-User-agent: Google-Extended
-User-agent: PerplexityBot
-User-agent: Applebot-Extended
-Allow: /
 
 Sitemap: https://onlinespinwheel.fun/sitemap.xml

@@ -51,3 +51,17 @@ await sharp({
 
 console.log("✅ public/logo.png");
 console.log("✅ public/og-image.png (1200×630)");
+
+// Crawlable JPEGs for images-sitemap.xml (Google Images / AI grounding)
+const blogSrcDir = path.join(root, "src", "assets", "blog-featured");
+const blogDestDir = path.join(publicDir, "blog-featured");
+if (fs.existsSync(blogSrcDir)) {
+  fs.mkdirSync(blogDestDir, { recursive: true });
+  let copied = 0;
+  for (const name of fs.readdirSync(blogSrcDir)) {
+    if (!name.endsWith(".jpg")) continue;
+    fs.copyFileSync(path.join(blogSrcDir, name), path.join(blogDestDir, name));
+    copied++;
+  }
+  if (copied > 0) console.log(`✅ public/blog-featured/ (${copied} images)`);
+}

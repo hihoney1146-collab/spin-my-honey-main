@@ -1,23 +1,31 @@
 /**
- * Writes public/sitemap.xml (build-time mirror of /api/sitemap for previews & fallbacks).
+ * Writes sitemap index + child sitemaps, robots.txt, llms.txt to public/
  */
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import {
-  buildSitemapXml,
   buildRobotsTxt,
   buildLlmsTxt,
-  collectSitemapEntries,
+  writeAllSitemapFiles,
+  CHILD_SITEMAPS,
 } from "./seo-routes.mjs";
 import { collectBlogSlugs } from "./blog-data-sources.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const xml = buildSitemapXml(root);
-fs.writeFileSync(path.join(root, "public", "sitemap.xml"), xml, "utf8");
-fs.writeFileSync(path.join(root, "public", "robots.txt"), buildRobotsTxt(), "utf8");
-fs.writeFileSync(path.join(root, "public", "llms.txt"), buildLlmsTxt(root), "utf8");
-const urlCount = collectSitemapEntries(root).length;
-const blogCount = collectBlogSlugs(root).length;
-console.log(`✅ Sitemap written (${urlCount} URLs, ${blogCount} blog posts) → public/sitemap.xml`);
+const publicDir = path.join(root, "public");
+
+const { pageCount, blogCount, wheelCount } = writeAllSitemapFiles(root);
+
+fs.writeFileSync(path.join(publicDir, "robots.txt"), buildRobotsTxt(), "utf8");
+fs.writeFileSync(path.join(publicDir, "llms.txt"), buildLlmsTxt(root), "utf8");
+
+const childNames = CHILD_SITEMAPS.map((c) => c.filename).join(", ");
+const totalUrls = pageCount + blogCount + wheelCount;
+const blogs = collectBlogSlugs(root).length;
+
+console.log(`✅ sitemap.xml (index) + ${childNames}`);
+console.log(
+  `   URLs: ${totalUrls} (${pageCount} pages, ${blogs} blog, ${wheelCount} wheels) + images-sitemap`,
+);
 console.log("✅ robots.txt and llms.txt updated");

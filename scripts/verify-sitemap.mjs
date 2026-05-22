@@ -1,35 +1,67 @@
 #!/usr/bin/env node
-/** Post-deploy: sitemap.xml is valid XML and reachable for Google Search Console. */
+/**
+ * Post-deploy: validate sitemap index + child sitemaps (GSC compatibility).
+ */
 const SITE = process.env.SITE_ORIGIN || "https://onlinespinwheel.fun";
-const url = `${SITE}/sitemap.xml`;
 
-try {
-  const res = await fetch(url, { redirect: "follow" });
-  const body = await res.text();
-  const ct = res.headers.get("content-type") || "";
+const SITEMAPS = [
+  { path: "/sitemap.xml", kind: "index" },
+  { path: "/pages-sitemap.xml", kind: "urlset" },
+  { path: "/blog-sitemap.xml", kind: "urlset" },
+  { path: "/wheels-sitemap.xml", kind: "urlset" },
+  { path: "/images-sitemap.xml", kind: "image" },
+];
 
-  if (!res.ok) {
-    console.error(`FAIL: HTTP ${res.status}`);
-    process.exit(1);
+let failed = 0;
+
+for (const { path, kind } of SITEMAPS) {
+  const url = `${SITE}${path}`;
+  try {
+    const res = await fetch(url, { redirect: "follow" });
+    const body = await res.text();
+    const ct = res.headers.get("content-type") || "";
+
+    if (!res.ok) {
+      console.error(`FAIL ${path}: HTTP ${res.status}`);
+      failed++;
+      continue;
+    }
+    if (!ct.includes("xml")) {
+      console.error(`FAIL ${path}: Content-Type "${ct}" (expected XML)`);
+      failed++;
+      continue;
+    }
+    if (!body.trimStart().startsWith("<?xml")) {
+      console.error(`FAIL ${path}: body is not XML`);
+      console.error(body.slice(0, 120));
+      failed++;
+      continue;
+    }
+
+    if (kind === "index" && !body.includes("<sitemapindex")) {
+      console.error(`FAIL ${path}: expected sitemap index`);
+      failed++;
+      continue;
+    }
+    if (kind === "urlset" && !body.includes("<urlset")) {
+      console.error(`FAIL ${path}: expected urlset`);
+      failed++;
+      continue;
+    }
+    if (kind === "image" && !body.includes("image:image")) {
+      console.warn(`WARN ${path}: no image:image entries (blog images may be missing pre-build)`);
+    }
+
+    const locs =
+      kind === "index"
+        ? (body.match(/<sitemap>/g) || []).length
+        : (body.match(/<loc>/g) || []).length;
+    console.log(`OK  ${url} (${locs} ${kind === "index" ? "child sitemaps" : "URLs"})`);
+  } catch (err) {
+    console.error(`FAIL ${path}: ${err.message}`);
+    failed++;
   }
-  if (!ct.includes("xml")) {
-    console.error(`FAIL: Content-Type is "${ct}" (expected application/xml)`);
-    process.exit(1);
-  }
-  if (!body.trimStart().startsWith("<?xml")) {
-    console.error("FAIL: body is not XML (got HTML or empty?)");
-    console.error(body.slice(0, 200));
-    process.exit(1);
-  }
-  const count = (body.match(/<loc>/g) || []).length;
-  if (count < 1) {
-    console.error("FAIL: no <loc> entries in sitemap");
-    process.exit(1);
-  }
-  console.log(`OK  ${url}`);
-  console.log(`    Content-Type: ${ct}`);
-  console.log(`    URLs: ${count}`);
-} catch (err) {
-  console.error(`FAIL: ${err.message}`);
-  process.exit(1);
 }
+
+if (failed > 0) process.exit(1);
+console.log("\nAll sitemap endpoints validated.");
