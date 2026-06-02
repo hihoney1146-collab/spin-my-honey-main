@@ -23,6 +23,11 @@ export function organizationJsonLd() {
     name: ORG_NAME,
     url: SITE_ORIGIN,
     logo: `${SITE_ORIGIN}/logo.png`,
+    founder: {
+      "@type": "Person",
+      name: RAJA_AUTHOR.name,
+      url: RAJA_AUTHOR.url,
+    },
     contactPoint: {
       "@type": "ContactPoint",
       email: "onlinespinwheel@gmail.com",
@@ -48,6 +53,42 @@ export function personAuthorJsonLd(
       name: author.worksFor,
       url: author.worksForUrl,
     },
+    knowsAbout: [
+      "Web Development",
+      "SEO",
+      "Spin Wheel Tools",
+      "Random Selection",
+      "Educational Technology",
+    ],
+  };
+}
+
+/** Parse numbered steps from CSV "How To Use" text */
+export function parseHowToSteps(howToUse: string): string[] {
+  return howToUse
+    .split(/\n+/)
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .map((line) => line.replace(/^\d+\.\s*/, "").trim())
+    .filter(Boolean);
+}
+
+export function howToJsonLd(opts: {
+  name: string;
+  description: string;
+  steps: string[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: opts.name,
+    description: opts.description,
+    step: opts.steps.map((text, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      name: text.length > 72 ? `${text.slice(0, 69)}...` : text,
+      text,
+    })),
   };
 }
 

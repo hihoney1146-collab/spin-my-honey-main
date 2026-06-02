@@ -30,6 +30,29 @@ export function collectBlogSlugs(root) {
   return slugs;
 }
 
+/** @returns {{ slug: string; updated: string }[]} ISO date YYYY-MM-DD per post */
+export function collectBlogPostsMeta(root) {
+  const posts = [];
+  const seen = new Set();
+  for (const filePath of readBlogDataSources(root)) {
+    const src = fs.readFileSync(filePath, "utf8");
+    const slugRe = /slug:\s*"([\w-]+)"/g;
+    let match;
+    while ((match = slugRe.exec(src)) !== null) {
+      const slug = match[1];
+      if (seen.has(slug)) continue;
+      seen.add(slug);
+      const slice = src.slice(match.index, match.index + 800);
+      const updatedMatch = slice.match(/updated:\s*"([\d-]+)"/);
+      posts.push({
+        slug,
+        updated: updatedMatch?.[1] ?? new Date().toISOString().slice(0, 10),
+      });
+    }
+  }
+  return posts;
+}
+
 /** @returns {import('./static-page-meta.mjs').RouteMeta[]} */
 export function collectBlogRouteMeta(root, { canonicalUrl, SITE }) {
   const posts = [];

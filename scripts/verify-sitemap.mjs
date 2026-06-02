@@ -5,16 +5,24 @@
 const SITE = process.env.SITE_ORIGIN || "https://onlinespinwheel.fun";
 
 const SITEMAPS = [
-  { path: "/sitemap.xml", kind: "index" },
-  { path: "/pages-sitemap.xml", kind: "urlset" },
-  { path: "/blog-sitemap.xml", kind: "urlset" },
-  { path: "/wheels-sitemap.xml", kind: "urlset" },
-  { path: "/images-sitemap.xml", kind: "image" },
+  { path: "/sitemap.xml", kind: "index", minLocs: 4 },
+  { path: "/pages-sitemap.xml", kind: "urlset", minLocs: 10 },
+  { path: "/wheels-sitemap.xml", kind: "urlset", minLocs: 40 },
+  { path: "/blog-sitemap.xml", kind: "urlset", minLocs: 1 },
+  { path: "/images-sitemap.xml", kind: "image", minLocs: 1 },
+];
+
+const ROBOTS_CHECKS = [
+  { pattern: /Disallow:\s*\/\s*$/m, failIf: true, label: "blanket Disallow /" },
+  { pattern: /User-agent:\s*GPTBot[\s\S]*?Disallow:\s*\//i, failIf: true, label: "GPTBot blocked" },
+  { pattern: /User-agent:\s*ClaudeBot[\s\S]*?Disallow:\s*\//i, failIf: true, label: "ClaudeBot blocked" },
 ];
 
 let failed = 0;
 
-for (const { path, kind } of SITEMAPS) {
+console.log("=== Sitemaps ===\n");
+
+for (const { path, kind, minLocs } of SITEMAPS) {
   const url = `${SITE}${path}`;
   try {
     const res = await fetch(url, { redirect: "follow" });
@@ -32,8 +40,13 @@ for (const { path, kind } of SITEMAPS) {
       continue;
     }
     if (!body.trimStart().startsWith("<?xml")) {
-      console.error(`FAIL ${path}: body is not XML`);
+      console.error(`FAIL ${path}: body is not XML (HTML or empty?)`);
       console.error(body.slice(0, 120));
+      failed++;
+      continue;
+    }
+    if (body.includes("<!DOCTYPE html") || body.includes("<html")) {
+      console.error(`FAIL ${path}: response looks like HTML (SPA fallback?)`);
       failed++;
       continue;
     }
@@ -48,20 +61,66 @@ for (const { path, kind } of SITEMAPS) {
       failed++;
       continue;
     }
-    if (kind === "image" && !body.includes("image:image")) {
-      console.warn(`WARN ${path}: no image:image entries (blog images may be missing pre-build)`);
-    }
 
     const locs =
       kind === "index"
         ? (body.match(/<sitemap>/g) || []).length
         : (body.match(/<loc>/g) || []).length;
-    console.log(`OK  ${url} (${locs} ${kind === "index" ? "child sitemaps" : "URLs"})`);
+
+    if (locs < minLocs) {
+      console.error(`FAIL ${path}: expected at least ${minLocs} entries, got ${locs}`);
+      failed++;
+      continue;
+    }
+
+    console.log(`OK  ${url}`);
+    console.log(`    Content-Type: ${ct.split(";")[0]}`);
+    console.log(`    Entries: ${locs}`);
   } catch (err) {
     console.error(`FAIL ${path}: ${err.message}`);
     failed++;
   }
 }
 
-if (failed > 0) process.exit(1);
-console.log("\nAll sitemap endpoints validated.");
+console.log("\n=== robots.txt ===\n");
+
+try {
+  const res = await fetch(`${SITE}/robots.txt`, { redirect: "follow" });
+  const body = await res.text();
+  if (!res.ok) {
+    console.error(`FAIL robots.txt: HTTP ${res.status}`);
+    failed++;
+  } else {
+    let robotsOk = true;
+    for (const { pattern, failIf, label } of ROBOTS_CHECKS) {
+      if (pattern.test(body) === failIf) {
+        console.error(`FAIL robots.txt: ${label}`);
+        robotsOk = false;
+        failed++;
+      }
+    }
+    if (robotsOk) {
+      if (!body.includes("Sitemap:")) {
+        console.error("FAIL robots.txt: missing Sitemap directive");
+        failed++;
+      } else {
+        console.log(`OK  ${SITE}/robots.txt`);
+      }
+    }
+  }
+} catch (err) {
+  console.error(`FAIL robots.txt: ${err.message}`);
+  failed++;
+}
+
+console.log("\n=== GSC checklist ===\n");
+console.log(`1. Submit only: ${SITE}/sitemap.xml`);
+console.log("2. Request indexing: /, /all-spin-wheels, /random-name-picker-wheel, /about-us, /author/raja-jahangir");
+console.log("3. If Couldn't Fetch persists: see docs/CLOUDFLARE_SEO.md and wait 24-48h");
+console.log("4. Purge Cloudflare cache after deploy\n");
+
+if (failed > 0) {
+  console.error(`${failed} check(s) failed.`);
+  process.exit(1);
+}
+console.log("All SEO endpoint checks passed.");

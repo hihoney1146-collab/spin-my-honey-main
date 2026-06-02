@@ -96,6 +96,9 @@ const records = (parsed.data || [])
       category: row["Category"] || "",
       wheelOptions: parseWheelOptions(row["Wheel Options"]),
       faqs: parseFaqsBlock(row["FAQs"]),
+      ...(row["Last Updated"]
+        ? { lastUpdated: String(row["Last Updated"]).trim().slice(0, 10) }
+        : {}),
     };
   })
   .filter(Boolean);

@@ -9,6 +9,8 @@ export type ContentSection = {
 
 export type EnrichedContent = {
   definitionSnippet: string;
+  /** Optional first-person note for featured wheels only */
+  personalNote?: string;
   useCases: ContentSection;
   benefits: ContentSection;
   tips: ContentSection;
@@ -614,6 +616,26 @@ function getCategoryData(category: string) {
   return CATEGORY_DATA[category] ?? FALLBACK;
 }
 
+/** Authentic first-person intros for top wheels (E-E-A-T; not mass-generated). */
+const FEATURED_PERSONAL_NOTES: Record<string, string> = {
+  "random-name-picker-wheel":
+    "We built this name picker after teachers and streamers told us they needed a fair draw without signup friction.",
+  "yes-or-no-wheel":
+    "This yes-or-no wheel started as a quick decision helper for our team and grew into one of the most-used tools on the site.",
+  "random-student-picker":
+    "Our classroom picker was designed with teachers who wanted every student to get an equal chance to participate.",
+  "team-generator-wheel":
+    "We added the team generator so groups could split fairly without arguing over who goes where.",
+  "winner-picker-wheel":
+    "Giveaway hosts asked for a visible, trustworthy winner pick, so we made this wheel easy to screen-record and share.",
+  "dinner-picker-wheel":
+    "We use this dinner wheel ourselves when the team cannot agree on where to eat after work.",
+  "secret-santa-wheel-generator":
+    "Secret Santa season pushed us to ship a dedicated wheel that keeps pairings random and easy to run online.",
+  "movie-picker-wheel":
+    "Movie night indecision is real, so we published this wheel to end the scroll-and-debate loop in one spin.",
+};
+
 const BLOG_WHEEL_MAP: Record<string, string[]> = {
   "random-name-picker-wheel": ["random-name-picker-fair-fun-easy"],
   "random-student-picker": [
@@ -660,6 +682,7 @@ export function getEnrichedContent(page: WheelPageRecord): EnrichedContent {
 
   return {
     definitionSnippet,
+    personalNote: FEATURED_PERSONAL_NOTES[page.slug],
     useCases: { heading: `Best Use Cases for the ${keyword}`, items: cat.useCases },
     benefits: { heading: `Benefits of Using This ${keyword}`, items: cat.benefits },
     tips: { heading: `Tips for Getting the Most Out of Your Spin`, items: cat.tips },

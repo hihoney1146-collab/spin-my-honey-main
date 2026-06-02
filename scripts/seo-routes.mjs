@@ -5,7 +5,10 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import Papa from "papaparse";
-import { collectBlogSlugs } from "./blog-data-sources.mjs";
+import {
+  collectBlogSlugs,
+  collectBlogPostsMeta,
+} from "./blog-data-sources.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -189,26 +192,41 @@ function sitemapIndexEntry(loc, lastmod) {
   </sitemap>`;
 }
 
+function wheelSitemapPriority(slug) {
+  return FEATURED_WHEEL_SLUGS.includes(slug) ? "0.9" : "0.7";
+}
+
+function wheelSitemapLastmod(wheel, buildDate) {
+  if (wheel?.lastUpdated && /^\d{4}-\d{2}-\d{2}$/.test(wheel.lastUpdated)) {
+    return wheel.lastUpdated;
+  }
+  return buildDate;
+}
+
 export function buildPagesSitemapXml(root = getProjectRoot()) {
-  const lastmod = getSitemapLastmod();
+  const buildDate = getSitemapLastmod();
   const blocks = PAGES_SITEMAP_ROUTES.map((r) =>
-    urlBlock(r.path, r.changefreq, r.priority, lastmod),
+    urlBlock(r.path, r.changefreq, r.priority, buildDate),
   );
   return wrapUrlset(blocks);
 }
 
 export function buildBlogSitemapXml(root = getProjectRoot()) {
-  const lastmod = getSitemapLastmod();
-  const blocks = collectBlogSlugs(root).map((slug) =>
-    urlBlock(`/blog/${slug}`, "monthly", "0.6", lastmod),
+  const blocks = collectBlogPostsMeta(root).map((post) =>
+    urlBlock(`/blog/${post.slug}`, "monthly", "0.6", post.updated),
   );
   return wrapUrlset(blocks);
 }
 
 export function buildWheelsSitemapXml(root = getProjectRoot()) {
-  const lastmod = getSitemapLastmod();
-  const blocks = loadWheelSlugsFromCsv(root).map((slug) =>
-    urlBlock(`/${slug}`, "weekly", "0.7", lastmod),
+  const buildDate = getSitemapLastmod();
+  const blocks = loadWheelRecords(root).map((wheel) =>
+    urlBlock(
+      `/${wheel.slug}`,
+      "weekly",
+      wheelSitemapPriority(wheel.slug),
+      wheelSitemapLastmod(wheel, buildDate),
+    ),
   );
   return wrapUrlset(blocks);
 }
@@ -227,8 +245,14 @@ export function buildImagesSitemapXml(root = getProjectRoot()) {
         {
           loc: `${SITE}/og-image.png`,
           title: "Online Spin Wheel — free random picker",
+          caption:
+            "Colorful online spin wheel for names, numbers, prizes, and fair random decisions",
         },
-        { loc: `${SITE}/logo.png`, title: "Online Spin Wheel logo" },
+        {
+          loc: `${SITE}/logo.png`,
+          title: "Online Spin Wheel logo",
+          caption: "Online Spin Wheel brand logo",
+        },
       ],
     },
     {
@@ -237,6 +261,7 @@ export function buildImagesSitemapXml(root = getProjectRoot()) {
         {
           loc: `${SITE}/og-image.png`,
           title: "All specialty spin wheels",
+          caption: "Directory of free specialty spin wheels by category",
         },
       ],
     },
@@ -257,6 +282,7 @@ export function buildImagesSitemapXml(root = getProjectRoot()) {
           {
             loc: `${SITE}/blog-featured/${slug}.jpg`,
             title: `Blog: ${slug.replace(/-/g, " ")}`,
+            caption: `Featured image for blog article ${slug.replace(/-/g, " ")}`,
           },
         ],
         lastmod,
@@ -269,12 +295,15 @@ export function buildImagesSitemapXml(root = getProjectRoot()) {
 
 function imageUrlBlock(pagePath, images, lastmod) {
   const imageTags = images
-    .map(
-      (img) => `    <image:image>
+    .map((img) => {
+      const caption = img.caption
+        ? `\n      <image:caption>${escapeXml(img.caption)}</image:caption>`
+        : "";
+      return `    <image:image>
       <image:loc>${escapeXml(img.loc)}</image:loc>
-      <image:title>${escapeXml(img.title)}</image:title>
-    </image:image>`,
-    )
+      <image:title>${escapeXml(img.title)}</image:title>${caption}
+    </image:image>`;
+    })
     .join("\n");
 
   return `  <url>
@@ -286,8 +315,8 @@ ${imageTags}
 
 export const CHILD_SITEMAPS = [
   { filename: "pages-sitemap.xml", builder: buildPagesSitemapXml },
-  { filename: "blog-sitemap.xml", builder: buildBlogSitemapXml },
   { filename: "wheels-sitemap.xml", builder: buildWheelsSitemapXml },
+  { filename: "blog-sitemap.xml", builder: buildBlogSitemapXml },
   { filename: "images-sitemap.xml", builder: buildImagesSitemapXml },
 ];
 
@@ -349,7 +378,8 @@ export function writeAllSitemapFiles(root = getProjectRoot()) {
  */
 export function buildRobotsTxt() {
   return `# https://onlinespinwheel.fun
-# Vite + Vercel — all public pages crawlable; embed and tracking params excluded
+# All crawlers (Googlebot, GPTBot, ClaudeBot, PerplexityBot, etc.) inherit User-agent: * rules below.
+# If Cloudflare injects AI bot blocks, see docs/CLOUDFLARE_SEO.md
 
 User-agent: *
 Allow: /
@@ -365,20 +395,33 @@ Sitemap: ${SITE}/sitemap.xml
 }
 
 /**
- * Concise llms.txt for AI crawlers (GPTBot, ClaudeBot, PerplexityBot, etc.)
+ * llms.txt for AI crawlers — full wheel directory with descriptions
  */
 export function buildLlmsTxt(root = getProjectRoot()) {
-  const wheels = loadWheelRecords(root);
-  const categories = [...new Set(wheels.map((w) => w.category || "Other"))].sort();
-  const featured = FEATURED_WHEEL_SLUGS.map((slug) => {
-    const w = wheels.find((r) => r.slug === slug);
-    return { slug, label: w?.keywordPrimary || w?.h1 || slug };
-  });
+  const buildDate = getSitemapLastmod();
+  const grouped = loadWheelsGroupedByCategory(root);
+  const wheelLines = [];
+
+  for (const { category, wheels } of grouped) {
+    wheelLines.push("", `## ${category} (${wheels.length})`);
+    for (const w of wheels) {
+      const rec = loadWheelRecords(root).find((r) => r.slug === w.slug);
+      const label = rec?.keywordPrimary || rec?.h1 || w.title || w.slug;
+      const desc = (rec?.metaDescription || "").trim();
+      wheelLines.push(
+        desc
+          ? `${SITE}/${w.slug} — ${label}: ${desc}`
+          : `${SITE}/${w.slug} — ${label}`,
+      );
+    }
+  }
 
   return [
     "# Online Spin Wheel",
     "",
     "> Free browser spin wheels for fair random picks: names, numbers, teams, giveaways, classrooms, and decisions.",
+    "",
+    `Last updated: ${buildDate}`,
     "",
     "## Identity",
     `- Canonical site: ${SITE}/`,
@@ -405,12 +448,9 @@ export function buildLlmsTxt(root = getProjectRoot()) {
     `${SITE}/case-study-school-using-spin-wheels`,
     `${SITE}/case-study-community-event-using-spin-wheels`,
     "",
-    "## Featured tools",
-    ...featured.map((f) => `${SITE}/${f.slug} — ${f.label}`),
-    "",
-    "## Wheel categories (" + wheels.length + " tools)",
-    `Full directory: ${SITE}/all-spin-wheels`,
-    "Categories: " + categories.join(", "),
+    "## All specialty wheels",
+    `Directory hub: ${SITE}/all-spin-wheels`,
+    ...wheelLines,
     "",
     "## Blog",
     `${SITE}/blog`,
@@ -427,8 +467,8 @@ export function buildLlmsTxt(root = getProjectRoot()) {
     "## Machine-readable resources",
     `- Sitemap index: ${SITE}/sitemap.xml`,
     `- Pages: ${SITE}/pages-sitemap.xml`,
-    `- Blog: ${SITE}/blog-sitemap.xml`,
     `- Wheels: ${SITE}/wheels-sitemap.xml`,
+    `- Blog: ${SITE}/blog-sitemap.xml`,
     `- Images: ${SITE}/images-sitemap.xml`,
     `- ads.txt: ${SITE}/ads.txt`,
     "",

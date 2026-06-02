@@ -1,5 +1,6 @@
 # https://onlinespinwheel.fun
-# Vite + Vercel — all public pages crawlable; embed and tracking params excluded
+# All crawlers (Googlebot, GPTBot, ClaudeBot, PerplexityBot, etc.) inherit User-agent: * rules below.
+# If Cloudflare injects AI bot blocks, see docs/CLOUDFLARE_SEO.md
 
 User-agent: *
 Allow: /

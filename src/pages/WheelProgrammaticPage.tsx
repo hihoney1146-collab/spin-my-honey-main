@@ -8,6 +8,7 @@ import {
   BLOG_INDEX_PATH,
   comparisonLinks,
   tutorialLinks,
+  caseStudyLinks,
 } from "@/lib/siteInternalLinks";
 import { Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -18,7 +19,11 @@ import {
   faqPageJsonLd,
   organizationJsonLd,
   breadcrumbListJsonLd,
+  howToJsonLd,
+  parseHowToSteps,
 } from "@/lib/schema";
+import { AuthorByline } from "@/components/AuthorByline";
+import { AdSlot } from "@/components/AdSlot";
 import {
   getEnrichedContent,
   getRelatedBlogPosts,
@@ -64,6 +69,12 @@ const WheelProgrammaticPage = () => {
   ];
   const enriched = getEnrichedContent(page);
   const relatedBlogs = getRelatedBlogPosts(enriched.relatedBlogSlugs);
+  const howToSteps = parseHowToSteps(page.howToUse);
+  const relatedGuides = [
+    ...tutorialLinks,
+    ...comparisonLinks.slice(0, 2),
+    ...caseStudyLinks.slice(0, 1),
+  ];
 
   return (
     <>
@@ -106,6 +117,15 @@ const WheelProgrammaticPage = () => {
                   ),
                 ]
               : []),
+            ...(howToSteps.length > 0
+              ? [
+                  howToJsonLd({
+                    name: `How to use the ${page.keywordPrimary || page.h1}`,
+                    description: page.metaDescription,
+                    steps: howToSteps,
+                  }),
+                ]
+              : []),
           ])}
         </script>
       </Helmet>
@@ -143,12 +163,15 @@ const WheelProgrammaticPage = () => {
         </h1>
 
         {/* Answer-first definition snippet for AI citation */}
-        <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-8 max-w-3xl">
-          {enriched.definitionSnippet}
+        <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4 max-w-3xl">
+          {enriched.personalNote
+            ? `${enriched.personalNote} ${enriched.definitionSnippet}`
+            : enriched.definitionSnippet}
         </p>
+        <AuthorByline />
 
         {/* Interactive wheel */}
-        <div className="mb-10">
+        <div className="mb-6">
           <SpinWheel
             key={page.slug}
             presetOptionLabels={
@@ -156,6 +179,8 @@ const WheelProgrammaticPage = () => {
             }
           />
         </div>
+
+        <AdSlot className="mb-10 max-w-3xl mx-auto" />
 
         {/* Hub + Related Wheels */}
         <Card className="p-5 md:p-6 mb-8 border-primary/15">
@@ -195,6 +220,24 @@ const WheelProgrammaticPage = () => {
             ))}
           </ul>
         </Card>
+
+        {relatedGuides.length > 0 ? (
+          <Card className="p-5 md:p-6 mb-8">
+            <h2 className="text-lg font-bold mb-3">Related guides</h2>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+              {relatedGuides.map((g) => (
+                <li key={g.to}>
+                  <Link
+                    to={g.to}
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    {g.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Card>
+        ) : null}
 
         {related.length > 0 ? (
           <Card className="p-5 md:p-6 mb-8">
@@ -269,13 +312,11 @@ const WheelProgrammaticPage = () => {
             <h2 className="text-xl md:text-2xl font-bold mb-4">
               {enriched.examples.heading}
             </h2>
-            <p className="text-muted-foreground mb-4">
-              {getEnrichedContent(page).definitionSnippet
-                ? enriched.examples.items.length > 0
-                  ? `Here are practical ways people use this tool every day:`
-                  : ""
-                : ""}
-            </p>
+            {enriched.examples.items.length > 0 ? (
+              <p className="text-muted-foreground mb-4">
+                Here are practical ways people use this tool every day:
+              </p>
+            ) : null}
             <ul className="space-y-3">
               {enriched.examples.items.map((item, i) => (
                 <li

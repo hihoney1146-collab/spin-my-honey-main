@@ -292,7 +292,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
               </ul>
             </div>
 
-            {/* Resources — tutorials, comparisons, case studies */}
+            {/* Resources, tutorials, comparisons, case studies */}
             <div>
               <h3 className="font-semibold text-base mb-4 text-foreground">
                 Resources

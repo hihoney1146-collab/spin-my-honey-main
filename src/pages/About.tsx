@@ -31,6 +31,21 @@ const About = () => {
           </p>
         </div>
 
+        <Card className="p-6 md:p-8 lg:p-10 mb-6 md:mb-8 border-primary/15 bg-primary/5">
+          <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+            Meet our founder{" "}
+            <Link
+              to="/author/raja-jahangir"
+              className="font-semibold text-primary hover:underline"
+            >
+              Raja Jahangir
+            </Link>
+            , SEO and growth lead for Online Spin Wheel. He oversees editorial
+            quality, tool accuracy, and how we explain fair random selection on
+            every page.
+          </p>
+        </Card>
+
         <Card className="p-6 md:p-8 lg:p-10 mb-6 md:mb-8">
           <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4">
             Welcome to onlinespinwheel.fun. We are a small team of developers,
