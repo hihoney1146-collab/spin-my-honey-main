@@ -8,6 +8,10 @@ import {
   Lock,
   FileText,
   BookOpen,
+  Instagram,
+  Youtube,
+  Twitter,
+  Pin,
 } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { Button } from "@/components/ui/button";
@@ -52,6 +56,29 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
     { to: "/contact-us", label: "Contact", icon: Mail },
     { to: "/privacy-policy", label: "Privacy", icon: Lock },
     { to: "/disclaimer", label: "Disclaimer", icon: FileText },
+  ];
+
+  const socialLinks = [
+    {
+      href: "https://www.pinterest.com/onlinespinwheel/",
+      label: "Pinterest",
+      icon: Pin,
+    },
+    {
+      href: "https://www.instagram.com/onlinespinwheel/",
+      label: "Instagram",
+      icon: Instagram,
+    },
+    {
+      href: "https://x.com/onlinespinwheel",
+      label: "X",
+      icon: Twitter,
+    },
+    {
+      href: "https://www.youtube.com/@OnlineSpinWheel",
+      label: "YouTube",
+      icon: Youtube,
+    },
   ];
 
   return (
@@ -262,6 +289,27 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                 <span className="text-xs text-muted-foreground">
                   Online & Ready to Spin
                 </span>
+              </div>
+              <div className="mt-5">
+                <h3 className="sr-only">Follow Online Spin Wheel</h3>
+                <div className="flex flex-wrap items-center gap-2">
+                  {socialLinks.map((link) => {
+                    const Icon = link.icon;
+                    return (
+                      <a
+                        key={link.href}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Follow Online Spin Wheel on ${link.label}`}
+                        title={link.label}
+                        className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background/60 text-muted-foreground transition-all duration-200 hover:border-primary/40 hover:bg-primary/10 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                      >
+                        <Icon className="h-4 w-4" aria-hidden="true" />
+                      </a>
+                    );
+                  })}
+                </div>
               </div>
             </div>
 

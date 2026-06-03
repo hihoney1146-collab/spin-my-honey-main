@@ -4,6 +4,7 @@ const ADS_TXT_LINE =
 
 export default function handler(_req, res) {
   res.setHeader("Content-Type", "text/plain; charset=utf-8");
-  res.setHeader("Cache-Control", "public, max-age=3600, s-maxage=86400");
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+  res.setHeader("X-Robots-Tag", "noindex");
   res.status(200).send(ADS_TXT_LINE);
 }
