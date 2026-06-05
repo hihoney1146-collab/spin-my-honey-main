@@ -22,6 +22,10 @@ import {
   ChevronRight,
   ChevronDown,
   ListX,
+  Flame,
+  TrendingUp,
+  Sparkles,
+  Trophy,
 } from "lucide-react";
 import confetti from "canvas-confetti";
 import { toast } from "sonner";
@@ -66,6 +70,17 @@ const ENTRIES_PAGE_SIZE = 10;
 /** Logical coordinate space for all drawing; buffer is this × DPR × display scale. */
 const WHEEL_LOGICAL_PX = 480;
 const MAX_CANVAS_DPR = 3;
+
+const formatSpinCount = (count: number) =>
+  new Intl.NumberFormat("en-US").format(Math.max(0, count));
+
+const readSpinCounterResponse = async (response: Response) => {
+  if (!response.ok) return null;
+  const data = (await response.json()) as { count?: unknown };
+  return typeof data.count === "number" && Number.isFinite(data.count)
+    ? data.count
+    : null;
+};
 
 function syncCanvasPhysicalSize(canvas: HTMLCanvasElement): number {
   const rect = canvas.getBoundingClientRect();
@@ -226,6 +241,7 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
   const [showWinnerDialog, setShowWinnerDialog] = useState(false);
   const [winnerColor, setWinnerColor] = useState<string>("");
   const [winnerId, setWinnerId] = useState<string>("");
+  const [spinCount, setSpinCount] = useState(0);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pointerRef = useRef<HTMLDivElement>(null);
   const [loadedImages, setLoadedImages] = useState<
@@ -308,6 +324,58 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
     } catch {
       /* audio optional */
     }
+  };
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const loadSpinCounter = () => {
+      if (document.visibilityState === "hidden") return;
+
+      fetch("/api/spin-counter", {
+        method: "GET",
+        headers: { Accept: "application/json" },
+        cache: "no-store",
+      })
+        .then(readSpinCounterResponse)
+        .then((count) => {
+          if (!cancelled && count !== null) {
+            setSpinCount(count);
+          }
+        })
+        .catch(() => {
+          /* Counter is optional; the wheel must keep working offline or locally. */
+        });
+    };
+
+    loadSpinCounter();
+    const refreshId = window.setInterval(loadSpinCounter, 15000);
+    document.addEventListener("visibilitychange", loadSpinCounter);
+
+    return () => {
+      cancelled = true;
+      window.clearInterval(refreshId);
+      document.removeEventListener("visibilitychange", loadSpinCounter);
+    };
+  }, []);
+
+  const incrementSpinCounter = () => {
+    setSpinCount((count) => count + 1);
+
+    fetch("/api/spin-counter", {
+      method: "POST",
+      headers: { Accept: "application/json" },
+      cache: "no-store",
+    })
+      .then(readSpinCounterResponse)
+      .then((count) => {
+        if (count !== null) {
+          setSpinCount(count);
+        }
+      })
+      .catch(() => {
+        /* Keep the optimistic count for this session if the API is unavailable. */
+      });
   };
 
   // Save entries to localStorage whenever they change (skip preset/programmatic wheels)
@@ -820,6 +888,7 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
     isSpinningRef.current = true;
     setIsSpinning(true);
     setWinner(null);
+    incrementSpinCounter();
     triggerHaptic("medium");
 
     // Track spin event
@@ -1015,45 +1084,112 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
         {/* Winner Display */}
         {winner && (
           <Card
-            className="p-3 sm:p-4 lg:p-5 w-full max-w-[380px] xs:max-w-[420px] sm:max-w-[500px] md:max-w-[560px] lg:max-w-[580px] xl:max-w-[620px] 2xl:max-w-[660px] mx-auto border-2 shadow-2xl animate-in fade-in zoom-in duration-500 relative overflow-hidden backdrop-blur-sm"
+            className="w-full max-w-[380px] xs:max-w-[420px] sm:max-w-[500px] md:max-w-[560px] lg:max-w-[580px] xl:max-w-[620px] 2xl:max-w-[660px] mx-auto border-2 shadow-2xl animate-in fade-in zoom-in-95 duration-500 relative overflow-hidden backdrop-blur-xl"
             style={{
-              backgroundColor: `${winnerColor}10`,
+              background: `linear-gradient(135deg, ${winnerColor}24 0%, hsl(var(--card) / 0.96) 44%, ${winnerColor}18 100%)`,
               borderColor: winnerColor,
+              boxShadow: `0 22px 70px ${winnerColor}22, inset 0 1px 0 rgba(255,255,255,0.16)`,
             }}
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-pulse" />
-            <div className="relative z-10">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <div
-                  className="w-2 h-2 rounded-full animate-pulse shadow-lg"
-                  style={{
-                    backgroundColor: winnerColor,
-                    boxShadow: `0 0 10px ${winnerColor}`,
-                  }}
-                />
-                <h3
-                  className="text-sm sm:text-base lg:text-lg font-bold text-center tracking-wide"
-                  style={{ color: winnerColor }}
-                >
-                  🎉 WINNER 🎉
-                </h3>
-                <div
-                  className="w-2 h-2 rounded-full animate-pulse shadow-lg"
-                  style={{
-                    backgroundColor: winnerColor,
-                    boxShadow: `0 0 10px ${winnerColor}`,
-                  }}
-                />
-              </div>
-              <p
-                className="text-lg sm:text-xl lg:text-2xl font-extrabold text-center break-words"
-                style={{ color: winnerColor }}
+            <div
+              className="absolute inset-x-0 top-0 h-1"
+              style={{ backgroundColor: winnerColor }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-white/12 via-transparent to-black/5" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-60 motion-safe:animate-[pulse_2.8s_ease-in-out_infinite]" />
+
+            <div className="relative z-10 flex flex-col items-center px-4 py-4 sm:px-6 sm:py-5">
+              <div
+                className="mb-3 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-[11px] font-black uppercase tracking-wide shadow-sm"
+                style={{
+                  color: winnerColor,
+                  borderColor: `${winnerColor}66`,
+                  backgroundColor: `${winnerColor}16`,
+                }}
               >
-                {winner}
-              </p>
+                <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
+                Winner selected
+                <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
+              </div>
+
+              <div className="flex w-full items-center justify-center gap-3">
+                <div
+                  className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-xl border sm:flex"
+                  style={{
+                    color: winnerColor,
+                    borderColor: `${winnerColor}55`,
+                    backgroundColor: `${winnerColor}14`,
+                  }}
+                >
+                  <PartyPopper className="h-5 w-5" aria-hidden="true" />
+                </div>
+
+                <div className="min-w-0 text-center">
+                  <p
+                    className="text-2xl font-black leading-tight tracking-normal sm:text-3xl lg:text-4xl"
+                    style={{
+                      color: winnerColor,
+                      textShadow: `0 0 22px ${winnerColor}33`,
+                    }}
+                  >
+                    {winner}
+                  </p>
+                  <div className="mt-2 flex items-center justify-center gap-2 text-xs font-semibold text-muted-foreground sm:text-sm">
+                    <Trophy
+                      className="h-4 w-4"
+                      style={{ color: winnerColor }}
+                      aria-hidden="true"
+                    />
+                    <span>Final pick</span>
+                  </div>
+                </div>
+
+                <div
+                  className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-xl border sm:flex"
+                  style={{
+                    color: winnerColor,
+                    borderColor: `${winnerColor}55`,
+                    backgroundColor: `${winnerColor}14`,
+                  }}
+                >
+                  <PartyPopper className="h-5 w-5" aria-hidden="true" />
+                </div>
+              </div>
             </div>
           </Card>
         )}
+
+        <div className="w-full max-w-[380px] xs:max-w-[420px] sm:max-w-[500px] md:max-w-[560px] lg:max-w-[580px] xl:max-w-[620px] 2xl:max-w-[660px] mx-auto">
+          <div className="relative overflow-hidden rounded-2xl border border-orange-300/40 bg-gradient-to-r from-orange-500/10 via-yellow-400/10 to-emerald-500/10 px-4 py-3 shadow-lg shadow-orange-500/10 dark:border-orange-300/20 dark:from-orange-400/15 dark:via-yellow-300/10 dark:to-emerald-400/15">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent opacity-60 motion-safe:animate-[pulse_3s_ease-in-out_infinite]" />
+            <div className="relative flex flex-col items-center gap-2 sm:flex-row sm:justify-between">
+              <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-wide text-orange-600 dark:text-orange-300">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
+                </span>
+                Total Wheel spins
+              </div>
+
+              <div
+                aria-live="polite"
+                className="flex items-center gap-2 text-center"
+              >
+                <Flame
+                  className="h-5 w-5 text-orange-500 drop-shadow-sm"
+                  aria-hidden="true"
+                />
+                <span className="text-2xl font-black leading-none tracking-normal text-foreground sm:text-3xl">
+                  {formatSpinCount(spinCount)}
+                </span>
+                <div className="flex items-center gap-1 text-xs font-semibold text-muted-foreground sm:text-sm">
+                  <TrendingUp className="h-4 w-4 text-emerald-500" aria-hidden="true" />
+                  <span>spins worldwide</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         </div>
 
         {/* Controls Section — right column on large screens */}

@@ -18,7 +18,7 @@ export function AdSlot({
   className = "",
   label = "Advertisement",
 }: AdSlotProps) {
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLModElement>(null);
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
