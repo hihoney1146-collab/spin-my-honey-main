@@ -248,4 +248,23 @@ All colors MUST be HSL.
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   }
+
+  /* Rolling digit — slides in from top */
+  @keyframes digit-roll-in {
+    0% {
+      transform: translateY(-110%);
+      opacity: 0;
+    }
+    55% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-digit-roll {
+    animation: digit-roll-in 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
 }

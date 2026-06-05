@@ -239,6 +239,48 @@ const createClickSound = (ctx: AudioContext) => {
   osc.stop(now + 0.1);
 };
 
+function RollingNumber({ value, className }: { value: number; className?: string }) {
+  const formatted = formatSpinCount(value);
+  const [animationId, setAnimationId] = useState(0);
+  const prevValueRef = useRef(value);
+
+  useEffect(() => {
+    if (value !== prevValueRef.current) {
+      prevValueRef.current = value;
+      setAnimationId((id) => id + 1);
+    }
+  }, [value]);
+
+  return (
+    <span className={`inline-flex items-center tabular-nums ${className ?? ""}`}>
+      {Array.from(formatted).map((char, i) => {
+        if (!/\d/.test(char)) {
+          return (
+            <span key={i} className="inline-block">
+              {char}
+            </span>
+          );
+        }
+        return (
+          <span
+            key={i}
+            className="relative inline-block overflow-hidden"
+            style={{ height: "1.15em", lineHeight: "1.15" }}
+          >
+            <span
+              key={`${animationId}-${i}`}
+              className="inline-block animate-digit-roll"
+              style={{ animationDelay: `${i * 28}ms` }}
+            >
+              {char}
+            </span>
+          </span>
+        );
+      })}
+    </span>
+  );
+}
+
 export type SpinWheelProps = {
   /** When set, seeds wheel slices from CSV/programmatic pages and skips global localStorage load/save. */
   presetOptionLabels?: string[];
@@ -1313,13 +1355,12 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
                   className="h-5 w-5 text-orange-500 drop-shadow-sm"
                   aria-hidden="true"
                 />
-                <span
+                <RollingNumber
+                  value={spinCount}
                   className={`text-2xl font-black leading-none tracking-normal text-foreground transition-transform duration-300 ease-out sm:text-3xl ${
                     spinCountPulse ? "scale-110 text-emerald-400" : "scale-100"
                   }`}
-                >
-                  {formatSpinCount(spinCount)}
-                </span>
+                />
                 <div className="flex items-center gap-1 text-xs font-semibold text-muted-foreground sm:text-sm">
                   <TrendingUp className="h-4 w-4 text-emerald-500" aria-hidden="true" />
                   <span>spins worldwide</span>
