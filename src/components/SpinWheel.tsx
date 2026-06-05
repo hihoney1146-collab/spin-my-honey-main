@@ -919,8 +919,18 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
       { id: "7", text: "Hanna", color: defaultColors[6], active: true },
     ];
     setEntries(reset);
+    setWinner(null);
+    setWinnerId("");
+    setWinnerColor("");
+    setShowWinnerDialog(false);
+    setEntriesPageIndex(0);
+    setSpinDurationSeconds(DEFAULT_SPIN_DURATION_SECONDS);
+    lastSliderValueRef.current = DEFAULT_SPIN_DURATION_SECONDS;
+    rotationRef.current = 0;
+    setRotation(0);
+    setCanvasRotation(0);
     playSoundEffect("click");
-    toast.success("Entries reset to defaults!");
+    toast.success("Wheel reset to defaults!");
   };
 
   const clearAllEntries = () => {
