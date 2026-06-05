@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { Slider } from "@/components/ui/slider";
 import {
   Trash2,
   Play,
@@ -26,6 +27,7 @@ import {
   TrendingUp,
   Sparkles,
   Trophy,
+  Clock3,
 } from "lucide-react";
 import confetti from "canvas-confetti";
 import { toast } from "sonner";
@@ -66,6 +68,10 @@ const fewEntryColors: Record<number, string[]> = {
 const MAX_ENTRY_TEXT_LEN = 20;
 const MAX_BULK_LINES = 400;
 const ENTRIES_PAGE_SIZE = 10;
+const SPIN_DURATION_STORAGE_KEY = "spinWheelDurationSeconds";
+const DEFAULT_SPIN_DURATION_SECONDS = 7;
+const MIN_SPIN_DURATION_SECONDS = 3;
+const MAX_SPIN_DURATION_SECONDS = 60;
 
 /** Logical coordinate space for all drawing; buffer is this × DPR × display scale. */
 const WHEEL_LOGICAL_PX = 480;
@@ -74,12 +80,29 @@ const MAX_CANVAS_DPR = 3;
 const formatSpinCount = (count: number) =>
   new Intl.NumberFormat("en-US").format(Math.max(0, count));
 
+const formatSpinDuration = (seconds: number) =>
+  seconds >= 60 ? "1 min" : `${seconds}s`;
+
 const readSpinCounterResponse = async (response: Response) => {
   if (!response.ok) return null;
   const data = (await response.json()) as { count?: unknown };
   return typeof data.count === "number" && Number.isFinite(data.count)
     ? data.count
     : null;
+};
+
+const readSavedSpinDurationSeconds = () => {
+  if (typeof window === "undefined") return DEFAULT_SPIN_DURATION_SECONDS;
+
+  const saved = window.localStorage.getItem(SPIN_DURATION_STORAGE_KEY);
+  const parsed = saved ? Number(saved) : DEFAULT_SPIN_DURATION_SECONDS;
+
+  if (!Number.isFinite(parsed)) return DEFAULT_SPIN_DURATION_SECONDS;
+
+  return Math.min(
+    MAX_SPIN_DURATION_SECONDS,
+    Math.max(MIN_SPIN_DURATION_SECONDS, Math.round(parsed)),
+  );
 };
 
 function syncCanvasPhysicalSize(canvas: HTMLCanvasElement): number {
@@ -127,6 +150,38 @@ const playTick = (ctx: AudioContext, volume: number = 0.5) => {
   src.connect(gain);
   gain.connect(ctx.destination);
   src.start(0);
+};
+
+const createSliderSound = (ctx: AudioContext, value: number) => {
+  const now = ctx.currentTime;
+  const normalized =
+    (value - MIN_SPIN_DURATION_SECONDS) /
+    (MAX_SPIN_DURATION_SECONDS - MIN_SPIN_DURATION_SECONDS);
+  const startFreq = 420 + normalized * 320;
+  const endFreq = startFreq + 95;
+
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  const filter = ctx.createBiquadFilter();
+
+  osc.type = "sine";
+  osc.frequency.setValueAtTime(startFreq, now);
+  osc.frequency.exponentialRampToValueAtTime(endFreq, now + 0.11);
+
+  filter.type = "lowpass";
+  filter.frequency.setValueAtTime(1900, now);
+  filter.Q.value = 0.7;
+
+  gain.gain.setValueAtTime(0.0001, now);
+  gain.gain.linearRampToValueAtTime(0.09, now + 0.018);
+  gain.gain.exponentialRampToValueAtTime(0.001, now + 0.13);
+
+  osc.connect(filter);
+  filter.connect(gain);
+  gain.connect(ctx.destination);
+
+  osc.start(now);
+  osc.stop(now + 0.14);
 };
 
 const createWinSound = (ctx: AudioContext) => {
@@ -242,6 +297,9 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
   const [winnerColor, setWinnerColor] = useState<string>("");
   const [winnerId, setWinnerId] = useState<string>("");
   const [spinCount, setSpinCount] = useState(0);
+  const [spinDurationSeconds, setSpinDurationSeconds] = useState(
+    readSavedSpinDurationSeconds,
+  );
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pointerRef = useRef<HTMLDivElement>(null);
   const [loadedImages, setLoadedImages] = useState<
@@ -253,6 +311,8 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
   const entriesRef = useRef<WheelEntry[]>(entries);
   const loadedImagesRef = useRef<Map<string, HTMLImageElement>>(loadedImages);
   const sliceColorsRef = useRef<string[]>([]);
+  const lastSliderTickRef = useRef(0);
+  const lastSliderValueRef = useRef(spinDurationSeconds);
 
   const audioContextRef = useRef<AudioContext | null>(null);
   const audioWarmedRef = useRef(false);
@@ -316,6 +376,12 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
     triggerHaptic("medium");
   };
 
+  const playSliderSound = (value: number) => {
+    const ctx = getAudioCtx();
+    if (ctx) createSliderSound(ctx, value);
+    triggerHaptic("light");
+  };
+
   const playSoundEffect = (type: "tick" | "win" | "click", volume?: number) => {
     try {
       if (type === "tick") playTickSound(volume ?? 0.5);
@@ -324,6 +390,20 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
     } catch {
       /* audio optional */
     }
+  };
+
+  const handleSpinDurationChange = (value: number[]) => {
+    const nextDuration = value[0] ?? DEFAULT_SPIN_DURATION_SECONDS;
+    setSpinDurationSeconds(nextDuration);
+
+    if (nextDuration === lastSliderValueRef.current) return;
+    lastSliderValueRef.current = nextDuration;
+
+    const now = performance.now();
+    if (now - lastSliderTickRef.current < 35) return;
+    lastSliderTickRef.current = now;
+
+    playSliderSound(nextDuration);
   };
 
   useEffect(() => {
@@ -358,6 +438,13 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
       document.removeEventListener("visibilitychange", loadSpinCounter);
     };
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem(
+      SPIN_DURATION_STORAGE_KEY,
+      String(spinDurationSeconds),
+    );
+  }, [spinDurationSeconds]);
 
   const incrementSpinCounter = () => {
     setSpinCount((count) => count + 1);
@@ -898,12 +985,13 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
     });
 
     // WheelOfNames-style physics: moderate rotations, smooth cubic deceleration
-    const spins = 8 + Math.random() * 6; // 8-14 full rotations
+    const durationSeconds = spinDurationSeconds;
+    const spins = durationSeconds * 1.35 + 1.8 + Math.random() * 2.4;
     const extraDegrees = Math.random() * 360;
     const totalRotation = spins * 360 + extraDegrees;
 
     const startRotation = rotationRef.current;
-    const duration = 6000 + Math.random() * 2000; // 6-8 seconds
+    const duration = durationSeconds * 1000;
     const startTime = performance.now();
 
     const sliceAngle = 360 / activeEntries.length;
@@ -1296,6 +1384,51 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
                 <ListX className="h-3 w-3 lg:h-3.5 lg:w-3.5 mr-0.5 lg:mr-1" />
                 Clear all
               </Button>
+            </div>
+          </div>
+
+          {/* Spin timer */}
+          <div className="mb-3 lg:mb-4 relative z-10 flex-shrink-0">
+            <div className="mb-1.5 lg:mb-2 flex items-center justify-between gap-2">
+              <label
+                htmlFor="spin-duration-slider"
+                className="flex items-center gap-1.5 text-[10px] lg:text-[11px] font-bold text-foreground/80 uppercase tracking-wide"
+              >
+                <div className="w-1 h-1 rounded-full bg-primary" />
+                Spin timer
+              </label>
+              <Badge
+                variant="secondary"
+                className="text-[10px] font-bold px-2 py-0.5 bg-primary/10 text-primary border-0"
+              >
+                {formatSpinDuration(spinDurationSeconds)}
+              </Badge>
+            </div>
+            <div className="rounded-xl border-2 border-border bg-background/80 px-3 py-2.5 shadow-sm">
+              <div className="flex items-center gap-3">
+                <Clock3
+                  className="h-4 w-4 shrink-0 text-muted-foreground"
+                  aria-hidden="true"
+                />
+                <Slider
+                  id="spin-duration-slider"
+                  value={[spinDurationSeconds]}
+                  min={MIN_SPIN_DURATION_SECONDS}
+                  max={MAX_SPIN_DURATION_SECONDS}
+                  step={1}
+                  disabled={isSpinning}
+                  onPointerDown={warmUpAudio}
+                  onTouchStart={warmUpAudio}
+                  onKeyDown={warmUpAudio}
+                  onValueChange={handleSpinDurationChange}
+                  aria-label="Wheel spin timer in seconds"
+                  className="flex-1 py-2"
+                />
+              </div>
+              <div className="mt-1 flex items-center justify-between pl-7 text-[9px] font-bold uppercase tracking-wide text-muted-foreground">
+                <span>{formatSpinDuration(MIN_SPIN_DURATION_SECONDS)} fast</span>
+                <span>{formatSpinDuration(MAX_SPIN_DURATION_SECONDS)} max</span>
+              </div>
             </div>
           </div>
 
