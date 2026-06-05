@@ -297,6 +297,7 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
   const [winnerColor, setWinnerColor] = useState<string>("");
   const [winnerId, setWinnerId] = useState<string>("");
   const [spinCount, setSpinCount] = useState(0);
+  const [spinCountPulse, setSpinCountPulse] = useState(false);
   const [spinDurationSeconds, setSpinDurationSeconds] = useState(
     readSavedSpinDurationSeconds,
   );
@@ -313,6 +314,9 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
   const sliceColorsRef = useRef<string[]>([]);
   const lastSliderTickRef = useRef(0);
   const lastSliderValueRef = useRef(spinDurationSeconds);
+  const spinCountRef = useRef(0);
+  const spinCountPulseTimerRef = useRef<number | null>(null);
+  const hasLoadedSpinCountRef = useRef(false);
 
   const audioContextRef = useRef<AudioContext | null>(null);
   const audioWarmedRef = useRef(false);
@@ -406,6 +410,35 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
     playSliderSound(nextDuration);
   };
 
+  const updateSpinCount = (nextCount: number, animate = true) => {
+    if (!Number.isFinite(nextCount)) return;
+
+    const normalizedCount = Math.max(0, Math.round(nextCount));
+    const shouldAnimate =
+      animate &&
+      hasLoadedSpinCountRef.current &&
+      normalizedCount !== spinCountRef.current;
+
+    spinCountRef.current = normalizedCount;
+    hasLoadedSpinCountRef.current = true;
+    setSpinCount(normalizedCount);
+
+    if (!shouldAnimate) return;
+
+    if (spinCountPulseTimerRef.current !== null) {
+      window.clearTimeout(spinCountPulseTimerRef.current);
+    }
+
+    setSpinCountPulse(false);
+    window.requestAnimationFrame(() => {
+      setSpinCountPulse(true);
+      spinCountPulseTimerRef.current = window.setTimeout(() => {
+        setSpinCountPulse(false);
+        spinCountPulseTimerRef.current = null;
+      }, 420);
+    });
+  };
+
   useEffect(() => {
     let cancelled = false;
 
@@ -420,7 +453,7 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
         .then(readSpinCounterResponse)
         .then((count) => {
           if (!cancelled && count !== null) {
-            setSpinCount(count);
+            updateSpinCount(count);
           }
         })
         .catch(() => {
@@ -429,12 +462,15 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
     };
 
     loadSpinCounter();
-    const refreshId = window.setInterval(loadSpinCounter, 15000);
+    const refreshId = window.setInterval(loadSpinCounter, 5000);
     document.addEventListener("visibilitychange", loadSpinCounter);
 
     return () => {
       cancelled = true;
       window.clearInterval(refreshId);
+      if (spinCountPulseTimerRef.current !== null) {
+        window.clearTimeout(spinCountPulseTimerRef.current);
+      }
       document.removeEventListener("visibilitychange", loadSpinCounter);
     };
   }, []);
@@ -447,7 +483,7 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
   }, [spinDurationSeconds]);
 
   const incrementSpinCounter = () => {
-    setSpinCount((count) => count + 1);
+    updateSpinCount(spinCountRef.current + 1);
 
     fetch("/api/spin-counter", {
       method: "POST",
@@ -457,7 +493,7 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
       .then(readSpinCounterResponse)
       .then((count) => {
         if (count !== null) {
-          setSpinCount(count);
+          updateSpinCount(count);
         }
       })
       .catch(() => {
@@ -1277,7 +1313,11 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
                   className="h-5 w-5 text-orange-500 drop-shadow-sm"
                   aria-hidden="true"
                 />
-                <span className="text-2xl font-black leading-none tracking-normal text-foreground sm:text-3xl">
+                <span
+                  className={`text-2xl font-black leading-none tracking-normal text-foreground transition-transform duration-300 ease-out sm:text-3xl ${
+                    spinCountPulse ? "scale-110 text-emerald-400" : "scale-100"
+                  }`}
+                >
                   {formatSpinCount(spinCount)}
                 </span>
                 <div className="flex items-center gap-1 text-xs font-semibold text-muted-foreground sm:text-sm">
