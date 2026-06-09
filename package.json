@@ -19,6 +19,7 @@
     "lint": "eslint .",
     "verify:ads-txt": "node scripts/verify-ads-txt.mjs",
     "verify:sitemap": "node scripts/verify-sitemap.mjs",
+    "verify:seo-html": "node scripts/verify-seo-html.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

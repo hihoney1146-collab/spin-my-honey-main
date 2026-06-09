@@ -11,7 +11,9 @@ import {
   DEFAULT_OG_IMAGE,
   SITE,
 } from "./static-page-meta.mjs";
-import { collectBlogRouteMeta } from "./blog-data-sources.mjs";
+import {
+  collectBlogRouteMeta,
+} from "./blog-data-sources.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -22,6 +24,272 @@ function escapeHtml(s) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
+}
+
+function stripHtml(s) {
+  return String(s || "")
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function plainTitle(title) {
+  return stripHtml(title)
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'");
+}
+
+function normalizeTitle(title, fallback = "Online Spin Wheel") {
+  const clean = plainTitle(title || fallback);
+  const replacements = new Map([
+    [
+      "How a Random Name Picker Makes Decisions Fair, Fun & Easy | Online Spin Wheel",
+      "Random Name Picker: Fair, Fun & Easy | Online Spin Wheel",
+    ],
+    [
+      "Online Spin Wheel - Free Customizable Random Picker for Names, Numbers & Prizes",
+      "Online Spin Wheel - Free Random Name & Number Picker",
+    ],
+  ]);
+  if (replacements.has(clean)) return replacements.get(clean);
+  if (clean.length <= 60) return clean;
+  return clean
+    .replace(/\s*\|\s*Online Spin Wheel$/i, "")
+    .replace(/\s*-\s*Complete\s*/i, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 58)
+    .replace(/\s+\S*$/, "");
+}
+
+function htmlList(items, mapper) {
+  const listItems = items.map((item) => `<li>${mapper(item)}</li>`).join("\n");
+  return `<ul>\n${listItems}\n</ul>`;
+}
+
+function rootWithSeoContent(html, content) {
+  return html.replace(
+    /<div id="root"><\/div>/i,
+    `<div id="root">\n${content}\n</div>`,
+  );
+}
+
+function routeHeading(meta) {
+  if (meta.h1) return meta.h1;
+  return normalizeTitle(meta.title).split("|")[0].split(" - ")[0].trim();
+}
+
+function makeSeoShell({ h1, intro, sections = [], links = [] }) {
+  const linkList = links.length
+    ? `<nav aria-label="Related pages">
+      <h2>Related spin wheel pages</h2>
+      ${htmlList(links, (link) => `<a href="${escapeHtml(link.href)}">${escapeHtml(link.label)}</a>`)}
+    </nav>`
+    : "";
+
+  return `<main data-static-seo="true" style="max-width:960px;margin:0 auto;padding:32px 20px;font-family:system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.6">
+    <h1>${escapeHtml(h1)}</h1>
+    <p>${escapeHtml(intro)}</p>
+    ${sections.join("\n")}
+    ${linkList}
+  </main>`;
+}
+
+function loadWheelPages() {
+  const wheelJsonPath = path.join(root, "src", "generated", "wheelPages.json");
+  if (!fs.existsSync(wheelJsonPath)) return [];
+  return JSON.parse(fs.readFileSync(wheelJsonPath, "utf-8"));
+}
+
+function wheelLabel(wheel) {
+  return wheel.keywordPrimary || wheel.h1 || wheel.title || wheel.slug;
+}
+
+function relatedWheelLinks(wheel, wheels, count = 6) {
+  const sameCategory = wheels.filter(
+    (w) => w.slug !== wheel.slug && w.category === wheel.category,
+  );
+  const rest = wheels.filter(
+    (w) => w.slug !== wheel.slug && w.category !== wheel.category,
+  );
+  return [...sameCategory, ...rest].slice(0, count).map((w) => ({
+    href: `/${w.slug}`,
+    label: wheelLabel(w),
+  }));
+}
+
+function buildWheelSeoContent(route, wheels) {
+  const wheel = route.wheel;
+  const options = Array.isArray(wheel.wheelOptions) ? wheel.wheelOptions : [];
+  const faqs = Array.isArray(wheel.faqs) ? wheel.faqs : [];
+  const sections = [
+    `<section><h2>Default wheel options</h2>${htmlList(
+      options.slice(0, 24),
+      (option) => escapeHtml(option),
+    )}</section>`,
+    `<section><h2>How to use this wheel</h2><p>${escapeHtml(
+      wheel.howToUse || "Add or edit entries, press spin, and let the wheel choose a random result.",
+    )}</p></section>`,
+  ];
+
+  if (faqs.length) {
+    sections.push(
+      `<section><h2>Frequently asked questions</h2>${faqs
+        .slice(0, 5)
+        .map(
+          (faq) =>
+            `<article><h3>${escapeHtml(faq.question)}</h3><p>${escapeHtml(faq.answer)}</p></article>`,
+        )
+        .join("\n")}</section>`,
+    );
+  }
+
+  return makeSeoShell({
+    h1: wheel.h1 || wheelLabel(wheel),
+    intro:
+      wheel.introduction ||
+      wheel.metaDescription ||
+      `${wheelLabel(wheel)} is a free browser-based spin wheel for fair random selection.`,
+    sections,
+    links: relatedWheelLinks(wheel, wheels),
+  });
+}
+
+function buildGenericSeoContent(route, wheels, blogRoutes) {
+  const h1 = routeHeading(route);
+  const sections = [];
+  const links = [];
+
+  if (route.path === "/") {
+    sections.push(
+      `<section><h2>Popular spin wheels</h2>${htmlList(
+        wheels.slice(0, 16),
+        (wheel) => `<a href="/${escapeHtml(wheel.slug)}">${escapeHtml(wheelLabel(wheel))}</a>`,
+      )}</section>`,
+      `<section><h2>Why use Online Spin Wheel?</h2><p>Use the wheel for names, numbers, classroom picks, giveaways, teams, games, and everyday decisions. The tool works in your browser with no account required.</p></section>`,
+    );
+  } else if (route.path === "/all-spin-wheels") {
+    sections.push(
+      `<section><h2>All wheel pages</h2>${htmlList(
+        wheels,
+        (wheel) => `<a href="/${escapeHtml(wheel.slug)}">${escapeHtml(wheelLabel(wheel))}</a>`,
+      )}</section>`,
+    );
+  } else if (route.path === "/blog") {
+    sections.push(
+      `<section><h2>Latest guides</h2>${htmlList(
+        blogRoutes,
+        (post) => `<a href="${escapeHtml(post.path)}">${escapeHtml(normalizeTitle(post.title))}</a>`,
+      )}</section>`,
+    );
+  } else if (route.path.startsWith("/blog/")) {
+    sections.push(
+      `<section><h2>What this guide covers</h2><p>This article explains practical ways to use online spin wheels for fair random choices, classroom activities, giveaways, team decisions, and everyday selection tasks. It is written for people who want quick decisions without accounts, downloads, or complicated setup.</p></section>`,
+      `<section><h2>Related tools and guides</h2>${htmlList(
+        [
+          { href: "/random-name-picker-wheel", label: "Random name picker wheel" },
+          { href: "/winner-picker-wheel", label: "Winner picker wheel" },
+          { href: "/team-generator-wheel", label: "Team generator wheel" },
+          { href: "/blog", label: "Spin wheel blog" },
+        ],
+        (link) => `<a href="${escapeHtml(link.href)}">${escapeHtml(link.label)}</a>`,
+      )}</section>`,
+    );
+  }
+
+  links.push(
+    { href: "/", label: "Online Spin Wheel" },
+    { href: "/all-spin-wheels", label: "All spin wheels" },
+    { href: "/random-name-picker-wheel", label: "Random name picker wheel" },
+    { href: "/yes-or-no-wheel", label: "Yes or no wheel" },
+    { href: "/blog", label: "Spin wheel guides" },
+  );
+
+  return makeSeoShell({
+    h1,
+    intro: route.description,
+    sections,
+    links,
+  });
+}
+
+function faqJsonLd(faqs = []) {
+  if (!faqs.length) return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.slice(0, 5).map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+}
+
+function breadcrumbJsonLd(route, label) {
+  const items = [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: canonicalUrl("/"),
+    },
+  ];
+
+  if (route.path !== "/") {
+    items.push({
+      "@type": "ListItem",
+      position: 2,
+      name: label,
+      item: canonicalUrl(route.path),
+    });
+  }
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items,
+  };
+}
+
+function webApplicationJsonLd(route, name) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name,
+    description: route.description,
+    url: canonicalUrl(route.path),
+    applicationCategory: "UtilitiesApplication",
+    operatingSystem: "Web Browser",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    provider: { "@id": `${SITE}/#organization` },
+  };
+}
+
+function enrichRoute(route, wheels, blogRoutes) {
+  const title = normalizeTitle(route.title);
+  const label = routeHeading({ ...route, title });
+  const jsonLd = [];
+  if (route.jsonLd) jsonLd.push(...(Array.isArray(route.jsonLd) ? route.jsonLd : [route.jsonLd]));
+  jsonLd.push(breadcrumbJsonLd(route, label));
+
+  let seoContent;
+  if (route.wheel) {
+    jsonLd.push(webApplicationJsonLd(route, route.wheel.h1 || wheelLabel(route.wheel)));
+    const faqLd = faqJsonLd(route.wheel.faqs);
+    if (faqLd) jsonLd.push(faqLd);
+    seoContent = buildWheelSeoContent(route, wheels);
+  } else {
+    seoContent = buildGenericSeoContent({ ...route, title }, wheels, blogRoutes);
+  }
+
+  return { ...route, title, jsonLd, seoContent };
 }
 
 function escapeRegex(s) {
@@ -113,19 +381,19 @@ export function applyRouteHead(html, meta) {
 
   out = stripJsonLdScripts(out);
   out = injectJsonLd(out, meta.jsonLd);
+  if (meta.seoContent) out = rootWithSeoContent(out, meta.seoContent);
   return out;
 }
 
 /** @returns {import('./static-page-meta.mjs').RouteMeta[]} */
 function loadWheelRouteMeta() {
-  const wheelJsonPath = path.join(root, "src", "generated", "wheelPages.json");
-  if (!fs.existsSync(wheelJsonPath)) return [];
-
-  const wheels = JSON.parse(fs.readFileSync(wheelJsonPath, "utf-8"));
+  const wheels = loadWheelPages();
   return wheels.map((p) => ({
     path: `/${p.slug}`,
     title: p.title || "Online Spin Wheel",
     description: p.metaDescription || p.h1 || "Free online spin wheel.",
+    h1: p.h1,
+    wheel: p,
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "WebPage",
@@ -146,11 +414,13 @@ if (!fs.existsSync(indexPath)) {
 }
 
 const template = fs.readFileSync(indexPath, "utf-8");
+const wheels = loadWheelPages();
+const blogRoutes = collectBlogRouteMeta(root, { canonicalUrl, SITE });
 const routes = [
   ...fixedRouteMeta,
-  ...collectBlogRouteMeta(root, { canonicalUrl, SITE }),
+  ...blogRoutes,
   ...loadWheelRouteMeta(),
-];
+].map((route) => enrichRoute(route, wheels, blogRoutes));
 
 console.log("🚀 Generating static HTML pages with route-specific metadata...\n");
 

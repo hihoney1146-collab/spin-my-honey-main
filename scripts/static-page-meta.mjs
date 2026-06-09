@@ -12,21 +12,53 @@ const DEFAULT_OG_IMAGE = `${SITE}/og-image.png`;
 export const fixedRouteMeta = [
   {
     path: "/",
-    title:
-      "Online Spin Wheel - Free Customizable Random Picker for Names, Numbers & Prizes",
+    title: "Online Spin Wheel - Free Random Name & Number Picker",
     description:
       "Free customizable online spin wheel. Add names or numbers, click spin, get instant random results. No account needed at onlinespinwheel.fun.",
     ogType: "website",
-    jsonLd: {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      name: "Online Spin Wheel",
-      description:
-        "Free online spin wheel tool for random selection and decision making.",
-      url: SITE,
-      applicationCategory: "UtilityApplication",
-      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    },
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": `${SITE}/#website`,
+        name: "Online Spin Wheel",
+        url: `${SITE}/`,
+        description:
+          "Free online spin wheel picker for names, numbers, prizes, classrooms, and fair random decisions.",
+        inLanguage: "en",
+        publisher: { "@id": `${SITE}/#organization` },
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": `${SITE}/#organization`,
+        name: "Online Spin Wheel",
+        url: SITE,
+        logo: `${SITE}/logo.png`,
+        founder: {
+          "@type": "Person",
+          name: "Raja Jahangir",
+          url: `${SITE}/author/raja-jahangir`,
+        },
+        contactPoint: {
+          "@type": "ContactPoint",
+          email: "onlinespinwheel@gmail.com",
+          contactType: "customer service",
+        },
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        name: "Online Spin Wheel",
+        description:
+          "Free online spin wheel tool for random selection and decision making.",
+        url: `${SITE}/`,
+        applicationCategory: "UtilitiesApplication",
+        operatingSystem: "Web Browser",
+        offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+        provider: { "@id": `${SITE}/#organization` },
+      },
+    ],
   },
   {
     path: "/all-spin-wheels",
