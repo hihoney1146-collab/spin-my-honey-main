@@ -13,3 +13,4 @@ Disallow: /*?*gclid=
 
 Sitemap: https://onlinespinwheel.fun/sitemap.xml
 Sitemap: https://onlinespinwheel.fun/sitemap-api.xml
+Sitemap: https://onlinespinwheel.fun/sitemap.txt

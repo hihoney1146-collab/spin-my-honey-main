@@ -362,6 +362,13 @@ export function buildSitemapXml(root = getProjectRoot()) {
   return wrapUrlset(collectSitemapEntries(root));
 }
 
+export function buildTextSitemap(root = getProjectRoot()) {
+  return collectSitemapEntries(root)
+    .map((block) => block.match(/<loc>(.*?)<\/loc>/)?.[1])
+    .filter(Boolean)
+    .join("\n") + "\n";
+}
+
 export function writeAllSitemapFiles(root = getProjectRoot()) {
   const publicDir = path.join(root, "public");
   fs.mkdirSync(publicDir, { recursive: true });
@@ -369,6 +376,11 @@ export function writeAllSitemapFiles(root = getProjectRoot()) {
   fs.writeFileSync(
     path.join(publicDir, "sitemap.xml"),
     buildSitemapXml(root),
+    "utf8",
+  );
+  fs.writeFileSync(
+    path.join(publicDir, "sitemap.txt"),
+    buildTextSitemap(root),
     "utf8",
   );
 
@@ -403,6 +415,7 @@ Disallow: /*?*gclid=
 
 Sitemap: ${SITE}/sitemap.xml
 Sitemap: ${SITE}/sitemap-api.xml
+Sitemap: ${SITE}/sitemap.txt
 `;
 }
 

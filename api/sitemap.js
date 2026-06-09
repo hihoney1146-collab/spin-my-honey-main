@@ -9,7 +9,7 @@ export default function handler(_req, res) {
     : buildSitemapXml();
 
   res.setHeader("Content-Type", "application/xml; charset=utf-8");
-  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+  res.setHeader("Cache-Control", "public, max-age=3600, s-maxage=3600, must-revalidate");
   res.setHeader("X-Robots-Tag", "index, follow");
   res.status(200).send(xml);
 }

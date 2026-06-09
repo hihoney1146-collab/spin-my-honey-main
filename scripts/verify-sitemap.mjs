@@ -7,6 +7,7 @@ const SITE = process.env.SITE_ORIGIN || "https://onlinespinwheel.fun";
 const SITEMAPS = [
   { path: "/sitemap.xml", kind: "urlset", minLocs: 60 },
   { path: "/sitemap-api.xml", kind: "urlset", minLocs: 60 },
+  { path: "/sitemap.txt", kind: "text", minLocs: 60 },
   { path: "/pages-sitemap.xml", kind: "urlset", minLocs: 10 },
   { path: "/wheels-sitemap.xml", kind: "urlset", minLocs: 40 },
   { path: "/blog-sitemap.xml", kind: "urlset", minLocs: 1 },
@@ -35,6 +36,42 @@ for (const { path, kind, minLocs } of SITEMAPS) {
       failed++;
       continue;
     }
+    if (body.includes("<!DOCTYPE html") || body.includes("<html")) {
+      console.error(`FAIL ${path}: response looks like HTML (SPA fallback?)`);
+      failed++;
+      continue;
+    }
+
+    if (kind === "text") {
+      if (!ct.includes("text/plain")) {
+        console.error(`FAIL ${path}: Content-Type "${ct}" (expected text/plain)`);
+        failed++;
+        continue;
+      }
+
+      const urls = body
+        .split(/\r?\n/)
+        .map((line) => line.trim())
+        .filter(Boolean);
+      const badLine = urls.find((line) => !line.startsWith(`${SITE}/`));
+
+      if (badLine) {
+        console.error(`FAIL ${path}: non-canonical URL line "${badLine}"`);
+        failed++;
+        continue;
+      }
+      if (urls.length < minLocs) {
+        console.error(`FAIL ${path}: expected at least ${minLocs} entries, got ${urls.length}`);
+        failed++;
+        continue;
+      }
+
+      console.log(`OK  ${url}`);
+      console.log(`    Content-Type: ${ct.split(";")[0]}`);
+      console.log(`    Entries: ${urls.length}`);
+      continue;
+    }
+
     if (!ct.includes("xml")) {
       console.error(`FAIL ${path}: Content-Type "${ct}" (expected XML)`);
       failed++;
@@ -43,11 +80,6 @@ for (const { path, kind, minLocs } of SITEMAPS) {
     if (!body.trimStart().startsWith("<?xml")) {
       console.error(`FAIL ${path}: body is not XML (HTML or empty?)`);
       console.error(body.slice(0, 120));
-      failed++;
-      continue;
-    }
-    if (body.includes("<!DOCTYPE html") || body.includes("<html")) {
-      console.error(`FAIL ${path}: response looks like HTML (SPA fallback?)`);
       failed++;
       continue;
     }
@@ -117,9 +149,10 @@ try {
 console.log("\n=== GSC checklist ===\n");
 console.log(`1. Submit only: ${SITE}/sitemap.xml`);
 console.log(`2. If GSC still cannot read it, submit fallback: ${SITE}/sitemap-api.xml`);
-console.log("3. The root sitemap is a direct urlset, not a sitemap index, to avoid GSC fetch ambiguity");
-console.log("4. Request indexing: /, /all-spin-wheels, /random-name-picker-wheel, /about-us, /author/raja-jahangir");
-console.log("5. Purge Cloudflare cache after deploy\n");
+console.log(`3. If XML keeps failing, submit text fallback: ${SITE}/sitemap.txt`);
+console.log("4. The root sitemap is a direct urlset, not a sitemap index, to avoid GSC fetch ambiguity");
+console.log("5. Request indexing: /, /all-spin-wheels, /random-name-picker-wheel, /about-us, /author/raja-jahangir");
+console.log("6. Purge Cloudflare cache after deploy\n");
 
 if (failed > 0) {
   console.error(`${failed} check(s) failed.`);
