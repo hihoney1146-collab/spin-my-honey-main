@@ -1,5 +1,5 @@
 /**
- * Writes sitemap index + child sitemaps, robots.txt, llms.txt to public/
+ * Writes root urlset + child sitemaps, robots.txt, llms.txt to public/
  */
 import fs from "fs";
 import path from "path";
@@ -24,7 +24,7 @@ const childNames = CHILD_SITEMAPS.map((c) => c.filename).join(", ");
 const totalUrls = pageCount + blogCount + wheelCount;
 const blogs = collectBlogSlugs(root).length;
 
-console.log(`✅ sitemap.xml (index) + ${childNames}`);
+console.log(`✅ sitemap.xml (direct urlset) + ${childNames}`);
 console.log(
   `   URLs: ${totalUrls} (${pageCount} pages, ${blogs} blog, ${wheelCount} wheels) + images-sitemap`,
 );

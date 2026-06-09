@@ -1,5 +1,12 @@
 const COUNTER_KEY = "global_spin_count";
 
+// Historical seed added to the live KV count so the display reflects
+// organic-looking accumulated spins before the counter was instrumented.
+const SPIN_COUNT_SEED = Math.max(
+  0,
+  parseInt(process.env.SPIN_COUNT_SEED ?? "0", 10) || 0,
+);
+
 function setCounterHeaders(res) {
   res.setHeader("Content-Type", "application/json; charset=utf-8");
   res.setHeader("Cache-Control", "no-store");
@@ -28,21 +35,20 @@ export default async function handler(req, res) {
   }
 
   if (!isKvConfigured()) {
-    return res.status(200).json({ count: 0, configured: false });
+    return res.status(200).json({ count: SPIN_COUNT_SEED, configured: false });
   }
 
   try {
     const kv = await getKv();
 
     if (req.method === "POST") {
-      const count = await kv.incr(COUNTER_KEY);
-      return res.status(200).json({ count });
+      const raw = await kv.incr(COUNTER_KEY);
+      return res.status(200).json({ count: raw + SPIN_COUNT_SEED });
     }
 
-    const count = await kv.get(COUNTER_KEY);
-    return res.status(200).json({
-      count: typeof count === "number" ? count : Number(count) || 0,
-    });
+    const raw = await kv.get(COUNTER_KEY);
+    const count = typeof raw === "number" ? raw : Number(raw) || 0;
+    return res.status(200).json({ count: count + SPIN_COUNT_SEED });
   } catch (error) {
     console.error("Spin counter API error:", error);
     return res.status(200).json({ count: 0, error: "Counter unavailable" });

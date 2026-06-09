@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 /**
- * Post-deploy: validate sitemap index + child sitemaps (GSC compatibility).
+ * Post-deploy: validate root + child sitemaps (GSC compatibility).
  */
 const SITE = process.env.SITE_ORIGIN || "https://onlinespinwheel.fun";
 
 const SITEMAPS = [
-  { path: "/sitemap.xml", kind: "index", minLocs: 4 },
+  { path: "/sitemap.xml", kind: "urlset", minLocs: 60 },
+  { path: "/sitemap-api.xml", kind: "urlset", minLocs: 60 },
   { path: "/pages-sitemap.xml", kind: "urlset", minLocs: 10 },
   { path: "/wheels-sitemap.xml", kind: "urlset", minLocs: 40 },
   { path: "/blog-sitemap.xml", kind: "urlset", minLocs: 1 },
@@ -115,9 +116,10 @@ try {
 
 console.log("\n=== GSC checklist ===\n");
 console.log(`1. Submit only: ${SITE}/sitemap.xml`);
-console.log("2. Request indexing: /, /all-spin-wheels, /random-name-picker-wheel, /about-us, /author/raja-jahangir");
-console.log("3. If Couldn't Fetch persists: see docs/CLOUDFLARE_SEO.md and wait 24-48h");
-console.log("4. Purge Cloudflare cache after deploy\n");
+console.log(`2. If GSC still cannot read it, submit fallback: ${SITE}/sitemap-api.xml`);
+console.log("3. The root sitemap is a direct urlset, not a sitemap index, to avoid GSC fetch ambiguity");
+console.log("4. Request indexing: /, /all-spin-wheels, /random-name-picker-wheel, /about-us, /author/raja-jahangir");
+console.log("5. Purge Cloudflare cache after deploy\n");
 
 if (failed > 0) {
   console.error(`${failed} check(s) failed.`);

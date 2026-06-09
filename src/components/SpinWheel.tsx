@@ -23,8 +23,6 @@ import {
   ChevronRight,
   ChevronDown,
   ListX,
-  Flame,
-  TrendingUp,
   Sparkles,
   Trophy,
   Clock3,
@@ -77,19 +75,8 @@ const MAX_SPIN_DURATION_SECONDS = 60;
 const WHEEL_LOGICAL_PX = 480;
 const MAX_CANVAS_DPR = 3;
 
-const formatSpinCount = (count: number) =>
-  new Intl.NumberFormat("en-US").format(Math.max(0, count));
-
 const formatSpinDuration = (seconds: number) =>
   seconds >= 60 ? "1 min" : `${seconds}s`;
-
-const readSpinCounterResponse = async (response: Response) => {
-  if (!response.ok) return null;
-  const data = (await response.json()) as { count?: unknown };
-  return typeof data.count === "number" && Number.isFinite(data.count)
-    ? data.count
-    : null;
-};
 
 const readSavedSpinDurationSeconds = () => {
   if (typeof window === "undefined") return DEFAULT_SPIN_DURATION_SECONDS;
@@ -239,48 +226,6 @@ const createClickSound = (ctx: AudioContext) => {
   osc.stop(now + 0.1);
 };
 
-function RollingNumber({ value, className }: { value: number; className?: string }) {
-  const formatted = formatSpinCount(value);
-  const [animationId, setAnimationId] = useState(0);
-  const prevValueRef = useRef(value);
-
-  useEffect(() => {
-    if (value !== prevValueRef.current) {
-      prevValueRef.current = value;
-      setAnimationId((id) => id + 1);
-    }
-  }, [value]);
-
-  return (
-    <span className={`inline-flex items-center tabular-nums ${className ?? ""}`}>
-      {Array.from(formatted).map((char, i) => {
-        if (!/\d/.test(char)) {
-          return (
-            <span key={i} className="inline-block">
-              {char}
-            </span>
-          );
-        }
-        return (
-          <span
-            key={i}
-            className="relative inline-block overflow-hidden"
-            style={{ height: "1.15em", lineHeight: "1.15" }}
-          >
-            <span
-              key={`${animationId}-${i}`}
-              className="inline-block animate-digit-roll"
-              style={{ animationDelay: `${i * 28}ms` }}
-            >
-              {char}
-            </span>
-          </span>
-        );
-      })}
-    </span>
-  );
-}
-
 export type SpinWheelProps = {
   /** When set, seeds wheel slices from CSV/programmatic pages and skips global localStorage load/save. */
   presetOptionLabels?: string[];
@@ -338,8 +283,6 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
   const [showWinnerDialog, setShowWinnerDialog] = useState(false);
   const [winnerColor, setWinnerColor] = useState<string>("");
   const [winnerId, setWinnerId] = useState<string>("");
-  const [spinCount, setSpinCount] = useState(0);
-  const [spinCountPulse, setSpinCountPulse] = useState(false);
   const [spinDurationSeconds, setSpinDurationSeconds] = useState(
     readSavedSpinDurationSeconds,
   );
@@ -356,9 +299,6 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
   const sliceColorsRef = useRef<string[]>([]);
   const lastSliderTickRef = useRef(0);
   const lastSliderValueRef = useRef(spinDurationSeconds);
-  const spinCountRef = useRef(0);
-  const spinCountPulseTimerRef = useRef<number | null>(null);
-  const hasLoadedSpinCountRef = useRef(false);
 
   const audioContextRef = useRef<AudioContext | null>(null);
   const audioWarmedRef = useRef(false);
@@ -452,71 +392,6 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
     playSliderSound(nextDuration);
   };
 
-  const updateSpinCount = (nextCount: number, animate = true) => {
-    if (!Number.isFinite(nextCount)) return;
-
-    const normalizedCount = Math.max(0, Math.round(nextCount));
-    const shouldAnimate =
-      animate &&
-      hasLoadedSpinCountRef.current &&
-      normalizedCount !== spinCountRef.current;
-
-    spinCountRef.current = normalizedCount;
-    hasLoadedSpinCountRef.current = true;
-    setSpinCount(normalizedCount);
-
-    if (!shouldAnimate) return;
-
-    if (spinCountPulseTimerRef.current !== null) {
-      window.clearTimeout(spinCountPulseTimerRef.current);
-    }
-
-    setSpinCountPulse(false);
-    window.requestAnimationFrame(() => {
-      setSpinCountPulse(true);
-      spinCountPulseTimerRef.current = window.setTimeout(() => {
-        setSpinCountPulse(false);
-        spinCountPulseTimerRef.current = null;
-      }, 420);
-    });
-  };
-
-  useEffect(() => {
-    let cancelled = false;
-
-    const loadSpinCounter = () => {
-      if (document.visibilityState === "hidden") return;
-
-      fetch("/api/spin-counter", {
-        method: "GET",
-        headers: { Accept: "application/json" },
-        cache: "no-store",
-      })
-        .then(readSpinCounterResponse)
-        .then((count) => {
-          if (!cancelled && count !== null) {
-            updateSpinCount(count);
-          }
-        })
-        .catch(() => {
-          /* Counter is optional; the wheel must keep working offline or locally. */
-        });
-    };
-
-    loadSpinCounter();
-    const refreshId = window.setInterval(loadSpinCounter, 5000);
-    document.addEventListener("visibilitychange", loadSpinCounter);
-
-    return () => {
-      cancelled = true;
-      window.clearInterval(refreshId);
-      if (spinCountPulseTimerRef.current !== null) {
-        window.clearTimeout(spinCountPulseTimerRef.current);
-      }
-      document.removeEventListener("visibilitychange", loadSpinCounter);
-    };
-  }, []);
-
   useEffect(() => {
     localStorage.setItem(
       SPIN_DURATION_STORAGE_KEY,
@@ -525,21 +400,13 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
   }, [spinDurationSeconds]);
 
   const incrementSpinCounter = () => {
-    updateSpinCount(spinCountRef.current + 1);
-
     fetch("/api/spin-counter", {
       method: "POST",
       headers: { Accept: "application/json" },
       cache: "no-store",
     })
-      .then(readSpinCounterResponse)
-      .then((count) => {
-        if (count !== null) {
-          updateSpinCount(count);
-        }
-      })
       .catch(() => {
-        /* Keep the optimistic count for this session if the API is unavailable. */
+        /* Counter is optional; the wheel must keep working offline or locally. */
       });
   };
 
@@ -1335,40 +1202,6 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
           </Card>
         )}
 
-        <div className="w-full max-w-[380px] xs:max-w-[420px] sm:max-w-[500px] md:max-w-[560px] lg:max-w-[580px] xl:max-w-[620px] 2xl:max-w-[660px] mx-auto">
-          <div className="relative overflow-hidden rounded-2xl border border-orange-300/40 bg-gradient-to-r from-orange-500/10 via-yellow-400/10 to-emerald-500/10 px-4 py-3 shadow-lg shadow-orange-500/10 dark:border-orange-300/20 dark:from-orange-400/15 dark:via-yellow-300/10 dark:to-emerald-400/15">
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent opacity-60 motion-safe:animate-[pulse_3s_ease-in-out_infinite]" />
-            <div className="relative flex flex-col items-center gap-2 sm:flex-row sm:justify-between">
-              <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-wide text-orange-600 dark:text-orange-300">
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
-                </span>
-                Total Wheel spins
-              </div>
-
-              <div
-                aria-live="polite"
-                className="flex items-center gap-2 text-center"
-              >
-                <Flame
-                  className="h-5 w-5 text-orange-500 drop-shadow-sm"
-                  aria-hidden="true"
-                />
-                <RollingNumber
-                  value={spinCount}
-                  className={`text-2xl font-black leading-none tracking-normal text-foreground transition-transform duration-300 ease-out sm:text-3xl ${
-                    spinCountPulse ? "scale-110 text-emerald-400" : "scale-100"
-                  }`}
-                />
-                <div className="flex items-center gap-1 text-xs font-semibold text-muted-foreground sm:text-sm">
-                  <TrendingUp className="h-4 w-4 text-emerald-500" aria-hidden="true" />
-                  <span>spins worldwide</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
         </div>
 
         {/* Controls Section — right column on large screens */}

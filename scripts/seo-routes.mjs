@@ -1,5 +1,5 @@
 /**
- * Production SEO route builders: sitemap index, child sitemaps, robots.txt, llms.txt
+ * Production SEO route builders: root sitemap, child sitemaps, robots.txt, llms.txt
  */
 import fs from "fs";
 import path from "path";
@@ -320,7 +320,7 @@ export const CHILD_SITEMAPS = [
   { filename: "images-sitemap.xml", builder: buildImagesSitemapXml },
 ];
 
-/** Sitemap index (submit this URL in Google Search Console) */
+/** Sitemap index kept for tooling/debugging; root sitemap uses a direct urlset for GSC simplicity. */
 export function buildSitemapIndexXml(root = getProjectRoot()) {
   const lastmod = getSitemapLastmod();
   const entries = CHILD_SITEMAPS.map((c) =>
@@ -334,21 +334,32 @@ ${entries.join("\n")}
 `;
 }
 
-/** @deprecated Monolithic urlset — use buildSitemapIndexXml + child sitemaps */
-export function collectSitemapEntries(root = getProjectRoot()) {
-  const lastmod = getSitemapLastmod();
+export function collectSitemapEntries(root = getProjectRoot(), buildDate = getSitemapLastmod()) {
   const blocks = [];
-  const add = (loc, changefreq, priority) => {
+  const add = (loc, changefreq, priority, lastmod = buildDate) => {
     blocks.push(urlBlock(loc, changefreq, priority, lastmod));
   };
+
   for (const r of PAGES_SITEMAP_ROUTES) add(r.path, r.changefreq, r.priority);
-  for (const slug of collectBlogSlugs(root)) add(`/blog/${slug}`, "monthly", "0.6");
-  for (const slug of loadWheelSlugsFromCsv(root)) add(`/${slug}`, "weekly", "0.7");
+
+  for (const post of collectBlogPostsMeta(root)) {
+    add(`/blog/${post.slug}`, "monthly", "0.6", post.updated);
+  }
+
+  for (const wheel of loadWheelRecords(root)) {
+    add(
+      `/${wheel.slug}`,
+      "weekly",
+      wheelSitemapPriority(wheel.slug),
+      wheelSitemapLastmod(wheel, buildDate),
+    );
+  }
+
   return blocks;
 }
 
 export function buildSitemapXml(root = getProjectRoot()) {
-  return buildSitemapIndexXml(root);
+  return wrapUrlset(collectSitemapEntries(root));
 }
 
 export function writeAllSitemapFiles(root = getProjectRoot()) {
@@ -357,7 +368,7 @@ export function writeAllSitemapFiles(root = getProjectRoot()) {
 
   fs.writeFileSync(
     path.join(publicDir, "sitemap.xml"),
-    buildSitemapIndexXml(root),
+    buildSitemapXml(root),
     "utf8",
   );
 
@@ -391,6 +402,7 @@ Disallow: /*?*fbclid=
 Disallow: /*?*gclid=
 
 Sitemap: ${SITE}/sitemap.xml
+Sitemap: ${SITE}/sitemap-api.xml
 `;
 }
 
