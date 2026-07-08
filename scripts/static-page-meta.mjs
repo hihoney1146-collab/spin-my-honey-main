@@ -12,9 +12,9 @@ const DEFAULT_OG_IMAGE = `${SITE}/og-image.png`;
 export const fixedRouteMeta = [
   {
     path: "/",
-    title: "Online Spin Wheel - Free Random Name & Number Picker",
+    title: "Spin the Wheel - Free Online Spin Wheel & Random Name Picker",
     description:
-      "Free customizable online spin wheel. Add names or numbers, click spin, get instant random results. No account needed at onlinespinwheel.fun.",
+      "Spin the wheel for a fair, random pick. Add names, numbers, or choices and let crypto-grade randomness decide — no signup, works on any phone, tablet, or computer.",
     ogType: "website",
     jsonLd: [
       {
@@ -51,12 +51,96 @@ export const fixedRouteMeta = [
         "@type": "WebApplication",
         name: "Online Spin Wheel",
         description:
-          "Free online spin wheel tool for random selection and decision making.",
+          "Free online spin wheel and random picker for names, numbers, prizes, classrooms, teams, and fair decisions. Results use crypto.getRandomValues() and work on any device with no signup.",
         url: `${SITE}/`,
         applicationCategory: "UtilitiesApplication",
         operatingSystem: "Web Browser",
         offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
         provider: { "@id": `${SITE}/#organization` },
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        name: "How to spin the wheel",
+        description:
+          "Add your entries, spin the online wheel, and use the randomly selected winner.",
+        step: [
+          {
+            "@type": "HowToStep",
+            position: 1,
+            name: "Add your entries",
+            text: "Type or paste names, numbers, or choices into the panel beside the wheel, one per line, up to 400 at a time.",
+            url: `${SITE}/#how-to-spin`,
+          },
+          {
+            "@type": "HowToStep",
+            position: 2,
+            name: "Spin it",
+            text: "Click Spin the Wheel or tap the wheel, then watch it slow down until the red pointer settles on one segment.",
+            url: `${SITE}/#how-to-spin`,
+          },
+          {
+            "@type": "HowToStep",
+            position: 3,
+            name: "Use the winner",
+            text: "Read the highlighted result, then remove that entry for a multi-round draw or spin again to pick another.",
+            url: `${SITE}/#how-to-spin`,
+          },
+        ],
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: "What is the maximum number of entries I can add?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "There is no hard limit. You can paste hundreds of names at once (up to 400 lines per paste) and the wheel resizes every segment automatically. For readability, keep it under about 20 visible slices; larger lists still pick fairly.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Can I save a wheel to reuse later?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Yes. Your entries are stored in your browser's local storage, so the same names are waiting the next time you open the page on that device. Use Reset to bring back the sample names, or Clear all to start fresh.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Can I share my wheel or the result?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Screen-record or screenshot the spin to share the outcome — that is exactly what giveaway hosts post as proof. Every specialty wheel also has its own shareable URL you can send to anyone.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Does it work on mobile phones and tablets?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Yes. The wheel is fully responsive and touch-friendly — just tap the wheel to spin — with no app to install. It runs in any modern browser on phones, tablets, laptops, and classroom smartboards.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "How do I remove a winner so they aren't picked again?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "After a spin, the winner dialog has a Remove Winner button that deletes that entry from the wheel. You can also delete any entry manually in the list, which is ideal for multi-round draws.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Is the wheel really random?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Yes. Each spin is seeded with crypto.getRandomValues() and the pointer lands based on segment angles, so every equal-sized entry has exactly the same probability. Spins are independent, so past results never affect the next one.",
+            },
+          },
+        ],
       },
     ],
   },
@@ -114,6 +198,13 @@ export const fixedRouteMeta = [
     title: "Disclaimer - Online Spin Wheel",
     description:
       "Disclaimer for Online Spin Wheel: limitations of random selection tools and proper use.",
+  },
+  {
+    path: "/how-randomness-works",
+    title: "How Randomness Works | Online Spin Wheel",
+    description:
+      "How the Online Spin Wheel stays fair: crypto.getRandomValues() seeds, equal-probability segments, and why every spin is independent of the last.",
+    ogType: "article",
   },
   {
     path: "/tutorial-adding-images-to-spin-wheels",

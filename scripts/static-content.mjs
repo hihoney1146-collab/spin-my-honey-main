@@ -138,91 +138,56 @@ function homeContent(wheels) {
     )
     .join("\n");
 
-  return mainWrap(`<h1>Online Spin Wheel — Free Customizable Random Picker for Names, Numbers &amp; Prizes</h1>
-<p>Online Spin Wheel is a free, browser-based random picker. Add names, numbers, or choices to a colorful wheel, click spin, and get an instant, unbiased result. No account, download, or subscription is required. It is built for teachers, creators, teams, families, and anyone who needs to make a fair decision fast.</p>
+  return mainWrap(`<h1>Spin the Wheel — Free Online Spin Wheel &amp; Random Picker</h1>
+<p>Online Spin Wheel is a free random picker: add names, numbers, or choices, then spin to get one fair result. It chooses winners with <code>crypto.getRandomValues()</code>, the same secure randomness browsers use for encryption, so every entry has an equal chance. No signup or install — it works instantly on phones, tablets, and computers.</p>
 
-<section id="how-to-use-spin-wheel">
-  <h2>How to use the spin wheel</h2>
+<section id="how-to-spin">
+  <h2>How to spin the wheel</h2>
   <ol>
-    <li><strong>Add your entries</strong> in the list beside the wheel. Add as many options as you want.</li>
-    <li><strong>Customize colors</strong> — each entry gets a unique color automatically; edit or remove entries as needed.</li>
-    <li><strong>Add images</strong> — upload logos or photos to segments so every option stands out.</li>
-    <li><strong>Spin the wheel</strong> and watch it decelerate naturally to a random winner.</li>
-    <li><strong>Celebrate the winner</strong> announced with a confetti celebration.</li>
+    <li><strong>Add your entries.</strong> Type or paste names, numbers, or choices into the panel beside the wheel — one per line, up to 400 at a time.</li>
+    <li><strong>Spin it.</strong> Click "Spin the Wheel" or tap the wheel itself, then watch it decelerate naturally until the red pointer settles on one segment.</li>
+    <li><strong>Use the winner.</strong> Read the highlighted result, then remove that entry for a multi-round draw or spin again to pick another.</li>
   </ol>
+  <p><img src="/spin-wheel-preview.svg" width="640" height="640" alt="The Online Spin Wheel showing seven colored name segments, a white SPIN hub, and a red pointer on the right" /></p>
 </section>
 
-<section>
-  <h2>Why use our spin wheel?</h2>
+<section id="use-cases">
+  <h2>What people use this wheel for</h2>
   <ul>
-    <li><strong>Completely free</strong> — no sign-up, used anytime, anywhere.</li>
-    <li><strong>Perfect for groups</strong> — classrooms, team meetings, parties, and family game nights.</li>
-    <li><strong>Truly random</strong> — fair, unbiased selection on every spin.</li>
-    <li><strong>Easy to use</strong> — add options, click spin, and get instant results with fun animations.</li>
+    <li><strong>Teachers &amp; classrooms:</strong> call on students fairly and form groups without bias using the <a href="/random-student-picker">random student picker</a>.</li>
+    <li><strong>Giveaways &amp; raffles:</strong> paste entrant names and draw a transparent winner on screen with the <a href="/winner-picker-wheel">winner picker wheel</a>.</li>
+    <li><strong>Teams &amp; meetings:</strong> assign tasks, pick a presenter, or split people into squads with the <a href="/team-generator-wheel">team generator wheel</a>.</li>
+    <li><strong>Food &amp; movie nights:</strong> settle "where do we eat?" and "what do we watch?" with the <a href="/dinner-picker-wheel">dinner picker wheel</a> and <a href="/movie-picker-wheel">movie picker wheel</a>.</li>
+    <li><strong>Games &amp; streams:</strong> run dares and audience picks live with the <a href="/truth-or-dare-spinner-online">truth or dare spinner</a> or an <a href="/instagram-wheel-picker">Instagram comment picker</a>.</li>
   </ul>
 </section>
 
-<section id="exploring-online-spin-wheel">
-  <h2>Exploring the Online Spin Wheel</h2>
-  <p>The spinning wheel has long been a fixture of game shows and board games. The digital version is popular because it is so easy to use: customize a wheel with names, numbers, prizes, or choices, click a button, and let it land on one result at random. To pick a vacation destination, for example, enter five cities, spin, and accept the city the wheel selects. This removes the stress of choosing.</p>
-  <h3>How our random algorithm works</h3>
-  <p>When you click spin, we generate a random seed with <code>crypto.getRandomValues()</code> — the same cryptographically secure method browsers use for security-sensitive operations. That seed comes from your device's hardware entropy, making it unpredictable. The seed initializes the wheel physics (starting velocity, friction, and deceleration curve) so the wheel spins and slows naturally instead of jumping to a result. Each segment's probability equals its arc divided by 360°, so equal-sized segments give every entry exactly the same chance.</p>
-  <h3>Benefits of using a spin wheel online</h3>
-  <p>The biggest benefit is fairness: because a program picks the result, no one can cheat or show favoritism. It is also fast — the wheel decides in seconds instead of an hour of debate — and it adds a spark of excitement to ordinary choices. All calculations happen in your browser, so your entries never leave your device.</p>
+<section id="why-fair">
+  <h2>Why our results are fair</h2>
+  <p>Every spin starts with a fresh random seed from <code>crypto.getRandomValues()</code>, the browser's cryptographically secure generator — the same source used for encryption keys, not a predictable <code>Math.random()</code>. That seed sets the wheel's speed and friction, and where the pointer stops depends purely on each segment's angle, so equal-sized slices give every entry identical odds. Spins are also independent: the wheel has no memory, so a name that just won is exactly as likely to win again next time. It all runs on your device — your entries never touch our servers. Learn more about <a href="/how-randomness-works">how randomness works</a>.</p>
 </section>
 
-<section id="random-name-picker-tools">
-  <h2>Everything about random name picker tools</h2>
-  <p>Selecting people at random is invaluable in schools and businesses where fairness and transparency matter. Teachers use a random name picker to call on students evenly, which keeps everyone attentive and eliminates accusations of playing favorites. Brands paste in the names of everyone who liked and shared a post, spin, and record the result to prove a giveaway winner was chosen honestly.</p>
-  <p>Great name picker tools let you save lists, remove a name after it is selected so no one wins twice, and celebrate winners with animations and confetti. Unlike downloaded apps, browser tools require no installation, stay up to date, and work on any device with an internet connection.</p>
-</section>
-
-<section id="exciting-spin-wheel-games">
-  <h2>Exciting spin wheel games for everyone</h2>
-  <p>Beyond serious decisions, spinning wheels are used for pure fun. Party classics include Truth or Dare (one wheel of guests, one of dares), karaoke song selectors, and dance-move challenges. In class, a wheel can land on an exercise in PE or a historical figure in history. Variations include mystery-prize wheels and elimination games. For remote teams, spinning a wheel of icebreaker questions on a video call encourages laughter and connection.</p>
-</section>
-
-<section id="understanding-decision-makers">
-  <h2>Understanding online spin wheel decision makers</h2>
-  <p>Families use wheels for chore lists, couples use them to choose a restaurant, and writers use them to decide a plot twist. Choosing the right decision maker means finding a site you can trust — one that does not sell your data or bury the tool in ads. On Online Spin Wheel, all calculations run in your browser; we never see your entries, results, or history. Letting a fair tool handle small choices reduces decision fatigue and prevents arguments, because no one can dispute a transparent mathematical result.</p>
-</section>
-
-<section id="essential-features">
-  <h2>Essential features and common mistakes</h2>
-  <p>Look for dark and light modes for eye comfort, and support for multiple entry types (names, numbers, phrases, or short sentences). Avoid common mistakes: too many segments make the wheel hard to read, unclear labels confuse participants, and skipping a test run risks surprises during a live event. Keeping wheels under about twenty options usually gives the clearest, most exciting experience.</p>
-</section>
-
-<section id="seo-conclusion">
-  <h2>Conclusion</h2>
-  <p>From lively parties to busy classrooms, digital spinning wheels bring fairness and joy to everyday routines. An online spin wheel turns decision making from stressful into exciting — the key is choosing a tool that is transparently random, unlimited, and privacy-first. Online Spin Wheel offers all of that for free.</p>
-</section>
-
-<section id="homepage-faq">
-  <h2>Frequently asked questions</h2>
-  <h3>What is an Online Spin Wheel?</h3>
-  <p>It is a free online tool that lets you add names, numbers, or choices to a colorful wheel and spin to pick a completely random result for games, classes, and giveaways.</p>
-  <h3>Is the result truly random?</h3>
-  <p>Yes. The tool uses cryptographically secure randomness and a physics engine, so every slice has the exact same chance of winning on every spin.</p>
-  <h3>Do I need an account?</h3>
-  <p>No account is required. Open onlinespinwheel.fun, enter names or numbers, and spin immediately without sharing personal information.</p>
-  <h3>Does it work on mobile phones and tablets?</h3>
-  <p>Yes. The site is optimized for desktops, tablets, and phones with no installation required.</p>
-  <h3>How many entries can I add?</h3>
-  <p>The wheel supports many entries, from small groups to large lists like classrooms, raffles, or follower giveaways.</p>
-  <h3>Can the same name be selected more than once?</h3>
-  <p>Yes, if you keep all entries on the wheel. Remove winners manually if you want unique results each time.</p>
-</section>
-
-<section id="meet-the-team">
-  <h2>Meet the team</h2>
-  <p>Online Spin Wheel is built by a small, dedicated team and powered by <a href="https://auroxatech.com" rel="noopener noreferrer">Auroxa Tech</a>. <a href="/author/raja-jahangir">Raja Jahangir</a>, our SEO and growth specialist, keeps the platform user-centric, privacy-focused, and accessible to the many people searching for reliable spin wheel solutions each month.</p>
-</section>
-
-<section>
+<section id="popular-spin-wheels">
   <h2>Popular spin wheels</h2>
   <ul>
 ${popular}
   </ul>
+</section>
+
+<section id="homepage-faq">
+  <h2>Frequently asked questions</h2>
+  <h3>What is the maximum number of entries I can add?</h3>
+  <p>There is no hard limit. You can paste hundreds of names at once (up to 400 lines per paste) and the wheel resizes every segment automatically. For readability, keep it under about 20 visible slices; larger lists still pick fairly.</p>
+  <h3>Can I save a wheel to reuse later?</h3>
+  <p>Yes. Your entries are stored in your browser's local storage, so the same names are waiting the next time you open the page on that device. Use Reset to bring back the sample names, or Clear all to start fresh.</p>
+  <h3>Can I share my wheel or the result?</h3>
+  <p>Screen-record or screenshot the spin to share the outcome — that is exactly what giveaway hosts post as proof. Every specialty wheel also has its own shareable URL you can send to anyone.</p>
+  <h3>Does it work on mobile phones and tablets?</h3>
+  <p>Yes. The wheel is fully responsive and touch-friendly — just tap the wheel to spin — with no app to install. It runs in any modern browser on phones, tablets, laptops, and classroom smartboards.</p>
+  <h3>How do I remove a winner so they aren't picked again?</h3>
+  <p>After a spin, the winner dialog has a Remove Winner button that deletes that entry from the wheel. You can also delete any entry manually in the list, which is ideal for multi-round draws.</p>
+  <h3>Is the wheel really random?</h3>
+  <p>Yes. Each spin is seeded with <code>crypto.getRandomValues()</code> and the pointer lands based on segment angles, so every equal-sized entry has exactly the same probability. Spins are independent, so past results never affect the next one.</p>
 </section>
 ${exploreNav()}`);
 }
@@ -431,6 +396,18 @@ function disclaimerContent() {
 <section><h2>External links disclaimer</h2><p>The site may link to other websites or third-party content that we do not investigate, monitor, or check for accuracy. We do not endorse or assume responsibility for third-party sites and are not a party to any transaction between you and third-party providers.</p></section>
 <section><h2>Limitation of liability and user responsibility</h2><p>Under no circumstances shall Auroxa Tech, its founders, employees, or affiliates be liable for any loss or damage arising from use of the site, reliance on its information, or outcomes decided by the wheel. We do not store the data you input on our servers — all processing is local to your browser — and you are responsible for the content you enter and any disputes arising from results.</p></section>
 <section><h2>Contact</h2><p>Questions about this Disclaimer? Email <a href="mailto:onlinespinwheel@gmail.com">onlinespinwheel@gmail.com</a>. Operated by <a href="https://auroxatech.com" rel="noopener noreferrer">Auroxa Tech</a>. See also our <a href="/terms-and-conditions">Terms</a> and <a href="/privacy-policy">Privacy Policy</a>.</p></section>`);
+}
+
+/* ------------------------------------------ How randomness works ----------- */
+
+function howRandomnessWorksContent() {
+  return mainWrap(`<h1>How Randomness Works on Online Spin Wheel</h1>
+<p>Every spin on Online Spin Wheel is decided by cryptographically secure randomness generated on your device, not by a predictable pattern or a rigged outcome. This page explains exactly how a winner is chosen, why each entry has an equal chance, and why one spin never influences the next.</p>
+<section><h2>Where the randomness comes from</h2><p>When you press spin, the wheel asks your browser for random data using <code>crypto.getRandomValues()</code>. This is the Web Crypto API — the same cryptographically secure source browsers use to generate encryption keys and secure session tokens. It draws on your device's hardware entropy, so the value cannot be predicted or reproduced. That matters because the common alternative, <code>Math.random()</code>, is only pseudo-random: it follows a deterministic formula that a motivated observer could anticipate. For a fair draw in front of an audience, cryptographic randomness is the honest choice, and it is what we use on every wheel.</p></section>
+<section><h2>How that seed becomes a winner</h2><p>The secure random value seeds the wheel's physics: a starting velocity, a friction curve, and a natural deceleration. The wheel is not told the answer in advance and then animated backward — it genuinely spins and slows to a stop, and wherever the pointer lands is the result. The winning entry is simply the segment beneath the pointer. Each segment's probability equals its arc divided by 360 degrees, so when every slice is the same size, every entry has exactly the same chance of being chosen.</p></section>
+<section><h2>Why every spin is independent</h2><p>The wheel has no memory. Each spin requests a fresh random seed, so previous results have zero effect on the next outcome. A name that just won is exactly as likely to win again on the following spin — there is no "due" entry and no streak-balancing. This property is called statistical independence, and it is what makes the wheel trustworthy for repeated draws. If you want unique winners across rounds, remove each winner from the wheel after they are picked; otherwise, leaving them in keeps every spin a clean, equal-odds event.</p></section>
+<section><h2>Fairness you can verify</h2><p>All of this runs in your browser. Your entries are never sent to a server, so there is no hidden step where an outcome could be edited. Because the spin is visible and continuous, you can screen-record it as proof for a giveaway or classroom draw. Ready to try it? Spin the <a href="/">free online spin wheel</a> on the homepage, or browse the <a href="/all-spin-wheels">full specialty wheel directory</a>. The same fair randomness powers every wheel on the site, from the <a href="/random-name-picker-wheel">random name picker wheel</a> to the <a href="/winner-picker-wheel">winner picker wheel</a>.</p></section>
+${exploreNav()}`);
 }
 
 /* ----------------------------------------------- Tutorials / guides -------- */
@@ -815,6 +792,7 @@ const FIXED = {
   "/cookie-policy": () => cookieContent(),
   "/terms-and-conditions": () => termsContent(),
   "/disclaimer": () => disclaimerContent(),
+  "/how-randomness-works": () => howRandomnessWorksContent(),
   "/tutorial-adding-images-to-spin-wheels": () => tutorialAddingImagesContent(),
   "/case-study-school-using-spin-wheels": () => caseStudySchoolContent(),
   "/case-study-community-event-using-spin-wheels": () =>

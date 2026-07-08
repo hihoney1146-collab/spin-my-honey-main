@@ -51,10 +51,6 @@ function normalizeTitle(title, fallback = "Online Spin Wheel") {
       "How a Random Name Picker Makes Decisions Fair, Fun & Easy | Online Spin Wheel",
       "Random Name Picker: Fair, Fun & Easy | Online Spin Wheel",
     ],
-    [
-      "Online Spin Wheel - Free Customizable Random Picker for Names, Numbers & Prizes",
-      "Online Spin Wheel - Free Random Name & Number Picker",
-    ],
   ]);
   if (replacements.has(clean)) return replacements.get(clean);
   if (clean.length <= 60) return clean;

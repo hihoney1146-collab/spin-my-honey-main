@@ -99,6 +99,7 @@ export const PAGES_SITEMAP_ROUTES = [
   { path: "/author/raja-jahangir", changefreq: "monthly", priority: "0.7" },
   { path: "/about-us", changefreq: "monthly", priority: "0.7" },
   { path: "/contact-us", changefreq: "monthly", priority: "0.7" },
+  { path: "/how-randomness-works", changefreq: "monthly", priority: "0.6" },
   {
     path: "/tutorial-adding-images-to-spin-wheels",
     changefreq: "monthly",
@@ -461,6 +462,7 @@ export function buildLlmsTxt(root = getProjectRoot()) {
     `${SITE}/#homepage-faq`,
     "",
     "## Guides & comparisons",
+    `${SITE}/how-randomness-works`,
     `${SITE}/tutorial-adding-images-to-spin-wheels`,
     `${SITE}/comparison-spin-wheel-vs-random-number-generator`,
     `${SITE}/comparison-spin-wheel-vs-traditional-methods`,

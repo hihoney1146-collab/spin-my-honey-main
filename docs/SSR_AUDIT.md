@@ -2,13 +2,13 @@
 
 Generated 2026-07-08 from built `dist/` HTML — the exact bytes served to a no-JS crawler (equivalent to `curl` against production).
 
-- Routes audited: **61**
+- Routes audited: **62**
 - Threshold: **400** crawler-visible words
 - Below threshold: **0**, Missing HTML: **0**
 
 | route | ssr_words | status |
 | --- | ---: | --- |
-| `/` | 1106 | PASS |
+| `/` | 702 | PASS |
 | `/all-spin-wheels` | 1123 | PASS |
 | `/blog` | 757 | PASS |
 | `/about-us` | 414 | PASS |
@@ -18,6 +18,7 @@ Generated 2026-07-08 from built `dist/` HTML — the exact bytes served to a no-
 | `/terms-and-conditions` | 486 | PASS |
 | `/cookie-policy` | 333 | PASS (legal) |
 | `/disclaimer` | 355 | PASS (legal) |
+| `/how-randomness-works` | 469 | PASS |
 | `/tutorial-adding-images-to-spin-wheels` | 517 | PASS |
 | `/case-study-school-using-spin-wheels` | 422 | PASS |
 | `/case-study-community-event-using-spin-wheels` | 406 | PASS |

@@ -22,6 +22,7 @@ https://onlinespinwheel.fun/contact-us
 https://onlinespinwheel.fun/#homepage-faq
 
 ## Guides & comparisons
+https://onlinespinwheel.fun/how-randomness-works
 https://onlinespinwheel.fun/tutorial-adding-images-to-spin-wheels
 https://onlinespinwheel.fun/comparison-spin-wheel-vs-random-number-generator
 https://onlinespinwheel.fun/comparison-spin-wheel-vs-traditional-methods
