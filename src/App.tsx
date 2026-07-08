@@ -228,6 +228,43 @@ const App = () => (
               />
               <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/author/raja-jahangir" element={<AuthorRajaJahangir />} />
+              {/* Consolidated doorway pages → canonical targets (edge 301s live in vercel.json) */}
+              <Route
+                path="/exercise-spin-wheel"
+                element={<Navigate to="/exercise-picker-wheel" replace />}
+              />
+              <Route
+                path="/date-night-idea-wheel"
+                element={<Navigate to="/date-night-wheel" replace />}
+              />
+              <Route
+                path="/what-movie-should-i-watch-wheel"
+                element={<Navigate to="/movie-picker-wheel" replace />}
+              />
+              <Route
+                path="/giveaway-winner-picker-wheel"
+                element={<Navigate to="/winner-picker-wheel" replace />}
+              />
+              <Route
+                path="/zodiac-sign-wheel-game"
+                element={<Navigate to="/zodiac-sign-wheel" replace />}
+              />
+              <Route
+                path="/zodiac-wheel-dates"
+                element={<Navigate to="/zodiac-sign-wheel" replace />}
+              />
+              <Route
+                path="/zodiac-wheel-planets"
+                element={<Navigate to="/zodiac-sign-wheel" replace />}
+              />
+              <Route
+                path="/wheel-of-fortune-zodiac"
+                element={<Navigate to="/daily-horoscope-wheel" replace />}
+              />
+              <Route
+                path="/egyptian-zodiac-wheel"
+                element={<Navigate to="/zodiac-sign-wheel" replace />}
+              />
               <Route
                 path="/:slug"
                 element={

@@ -10,7 +10,17 @@
     { "source": "/terms", "destination": "/terms-and-conditions", "permanent": true },
     { "source": "/about", "destination": "/about-us", "permanent": true },
     { "source": "/contact", "destination": "/contact-us", "permanent": true },
-    { "source": "/privacy", "destination": "/privacy-policy", "permanent": true }
+    { "source": "/privacy", "destination": "/privacy-policy", "permanent": true },
+
+    { "source": "/exercise-spin-wheel", "destination": "/exercise-picker-wheel", "permanent": true },
+    { "source": "/date-night-idea-wheel", "destination": "/date-night-wheel", "permanent": true },
+    { "source": "/what-movie-should-i-watch-wheel", "destination": "/movie-picker-wheel", "permanent": true },
+    { "source": "/giveaway-winner-picker-wheel", "destination": "/winner-picker-wheel", "permanent": true },
+    { "source": "/zodiac-sign-wheel-game", "destination": "/zodiac-sign-wheel", "permanent": true },
+    { "source": "/zodiac-wheel-dates", "destination": "/zodiac-sign-wheel", "permanent": true },
+    { "source": "/zodiac-wheel-planets", "destination": "/zodiac-sign-wheel", "permanent": true },
+    { "source": "/wheel-of-fortune-zodiac", "destination": "/daily-horoscope-wheel", "permanent": true },
+    { "source": "/egyptian-zodiac-wheel", "destination": "/zodiac-sign-wheel", "permanent": true }
   ],
   "rewrites": [
     { "source": "/ads.txt", "destination": "/api/ads" },

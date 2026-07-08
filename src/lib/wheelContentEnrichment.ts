@@ -644,11 +644,9 @@ const BLOG_WHEEL_MAP: Record<string, string[]> = {
   ],
   "team-generator-wheel": ["best-icebreaker-games-office-meetings"],
   "winner-picker-wheel": ["random-name-picker-fair-fun-easy"],
-  "giveaway-winner-picker-wheel": ["random-name-picker-fair-fun-easy"],
   "dinner-picker-wheel": ["fun-ways-decide-where-to-eat-couples"],
   "fast-food-wheel": ["fun-ways-decide-where-to-eat-couples"],
   "date-night-wheel": ["fun-ways-decide-where-to-eat-couples"],
-  "date-night-idea-wheel": ["fun-ways-decide-where-to-eat-couples"],
   "secret-santa-wheel-generator": ["virtual-secret-santa-online"],
   "alphabet-spinner-wheel": ["best-spin-wheel-games-for-students"],
   "random-word-generator-wheel": ["best-spin-wheel-games-for-students"],
@@ -660,13 +658,114 @@ const BLOG_WHEEL_MAP: Record<string, string[]> = {
     "best-spin-wheel-games-for-students",
   ],
   "movie-picker-wheel": ["fun-ways-decide-where-to-eat-couples"],
-  "what-movie-should-i-watch-wheel": ["fun-ways-decide-where-to-eat-couples"],
   "horror-movie-picker-wheel": ["fun-ways-decide-where-to-eat-couples"],
   "exercise-picker-wheel": ["best-icebreaker-games-office-meetings"],
-  "exercise-spin-wheel": ["best-icebreaker-games-office-meetings"],
   "instagram-wheel-picker": ["random-name-picker-fair-fun-easy"],
   "pick-out-of-a-hat-generator": ["random-name-picker-fair-fun-easy"],
 };
+
+/**
+ * Extra, hand-authored sections merged in from consolidated (301-redirected)
+ * doorway pages so their unique value lives on the surviving canonical page.
+ * Keyed by the surviving wheel slug. Rendered on both the client page and in the
+ * server-rendered HTML (see scripts/static-content.mjs) for full SSR parity.
+ */
+export type AbsorbedSection = {
+  heading: string;
+  intro: string;
+  items?: string[];
+  table?: {
+    columns: [string, string];
+    rows: Array<[string, string]>;
+  };
+};
+
+const ABSORBED_SECTIONS: Record<string, AbsorbedSection[]> = {
+  "zodiac-sign-wheel": [
+    {
+      heading: "Party Game Mode: Zodiac Sign Wheel Game",
+      intro:
+        "Turn the zodiac sign wheel into a party game. Load it with astrology-themed dares and tasks, then take turns spinning and acting out whatever it lands on. It is a perfect icebreaker for sleepovers, birthdays, and hangouts with astrology-loving friends. Swap in your own inside jokes to make the game as mild or as wild as your group prefers.",
+      items: [
+        "Act like an Aries for the next minute",
+        "Guess the Scorpio's secret",
+        "Tell a Gemini a joke",
+        "Give a Cancer a friendly hug",
+        "Let the Leo take a group selfie",
+        "Do a dare chosen by a Virgo",
+        "Compliment a Libra sincerely",
+        "Ignore the Capricorn for one minute",
+      ],
+    },
+    {
+      heading: "Zodiac Sign Dates Table",
+      intro:
+        "Each Western star sign maps to a range of calendar dates. Use this quick reference to match any birthday to its zodiac sign, or to check your own sign before you spin.",
+      table: {
+        columns: ["Zodiac Sign", "Dates"],
+        rows: [
+          ["Aries", "March 21 – April 19"],
+          ["Taurus", "April 20 – May 20"],
+          ["Gemini", "May 21 – June 20"],
+          ["Cancer", "June 21 – July 22"],
+          ["Leo", "July 23 – August 22"],
+          ["Virgo", "August 23 – September 22"],
+          ["Libra", "September 23 – October 22"],
+          ["Scorpio", "October 23 – November 21"],
+          ["Sagittarius", "November 22 – December 21"],
+          ["Capricorn", "December 22 – January 19"],
+          ["Aquarius", "January 20 – February 18"],
+          ["Pisces", "February 19 – March 20"],
+        ],
+      },
+    },
+    {
+      heading: "Ruling Planets of Each Zodiac Sign",
+      intro:
+        "In astrology, every sign is governed by a ruling planet that shapes its core energy — Mars brings bold, fiery drive to Aries, while dreamy Neptune rules Pisces. Here is the ruling planet for each Western zodiac sign.",
+      table: {
+        columns: ["Zodiac Sign", "Ruling Planet"],
+        rows: [
+          ["Aries", "Mars"],
+          ["Taurus", "Venus"],
+          ["Gemini", "Mercury"],
+          ["Cancer", "Moon"],
+          ["Leo", "Sun"],
+          ["Virgo", "Mercury"],
+          ["Libra", "Venus"],
+          ["Scorpio", "Pluto"],
+          ["Sagittarius", "Jupiter"],
+          ["Capricorn", "Saturn"],
+          ["Aquarius", "Uranus"],
+          ["Pisces", "Neptune"],
+        ],
+      },
+    },
+    {
+      heading: "Egyptian Zodiac Signs",
+      intro:
+        "Ancient Egyptian astrology assigns each person to a deity rather than a constellation. These twelve gods and goddesses form the Egyptian zodiac — a mystical alternative to the Western system that is popular with mythology lovers and history fans. Edit the wheel to spin for a random Egyptian sign instead.",
+      items: [
+        "Nile",
+        "Amon-Ra",
+        "Mut",
+        "Geb",
+        "Osiris",
+        "Isis",
+        "Thoth",
+        "Horus",
+        "Anubis",
+        "Seth",
+        "Bastet",
+        "Sekhmet",
+      ],
+    },
+  ],
+};
+
+export function getAbsorbedSections(slug: string): AbsorbedSection[] {
+  return ABSORBED_SECTIONS[slug] ?? [];
+}
 
 export function getEnrichedContent(page: WheelPageRecord): EnrichedContent {
   const cat = getCategoryData(page.category);

@@ -27,6 +27,7 @@ import { AdSlot } from "@/components/AdSlot";
 import {
   getEnrichedContent,
   getRelatedBlogPosts,
+  getAbsorbedSections,
 } from "@/lib/wheelContentEnrichment";
 
 const WheelProgrammaticPage = () => {
@@ -68,6 +69,7 @@ const WheelProgrammaticPage = () => {
     { name: page.h1 },
   ];
   const enriched = getEnrichedContent(page);
+  const absorbedSections = getAbsorbedSections(page.slug);
   const relatedBlogs = getRelatedBlogPosts(enriched.relatedBlogSlugs);
   const howToSteps = parseHowToSteps(page.howToUse);
   const relatedGuides = [
@@ -369,6 +371,60 @@ const WheelProgrammaticPage = () => {
               ))}
             </ol>
           </Card>
+
+          {/* Absorbed sections merged from consolidated wheels */}
+          {absorbedSections.map((section, si) => (
+            <Card key={`absorbed-${si}`} className="p-6 md:p-8">
+              <h2 className="text-xl md:text-2xl font-bold mb-4">
+                {section.heading}
+              </h2>
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4">
+                {section.intro}
+              </p>
+              {section.items ? (
+                <ul className="space-y-3">
+                  {section.items.map((item, i) => (
+                    <li
+                      key={i}
+                      className="flex items-start gap-3 text-base text-muted-foreground leading-relaxed"
+                    >
+                      <span className="mt-1.5 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+              {section.table ? (
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-sm md:text-base border-collapse">
+                    <thead>
+                      <tr className="border-b border-border">
+                        <th className="py-2 pr-4 font-semibold text-foreground">
+                          {section.table.columns[0]}
+                        </th>
+                        <th className="py-2 font-semibold text-foreground">
+                          {section.table.columns[1]}
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {section.table.rows.map((row, i) => (
+                        <tr
+                          key={i}
+                          className="border-b border-border/50 text-muted-foreground"
+                        >
+                          <td className="py-2 pr-4 font-medium text-foreground">
+                            {row[0]}
+                          </td>
+                          <td className="py-2">{row[1]}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : null}
+            </Card>
+          ))}
 
           {/* FAQs */}
           {page.faqs.length > 0 ? (

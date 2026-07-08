@@ -115,13 +115,12 @@ const BLOG_RELATED_WHEELS: Record<string, string[]> = {
     "dinner-picker-wheel",
     "fast-food-wheel",
     "date-night-wheel",
-    "date-night-idea-wheel",
     "movie-picker-wheel",
   ],
   "virtual-secret-santa-online": [
     "secret-santa-wheel-generator",
     "random-name-picker-wheel",
-    "giveaway-winner-picker-wheel",
+    "winner-picker-wheel",
     "family-game-night-picker-wheel",
   ],
 };

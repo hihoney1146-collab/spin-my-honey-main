@@ -69,11 +69,12 @@ function extractLiteral(src, name, open, close) {
  * mirrors the same rich content (single source of truth in TS). */
 function loadEnrichment() {
   const file = path.join(__root, "src", "lib", "wheelContentEnrichment.ts");
-  const fallback = { categoryData: {}, personalNotes: {} };
+  const fallback = { categoryData: {}, personalNotes: {}, absorbedSections: {} };
   if (!fs.existsSync(file)) return fallback;
   const src = fs.readFileSync(file, "utf8");
   const catLit = extractLiteral(src, "CATEGORY_DATA", "{", "}");
   const noteLit = extractLiteral(src, "FEATURED_PERSONAL_NOTES", "{", "}");
+  const absorbedLit = extractLiteral(src, "ABSORBED_SECTIONS", "{", "}");
   try {
     return {
       categoryData: catLit
@@ -81,6 +82,9 @@ function loadEnrichment() {
         : {},
       personalNotes: noteLit
         ? new Function(`"use strict";return (${noteLit});`)()
+        : {},
+      absorbedSections: absorbedLit
+        ? new Function(`"use strict";return (${absorbedLit});`)()
         : {},
     };
   } catch (err) {
@@ -461,7 +465,7 @@ function tutorialAddingImagesContent() {
 <section><h2>Best practices</h2><p>Balance visuals with clarity: too many detailed images crowd the wheel. Use consistent framing, avoid tiny text baked into images, and keep a plain-text fallback for accessibility so screen readers and search engines still understand each option. For fairness, remember that images are purely visual — every equal-sized segment still has the same probability of being chosen, so decorating the wheel never changes the odds.</p></section>
 <section><h2>Try it with these wheels</h2><ul>
 <li><a href="/random-name-picker-wheel">Random name picker wheel</a></li>
-<li><a href="/giveaway-winner-picker-wheel">Giveaway winner picker wheel</a></li>
+<li><a href="/winner-picker-wheel">Winner picker wheel</a></li>
 <li><a href="/team-generator-wheel">Team generator wheel</a></li>
 </ul></section>
 ${exploreNav()}`);
@@ -505,7 +509,7 @@ function caseStudyCommunityContent() {
 <section><h2>Handling multiple prize tiers</h2><p>For events with several prizes, organizers ran the wheel once per tier, removing each winner before the next spin so no one could win twice. When they wanted a grand-prize finale, they kept that draw for last and let the crowd count down the spin together. This kept the pacing lively and made the biggest moment feel earned and transparent.</p></section>
 <section><h2>Tips for organizers</h2><p>Announce the rules before each draw, show the full wheel on screen, and keep a simple list of winners for your records. Test the wheel and your projector beforehand, keep entries readable by using short labels, and have a backup device on hand. If you plan to post proof afterward, record the screen during each spin so the fairness of the process is easy to share.</p></section>
 <section><h2>Related tools</h2><ul>
-<li><a href="/giveaway-winner-picker-wheel">Giveaway winner picker wheel</a></li>
+<li><a href="/winner-picker-wheel">Winner picker wheel</a></li>
 <li><a href="/random-name-picker-wheel">Random name picker wheel</a></li>
 <li><a href="/pick-out-of-a-hat-generator">Pick out of a hat generator</a></li>
 <li><a href="/instagram-wheel-picker">Instagram wheel picker</a></li>
@@ -560,7 +564,7 @@ function comparisonPhysicalContent() {
   return mainWrap(`<h1>Online vs Physical Spin Wheels</h1>
 <p>Physical prize wheels are eye-catching at fairs and stores, but online spin wheels win on portability, cost, and customization. This comparison covers when each makes sense.</p>
 <section><h2>Portability and cost</h2><p>A physical wheel is bulky, single-purpose, and costs money to buy and store. An online wheel is free, lives in any browser, and travels on your phone or laptop — ready for a classroom, a video call, or a pop-up event with no shipping or setup.</p></section>
-<section><h2>Customization</h2><p>Repainting a physical wheel for a new set of options is impractical. Online, you retype entries in seconds, change colors, add images, and reuse saved lists. You can run a <a href="/giveaway-winner-picker-wheel">giveaway winner picker wheel</a> one minute and a <a href="/random-name-picker-wheel">random name picker</a> the next.</p></section>
+<section><h2>Customization</h2><p>Repainting a physical wheel for a new set of options is impractical. Online, you retype entries in seconds, change colors, add images, and reuse saved lists. You can run a <a href="/winner-picker-wheel">winner picker wheel</a> one minute and a <a href="/random-name-picker-wheel">random name picker</a> the next.</p></section>
 <section><h2>Fairness</h2><p>Physical wheels can develop bias from wear, uneven weighting, or a practiced hand. An online wheel's outcome comes from cryptographically secure randomness with equal-probability segments, so results stay fair over unlimited spins.</p></section>
 <section><h2>Accessibility and audience reach</h2><p>An online wheel reaches everyone who has a link, not just the people standing at a booth. It scales from a single classroom to a global live stream, works on the device each person already owns, and pairs every result with a readable text label for screen readers and captions. A physical wheel is limited to the room it occupies and the people who can see it spin, which caps how many participants a single draw can include.</p></section>
 <section><h2>Durability and maintenance</h2><p>A physical wheel is a mechanical object: bearings wear, labels fade, and a dropped wheel can be knocked out of balance. Keeping one event-ready means storage space, transport, and occasional repair. An online wheel has none of these costs. It is always the latest version, never runs out of a consumable, and can be duplicated instantly for a second room or a second facilitator.</p></section>
@@ -719,6 +723,26 @@ function wheelContent(wheel, wheels) {
         cat.examplesIntro || "",
       )}</p>${listHtml(cat.examples)}</section>`,
     );
+  }
+
+  const absorbed = ENRICH.absorbedSections[wheel.slug] || [];
+  for (const section of absorbed) {
+    let body = `<p>${esc(section.intro)}</p>`;
+    if (Array.isArray(section.items) && section.items.length) {
+      body += listHtml(section.items);
+    }
+    if (section.table && Array.isArray(section.table.rows)) {
+      const [c1, c2] = section.table.columns || ["", ""];
+      const rows = section.table.rows
+        .map(
+          (r) => `    <tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td></tr>`,
+        )
+        .join("\n");
+      body += `<table><thead><tr><th>${esc(c1)}</th><th>${esc(
+        c2,
+      )}</th></tr></thead><tbody>\n${rows}\n</tbody></table>`;
+    }
+    parts.push(`<section><h2>${esc(section.heading)}</h2>${body}</section>`);
   }
 
   if (faqs.length) {
