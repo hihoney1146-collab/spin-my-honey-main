@@ -53,6 +53,96 @@ export function collectBlogPostsMeta(root) {
   return posts;
 }
 
+/**
+ * Extract a top-level array literal `<name>... = [ ... ]` from a TS/JS source,
+ * correctly skipping brackets that appear inside strings, template literals, and
+ * comments. Returns the literal text including the outer brackets, or null.
+ */
+function extractArrayLiteral(src, name) {
+  const declRe = new RegExp(`${name}\\s*(?::[^=]+)?=\\s*\\[`);
+  const declMatch = declRe.exec(src);
+  if (!declMatch) return null;
+  const start = declMatch.index + declMatch[0].length - 1; // index of '['
+
+  let depth = 0;
+  let i = start;
+  let inStr = null; // '"' | "'" | '`'
+  for (; i < src.length; i++) {
+    const ch = src[i];
+    const prev = src[i - 1];
+
+    if (inStr) {
+      if (ch === "\\") {
+        i++; // skip escaped char
+        continue;
+      }
+      if (ch === inStr) inStr = null;
+      continue;
+    }
+
+    // line comment
+    if (ch === "/" && src[i + 1] === "/") {
+      const nl = src.indexOf("\n", i);
+      if (nl === -1) break;
+      i = nl;
+      continue;
+    }
+    // block comment
+    if (ch === "/" && src[i + 1] === "*") {
+      const end = src.indexOf("*/", i + 2);
+      if (end === -1) break;
+      i = end + 1;
+      continue;
+    }
+    if (ch === '"' || ch === "'" || ch === "`") {
+      inStr = ch;
+      continue;
+    }
+    if (ch === "[") depth++;
+    else if (ch === "]") {
+      depth--;
+      if (depth === 0) return src.slice(start, i + 1);
+    }
+  }
+  return null;
+}
+
+/**
+ * Load full BlogPost objects (blocks, faqs, excerpt) from the data files.
+ * The data is pure serializable literals, so we evaluate the extracted array in a
+ * sandbox-free Function at build time (trusted, first-party source).
+ * @returns {import('../src/data/blogTypes').BlogPost[]}
+ */
+export function collectBlogPostsFull(root) {
+  const posts = [];
+  const seen = new Set();
+  const varNames = {
+    "blogPosts.ts": "blogPosts",
+    "blogPostsAdditional.ts": "additionalBlogPosts",
+  };
+  for (const filePath of readBlogDataSources(root)) {
+    const src = fs.readFileSync(filePath, "utf8");
+    const base = path.basename(filePath);
+    const name = varNames[base] || "blogPosts";
+    const literal = extractArrayLiteral(src, name);
+    if (!literal) continue;
+    let arr;
+    try {
+      // eslint-disable-next-line no-new-func
+      arr = new Function(`"use strict";return (${literal});`)();
+    } catch (err) {
+      console.warn(`⚠️  Could not parse ${base}: ${err.message}`);
+      continue;
+    }
+    for (const post of Array.isArray(arr) ? arr : []) {
+      if (!post || !post.slug || seen.has(post.slug)) continue;
+      seen.add(post.slug);
+      posts.push(post);
+    }
+  }
+  return posts;
+}
+
 /** @returns {import('./static-page-meta.mjs').RouteMeta[]} */
 export function collectBlogRouteMeta(root, { canonicalUrl, SITE }) {
   const posts = [];

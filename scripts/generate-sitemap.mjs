@@ -24,7 +24,7 @@ const childNames = CHILD_SITEMAPS.map((c) => c.filename).join(", ");
 const totalUrls = pageCount + blogCount + wheelCount;
 const blogs = collectBlogSlugs(root).length;
 
-console.log(`✅ sitemap.xml (direct urlset) + ${childNames}`);
+console.log(`✅ sitemap.xml (sitemap index) + ${childNames}`);
 console.log(
   `   URLs: ${totalUrls} (${pageCount} pages, ${blogs} blog, ${wheelCount} wheels) + images-sitemap`,
 );

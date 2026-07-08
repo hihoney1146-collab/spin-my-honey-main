@@ -13,7 +13,9 @@ import {
 } from "./static-page-meta.mjs";
 import {
   collectBlogRouteMeta,
+  collectBlogPostsFull,
 } from "./blog-data-sources.mjs";
+import { renderRouteContent } from "./static-content.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -272,7 +274,7 @@ function webApplicationJsonLd(route, name) {
   };
 }
 
-function enrichRoute(route, wheels, blogRoutes) {
+function enrichRoute(route, wheels, blogRoutes, blogPosts) {
   const title = normalizeTitle(route.title);
   const label = routeHeading({ ...route, title });
   const jsonLd = [];
@@ -284,9 +286,17 @@ function enrichRoute(route, wheels, blogRoutes) {
     jsonLd.push(webApplicationJsonLd(route, route.wheel.h1 || wheelLabel(route.wheel)));
     const faqLd = faqJsonLd(route.wheel.faqs);
     if (faqLd) jsonLd.push(faqLd);
-    seoContent = buildWheelSeoContent(route, wheels);
+    // Enriched SSR content mirrors the client wheel page; fall back to the
+    // minimal shell if enrichment is unavailable.
+    seoContent =
+      renderRouteContent(route, { wheels, blogPosts }) ||
+      buildWheelSeoContent(route, wheels);
   } else {
-    seoContent = buildGenericSeoContent({ ...route, title }, wheels, blogRoutes);
+    // Prefer full, hand-authored SSR content for trust & content pages; fall
+    // back to the generic shell for any route without a dedicated builder.
+    seoContent =
+      renderRouteContent(route, { wheels, blogPosts }) ||
+      buildGenericSeoContent({ ...route, title }, wheels, blogRoutes);
   }
 
   return { ...route, title, jsonLd, seoContent };
@@ -416,11 +426,12 @@ if (!fs.existsSync(indexPath)) {
 const template = fs.readFileSync(indexPath, "utf-8");
 const wheels = loadWheelPages();
 const blogRoutes = collectBlogRouteMeta(root, { canonicalUrl, SITE });
+const blogPosts = collectBlogPostsFull(root);
 const routes = [
   ...fixedRouteMeta,
   ...blogRoutes,
   ...loadWheelRouteMeta(),
-].map((route) => enrichRoute(route, wheels, blogRoutes));
+].map((route) => enrichRoute(route, wheels, blogRoutes, blogPosts));
 
 console.log("🚀 Generating static HTML pages with route-specific metadata...\n");
 

@@ -373,14 +373,11 @@ export function writeAllSitemapFiles(root = getProjectRoot()) {
   const publicDir = path.join(root, "public");
   fs.mkdirSync(publicDir, { recursive: true });
 
+  // Single source of truth: /sitemap.xml is a real sitemap index that references
+  // the child sitemaps below (matches the claims in llms.txt and robots.txt).
   fs.writeFileSync(
     path.join(publicDir, "sitemap.xml"),
-    buildSitemapXml(root),
-    "utf8",
-  );
-  fs.writeFileSync(
-    path.join(publicDir, "sitemap.txt"),
-    buildTextSitemap(root),
+    buildSitemapIndexXml(root),
     "utf8",
   );
 
@@ -414,8 +411,6 @@ Disallow: /*?*fbclid=
 Disallow: /*?*gclid=
 
 Sitemap: ${SITE}/sitemap.xml
-Sitemap: ${SITE}/sitemap-api.xml
-Sitemap: ${SITE}/sitemap.txt
 `;
 }
 

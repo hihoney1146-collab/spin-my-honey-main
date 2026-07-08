@@ -20,6 +20,9 @@
     "verify:ads-txt": "node scripts/verify-ads-txt.mjs",
     "verify:sitemap": "node scripts/verify-sitemap.mjs",
     "verify:seo-html": "node scripts/verify-seo-html.mjs",
+    "verify:crawler-access": "bash scripts/verify-crawler-access.sh",
+    "audit:ssr": "node scripts/audit-ssr.mjs",
+    "indexnow": "node scripts/indexnow-ping.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
