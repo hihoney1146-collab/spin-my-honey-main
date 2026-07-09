@@ -73,6 +73,12 @@ function htmlList(items, mapper) {
 }
 
 function rootWithSeoContent(html, content) {
+  if (/<div id="root">[\s\S]*?<\/div>/i.test(html)) {
+    return html.replace(
+      /<div id="root">[\s\S]*?<\/div>/i,
+      `<div id="root">\n${content}\n</div>`,
+    );
+  }
   return html.replace(
     /<div id="root"><\/div>/i,
     `<div id="root">\n${content}\n</div>`,

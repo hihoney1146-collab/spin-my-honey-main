@@ -10,7 +10,7 @@ type AdSlotProps = {
 };
 
 /**
- * Placeholder ad region. Renders nothing until the user accepts cookies.
+ * Reserved ad region with fixed min-height to limit CLS before/after AdSense fill.
  * Do not pass a live adSlot until AdSense approval.
  */
 export function AdSlot({
@@ -41,33 +41,35 @@ export function AdSlot({
   }, [ready, adSlot]);
 
   const consent = readCookieConsent();
-  if (consent !== "accepted") return null;
-
-  if (!adSlot) {
-    return (
-      <div
-        className={`min-h-[90px] rounded-lg border border-dashed border-border/80 bg-muted/30 flex items-center justify-center text-xs text-muted-foreground ${className}`}
-        aria-hidden
-      >
-        {label} (enabled after AdSense approval)
-      </div>
-    );
-  }
-
-  return (
-    <aside className={className} aria-label={label}>
-      <p className="text-[10px] uppercase tracking-wide text-muted-foreground mb-1 text-center">
-        {label}
-      </p>
-      <ins
-        ref={ref}
-        className="adsbygoogle block"
-        style={{ display: "block" }}
-        data-ad-client={ADSENSE_CLIENT}
-        data-ad-slot={adSlot}
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      />
-    </aside>
+  const reserved = (
+    <div
+      className={`min-h-[280px] w-full rounded-lg border border-dashed border-border/80 bg-muted/20 ${className}`}
+      aria-label={label}
+    >
+      {consent === "accepted" && adSlot ? (
+        <>
+          <p className="text-[10px] uppercase tracking-wide text-muted-foreground mb-1 text-center pt-2">
+            {label}
+          </p>
+          <ins
+            ref={ref}
+            className="adsbygoogle block min-h-[250px]"
+            style={{ display: "block", minHeight: 250 }}
+            data-ad-client={ADSENSE_CLIENT}
+            data-ad-slot={adSlot}
+            data-ad-format="auto"
+            data-full-width-responsive="true"
+          />
+        </>
+      ) : (
+        <div className="flex min-h-[280px] items-center justify-center px-4 text-center text-xs text-muted-foreground">
+          {consent === "accepted"
+            ? `${label} (enabled after AdSense approval)`
+            : `${label} — reserved slot`}
+        </div>
+      )}
+    </div>
   );
+
+  return reserved;
 }

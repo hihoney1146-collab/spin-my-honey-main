@@ -11,8 +11,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { fixedRouteMeta, canonicalUrl, SITE } from "./static-page-meta.mjs";
-import { collectBlogRouteMeta } from "./blog-data-sources.mjs";
+import { collectIndexableRoutes } from "./route-registry.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
@@ -24,12 +23,6 @@ const LEGAL_ROUTES = new Set([
   "/terms-and-conditions",
   "/disclaimer",
 ]);
-
-function loadWheelSlugs() {
-  const p = path.join(root, "src", "generated", "wheelPages.json");
-  if (!fs.existsSync(p)) return [];
-  return JSON.parse(fs.readFileSync(p, "utf-8")).map((w) => w.slug);
-}
 
 function routeFile(route) {
   return route === "/"
@@ -49,11 +42,7 @@ function visibleWords(html) {
   return text ? text.split(" ").length : 0;
 }
 
-const routes = [
-  ...fixedRouteMeta.map((r) => r.path),
-  ...collectBlogRouteMeta(root, { canonicalUrl, SITE }).map((r) => r.path),
-  ...loadWheelSlugs().map((s) => `/${s}`),
-];
+const routes = collectIndexableRoutes(root).map((r) => r.path);
 
 const rows = [];
 let missing = 0;

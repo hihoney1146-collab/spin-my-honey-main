@@ -390,7 +390,7 @@ function termsContent() {
 <section><h2>No accounts and user content</h2><p>No account is required. Text you enter is processed locally in your browser and is your responsibility; avoid entering sensitive information. Feedback you email us grants Raja Jahangir a non-exclusive, worldwide, royalty-free license to use it to improve the Service.</p></section>
 <section><h2>Intellectual property</h2><p>Unless stated otherwise, all content — interface, design, text, graphics, logos, physics engine, and code — is owned by Raja Jahangir and protected by law. You may not copy, modify, distribute, sell, or lease any part of the site, but you may display it on your devices, share screen recordings, or live-stream the wheel as part of normal use.</p></section>
 <section><h2>Warranties and liability</h2><p>The Service is provided "AS IS" and "AS AVAILABLE" without warranties of any kind. To the fullest extent permitted by law, Raja Jahangir disclaims all warranties and will not be liable for indirect, incidental, special, consequential, or punitive damages. You agree to indemnify Online Spin Wheel and Raja Jahangir against claims arising from your use or violations of these Terms.</p></section>
-<section><h2>Governing law, changes, and contact</h2><p>These Terms are governed by the laws of Pakistan, with disputes resolved in the courts of Islamabad, Pakistan. We may update these Terms at any time; continued use constitutes acceptance. Questions? Email <a href="mailto:hello@onlinespinwheel.fun">hello@onlinespinwheel.fun</a>. Online Spin Wheel is an independent project built and maintained by <a href="/author/raja-jahangir">Raja Jahangir</a>.</p></section>`);
+<section><h2>Governing law, changes, and contact</h2><p>These Terms are governed by the laws of Pakistan, with disputes resolved in the courts of Islamabad, Pakistan. We may update these Terms at any time; continued use constitutes acceptance. Questions? Email <a href="mailto:hello@onlinespinwheel.fun">hello@onlinespinwheel.fun</a>. This site is operated by <a href="/author/raja-jahangir">Raja Jahangir</a> as an independent solo project.</p></section>`);
 }
 
 function disclaimerContent() {
@@ -399,7 +399,7 @@ function disclaimerContent() {
 <section><h2>Advertising and ad-network disclaimer</h2><p>To keep the tool free, the site is ad-supported and partners with third-party networks including Google AdSense. The presence of an advertisement is not an endorsement, we do not control which specific ads are served, and any interactions or purchases with advertisers are solely between you and the advertiser.</p></section>
 <section><h2>External links disclaimer</h2><p>The site may link to other websites or third-party content that we do not investigate, monitor, or check for accuracy. We do not endorse or assume responsibility for third-party sites and are not a party to any transaction between you and third-party providers.</p></section>
 <section><h2>Limitation of liability and user responsibility</h2><p>Under no circumstances shall Raja Jahangir be liable for any loss or damage arising from use of the site, reliance on its information, or outcomes decided by the wheel. We do not store the data you input on our servers — all processing is local to your browser — and you are responsible for the content you enter and any disputes arising from results.</p></section>
-<section><h2>Contact</h2><p>Questions about this Disclaimer? Email <a href="mailto:hello@onlinespinwheel.fun">hello@onlinespinwheel.fun</a>. Online Spin Wheel is an independent project built and maintained by <a href="/author/raja-jahangir">Raja Jahangir</a>. See also our <a href="/terms-and-conditions">Terms</a> and <a href="/privacy-policy">Privacy Policy</a>.</p></section>`);
+<section><h2>Contact</h2><p>Questions about this Disclaimer? Email <a href="mailto:hello@onlinespinwheel.fun">hello@onlinespinwheel.fun</a>. Raja Jahangir operates this site as a solo independent project. See also our <a href="/terms-and-conditions">Terms</a> and <a href="/privacy-policy">Privacy Policy</a>.</p></section>`);
 }
 
 /* ------------------------------------------ How randomness works ----------- */
@@ -729,14 +729,28 @@ function blogIndexContent(posts) {
       const shortTitle = String(p.title || "").split("|")[0].trim();
       return `  <li>
     <h2><a href="/blog/${esc(p.slug)}">${esc(shortTitle)}</a></h2>
-    <p>${esc(p.excerpt || p.metaDescription || "")}</p>
-    <p>By ${esc(p.author || "Online Spin Wheel")} — last updated ${esc(p.updated || "")}</p>
+    <p>By ${esc(p.author || "Online Spin Wheel")} — last updated ${esc(p.updated || "")}. Open the full guide for step-by-step workflows and linked specialty wheels.</p>
   </li>`;
     })
     .join("\n");
 
   return mainWrap(`<h1>Online Spin Wheel Blog — Guides &amp; Ideas</h1>
 <p>Practical articles on fair random selection for classrooms, teams, couples, and celebrations — powered by Online Spin Wheel. Learn how to run transparent giveaways, energize a classroom, break the ice with remote teams, decide where to eat, and organize a virtual Secret Santa.</p>
+<section><h2>What you will find here</h2>
+<p>Every article is written for real hosts and teachers who need a fair pick in front of an audience. We cover classroom spin-wheel games, office icebreakers, couple decision rituals, and seasonal giveaways. Each post links to the matching free tool on this site so you can try the idea in the same tab.</p>
+<p>Indexed guides below are fully expanded with step-by-step workflows, printable prompts where helpful, and links to specialty wheels such as the <a href="/random-name-picker-wheel">random name picker</a>, <a href="/classroom-spinner">classroom spinner</a>, and <a href="/winner-picker-wheel">winner picker</a>. Draft posts stay out of search until they meet the same depth bar.</p>
+<p>New articles focus on classroom fairness, hybrid meeting icebreakers, couple decision rituals, and giveaway transparency. Each post names the exact wheel to open, how many entries to paste, and what to say to the audience before the first spin so nobody doubts the outcome. Start with the indexed guides in the list below.</p>
+</section>
+<section><h2>Topics we publish</h2>
+<ul>
+<li><strong>Classrooms:</strong> student pickers, vocabulary games, and fullscreen smartboard setups.</li>
+<li><strong>Offices:</strong> icebreaker prompts, hybrid meeting rituals, and fair task assignment.</li>
+<li><strong>Couples &amp; friends:</strong> dinner decisions, date ideas, and low-stakes yes-or-no calls.</li>
+<li><strong>Giveaways:</strong> transparent winner picks, proof links, and multi-winner raffle flows.</li>
+</ul>
+<p>Want the tools first? Browse the <a href="/all-spin-wheels">full wheel directory</a> or read <a href="/how-randomness-works">how randomness works</a> before your next live draw.</p>
+<p>We publish on a rolling schedule: classroom and giveaway guides ship first, with couple and seasonal posts following once they pass the same editorial bar as our indexed articles. Draft posts remain reachable by URL for internal review but carry <code>noindex</code> until expanded.</p>
+</section>
 <ul>
 ${items}
 </ul>
@@ -1060,9 +1074,7 @@ function allSpinWheelsContent(wheels) {
         .sort((a, b) => wheelLabel(a).localeCompare(wheelLabel(b)))
         .map(
           (w) =>
-            `    <li><a href="/${esc(w.slug)}">${esc(wheelLabel(w))}</a> — ${esc(
-              (w.metaDescription || "").split(".")[0],
-            )}.</li>`,
+            `    <li><a href="/${esc(w.slug)}">${esc(wheelLabel(w))}</a></li>`,
         )
         .join("\n");
       return `<section>
@@ -1082,7 +1094,7 @@ ${items}
   <li><a href="/classroom-spinner">Classroom spinner</a> — student picker, teams, and timer hub</li>
   <li><a href="/wheel-of-names-alternative">Wheel of names alternative</a> — compare free picker tools</li>
 </ul></section>
-<p>These wheels cover everyday choices (what to eat, yes or no, coin flips), education (student pickers, alphabet and word wheels), events and giveaways (winner pickers, Secret Santa), games and parties, movies and entertainment, zodiac and fortune, health and fitness, travel, and more. Whatever you need to decide fairly, there is a wheel for it.</p>
+<p>These wheels cover everyday choices (what to eat, yes or no, coin flips), education (student pickers, alphabet and word wheels), events and giveaways (winner pickers, Secret Santa), games and parties, movies and entertainment, zodiac and fortune, health and fitness, travel, and more. Whatever you need to decide fairly, there is a wheel for it. Use the category headings below to jump directly to the tool you need.</p>
 ${sections}
 ${exploreNav()}`);
 }

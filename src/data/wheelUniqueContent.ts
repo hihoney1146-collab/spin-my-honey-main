@@ -1118,8 +1118,8 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
         body: "Delegates spin to receive a random nation brief for mock debate practice.",
       },
       {
-        heading: "Language learning themes",
-        body: "Spanish classes spin Hispanic countries and present one cultural fact each week.",
+        heading: "Flag identification drills",
+        body: "Spin a country, then name its flag colors and one neighboring nation before the timer runs out.",
       },
     ],
     faqs: [
@@ -1174,8 +1174,8 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
         body: "Families spin before entering and race to photograph the chosen exhibit first.",
       },
       {
-        heading: "Charades with kids",
-        body: "Players spin, act like the animal silently, and let others guess the species.",
+        heading: "Habitat sorting games",
+        body: "Spin an animal, then classify it as land, sea, or sky dweller and name one adaptation that fits.",
       },
     ],
     faqs: [
@@ -1198,6 +1198,12 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
         question: "Can pet names go on the wheel?",
         answer:
           "Yes. Paste household pet names for chore assignment games.",
+      },
+    ],
+    supplementalSections: [
+      {
+        heading: "Fair spins for young learners",
+        body: "Each animal slice has equal width, so a lion is exactly as likely as a penguin. Spins use the same browser cryptography as every other wheel on this site, which keeps classroom draws transparent when parents or administrators ask how winners are chosen.",
       },
     ],
     relatedWheels: [
@@ -1230,8 +1236,8 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
         body: "College students map calculus, history, and lab prep to specific weekdays via random assignment.",
       },
       {
-        heading: "Content posting calendars",
-        body: "Creators spin to decide which weekday gets long-form video versus quick clips.",
+        heading: "Weekly meeting themes",
+        body: "Remote teams spin a weekday to decide which stand-up includes a show-and-tell segment.",
       },
     ],
     faqs: [
@@ -1254,6 +1260,12 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
         question: "Can I add holidays?",
         answer:
           "Insert Thanksgiving or Spring Break as custom slices alongside weekdays.",
+      },
+    ],
+    supplementalSections: [
+      {
+        heading: "Calendar fairness for families",
+        body: "Weekday slices are equal size, so Monday is no more likely than Friday. That matters when siblings track chore charts or when teachers rotate line-leader duty. Remove a day after it wins if you need each weekday used once before repeats.",
       },
     ],
     relatedWheels: [
@@ -2192,8 +2204,8 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
         body: "Students spin continents first, then cities within the chosen region.",
       },
       {
-        heading: "Staycation creativity",
-        body: "Families spin local day-trip towns when airfare is not in the budget.",
+        heading: "Language immersion picks",
+        body: "Language clubs spin a destination and spend the week cooking one dish from that city.",
       },
     ],
     faqs: [
@@ -2216,6 +2228,12 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
         question: "Is visa info included?",
         answer:
           "No travel advisories—research entry rules after the spin.",
+      },
+    ],
+    supplementalSections: [
+      {
+        heading: "Planning after the spin",
+        body: "Treat the wheel as a shortlist generator, not a booking engine. After Paris or Tokyo lands, compare flight costs, visa rules, and season weather before you commit. Duplicate dream cities on extra slices if you want higher odds without editing the whole list.",
       },
     ],
     relatedWheels: [

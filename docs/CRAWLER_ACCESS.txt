@@ -1,0 +1,59 @@
+Crawler-access check against https://onlinespinwheel.fun
+-----------------------------------------------------------------
+Googlebot/2.1 (+http://www.google.com/bot.html) /                -> 200
+Googlebot/2.1 (+http://www.google.com/bot.html) /ads.txt         -> 200
+Googlebot/2.1 (+http://www.google.com/bot.html) /sitemap.xml     -> 200
+Googlebot/2.1 (+http://www.google.com/bot.html) /robots.txt      -> 200
+Googlebot/2.1 (+http://www.google.com/bot.html) /llms.txt        -> 200
+Googlebot/2.1 (+http://www.google.com/bot.html) /about-us        -> 200
+Googlebot/2.1 (+http://www.google.com/bot.html) /yes-or-no-wheel -> 200
+-----------------------------------------------------------------
+Mediapartners-Google                          /                -> 200
+Mediapartners-Google                          /ads.txt         -> 200
+Mediapartners-Google                          /sitemap.xml     -> 200
+Mediapartners-Google                          /robots.txt      -> 200
+Mediapartners-Google                          /llms.txt        -> 200
+Mediapartners-Google                          /about-us        -> 200
+Mediapartners-Google                          /yes-or-no-wheel -> 200
+-----------------------------------------------------------------
+AdsBot-Google                                 /                -> 200
+AdsBot-Google                                 /ads.txt         -> 200
+AdsBot-Google                                 /sitemap.xml     -> 200
+AdsBot-Google                                 /robots.txt      -> 200
+AdsBot-Google                                 /llms.txt        -> 200
+AdsBot-Google                                 /about-us        -> 200
+AdsBot-Google                                 /yes-or-no-wheel -> 200
+-----------------------------------------------------------------
+Bingbot                                       /                -> 200
+Bingbot                                       /ads.txt         -> 200
+Bingbot                                       /sitemap.xml     -> 200
+Bingbot                                       /robots.txt      -> 200
+Bingbot                                       /llms.txt        -> 200
+Bingbot                                       /about-us        -> 200
+Bingbot                                       /yes-or-no-wheel -> 200
+-----------------------------------------------------------------
+GPTBot                                        /                -> 200
+GPTBot                                        /ads.txt         -> 200
+GPTBot                                        /sitemap.xml     -> 200
+GPTBot                                        /robots.txt      -> 200
+GPTBot                                        /llms.txt        -> 200
+GPTBot                                        /about-us        -> 200
+GPTBot                                        /yes-or-no-wheel -> 200
+-----------------------------------------------------------------
+ClaudeBot                                     /                -> 200
+ClaudeBot                                     /ads.txt         -> 200
+ClaudeBot                                     /sitemap.xml     -> 200
+ClaudeBot                                     /robots.txt      -> 200
+ClaudeBot                                     /llms.txt        -> 200
+ClaudeBot                                     /about-us        -> 200
+ClaudeBot                                     /yes-or-no-wheel -> 200
+-----------------------------------------------------------------
+PerplexityBot                                 /                -> 200
+PerplexityBot                                 /ads.txt         -> 200
+PerplexityBot                                 /sitemap.xml     -> 200
+PerplexityBot                                 /robots.txt      -> 200
+PerplexityBot                                 /llms.txt        -> 200
+PerplexityBot                                 /about-us        -> 200
+PerplexityBot                                 /yes-or-no-wheel -> 200
+-----------------------------------------------------------------
+PASS: every crawler received 200 on every path.

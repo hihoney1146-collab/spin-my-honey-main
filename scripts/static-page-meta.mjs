@@ -12,7 +12,7 @@ const DEFAULT_OG_IMAGE = `${SITE}/og-image.png`;
 export const fixedRouteMeta = [
   {
     path: "/",
-    title: "Spin the Wheel - Free Online Spin Wheel & Random Name Picker",
+    title: "Online Spin Wheel — Free Random Picker Tool",
     description:
       "Spin the wheel for a fair, random pick. Add names, numbers, or choices and let crypto-grade randomness decide — no signup, works on any phone, tablet, or computer.",
     ogType: "website",
@@ -232,7 +232,7 @@ export const fixedRouteMeta = [
   },
   {
     path: "/comparison-spin-wheel-vs-traditional-methods",
-    title: "Spin Wheel vs Traditional Random Methods | Online Spin Wheel",
+    title: "Spin Wheel vs Traditional Methods | Online Spin Wheel",
     description:
       "Spin wheels vs hats, dice, and paper draws—pros, cons, and when to use each.",
   },
