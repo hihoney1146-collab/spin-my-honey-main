@@ -14,6 +14,9 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import {
+  getWheelUniqueContent,
+} from "./wheel-content-loader.mjs";
 
 const SITE = "https://onlinespinwheel.fun";
 const __root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -631,22 +634,58 @@ function relatedWheels(wheel, wheels, count = 6) {
   return [...same, ...rest].slice(0, count);
 }
 
+function relatedWheelLinksFromUnique(wheel, wheels, count = 6) {
+  const unique = getWheelUniqueContent(wheel.slug);
+  if (unique?.relatedWheels?.length) {
+    return unique.relatedWheels.slice(0, count).map(({ slug, anchor }) => ({
+      slug,
+      anchor,
+    }));
+  }
+  return relatedWheels(wheel, wheels, count).map((w) => ({
+    slug: w.slug,
+    anchor: wheelLabel(w),
+  }));
+}
+
+function wheelOgImagePath(slug) {
+  return `/og/${slug}.png`;
+}
+
+/** Real tool behavior described in SSR for differentiated wheels (Phase 5.6). */
+const WHEEL_MODE_FEATURES = {
+  "team-generator-wheel":
+    "Paste participant names and choose how many teams you need. The generator shuffles the roster and distributes names in round-robin order so squad sizes stay balanced within one person — ideal for PE classes, office icebreakers, and gaming squads.",
+  "secret-santa-wheel-generator":
+    "Run a full Secret Santa assignment with optional exclusion pairs (spouses, roommates). Each participant gets a private reveal link they can open without seeing anyone else's match.",
+  "random-number-wheel":
+    "Set a minimum and maximum, toggle no-repeat mode to avoid duplicate draws, and pick a random integer in range. Small ranges also display on the visual wheel; large ranges show a bold numeric result.",
+  "random-student-picker":
+    "Built for US classrooms: enable remove-after-pick so called-on students drop from the pool, review session history for subs, and switch to fullscreen classroom mode with large tap-to-spin controls for projectors.",
+  "winner-picker-wheel":
+    "Draw multiple giveaway winners from a pasted comment list, dedupe @handles, and copy a shareable proof link with timestamp you can post to Instagram or TikTok Stories after a live spin recording.",
+  "coin-flip-wheel":
+    "Every flip updates a running heads-versus-tails tally and streak counter so tiebreakers, kickoff calls, and stream overlays show transparent stats on screen.",
+  "alphabet-spinner-wheel":
+    "Spin A through Z with an exclude-letters panel — uncheck glyphs already used in phonics drills, Scattergories, or spelling bees so only fresh letters remain on the wheel.",
+};
+
 function wheelContent(wheel, wheels) {
-  const cat =
-    ENRICH.categoryData[wheel.category] ||
-    ENRICH.categoryData["Utilities & Tools"] ||
-    {};
+  const unique = getWheelUniqueContent(wheel.slug);
   const keyword = wheelLabel(wheel);
   const kwLower = String(keyword).toLowerCase();
   const options = Array.isArray(wheel.wheelOptions) ? wheel.wheelOptions : [];
-  const faqs = Array.isArray(wheel.faqs) ? wheel.faqs : [];
-  const note = ENRICH.personalNotes[wheel.slug];
-
-  const definition = `${keyword} is a free online tool that uses cryptographic randomization to deliver fair, instant results. Enter your options, click spin, and let the wheel decide. No sign-up, no downloads, no bias.`;
-  const whyUse = `${cat.whyPrefix || ""} The ${kwLower} removes that friction entirely. Instead of debating, scrolling, or overthinking, you let a single spin settle the matter in seconds. The result is powered by your browser's cryptographic random number generator, so every outcome is provably fair and impossible to predict.`;
-  const conclusion = `Whether you are using it for the first time or spinning daily, the ${kwLower} is designed to make your decisions faster, fairer, and more fun. Bookmark this page, share it with friends, and let the wheel do the hard work for you. If you need more tools, explore our full collection of specialty wheels on the all spin wheels page.`;
-
+  const faqs = unique?.faqs?.length
+    ? unique.faqs
+    : Array.isArray(wheel.faqs)
+      ? wheel.faqs
+      : [];
   const lastUpdated = wheel.lastUpdated || WHEEL_CONTENT_LAST_UPDATED;
+  const directAnswer =
+    unique?.directAnswer ||
+    wheel.introduction ||
+    wheel.metaDescription ||
+    "";
 
   const parts = [];
   parts.push(`<h1>${esc(wheel.h1 || keyword)}</h1>`);
@@ -655,9 +694,51 @@ function wheelContent(wheel, wheels) {
       lastUpdated,
     )}">${esc(fmtDate(lastUpdated))}</time>.</p>`,
   );
-  parts.push(`<p>${esc(wheel.introduction || definition)}</p>`);
-  if (note) parts.push(`<p>${esc(note)}</p>`);
-  parts.push(`<p>${esc(definition)}</p>`);
+  parts.push(`<p>${esc(directAnswer)}</p>`);
+
+  if (
+    wheel.introduction &&
+    wheel.introduction.trim() &&
+    wheel.introduction.trim() !== directAnswer.trim()
+  ) {
+    parts.push(
+      `<section><h2>Overview</h2><p>${esc(wheel.introduction)}</p></section>`,
+    );
+  }
+
+  if (unique?.metaDescription) {
+    parts.push(
+      `<section><h2>At a glance</h2><p>${esc(unique.metaDescription)}</p></section>`,
+    );
+  }
+
+  if (unique?.useCases?.length) {
+    const blurbs = unique.useCases
+      .map((u) => u.body.split(".")[0] + ".")
+      .join(" ");
+    parts.push(
+      `<section><h2>Where it fits</h2><p>${esc(blurbs)}</p></section>`,
+    );
+  }
+
+  if (wheel.keywordSecondary) {
+    parts.push(
+      `<section><h2>Related searches</h2><p>${esc(wheel.keywordSecondary)}.</p></section>`,
+    );
+  }
+
+  const modeFeatures = WHEEL_MODE_FEATURES[wheel.slug];
+  if (modeFeatures) {
+    parts.push(
+      `<section><h2>Built-in features</h2><p>${esc(modeFeatures)}</p></section>`,
+    );
+  }
+
+  parts.push(
+    `<figure><img src="${esc(wheelOgImagePath(wheel.slug))}" width="1200" height="630" alt="${esc(
+      wheel.h1 || keyword,
+    )} preview screenshot" loading="lazy" /></figure>`,
+  );
 
   parts.push(
     `<section><h2>How to use the ${esc(kwLower)}</h2><p>${esc(
@@ -672,29 +753,22 @@ function wheelContent(wheel, wheels) {
     );
   }
 
-  parts.push(`<section><h2>Why use this wheel?</h2><p>${esc(whyUse)}</p></section>`);
-
-  if (Array.isArray(cat.useCases) && cat.useCases.length) {
-    parts.push(
-      `<section><h2>Best use cases for the ${esc(keyword)}</h2>${listHtml(cat.useCases)}</section>`,
-    );
-  }
-  if (Array.isArray(cat.benefits) && cat.benefits.length) {
-    parts.push(
-      `<section><h2>Benefits of using this ${esc(keyword)}</h2>${listHtml(cat.benefits)}</section>`,
-    );
-  }
-  if (Array.isArray(cat.tips) && cat.tips.length) {
-    parts.push(
-      `<section><h2>Tips for getting the most out of your spin</h2>${listHtml(cat.tips)}</section>`,
-    );
-  }
-  if (Array.isArray(cat.examples) && cat.examples.length) {
-    parts.push(
-      `<section><h2>Real-world examples</h2><p>${esc(
-        cat.examplesIntro || "",
-      )}</p>${listHtml(cat.examples)}</section>`,
-    );
+  if (unique?.useCases?.length) {
+    for (const section of unique.useCases) {
+      parts.push(
+        `<section><h2>${esc(section.heading)}</h2><p>${esc(section.body)}</p></section>`,
+      );
+    }
+  } else {
+    const cat =
+      ENRICH.categoryData[wheel.category] ||
+      ENRICH.categoryData["Utilities & Tools"] ||
+      {};
+    if (Array.isArray(cat.useCases) && cat.useCases.length) {
+      parts.push(
+        `<section><h2>Best use cases for the ${esc(keyword)}</h2>${listHtml(cat.useCases)}</section>`,
+      );
+    }
   }
 
   const absorbed = ENRICH.absorbedSections[wheel.slug] || [];
@@ -726,12 +800,13 @@ function wheelContent(wheel, wheels) {
     );
   }
 
-  parts.push(`<section><h2>Conclusion</h2><p>${esc(conclusion)}</p></section>`);
-
-  const related = relatedWheels(wheel, wheels);
+  const related = relatedWheelLinksFromUnique(wheel, wheels);
   if (related.length) {
     const relItems = related
-      .map((w) => `  <li><a href="/${esc(w.slug)}">${esc(wheelLabel(w))}</a></li>`)
+      .map(
+        (w) =>
+          `  <li><a href="/${esc(w.slug)}">${esc(w.anchor)}</a></li>`,
+      )
       .join("\n");
     parts.push(
       `<nav aria-label="Related spin wheels"><h2>Related spin wheels</h2>\n<ul>\n${relItems}\n</ul></nav>`,

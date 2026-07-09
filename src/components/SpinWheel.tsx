@@ -229,9 +229,22 @@ const createClickSound = (ctx: AudioContext) => {
 export type SpinWheelProps = {
   /** When set, seeds wheel slices from CSV/programmatic pages and skips global localStorage load/save. */
   presetOptionLabels?: string[];
+  /** Remove the winning entry automatically after each spin. */
+  autoRemoveWinner?: boolean;
+  /** Called when a spin completes with the winning label. */
+  onWinnerSelected?: (name: string) => void;
+  /** Override spin button label (e.g. classroom fullscreen). */
+  spinButtonLabel?: string;
+  className?: string;
 };
 
-export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
+export const SpinWheel = ({
+  presetOptionLabels,
+  autoRemoveWinner = false,
+  onWinnerSelected,
+  spinButtonLabel,
+  className,
+}: SpinWheelProps = {}) => {
   const { resolvedTheme } = useTheme();
   const usePreset =
     Array.isArray(presetOptionLabels) && presetOptionLabels.length > 0;
@@ -283,6 +296,8 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
   const [showWinnerDialog, setShowWinnerDialog] = useState(false);
   const [winnerColor, setWinnerColor] = useState<string>("");
   const [winnerId, setWinnerId] = useState<string>("");
+  const onWinnerSelectedRef = useRef(onWinnerSelected);
+  onWinnerSelectedRef.current = onWinnerSelected;
   const [spinDurationSeconds, setSpinDurationSeconds] = useState(
     readSavedSpinDurationSeconds,
   );
@@ -391,6 +406,21 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
 
     playSliderSound(nextDuration);
   };
+
+  useEffect(() => {
+    if (!winner || !winnerId) return;
+    onWinnerSelectedRef.current?.(winner);
+    if (autoRemoveWinner && entries.length > 2) {
+      const timer = window.setTimeout(() => {
+        setEntries((prev) => prev.filter((entry) => entry.id !== winnerId));
+        setShowWinnerDialog(false);
+        setWinner(null);
+        setWinnerId("");
+        setWinnerColor("");
+      }, 1200);
+      return () => window.clearTimeout(timer);
+    }
+  }, [winner, winnerId, autoRemoveWinner, entries.length]);
 
   useEffect(() => {
     localStorage.setItem(
@@ -1055,7 +1085,7 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
   return (
     <>
       {/* Grid on lg+: wheel + panel share the row (no extra empty strip next to the scrollbar). */}
-      <div className="w-full px-4 sm:px-6 lg:px-6 xl:px-8 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_340px] xl:grid-cols-[minmax(0,1fr)_400px] 2xl:grid-cols-[minmax(0,1fr)_420px] gap-8 lg:gap-5 xl:gap-6 items-start">
+      <div className={`w-full px-4 sm:px-6 lg:px-6 xl:px-8 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_340px] xl:grid-cols-[minmax(0,1fr)_400px] 2xl:grid-cols-[minmax(0,1fr)_420px] gap-8 lg:gap-5 xl:gap-6 items-start ${className ?? ""}`}>
         <div className="flex flex-col items-center justify-center gap-3 sm:gap-4 w-full min-w-0">
         {/* Wheel Card */}
         <button
@@ -1109,7 +1139,7 @@ export const SpinWheel = ({ presetOptionLabels }: SpinWheelProps = {}) => {
             ) : (
               <>
                 <Play className="mr-2.5 h-4 w-4 sm:h-5 sm:w-5 fill-current relative z-10" />
-                <span className="relative z-10">SPIN THE WHEEL</span>
+                <span className="relative z-10">{spinButtonLabel ?? "SPIN THE WHEEL"}</span>
               </>
             )}
           </Button>

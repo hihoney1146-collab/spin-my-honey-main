@@ -1,6 +1,9 @@
 import type { WheelPageRecord } from "./wheelPages";
-import { getRelatedWheelPages } from "./wheelPages";
 import { getAllBlogPosts } from "@/data/blogPosts";
+import {
+  getWheelUniqueContent,
+  type WheelUseCase,
+} from "@/data/wheelUniqueContent";
 
 export type ContentSection = {
   heading: string;
@@ -8,16 +11,11 @@ export type ContentSection = {
 };
 
 export type EnrichedContent = {
-  definitionSnippet: string;
-  /** Optional first-person note for featured wheels only */
-  personalNote?: string;
-  useCases: ContentSection;
-  benefits: ContentSection;
-  tips: ContentSection;
-  examples: ContentSection;
-  whyUse: string;
-  conclusion: string;
+  directAnswer: string;
+  useCaseSections: WheelUseCase[];
+  faqs: { question: string; answer: string }[];
   relatedBlogSlugs: string[];
+  hasUniqueContent: boolean;
 };
 
 const CATEGORY_DATA: Record<
@@ -768,27 +766,31 @@ export function getAbsorbedSections(slug: string): AbsorbedSection[] {
 }
 
 export function getEnrichedContent(page: WheelPageRecord): EnrichedContent {
+  const unique = getWheelUniqueContent(page.slug);
+  const relatedBlogSlugs = BLOG_WHEEL_MAP[page.slug] ?? [];
+
+  if (unique) {
+    return {
+      directAnswer: unique.directAnswer,
+      useCaseSections: unique.useCases,
+      faqs: unique.faqs,
+      relatedBlogSlugs,
+      hasUniqueContent: true,
+    };
+  }
+
   const cat = getCategoryData(page.category);
   const keyword = page.keywordPrimary || page.h1;
 
-  const definitionSnippet = `${keyword} is a free online tool that uses cryptographic randomization to deliver fair, instant results. Enter your options, click spin, and let the wheel decide. No sign-up, no downloads, no bias.`;
-
-  const whyUse = `${cat.whyPrefix} The ${keyword.toLowerCase()} removes that friction entirely. Instead of debating, scrolling, or overthinking, you let a single spin settle the matter in seconds. The result is powered by your browser's cryptographic random number generator, so every outcome is provably fair and impossible to predict.`;
-
-  const conclusion = `Whether you are using it for the first time or spinning daily, the ${keyword.toLowerCase()} is designed to make your decisions faster, fairer, and more fun. Bookmark this page, share it with friends, and let the wheel do the hard work for you. If you need more tools, explore our full collection of specialty wheels on the all spin wheels page.`;
-
-  const relatedBlogSlugs = BLOG_WHEEL_MAP[page.slug] ?? [];
-
   return {
-    definitionSnippet,
-    personalNote: FEATURED_PERSONAL_NOTES[page.slug],
-    useCases: { heading: `Best Use Cases for the ${keyword}`, items: cat.useCases },
-    benefits: { heading: `Benefits of Using This ${keyword}`, items: cat.benefits },
-    tips: { heading: `Tips for Getting the Most Out of Your Spin`, items: cat.tips },
-    examples: { heading: "Real-World Examples", items: cat.examples },
-    whyUse,
-    conclusion,
+    directAnswer: page.introduction || page.metaDescription || "",
+    useCaseSections: cat.useCases.slice(0, 5).map((body, i) => ({
+      heading: `Use case ${i + 1}`,
+      body,
+    })),
+    faqs: page.faqs,
     relatedBlogSlugs,
+    hasUniqueContent: false,
   };
 }
 

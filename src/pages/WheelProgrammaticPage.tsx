@@ -1,10 +1,10 @@
 import { Helmet } from "react-helmet";
 import { Link, useParams } from "react-router-dom";
 import { Card } from "@/components/ui/card";
-import { SpinWheel } from "@/components/SpinWheel";
+import { WheelBySlug } from "@/components/wheelModes/WheelBySlug";
 import {
   getWheelPageBySlug,
-  getRelatedWheelPages,
+  getRelatedWheelLinks,
   WHEEL_CONTENT_LAST_UPDATED,
 } from "@/lib/wheelPages";
 import {
@@ -33,6 +33,11 @@ import {
   getRelatedBlogPosts,
   getAbsorbedSections,
 } from "@/lib/wheelContentEnrichment";
+import { WHEEL_MODE_FEATURES } from "@/data/wheelModeFeatures";
+
+function wheelOgUrl(slug: string) {
+  return `${SITE_ORIGIN}/og/${slug}.png`;
+}
 
 const WheelProgrammaticPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -63,16 +68,18 @@ const WheelProgrammaticPage = () => {
 
   const canonical = `${SITE_ORIGIN}/${page.slug}`;
   const hubUrl = `${SITE_ORIGIN}${WHEEL_HUB_PATH}`;
+  const ogImage = wheelOgUrl(page.slug);
   const keywords = [page.keywordPrimary, page.keywordSecondary]
     .filter(Boolean)
     .join(", ");
-  const related = getRelatedWheelPages(page.slug, 6);
+  const related = getRelatedWheelLinks(page.slug, 6);
   const breadcrumbItems = [
     { name: "Home", url: `${SITE_ORIGIN}/` },
     { name: "All Spin Wheels", url: hubUrl },
     { name: page.h1 },
   ];
   const enriched = getEnrichedContent(page);
+  const displayFaqs = enriched.hasUniqueContent ? enriched.faqs : page.faqs;
   const lastUpdatedIso = page.lastUpdated || WHEEL_CONTENT_LAST_UPDATED;
   const lastUpdatedLabel = new Date(
     `${lastUpdatedIso}T12:00:00`,
@@ -84,6 +91,7 @@ const WheelProgrammaticPage = () => {
   const absorbedSections = getAbsorbedSections(page.slug);
   const relatedBlogs = getRelatedBlogPosts(enriched.relatedBlogSlugs);
   const howToSteps = parseHowToSteps(page.howToUse);
+  const modeFeatures = WHEEL_MODE_FEATURES[page.slug];
   const relatedGuides = [
     ...tutorialLinks,
     ...comparisonLinks.slice(0, 2),
@@ -101,11 +109,11 @@ const WheelProgrammaticPage = () => {
         <meta property="og:description" content={page.metaDescription} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonical} />
-        <meta property="og:image" content={`${SITE_ORIGIN}/og-image.png`} />
+        <meta property="og:image" content={ogImage} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={page.title} />
         <meta name="twitter:description" content={page.metaDescription} />
-        <meta name="twitter:image" content={`${SITE_ORIGIN}/og-image.png`} />
+        <meta name="twitter:image" content={ogImage} />
         <script type="application/ld+json">
           {JSON.stringify([
             ...siteIdentityJsonLd(),
@@ -121,10 +129,10 @@ const WheelProgrammaticPage = () => {
               description: page.metaDescription,
               url: canonical,
             }),
-            ...(page.faqs?.length
+            ...(displayFaqs?.length
               ? [
                   faqPageJsonLd(
-                    page.faqs.map((f) => ({
+                    displayFaqs.map((f) => ({
                       q: f.question,
                       a: f.answer,
                     })),
@@ -145,7 +153,6 @@ const WheelProgrammaticPage = () => {
       </Helmet>
 
       <article className="container mx-auto px-4 py-8 md:py-12 max-w-5xl">
-        {/* Breadcrumb */}
         <nav aria-label="Breadcrumb" className="mb-6">
           <ol className="flex flex-wrap items-center gap-1 text-sm text-muted-foreground">
             <li>
@@ -176,11 +183,8 @@ const WheelProgrammaticPage = () => {
           {page.h1}
         </h1>
 
-        {/* Answer-first definition snippet for AI citation */}
         <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4 max-w-3xl">
-          {enriched.personalNote
-            ? `${enriched.personalNote} ${enriched.definitionSnippet}`
-            : enriched.definitionSnippet}
+          {enriched.directAnswer}
         </p>
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
           <AuthorByline className="mb-2" />
@@ -190,10 +194,9 @@ const WheelProgrammaticPage = () => {
           </p>
         </div>
 
-        {/* Interactive wheel */}
         <div className="mb-6">
-          <SpinWheel
-            key={page.slug}
+          <WheelBySlug
+            slug={page.slug}
             presetOptionLabels={
               page.wheelOptions.length > 0 ? page.wheelOptions : undefined
             }
@@ -202,7 +205,6 @@ const WheelProgrammaticPage = () => {
 
         <AdSlot className="mb-10 max-w-3xl mx-auto" />
 
-        {/* Hub + Related Wheels */}
         <Card className="p-5 md:p-6 mb-8 border-primary/15">
           <h2 className="text-lg font-bold mb-3">More on Online Spin Wheel</h2>
           <p className="text-sm text-muted-foreground mb-4">
@@ -269,7 +271,7 @@ const WheelProgrammaticPage = () => {
                     to={`/${w.slug}`}
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
-                    {w.keywordPrimary || w.h1}
+                    {w.anchor}
                   </Link>
                 </li>
               ))}
@@ -277,29 +279,29 @@ const WheelProgrammaticPage = () => {
           </Card>
         ) : null}
 
-        {/* Content sections */}
         <div className="space-y-6 md:space-y-8">
-          {/* Introduction */}
-          <Card className="p-6 md:p-8">
-            <h2 className="text-xl md:text-2xl font-bold mb-4">
-              What Is the {page.keywordPrimary || page.h1}?
-            </h2>
-            <p className="text-base md:text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
-              {page.introduction}
-            </p>
-          </Card>
+          {enriched.useCaseSections.map((section, i) => (
+            <Card key={i} className="p-6 md:p-8">
+              <h2 className="text-xl md:text-2xl font-bold mb-4">
+                {section.heading}
+              </h2>
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                {section.body}
+              </p>
+            </Card>
+          ))}
 
-          {/* Why use this tool */}
-          <Card className="p-6 md:p-8">
-            <h2 className="text-xl md:text-2xl font-bold mb-4">
-              Why Use This Tool?
-            </h2>
-            <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-              {enriched.whyUse}
-            </p>
-          </Card>
+          {modeFeatures ? (
+            <Card className="p-6 md:p-8">
+              <h2 className="text-xl md:text-2xl font-bold mb-4">
+                Built-in features
+              </h2>
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                {modeFeatures}
+              </p>
+            </Card>
+          ) : null}
 
-          {/* How to use */}
           <Card className="p-6 md:p-8">
             <h2 className="text-xl md:text-2xl font-bold mb-4">
               How to Use the {page.keywordPrimary || page.h1}
@@ -309,88 +311,6 @@ const WheelProgrammaticPage = () => {
             </p>
           </Card>
 
-          {/* Best use cases */}
-          <Card className="p-6 md:p-8">
-            <h2 className="text-xl md:text-2xl font-bold mb-4">
-              {enriched.useCases.heading}
-            </h2>
-            <ul className="space-y-3">
-              {enriched.useCases.items.map((item, i) => (
-                <li
-                  key={i}
-                  className="flex items-start gap-3 text-base text-muted-foreground leading-relaxed"
-                >
-                  <span className="mt-1.5 h-2 w-2 rounded-full bg-primary flex-shrink-0" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </Card>
-
-          {/* Real-world examples */}
-          <Card className="p-6 md:p-8">
-            <h2 className="text-xl md:text-2xl font-bold mb-4">
-              {enriched.examples.heading}
-            </h2>
-            {enriched.examples.items.length > 0 ? (
-              <p className="text-muted-foreground mb-4">
-                Here are practical ways people use this tool every day:
-              </p>
-            ) : null}
-            <ul className="space-y-3">
-              {enriched.examples.items.map((item, i) => (
-                <li
-                  key={i}
-                  className="flex items-start gap-3 text-base text-muted-foreground leading-relaxed"
-                >
-                  <span className="font-semibold text-primary flex-shrink-0 w-6">
-                    {i + 1}.
-                  </span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </Card>
-
-          {/* Benefits */}
-          <Card className="p-6 md:p-8">
-            <h2 className="text-xl md:text-2xl font-bold mb-4">
-              {enriched.benefits.heading}
-            </h2>
-            <ul className="space-y-3">
-              {enriched.benefits.items.map((item, i) => (
-                <li
-                  key={i}
-                  className="flex items-start gap-3 text-base text-muted-foreground leading-relaxed"
-                >
-                  <span className="mt-1.5 h-2 w-2 rounded-full bg-green-500 flex-shrink-0" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </Card>
-
-          {/* Tips */}
-          <Card className="p-6 md:p-8">
-            <h2 className="text-xl md:text-2xl font-bold mb-4">
-              {enriched.tips.heading}
-            </h2>
-            <ol className="space-y-3">
-              {enriched.tips.items.map((item, i) => (
-                <li
-                  key={i}
-                  className="flex items-start gap-3 text-base text-muted-foreground leading-relaxed"
-                >
-                  <span className="font-semibold text-primary flex-shrink-0 w-6">
-                    {i + 1}.
-                  </span>
-                  {item}
-                </li>
-              ))}
-            </ol>
-          </Card>
-
-          {/* Absorbed sections merged from consolidated wheels */}
           {absorbedSections.map((section, si) => (
             <Card key={`absorbed-${si}`} className="p-6 md:p-8">
               <h2 className="text-xl md:text-2xl font-bold mb-4">
@@ -444,14 +364,13 @@ const WheelProgrammaticPage = () => {
             </Card>
           ))}
 
-          {/* FAQs */}
-          {page.faqs.length > 0 ? (
+          {displayFaqs.length > 0 ? (
             <Card className="p-6 md:p-8">
               <h2 className="text-xl md:text-2xl font-bold mb-6">
                 Frequently Asked Questions
               </h2>
               <dl className="space-y-6">
-                {page.faqs.map((item, i) => (
+                {displayFaqs.map((item, i) => (
                   <div
                     key={i}
                     className="border-b border-border/60 pb-6 last:border-0 last:pb-0"
@@ -468,7 +387,6 @@ const WheelProgrammaticPage = () => {
             </Card>
           ) : null}
 
-          {/* Related blog posts */}
           {relatedBlogs.length > 0 ? (
             <Card className="p-6 md:p-8">
               <h2 className="text-xl md:text-2xl font-bold mb-4">
@@ -497,13 +415,8 @@ const WheelProgrammaticPage = () => {
             </Card>
           ) : null}
 
-          {/* Conclusion */}
           <Card className="p-6 md:p-8">
-            <h2 className="text-xl md:text-2xl font-bold mb-4">Conclusion</h2>
-            <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-              {enriched.conclusion}
-            </p>
-            <div className="mt-4 flex flex-wrap gap-3 text-sm">
+            <div className="flex flex-wrap gap-3 text-sm">
               <Link
                 to={WHEEL_HUB_PATH}
                 className="font-medium text-primary hover:underline"

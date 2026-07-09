@@ -1,4 +1,5 @@
 import wheelPagesData from "@/generated/wheelPages.json";
+import { getWheelUniqueContent } from "@/data/wheelUniqueContent";
 
 export type WheelFaq = {
   question: string;
@@ -48,17 +49,52 @@ export function getAllWheelRecords(): WheelPageRecord[] {
   return pages.slice();
 }
 
-/** Same category first, then others; excludes current slug. */
-export function getRelatedWheelPages(
+export type RelatedWheelLink = {
+  slug: string;
+  anchor: string;
+  h1: string;
+};
+
+/** Contextual related wheels with varied anchor text; max 6. */
+export function getRelatedWheelLinks(
   slug: string,
-  limit: number
-): WheelPageRecord[] {
+  limit = 6,
+): RelatedWheelLink[] {
+  const unique = getWheelUniqueContent(slug);
+  if (unique?.relatedWheels?.length) {
+    return unique.relatedWheels
+      .slice(0, limit)
+      .map(({ slug: relatedSlug, anchor }) => {
+        const page = bySlug.get(relatedSlug);
+        return {
+          slug: relatedSlug,
+          anchor,
+          h1: page?.h1 || anchor,
+        };
+      })
+      .filter((l) => l.slug !== slug);
+  }
+
   const current = bySlug.get(slug);
   if (!current) return [];
   const others = pages.filter((p) => p.slug !== slug);
   const sameCat = others.filter((p) => p.category === current.category);
   const diffCat = others.filter((p) => p.category !== current.category);
-  return [...sameCat, ...diffCat].slice(0, limit);
+  return [...sameCat, ...diffCat].slice(0, limit).map((p) => ({
+    slug: p.slug,
+    anchor: p.keywordPrimary || p.h1,
+    h1: p.h1,
+  }));
+}
+
+/** @deprecated Use getRelatedWheelLinks for varied anchor text. */
+export function getRelatedWheelPages(
+  slug: string,
+  limit: number,
+): WheelPageRecord[] {
+  return getRelatedWheelLinks(slug, limit)
+    .map((l) => bySlug.get(l.slug))
+    .filter(Boolean) as WheelPageRecord[];
 }
 
 export type WheelCategoryGroup = {

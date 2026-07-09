@@ -7,6 +7,7 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import Papa from "papaparse";
+import { getWheelUniqueContent } from "./wheel-content-loader.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -92,7 +93,7 @@ const records = (parsed.data || [])
   .map((row) => {
     const slug = row["Slug (URL)"];
     if (!slug) return null;
-    return {
+    const base = {
       slug: String(slug).trim(),
       keywordPrimary: row["Keyword (Primary)"] || "",
       keywordSecondary: row["Keyword (Secondary)"] || "",
@@ -108,6 +109,14 @@ const records = (parsed.data || [])
         ? String(row["Last Updated"]).trim().slice(0, 10)
         : DEFAULT_CONTENT_DATE,
     };
+    const unique = getWheelUniqueContent(base.slug);
+    if (unique) {
+      if (unique.title) base.title = unique.title;
+      if (unique.metaDescription) base.metaDescription = unique.metaDescription;
+      if (unique.h1) base.h1 = unique.h1;
+      if (Array.isArray(unique.faqs) && unique.faqs.length) base.faqs = unique.faqs;
+    }
+    return base;
   })
   .filter(Boolean);
 

@@ -16,6 +16,10 @@ import {
   collectBlogPostsFull,
 } from "./blog-data-sources.mjs";
 import { renderRouteContent } from "./static-content.mjs";
+import {
+  getWheelUniqueContent,
+  wheelOgImageUrl,
+} from "./wheel-content-loader.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -107,6 +111,13 @@ function wheelLabel(wheel) {
 }
 
 function relatedWheelLinks(wheel, wheels, count = 6) {
+  const unique = getWheelUniqueContent(wheel.slug);
+  if (unique?.relatedWheels?.length) {
+    return unique.relatedWheels.slice(0, count).map(({ slug, anchor }) => ({
+      href: `/${slug}`,
+      label: anchor,
+    }));
+  }
   const sameCategory = wheels.filter(
     (w) => w.slug !== wheel.slug && w.category === wheel.category,
   );
@@ -421,7 +432,9 @@ function injectJsonLd(html, jsonLd) {
 export function applyRouteHead(html, meta) {
   const canonical = canonicalUrl(meta.path);
   const ogType = meta.ogType || "website";
-  const ogImage = DEFAULT_OG_IMAGE;
+  const ogImage =
+    meta.ogImage ||
+    (meta.wheel?.slug ? wheelOgImageUrl(meta.wheel.slug, SITE) : DEFAULT_OG_IMAGE);
   const shortTitle = meta.title.split("|")[0].trim();
 
   let out = html;
