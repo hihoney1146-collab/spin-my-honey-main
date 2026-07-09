@@ -20,7 +20,16 @@ import {
 import { decodeResultId } from "./result-proof-decode.mjs";
 
 const __rootContent = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const ROUTE_LASTMOD_PATH = path.join(__rootContent, "src", "generated", "routeLastmod.json");
 
+function routeLastmod(routePath) {
+  try {
+    const reg = JSON.parse(fs.readFileSync(ROUTE_LASTMOD_PATH, "utf8"));
+    return reg.routes?.[routePath]?.lastmod ?? WHEEL_CONTENT_LAST_UPDATED;
+  } catch {
+    return WHEEL_CONTENT_LAST_UPDATED;
+  }
+}
 function loadFairnessStudy() {
   const p = path.join(__rootContent, "src", "generated", "fairnessStudy.json");
   if (!fs.existsSync(p)) return null;
@@ -226,7 +235,7 @@ ${exploreNav()}`);
 function aboutContent() {
   return mainWrap(`<h1>About Online Spin Wheel</h1>
 <p>Online Spin Wheel is an independent project built and maintained by <a href="/author/raja-jahangir">Raja Jahangir</a>. It is a one-person project — not a company or agency. Raja designs the tools, writes the code, publishes every wheel, and answers the emails, working from Islamabad, Pakistan, and serving users worldwide.</p>
-<p>The site started because too many online spinners were slow, buried in ads, or vague about whether their results were genuinely random. In 2025 it launched as a straightforward, cleanly designed way to make random choices, pick contest winners, and gamify classrooms without the hassle.</p>
+<p>The site started because too many online spinners were slow, buried in ads, or vague about whether their results were genuinely random. In early 2026 it launched as a straightforward, cleanly designed way to make random choices, pick contest winners, and gamify classrooms without the hassle.</p>
 
 <section>
   <h2>Our story</h2>
@@ -729,7 +738,7 @@ function blogIndexContent(posts) {
       const shortTitle = String(p.title || "").split("|")[0].trim();
       return `  <li>
     <h2><a href="/blog/${esc(p.slug)}">${esc(shortTitle)}</a></h2>
-    <p>By ${esc(p.author || "Online Spin Wheel")} — last updated ${esc(p.updated || "")}. Open the full guide for step-by-step workflows and linked specialty wheels.</p>
+    <p>By ${esc(p.author || "Online Spin Wheel")} — last updated ${esc(p.updated || "")}. Read <strong>${esc(shortTitle)}</strong> for step-by-step workflows and linked specialty wheels.</p>
   </li>`;
     })
     .join("\n");
@@ -897,6 +906,20 @@ const WHEEL_MODE_FEATURES = {
     "Every flip updates a running heads-versus-tails tally and streak counter so tiebreakers, kickoff calls, and stream overlays show transparent stats on screen.",
   "alphabet-spinner-wheel":
     "Spin A through Z with an exclude-letters panel — uncheck glyphs already used in phonics drills, Scattergories, or spelling bees so only fresh letters remain on the wheel.",
+  "chinese-zodiac-wheel":
+    "Spin the twelve Chinese zodiac animals with birth-year hints on each slice, then use the result for lunar New Year lessons, personality quizzes, or party icebreakers.",
+  "instagram-wheel-picker":
+    "Paste @handles from your giveaway comments, spin to pick a winner, and screenshot the result for Instagram Stories or Reels without leaving the browser tab.",
+  "pokemon-randomizer-wheel":
+    "Load Kanto starters or your custom creature list, spin for a random Pokémon challenge, and remove species after use so nuzlocke runs cycle through the full roster.",
+  "random-color-wheel":
+    "Spin named colors for art prompts, design critiques, or wardrobe challenges, then match the swatch to a real object in the room before the timer expires.",
+  "random-hobby-generator-wheel":
+    "Spin pastimes like photography, baking, or yoga when weekends disappear into scrolling, then commit to trying whichever hobby lands for seven days.",
+  "random-word-generator-wheel":
+    "Draw vocabulary words for spelling bees, creative writing warm-ups, or ESL drills, and remove terms after they are used so every student sees a fresh word.",
+  "roblox-game-picker-wheel":
+    "Spin popular Roblox experiences when your squad cannot agree on a server, then join the winning game and remove it after play so repeats wait until the list resets.",
   "raffle-wheel":
     "Switch between entrant names and ticket-number mode, draw multiple winners without replacement, and copy a timestamped proof link to post after your live raffle stream.",
   "prize-wheel":
@@ -904,6 +927,19 @@ const WHEEL_MODE_FEATURES = {
   "classroom-spinner":
     "Teacher hub with student picker (remove-after-pick + history), balanced team generator, and a countdown timer — all in one fullscreen smartboard layout.",
 };
+
+function wheelGettingStartedSection(wheel) {
+  const label = wheelLabel(wheel);
+  const hasBuiltInFeatures = Boolean(WHEEL_MODE_FEATURES[wheel.slug]);
+  const lead = hasBuiltInFeatures
+    ? `<p>Load the ${esc(label)} with your list, spin once to preview timing, then adjust entries before going live.</p>`
+    : `<p>The ${esc(label)} runs in your browser with no signup — paste entries, spin once, and reset when you need a fresh pool.</p>`;
+  return `<section><h2>Getting started</h2>${lead}<p>Enable remove-after-pick on the ${esc(
+    label,
+  )} when each option should win once, and add <code>?stream=1</code> for a green-screen backdrop on stream recordings.</p><p>Project the ${esc(
+    label,
+  )} fullscreen on a smartboard or TV so everyone sees the same spin without crowding one phone.</p></section>`;
+}
 
 function wheelContent(wheel, wheels) {
   const unique = getWheelUniqueContent(wheel.slug);
@@ -915,7 +951,7 @@ function wheelContent(wheel, wheels) {
     : Array.isArray(wheel.faqs)
       ? wheel.faqs
       : [];
-  const lastUpdated = wheel.lastUpdated || WHEEL_CONTENT_LAST_UPDATED;
+  const lastUpdated = routeLastmod(`/${wheel.slug}`) || wheel.lastUpdated || WHEEL_CONTENT_LAST_UPDATED;
   const directAnswer =
     unique?.directAnswer ||
     wheel.introduction ||
@@ -936,30 +972,16 @@ function wheelContent(wheel, wheels) {
     wheel.introduction.trim() &&
     wheel.introduction.trim() !== directAnswer.trim()
   ) {
-    parts.push(
-      `<section><h2>Overview</h2><p>${esc(wheel.introduction)}</p></section>`,
-    );
-  }
-
-  if (unique?.metaDescription) {
-    parts.push(
-      `<section><h2>At a glance</h2><p>${esc(unique.metaDescription)}</p></section>`,
-    );
-  }
-
-  if (unique?.useCases?.length) {
-    const blurbs = unique.useCases
-      .map((u) => u.body.split(".")[0] + ".")
-      .join(" ");
-    parts.push(
-      `<section><h2>Where it fits</h2><p>${esc(blurbs)}</p></section>`,
-    );
-  }
-
-  if (wheel.keywordSecondary) {
-    parts.push(
-      `<section><h2>Related searches</h2><p>${esc(wheel.keywordSecondary)}.</p></section>`,
-    );
+    let intro = wheel.introduction.trim();
+    const secondary = (wheel.keywordSecondary || "").split(",")[0]?.trim();
+    if (
+      secondary &&
+      secondary.length > 2 &&
+      !intro.toLowerCase().includes(secondary.toLowerCase().slice(0, 12))
+    ) {
+      intro = `${intro} People often find this wheel when searching for ${secondary}.`;
+    }
+    parts.push(`<section><h2>Overview</h2><p>${esc(intro)}</p></section>`);
   }
 
   const modeFeatures = WHEEL_MODE_FEATURES[wheel.slug];
@@ -1013,6 +1035,8 @@ function wheelContent(wheel, wheels) {
       );
     }
   }
+
+  parts.push(wheelGettingStartedSection(wheel));
 
   const absorbed = ENRICH.absorbedSections[wheel.slug] || [];
   for (const section of absorbed) {

@@ -29,6 +29,15 @@ export function getSitemapLastmod() {
   return new Date().toISOString().slice(0, 10);
 }
 
+/** Stable per-route lastmod from content-hash registry (see route-lastmod.mjs). */
+export function getRouteLastmod(routePath) {
+  const jsonPath = path.join(getProjectRoot(), "src", "generated", "routeLastmod.json");
+  if (!fs.existsSync(jsonPath)) return getSitemapLastmod();
+  const reg = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
+  const key = routePath.startsWith("/") ? routePath : `/${routePath}`;
+  return reg.routes?.[key]?.lastmod ?? getSitemapLastmod();
+}
+
 function resolveCsvPath(root) {
   for (const rel of ["data/data.csv", "src/assets/data.csv"]) {
     const p = path.join(root, rel);
@@ -97,57 +106,25 @@ export function loadWheelsGroupedByCategory(root = getProjectRoot()) {
 
 /** Static pages (hub, about, guides) — not wheels or blog posts */
 export const PAGES_SITEMAP_ROUTES = [
-  { path: "/", changefreq: "daily", priority: "1.0" },
-  { path: "/all-spin-wheels", changefreq: "weekly", priority: "0.8" },
-  { path: "/blog", changefreq: "weekly", priority: "0.8" },
-  { path: "/author/raja-jahangir", changefreq: "monthly", priority: "0.7" },
-  { path: "/about-us", changefreq: "monthly", priority: "0.7" },
-  { path: "/contact-us", changefreq: "monthly", priority: "0.7" },
-  { path: "/how-randomness-works", changefreq: "monthly", priority: "0.6" },
-  {
-    path: "/tutorial-adding-images-to-spin-wheels",
-    changefreq: "monthly",
-    priority: "0.7",
-  },
-  {
-    path: "/case-study-school-using-spin-wheels",
-    changefreq: "monthly",
-    priority: "0.7",
-  },
-  {
-    path: "/case-study-community-event-using-spin-wheels",
-    changefreq: "monthly",
-    priority: "0.7",
-  },
-  {
-    path: "/comparison-spin-wheel-vs-random-number-generator",
-    changefreq: "monthly",
-    priority: "0.7",
-  },
-  {
-    path: "/comparison-spin-wheel-vs-traditional-methods",
-    changefreq: "monthly",
-    priority: "0.7",
-  },
-  {
-    path: "/comparison-online-vs-physical-spin-wheels",
-    changefreq: "monthly",
-    priority: "0.7",
-  },
-  {
-    path: "/wheel-of-names-alternative",
-    changefreq: "monthly",
-    priority: "0.8",
-  },
-  {
-    path: "/spin-wheel-fairness-study",
-    changefreq: "monthly",
-    priority: "0.8",
-  },
-  { path: "/privacy-policy", changefreq: "yearly", priority: "0.3" },
-  { path: "/terms-and-conditions", changefreq: "yearly", priority: "0.3" },
-  { path: "/cookie-policy", changefreq: "yearly", priority: "0.3" },
-  { path: "/disclaimer", changefreq: "yearly", priority: "0.3" },
+  "/",
+  "/all-spin-wheels",
+  "/blog",
+  "/author/raja-jahangir",
+  "/about-us",
+  "/contact-us",
+  "/how-randomness-works",
+  "/tutorial-adding-images-to-spin-wheels",
+  "/case-study-school-using-spin-wheels",
+  "/case-study-community-event-using-spin-wheels",
+  "/comparison-spin-wheel-vs-random-number-generator",
+  "/comparison-spin-wheel-vs-traditional-methods",
+  "/comparison-online-vs-physical-spin-wheels",
+  "/wheel-of-names-alternative",
+  "/spin-wheel-fairness-study",
+  "/privacy-policy",
+  "/terms-and-conditions",
+  "/cookie-policy",
+  "/disclaimer",
 ];
 
 /** @deprecated Use PAGES_SITEMAP_ROUTES — kept for scripts that import FIXED_ROUTES */
@@ -179,13 +156,11 @@ function absoluteUrl(pathOrUrl) {
   return pathOrUrl === "/" ? `${SITE}/` : `${SITE}${pathOrUrl}`;
 }
 
-function urlBlock(loc, changefreq, priority, lastmod) {
+function urlBlock(loc, lastmod) {
   const href = absoluteUrl(loc);
   return `  <url>
     <loc>${escapeXml(href)}</loc>
     <lastmod>${lastmod}</lastmod>
-    <changefreq>${changefreq}</changefreq>
-    <priority>${priority}</priority>
   </url>`;
 }
 
@@ -207,41 +182,27 @@ function sitemapIndexEntry(loc, lastmod) {
   </sitemap>`;
 }
 
-function wheelSitemapPriority(slug) {
-  return FEATURED_WHEEL_SLUGS.includes(slug) ? "0.9" : "0.7";
-}
-
-function wheelSitemapLastmod(wheel, buildDate) {
-  if (wheel?.lastUpdated && /^\d{4}-\d{2}-\d{2}$/.test(wheel.lastUpdated)) {
-    return wheel.lastUpdated;
-  }
-  return buildDate;
+function wheelSitemapLastmod(slug) {
+  return getRouteLastmod(`/${slug}`);
 }
 
 export function buildPagesSitemapXml(root = getProjectRoot()) {
-  const buildDate = getSitemapLastmod();
-  const blocks = PAGES_SITEMAP_ROUTES.map((r) =>
-    urlBlock(r.path, r.changefreq, r.priority, buildDate),
+  const blocks = PAGES_SITEMAP_ROUTES.map((routePath) =>
+    urlBlock(routePath, getRouteLastmod(routePath)),
   );
   return wrapUrlset(blocks);
 }
 
 export function buildBlogSitemapXml(root = getProjectRoot()) {
   const blocks = collectBlogPostsMeta(root).map((post) =>
-    urlBlock(`/blog/${post.slug}`, "monthly", "0.6", post.updated),
+    urlBlock(`/blog/${post.slug}`, getRouteLastmod(`/blog/${post.slug}`)),
   );
   return wrapUrlset(blocks);
 }
 
 export function buildWheelsSitemapXml(root = getProjectRoot()) {
-  const buildDate = getSitemapLastmod();
   const blocks = loadWheelRecords(root).map((wheel) =>
-    urlBlock(
-      `/${wheel.slug}`,
-      "weekly",
-      wheelSitemapPriority(wheel.slug),
-      wheelSitemapLastmod(wheel, buildDate),
-    ),
+    urlBlock(`/${wheel.slug}`, wheelSitemapLastmod(wheel.slug)),
   );
   return wrapUrlset(blocks);
 }
@@ -250,7 +211,6 @@ export function buildWheelsSitemapXml(root = getProjectRoot()) {
  * Image sitemap: site OG/logo + public blog featured JPEGs (see generate-public-images.mjs)
  */
 export function buildImagesSitemapXml(root = getProjectRoot()) {
-  const lastmod = getSitemapLastmod();
   const blocks = [];
 
   const siteImageList = [
@@ -283,7 +243,7 @@ export function buildImagesSitemapXml(root = getProjectRoot()) {
   ];
 
   for (const { page, images } of siteImageList) {
-    blocks.push(imageUrlBlock(page, images, lastmod));
+    blocks.push(imageUrlBlock(page, images, getRouteLastmod(page)));
   }
 
   const blogFeaturedDir = path.join(root, "public", "blog-featured");
@@ -300,7 +260,7 @@ export function buildImagesSitemapXml(root = getProjectRoot()) {
             caption: `Featured image for blog article ${slug.replace(/-/g, " ")}`,
           },
         ],
-        lastmod,
+        getRouteLastmod(`/blog/${slug}`),
       ),
     );
   }
@@ -349,25 +309,19 @@ ${entries.join("\n")}
 `;
 }
 
-export function collectSitemapEntries(root = getProjectRoot(), buildDate = getSitemapLastmod()) {
+export function collectSitemapEntries(root = getProjectRoot()) {
   const blocks = [];
-  const add = (loc, changefreq, priority, lastmod = buildDate) => {
-    blocks.push(urlBlock(loc, changefreq, priority, lastmod));
-  };
 
-  for (const r of PAGES_SITEMAP_ROUTES) add(r.path, r.changefreq, r.priority);
+  for (const routePath of PAGES_SITEMAP_ROUTES) {
+    blocks.push(urlBlock(routePath, getRouteLastmod(routePath)));
+  }
 
   for (const post of collectBlogPostsMeta(root)) {
-    add(`/blog/${post.slug}`, "monthly", "0.6", post.updated);
+    blocks.push(urlBlock(`/blog/${post.slug}`, getRouteLastmod(`/blog/${post.slug}`)));
   }
 
   for (const wheel of loadWheelRecords(root)) {
-    add(
-      `/${wheel.slug}`,
-      "weekly",
-      wheelSitemapPriority(wheel.slug),
-      wheelSitemapLastmod(wheel, buildDate),
-    );
+    blocks.push(urlBlock(`/${wheel.slug}`, wheelSitemapLastmod(wheel.slug)));
   }
 
   return blocks;

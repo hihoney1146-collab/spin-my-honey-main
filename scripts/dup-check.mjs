@@ -59,23 +59,37 @@ function normalize(s) {
 const routes = collectIndexableRoutes(root).map((r) => r.path);
 /** @type {Map<string, { sentence: string; routes: Set<string> }>} */
 const index = new Map();
+/** @type {{ route: string; sentence: string; count: number }[]} */
+const intraDuplicates = [];
 
 for (const route of routes) {
   const file = routeFile(route);
   if (!fs.existsSync(file)) continue;
   const text = extractSeoText(fs.readFileSync(file, "utf8"));
   const seenOnRoute = new Set();
+  /** @type {Map<string, { raw: string; count: number }>} */
+  const perRouteCounts = new Map();
   for (const raw of splitSentences(text)) {
     const norm = normalize(raw);
     const wc = norm.split(/\s+/).filter(Boolean).length;
     if (wc < MIN_WORDS) continue;
-    // Author byline repeated on specialty wheel pages.
     if (/^reviewed by raja jahangir/i.test(norm)) continue;
+
+    const entry = perRouteCounts.get(norm) || { raw, count: 0 };
+    entry.count += 1;
+    perRouteCounts.set(norm, entry);
+
     if (seenOnRoute.has(norm)) continue;
     seenOnRoute.add(norm);
-    const entry = index.get(norm) || { sentence: raw, routes: new Set() };
-    entry.routes.add(route);
-    index.set(norm, entry);
+    const cross = index.get(norm) || { sentence: raw, routes: new Set() };
+    cross.routes.add(route);
+    index.set(norm, cross);
+  }
+
+  for (const { raw, count } of perRouteCounts.values()) {
+    if (count >= 2) {
+      intraDuplicates.push({ route, sentence: raw, count });
+    }
   }
 }
 
@@ -89,27 +103,52 @@ const lines = [
   "",
   `Generated ${now} from \`dist/\` prerendered HTML (${routes.length} indexable routes).`,
   "",
-  `Rule: flag sentences with **≥ ${MIN_WORDS} words** shared verbatim between **≥ 2** pages.`,
+  `Rule: flag sentences with **≥ ${MIN_WORDS} words** shared verbatim between **≥ 2** pages, or repeated **within** the same page.`,
   "",
-  `- Duplicate sentences found: **${duplicates.length}**`,
+  `- Cross-page duplicate sentences: **${duplicates.length}**`,
+  `- In-page duplicate sentences: **${intraDuplicates.length}**`,
   "",
 ];
 
-if (duplicates.length === 0) {
-  lines.push("**PASS** — no duplicate long sentences across indexable routes.");
+if (duplicates.length === 0 && intraDuplicates.length === 0) {
+  lines.push("**PASS** — no duplicate long sentences across or within indexable routes.");
 } else {
-  lines.push("| routes | words | sentence (truncated) |");
-  lines.push("| --- | ---: | --- |");
-  for (const dup of duplicates.slice(0, 200)) {
-    const routeList = [...dup.routes].sort().join(", ");
-    const wc = normalize(dup.sentence).split(/\s+/).length;
-    const preview =
-      dup.sentence.length > 120 ? `${dup.sentence.slice(0, 117)}…` : dup.sentence;
-    lines.push(`| \`${routeList}\` | ${wc} | ${preview.replace(/\|/g, "\\|")} |`);
-  }
-  if (duplicates.length > 200) {
+  if (duplicates.length > 0) {
+    lines.push("## Cross-page duplicates");
     lines.push("");
-    lines.push(`_… and ${duplicates.length - 200} more._`);
+    lines.push("| routes | words | sentence (truncated) |");
+    lines.push("| --- | ---: | --- |");
+    for (const dup of duplicates.slice(0, 200)) {
+      const routeList = [...dup.routes].sort().join(", ");
+      const wc = normalize(dup.sentence).split(/\s+/).length;
+      const preview =
+        dup.sentence.length > 120 ? `${dup.sentence.slice(0, 117)}…` : dup.sentence;
+      lines.push(`| \`${routeList}\` | ${wc} | ${preview.replace(/\|/g, "\\|")} |`);
+    }
+    if (duplicates.length > 200) {
+      lines.push("");
+      lines.push(`_… and ${duplicates.length - 200} more cross-page._`);
+    }
+    lines.push("");
+  }
+
+  if (intraDuplicates.length > 0) {
+    lines.push("## In-page duplicates");
+    lines.push("");
+    lines.push("| route | repeats | sentence (truncated) |");
+    lines.push("| --- | ---: | --- |");
+    for (const dup of intraDuplicates.slice(0, 200)) {
+      const wc = normalize(dup.sentence).split(/\s+/).length;
+      const preview =
+        dup.sentence.length > 120 ? `${dup.sentence.slice(0, 117)}…` : dup.sentence;
+      lines.push(
+        `| \`${dup.route}\` | ${dup.count} (${wc} words) | ${preview.replace(/\|/g, "\\|")} |`,
+      );
+    }
+    if (intraDuplicates.length > 200) {
+      lines.push("");
+      lines.push(`_… and ${intraDuplicates.length - 200} more in-page._`);
+    }
   }
 }
 
@@ -118,10 +157,14 @@ const outPath = path.join(root, "docs", "DUP_CHECK.md");
 fs.mkdirSync(path.dirname(outPath), { recursive: true });
 fs.writeFileSync(outPath, lines.join("\n"), "utf8");
 
-console.log(`Duplicate scan: ${duplicates.length} shared sentences → docs/DUP_CHECK.md`);
+console.log(
+  `Duplicate scan: ${duplicates.length} cross-page, ${intraDuplicates.length} in-page → docs/DUP_CHECK.md`,
+);
 
-if (duplicates.length > 0) {
-  console.error(`${duplicates.length} duplicate sentence(s) exceed the 8-word threshold.`);
+if (duplicates.length > 0 || intraDuplicates.length > 0) {
+  console.error(
+    `${duplicates.length} cross-page and ${intraDuplicates.length} in-page duplicate sentence(s) exceed the 8-word threshold.`,
+  );
   process.exit(1);
 }
 console.log("PASS: no duplicate long sentences.");

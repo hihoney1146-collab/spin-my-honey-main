@@ -2,11 +2,8 @@ import { Helmet } from "react-helmet";
 import { Link, useParams } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { WheelBySlug } from "@/components/wheelModes/WheelBySlug";
-import {
-  getWheelPageBySlug,
-  getRelatedWheelLinks,
-  WHEEL_CONTENT_LAST_UPDATED,
-} from "@/lib/wheelPages";
+import { getRouteLastmod } from "@/lib/routeLastmod";
+import { getWheelPageBySlug, getRelatedWheelLinks } from "@/lib/wheelPages";
 import {
   WHEEL_HUB_PATH,
   BLOG_INDEX_PATH,
@@ -70,9 +67,7 @@ const WheelProgrammaticPage = () => {
   const canonical = `${SITE_ORIGIN}/${page.slug}`;
   const hubUrl = `${SITE_ORIGIN}${WHEEL_HUB_PATH}`;
   const ogImage = wheelOgUrl(page.slug);
-  const keywords = [page.keywordPrimary, page.keywordSecondary]
-    .filter(Boolean)
-    .join(", ");
+  const keywords = page.keywordPrimary ? [page.keywordPrimary] : [];
   const related = getRelatedWheelLinks(page.slug, 6);
   const breadcrumbItems = [
     { name: "Home", url: `${SITE_ORIGIN}/` },
@@ -81,7 +76,7 @@ const WheelProgrammaticPage = () => {
   ];
   const enriched = getEnrichedContent(page);
   const displayFaqs = enriched.hasUniqueContent ? enriched.faqs : page.faqs;
-  const lastUpdatedIso = page.lastUpdated || WHEEL_CONTENT_LAST_UPDATED;
+  const lastUpdatedIso = getRouteLastmod(`/${page.slug}`);
   const lastUpdatedLabel = new Date(
     `${lastUpdatedIso}T12:00:00`,
   ).toLocaleDateString("en-US", {
@@ -107,17 +102,19 @@ const WheelProgrammaticPage = () => {
       <Helmet>
         <title>{page.title}</title>
         <meta name="description" content={page.metaDescription} />
-        {keywords ? <meta name="keywords" content={keywords} /> : null}
+        {keywords.length ? <meta name="keywords" content={keywords.join(", ")} /> : null}
         <link rel="canonical" href={canonical} />
         <meta property="og:title" content={page.title} />
         <meta property="og:description" content={page.metaDescription} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonical} />
         <meta property="og:image" content={ogImage} />
+        <meta property="og:image:alt" content={`${page.h1} — preview`} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={page.title} />
         <meta name="twitter:description" content={page.metaDescription} />
         <meta name="twitter:image" content={ogImage} />
+        <meta name="twitter:image:alt" content={`${page.h1} — preview`} />
         <script type="application/ld+json">
           {JSON.stringify([
             ...siteIdentityJsonLd(),

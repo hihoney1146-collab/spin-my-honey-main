@@ -57,13 +57,17 @@ for (const { path: route, kind } of routes) {
   if (!desc || desc.length < 40) issues.push({ route, msg: "missing/short meta description" });
 
   const slug = route.startsWith("/") && route.length > 1 ? route.slice(1) : "";
-  const expectedOg =
-    kind === "wheel" && slug && !slug.includes("/")
-      ? wheelOgImageUrl(slug, SITE)
-      : DEFAULT_OG_IMAGE;
+  let expectedOg = DEFAULT_OG_IMAGE;
+  if (kind === "wheel" && slug && !slug.includes("/")) {
+    expectedOg = wheelOgImageUrl(slug, SITE);
+  } else if (route === "/spin-wheel-fairness-study") {
+    expectedOg = `${SITE}/og/spin-wheel-fairness-study.png`;
+  }
 
   if (!og) issues.push({ route, msg: "missing og:image" });
   else if (kind === "wheel" && og !== expectedOg)
+    issues.push({ route, msg: `og:image mismatch: ${og} (expected ${expectedOg})` });
+  else if (route === "/spin-wheel-fairness-study" && og !== expectedOg)
     issues.push({ route, msg: `og:image mismatch: ${og} (expected ${expectedOg})` });
 
   if (title) {

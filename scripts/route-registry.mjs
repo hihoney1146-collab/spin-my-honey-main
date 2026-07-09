@@ -51,7 +51,7 @@ export function collectIndexableRoutes(root = getProjectRoot()) {
   }
 
   for (const r of PAGES_SITEMAP_ROUTES) {
-    add(r.path, "page");
+    add(r, "page");
   }
 
   for (const w of loadWheelRecords(root)) {

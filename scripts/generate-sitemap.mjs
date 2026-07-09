@@ -4,6 +4,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { updateRouteLastmodRegistry } from "./route-lastmod.mjs";
 import {
   buildRobotsTxt,
   buildLlmsTxt,
@@ -14,6 +15,8 @@ import { collectBlogSlugs } from "./blog-data-sources.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const publicDir = path.join(root, "public");
+
+updateRouteLastmodRegistry(root);
 
 const { pageCount, blogCount, wheelCount } = writeAllSitemapFiles(root);
 

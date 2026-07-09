@@ -60,7 +60,7 @@ const About = () => {
           <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4">
             Welcome to onlinespinwheel.fun. This site started because too many
             online spinners were slow, buried in ads, or vague about whether
-            their results were genuinely random. In 2025 it launched as a
+            their results were genuinely random. In early 2026 it launched as a
             straightforward, cleanly designed way to make random choices, pick
             contest winners, and gamify classrooms without the hassle.
           </p>

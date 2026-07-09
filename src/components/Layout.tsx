@@ -34,12 +34,13 @@ import {
   getFeaturedWheelLinks,
 } from "@/lib/siteInternalLinks";
 import { openCookieSettings } from "@/lib/cookieConsentEvents";
-import { isStreamerModeFromSearch, STREAMER_GREEN } from "@/lib/streamerMode";
+import { STREAMER_GREEN } from "@/lib/streamerMode";
+import { useStreamerMode } from "@/lib/useStreamerMode";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const streamerMode = isStreamerModeFromSearch(location.search);
+  const { streamerMode } = useStreamerMode();
 
   const isActive = (path: string) => {
     if (path === BLOG_INDEX_PATH) {

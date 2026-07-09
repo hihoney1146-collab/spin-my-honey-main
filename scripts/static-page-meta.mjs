@@ -250,7 +250,8 @@ export const fixedRouteMeta = [
   },
   {
     path: "/spin-wheel-fairness-study",
-    title: "Spin Wheel Fairness Study — 100,000 Spins | Online Spin Wheel",
+    title: "Spin Wheel Fairness Study: 100,000 Spins",
+    h1: "Spin Wheel Fairness Study",
     description:
       "Original data: 100,000 automated spin-wheel simulations across segment counts. Chi-square uniformity tests, distribution tables, methodology, and downloadable CSV.",
     ogType: "article",

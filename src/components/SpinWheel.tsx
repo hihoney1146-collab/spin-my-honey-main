@@ -9,7 +9,6 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
-import { Label } from "@/components/ui/label";
 import {
   Trash2,
   Play,
@@ -40,10 +39,7 @@ import {
   buildWheelShareUrl,
   parseWheelShareParams,
 } from "@/lib/wheelShareUrl";
-import {
-  isStreamerModeFromSearch,
-  setStreamerModeInUrl,
-} from "@/lib/streamerMode";
+import { useStreamerMode } from "@/lib/useStreamerMode";
 import { ResultProofActions } from "@/components/ResultProofActions";
 import {
   Dialog,
@@ -283,12 +279,14 @@ export const SpinWheel = ({
 }: SpinWheelProps = {}) => {
   const { resolvedTheme } = useTheme();
   const location = useLocation();
+  const { streamerMode: streamFromUrl, setStreamerMode: setStreamParam } =
+    useStreamerMode();
   const usePreset =
     Array.isArray(presetOptionLabels) && presetOptionLabels.length > 0;
 
   const shareFromUrl = shareEnabled ? parseWheelShareParams(location.search) : null;
   const streamerMode =
-    streamerToggle && (shareFromUrl?.stream || isStreamerModeFromSearch(location.search));
+    streamerToggle && (Boolean(shareFromUrl?.stream) || streamFromUrl);
 
   const [entries, setEntries] = useState<WheelEntry[]>(() => {
     if (shareFromUrl?.entries?.length) {
@@ -529,7 +527,7 @@ export const SpinWheel = ({
   };
 
   const toggleStreamerMode = (on: boolean) => {
-    setStreamerModeInUrl(on);
+    setStreamParam(on);
     gtagEvent("streamer_mode_toggle", {
       event_category: "engagement",
       event_label: on ? "on" : "off",
@@ -1183,17 +1181,21 @@ export const SpinWheel = ({
       >
         <div className="flex flex-col items-center justify-center gap-3 sm:gap-4 w-full min-w-0">
         {streamerToggle && !compactEmbed ? (
-          <div className="w-full max-w-[660px] mx-auto flex flex-wrap items-center justify-between gap-3 mb-1">
-            <div className="flex items-center gap-2">
+          <div className="relative z-20 w-full max-w-[660px] mx-auto flex flex-wrap items-center justify-between gap-3 mb-1">
+            <label
+              htmlFor="streamer-mode"
+              className="flex items-center gap-2 cursor-pointer rounded-md py-1 pr-2 focus-within:outline-none focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2"
+            >
               <Switch
                 id="streamer-mode"
                 checked={streamerMode}
                 onCheckedChange={toggleStreamerMode}
+                aria-label="Streamer mode (green screen)"
               />
-              <Label htmlFor="streamer-mode" className="cursor-pointer text-sm font-medium">
+              <span className="text-sm font-medium select-none">
                 Streamer mode (green screen)
-              </Label>
-            </div>
+              </span>
+            </label>
             {shareEnabled ? (
               <Button type="button" variant="outline" size="sm" onClick={copyShareLink} className="gap-2">
                 <Copy className="h-3.5 w-3.5" />

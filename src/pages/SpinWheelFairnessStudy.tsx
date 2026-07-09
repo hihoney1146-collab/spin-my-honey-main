@@ -10,21 +10,36 @@ import {
   articleJsonLd,
   breadcrumbListJsonLd,
 } from "@/lib/schema";
+import { getRouteLastmod } from "@/lib/routeLastmod";
 import studyData from "@/generated/fairnessStudy.json";
 
 const SpinWheelFairnessStudy = () => {
   const canonical = `${SITE_ORIGIN}/spin-wheel-fairness-study`;
+  const ogImage = `${SITE_ORIGIN}/og/spin-wheel-fairness-study.png`;
   const allPass = studyData.summaries.every((s) => s.uniformPass);
+  const lastUpdated = getRouteLastmod("/spin-wheel-fairness-study");
 
   return (
     <>
       <Helmet>
-        <title>Spin Wheel Fairness Study — 100,000 Spins | Online Spin Wheel</title>
+        <title>Spin Wheel Fairness Study: 100,000 Spins</title>
         <meta
           name="description"
           content="Original data: 100,000 automated spin-wheel simulations across segment counts. Chi-square uniformity tests, distribution tables, methodology, and downloadable CSV."
         />
         <link rel="canonical" href={canonical} />
+        <meta property="og:title" content="Spin Wheel Fairness Study: 100,000 Spins" />
+        <meta
+          property="og:description"
+          content="Original data: 100,000 automated spin-wheel simulations across segment counts. Chi-square uniformity tests, distribution tables, methodology, and downloadable CSV."
+        />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={canonical} />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:image:alt" content="Spin Wheel Fairness Study — preview" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content={ogImage} />
+        <meta name="twitter:image:alt" content="Spin Wheel Fairness Study — preview" />
         <script type="application/ld+json">
           {JSON.stringify([
             ...siteIdentityJsonLd(),
@@ -33,11 +48,11 @@ const SpinWheelFairnessStudy = () => {
               { name: "Spin Wheel Fairness Study" },
             ]),
             articleJsonLd({
-              title: "Spin Wheel Fairness Study — 100,000 Spins",
+              title: "Spin Wheel Fairness Study: 100,000 Spins",
               description:
                 "100,000 automated equal-slice spin simulations with chi-square uniformity tests and downloadable CSV.",
               url: canonical,
-              dateModified: studyData.generatedAt,
+              dateModified: lastUpdated,
               authorName: RAJA_AUTHOR.name,
             }),
           ])}
@@ -52,6 +67,16 @@ const SpinWheelFairnessStudy = () => {
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
           Spin Wheel Fairness Study
         </h1>
+        <p className="text-sm text-muted-foreground mb-4">
+          Last updated:{" "}
+          <time dateTime={lastUpdated}>
+            {new Date(`${lastUpdated}T12:00:00`).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </time>
+        </p>
         <p className="text-lg text-muted-foreground leading-relaxed mb-6 max-w-3xl">
           We ran {studyData.totalSpins.toLocaleString()} automated spins on equal-size wheel
           slices using the same landing-angle geometry as our live{" "}

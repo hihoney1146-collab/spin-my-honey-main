@@ -1121,6 +1121,10 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
         heading: "Flag identification drills",
         body: "Spin a country, then name its flag colors and one neighboring nation before the timer runs out.",
       },
+      {
+        heading: "UNESCO heritage research",
+        body: "High schoolers spin a nation, then present one UNESCO site located there with a photo and two facts.",
+      },
     ],
     faqs: [
       {
@@ -1142,6 +1146,17 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
         question: "Can I spin for capitals instead?",
         answer:
           "Replace country names with capital cities on the slices.",
+      },
+      {
+        question: "Can I add territories and regions?",
+        answer:
+          "Paste any label you want—territories, states, or regions—into the entry list.",
+      },
+    ],
+    supplementalSections: [
+      {
+        heading: "Building a full country list",
+        body: "Start with the default nations, then paste all 195 UN members when your class needs exhaustive coverage. Remove countries after they appear in a quiz so students cycle through the whole wheel before repeats.",
       },
     ],
     relatedWheels: [
@@ -1177,6 +1192,10 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
         heading: "Habitat sorting games",
         body: "Spin an animal, then classify it as land, sea, or sky dweller and name one adaptation that fits.",
       },
+      {
+        heading: "Scout badge requirements",
+        body: "Troop leaders spin to assign which animal a scout must identify, sketch, or track for a nature badge.",
+      },
     ],
     faqs: [
       {
@@ -1199,11 +1218,16 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
         answer:
           "Yes. Paste household pet names for chore assignment games.",
       },
+      {
+        question: "How many animals ship on the wheel?",
+        answer:
+          "Defaults include dozens of common species; paste your full class list to replace them.",
+      },
     ],
     supplementalSections: [
       {
         heading: "Fair spins for young learners",
-        body: "Each animal slice has equal width, so a lion is exactly as likely as a penguin. Spins use the same browser cryptography as every other wheel on this site, which keeps classroom draws transparent when parents or administrators ask how winners are chosen.",
+        body: "Each animal slice has equal width, so a lion is exactly as likely as a penguin. Spins use the same browser cryptography as every other wheel on this site, which keeps classroom draws transparent when parents or administrators ask how winners are chosen. Remove a species after it is assigned so your class cycles through the full list before any creature repeats.",
       },
     ],
     relatedWheels: [
@@ -1239,6 +1263,10 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
         heading: "Weekly meeting themes",
         body: "Remote teams spin a weekday to decide which stand-up includes a show-and-tell segment.",
       },
+      {
+        heading: "Podcast release scheduling",
+        body: "Indie hosts spin among Tue, Thu, and Sat to pick the next episode drop when their calendar is open.",
+      },
     ],
     faqs: [
       {
@@ -1261,11 +1289,16 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
         answer:
           "Insert Thanksgiving or Spring Break as custom slices alongside weekdays.",
       },
+      {
+        question: "Can I spin for weekends only?",
+        answer:
+          "Delete weekdays and keep Saturday and Sunday slices for weekend-only picks.",
+      },
     ],
     supplementalSections: [
       {
         heading: "Calendar fairness for families",
-        body: "Weekday slices are equal size, so Monday is no more likely than Friday. That matters when siblings track chore charts or when teachers rotate line-leader duty. Remove a day after it wins if you need each weekday used once before repeats.",
+        body: "Weekday slices are equal size, so Monday is no more likely than Friday. That matters when siblings track chore charts or when teachers rotate line-leader duty. Remove a day after it wins if you need each weekday used once before repeats, or swap in month names when you want a January-through-December picker instead.",
       },
     ],
     relatedWheels: [
@@ -2207,6 +2240,10 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
         heading: "Language immersion picks",
         body: "Language clubs spin a destination and spend the week cooking one dish from that city.",
       },
+      {
+        heading: "Remote-work location roulette",
+        body: "Digital nomads spin among visa-friendly cities and compare coworking costs for the winner.",
+      },
     ],
     faqs: [
       {
@@ -2228,6 +2265,11 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
         question: "Is visa info included?",
         answer:
           "No travel advisories—research entry rules after the spin.",
+      },
+      {
+        question: "Can couples save different lists?",
+        answer:
+          "Each person can bookmark a share link with their own city list pasted into the wheel.",
       },
     ],
     supplementalSections: [

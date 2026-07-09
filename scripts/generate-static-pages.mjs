@@ -350,6 +350,11 @@ function enrichRoute(route, wheels, blogRoutes, blogPosts) {
   const jsonLd = [];
   if (route.jsonLd) jsonLd.push(...(Array.isArray(route.jsonLd) ? route.jsonLd : [route.jsonLd]));
 
+  let ogImage;
+  if (route.path === "/spin-wheel-fairness-study") {
+    ogImage = `${SITE}/og/spin-wheel-fairness-study.png`;
+  }
+
   let seoContent;
   if (route.wheel) {
     jsonLd.push(...siteIdentityJsonLd());
@@ -367,7 +372,7 @@ function enrichRoute(route, wheels, blogRoutes, blogPosts) {
       buildGenericSeoContent({ ...route, title }, wheels, blogRoutes);
   }
 
-  return { ...route, title, jsonLd, seoContent };
+  return { ...route, title, jsonLd, seoContent, ogImage, ogImageAlt: `${label} — preview` };
 }
 
 function escapeRegex(s) {
@@ -454,6 +459,10 @@ export function applyRouteHead(html, meta) {
   out = setMetaByProperty(out, "og:type", ogType);
   out = setMetaByProperty(out, "og:url", canonical);
   out = setMetaByProperty(out, "og:image", ogImage);
+  if (meta.ogImageAlt) {
+    out = setMetaByProperty(out, "og:image:alt", meta.ogImageAlt);
+    out = setMetaByName(out, "twitter:image:alt", meta.ogImageAlt);
+  }
 
   out = setMetaByName(out, "twitter:title", shortTitle);
   out = setMetaByName(out, "twitter:description", meta.description);
