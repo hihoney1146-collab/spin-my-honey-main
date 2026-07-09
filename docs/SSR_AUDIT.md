@@ -4,13 +4,13 @@ Generated 2026-07-09 from built `dist/` HTML — the exact bytes served to a no-
 
 - Routes audited: **66**
 - Threshold: **400** crawler-visible words
-- Below threshold: **4**, Missing HTML: **0**
+- Below threshold: **5**, Missing HTML: **0**
 
 | route | ssr_words | status |
 | --- | ---: | --- |
 | `/` | 729 | PASS |
 | `/all-spin-wheels` | 1309 | PASS |
-| `/blog` | 772 | PASS |
+| `/blog` | 252 | BELOW 400 |
 | `/about-us` | 494 | PASS |
 | `/author/raja-jahangir` | 419 | PASS |
 | `/contact-us` | 477 | PASS |
@@ -26,11 +26,11 @@ Generated 2026-07-09 from built `dist/` HTML — the exact bytes served to a no-
 | `/comparison-spin-wheel-vs-traditional-methods` | 437 | PASS |
 | `/comparison-online-vs-physical-spin-wheels` | 449 | PASS |
 | `/wheel-of-names-alternative` | 526 | PASS |
-| `/blog/random-name-picker-fair-fun-easy` | 1055 | PASS |
-| `/blog/best-icebreaker-games-office-meetings` | 1693 | PASS |
-| `/blog/best-spin-wheel-games-for-students` | 1038 | PASS |
-| `/blog/fun-ways-decide-where-to-eat-couples` | 1331 | PASS |
-| `/blog/virtual-secret-santa-online` | 1275 | PASS |
+| `/blog/random-name-picker-fair-fun-easy` | 884 | PASS |
+| `/blog/best-icebreaker-games-office-meetings` | 1785 | PASS |
+| `/blog/best-spin-wheel-games-for-students` | 1746 | PASS |
+| `/blog/fun-ways-decide-where-to-eat-couples` | 611 | PASS |
+| `/blog/virtual-secret-santa-online` | 460 | PASS |
 | `/yes-or-no-wheel` | 613 | PASS |
 | `/dinner-picker-wheel` | 469 | PASS |
 | `/movie-picker-wheel` | 480 | PASS |

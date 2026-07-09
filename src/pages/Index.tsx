@@ -345,7 +345,7 @@ const Index = () => {
           <div className="max-w-5xl mx-auto">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight mb-6 sm:mb-8 text-center">
               How to spin the wheel
-            </h2>
+                </h2>
             <div className="grid gap-6 lg:grid-cols-2 items-center">
               <ol className="space-y-4 sm:space-y-5">
                 {HOW_TO_STEPS.map((step, i) => (
@@ -377,7 +377,7 @@ const Index = () => {
                   The wheel with its default sample names — tap it to spin.
                 </figcaption>
               </figure>
-            </div>
+                  </div>
           </div>
         </section>
 
@@ -389,7 +389,7 @@ const Index = () => {
           <div className="max-w-6xl mx-auto">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight mb-6 sm:mb-8 text-center">
               What people use this wheel for
-            </h2>
+              </h2>
             <div className="grid gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {USE_CASES.map((uc) => (
                 <Card key={uc.title} className="p-5 sm:p-6 border-2 border-border/50 h-full">
@@ -398,13 +398,13 @@ const Index = () => {
                   </div>
                   <h3 className="text-base sm:text-lg font-semibold mb-2">
                     {uc.title}
-                  </h3>
+              </h3>
                   <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
                     {uc.body}
                   </p>
                 </Card>
               ))}
-            </div>
+              </div>
           </div>
         </section>
 

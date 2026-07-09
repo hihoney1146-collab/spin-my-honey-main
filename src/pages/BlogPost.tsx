@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { Helmet } from "react-helmet";
 import { Link, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Home } from "lucide-react";
+import { ArrowLeft, Download, Home } from "lucide-react";
 import { BLOG_INDEX_PATH, WHEEL_HUB_PATH } from "@/lib/siteInternalLinks";
 import { getBlogPostBySlug } from "@/data/blogPosts";
 import { getWheelPageBySlug } from "@/lib/wheelPages";
@@ -97,17 +97,19 @@ const BLOG_RELATED_WHEELS: Record<string, string[]> = {
     "team-generator-wheel",
   ],
   "best-icebreaker-games-office-meetings": [
-    "truth-or-dare-spinner-online",
     "team-generator-wheel",
     "random-name-picker-wheel",
-    "twister-spinner-online",
+    "yes-or-no-wheel",
+    "truth-or-dare-spinner-online",
+    "winner-picker-wheel",
   ],
   "best-spin-wheel-games-for-students": [
     "random-student-picker",
+    "classroom-spinner",
     "alphabet-spinner-wheel",
-    "random-word-generator-wheel",
     "abcd-spin-wheel",
-    "what-to-draw-wheel",
+    "random-number-wheel",
+    "prize-wheel",
   ],
   "fun-ways-decide-where-to-eat-couples": [
     "dinner-picker-wheel",
@@ -170,19 +172,23 @@ const BlogPost = () => {
   const { roots: tocRoots, faqSectionNumber, sectionDomId } = buildBlogTableOfContents(post);
   const summaryParagraphs = splitQuickSummary(post.excerpt);
 
-  const jsonLd = [
-    ...siteIdentityJsonLd(),
-    articleJsonLd({
-      title: post.title,
-      description: post.metaDescription,
-      url: canonical,
-      datePublished: post.published ?? post.updated,
-      dateModified: post.updated,
-      image: featuredAbsolute,
-      authorName: RAJA_AUTHOR.name,
-    }),
-    ...(post.faqs?.length ? [faqPageJsonLd(post.faqs)] : []),
-  ];
+  const isIndexed = post.indexed !== false;
+
+  const jsonLd = isIndexed
+    ? [
+        ...siteIdentityJsonLd(),
+        articleJsonLd({
+          title: post.title,
+          description: post.metaDescription,
+          url: canonical,
+          datePublished: post.published ?? post.updated,
+          dateModified: post.updated,
+          image: featuredAbsolute,
+          authorName: RAJA_AUTHOR.name,
+        }),
+        ...(post.faqs?.length ? [faqPageJsonLd(post.faqs)] : []),
+      ]
+    : [...siteIdentityJsonLd()];
 
   return (
     <>
@@ -190,6 +196,7 @@ const BlogPost = () => {
         <title>{post.title}</title>
         <meta name="description" content={post.metaDescription} />
         <link rel="canonical" href={canonical} />
+        {!isIndexed ? <meta name="robots" content="noindex, follow" /> : null}
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.metaDescription} />
         <meta property="og:type" content="article" />
@@ -388,6 +395,64 @@ const BlogPost = () => {
                       </ul>
                     )
                   ) : null}
+                  {block.images?.map((img, k) => (
+                    <figure
+                      key={k}
+                      className="my-8 overflow-hidden rounded-xl border border-border/60 bg-muted/20"
+                    >
+                      <img
+                        src={img.src}
+                        alt={img.alt}
+                        className="w-full h-auto"
+                        loading="lazy"
+                        width={800}
+                        height={450}
+                      />
+                      {img.caption ? (
+                        <figcaption className="px-4 py-3 text-sm text-muted-foreground border-t border-border/40">
+                          {img.caption}
+                        </figcaption>
+                      ) : null}
+                    </figure>
+                  ))}
+                  {block.checklist?.items?.length ? (
+                    <div className="my-8 rounded-xl border border-primary/20 bg-primary/5 p-6">
+                      <h4 className="text-lg font-bold mb-4 text-foreground">
+                        {block.checklist.title}
+                      </h4>
+                      <ul className="space-y-2 list-none p-0 m-0">
+                        {block.checklist.items.map((item, k) => (
+                          <li
+                            key={k}
+                            className="flex gap-3 text-base leading-[1.6] text-muted-foreground"
+                          >
+                            <span
+                              className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border border-primary/40 bg-background text-xs font-bold text-primary"
+                              aria-hidden
+                            >
+                              ✓
+                            </span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
+                  {block.download?.href ? (
+                    <div className="my-8 rounded-xl border border-border bg-card p-6">
+                      <Button asChild size="lg" className="gap-2">
+                        <a href={block.download.href} download>
+                          <Download className="h-4 w-4" />
+                          {block.download.label}
+                        </a>
+                      </Button>
+                      {block.download.description ? (
+                        <p className="mt-3 text-sm text-muted-foreground mb-0">
+                          {block.download.description}
+                        </p>
+                      ) : null}
+                    </div>
+                  ) : null}
                 </section>
               </div>
             );
@@ -418,7 +483,8 @@ const BlogPost = () => {
         ) : null}
 
         {(() => {
-          const slugs = BLOG_RELATED_WHEELS[post.slug] ?? [];
+          const slugs =
+            post.relatedWheels ?? BLOG_RELATED_WHEELS[post.slug] ?? [];
           const wheels = slugs
             .map((s) => getWheelPageBySlug(s))
             .filter(Boolean) as Array<{ slug: string; keywordPrimary: string; h1: string; metaDescription: string }>;

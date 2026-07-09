@@ -12,45 +12,21 @@ export function readBlogDataSources(root) {
   );
 }
 
-/** @returns {string[]} */
+/** @returns {string[]} Indexed posts only (sitemap, llms). */
 export function collectBlogSlugs(root) {
-  const slugs = [];
-  const seen = new Set();
-  for (const filePath of readBlogDataSources(root)) {
-    const src = fs.readFileSync(filePath, "utf8");
-    const slugRe = /slug:\s*"([\w-]+)"/g;
-    let match;
-    while ((match = slugRe.exec(src)) !== null) {
-      if (!seen.has(match[1])) {
-        seen.add(match[1]);
-        slugs.push(match[1]);
-      }
-    }
-  }
-  return slugs;
+  return collectBlogPostsFull(root)
+    .filter((p) => p.indexed !== false)
+    .map((p) => p.slug);
 }
 
-/** @returns {{ slug: string; updated: string }[]} ISO date YYYY-MM-DD per post */
+/** @returns {{ slug: string; updated: string }[]} Indexed posts only */
 export function collectBlogPostsMeta(root) {
-  const posts = [];
-  const seen = new Set();
-  for (const filePath of readBlogDataSources(root)) {
-    const src = fs.readFileSync(filePath, "utf8");
-    const slugRe = /slug:\s*"([\w-]+)"/g;
-    let match;
-    while ((match = slugRe.exec(src)) !== null) {
-      const slug = match[1];
-      if (seen.has(slug)) continue;
-      seen.add(slug);
-      const slice = src.slice(match.index, match.index + 800);
-      const updatedMatch = slice.match(/updated:\s*"([\d-]+)"/);
-      posts.push({
-        slug,
-        updated: updatedMatch?.[1] ?? new Date().toISOString().slice(0, 10),
-      });
-    }
-  }
-  return posts;
+  return collectBlogPostsFull(root)
+    .filter((p) => p.indexed !== false)
+    .map((p) => ({
+      slug: p.slug,
+      updated: p.updated ?? new Date().toISOString().slice(0, 10),
+    }));
 }
 
 /**
@@ -108,94 +84,202 @@ function extractArrayLiteral(src, name) {
 }
 
 /**
- * Load full BlogPost objects (blocks, faqs, excerpt) from the data files.
- * The data is pure serializable literals, so we evaluate the extracted array in a
- * sandbox-free Function at build time (trusted, first-party source).
+ * Extract a top-level object literal starting at `startIndex` (must point to `{`).
+ */
+function extractBracedLiteral(src, startIndex) {
+  let depth = 0;
+  let i = startIndex;
+  let inStr = null;
+  for (; i < src.length; i++) {
+    const ch = src[i];
+    if (inStr) {
+      if (ch === "\\") {
+        i++;
+        continue;
+      }
+      if (ch === inStr) inStr = null;
+      continue;
+    }
+    if (ch === "/" && src[i + 1] === "/") {
+      const nl = src.indexOf("\n", i);
+      if (nl === -1) break;
+      i = nl;
+      continue;
+    }
+    if (ch === "/" && src[i + 1] === "*") {
+      const end = src.indexOf("*/", i + 2);
+      if (end === -1) break;
+      i = end + 1;
+      continue;
+    }
+    if (ch === '"' || ch === "'" || ch === "`") {
+      inStr = ch;
+      continue;
+    }
+    if (ch === "{") depth++;
+    else if (ch === "}") {
+      depth--;
+      if (depth === 0) return src.slice(startIndex, i + 1);
+    }
+  }
+  return null;
+}
+
+/** Split a `[...]` literal into top-level comma-separated element strings. */
+function splitArrayElements(arrayLiteral) {
+  const inner = arrayLiteral.slice(1, -1);
+  const elements = [];
+  let depth = 0;
+  let start = 0;
+  let inStr = null;
+  for (let i = 0; i < inner.length; i++) {
+    const ch = inner[i];
+    if (inStr) {
+      if (ch === "\\") {
+        i++;
+        continue;
+      }
+      if (ch === inStr) inStr = null;
+      continue;
+    }
+    if (ch === "/" && inner[i + 1] === "/") {
+      const nl = inner.indexOf("\n", i);
+      if (nl === -1) break;
+      i = nl;
+      continue;
+    }
+    if (ch === '"' || ch === "'" || ch === "`") {
+      inStr = ch;
+      continue;
+    }
+    if (ch === "{" || ch === "[") depth++;
+    else if (ch === "}" || ch === "]") depth--;
+    else if (ch === "," && depth === 0) {
+      elements.push(inner.slice(start, i).trim());
+      start = i + 1;
+    }
+  }
+  const tail = inner.slice(start).trim();
+  if (tail) elements.push(tail);
+  return elements;
+}
+
+function loadBlogPostExportsFromFile(filePath, exportsByName) {
+  if (!fs.existsSync(filePath)) return;
+  const src = fs.readFileSync(filePath, "utf8");
+  const re = /export\s+const\s+(\w+)\s*:\s*BlogPost\s*=\s*\{/g;
+  let m;
+  while ((m = re.exec(src)) !== null) {
+    const name = m[1];
+    const start = m.index + m[0].length - 1;
+    const literal = extractBracedLiteral(src, start);
+    if (!literal) continue;
+    try {
+      // eslint-disable-next-line no-new-func
+      const post = new Function(`"use strict";return (${literal});`)();
+      if (post?.slug) exportsByName.set(name, post);
+    } catch (err) {
+      console.warn(`⚠️  Could not parse BlogPost export ${name}: ${err.message}`);
+    }
+  }
+}
+
+/**
+ * Load full BlogPost objects from blogPosts.ts (import references + inline literals),
+ * blogPostsDrafts.ts, and blogContent/*.ts.
  * @returns {import('../src/data/blogTypes').BlogPost[]}
  */
 export function collectBlogPostsFull(root) {
+  const exportsByName = new Map();
+  const dataDir = path.join(root, "src", "data");
+
+  loadBlogPostExportsFromFile(path.join(dataDir, "blogPostsDrafts.ts"), exportsByName);
+  const contentDir = path.join(dataDir, "blogContent");
+  if (fs.existsSync(contentDir)) {
+    for (const name of fs.readdirSync(contentDir)) {
+      if (name.endsWith(".ts")) {
+        loadBlogPostExportsFromFile(path.join(contentDir, name), exportsByName);
+      }
+    }
+  }
+
   const posts = [];
   const seen = new Set();
-  const varNames = {
-    "blogPosts.ts": "blogPosts",
-    "blogPostsAdditional.ts": "additionalBlogPosts",
-  };
+
+  function pushPost(post) {
+    if (!post?.slug || seen.has(post.slug)) return;
+    seen.add(post.slug);
+    posts.push(post);
+  }
+
   for (const filePath of readBlogDataSources(root)) {
     const src = fs.readFileSync(filePath, "utf8");
     const base = path.basename(filePath);
+    const varNames = {
+      "blogPosts.ts": "blogPosts",
+      "blogPostsAdditional.ts": "additionalBlogPosts",
+    };
     const name = varNames[base] || "blogPosts";
     const literal = extractArrayLiteral(src, name);
     if (!literal) continue;
-    let arr;
-    try {
-      // eslint-disable-next-line no-new-func
-      arr = new Function(`"use strict";return (${literal});`)();
-    } catch (err) {
-      console.warn(`⚠️  Could not parse ${base}: ${err.message}`);
-      continue;
-    }
-    for (const post of Array.isArray(arr) ? arr : []) {
-      if (!post || !post.slug || seen.has(post.slug)) continue;
-      seen.add(post.slug);
-      posts.push(post);
+
+    for (const el of splitArrayElements(literal)) {
+      const trimmed = el.trim();
+      if (trimmed.startsWith("{")) {
+        try {
+          // eslint-disable-next-line no-new-func
+          const post = new Function(`"use strict";return (${trimmed});`)();
+          pushPost(post);
+        } catch {
+          /* inline object parse failed — skip */
+        }
+        continue;
+      }
+      const ident = trimmed.match(/^([a-zA-Z_$][\w$]*)$/);
+      if (ident && exportsByName.has(ident[1])) {
+        pushPost(exportsByName.get(ident[1]));
+      }
     }
   }
+
+  if (posts.length === 0) {
+    for (const post of exportsByName.values()) pushPost(post);
+  }
+
   return posts;
 }
 
 /** @returns {import('./static-page-meta.mjs').RouteMeta[]} */
 export function collectBlogRouteMeta(root, { canonicalUrl, SITE }) {
-  const posts = [];
-  for (const filePath of readBlogDataSources(root)) {
-    const tsSource = fs.readFileSync(filePath, "utf8");
-    const slugRe = /slug:\s*"([\w-]+)"/g;
-    let m;
-    while ((m = slugRe.exec(tsSource)) !== null) {
-      const slug = m[1];
-      const slice = tsSource.slice(m.index, m.index + 1500);
-      const descMatch = slice.match(
-        /metaDescription:\s*\n?\s*"([^"]*(?:\\.[^"]*)*)"/,
-      );
-      const description = descMatch
-        ? descMatch[1].replace(/\\"/g, '"')
-        : "Article on Online Spin Wheel.";
-      const titleMatch = slice.match(/title:\s*\n?\s*"([^"]*(?:\\.[^"]*)*)"/);
-      const title = titleMatch
-        ? titleMatch[1].replace(/\\"/g, '"')
-        : "Blog | Online Spin Wheel";
-      const updatedMatch = slice.match(/updated:\s*"([\d-]+)"/);
-      const publishedMatch = slice.match(/published:\s*"([\d-]+)"/);
-      const updated =
-        updatedMatch?.[1] ?? new Date().toISOString().slice(0, 10);
-      const published = publishedMatch?.[1] ?? updated;
-      posts.push({
-        path: `/blog/${slug}`,
-        title,
-        description,
-        ogType: "article",
-        jsonLd: {
-          "@context": "https://schema.org",
-          "@type": "Article",
-          headline: title.split("|")[0].trim(),
-          description,
-          url: canonicalUrl(`/blog/${slug}`),
-          datePublished: `${published}T12:00:00`,
-          dateModified: `${updated}T12:00:00`,
-          author: {
-            "@type": "Person",
-            "@id": `${SITE}/author/raja-jahangir#person`,
-            name: "Raja Jahangir",
-            url: `${SITE}/author/raja-jahangir`,
+  return collectBlogPostsFull(root).map((post) => ({
+    path: `/blog/${post.slug}`,
+    title: post.title,
+    description: post.metaDescription,
+    ogType: "article",
+    robots: post.indexed === false ? "noindex, follow" : undefined,
+    jsonLd:
+      post.indexed === false
+        ? undefined
+        : {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: post.title.split("|")[0].trim(),
+            description: post.metaDescription,
+            url: canonicalUrl(`/blog/${post.slug}`),
+            datePublished: `${post.published ?? post.updated}T12:00:00`,
+            dateModified: `${post.updated}T12:00:00`,
+            author: {
+              "@type": "Person",
+              "@id": `${SITE}/author/raja-jahangir#person`,
+              name: "Raja Jahangir",
+              url: `${SITE}/author/raja-jahangir`,
+            },
+            publisher: {
+              "@type": "Person",
+              "@id": `${SITE}/author/raja-jahangir#person`,
+              name: "Raja Jahangir",
+              url: `${SITE}/author/raja-jahangir`,
+            },
           },
-          publisher: {
-            "@type": "Person",
-            "@id": `${SITE}/author/raja-jahangir#person`,
-            name: "Raja Jahangir",
-            url: `${SITE}/author/raja-jahangir`,
-          },
-        },
-      });
-    }
-  }
-  return posts;
+  }));
 }

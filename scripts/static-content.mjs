@@ -654,7 +654,22 @@ function blogPostContent(post) {
         Array.isArray(b.list) && b.list.length
           ? `\n  <ul>\n${b.list.map((li) => `    <li>${esc(li)}</li>`).join("\n")}\n  </ul>`
           : "";
-      return `${heading}${paras}${list}`;
+      const images =
+        Array.isArray(b.images) && b.images.length
+          ? `\n  <figure>\n${b.images
+              .map(
+                (img) =>
+                  `    <img src="${esc(img.src)}" alt="${esc(img.alt)}" loading="lazy" width="800" height="450" />\n    ${img.caption ? `<figcaption>${esc(img.caption)}</figcaption>` : ""}`,
+              )
+              .join("\n")}\n  </figure>`
+          : "";
+      const checklist = b.checklist?.items?.length
+          ? `\n  <section>\n    <h3>${esc(b.checklist.title || "Checklist")}</h3>\n    <ul>\n${b.checklist.items.map((li) => `      <li>${esc(li)}</li>`).join("\n")}\n    </ul>\n  </section>`
+          : "";
+      const download = b.download?.href
+          ? `\n  <p><a href="${esc(b.download.href)}" download>${esc(b.download.label || "Download")}</a>${b.download.description ? ` — ${esc(b.download.description)}` : ""}</p>`
+          : "";
+      return `${heading}${paras}${list}${images}${checklist}${download}`;
     })
     .join("\n");
 
@@ -975,7 +990,10 @@ export function renderRouteContent(route, { wheels = [], blogPosts = [] } = {}) 
 
   if (routePath === "/") return homeContent(wheels);
   if (routePath === "/all-spin-wheels") return allSpinWheelsContent(wheels);
-  if (routePath === "/blog") return blogIndexContent(blogPosts);
+  if (routePath === "/blog") {
+    const indexed = blogPosts.filter((p) => p.indexed !== false);
+    return blogIndexContent(indexed);
+  }
 
   if (routePath.startsWith("/blog/")) {
     const slug = routePath.slice("/blog/".length);
