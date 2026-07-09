@@ -68,6 +68,36 @@ const AllSpinWheelsPage = () => {
           entries if you need to.
         </p>
 
+        <Card className="p-5 md:p-6 mb-8 border-primary/20 bg-primary/5">
+          <h2 className="text-lg font-bold mb-3">Popular money pages</h2>
+          <p className="text-sm text-muted-foreground mb-4">
+            High-intent tools for raffles, prizes, classrooms, and name-picker
+            comparisons:
+          </p>
+          <ul className="grid sm:grid-cols-2 gap-2 text-sm">
+            <li>
+              <Link to="/raffle-wheel" className="text-primary font-medium hover:underline">
+                Raffle wheel — ticket numbers &amp; proof links
+              </Link>
+            </li>
+            <li>
+              <Link to="/prize-wheel" className="text-primary font-medium hover:underline">
+                Prize wheel — labeled giveaway slices
+              </Link>
+            </li>
+            <li>
+              <Link to="/classroom-spinner" className="text-primary font-medium hover:underline">
+                Classroom spinner — teacher hub
+              </Link>
+            </li>
+            <li>
+              <Link to="/wheel-of-names-alternative" className="text-primary font-medium hover:underline">
+                Wheel of names alternative — honest comparison
+              </Link>
+            </li>
+          </ul>
+        </Card>
+
         <div className="prose prose-neutral dark:prose-invert max-w-none mb-8 space-y-4 text-muted-foreground">
           <p>
             Not sure where to start? Use the{" "}

@@ -13,6 +13,7 @@ export type ContentSection = {
 export type EnrichedContent = {
   directAnswer: string;
   useCaseSections: WheelUseCase[];
+  supplementalSections: WheelUseCase[];
   faqs: { question: string; answer: string }[];
   relatedBlogSlugs: string[];
   hasUniqueContent: boolean;
@@ -773,6 +774,7 @@ export function getEnrichedContent(page: WheelPageRecord): EnrichedContent {
     return {
       directAnswer: unique.directAnswer,
       useCaseSections: unique.useCases,
+      supplementalSections: unique.supplementalSections ?? [],
       faqs: unique.faqs,
       relatedBlogSlugs,
       hasUniqueContent: true,
@@ -780,7 +782,6 @@ export function getEnrichedContent(page: WheelPageRecord): EnrichedContent {
   }
 
   const cat = getCategoryData(page.category);
-  const keyword = page.keywordPrimary || page.h1;
 
   return {
     directAnswer: page.introduction || page.metaDescription || "",
@@ -788,6 +789,7 @@ export function getEnrichedContent(page: WheelPageRecord): EnrichedContent {
       heading: `Use case ${i + 1}`,
       body,
     })),
+    supplementalSections: [],
     faqs: page.faqs,
     relatedBlogSlugs,
     hasUniqueContent: false,

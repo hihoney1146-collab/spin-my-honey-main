@@ -85,11 +85,32 @@ const USE_CASES: {
   body: ReactNode;
 }[] = [
   {
+    icon: Gift,
+    title: "Giveaways & raffles",
+    body: (
+      <>
+        Run ticket-number draws with proof links on the{" "}
+        <Link to="/raffle-wheel" className="text-primary hover:underline font-medium">
+          raffle wheel
+        </Link>{" "}
+        or paste @handles on the{" "}
+        <Link to="/winner-picker-wheel" className="text-primary hover:underline font-medium">
+          winner picker wheel
+        </Link>
+        .
+      </>
+    ),
+  },
+  {
     icon: GraduationCap,
     title: "Teachers & classrooms",
     body: (
       <>
-        Call on students fairly and form groups without bias using the{" "}
+        Open the{" "}
+        <Link to="/classroom-spinner" className="text-primary hover:underline font-medium">
+          classroom spinner
+        </Link>{" "}
+        for student picking, teams, and a timer — or use the{" "}
         <Link to="/random-student-picker" className="text-primary hover:underline font-medium">
           random student picker
         </Link>
@@ -98,13 +119,13 @@ const USE_CASES: {
     ),
   },
   {
-    icon: Gift,
-    title: "Giveaways & raffles",
+    icon: Trophy,
+    title: "Prize & promo spins",
     body: (
       <>
-        Paste entrant names and draw a transparent winner on screen with the{" "}
-        <Link to="/winner-picker-wheel" className="text-primary hover:underline font-medium">
-          winner picker wheel
+        Label slices for store giveaways and stream rewards with the{" "}
+        <Link to="/prize-wheel" className="text-primary hover:underline font-medium">
+          prize wheel
         </Link>
         .
       </>
@@ -142,16 +163,16 @@ const USE_CASES: {
   },
   {
     icon: Gamepad2,
-    title: "Games & streams",
+    title: "Name picker comparisons",
     body: (
       <>
-        Run dares and audience picks live with the{" "}
-        <Link to="/truth-or-dare-spinner-online" className="text-primary hover:underline font-medium">
-          truth or dare spinner
+        Evaluating WheelOfNames-style tools? Read our{" "}
+        <Link to="/wheel-of-names-alternative" className="text-primary hover:underline font-medium">
+          wheel of names alternative
         </Link>{" "}
-        or an{" "}
-        <Link to="/instagram-wheel-picker" className="text-primary hover:underline font-medium">
-          Instagram comment picker
+        comparison or spin the{" "}
+        <Link to="/random-name-picker-wheel" className="text-primary hover:underline font-medium">
+          random name picker
         </Link>
         .
       </>

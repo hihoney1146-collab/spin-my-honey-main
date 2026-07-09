@@ -27,6 +27,10 @@ https://onlinespinwheel.fun/tutorial-adding-images-to-spin-wheels
 https://onlinespinwheel.fun/comparison-spin-wheel-vs-random-number-generator
 https://onlinespinwheel.fun/comparison-spin-wheel-vs-traditional-methods
 https://onlinespinwheel.fun/comparison-online-vs-physical-spin-wheels
+https://onlinespinwheel.fun/wheel-of-names-alternative
+https://onlinespinwheel.fun/raffle-wheel
+https://onlinespinwheel.fun/prize-wheel
+https://onlinespinwheel.fun/classroom-spinner
 https://onlinespinwheel.fun/case-study-school-using-spin-wheels
 https://onlinespinwheel.fun/case-study-community-event-using-spin-wheels
 
@@ -43,8 +47,9 @@ https://onlinespinwheel.fun/outfit-picker-wheel — Outfit Picker Wheel: Nothing
 https://onlinespinwheel.fun/should-i-text-him-wheel — Should I Text Him Wheel: Thumb hovering over send again? Spin relationship-flavored outcomes and break the overthink cycle before you double-text.
 https://onlinespinwheel.fun/yes-or-no-wheel — Yes or No Wheel: Weighing a simple yes-or-no call? Spin for Yes, No, or Maybe in seconds and move on without another group chat debate.
 
-## Education & Learning (8)
+## Education & Learning (9)
 https://onlinespinwheel.fun/abcd-spin-wheel — ABCD Spin Wheel: Stuck between four quiz answers? Spin A, B, C, or D for a blind guess, or let the wheel assign MC sections during review games.
+https://onlinespinwheel.fun/classroom-spinner — Classroom Spinner: One page for teachers: random student selector, team maker, and countdown timer with fullscreen classroom mode for smartboards.
 https://onlinespinwheel.fun/alphabet-spinner-wheel — Alphabet Spinner Wheel: Teaching phonics or playing word games? Spin A through Z, exclude letters already used, and call out whatever consonant or vowel lands.
 https://onlinespinwheel.fun/random-animal-picker-wheel — Random Animal Picker Wheel: Need a science fair topic or sketch subject? Spin lions, sharks, penguins, or your custom creature list and learn about whatever lands.
 https://onlinespinwheel.fun/random-country-wheel — Random Country Wheel: Brushing up on capitals or picking your next trip? Spin countries from around the globe and quiz yourself on flags, maps, and facts.
@@ -52,6 +57,10 @@ https://onlinespinwheel.fun/random-day-picker-wheel — Random Day Picker Wheel:
 https://onlinespinwheel.fun/random-student-picker — Random Student Picker: Paste your class roster, spin in fullscreen mode, auto-remove picked students, and review session history so every kid gets a turn.
 https://onlinespinwheel.fun/random-word-generator-wheel — Random Word Generator Wheel: Running Pictionary or fighting writer's block? Spin nouns and verbs from our word list or paste your own vocabulary for instant prompts.
 https://onlinespinwheel.fun/what-to-draw-wheel — What to Draw Wheel: Blank sketchbook staring back? Spin surreal, cute, or spooky drawing prompts and start sketching before perfectionism kicks in.
+
+## Events & Giveaways (2)
+https://onlinespinwheel.fun/prize-wheel — Prize Wheel: Spin labeled prize slices for store promos, stream giveaways, or party games — plus an honest guide if you want a physical wheel instead.
+https://onlinespinwheel.fun/raffle-wheel — Raffle Wheel: Running a school carnival or live giveaway? Spin ticket numbers or names, draw multiple winners, and share a proof link after your stream.
 
 ## Events & Parties (1)
 https://onlinespinwheel.fun/secret-santa-wheel-generator — Secret Santa Wheel Generator: Run office or family Secret Santa with assignment mode, couple exclusions, and private reveal links so each gifter sees only their match.

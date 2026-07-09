@@ -242,6 +242,12 @@ export const fixedRouteMeta = [
     description:
       "Online spin wheels vs physical wheels: portability, fairness, customization, and cost.",
   },
+  {
+    path: "/wheel-of-names-alternative",
+    title: "Wheel of Names Alternative — Compare Free Pickers",
+    description:
+      "Honest comparison: Online Spin Wheel vs WheelOfNames.com, PickerWheel, and spinner apps. Feature table and who each tool fits.",
+  },
 ];
 
 export function canonicalUrl(path) {

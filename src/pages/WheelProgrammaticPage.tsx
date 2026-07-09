@@ -291,6 +291,17 @@ const WheelProgrammaticPage = () => {
             </Card>
           ))}
 
+          {enriched.supplementalSections.map((section, i) => (
+            <Card key={`supp-${i}`} className="p-6 md:p-8 border-primary/20">
+              <h2 className="text-xl md:text-2xl font-bold mb-4">
+                {section.heading}
+              </h2>
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                {section.body}
+              </p>
+            </Card>
+          ))}
+
           {modeFeatures ? (
             <Card className="p-6 md:p-8">
               <h2 className="text-xl md:text-2xl font-bold mb-4">

@@ -170,11 +170,13 @@ function homeContent(wheels) {
 <section id="use-cases">
   <h2>What people use this wheel for</h2>
   <ul>
-    <li><strong>Teachers &amp; classrooms:</strong> call on students fairly and form groups without bias using the <a href="/random-student-picker">random student picker</a>.</li>
-    <li><strong>Giveaways &amp; raffles:</strong> paste entrant names and draw a transparent winner on screen with the <a href="/winner-picker-wheel">winner picker wheel</a>.</li>
+    <li><strong>Giveaways &amp; raffles:</strong> paste entrant names and draw a transparent winner on screen with the <a href="/raffle-wheel">raffle wheel</a> or <a href="/winner-picker-wheel">winner picker wheel</a>.</li>
+    <li><strong>Teachers &amp; classrooms:</strong> call on students fairly using the <a href="/classroom-spinner">classroom spinner</a> hub or <a href="/random-student-picker">random student picker</a>.</li>
     <li><strong>Teams &amp; meetings:</strong> assign tasks, pick a presenter, or split people into squads with the <a href="/team-generator-wheel">team generator wheel</a>.</li>
+    <li><strong>Prize &amp; promo spins:</strong> label slices for store giveaways with the <a href="/prize-wheel">prize wheel</a>.</li>
     <li><strong>Food &amp; movie nights:</strong> settle "where do we eat?" and "what do we watch?" with the <a href="/dinner-picker-wheel">dinner picker wheel</a> and <a href="/movie-picker-wheel">movie picker wheel</a>.</li>
     <li><strong>Games &amp; streams:</strong> run dares and audience picks live with the <a href="/truth-or-dare-spinner-online">truth or dare spinner</a> or an <a href="/instagram-wheel-picker">Instagram comment picker</a>.</li>
+    <li><strong>Name picker alternatives:</strong> compare tools on our <a href="/wheel-of-names-alternative">wheel of names alternative</a> page.</li>
   </ul>
 </section>
 
@@ -550,6 +552,69 @@ function comparisonPhysicalContent() {
 ${exploreNav()}`);
 }
 
+function wheelOfNamesAlternativeContent() {
+  return mainWrap(`<h1>Wheel of Names Alternative — Compare Free Pickers</h1>
+<p>Looking for a WheelOfNames-style spinner? This page compares Online Spin Wheel with WheelOfNames.com, PickerWheel.com, and generic mobile spinner apps — without impersonating any brand. We are an independent project by <a href="/author/raja-jahangir">Raja Jahangir</a>.</p>
+<p>A wheel-of-names tool randomly selects one entry from a pasted list — perfect for classrooms, meetings, and giveaways. WheelOfNames.com popularized the format. Online Spin Wheel offers the same core behavior plus specialty pages for <a href="/raffle-wheel">raffles</a>, <a href="/prize-wheel">prize spins</a>, and <a href="/classroom-spinner">teacher hubs</a>, all running in your browser with no signup. Try our <a href="/random-name-picker-wheel">random name picker wheel</a> for a direct name-list spinner.</p>
+
+<section><h2>Feature comparison</h2>
+<table>
+<thead><tr><th>Feature</th><th>Online Spin Wheel</th><th>WheelOfNames.com</th><th>PickerWheel.com</th><th>Spinner apps</th></tr></thead>
+<tbody>
+<tr><td>Account required</td><td>No</td><td>No (basic use)</td><td>Optional for saves</td><td>Often yes</td></tr>
+<tr><td>Entries stay on your device</td><td>Yes — browser-only</td><td>Yes for standard spins</td><td>Varies</td><td>Check privacy policy</td></tr>
+<tr><td>Image slices</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Some apps only</td></tr>
+<tr><td>Specialty tool pages (40+)</td><td>Yes</td><td>Single generic wheel</td><td>Several modes</td><td>One app per install</td></tr>
+<tr><td>Multi-winner + proof link</td><td>Yes</td><td>Manual remove-after-pick</td><td>Varies</td><td>Rare</td></tr>
+<tr><td>Classroom hub</td><td>Yes — classroom spinner</td><td>Name picker only</td><td>Separate tools</td><td>Not typical</td></tr>
+<tr><td>Ticket-number raffle mode</td><td>Yes — raffle wheel</td><td>Manual numeric entries</td><td>Some number modes</td><td>Uncommon</td></tr>
+<tr><td>Smartboard friendly</td><td>Yes + fullscreen mode</td><td>Yes</td><td>Yes</td><td>Phone-only often</td></tr>
+<tr><td>Published randomness docs</td><td>Yes — <a href="/how-randomness-works">how randomness works</a></td><td>Limited public detail</td><td>Varies</td><td>Rare</td></tr>
+</tbody>
+</table>
+<p>Competitor details reflect publicly visible features as of 2026 and may change. We do not speak for WheelOfNames.com or PickerWheel.com.</p>
+</section>
+
+<section><h2>Best for Online Spin Wheel</h2>
+<ul>
+<li>US teachers who want picker + teams + timer in one tab</li>
+<li>Giveaway hosts who need proof links and ticket-number raffles</li>
+<li>Organizers who want 40+ preset specialty wheels beyond names</li>
+<li>Anyone who wants published randomness documentation</li>
+</ul>
+</section>
+
+<section><h2>When another tool may fit</h2>
+<ul>
+<li><strong>WheelOfNames.com:</strong> you only need a familiar single-page name spinner and already use that workflow daily.</li>
+<li><strong>PickerWheel.com:</strong> you want their specific multi-tool layout and saved-wheel account flow.</li>
+<li><strong>Mobile apps:</strong> you need offline spins with no browser tab — check ads and privacy first.</li>
+</ul>
+</section>
+
+<section><h2>Related pages</h2><ul>
+<li><a href="/raffle-wheel">Raffle wheel</a></li>
+<li><a href="/prize-wheel">Prize wheel</a></li>
+<li><a href="/classroom-spinner">Classroom spinner</a></li>
+<li><a href="/random-name-picker-wheel">Random name picker wheel</a></li>
+<li><a href="/all-spin-wheels">All spin wheels</a></li>
+</ul></section>
+
+<section><h2>Frequently asked questions</h2>
+<h3>Is Online Spin Wheel the same as WheelOfNames.com?</h3>
+<p>No. We are a separate site (onlinespinwheel.fun). This page compares features honestly so you can pick the tool that fits.</p>
+<h3>What is the best free wheel of names alternative?</h3>
+<p>For US teachers and giveaway hosts, Online Spin Wheel offers a name picker plus classroom hub, raffle wheel, and proof links without an account. WheelOfNames.com remains a solid choice if you only need a basic name spinner.</p>
+<h3>Do I need to download an app?</h3>
+<p>Browser-based tools in this comparison require no download. Generic spinner apps may need installs and often show more ads.</p>
+<h3>Which tool is best for Instagram giveaways?</h3>
+<p>Look for multi-winner draws and shareable proof links. Our winner picker and raffle wheels support both.</p>
+<h3>Can I import a class list?</h3>
+<p>Yes on Online Spin Wheel — paste one name per line (up to 400). The classroom spinner adds remove-after-pick and session history.</p>
+</section>
+${exploreNav()}`);
+}
+
 /* ----------------------------------------------------------- Blog index ---- */
 
 function blogIndexContent(posts) {
@@ -668,6 +733,12 @@ const WHEEL_MODE_FEATURES = {
     "Every flip updates a running heads-versus-tails tally and streak counter so tiebreakers, kickoff calls, and stream overlays show transparent stats on screen.",
   "alphabet-spinner-wheel":
     "Spin A through Z with an exclude-letters panel — uncheck glyphs already used in phonics drills, Scattergories, or spelling bees so only fresh letters remain on the wheel.",
+  "raffle-wheel":
+    "Switch between entrant names and ticket-number mode, draw multiple winners without replacement, and copy a timestamped proof link to post after your live raffle stream.",
+  "prize-wheel":
+    "Load labeled prize slices — Grand Prize, gift cards, bonus entries — and spin for game-show-style giveaways on a phone, tablet, or booth display.",
+  "classroom-spinner":
+    "Teacher hub with student picker (remove-after-pick + history), balanced team generator, and a countdown timer — all in one fullscreen smartboard layout.",
 };
 
 function wheelContent(wheel, wheels) {
@@ -771,6 +842,14 @@ function wheelContent(wheel, wheels) {
     }
   }
 
+  if (unique?.supplementalSections?.length) {
+    for (const section of unique.supplementalSections) {
+      parts.push(
+        `<section><h2>${esc(section.heading)}</h2><p>${esc(section.body)}</p></section>`,
+      );
+    }
+  }
+
   const absorbed = ENRICH.absorbedSections[wheel.slug] || [];
   for (const section of absorbed) {
     let body = `<p>${esc(section.intro)}</p>`;
@@ -847,6 +926,12 @@ ${items}
 
   return mainWrap(`<h1>All Spin Wheels — Free Specialty Wheel Directory</h1>
 <p>Browse every free specialty spin wheel on Online Spin Wheel, organized by category. Each wheel is pre-filled and ready to spin — decision makers, classroom pickers, giveaway tools, games, zodiac wheels, and more. Every tool runs in your browser with cryptographically secure randomness, no account, and no downloads. Pick a category below to jump straight to the wheel you need, or start with the homepage wheel and add your own custom entries.</p>
+<section><h2>Popular money pages</h2><ul>
+  <li><a href="/raffle-wheel">Raffle wheel</a> — ticket-number mode, multi-winner draws, proof links</li>
+  <li><a href="/prize-wheel">Prize wheel</a> — labeled giveaway slices plus physical-wheel buyer guide</li>
+  <li><a href="/classroom-spinner">Classroom spinner</a> — student picker, teams, and timer hub</li>
+  <li><a href="/wheel-of-names-alternative">Wheel of names alternative</a> — compare free picker tools</li>
+</ul></section>
 <p>These wheels cover everyday choices (what to eat, yes or no, coin flips), education (student pickers, alphabet and word wheels), events and giveaways (winner pickers, Secret Santa), games and parties, movies and entertainment, zodiac and fortune, health and fitness, travel, and more. Whatever you need to decide fairly, there is a wheel for it.</p>
 ${sections}
 ${exploreNav()}`);
@@ -872,6 +957,7 @@ const FIXED = {
   "/comparison-spin-wheel-vs-traditional-methods": () =>
     comparisonTraditionalContent(),
   "/comparison-online-vs-physical-spin-wheels": () => comparisonPhysicalContent(),
+  "/wheel-of-names-alternative": () => wheelOfNamesAlternativeContent(),
 };
 
 /**

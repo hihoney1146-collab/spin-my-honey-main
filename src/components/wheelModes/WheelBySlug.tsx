@@ -5,7 +5,9 @@ import { RandomNumberWheel } from "./RandomNumberWheel";
 import { RandomStudentPickerWheel } from "./RandomStudentPickerWheel";
 import { WinnerPickerWheel } from "./WinnerPickerWheel";
 import { CoinFlipWheel } from "./CoinFlipWheel";
-import { AlphabetSpinnerWheel } from "./AlphabetSpinnerWheel";
+import { RaffleWheel } from "./RaffleWheel";
+import { PrizeWheel } from "./PrizeWheel";
+import { ClassroomSpinnerWheel } from "./ClassroomSpinnerWheel";
 
 type WheelBySlugProps = {
   slug: string;
@@ -30,6 +32,14 @@ export function WheelBySlug({ slug, presetOptionLabels }: WheelBySlugProps) {
       return <CoinFlipWheel presetOptionLabels={presetOptionLabels} />;
     case "alphabet-spinner-wheel":
       return <AlphabetSpinnerWheel presetOptionLabels={presetOptionLabels} />;
+    case "raffle-wheel":
+      return <RaffleWheel presetOptionLabels={presetOptionLabels} />;
+    case "prize-wheel":
+      return <PrizeWheel presetOptionLabels={presetOptionLabels} />;
+    case "classroom-spinner":
+      return (
+        <ClassroomSpinnerWheel presetOptionLabels={presetOptionLabels} />
+      );
     default:
       return (
         <SpinWheel

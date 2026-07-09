@@ -8,6 +8,8 @@ export type WheelUniqueContent = {
   metaDescription: string;
   h1?: string;
   relatedWheels: { slug: string; anchor: string }[];
+  /** Optional extra SSR/content blocks (e.g. buyer-intent sections). */
+  supplementalSections?: WheelUseCase[];
 };
 
 export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
@@ -2279,6 +2281,210 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       { slug: "random-travel-destination-wheel", anchor: "Travel as a hobby" },
       { slug: "random-color-wheel", anchor: "Color craft hobbies" },
       { slug: "pokemon-randomizer-wheel", anchor: "Gaming hobby challenges" },
+    ],
+  },
+
+  "raffle-wheel": {
+    directAnswer:
+      "The Raffle Wheel runs transparent multi-winner draws for US school carnivals, church fundraisers, and brand giveaways — paste entrant names or switch to ticket-number mode and spin numbered stubs instead of labels. Draw several winners without replacement, screen-record the animation, and copy a timestamped proof link followers can verify after the live stream ends.",
+    title: "Raffle Wheel — Multi-Winner Virtual Draw",
+    metaDescription:
+      "Running a school carnival or live giveaway? Spin ticket numbers or names, draw multiple winners, and share a proof link after your stream.",
+    h1: "Raffle Wheel — Virtual Multi-Winner Draw",
+    useCases: [
+      {
+        heading: "School carnival ticket stubs",
+        body: "PTA volunteers paste Ticket #001 through #200, spin live on the gym projector, and remove each winning stub so the next round cannot repeat a holder.",
+      },
+      {
+        heading: "Church raffle nights",
+        body: "Youth groups sell numbered tickets for gift baskets; the wheel lands on one stub at a time while the audience watches the pointer stop.",
+      },
+      {
+        heading: "Instagram live giveaways",
+        body: "Creators paste @handles, set three winners, record the spin, and post the proof URL in Stories so commenters see the draw was fair.",
+      },
+      {
+        heading: "Trade-show booth draws",
+        body: "Exhibitors collect business cards, assign each a ticket number on-site, and spin hourly for branded swag without a physical drum.",
+      },
+      {
+        heading: "Nonprofit silent auctions",
+        body: "Volunteers load paid raffle entries as numbers, draw the grand prize live, and archive the proof link for board records.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Can I spin ticket numbers instead of names?",
+        answer:
+          "Yes. Toggle ticket-number mode, paste stubs like #047, or auto-generate a numbered range. The wheel treats each ticket as its own slice.",
+      },
+      {
+        question: "How do multi-winner raffle draws work?",
+        answer:
+          "Set how many winners you need. Each spin removes the prior winner from the pool when drawing multiple prizes in one session.",
+      },
+      {
+        question: "What is the raffle proof link for?",
+        answer:
+          "After the final winner, copy the proof URL with timestamp and results. Post it beside your live recording so entrants can verify the outcome.",
+      },
+      {
+        question: "Is this the same as a prize wheel?",
+        answer:
+          "Raffle mode focuses on entrants and ticket numbers. For labeled prize slices like Gift Card or Grand Prize, try our prize wheel page.",
+      },
+      {
+        question: "Do I need accounts or uploads?",
+        answer:
+          "No. Entries stay in your browser. Paste names or tickets, spin, and optionally record the screen — nothing is sent to our servers.",
+      },
+    ],
+    relatedWheels: [
+      { slug: "prize-wheel", anchor: "Labeled prize slice wheel" },
+      { slug: "winner-picker-wheel", anchor: "Social giveaway winner picker" },
+      { slug: "pick-out-of-a-hat-generator", anchor: "Classic hat draw online" },
+      { slug: "random-name-picker-wheel", anchor: "Name-only raffle picker" },
+      { slug: "instagram-wheel-picker", anchor: "Comment handle picker" },
+      { slug: "classroom-spinner", anchor: "Teacher classroom hub" },
+    ],
+  },
+
+  "prize-wheel": {
+    directAnswer:
+      "The Prize Wheel labels each slice with rewards — Grand Prize, gift cards, bonus entries — so carnivals, retail promos, and stream giveaways feel like a game show. Spin once for a single winner or run several rounds, customize colors, and screen-record the landing slice for your audience. Need hardware instead? The buyer guide below explains what to look for in tabletop prize wheels.",
+    title: "Prize Wheel — Free Spinning Giveaway Tool",
+    metaDescription:
+      "Spin labeled prize slices for store promos, stream giveaways, or party games — plus an honest guide if you want a physical wheel instead.",
+    h1: "Prize Wheel — Spin for Giveaways & Promos",
+    useCases: [
+      {
+        heading: "Retail grand-opening promos",
+        body: "Managers load Grand Prize, 10% Off, and Free T-Shirt slices, spin when a customer completes a purchase, and photograph the result for social posts.",
+      },
+      {
+        heading: "Twitch subscriber rewards",
+        body: "Streamers assign sub-giveaway tiers to slices, spin live on overlay, and read the highlighted label when the wheel stops.",
+      },
+      {
+        heading: "Birthday party game stations",
+        body: "Parents set Candy, Small Toy, and Try Again slices so kids take turns spinning between cake and presents.",
+      },
+      {
+        heading: "Corporate wellness challenges",
+        body: "HR teams swap slices weekly — water bottle, gift card, extra PTO hour — and spin at all-hands to reward participation milestones.",
+      },
+      {
+        heading: "Farmers market vendors",
+        body: "Booth owners spin for free samples or discount codes, turning foot traffic into a visible, shareable moment.",
+      },
+    ],
+    supplementalSections: [
+      {
+        heading: "Need a physical prize wheel? What to look for",
+        body: "Dry-erase tabletop wheels ($30–$120) let staff rewrite prizes with markers — ideal for rotating retail promos. Look for a stable base, smooth bearing spin, and segments you can relabel without peeling stickers. Floor-standing wheels ($150–$400) suit trade shows but need transport storage. Check weight balance so the pointer does not favor one wedge after repeated spins. If you only run occasional online giveaways, a free browser prize wheel avoids storage, shipping, and bias from worn hardware — spin live on a tablet and screen-record instead.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Can I rename every prize slice?",
+        answer:
+          "Yes. Delete the defaults and type Grand Prize, Gift Card, or any label. Colors adjust automatically as you add slices.",
+      },
+      {
+        question: "Is this better than buying a tabletop wheel?",
+        answer:
+          "Digital wheels need zero storage, update instantly, and use cryptographic randomness. Physical wheels shine when you want a tactile prop customers can touch in-store.",
+      },
+      {
+        question: "Can I run multiple prize rounds?",
+        answer:
+          "Spin again after each winner or remove winning slices so the remaining prizes stay in the pool for the next round.",
+      },
+      {
+        question: "Does it work on a phone at my booth?",
+        answer:
+          "Yes. Open the page on any phone or tablet, tap to spin, and tilt the screen toward customers — no app install required.",
+      },
+      {
+        question: "How is this different from the raffle wheel?",
+        answer:
+          "The prize wheel emphasizes labeled rewards on each slice. The raffle wheel focuses on ticket numbers and multi-winner proof links for numbered entries.",
+      },
+    ],
+    relatedWheels: [
+      { slug: "raffle-wheel", anchor: "Ticket-number raffle draws" },
+      { slug: "winner-picker-wheel", anchor: "Commenter giveaway picker" },
+      { slug: "instagram-wheel-picker", anchor: "Instagram prize spinner" },
+      { slug: "family-game-night-picker-wheel", anchor: "Family game prizes" },
+      { slug: "random-color-wheel", anchor: "Color prize challenges" },
+      { slug: "pick-out-of-a-hat-generator", anchor: "Hat-style prize draw" },
+    ],
+  },
+
+  "classroom-spinner": {
+    directAnswer:
+      "The Classroom Spinner is a teacher hub that combines random student selection, balanced team creation, and a fullscreen countdown timer in one projector-ready page. Call on learners fairly with remove-after-pick mode, split the roster into groups for lab days, and run think-pair-share timers without juggling three separate apps — built for US K–12 classrooms and subs who need obvious controls on day one.",
+    title: "Classroom Spinner — Teacher Wheel Hub",
+    metaDescription:
+      "One page for teachers: random student selector, team maker, and countdown timer with fullscreen classroom mode for smartboards.",
+    h1: "Classroom Spinner — Teacher Wheel Hub",
+    useCases: [
+      {
+        heading: "Cold-calling in middle school ELA",
+        body: "Teachers paste period-two rosters, enable remove-after-pick, and spin so every reader shares analysis before anyone repeats.",
+      },
+      {
+        heading: "PE squads on field day",
+        body: "Coaches switch to the team tab, paste 28 names, choose four teams, and send balanced groups to stations in under a minute.",
+      },
+      {
+        heading: "Think-pair-share timing",
+        body: "Set a three-minute timer tab before discussions, fullscreen the hub, and students see the countdown beside the spinner.",
+      },
+      {
+        heading: "Substitute teacher plans",
+        body: "Session history shows who was already called, so guest teachers continue fair participation without a paper roster.",
+      },
+      {
+        heading: "ESL small-group rotations",
+        body: "Lead teachers spin for table leaders, generate teams of four, and run five-minute speaking drills with the built-in timer.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Does this replace the random student picker?",
+        answer:
+          "It includes the same student-picker behavior plus team generation and a timer — one bookmark for daily classroom routines.",
+      },
+      {
+        question: "How does fullscreen classroom mode work?",
+        answer:
+          "Tap fullscreen to expand controls and the wheel for smartboards. Tap-to-spin buttons stay large enough for back-row visibility.",
+      },
+      {
+        question: "Can I see who was already picked?",
+        answer:
+          "Yes. Session history logs each selected student during the period so you can balance participation before the bell.",
+      },
+      {
+        question: "Is student data stored online?",
+        answer:
+          "No. Rosters and history stay in your browser session on that device — nothing is uploaded to our servers.",
+      },
+      {
+        question: "Does the team maker balance sizes?",
+        answer:
+          "Teams shuffle randomly and distribute names round-robin so counts stay within one person even with odd class sizes.",
+      },
+    ],
+    relatedWheels: [
+      { slug: "random-student-picker", anchor: "Standalone student picker" },
+      { slug: "team-generator-wheel", anchor: "Dedicated team generator" },
+      { slug: "random-name-picker-wheel", anchor: "Wheel of names style picker" },
+      { slug: "abcd-spin-wheel", anchor: "Multiple-choice quiz wheel" },
+      { slug: "alphabet-spinner-wheel", anchor: "Letter-of-the-day spinner" },
+      { slug: "winner-picker-wheel", anchor: "Classroom reward draw" },
     ],
   },
 };

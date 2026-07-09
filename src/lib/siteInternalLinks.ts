@@ -47,6 +47,10 @@ export const caseStudyLinks: SiteLinkItem[] = [
 
 export const comparisonLinks: SiteLinkItem[] = [
   {
+    to: "/wheel-of-names-alternative",
+    label: "Wheel of names alternative",
+  },
+  {
     to: "/comparison-spin-wheel-vs-random-number-generator",
     label: "Wheel vs random number generator",
   },
