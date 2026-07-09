@@ -8,7 +8,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { Link } from "react-router-dom";
-import { SITE_ORIGIN, RAJA_AUTHOR, organizationJsonLd, articleJsonLd, breadcrumbListJsonLd } from "@/lib/schema";
+import { SITE_ORIGIN, RAJA_AUTHOR, siteIdentityJsonLd, articleJsonLd, breadcrumbListJsonLd } from "@/lib/schema";
 
 const ComparisonSpinWheelVsRandomNumberGenerator = () => {
   return (
@@ -31,7 +31,7 @@ const ComparisonSpinWheelVsRandomNumberGenerator = () => {
         />
         <script type="application/ld+json">
           {JSON.stringify([
-            organizationJsonLd(),
+            ...siteIdentityJsonLd(),
             breadcrumbListJsonLd([
               { name: "Home", url: `${SITE_ORIGIN}/` },
               { name: "Comparisons", url: `${SITE_ORIGIN}/` },

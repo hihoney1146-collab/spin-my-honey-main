@@ -103,6 +103,19 @@ function esc(s) {
     .replace(/"/g, "&quot;");
 }
 
+/** Committed wheel content-review date; keep in sync with generate-wheel-pages-data.mjs. */
+const WHEEL_CONTENT_LAST_UPDATED = "2026-07-08";
+
+function fmtDate(iso) {
+  const d = new Date(`${iso}T12:00:00`);
+  if (Number.isNaN(d.getTime())) return iso;
+  return d.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+
 function mainWrap(inner) {
   return `<main data-static-seo="true" style="max-width:960px;margin:0 auto;padding:32px 20px;font-family:system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.6">
 ${inner}
@@ -196,38 +209,32 @@ ${exploreNav()}`);
 
 function aboutContent() {
   return mainWrap(`<h1>About Online Spin Wheel</h1>
-<p>Online Spin Wheel makes fair random choices accessible to everyone. We are a small team of developers, educators, and digital creators, operating as part of <a href="https://auroxatech.com" rel="noopener noreferrer">Auroxa Tech</a>. In 2025 we launched a straightforward, beautifully designed way to make random choices, pick contest winners, and gamify classrooms without hassle.</p>
-<p>Our founder <a href="/author/raja-jahangir">Raja Jahangir</a> leads SEO and growth and oversees editorial quality, tool accuracy, and how we explain fair random selection on every page.</p>
+<p>Online Spin Wheel is an independent project built and maintained by <a href="/author/raja-jahangir">Raja Jahangir</a>. It is a one-person project — not a company or agency. Raja designs the tools, writes the code, publishes every wheel, and answers the emails, working from Islamabad, Pakistan, and serving users worldwide.</p>
+<p>The site started because too many online spinners were slow, buried in ads, or vague about whether their results were genuinely random. In 2025 it launched as a straightforward, cleanly designed way to make random choices, pick contest winners, and gamify classrooms without the hassle.</p>
 
 <section>
   <h2>Our story</h2>
-  <p>It started with a simple giveaway problem: picking a fair winner without forcing users into logins, subscriptions, or bloated interfaces. We built a clean, mathematically fair wheel that runs instantly in the browser with no app required. Today teachers, creators, and businesses use it daily because it stays fast, private, and free. The wheel does not jump to a result — it spins and slows naturally with momentum and friction simulation. No hidden scripts, no favoritism, just the fair result you need.</p>
+  <p>It began with a simple giveaway problem: picking a fair winner without forcing people into logins, subscriptions, or bloated interfaces. The answer was a clean, mathematically fair wheel that runs instantly in the browser with no app required. Today teachers, creators, and businesses use it daily because it stays fast, private, and free. The wheel does not jump to a result — it spins and slows naturally with momentum and friction simulation. No hidden scripts, no favoritism, just the fair result you need.</p>
 </section>
 
 <section>
-  <h2>Meet the team</h2>
-  <p>Our cross-functional team combines product strategy, engineering, growth, and community expertise to keep Online Spin Wheel fast, fair, and user-focused.</p>
-  <ul>
-    <li><strong>Tabish Irfan</strong> — CEO &amp; Founder, Auroxa Tech (Leadership)</li>
-    <li><strong>Hammas Ali</strong> — CTO &amp; Co-founder, Auroxa Tech (Engineering)</li>
-    <li><strong>Raja Jahangir</strong> — SEO &amp; Growth Specialist (<a href="/author/raja-jahangir">author profile</a>)</li>
-    <li><strong>Abdal Khalid</strong> — Social Media Expert (Community)</li>
-  </ul>
+  <h2>How every wheel is tested</h2>
+  <p>Fairness is not assumed here — it is measured. Every wheel is tested for uniform distribution across 10,000 automated spins before launch. If any equal-sized segment wins noticeably more or less often than the rest, the wheel is not published until the distribution is even. The randomness itself comes from the browser's Web Crypto API (<code>crypto.getRandomValues()</code>), the same cryptographically secure source used for encryption keys — never the predictable <code>Math.random()</code>. Because each segment's probability equals its arc divided by 360 degrees, equal slices give every entry identical odds, and each spin is independent of the last.</p>
 </section>
 
 <section>
-  <h2>The science of fairness</h2>
-  <p>We use <code>crypto.getRandomValues()</code> for hardware-level random seeds, so every spin is unpredictable and mathematically fair. The wheel simulates momentum and friction to decelerate naturally rather than snapping to a winner. Every segment's chance is calculated from its angle, guaranteeing equal probability for all entries.</p>
+  <h2>What data we do and don't collect</h2>
+  <p>The names, numbers, or options you type into the wheel stay on your device and are never sent to a server. No accounts, sign-ups, or passwords are required. To keep the tool free, we use standard, privacy-respecting analytics and ad measurement, described in our <a href="/privacy-policy">Privacy Policy</a>. If you email us, we use your address and message only to reply.</p>
 </section>
 
 <section>
-  <h2>Editorial standards &amp; content review</h2>
-  <p>Every piece of content is written, reviewed, and maintained by our in-house team. Technical claims about randomness, probability, and fairness are fact-checked against the Web Crypto API specification and standard probability theory. Blog posts and guides are peer-reviewed before publication, and published content is reviewed quarterly with a visible "Last Updated" date. Spot an error? Email <a href="mailto:onlinespinwheel@gmail.com">onlinespinwheel@gmail.com</a> and we will review it within 48 hours.</p>
+  <h2>Updates &amp; reporting a bug</h2>
+  <p>Content is reviewed regularly and refreshed whenever tools, best practices, or your feedback call for it. Every tool page and blog post shows a visible "Last updated" date wired to real content changes. Found a bug or spotted an error? Email <a href="mailto:hello@onlinespinwheel.fun">hello@onlinespinwheel.fun</a> with the page URL, your device and browser, and what happened versus what you expected. Reports are reviewed and, where valid, fixed and re-dated within 48 hours.</p>
 </section>
 
 <section>
   <h2>Our commitment</h2>
-  <p>Online Spin Wheel is 100% free and unlimited with no premium tiers or hidden caps, and it is universally accessible on desktop, tablet, and mobile. If you like the technology behind our wheel, Auroxa Tech can build custom interactive tools, advanced web portals, and agentic AI solutions for your business.</p>
+  <p>Online Spin Wheel is 100% free and unlimited with no premium tiers or hidden caps, and it is universally accessible on desktop, tablet, and mobile. Questions, feedback, or ideas for a new wheel are always welcome at <a href="mailto:hello@onlinespinwheel.fun">hello@onlinespinwheel.fun</a>.</p>
 </section>
 ${exploreNav()}`);
 }
@@ -240,7 +247,7 @@ function contactContent() {
 
 <section>
   <h2>Email us</h2>
-  <p>For general inquiries, feedback, or support, email <a href="mailto:onlinespinwheel@gmail.com">onlinespinwheel@gmail.com</a>. We're always looking to improve, so share your thoughts, suggestions, or report any issues you encounter — your feedback directly shapes which wheels, guides, and features we build next, and it helps us make Online Spin Wheel better for everyone. There is no contact form barrier to real help: a clear email reaches a real person on our team.</p>
+  <p>For general inquiries, feedback, or support, email <a href="mailto:hello@onlinespinwheel.fun">hello@onlinespinwheel.fun</a>. I'm always looking to improve, so share your thoughts, suggestions, or report any issues you encounter — your feedback directly shapes which wheels, guides, and features I build next, and it helps make Online Spin Wheel better for everyone. There is no contact form barrier to real help: a clear email reaches a real person.</p>
 </section>
 
 <section>
@@ -257,20 +264,20 @@ function contactContent() {
 <section>
   <h2>Business information</h2>
   <ul>
-    <li><strong>Operator:</strong> Online Spin Wheel is operated by <a href="https://auroxatech.com" rel="noopener noreferrer">Auroxa Tech</a>, a software agency specializing in web development and agentic AI.</li>
-    <li><strong>Operational base:</strong> Rawalpindi, Pakistan. We serve users worldwide online.</li>
+    <li><strong>Operator:</strong> Online Spin Wheel is an independent project built and maintained by <a href="/author/raja-jahangir">Raja Jahangir</a> — not a company or agency.</li>
+    <li><strong>Based in:</strong> Islamabad, Pakistan. Serving users worldwide online.</li>
     <li><strong>Response time:</strong> typically within 24–48 hours on business days.</li>
   </ul>
 </section>
 
 <section>
-  <h2>Partnerships and custom builds</h2>
-  <p>If you like the technology behind our wheel, Auroxa Tech can build custom interactive tools, branded spinning wheels, advanced web portals, and agentic AI solutions that integrate directly into your business platforms. Reach out with a short description of your goals, timeline, and audience, and we will suggest a practical approach. We also welcome accessibility feedback and localization requests from schools, nonprofits, and community organizations.</p>
+  <h2>Feedback and requests</h2>
+  <p>Have an idea for a new wheel, an accessibility improvement, or a localization request? Reach out with a short description of what you need and who it's for, and I'll suggest a practical approach. Suggestions from schools, nonprofits, and community organizations are especially welcome.</p>
 </section>
 
 <section>
   <h2>Editorial corrections</h2>
-  <p>Accuracy matters to us. If you spot an error in a blog post, guide, or wheel description — a broken link, an outdated statistic, or an unclear instruction — email us and reference the page URL. Our editorial team, led by <a href="/author/raja-jahangir">Raja Jahangir</a>, reviews reported issues and updates published content, refreshing the visible "Last Updated" date when we make a change.</p>
+  <p>Accuracy matters. If you spot an error in a blog post, guide, or wheel description — a broken link, an outdated statistic, or an unclear instruction — email me and reference the page URL. I review reported issues and update published content, refreshing the visible "Last updated" date when I make a change.</p>
 </section>
 
 <section>
@@ -292,45 +299,26 @@ ${exploreNav()}`);
 /* -------------------------------------------------------------- Author ----- */
 
 function authorContent() {
-  return mainWrap(`<h1>Raja Jahangir — SEO &amp; Growth Specialist</h1>
-<p>Raja Jahangir leads SEO and digital growth for <a href="/">Online Spin Wheel</a>. With more than three years of hands-on experience in search strategy, he focuses on fast pages, clear user journeys, and privacy-respecting tools that teachers, creators, and small businesses can trust.</p>
-<p>Raja shapes editorial direction for our blog and specialty wheel pages, including fair-use guidance for giveaways, classroom pickers, and team icebreakers. Content is reviewed for accuracy, readable structure, and practical steps readers can apply immediately.</p>
-<p>Online Spin Wheel is built by <a href="https://auroxatech.com" rel="noopener noreferrer">Auroxa Tech</a>. Raja works alongside product, engineering, and community teammates to keep the experience free, fast, and transparent for global users.</p>
+  return mainWrap(`<h1>Raja Jahangir — Creator of Online Spin Wheel</h1>
+<p>I'm Raja Jahangir, the independent creator of <a href="/">Online Spin Wheel</a>. Online Spin Wheel is an independent project built and maintained by me — not a company or an agency. I design it, write the code, publish every specialty wheel, and answer the emails. Working from Islamabad, Pakistan, I keep the tool free, fast, and privacy-respecting for teachers, creators, and small businesses around the world.</p>
+<p>I built this site because most spinners I found were slow, cluttered with ads, or vague about whether their results were actually random. I wanted a wheel that loads instantly, works on any phone or smartboard, and is honest about how it picks. So every wheel here draws its randomness from the browser's Web Crypto API (<code>crypto.getRandomValues()</code>) rather than a predictable <code>Math.random()</code>, and your entries never leave your device.</p>
+<p>Each wheel is designed the same way: I start from a real use case — a classroom name draw, a giveaway, a team stand-up — write the content and default entries around it, and then build the interaction so it feels fair to watch. Before a wheel goes live, I test it for uniform distribution across 10,000 automated spins to confirm every equal-sized segment lands with the same probability. If the results drift, the wheel doesn't ship until they don't.</p>
+<p>Fairness is the whole point, so I keep it verifiable rather than asking you to take my word for it. The spin is continuous and visible, you can screen-record it as proof, and I explain the exact mechanism on the <a href="/how-randomness-works">how randomness works</a> page. When I update a tool or a guide, I refresh its visible last-updated date so you always know how current the page is.</p>
 
 <section>
-  <h2>Credentials</h2>
+  <h2>How I work</h2>
   <ul>
-    <li>SEO and content strategy for utility and education sites</li>
-    <li>Technical SEO: sitemaps, structured data, Core Web Vitals</li>
-    <li>Growth for free tools with AdSense and consent-aware analytics</li>
-    <li>Editorial standards for E-E-A-T on programmatic and blog content</li>
+    <li>Design and build every wheel and page myself, end to end.</li>
+    <li>Test each wheel for uniform distribution across 10,000 automated spins before launch.</li>
+    <li>Use cryptographically secure randomness and keep all processing on your device.</li>
+    <li>Maintain fast, server-rendered, structured content so pages are accurate and accessible.</li>
+    <li>Review published content regularly and stamp a visible last-updated date.</li>
   </ul>
 </section>
 
 <section>
-  <h2>Editorial approach</h2>
-  <p>Raja's editorial process emphasizes first-hand product knowledge, verifiable claims about randomness and fairness, and clear internal linking between guides and the specialty wheels they describe. Every published article carries a visible last-updated date and is refreshed as tools and best practices evolve. Technical statements — for example, that the wheel draws randomness from the Web Crypto API and gives equal-sized segments equal probability — are checked against the underlying specification rather than repeated from memory.</p>
-</section>
-
-<section>
-  <h2>Areas of focus</h2>
-  <p>Raja's day-to-day work spans the full lifecycle of content and discoverability for a free web tool. That includes keyword and intent research for classroom, giveaway, and decision-making audiences; on-page structure and internal linking; and the technical foundations that let search engines and AI assistants read the site accurately.</p>
-  <ul>
-    <li>Programmatic SEO for the specialty wheel directory and category hubs.</li>
-    <li>Long-form guides that turn common questions into step-by-step help.</li>
-    <li>Structured data (WebApplication, FAQ, Breadcrumb, Article) and server-rendered content so pages are indexable without JavaScript.</li>
-    <li>Measurement with consent-aware analytics that respects user privacy.</li>
-  </ul>
-</section>
-
-<section>
-  <h2>Editorial philosophy</h2>
-  <p>The goal is simple: create genuinely helpful content that answers real questions and solves real problems, without dark patterns or forced sign-ups. Raja believes trust is earned through transparency — explaining how the wheel works, being clear about ads and privacy, and keeping the tool fast and free. That philosophy guides which topics we cover, how we structure each page, and how we describe fairness so that teachers, creators, and small businesses can rely on what they read.</p>
-</section>
-
-<section>
-  <h2>More from the team</h2>
-  <p>Read the <a href="/blog">Online Spin Wheel blog</a>, learn about the wider team on the <a href="/about-us">About us</a> page, or connect with Raja on LinkedIn from his author card in the app.</p>
+  <h2>Connect</h2>
+  <p>Read the <a href="/blog">Online Spin Wheel blog</a>, learn more on the <a href="/about-us">About us</a> page, or connect with me on <a href="https://www.linkedin.com/in/raja-jahangir" rel="noopener noreferrer author">LinkedIn</a>. Follow the project on <a href="https://www.instagram.com/onlinespinwheel/" rel="noopener noreferrer">Instagram</a>, <a href="https://x.com/onlinespinwheel" rel="noopener noreferrer">X</a>, <a href="https://www.youtube.com/@OnlineSpinWheel" rel="noopener noreferrer">YouTube</a>, or <a href="https://www.pinterest.com/onlinespinwheel/" rel="noopener noreferrer">Pinterest</a>. Questions or feedback? Email <a href="mailto:hello@onlinespinwheel.fun">hello@onlinespinwheel.fun</a>.</p>
 </section>
 ${exploreNav()}`);
 }
@@ -344,7 +332,7 @@ ${exploreNav()}`);
 }
 
 function privacyContent() {
-  return legalWrap("Privacy Policy", `<p>This Privacy Policy describes how Online Spin Wheel ("we", "us", or "our"), operated by Auroxa Tech, collects, uses, and protects information when you use our website and tools at <a href="https://onlinespinwheel.fun">https://onlinespinwheel.fun</a>. By using our website, you agree to the collection and use of information in accordance with this policy.</p>
+  return legalWrap("Privacy Policy", `<p>This Privacy Policy describes how Online Spin Wheel ("we", "us", or "our"), an independent project built and maintained by Raja Jahangir, collects, uses, and protects information when you use our website and tools at <a href="https://onlinespinwheel.fun">https://onlinespinwheel.fun</a>. By using our website, you agree to the collection and use of information in accordance with this policy.</p>
 <section><h2>Information we collect</h2><p>Because Online Spin Wheel works directly in your browser, the inputs you type into the wheel (names, numbers, prizes) stay on your local device and are not collected by our servers. To keep the site running and serve relevant advertisements, we collect log data (IP address, browser type and version, pages visited, and time and date of visit), device information (operating system and unique device identifiers), and contact information (your email and message if you contact us).</p></section>
 <section><h2>Cookies and web beacons</h2><p>We use cookies and similar technologies (web beacons and pixels): essential cookies necessary for the site to function, analytical/performance cookies to count visitors and see how they move around the site, and targeting/advertising cookies to deliver more relevant ads.</p></section>
 <section><h2>Local browser storage</h2><p>To improve your experience without an account, we use your browser's localStorage for wheel entries, your cookie-consent choice, referral attribution, and theme preference. You can clear this data anytime in your browser settings.</p></section>
@@ -355,11 +343,11 @@ function privacyContent() {
 <section><h2>CCPA/CPRA rights (California)</h2><p>California residents have the right to know, the right to delete, the right to opt out of "sale"/sharing, and the right to non-discrimination. We do not sell personal data, though sharing with ad networks may be considered a "sale" under CCPA. Contact us to exercise these rights; we have one month to respond.</p></section>
 <section><h2>GDPR rights (EEA/UK)</h2><p>EEA and UK residents have rights to access, rectification, erasure, restriction of processing, objection to processing, and data portability. We rely on your consent (via our cookie banner) to process non-essential advertising cookies, and you can withdraw it at any time.</p></section>
 <section><h2>Children's privacy (COPPA)</h2><p>We comply with COPPA and do not knowingly collect personal information from children under 13. If your child has provided personal data, contact us so we can remove it.</p></section>
-<section><h2>Changes and contact</h2><p>We may update this policy and will post changes on this page. Questions? Email <a href="mailto:onlinespinwheel@gmail.com">onlinespinwheel@gmail.com</a>. Operated by <a href="https://auroxatech.com" rel="noopener noreferrer">Auroxa Tech</a>. See also our <a href="/terms-and-conditions">Terms</a> and <a href="/disclaimer">Disclaimer</a>.</p></section>`);
+<section><h2>Changes and contact</h2><p>We may update this policy and will post changes on this page. Questions? Email <a href="mailto:hello@onlinespinwheel.fun">hello@onlinespinwheel.fun</a>. Online Spin Wheel is an independent project built and maintained by <a href="/author/raja-jahangir">Raja Jahangir</a>. See also our <a href="/terms-and-conditions">Terms</a> and <a href="/disclaimer">Disclaimer</a>.</p></section>`);
 }
 
 function cookieContent() {
-  return legalWrap("Cookie Policy", `<p>This Cookie Policy explains how Online Spin Wheel ("we", "us", or "our"), operated by Auroxa Tech, uses cookies and similar tracking technologies on <a href="https://onlinespinwheel.fun">https://onlinespinwheel.fun</a>. By using the site, you agree to the use of cookies as described below.</p>
+  return legalWrap("Cookie Policy", `<p>This Cookie Policy explains how Online Spin Wheel ("we", "us", or "our"), an independent project built and maintained by Raja Jahangir, uses cookies and similar tracking technologies on <a href="https://onlinespinwheel.fun">https://onlinespinwheel.fun</a>. By using the site, you agree to the use of cookies as described below.</p>
 <section><h2>What are cookies?</h2><p>Cookies are small text files stored on your device by websites you visit. They help provide a better, faster, and safer experience, remember preferences, and analyze usage. We also use similar technologies such as web beacons, tracking pixels, and local browser storage.</p></section>
 <section><h2>Types of cookies we use</h2><ul>
 <li><strong>Strictly necessary</strong> — essential for core operation (session IDs, security tokens); session to 1 year.</li>
@@ -370,11 +358,11 @@ function cookieContent() {
 <section><h2>Local storage</h2><p>We store wheel entries, your consent choice, theme preference, and basic referral attribution in localStorage. This stays on your device unless you clear site data.</p></section>
 <section><h2>Google Consent Mode</h2><p>Analytics and AdSense load with Consent Mode defaults set to denied until you choose Accept or Decline. Personalized ads and ad-related storage apply only after Accept. Our banner is a custom implementation, not a Google-certified CMP for the EEA/UK/CH.</p></section>
 <section><h2>Managing cookies</h2><p>Use the consent banner and the footer "Cookie settings" link to accept or decline non-essential cookies anytime; declining limits personalized ads and analytics while the wheel keeps working. You can also clear or block cookies in your browser, and opt out via <a href="https://myadcenter.google.com/" rel="noopener noreferrer">Google Ad Settings</a>, <a href="https://optout.networkadvertising.org/" rel="noopener noreferrer">NAI</a>, and <a href="https://optout.aboutads.info/" rel="noopener noreferrer">DAA</a>. Where supported, we honor Global Privacy Control.</p></section>
-<section><h2>Changes and contact</h2><p>We may update this policy to reflect changes in practice or law. Questions? Email <a href="mailto:onlinespinwheel@gmail.com">onlinespinwheel@gmail.com</a>. For more detail, read our full <a href="/privacy-policy">Privacy Policy</a>.</p></section>`);
+<section><h2>Changes and contact</h2><p>We may update this policy to reflect changes in practice or law. Questions? Email <a href="mailto:hello@onlinespinwheel.fun">hello@onlinespinwheel.fun</a>. For more detail, read our full <a href="/privacy-policy">Privacy Policy</a>.</p></section>`);
 }
 
 function termsContent() {
-  return legalWrap("Terms and Conditions", `<p>These Terms and Conditions ("Terms") govern your use of the Online Spin Wheel website and tool at <a href="https://onlinespinwheel.fun">https://onlinespinwheel.fun</a> (the "Site" and "Service"), owned and operated by Auroxa Tech. By accessing or using the site, you agree to be bound by these Terms. If you do not agree, you must not use this website.</p>
+  return legalWrap("Terms and Conditions", `<p>These Terms and Conditions ("Terms") govern your use of the Online Spin Wheel website and tool at <a href="https://onlinespinwheel.fun">https://onlinespinwheel.fun</a> (the "Site" and "Service"), an independent project owned and operated by Raja Jahangir. By accessing or using the site, you agree to be bound by these Terms. If you do not agree, you must not use this website.</p>
 <section><h2>About the service</h2><p>Online Spin Wheel provides a free, browser-based random picker that lets users add names, numbers, or options to a virtual wheel and spin to generate a random selection, for entertainment, educational, organizational, and general decision-making support.</p></section>
 <section><h2>Ad-supported model</h2><p>The Service is 100% free and ad-supported. By using the site you agree we may display third-party advertisements (such as Google AdSense) and use analytics providers, subject to our <a href="/privacy-policy">Privacy Policy</a> and <a href="/cookie-policy">Cookie Policy</a>.</p></section>
 <section><h2>Eligibility and acceptable use</h2><ul>
@@ -383,19 +371,19 @@ function termsContent() {
 <li><strong>No interference:</strong> do not hack, scrape, distribute malware, or reverse-engineer the site.</li>
 </ul></section>
 <section><h2>Randomness and decision-making</h2><p>We use cryptographically secure seeds to simulate true randomness and real-world physics. The Service is provided "as is"; we do not guarantee suitability for high-stakes, legally binding, or financial decisions. You are solely responsible for how you use the results, and we are not liable for disputes or outcomes arising from them.</p></section>
-<section><h2>No accounts and user content</h2><p>No account is required. Text you enter is processed locally in your browser and is your responsibility; avoid entering sensitive information. Feedback you email us grants Auroxa Tech a non-exclusive, worldwide, royalty-free license to use it to improve the Service.</p></section>
-<section><h2>Intellectual property</h2><p>Unless stated otherwise, all content — interface, design, text, graphics, logos, physics engine, and code — is owned by Auroxa Tech and protected by law. You may not copy, modify, distribute, sell, or lease any part of the site, but you may display it on your devices, share screen recordings, or live-stream the wheel as part of normal use.</p></section>
-<section><h2>Warranties and liability</h2><p>The Service is provided "AS IS" and "AS AVAILABLE" without warranties of any kind. To the fullest extent permitted by law, Auroxa Tech disclaims all warranties and will not be liable for indirect, incidental, special, consequential, or punitive damages. You agree to indemnify Online Spin Wheel and Auroxa Tech against claims arising from your use or violations of these Terms.</p></section>
-<section><h2>Governing law, changes, and contact</h2><p>These Terms are governed by the laws of Pakistan, with disputes resolved in the courts of Rawalpindi, Pakistan. We may update these Terms at any time; continued use constitutes acceptance. Questions? Email <a href="mailto:onlinespinwheel@gmail.com">onlinespinwheel@gmail.com</a>. Operated by <a href="https://auroxatech.com" rel="noopener noreferrer">Auroxa Tech</a>.</p></section>`);
+<section><h2>No accounts and user content</h2><p>No account is required. Text you enter is processed locally in your browser and is your responsibility; avoid entering sensitive information. Feedback you email us grants Raja Jahangir a non-exclusive, worldwide, royalty-free license to use it to improve the Service.</p></section>
+<section><h2>Intellectual property</h2><p>Unless stated otherwise, all content — interface, design, text, graphics, logos, physics engine, and code — is owned by Raja Jahangir and protected by law. You may not copy, modify, distribute, sell, or lease any part of the site, but you may display it on your devices, share screen recordings, or live-stream the wheel as part of normal use.</p></section>
+<section><h2>Warranties and liability</h2><p>The Service is provided "AS IS" and "AS AVAILABLE" without warranties of any kind. To the fullest extent permitted by law, Raja Jahangir disclaims all warranties and will not be liable for indirect, incidental, special, consequential, or punitive damages. You agree to indemnify Online Spin Wheel and Raja Jahangir against claims arising from your use or violations of these Terms.</p></section>
+<section><h2>Governing law, changes, and contact</h2><p>These Terms are governed by the laws of Pakistan, with disputes resolved in the courts of Islamabad, Pakistan. We may update these Terms at any time; continued use constitutes acceptance. Questions? Email <a href="mailto:hello@onlinespinwheel.fun">hello@onlinespinwheel.fun</a>. Online Spin Wheel is an independent project built and maintained by <a href="/author/raja-jahangir">Raja Jahangir</a>.</p></section>`);
 }
 
 function disclaimerContent() {
-  return legalWrap("Disclaimer", `<p>The information and tools provided by Online Spin Wheel ("we", "us", or "our"), operated by Auroxa Tech, on <a href="https://onlinespinwheel.fun">https://onlinespinwheel.fun</a> are for general informational, educational, and entertainment purposes only. All information and services are provided in good faith; however, we make no representation or warranty regarding the accuracy, adequacy, validity, reliability, availability, or completeness of any tool or information on the site.</p>
+  return legalWrap("Disclaimer", `<p>The information and tools provided by Online Spin Wheel ("we", "us", or "our"), an independent project built and maintained by Raja Jahangir, on <a href="https://onlinespinwheel.fun">https://onlinespinwheel.fun</a> are for general informational, educational, and entertainment purposes only. All information and services are provided in good faith; however, we make no representation or warranty regarding the accuracy, adequacy, validity, reliability, availability, or completeness of any tool or information on the site.</p>
 <section><h2>"As-is" and entertainment purpose only</h2><p>Online Spin Wheel is a fun, interactive decision-making tool. While we use cryptographically secure algorithms to keep the wheel mathematically fair, the service is provided on an "as-is" and "as-available" basis. It is intended for low-stakes, everyday choices (classroom activities, giveaways, game nights) and should not be used for high-stakes, legally binding, or financial decisions. Any reliance on the results is at your own risk.</p></section>
 <section><h2>Advertising and ad-network disclaimer</h2><p>To keep the tool free, the site is ad-supported and partners with third-party networks including Google AdSense. The presence of an advertisement is not an endorsement, we do not control which specific ads are served, and any interactions or purchases with advertisers are solely between you and the advertiser.</p></section>
 <section><h2>External links disclaimer</h2><p>The site may link to other websites or third-party content that we do not investigate, monitor, or check for accuracy. We do not endorse or assume responsibility for third-party sites and are not a party to any transaction between you and third-party providers.</p></section>
-<section><h2>Limitation of liability and user responsibility</h2><p>Under no circumstances shall Auroxa Tech, its founders, employees, or affiliates be liable for any loss or damage arising from use of the site, reliance on its information, or outcomes decided by the wheel. We do not store the data you input on our servers — all processing is local to your browser — and you are responsible for the content you enter and any disputes arising from results.</p></section>
-<section><h2>Contact</h2><p>Questions about this Disclaimer? Email <a href="mailto:onlinespinwheel@gmail.com">onlinespinwheel@gmail.com</a>. Operated by <a href="https://auroxatech.com" rel="noopener noreferrer">Auroxa Tech</a>. See also our <a href="/terms-and-conditions">Terms</a> and <a href="/privacy-policy">Privacy Policy</a>.</p></section>`);
+<section><h2>Limitation of liability and user responsibility</h2><p>Under no circumstances shall Raja Jahangir be liable for any loss or damage arising from use of the site, reliance on its information, or outcomes decided by the wheel. We do not store the data you input on our servers — all processing is local to your browser — and you are responsible for the content you enter and any disputes arising from results.</p></section>
+<section><h2>Contact</h2><p>Questions about this Disclaimer? Email <a href="mailto:hello@onlinespinwheel.fun">hello@onlinespinwheel.fun</a>. Online Spin Wheel is an independent project built and maintained by <a href="/author/raja-jahangir">Raja Jahangir</a>. See also our <a href="/terms-and-conditions">Terms</a> and <a href="/privacy-policy">Privacy Policy</a>.</p></section>`);
 }
 
 /* ------------------------------------------ How randomness works ----------- */
@@ -658,8 +646,15 @@ function wheelContent(wheel, wheels) {
   const whyUse = `${cat.whyPrefix || ""} The ${kwLower} removes that friction entirely. Instead of debating, scrolling, or overthinking, you let a single spin settle the matter in seconds. The result is powered by your browser's cryptographic random number generator, so every outcome is provably fair and impossible to predict.`;
   const conclusion = `Whether you are using it for the first time or spinning daily, the ${kwLower} is designed to make your decisions faster, fairer, and more fun. Bookmark this page, share it with friends, and let the wheel do the hard work for you. If you need more tools, explore our full collection of specialty wheels on the all spin wheels page.`;
 
+  const lastUpdated = wheel.lastUpdated || WHEEL_CONTENT_LAST_UPDATED;
+
   const parts = [];
   parts.push(`<h1>${esc(wheel.h1 || keyword)}</h1>`);
+  parts.push(
+    `<p>Reviewed by <a href="/author/raja-jahangir" rel="author">Raja Jahangir</a>, Creator of Online Spin Wheel. Last updated: <time datetime="${esc(
+      lastUpdated,
+    )}">${esc(fmtDate(lastUpdated))}</time>.</p>`,
+  );
   parts.push(`<p>${esc(wheel.introduction || definition)}</p>`);
   if (note) parts.push(`<p>${esc(note)}</p>`);
   parts.push(`<p>${esc(definition)}</p>`);

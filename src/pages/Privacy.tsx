@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Helmet } from "react-helmet";
 import { ArrowRight, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
-import { AUROXA_TECH_URL } from "@/lib/teamLinks";
+import { CONTACT_EMAIL } from "@/lib/schema";
 
 const Privacy = () => {
   return (
@@ -11,7 +11,7 @@ const Privacy = () => {
         <title>Privacy Policy - Online Spin Wheel</title>
         <meta
           name="description"
-          content="Privacy Policy for Online Spin Wheel (onlinespinwheel.fun), operated by Auroxa Tech: what we collect, cookies, ads, CCPA/CPRA, GDPR, COPPA, and how to contact us."
+          content="Privacy Policy for Online Spin Wheel (onlinespinwheel.fun), an independent project by Raja Jahangir: what we collect, cookies, ads, CCPA/CPRA, GDPR, COPPA, and how to contact us."
         />
         <link rel="canonical" href="https://onlinespinwheel.fun/privacy-policy" />
       </Helmet>
@@ -30,8 +30,9 @@ const Privacy = () => {
           <section>
             <p className="text-muted-foreground leading-relaxed mb-4">
               This Privacy Policy describes how Online Spin Wheel (&quot;we&quot;,
-              &quot;us&quot; or &quot;our&quot;), operated by Auroxa Tech, collects, uses and
-              protects information when you use our website and tools at{" "}
+              &quot;us&quot; or &quot;our&quot;), an independent project built and maintained
+              by Raja Jahangir, collects, uses and protects information when you
+              use our website and tools at{" "}
               <a
                 href="https://onlinespinwheel.fun"
                 className="text-primary hover:underline font-medium"
@@ -531,10 +532,10 @@ const Privacy = () => {
                 <span>
                   <strong className="text-foreground">Email:</strong>{" "}
                   <a
-                    href="mailto:onlinespinwheel@gmail.com"
+                    href={`mailto:${CONTACT_EMAIL}`}
                     className="text-primary hover:underline font-semibold"
                   >
-                    onlinespinwheel@gmail.com
+                    {CONTACT_EMAIL}
                   </a>
                 </span>
               </li>
@@ -554,14 +555,15 @@ const Privacy = () => {
                 <span className="text-primary mt-1.5 flex-shrink-0">●</span>
                 <span>
                   <strong className="text-foreground">Operated by:</strong>{" "}
-                  <a
-                    href={AUROXA_TECH_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  Online Spin Wheel is an independent project built and maintained
+                  by{" "}
+                  <Link
+                    to="/author/raja-jahangir"
                     className="text-primary hover:underline font-medium"
                   >
-                    Auroxa Tech
-                  </a>
+                    Raja Jahangir
+                  </Link>
+                  .
                 </span>
               </li>
             </ul>

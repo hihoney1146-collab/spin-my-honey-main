@@ -13,6 +13,8 @@ export type BlogPost = {
   excerpt: string;
   author: string;
   updated: string;
+  /** Original publish date (YYYY-MM-DD). Falls back to `updated` when absent. */
+  published?: string;
   blocks: BlogContentBlock[];
   faqs?: BlogFaq[];
 };

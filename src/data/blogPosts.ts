@@ -10,7 +10,7 @@ export const blogPosts: BlogPost[] = [
       "Looking for a fair way to decide? Use our free random name picker wheel to instantly select a winner. Perfect for classrooms, giveaways, and quick decisions!",
     excerpt:
       "Struggling to make a fair choice? A random name picker eliminates bias and makes decision-making effortless. Whether you are a teacher looking for a classroom name picker, a brand hosting a contest, or just trying to divide chores at home, this digital tool ensures every selection is 100% fair and transparent. In this guide, we will explore how different people use name wheels and how you can get the most out of them.",
-    author: "Raja Jahangir (SEO Expert)",
+    author: "Raja Jahangir (Creator of Online Spin Wheel)",
     updated: "2026-05-05",
     blocks: [
       {
@@ -49,11 +49,11 @@ export const blogPosts: BlogPost[] = [
         ],
       },
       {
-        heading: "5. Meet the Team Behind Online Spin Wheel",
+        heading: "5. Meet the Maker Behind Online Spin Wheel",
         paragraphs: [
-          "Online Spin Wheel was built by a dedicated team focused on making decision-making fast, fair, and fun. By combining technical precision with advanced search expertise, we ensure that onlinespinwheel.fun remains lightning-fast, secure, and 100% free for everyone.",
-          "Raja Jahangir | SEO & Growth Specialist With over 3 years of hands-on experience in SEO and digital growth, Raja drives the strategic vision behind Online Spin Wheel. His expertise ensures that our tool not only reaches the right audience but remains deeply user-centric and strictly privacy-focused. Connect with Raja on LinkedIn",
-          "Proudly Powered by Auroxa Tech.",
+          "Online Spin Wheel is built and maintained by one person, Raja Jahangir, who is focused on making decision-making fast, fair, and fun. By combining technical precision with careful testing, he ensures that onlinespinwheel.fun stays lightning-fast, secure, and 100% free for everyone.",
+          "Raja Jahangir | Creator of Online Spin Wheel With over 3 years of hands-on experience building fast, privacy-respecting web tools, Raja designs, develops, and maintains Online Spin Wheel single-handedly. He tests every wheel for fair, uniform results and keeps the tool free, user-centric, and strictly privacy-focused. Connect with Raja on LinkedIn",
+          "Online Spin Wheel is an independent project built and maintained by Raja Jahangir.",
         ],
       },
       {
@@ -93,7 +93,7 @@ export const blogPosts: BlogPost[] = [
       "Discover the 10 best icebreaker games for office meetings! Energize your team with quick 5-minute activities, virtual team-building exercises, and fun games.",
     excerpt:
       "Starting a meeting with a silent, awkward room can drain the energy out of your team before the actual agenda even begins. In today's fast-paced corporate environment, incorporating the best icebreaker games for office meetings is a proven strategy to boost morale, encourage cross-functional collaboration, and set a positive, productive tone for the day. Whether your team works completely remotely via video conferencing tools like Zoom, or shares a physical boardroom, quick 5-minute activities can instantly transform the workplace dynamic. From utilizing interactive digital spin wheels to classic team-building questions, breaking the ice has never been easier or more effective. In this comprehensive guide, we will explore top-tier, professional yet incredibly fun activities designed to spark creativity, reduce meeting fatigue, and build stronger, more authentic connections among your colleagues. Whether you are an HR manager, a team lead, or an executive, these strategies will redefine how your company collaborates.",
-    author: "Raja Jahangir (SEO Expert)",
+    author: "Raja Jahangir (Creator of Online Spin Wheel)",
     updated: "2026-05-05",
     blocks: [
       {
@@ -178,11 +178,11 @@ export const blogPosts: BlogPost[] = [
         ],
       },
       {
-        heading: "6. Meet the Team Behind Online Spin Wheel",
+        heading: "6. Meet the Maker Behind Online Spin Wheel",
         paragraphs: [
-          "Online Spin Wheel was built by a dedicated team focused on making decision-making fast, fair, and fun. By combining technical precision with advanced search expertise, we ensure that onlinespinwheel.fun remains lightning-fast, secure, and 100% free for everyone.",
-          "Raja Jahangir | SEO & Growth Specialist With over 3 years of hands-on experience in SEO and digital growth, Raja drives the strategic vision behind Online Spin Wheel. His expertise ensures that our tool not only reaches the right audience but remains deeply user-centric and strictly privacy-focused. Connect with Raja on LinkedIn",
-          "Proudly Powered by Auroxa Tech.",
+          "Online Spin Wheel is built and maintained by one person, Raja Jahangir, who is focused on making decision-making fast, fair, and fun. By combining technical precision with careful testing, he ensures that onlinespinwheel.fun stays lightning-fast, secure, and 100% free for everyone.",
+          "Raja Jahangir | Creator of Online Spin Wheel With over 3 years of hands-on experience building fast, privacy-respecting web tools, Raja designs, develops, and maintains Online Spin Wheel single-handedly. He tests every wheel for fair, uniform results and keeps the tool free, user-centric, and strictly privacy-focused. Connect with Raja on LinkedIn",
+          "Online Spin Wheel is an independent project built and maintained by Raja Jahangir.",
         ],
       },
       {
@@ -222,7 +222,7 @@ export const blogPosts: BlogPost[] = [
       "Looking for the best spin the wheel games for students? Discover fun, interactive classroom activities to boost engagement and make learning exciting!",
     excerpt:
       "Keeping students focused and excited about learning can be a major challenge in today's fast-paced digital world. With shrinking attention spans, educators are constantly looking for innovative and interactive ways to keep their classrooms lively. Integrating the best spin the wheel games for students into your daily lesson plans is a proven, high-energy way to increase participation and make education genuinely fun. From vocabulary building and math drills to history trivia and random student selection, online wheel spinners turn standard, repetitive classroom activities into thrilling, game-show-like experiences. Not only do these digital tools eliminate the stress of manual preparation, but they also foster a sense of fairness, anticipation, and excitement among learners of all ages.",
-    author: "Raja Jahangir (SEO Expert)",
+    author: "Raja Jahangir (Creator of Online Spin Wheel)",
     updated: "2026-05-05",
     blocks: [
       {
@@ -276,11 +276,11 @@ export const blogPosts: BlogPost[] = [
         ],
       },
       {
-        heading: "5. Meet the Team Behind Online Spin Wheel",
+        heading: "5. Meet the Maker Behind Online Spin Wheel",
         paragraphs: [
-          "Online Spin Wheel was built by a dedicated team focused on making decision-making fast, fair, and fun. By combining technical precision with advanced search expertise, we ensure that onlinespinwheel.fun remains lightning-fast, secure, and 100% free for everyone.",
-          "Raja Jahangir | SEO & Growth Specialist With over 3 years of hands-on experience in SEO and digital growth, Raja drives the strategic vision behind Online Spin Wheel. His expertise ensures that our tool not only reaches the right audience but remains deeply user-centric and strictly privacy-focused. Connect with Raja on LinkedIn",
-          "Proudly Powered by Auroxa Tech.",
+          "Online Spin Wheel is built and maintained by one person, Raja Jahangir, who is focused on making decision-making fast, fair, and fun. By combining technical precision with careful testing, he ensures that onlinespinwheel.fun stays lightning-fast, secure, and 100% free for everyone.",
+          "Raja Jahangir | Creator of Online Spin Wheel With over 3 years of hands-on experience building fast, privacy-respecting web tools, Raja designs, develops, and maintains Online Spin Wheel single-handedly. He tests every wheel for fair, uniform results and keeps the tool free, user-centric, and strictly privacy-focused. Connect with Raja on LinkedIn",
+          "Online Spin Wheel is an independent project built and maintained by Raja Jahangir.",
         ],
       },
       {
@@ -320,7 +320,7 @@ export const blogPosts: BlogPost[] = [
       'Tired of the "I don\'t know, what do you want?" dinner debate? Discover fun ways to decide where to eat for couples, including our free what to eat wheel!',
     excerpt:
       'Every couple knows the dreaded evening question: "Where should we go for dinner?" What starts as a simple inquiry often turns into a frustrating, hour-long debate of "I don\'t know, you pick." If you are tired of this endless loop, it is time to change your routine. Finding fun ways to decide where to eat for couples not only saves time but turns a stressful decision into a playful pre-date activity. From using a digital restaurant randomizer and spinning a "what to eat wheel," to playing classic elimination games, there are plenty of creative solutions to cure your dinnertime indecision. In this guide, we will explore the best methods to quickly and fairly choose your next date night meal, ensuring you spend less time arguing and more time enjoying your food!',
-    author: "Raja Jahangir (SEO Expert)",
+    author: "Raja Jahangir (Creator of Online Spin Wheel)",
     updated: "2026-05-05",
     blocks: [
       {
@@ -386,11 +386,11 @@ export const blogPosts: BlogPost[] = [
         ],
       },
       {
-        heading: "5. Meet the Team Behind Online Spin Wheel",
+        heading: "5. Meet the Maker Behind Online Spin Wheel",
         paragraphs: [
-          "Online Spin Wheel was built by a dedicated team focused on making decision-making fast, fair, and fun. By combining technical precision with advanced search expertise, we ensure that onlinespinwheel.fun remains lightning-fast, secure, and 100% free for everyone.",
-          "Raja Jahangir | SEO & Growth Specialist With over 3 years of hands-on experience in SEO and digital growth, Raja drives the strategic vision behind Online Spin Wheel. His expertise ensures that our tool not only reaches the right audience but remains deeply user-centric and strictly privacy-focused. Connect with Raja on LinkedIn",
-          "Proudly Powered by Auroxa Tech.",
+          "Online Spin Wheel is built and maintained by one person, Raja Jahangir, who is focused on making decision-making fast, fair, and fun. By combining technical precision with careful testing, he ensures that onlinespinwheel.fun stays lightning-fast, secure, and 100% free for everyone.",
+          "Raja Jahangir | Creator of Online Spin Wheel With over 3 years of hands-on experience building fast, privacy-respecting web tools, Raja designs, develops, and maintains Online Spin Wheel single-handedly. He tests every wheel for fair, uniform results and keeps the tool free, user-centric, and strictly privacy-focused. Connect with Raja on LinkedIn",
+          "Online Spin Wheel is an independent project built and maintained by Raja Jahangir.",
         ],
       },
       {
@@ -431,7 +431,7 @@ export const blogPosts: BlogPost[] = [
       "Learn how to organize a virtual Secret Santa online for remote teams and families. Discover the best rules, gift ideas, and free online generators to use!",
     excerpt:
       "The holiday season is all about connection, but when your family members live in different cities or your corporate team works entirely remotely, celebrating together can feel complicated. Learning how to organize a virtual Secret Santa online is the perfect solution to bridge the distance and bring festive cheer to your digital workspace or family group. By utilizing our online random name picker, setting clear budget limits, and hosting a virtual gift exchange party, you can recreate the magic of traditional holiday celebrations without anyone having to leave their homes. In this comprehensive guide, we will walk you through the step-by-step process of planning a seamless, fun, and memorable online Secret Santa event.",
-    author: "Raja Jahangir (SEO Expert)",
+    author: "Raja Jahangir (Creator of Online Spin Wheel)",
     updated: "2026-05-05",
     blocks: [
       {
@@ -490,11 +490,11 @@ export const blogPosts: BlogPost[] = [
         ],
       },
       {
-        heading: "5. Meet the Team Behind Online Spin Wheel",
+        heading: "5. Meet the Maker Behind Online Spin Wheel",
         paragraphs: [
-          "Online Spin Wheel was built by a dedicated team focused on making decision-making fast, fair, and fun. By combining technical precision with advanced search expertise, we ensure that onlinespinwheel.fun remains lightning-fast, secure, and 100% free for everyone.",
-          "Raja Jahangir | SEO & Growth Specialist With over 3 years of hands-on experience in SEO and digital growth, Raja drives the strategic vision behind Online Spin Wheel. His expertise ensures that our tool not only reaches the right audience but remains deeply user-centric and strictly privacy-focused. Connect with Raja on LinkedIn",
-          "Proudly Powered by Auroxa Tech.",
+          "Online Spin Wheel is built and maintained by one person, Raja Jahangir, who is focused on making decision-making fast, fair, and fun. By combining technical precision with careful testing, he ensures that onlinespinwheel.fun stays lightning-fast, secure, and 100% free for everyone.",
+          "Raja Jahangir | Creator of Online Spin Wheel With over 3 years of hands-on experience building fast, privacy-respecting web tools, Raja designs, develops, and maintains Online Spin Wheel single-handedly. He tests every wheel for fair, uniform results and keeps the tool free, user-centric, and strictly privacy-focused. Connect with Raja on LinkedIn",
+          "Online Spin Wheel is an independent project built and maintained by Raja Jahangir.",
         ],
       },
       {

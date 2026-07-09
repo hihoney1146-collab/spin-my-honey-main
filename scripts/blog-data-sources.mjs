@@ -163,6 +163,11 @@ export function collectBlogRouteMeta(root, { canonicalUrl, SITE }) {
       const title = titleMatch
         ? titleMatch[1].replace(/\\"/g, '"')
         : "Blog | Online Spin Wheel";
+      const updatedMatch = slice.match(/updated:\s*"([\d-]+)"/);
+      const publishedMatch = slice.match(/published:\s*"([\d-]+)"/);
+      const updated =
+        updatedMatch?.[1] ?? new Date().toISOString().slice(0, 10);
+      const published = publishedMatch?.[1] ?? updated;
       posts.push({
         path: `/blog/${slug}`,
         title,
@@ -174,10 +179,19 @@ export function collectBlogRouteMeta(root, { canonicalUrl, SITE }) {
           headline: title.split("|")[0].trim(),
           description,
           url: canonicalUrl(`/blog/${slug}`),
+          datePublished: `${published}T12:00:00`,
+          dateModified: `${updated}T12:00:00`,
+          author: {
+            "@type": "Person",
+            "@id": `${SITE}/author/raja-jahangir#person`,
+            name: "Raja Jahangir",
+            url: `${SITE}/author/raja-jahangir`,
+          },
           publisher: {
-            "@type": "Organization",
-            name: "Online Spin Wheel",
-            url: SITE,
+            "@type": "Person",
+            "@id": `${SITE}/author/raja-jahangir#person`,
+            name: "Raja Jahangir",
+            url: `${SITE}/author/raja-jahangir`,
           },
         },
       });

@@ -1,13 +1,10 @@
 import { Card } from "@/components/ui/card";
 import { Helmet } from "react-helmet";
-import { Mail, ArrowRight, Users, Shield, Zap } from "lucide-react";
+import { Mail, ArrowRight, Shield, Zap, FlaskConical, Bug, Database } from "lucide-react";
 import { Link } from "react-router-dom";
 import { OptimizedImage } from "@/components/OptimizedImage";
-import tabishCeo from "@/assets/Tabish-CEO.jpeg";
-import hammasCto from "@/assets/Hammas-CTO.jpeg";
 import jahangirSeo from "@/assets/Jahangir-SEO.jpeg";
-import abdalSocial from "@/assets/Abdal-Social_Media.jpeg";
-import { AUROXA_TECH_URL, TEAM_LINKEDIN, editorialAttributionClass } from "@/lib/teamLinks";
+import { CONTACT_EMAIL, RAJA_AUTHOR } from "@/lib/schema";
 
 const About = () => {
   return (
@@ -16,7 +13,7 @@ const About = () => {
         <title>About Us - Online Spin Wheel</title>
         <meta
           name="description"
-          content="Learn about Online Spin Wheel. We are a small, dedicated team building simple tools that make random choices fair, fun, and effortless for everyone."
+          content="Online Spin Wheel is an independent project built and maintained by Raja Jahangir. Learn the story, how every wheel is tested across 10,000 spins, and what data we do and don't collect."
         />
         <link rel="canonical" href="https://onlinespinwheel.fun/about-us" />
       </Helmet>
@@ -32,35 +29,46 @@ const About = () => {
         </div>
 
         <Card className="p-6 md:p-8 lg:p-10 mb-6 md:mb-8 border-primary/15 bg-primary/5">
-          <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-            Meet our founder{" "}
-            <Link
-              to="/author/raja-jahangir"
-              className="font-semibold text-primary hover:underline"
-            >
-              Raja Jahangir
-            </Link>
-            , SEO and growth lead for Online Spin Wheel. He oversees editorial
-            quality, tool accuracy, and how we explain fair random selection on
-            every page.
-          </p>
+          <div className="flex flex-col sm:flex-row items-center gap-6">
+            <div className="h-28 w-28 rounded-full overflow-hidden border border-border/60 shrink-0">
+              <OptimizedImage
+                src={jahangirSeo}
+                alt="Raja Jahangir, creator of Online Spin Wheel"
+                className="h-full w-full object-cover"
+                width={224}
+                height={224}
+                loading="lazy"
+              />
+            </div>
+            <p className="text-base md:text-lg text-muted-foreground leading-relaxed text-center sm:text-left">
+              Online Spin Wheel is an independent project built and maintained by{" "}
+              <Link
+                to="/author/raja-jahangir"
+                className="font-semibold text-primary hover:underline"
+              >
+                Raja Jahangir
+              </Link>
+              . It&apos;s a one-person project — not a company or agency. Raja
+              designs the tools, writes the code, publishes every wheel, and
+              answers your emails, working from {RAJA_AUTHOR.locality},{" "}
+              {RAJA_AUTHOR.country}.
+            </p>
+          </div>
         </Card>
 
         <Card className="p-6 md:p-8 lg:p-10 mb-6 md:mb-8">
           <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4">
-            Welcome to onlinespinwheel.fun. We are a small team of developers,
-            educators, and digital creators who got tired of slow spinners,
-            cluttered layouts, and unclear randomness claims. In 2025, we
-            launched Online Spin Wheel as a straightforward, beautifully
-            designed way to make random choices, pick contest winners, and
-            gamify classrooms without hassle.
+            Welcome to onlinespinwheel.fun. This site started because too many
+            online spinners were slow, buried in ads, or vague about whether
+            their results were genuinely random. In 2025 it launched as a
+            straightforward, cleanly designed way to make random choices, pick
+            contest winners, and gamify classrooms without the hassle.
           </p>
           <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-            We understand how frustrating it is when a simple decision turns
-            into a long argument or when an online giveaway loses trust because
-            the random picker looked fake. That is why we built a seamless
-            solution that works flawlessly on any device, making decisions both
-            transparent and exciting.
+            A simple decision should not turn into a long argument, and an online
+            giveaway should not lose trust because the picker looked fake. That
+            is why the wheel works flawlessly on any device and makes every
+            decision both transparent and fun.
           </p>
         </Card>
 
@@ -70,199 +78,52 @@ const About = () => {
           </h2>
           <div className="space-y-4 text-muted-foreground leading-relaxed">
             <p className="text-base md:text-lg">
-              It started with a simple giveaway problem: picking a fair winner
-              without forcing users into logins, subscriptions, or bloated
-              interfaces. We built a clean, mathematically fair wheel that runs
-              instantly in the browser with no app required.
+              It began with a simple giveaway problem: picking a fair winner
+              without forcing people into logins, subscriptions, or bloated
+              interfaces. The answer was a clean, mathematically fair wheel that
+              runs instantly in the browser with no app required.
             </p>
             <p className="text-base md:text-lg">
               Today, teachers, creators, and businesses use it daily because it
-              stays fast, private, and free. We proudly operate from
-              Rawalpindi, Pakistan, and support users around the world.
-            </p>
-            <p className="text-base md:text-lg">
-              We have handled many thousands of spins without a hitch. Our
-              wheel does not jump to a result. It spins and slows naturally
-              with momentum and friction simulation. No hidden scripts, no
-              favoritism, just the fair result you need.
+              stays fast, private, and free. The wheel does not jump to a result
+              — it spins and slows naturally with momentum and friction
+              simulation. No hidden scripts, no favoritism, just the fair result
+              you need.
             </p>
           </div>
         </Card>
 
         <Card className="p-6 md:p-8 lg:p-10 mb-6 md:mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
-            Meet the Team
-          </h2>
-          <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6">
-            Our cross-functional team combines product strategy, engineering,
-            growth, and community expertise to keep Online Spin Wheel fast,
-            fair, and user-focused.
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-            <Card className="overflow-hidden border border-border/70 bg-card/70 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex justify-center pt-5 md:pt-6">
-                <div className="h-36 w-36 md:h-44 md:w-44 rounded-full overflow-hidden bg-muted border border-border/60">
-                  <OptimizedImage
-                    src={tabishCeo}
-                    alt="Tabish Irfan - CEO and Founder"
-                    className="h-full w-full object-cover object-center"
-                    width={320}
-                    height={320}
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-              <div className="p-4 md:p-5 text-center">
-                <p className="text-[11px] uppercase tracking-wide text-primary font-semibold mb-1">
-                  Leadership
-                </p>
-                <h3 className="text-lg md:text-xl font-bold leading-tight">
-                  <a
-                    href={TEAM_LINKEDIN.tabishIrfan}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={editorialAttributionClass}
-                  >
-                    Tabish Irfan
-                  </a>
-                </h3>
-                <p className="text-sm md:text-base text-muted-foreground mt-1">
-                  CEO &amp; Founder,{" "}
-                  <a
-                    href={AUROXA_TECH_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={editorialAttributionClass}
-                  >
-                    Auroxa Tech
-                  </a>
-                </p>
-              </div>
-            </Card>
-
-            <Card className="overflow-hidden border border-border/70 bg-card/70 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex justify-center pt-5 md:pt-6">
-                <div className="h-36 w-36 md:h-44 md:w-44 rounded-full overflow-hidden bg-muted border border-border/60">
-                  <OptimizedImage
-                    src={hammasCto}
-                    alt="Hammas Ali - CTO and Co-founder"
-                    className="h-full w-full object-cover object-center"
-                    width={320}
-                    height={320}
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-              <div className="p-4 md:p-5 text-center">
-                <p className="text-[11px] uppercase tracking-wide text-primary font-semibold mb-1">
-                  Engineering
-                </p>
-                <h3 className="text-lg md:text-xl font-bold leading-tight">
-                  <a
-                    href={TEAM_LINKEDIN.hammasAli}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={editorialAttributionClass}
-                  >
-                    Hammas Ali
-                  </a>
-                </h3>
-                <p className="text-sm md:text-base text-muted-foreground mt-1">
-                  CTO &amp; Co-founder,{" "}
-                  <a
-                    href={AUROXA_TECH_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={editorialAttributionClass}
-                  >
-                    Auroxa Tech
-                  </a>
-                </p>
-              </div>
-            </Card>
-
-            <Card className="overflow-hidden border border-border/70 bg-card/70 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex justify-center pt-5 md:pt-6">
-                <div className="h-36 w-36 md:h-44 md:w-44 rounded-full overflow-hidden bg-muted border border-border/60">
-                  <OptimizedImage
-                    src={jahangirSeo}
-                    alt="Raja Jahangir - SEO and growth specialist"
-                    className="h-full w-full object-cover object-center"
-                    width={320}
-                    height={320}
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-              <div className="p-4 md:p-5 text-center">
-                <p className="text-[11px] uppercase tracking-wide text-primary font-semibold mb-1">
-                  Growth
-                </p>
-                <h3 className="text-lg md:text-xl font-bold leading-tight">
-                  <a
-                    href={TEAM_LINKEDIN.rajaJahangir}
-                    target="_blank"
-                    rel="noopener noreferrer author"
-                    className={editorialAttributionClass}
-                  >
-                    Raja Jahangir
-                  </a>
-                </h3>
-                <p className="text-sm md:text-base text-muted-foreground mt-1">
-                  SEO &amp; Growth Specialist
-                </p>
-                <p className="text-xs text-primary font-medium mt-2 flex flex-wrap justify-center gap-x-2 gap-y-1">
-                  <Link to="/author/raja-jahangir" className="hover:underline">
-                    View author profile
-                  </Link>
-                  <span className="text-muted-foreground" aria-hidden>
-                    ·
-                  </span>
-                  <a
-                    href={TEAM_LINKEDIN.rajaJahangir}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={editorialAttributionClass}
-                  >
-                    LinkedIn
-                  </a>
-                </p>
-              </div>
-            </Card>
-
-            <Card className="overflow-hidden border border-border/70 bg-card/70 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex justify-center pt-5 md:pt-6">
-                <div className="h-36 w-36 md:h-44 md:w-44 rounded-full overflow-hidden bg-muted border border-border/60">
-                  <OptimizedImage
-                    src={abdalSocial}
-                    alt="Abdal Khalid - Social media and community expert"
-                    className="h-full w-full object-cover object-center"
-                    width={320}
-                    height={320}
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-              <div className="p-4 md:p-5 text-center">
-                <p className="text-[11px] uppercase tracking-wide text-primary font-semibold mb-1">
-                  Community
-                </p>
-                <h3 className="text-lg md:text-xl font-bold leading-tight">
-                  <a
-                    href={TEAM_LINKEDIN.abdalKhalid}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={editorialAttributionClass}
-                  >
-                    Abdal Khalid
-                  </a>
-                </h3>
-                <p className="text-sm md:text-base text-muted-foreground mt-1">
-                  Social Media Expert
-                </p>
-              </div>
-            </Card>
+          <div className="flex items-center gap-3 mb-4 md:mb-6">
+            <FlaskConical className="h-6 w-6 text-primary" />
+            <h2 className="text-2xl md:text-3xl font-bold">
+              How Every Wheel Is Tested
+            </h2>
+          </div>
+          <div className="space-y-4 text-muted-foreground leading-relaxed">
+            <p className="text-base md:text-lg">
+              Fairness is not assumed here — it is measured. Every wheel is
+              tested for uniform distribution across 10,000 automated spins
+              before launch. If any equal-sized segment wins noticeably more or
+              less often than the rest, the wheel is not published until the
+              distribution is even.
+            </p>
+            <p className="text-base md:text-lg">
+              The randomness itself comes from your browser&apos;s Web Crypto API
+              (<code>crypto.getRandomValues()</code>), the same cryptographically
+              secure source used for encryption keys — never the predictable{" "}
+              <code>Math.random()</code>. Because each segment&apos;s probability
+              equals its arc divided by 360 degrees, equal slices give every
+              entry identical odds, and each spin is independent of the last. You
+              can read the full explanation on our{" "}
+              <Link
+                to="/how-randomness-works"
+                className="text-primary hover:underline font-medium"
+              >
+                how randomness works
+              </Link>{" "}
+              page.
+            </p>
           </div>
         </Card>
 
@@ -295,110 +156,90 @@ const About = () => {
                 decelerates naturally instead of abruptly snapping to a winner.
               </p>
             </Card>
-            <Card className="p-4 bg-primary/5 border border-primary/20 sm:col-span-2">
-              <div className="flex items-center gap-3 mb-2">
-                <Users className="h-5 w-5 text-primary" />
-                <h3 className="text-lg md:text-xl font-semibold">
-                  Equal Probability
-                </h3>
-              </div>
-              <p className="text-sm md:text-base text-muted-foreground">
-                Every segment chance is calculated from its angle, guaranteeing
-                equal probability for all entries.
-              </p>
-            </Card>
           </div>
         </Card>
 
         <Card className="p-6 md:p-8 lg:p-10 mb-6 md:mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
-            Our Vision & Commitment
-          </h2>
-          <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-4">
-            We started this project after noticing the web was full of slow,
-            ad-heavy spinners that frustrated users. Our goal was to build a
-            clean, trustworthy alternative. Our commitment to you is simple:
-          </p>
-          <ul className="space-y-3 text-base md:text-lg text-muted-foreground">
-            <li className="flex items-start gap-3">
-              <span className="text-primary mt-1 text-xl">•</span>
-              <span>100% Free & Unlimited with no premium tiers or hidden caps</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="text-primary mt-1 text-xl">•</span>
-              <span>Universally accessible on desktop, tablet, and mobile</span>
-            </li>
-          </ul>
+          <div className="flex items-center gap-3 mb-4 md:mb-6">
+            <Database className="h-6 w-6 text-primary" />
+            <h2 className="text-2xl md:text-3xl font-bold">
+              What Data We Do &amp; Don&apos;t Collect
+            </h2>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-4 md:gap-6">
+            <div>
+              <h3 className="text-lg font-semibold text-foreground mb-2">
+                We never collect
+              </h3>
+              <ul className="space-y-2 text-muted-foreground">
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-1">•</span>
+                  <span>
+                    The names, numbers, or options you type into the wheel — they
+                    stay on your device and are never sent to a server.
+                  </span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-1">•</span>
+                  <span>Accounts, sign-ups, or passwords — none are required.</span>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold text-foreground mb-2">
+                We do process
+              </h3>
+              <ul className="space-y-2 text-muted-foreground">
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-1">•</span>
+                  <span>
+                    Standard, privacy-respecting analytics and ad measurement to
+                    keep the tool free (see our{" "}
+                    <Link to="/privacy-policy" className="text-primary hover:underline">
+                      Privacy Policy
+                    </Link>
+                    ).
+                  </span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-1">•</span>
+                  <span>
+                    Your email and message if you contact us — used only to reply.
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
         </Card>
 
         <Card className="p-6 md:p-8 lg:p-10 mb-6 md:mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
-            Editorial Standards & Content Review
-          </h2>
+          <div className="flex items-center gap-3 mb-4 md:mb-6">
+            <Bug className="h-6 w-6 text-primary" />
+            <h2 className="text-2xl md:text-3xl font-bold">
+              Updates &amp; Reporting a Bug
+            </h2>
+          </div>
           <div className="space-y-4 text-muted-foreground leading-relaxed">
             <p className="text-base md:text-lg">
-              Every piece of content on Online Spin Wheel is written, reviewed,
-              and maintained by our in-house team. We follow a consistent
-              editorial process to ensure accuracy, clarity, and trustworthiness:
+              Content is reviewed regularly and refreshed whenever tools, best
+              practices, or your feedback call for it. Every tool page and blog
+              post shows a visible &quot;Last updated&quot; date wired to real
+              content changes, so you always know how current a page is.
             </p>
-            <ul className="space-y-3 text-base md:text-lg">
-              <li className="flex items-start gap-3">
-                <Shield className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                <span>
-                  <strong className="text-foreground">Fact-checking:</strong> All
-                  technical claims about randomness, probability, and fairness
-                  are verified against the Web Crypto API specification and
-                  standard probability theory.
-                </span>
-              </li>
-              <li className="flex items-start gap-3">
-                <Users className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                <span>
-                  <strong className="text-foreground">Peer review:</strong> Blog
-                  posts and guides are reviewed by at least one other team member
-                  before publication to catch errors and improve clarity.
-                </span>
-              </li>
-              <li className="flex items-start gap-3">
-                <Zap className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                <span>
-                  <strong className="text-foreground">Regular updates:</strong>{" "}
-                  Published content is reviewed quarterly and updated when tools,
-                  best practices, or user feedback warrant changes. Every article
-                  shows a "Last Updated" date.
-                </span>
-              </li>
-            </ul>
             <p className="text-base md:text-lg">
-              If you spot an error or have a suggestion, email us at{" "}
+              Found a bug or spotted an error? Email{" "}
               <a
-                href="mailto:onlinespinwheel@gmail.com"
+                href={`mailto:${CONTACT_EMAIL}`}
                 className="text-primary hover:underline font-medium"
               >
-                onlinespinwheel@gmail.com
+                {CONTACT_EMAIL}
               </a>{" "}
-              and we will review it within 48 hours.
+              with the page URL, your device and browser, and what happened versus
+              what you expected. A screen recording helps for anything visual.
+              Reports are reviewed and, where valid, fixed and re-dated within 48
+              hours.
             </p>
           </div>
-        </Card>
-
-        <Card className="p-6 md:p-8 lg:p-10 mb-6 md:mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
-            Partner With Auroxa Tech
-          </h2>
-          <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-            If you like the technology behind our wheel, our team at{" "}
-            <a
-              href={AUROXA_TECH_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:underline font-medium"
-            >
-              Auroxa Tech
-            </a>{" "}
-            can build custom interactive tools, advanced web portals, and
-            agentic AI solutions integrated into your business platforms.
-          </p>
         </Card>
 
         <Card className="p-6 md:p-8 lg:p-10 mb-6 md:mb-8 bg-primary/5 border border-primary/20">
@@ -408,31 +249,19 @@ const About = () => {
               Get In Touch
             </h2>
             <p className="text-base md:text-lg text-muted-foreground mb-4 max-w-2xl leading-relaxed">
-              We are here to help and love hearing from our community.
+              Questions, feedback, or ideas for a new wheel are always welcome.
             </p>
-            <ul className="text-base md:text-lg text-muted-foreground space-y-2 mb-4">
-              <li>
-                Email:{" "}
-                <a
-                  href="mailto:onlinespinwheel@gmail.com"
-                  className="text-primary hover:underline font-medium"
-                >
-                  onlinespinwheel@gmail.com
-                </a>
-              </li>
-              <li>Response time: typically within 24-48 hours</li>
-            </ul>
             <a
-              href="mailto:onlinespinwheel@gmail.com"
+              href={`mailto:${CONTACT_EMAIL}`}
               className="text-lg md:text-xl font-semibold text-primary hover:underline inline-flex items-center gap-2 transition-colors"
             >
               <Mail className="h-5 w-5" />
-              onlinespinwheel@gmail.com
+              {CONTACT_EMAIL}
             </a>
             <p className="text-sm md:text-base text-muted-foreground mt-4 max-w-2xl">
               Thank you for choosing Online Spin Wheel as your trusted
-              decision-maker. We remain committed to keeping your experience
-              fast, fair, and free.
+              decision-maker. The goal stays the same: fast, fair, and free for
+              everyone.
             </p>
           </div>
         </Card>

@@ -2,7 +2,11 @@ import { Helmet } from "react-helmet";
 import { Link, useParams } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { SpinWheel } from "@/components/SpinWheel";
-import { getWheelPageBySlug, getRelatedWheelPages } from "@/lib/wheelPages";
+import {
+  getWheelPageBySlug,
+  getRelatedWheelPages,
+  WHEEL_CONTENT_LAST_UPDATED,
+} from "@/lib/wheelPages";
 import {
   WHEEL_HUB_PATH,
   BLOG_INDEX_PATH,
@@ -17,7 +21,7 @@ import {
   webPageJsonLd,
   webApplicationJsonLd,
   faqPageJsonLd,
-  organizationJsonLd,
+  siteIdentityJsonLd,
   breadcrumbListJsonLd,
   howToJsonLd,
   parseHowToSteps,
@@ -69,6 +73,14 @@ const WheelProgrammaticPage = () => {
     { name: page.h1 },
   ];
   const enriched = getEnrichedContent(page);
+  const lastUpdatedIso = page.lastUpdated || WHEEL_CONTENT_LAST_UPDATED;
+  const lastUpdatedLabel = new Date(
+    `${lastUpdatedIso}T12:00:00`,
+  ).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
   const absorbedSections = getAbsorbedSections(page.slug);
   const relatedBlogs = getRelatedBlogPosts(enriched.relatedBlogSlugs);
   const howToSteps = parseHowToSteps(page.howToUse);
@@ -96,7 +108,7 @@ const WheelProgrammaticPage = () => {
         <meta name="twitter:image" content={`${SITE_ORIGIN}/og-image.png`} />
         <script type="application/ld+json">
           {JSON.stringify([
-            organizationJsonLd(),
+            ...siteIdentityJsonLd(),
             breadcrumbListJsonLd(breadcrumbItems),
             webPageJsonLd({
               name: page.title,
@@ -170,7 +182,13 @@ const WheelProgrammaticPage = () => {
             ? `${enriched.personalNote} ${enriched.definitionSnippet}`
             : enriched.definitionSnippet}
         </p>
-        <AuthorByline />
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+          <AuthorByline className="mb-2" />
+          <p className="text-sm text-muted-foreground mb-2">
+            Last updated:{" "}
+            <time dateTime={lastUpdatedIso}>{lastUpdatedLabel}</time>
+          </p>
+        </div>
 
         {/* Interactive wheel */}
         <div className="mb-6">

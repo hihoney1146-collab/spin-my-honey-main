@@ -60,6 +60,14 @@ function trimRow(row) {
   return out;
 }
 
+/**
+ * Committed content-review date for wheels without an explicit "Last Updated"
+ * CSV value. A real, stable date (not the build date) so lastmod/visible dates
+ * stay consistent across rebuilds. Keep in sync with WHEEL_CONTENT_LAST_UPDATED
+ * in src/lib/wheelPages.ts.
+ */
+const DEFAULT_CONTENT_DATE = "2026-07-08";
+
 const csvPath = resolveCsvPath();
 if (!csvPath) {
   console.error(
@@ -96,9 +104,9 @@ const records = (parsed.data || [])
       category: row["Category"] || "",
       wheelOptions: parseWheelOptions(row["Wheel Options"]),
       faqs: parseFaqsBlock(row["FAQs"]),
-      ...(row["Last Updated"]
-        ? { lastUpdated: String(row["Last Updated"]).trim().slice(0, 10) }
-        : {}),
+      lastUpdated: row["Last Updated"]
+        ? String(row["Last Updated"]).trim().slice(0, 10)
+        : DEFAULT_CONTENT_DATE,
     };
   })
   .filter(Boolean);

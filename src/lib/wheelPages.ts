@@ -17,7 +17,15 @@ export type WheelPageRecord = {
   category: string;
   wheelOptions: string[];
   faqs: WheelFaq[];
+  lastUpdated?: string;
 };
+
+/**
+ * Committed content-review date for wheel pages that don't carry a per-row
+ * "Last Updated" value. This is a real, stable date (the Phase 4 content
+ * overhaul), not the build date, so it stays consistent across rebuilds.
+ */
+export const WHEEL_CONTENT_LAST_UPDATED = "2026-07-08";
 
 const pages = wheelPagesData as WheelPageRecord[];
 

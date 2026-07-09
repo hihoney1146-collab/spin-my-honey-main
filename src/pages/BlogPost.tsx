@@ -18,14 +18,12 @@ import {
   RAJA_AUTHOR,
   articleJsonLd,
   faqPageJsonLd,
-  organizationJsonLd,
+  siteIdentityJsonLd,
 } from "@/lib/schema";
 
 const AUTHOR_PATH = RAJA_AUTHOR.url.replace(SITE_ORIGIN, "");
-const AUROXA_TECH_URL = "https://auroxatech.com";
-const ABOUT_AUTHOR_PATH = "/about-us";
-/** Same profile referenced in PDF “Connect with Raja on LinkedIn”. */
-const RAJA_LINKEDIN_URL = "https://www.linkedin.com/in/raja-jahangir";
+/** Same profile referenced in “Connect with Raja on LinkedIn”. */
+const RAJA_LINKEDIN_URL = RAJA_AUTHOR.linkedIn;
 const RAJA_LINKEDIN_PHRASE = "Connect with Raja on LinkedIn";
 
 /** PDF-style body copy: line height ~1.6, space between paragraphs */
@@ -173,11 +171,12 @@ const BlogPost = () => {
   const summaryParagraphs = splitQuickSummary(post.excerpt);
 
   const jsonLd = [
-    organizationJsonLd(),
+    ...siteIdentityJsonLd(),
     articleJsonLd({
       title: post.title,
       description: post.metaDescription,
       url: canonical,
+      datePublished: post.published ?? post.updated,
       dateModified: post.updated,
       image: featuredAbsolute,
       authorName: RAJA_AUTHOR.name,
@@ -195,6 +194,10 @@ const BlogPost = () => {
         <meta property="og:description" content={post.metaDescription} />
         <meta property="og:type" content="article" />
         <meta property="og:url" content={canonical} />
+        <meta
+          property="article:published_time"
+          content={`${post.published ?? post.updated}T12:00:00`}
+        />
         <meta property="article:modified_time" content={`${post.updated}T12:00:00`} />
         {featuredAbsolute ? (
           <>
@@ -239,15 +242,8 @@ const BlogPost = () => {
             ) : (
               "."
             )}{" "}
-            Powered by{" "}
-            <a
-              href={AUROXA_TECH_URL}
-              className="font-medium text-primary underline underline-offset-2 hover:opacity-90"
-              rel="noopener noreferrer"
-            >
-              Auroxa Tech
-            </a>
-            . Last Updated: {formatBlogDate(post.updated)}.
+            Last updated:{" "}
+            <time dateTime={post.updated}>{formatBlogDate(post.updated)}</time>.
           </p>
         </header>
 

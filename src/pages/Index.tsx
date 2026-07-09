@@ -207,12 +207,16 @@ const Index = () => {
             description:
               "Free online spin wheel and random picker for names, numbers, prizes, classrooms, teams, and fair decisions. Results use crypto.getRandomValues() and work on any device with no signup.",
             url: "https://onlinespinwheel.fun/",
-            applicationCategory: "UtilitiesApplication",
+            applicationCategory: "UtilityApplication",
             operatingSystem: "Web Browser",
+            isAccessibleForFree: true,
             offers: {
               "@type": "Offer",
               price: "0",
               priceCurrency: "USD",
+            },
+            publisher: {
+              "@id": "https://onlinespinwheel.fun/author/raja-jahangir#person",
             },
           })}
         </script>

@@ -21,6 +21,13 @@ if (!fs.existsSync(logoSrc)) {
 fs.mkdirSync(publicDir, { recursive: true });
 fs.copyFileSync(logoSrc, logoDest);
 
+const rajaSrc = path.join(root, "src", "assets", "Jahangir-SEO.jpeg");
+const rajaDest = path.join(publicDir, "raja-jahangir.jpg");
+if (fs.existsSync(rajaSrc)) {
+  fs.copyFileSync(rajaSrc, rajaDest);
+  console.log("✅ public/raja-jahangir.jpg");
+}
+
 const logo = sharp(logoSrc);
 const meta = await logo.metadata();
 const logoW = meta.width || 512;
@@ -51,6 +58,17 @@ await sharp({
 
 console.log("✅ public/logo.png");
 console.log("✅ public/og-image.png (1200×630)");
+
+// Author headshot → crawlable public URL for Person schema (real photo, not a stock avatar)
+const headshotSrc = path.join(root, "src", "assets", "Jahangir-SEO.jpeg");
+const headshotDest = path.join(publicDir, "raja-jahangir.jpg");
+if (fs.existsSync(headshotSrc)) {
+  await sharp(headshotSrc)
+    .resize(512, 512, { fit: "cover", position: "attention" })
+    .jpeg({ quality: 82 })
+    .toFile(headshotDest);
+  console.log("✅ public/raja-jahangir.jpg (author headshot 512×512)");
+}
 
 // Crawlable JPEGs for images-sitemap.xml (Google Images / AI grounding)
 const blogSrcDir = path.join(root, "src", "assets", "blog-featured");

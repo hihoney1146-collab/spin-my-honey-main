@@ -231,10 +231,10 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                         Need help? Contact us
                       </p>
                       <a
-                        href="mailto:onlinespinwheel@gmail.com"
+                        href="mailto:hello@onlinespinwheel.fun"
                         className="text-sm font-semibold text-primary hover:underline block text-center"
                       >
-                        onlinespinwheel@gmail.com
+                        hello@onlinespinwheel.fun
                       </a>
                     </div>
                   </div>
@@ -416,11 +416,11 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                     Email us at:
                   </p>
                   <a
-                    href="mailto:onlinespinwheel@gmail.com"
+                    href="mailto:hello@onlinespinwheel.fun"
                     className="text-sm font-semibold text-primary hover:underline flex items-center gap-2 group-hover:gap-3 transition-all duration-300"
                   >
                     <Mail className="h-4 w-4 flex-shrink-0" />
-                    <span className="break-all">onlinespinwheel@gmail.com</span>
+                    <span className="break-all">hello@onlinespinwheel.fun</span>
                   </a>
                 </div>
                 <p className="text-xs text-muted-foreground italic">

@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Helmet } from "react-helmet";
 import { ArrowRight, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
-import { AUROXA_TECH_URL } from "@/lib/teamLinks";
+import { CONTACT_EMAIL } from "@/lib/schema";
 
 const Disclaimer = () => {
   return (
@@ -11,7 +11,7 @@ const Disclaimer = () => {
         <title>Disclaimer - Online Spin Wheel</title>
         <meta
           name="description"
-          content="Disclaimer for Online Spin Wheel (onlinespinwheel.fun), operated by Auroxa Tech: informational and entertainment use only, as-is service, ads, external links, liability limits, and contact."
+          content="Disclaimer for Online Spin Wheel (onlinespinwheel.fun), an independent project by Raja Jahangir: informational and entertainment use only, as-is service, ads, external links, liability limits, and contact."
         />
         <link rel="canonical" href="https://onlinespinwheel.fun/disclaimer" />
       </Helmet>
@@ -30,7 +30,8 @@ const Disclaimer = () => {
           <section>
             <p className="text-muted-foreground leading-relaxed mb-4">
               The information and tools provided by Online Spin Wheel
-              (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;), operated by Auroxa Tech, on{" "}
+              (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;), an independent project built and
+              maintained by Raja Jahangir, on{" "}
               <a
                 href="https://onlinespinwheel.fun"
                 className="text-primary hover:underline font-medium break-all"
@@ -86,7 +87,7 @@ const Disclaimer = () => {
                 <span className="text-primary mt-1.5 flex-shrink-0">●</span>
                 <span>
                   The presence of any advertisement on our site does not constitute an
-                  endorsement, guarantee or recommendation by Auroxa Tech of the
+                  endorsement, guarantee or recommendation by Online Spin Wheel of the
                   product, service or company being advertised.
                 </span>
               </li>
@@ -134,8 +135,8 @@ const Disclaimer = () => {
               Limitation of Liability
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Under no circumstance shall Auroxa Tech, its founders, employees or
-              affiliates have any liability to you for any loss or damage of any kind
+              Under no circumstance shall Raja Jahangir have any liability to you
+              for any loss or damage of any kind
               incurred as a result of the use of the Site, the reliance on any
               information provided on the site or the outcomes decided by the spin
               wheel tool.
@@ -175,10 +176,10 @@ const Disclaimer = () => {
                 <span>
                   <strong className="text-foreground">Email:</strong>{" "}
                   <a
-                    href="mailto:onlinespinwheel@gmail.com"
+                    href={`mailto:${CONTACT_EMAIL}`}
                     className="text-primary hover:underline font-semibold"
                   >
-                    onlinespinwheel@gmail.com
+                    {CONTACT_EMAIL}
                   </a>
                 </span>
               </li>
@@ -198,14 +199,15 @@ const Disclaimer = () => {
                 <span className="text-primary mt-1.5 flex-shrink-0">●</span>
                 <span>
                   <strong className="text-foreground">Operated by:</strong>{" "}
-                  <a
-                    href={AUROXA_TECH_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  Online Spin Wheel is an independent project built and maintained
+                  by{" "}
+                  <Link
+                    to="/author/raja-jahangir"
                     className="text-primary hover:underline font-medium"
                   >
-                    Auroxa Tech
-                  </a>
+                    Raja Jahangir
+                  </Link>
+                  .
                 </span>
               </li>
             </ul>

@@ -214,12 +214,40 @@ function buildGenericSeoContent(route, wheels, blogRoutes) {
   });
 }
 
+const PERSON_ID = `${SITE}/author/raja-jahangir#person`;
+const WEBSITE_ID = `${SITE}/#website`;
+
+function siteIdentityJsonLd() {
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": WEBSITE_ID,
+      name: "Online Spin Wheel",
+      url: `${SITE}/`,
+      inLanguage: "en",
+      publisher: { "@id": PERSON_ID },
+      author: { "@id": PERSON_ID },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "@id": PERSON_ID,
+      name: "Raja Jahangir",
+      jobTitle: "Creator of Online Spin Wheel",
+      url: `${SITE}/author/raja-jahangir`,
+      image: `${SITE}/raja-jahangir.jpg`,
+      sameAs: ["https://www.linkedin.com/in/raja-jahangir"],
+    },
+  ];
+}
+
 function faqJsonLd(faqs = []) {
   if (!faqs.length) return null;
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: faqs.slice(0, 5).map((faq) => ({
+    mainEntity: faqs.map((faq) => ({
       "@type": "Question",
       name: faq.question,
       acceptedAnswer: {
@@ -227,6 +255,33 @@ function faqJsonLd(faqs = []) {
         text: faq.answer,
       },
     })),
+  };
+}
+
+function wheelBreadcrumbJsonLd(wheel) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: canonicalUrl("/"),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "All Spin Wheels",
+        item: canonicalUrl("/all-spin-wheels"),
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: wheel.h1 || wheelLabel(wheel),
+        item: canonicalUrl(`/${wheel.slug}`),
+      },
+    ],
   };
 }
 
@@ -263,10 +318,12 @@ function webApplicationJsonLd(route, name) {
     name,
     description: route.description,
     url: canonicalUrl(route.path),
-    applicationCategory: "UtilitiesApplication",
+    applicationCategory: "UtilityApplication",
     operatingSystem: "Web Browser",
+    isAccessibleForFree: true,
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    provider: { "@id": `${SITE}/#organization` },
+    publisher: { "@id": PERSON_ID },
+    provider: { "@id": WEBSITE_ID },
   };
 }
 
@@ -275,21 +332,19 @@ function enrichRoute(route, wheels, blogRoutes, blogPosts) {
   const label = routeHeading({ ...route, title });
   const jsonLd = [];
   if (route.jsonLd) jsonLd.push(...(Array.isArray(route.jsonLd) ? route.jsonLd : [route.jsonLd]));
-  jsonLd.push(breadcrumbJsonLd(route, label));
 
   let seoContent;
   if (route.wheel) {
+    jsonLd.push(...siteIdentityJsonLd());
+    jsonLd.push(wheelBreadcrumbJsonLd(route.wheel));
     jsonLd.push(webApplicationJsonLd(route, route.wheel.h1 || wheelLabel(route.wheel)));
     const faqLd = faqJsonLd(route.wheel.faqs);
     if (faqLd) jsonLd.push(faqLd);
-    // Enriched SSR content mirrors the client wheel page; fall back to the
-    // minimal shell if enrichment is unavailable.
     seoContent =
       renderRouteContent(route, { wheels, blogPosts }) ||
       buildWheelSeoContent(route, wheels);
   } else {
-    // Prefer full, hand-authored SSR content for trust & content pages; fall
-    // back to the generic shell for any route without a dedicated builder.
+    jsonLd.push(breadcrumbJsonLd(route, label));
     seoContent =
       renderRouteContent(route, { wheels, blogPosts }) ||
       buildGenericSeoContent({ ...route, title }, wheels, blogRoutes);

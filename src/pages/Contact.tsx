@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Building2, Clock, Mail, MapPin, MessageSquare, Send } from "lucide-react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
-import { AUROXA_TECH_URL } from "@/lib/teamLinks";
+import { CONTACT_EMAIL } from "@/lib/schema";
 import { useState } from "react";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -56,7 +56,7 @@ const Contact = () => {
       formDataToSend.append("name", validated.name);
       formDataToSend.append("email", validated.email);
       formDataToSend.append("message", validated.message);
-      formDataToSend.append("to", "onlinespinwheel@gmail.com");
+      formDataToSend.append("to", CONTACT_EMAIL);
 
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -89,7 +89,7 @@ const Contact = () => {
         <title>Contact Us | Online Spin Wheel</title>
         <meta
           name="description"
-          content="Contact Online Spin Wheel, operated by Auroxa Tech. Reach our team for support, feedback, business inquiries, privacy questions, and advertising-related requests."
+          content="Contact Online Spin Wheel, an independent project by Raja Jahangir. Reach out for support, feedback, business inquiries, privacy questions, and advertising-related requests."
         />
         <link rel="canonical" href={`${SITE_ORIGIN}/contact-us`} />
         <script type="application/ld+json">
@@ -99,15 +99,14 @@ const Contact = () => {
             name: "Contact Online Spin Wheel",
             url: `${SITE_ORIGIN}/contact-us`,
             about: {
-              "@type": "Organization",
-              name: "Online Spin Wheel",
-              legalName: "Auroxa Tech",
-              url: SITE_ORIGIN,
-              email: "onlinespinwheel@gmail.com",
-              areaServed: "Worldwide",
+              "@type": "Person",
+              name: "Raja Jahangir",
+              url: `${SITE_ORIGIN}/author/raja-jahangir`,
+              email: CONTACT_EMAIL,
+              jobTitle: "Creator of Online Spin Wheel",
               address: {
                 "@type": "PostalAddress",
-                addressLocality: "Rawalpindi",
+                addressLocality: "Islamabad",
                 addressCountry: "PK",
               },
             },
@@ -205,10 +204,10 @@ const Contact = () => {
                     For general inquiries, feedback, or support:
                   </p>
                   <a
-                    href="mailto:onlinespinwheel@gmail.com"
+                    href={`mailto:${CONTACT_EMAIL}`}
                     className="text-primary hover:underline font-semibold"
                   >
-                    onlinespinwheel@gmail.com
+                    {CONTACT_EMAIL}
                   </a>
                 </div>
               </div>
@@ -241,15 +240,13 @@ const Contact = () => {
                       <Link to="/" className="text-primary hover:underline font-medium">
                         Online Spin Wheel
                       </Link>{" "}
-                      is operated by{" "}
-                      <a
-                        href={AUROXA_TECH_URL}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      is an independent project built and maintained by{" "}
+                      <Link
+                        to="/author/raja-jahangir"
                         className="text-primary hover:underline font-medium"
                       >
-                        Auroxa Tech
-                      </a>
+                        Raja Jahangir
+                      </Link>
                       .
                     </p>
                   </div>
@@ -257,10 +254,10 @@ const Contact = () => {
                 <div className="flex items-start gap-3">
                   <MapPin className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                   <div>
-                    <p className="font-medium text-foreground">Operational base</p>
+                    <p className="font-medium text-foreground">Based in</p>
                     <p>
-                      <strong className="text-foreground">Rawalpindi, Pakistan</strong>.
-                      {" "}We serve users worldwide online.
+                      <strong className="text-foreground">Islamabad, Pakistan</strong>.
+                      {" "}Serving users worldwide online.
                     </p>
                   </div>
                 </div>

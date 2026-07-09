@@ -26,24 +26,22 @@ export const fixedRouteMeta = [
         description:
           "Free online spin wheel picker for names, numbers, prizes, classrooms, and fair random decisions.",
         inLanguage: "en",
-        publisher: { "@id": `${SITE}/#organization` },
+        publisher: { "@id": `${SITE}/author/raja-jahangir#person` },
+        author: { "@id": `${SITE}/author/raja-jahangir#person` },
       },
       {
         "@context": "https://schema.org",
-        "@type": "Organization",
-        "@id": `${SITE}/#organization`,
-        name: "Online Spin Wheel",
-        url: SITE,
-        logo: `${SITE}/logo.png`,
-        founder: {
-          "@type": "Person",
-          name: "Raja Jahangir",
-          url: `${SITE}/author/raja-jahangir`,
-        },
-        contactPoint: {
-          "@type": "ContactPoint",
-          email: "onlinespinwheel@gmail.com",
-          contactType: "customer service",
+        "@type": "Person",
+        "@id": `${SITE}/author/raja-jahangir#person`,
+        name: "Raja Jahangir",
+        jobTitle: "Creator of Online Spin Wheel",
+        url: `${SITE}/author/raja-jahangir`,
+        image: `${SITE}/raja-jahangir.jpg`,
+        sameAs: ["https://www.linkedin.com/in/raja-jahangir"],
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Islamabad",
+          addressCountry: "PK",
         },
       },
       {
@@ -53,10 +51,12 @@ export const fixedRouteMeta = [
         description:
           "Free online spin wheel and random picker for names, numbers, prizes, classrooms, teams, and fair decisions. Results use crypto.getRandomValues() and work on any device with no signup.",
         url: `${SITE}/`,
-        applicationCategory: "UtilitiesApplication",
+        applicationCategory: "UtilityApplication",
         operatingSystem: "Web Browser",
+        isAccessibleForFree: true,
         offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-        provider: { "@id": `${SITE}/#organization` },
+        publisher: { "@id": `${SITE}/author/raja-jahangir#person` },
+        provider: { "@id": `${SITE}/#website` },
       },
       {
         "@context": "https://schema.org",
@@ -160,20 +160,20 @@ export const fixedRouteMeta = [
     path: "/about-us",
     title: "About Us - Online Spin Wheel",
     description:
-      "Learn about Online Spin Wheel, operated by Auroxa Tech. Fair, fast, free random selection for classrooms, teams, and giveaways.",
+      "Online Spin Wheel is an independent project built and maintained by Raja Jahangir. How every wheel is tested across 10,000 spins, and what data we do and don't collect.",
   },
   {
     path: "/author/raja-jahangir",
-    title: "Raja Jahangir | SEO & Growth Specialist | Online Spin Wheel",
+    title: "Raja Jahangir — Creator of Online Spin Wheel",
     description:
-      "Author profile of Raja Jahangir, SEO and growth specialist for Online Spin Wheel and Auroxa Tech.",
+      "Raja Jahangir is the independent creator of Online Spin Wheel. How he designs, builds, and tests every wheel for fair, uniform random results.",
     ogType: "profile",
   },
   {
     path: "/contact-us",
     title: "Contact Us | Online Spin Wheel",
     description:
-      "Contact Online Spin Wheel (Auroxa Tech) for support, feedback, privacy questions, and business inquiries.",
+      "Contact Online Spin Wheel, an independent project by Raja Jahangir, for support, feedback, privacy questions, and business inquiries.",
   },
   {
     path: "/privacy-policy",

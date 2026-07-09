@@ -2,12 +2,12 @@
 
 > Free browser spin wheels for fair random picks: names, numbers, teams, giveaways, classrooms, and decisions.
 
-Last updated: 2026-07-08
+Last updated: 2026-07-09
 
 ## Identity
 - Canonical site: https://onlinespinwheel.fun/
-- Organization: Online Spin Wheel (operated by Auroxa Tech)
-- Contact: onlinespinwheel@gmail.com
+- Operator: Online Spin Wheel is an independent project built and maintained by Raja Jahangir
+- Contact: hello@onlinespinwheel.fun
 - Author: https://onlinespinwheel.fun/author/raja-jahangir
 
 ## What this site is

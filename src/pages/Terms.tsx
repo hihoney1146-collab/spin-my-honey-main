@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Helmet } from "react-helmet";
 import { FileText, ArrowRight, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
-import { AUROXA_TECH_URL } from "@/lib/teamLinks";
+import { CONTACT_EMAIL } from "@/lib/schema";
 
 const Terms = () => {
   return (
@@ -11,7 +11,7 @@ const Terms = () => {
         <title>Terms and Conditions - Online Spin Wheel</title>
         <meta
           name="description"
-          content="Terms and Conditions for Online Spin Wheel (onlinespinwheel.fun), operated by Auroxa Tech: use of the service, ads, eligibility, randomness, IP, liability, governing law, and contact."
+          content="Terms and Conditions for Online Spin Wheel (onlinespinwheel.fun), an independent project by Raja Jahangir: use of the service, ads, eligibility, randomness, IP, liability, governing law, and contact."
         />
         <link rel="canonical" href="https://onlinespinwheel.fun/terms-and-conditions" />
       </Helmet>
@@ -34,8 +34,8 @@ const Terms = () => {
               >
                 https://onlinespinwheel.fun
               </a>{" "}
-              (the &quot;Site&quot; and &quot;Service&quot;). The Site is owned and operated by Auroxa
-              Tech (&quot;we&quot;, &quot;us&quot; or &quot;our&quot;).
+              (the &quot;Site&quot; and &quot;Service&quot;). The Site is an independent project
+              owned and operated by Raja Jahangir (&quot;we&quot;, &quot;us&quot; or &quot;our&quot;).
             </p>
             <p className="text-muted-foreground leading-relaxed mb-4">
               By accessing or using the site, you agree to be bound by these Terms.
@@ -138,7 +138,7 @@ const Terms = () => {
                 <span className="text-primary mt-1.5 flex-shrink-0">●</span>
                 <span>
                   You are solely responsible for how you use the results produced by
-                  the wheel. Online Spin Wheel and Auroxa Tech are not responsible or
+                  the wheel. Online Spin Wheel and Raja Jahangir are not responsible or
                   liable for any disputes, arguments or outcomes arising from decisions
                   made using our Service.
                 </span>
@@ -158,7 +158,7 @@ const Terms = () => {
             </p>
             <p className="text-muted-foreground leading-relaxed">
               If you send us feedback, suggestions or bug reports via email, you grant
-              Auroxa Tech a non-exclusive, worldwide, royalty-free license to use that
+              Raja Jahangir a non-exclusive, worldwide, royalty-free license to use that
               feedback to improve the Service without any obligation or compensation to
               you.
             </p>
@@ -171,7 +171,7 @@ const Terms = () => {
             <p className="text-muted-foreground leading-relaxed mb-4">
               Unless stated otherwise, all content on the site - including the wheel
               interface, design, text, graphics, logos, physics engine and underlying
-              code - is owned by Auroxa Tech and is protected by applicable copyright,
+              code - is owned by Raja Jahangir and is protected by applicable copyright,
               trademark and intellectual property laws.
             </p>
             <ul className="space-y-3 text-muted-foreground ml-1">
@@ -217,7 +217,7 @@ const Terms = () => {
               basis, without warranties of any kind, whether express or implied.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              To the fullest extent permitted by law, Auroxa Tech disclaims all
+              To the fullest extent permitted by law, Raja Jahangir disclaims all
               warranties, including but not limited to implied warranties of
               merchantability, fitness for a particular purpose and non-infringement.
               We do not warrant that the Site will be completely error-free, 100%
@@ -230,8 +230,8 @@ const Terms = () => {
               Limitation of Liability
             </h2>
             <p className="text-muted-foreground leading-relaxed">
-              To the maximum extent permitted by applicable law, Auroxa Tech, its
-              founders and its team will not be liable for any indirect, incidental,
+              To the maximum extent permitted by applicable law, Raja Jahangir
+              will not be liable for any indirect, incidental,
               special, consequential or punitive damages or any loss of profits,
               data, or goodwill, arising out of or in connection with your use of the
               site or these Terms.
@@ -242,7 +242,7 @@ const Terms = () => {
             <h2 className="text-2xl md:text-3xl font-bold mb-4">Indemnification</h2>
             <p className="text-muted-foreground leading-relaxed">
               You agree to defend, indemnify and hold harmless Online Spin Wheel and
-              Auroxa Tech from and against any claims, damages, liabilities, losses
+              Raja Jahangir from and against any claims, damages, liabilities, losses
               and expenses (including reasonable legal fees) arising out of or related
               to your use of the Service or your violation of these Terms.
             </p>
@@ -256,7 +256,7 @@ const Terms = () => {
               These Terms are governed by and construed in accordance with the laws
               of Pakistan, without regard to its conflict of law rules. Any disputes
               arising out of or relating to these Terms or your use of the site will
-              be resolved exclusively in the courts of Rawalpindi, Pakistan.
+              be resolved exclusively in the courts of Islamabad, Pakistan.
             </p>
           </section>
 
@@ -284,10 +284,10 @@ const Terms = () => {
                 <span>
                   <strong className="text-foreground">Email:</strong>{" "}
                   <a
-                    href="mailto:onlinespinwheel@gmail.com"
+                    href={`mailto:${CONTACT_EMAIL}`}
                     className="text-primary hover:underline font-semibold"
                   >
-                    onlinespinwheel@gmail.com
+                    {CONTACT_EMAIL}
                   </a>
                 </span>
               </li>
@@ -307,14 +307,15 @@ const Terms = () => {
                 <span className="text-primary mt-1.5 flex-shrink-0">●</span>
                 <span>
                   <strong className="text-foreground">Operated by:</strong>{" "}
-                  <a
-                    href={AUROXA_TECH_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  Online Spin Wheel is an independent project built and maintained
+                  by{" "}
+                  <Link
+                    to="/author/raja-jahangir"
                     className="text-primary hover:underline font-medium"
                   >
-                    Auroxa Tech
-                  </a>
+                    Raja Jahangir
+                  </Link>
+                  .
                 </span>
               </li>
             </ul>
