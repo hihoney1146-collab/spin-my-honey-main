@@ -19,6 +19,14 @@ import {
 } from "./wheel-content-loader.mjs";
 import { decodeResultId } from "./result-proof-decode.mjs";
 
+const __rootContent = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+
+function loadFairnessStudy() {
+  const p = path.join(__rootContent, "src", "generated", "fairnessStudy.json");
+  if (!fs.existsSync(p)) return null;
+  return JSON.parse(fs.readFileSync(p, "utf8"));
+}
+
 const SITE = "https://onlinespinwheel.fun";
 const __root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -493,6 +501,18 @@ ${exploreNav()}`);
 function comparisonRngContent() {
   return mainWrap(`<h1>Spin Wheel vs Random Number Generator</h1>
 <p>Both a spin wheel and a random number generator (RNG) produce fair, unbiased results — the difference is how they feel and how visible they are to an audience. This comparison helps you choose the right tool for the job.</p>
+<section><h2>Feature comparison</h2>
+<table>
+<thead><tr><th>Feature</th><th>Spin wheel</th><th>Random number generator</th></tr></thead>
+<tbody>
+<tr><td>Shows all options before the draw</td><td>Yes — labeled slices</td><td>No — one number only</td></tr>
+<tr><td>Group can watch the selection</td><td>Yes — spin animation</td><td>Only if you show the screen</td></tr>
+<tr><td>Works with names without numbering</td><td>Yes — paste labels</td><td>Requires mapping names to IDs</td></tr>
+<tr><td>Typical speed</td><td>3–60 seconds per spin</td><td>Instant</td></tr>
+<tr><td>Crypto RNG (this site)</td><td>Yes</td><td>Yes — on our number wheel</td></tr>
+<tr><td>Shareable proof link</td><td>Yes — winner/raffle wheels</td><td>Not built-in</td></tr>
+</tbody>
+</table></section>
 <section><h2>How each works</h2><p>A plain RNG returns a number instantly with no animation. A spin wheel maps your entries to segments and uses randomness plus a physics simulation to land on one visibly. Under the hood, Online Spin Wheel uses the same cryptographically secure randomness (<code>crypto.getRandomValues()</code>) as a quality RNG, so fairness is equivalent.</p></section>
 <section><h2>Engagement and transparency</h2><p>The wheel's biggest advantage is visibility. When you spin live on screen, participants watch the selection happen, which builds trust for giveaways, classrooms, and events. A raw number appears with no suspense and no obvious proof of fairness to onlookers.</p></section>
 <section><h2>When to use which</h2><ul>
@@ -513,6 +533,16 @@ ${exploreNav()}`);
 function comparisonTraditionalContent() {
   return mainWrap(`<h1>Spin Wheel vs Traditional Random Methods</h1>
 <p>Hats full of paper slips, rolling dice, and flipping coins have decided outcomes for generations. An online spin wheel modernizes those methods while keeping them fair. Here's how they compare.</p>
+<section><h2>Feature comparison</h2>
+<table>
+<thead><tr><th>Feature</th><th>Digital spin wheel</th><th>Hat / straws / coins</th></tr></thead>
+<tbody>
+<tr><td>Audience sees every option</td><td>Yes — on screen</td><td>Often hidden in container</td></tr>
+<tr><td>Setup for 30+ names</td><td>Paste list — seconds</td><td>Write/cut slips — minutes</td></tr>
+<tr><td>Works on Zoom / hybrid</td><td>Yes — screen share</td><td>Awkward remotely</td></tr>
+<tr><td>Audit trail / proof link</td><td>Yes — on this site</td><td>Manual video only</td></tr>
+</tbody>
+</table></section>
 <section><h2>Names in a hat</h2><p>Drawing from a hat is familiar but slow: you write every slip, folding can bias which is grabbed, and slips get lost. A spin wheel accepts a pasted list instantly, can't be "felt for," and reuses the same entries next time. Our <a href="/pick-out-of-a-hat-generator">pick out of a hat generator</a> recreates the tradition digitally.</p></section>
 <section><h2>Dice and coins</h2><p>Dice and coins are great for a handful of outcomes but don't scale — you can't map 30 students to a coin. A wheel handles any number of custom options and shows the result clearly. For simple binaries, the <a href="/yes-or-no-wheel">yes or no wheel</a> and <a href="/coin-flip-wheel">coin flip wheel</a> keep the ritual while adding visibility.</p></section>
 <section><h2>Comparison at a glance</h2><ul>
@@ -536,6 +566,17 @@ ${exploreNav()}`);
 function comparisonPhysicalContent() {
   return mainWrap(`<h1>Online vs Physical Spin Wheels</h1>
 <p>Physical prize wheels are eye-catching at fairs and stores, but online spin wheels win on portability, cost, and customization. This comparison covers when each makes sense.</p>
+<section><h2>Feature comparison</h2>
+<table>
+<thead><tr><th>Feature</th><th>Online spin wheel</th><th>Physical prize wheel</th></tr></thead>
+<tbody>
+<tr><td>Upfront cost</td><td>Free</td><td>Often $50–$500+</td></tr>
+<tr><td>Change options between rounds</td><td>Type new list — seconds</td><td>Repaint or re-label</td></tr>
+<tr><td>Remote / hybrid events</td><td>Screen share or embed</td><td>Camera on booth only</td></tr>
+<tr><td>Equal slice probability</td><td>Crypto RNG + equal arcs</td><td>Can drift with wear</td></tr>
+<tr><td>Verifiable result link</td><td>Yes — this site</td><td>No</td></tr>
+</tbody>
+</table></section>
 <section><h2>Portability and cost</h2><p>A physical wheel is bulky, single-purpose, and costs money to buy and store. An online wheel is free, lives in any browser, and travels on your phone or laptop — ready for a classroom, a video call, or a pop-up event with no shipping or setup.</p></section>
 <section><h2>Customization</h2><p>Repainting a physical wheel for a new set of options is impractical. Online, you retype entries in seconds, change colors, add images, and reuse saved lists. You can run a <a href="/winner-picker-wheel">winner picker wheel</a> one minute and a <a href="/random-name-picker-wheel">random name picker</a> the next.</p></section>
 <section><h2>Fairness</h2><p>Physical wheels can develop bias from wear, uneven weighting, or a practiced hand. An online wheel's outcome comes from cryptographically secure randomness with equal-probability segments, so results stay fair over unlimited spins.</p></section>
@@ -615,6 +656,68 @@ function wheelOfNamesAlternativeContent() {
 <h3>Can I import a class list?</h3>
 <p>Yes on Online Spin Wheel — paste one name per line (up to 400). The classroom spinner adds remove-after-pick and session history.</p>
 </section>
+${exploreNav()}`);
+}
+
+function fairnessStudyContent() {
+  const study = loadFairnessStudy();
+  if (!study) {
+    return mainWrap(`<h1>Spin Wheel Fairness Study</h1>
+<p>Original data from 100,000 automated equal-slice spin simulations. Run <code>npm run prebuild</code> to generate distribution tables and CSV.</p>
+${exploreNav()}`);
+  }
+
+  const allPass = study.summaries.every((s) => s.uniformPass);
+  const summaryRows = study.summaries
+    .map(
+      (s) =>
+        `<tr><td>${s.segmentCount}</td><td>${s.totalSpins.toLocaleString()}</td><td>${s.chiSquare}</td><td>${s.degreesOfFreedom}</td><td>${s.critical05}</td><td>${s.uniformPass ? "pass" : "review"}</td><td>${s.maxDeviationPct}%</td></tr>`,
+    )
+    .join("\n");
+
+  const detailSections = study.summaries
+    .map((summary) => {
+      const rows = summary.distribution
+        .map(
+          (row) =>
+            `<tr><td>${row.segmentIndex}</td><td>${row.observed}</td><td>${row.expected}</td><td>${row.deviationPct}%</td></tr>`,
+        )
+        .join("\n");
+      return `<section><h2>${summary.segmentCount} segments — ${summary.totalSpins.toLocaleString()} spins</h2>
+<p>χ² = ${summary.chiSquare} (df = ${summary.degreesOfFreedom}, critical 0.05 = ${summary.critical05}) — ${summary.uniformPass ? "uniform (pass)" : "review needed"} · max deviation ${summary.maxDeviationPct}%</p>
+<table>
+<thead><tr><th>Slice index</th><th>Observed</th><th>Expected</th><th>Deviation %</th></tr></thead>
+<tbody>${rows}</tbody>
+</table></section>`;
+    })
+    .join("\n");
+
+  return mainWrap(`<h1>Spin Wheel Fairness Study — 100,000 Spins</h1>
+<p>We ran ${study.totalSpins.toLocaleString()} automated spins on equal-size wheel slices using the same landing-angle geometry as our live <a href="/">spin wheel</a>. Each configuration was tested for uniform distribution with Pearson's chi-square at α = 0.05. Download the CSV to cite or reproduce the results.</p>
+<section><h2>Summary</h2>
+<ul>
+<li>Total spins: ${study.totalSpins.toLocaleString()}</li>
+<li>Spins per segment count: ${study.spinsPerConfig.toLocaleString()}</li>
+<li>Segment counts tested: ${study.segmentCounts.join(", ")}</li>
+<li>Method: ${esc(study.method)}</li>
+<li>Uniformity result: ${allPass ? "All configurations passed χ² at α = 0.05" : "See tables below"}</li>
+<li>Data as of: ${study.generatedAt}</li>
+<li><a href="${study.csvUrl}">Download CSV</a> (${study.totalSpins.toLocaleString()} spin rows)</li>
+</ul>
+<table>
+<thead><tr><th>Segments</th><th>Spins</th><th>χ²</th><th>df</th><th>Critical 0.05</th><th>Result</th><th>Max deviation</th></tr></thead>
+<tbody>${summaryRows}</tbody>
+</table></section>
+<section><h2>Methodology</h2>
+<p>For each segment count k, we simulated ${study.spinsPerConfig.toLocaleString()} independent spins. Each spin drew a landing angle with <code>crypto.getRandomValues</code> (via Node <code>crypto.randomInt</code>), then mapped the angle to a slice index using the same formula as production <code>getCurrentSegment()</code> (equal arc width, pointer on the right).</p>
+<p>Expected count per slice is n/k. We computed Pearson's chi-square statistic χ² = Σ(O−E)²/E with k−1 degrees of freedom and compared to the α = 0.05 critical value. Configurations with χ² ≤ critical value are consistent with a uniform distribution.</p>
+<p>This study does not cover weighted slices, removed entries mid-session, or human timing — only equal segments and cryptographic landing angles.</p>
+</section>
+${detailSections}
+<section><h2>Related</h2><ul>
+<li><a href="/how-randomness-works">How randomness works</a></li>
+<li><a href="/">Free online spin wheel</a></li>
+</ul></section>
 ${exploreNav()}`);
 }
 
@@ -1005,6 +1108,7 @@ const FIXED = {
     comparisonTraditionalContent(),
   "/comparison-online-vs-physical-spin-wheels": () => comparisonPhysicalContent(),
   "/wheel-of-names-alternative": () => wheelOfNamesAlternativeContent(),
+  "/spin-wheel-fairness-study": () => fairnessStudyContent(),
 };
 
 /**

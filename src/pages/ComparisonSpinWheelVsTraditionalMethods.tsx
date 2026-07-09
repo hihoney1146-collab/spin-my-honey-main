@@ -9,14 +9,14 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { SITE_ORIGIN, RAJA_AUTHOR, siteIdentityJsonLd, articleJsonLd, breadcrumbListJsonLd } from "@/lib/schema";
+import { ComparisonFeatureTable } from "@/components/ComparisonFeatureTable";
 
 const ComparisonSpinWheelVsTraditionalMethods = () => {
   return (
     <>
       <Helmet>
         <title>
-          Spin Wheel vs Traditional Selection Methods: Complete Comparison | Hi
-          Honey
+          Spin Wheel vs Traditional Selection Methods | Online Spin Wheel
         </title>
         <meta
           name="description"
@@ -63,6 +63,24 @@ const ComparisonSpinWheelVsTraditionalMethods = () => {
             Why Digital Random Selection Outperforms Classic Methods
           </p>
         </div>
+
+        <Card className="p-6 md:p-8 mb-6 md:mb-8">
+          <ComparisonFeatureTable
+            title="Spin wheel vs hat / straws / coins"
+            caption="Digital spin wheel compared with classic physical selection methods"
+            columns={["Feature", "Digital spin wheel", "Hat / straws / coins"]}
+            rows={[
+              ["Equal odds when slices are equal size", "Yes — geometry + crypto RNG", "Yes if items identical"],
+              ["Audience sees every option", "Yes — on screen", "Often hidden in container"],
+              ["Risk of duplicate slips or bias", "Low — software list", "Possible if slips differ"],
+              ["Setup time for 30+ names", "Paste list — seconds", "Write/cut slips — minutes"],
+              ["Reusable without printing", "Yes", "Often requires new materials"],
+              ["Works on Zoom / hybrid", "Yes — screen share", "Awkward remotely"],
+              ["Audit trail / proof link", "Yes — on this site", "Manual video only"],
+              ["Storage between events", "Browser or URL share", "Physical space"],
+            ]}
+          />
+        </Card>
 
         <Card className="p-6 md:p-8 lg:p-10 mb-6 md:mb-8 space-y-8">
           <section>

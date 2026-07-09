@@ -249,6 +249,13 @@ export const fixedRouteMeta = [
       "Honest comparison: Online Spin Wheel vs WheelOfNames.com, PickerWheel, and spinner apps. Feature table and who each tool fits.",
   },
   {
+    path: "/spin-wheel-fairness-study",
+    title: "Spin Wheel Fairness Study — 100,000 Spins | Online Spin Wheel",
+    description:
+      "Original data: 100,000 automated spin-wheel simulations across segment counts. Chi-square uniformity tests, distribution tables, methodology, and downloadable CSV.",
+    ogType: "article",
+  },
+  {
     path: "/result",
     title: "Spin Result Verification | Online Spin Wheel",
     description:

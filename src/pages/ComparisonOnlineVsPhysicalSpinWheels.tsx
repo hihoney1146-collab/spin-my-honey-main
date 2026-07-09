@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { SITE_ORIGIN, RAJA_AUTHOR, siteIdentityJsonLd, articleJsonLd, breadcrumbListJsonLd } from "@/lib/schema";
+import { ComparisonFeatureTable } from "@/components/ComparisonFeatureTable";
 
 const ComparisonOnlineVsPhysicalSpinWheels = () => {
   return (
@@ -62,6 +63,24 @@ const ComparisonOnlineVsPhysicalSpinWheels = () => {
             Choosing Between Digital and Physical Spinners
           </p>
         </div>
+
+        <Card className="p-6 md:p-8 mb-6 md:mb-8">
+          <ComparisonFeatureTable
+            title="Online vs physical spin wheel"
+            caption="Browser-based wheel compared with a tangible prize wheel"
+            columns={["Feature", "Online spin wheel", "Physical spin wheel"]}
+            rows={[
+              ["Upfront cost", "Free (browser)", "Often $50–$500+"],
+              ["Edit labels between spins", "Instant paste/type", "Manual sticker or reprint"],
+              ["Needs batteries or storage", "No", "Yes"],
+              ["Hybrid / remote meetings", "Screen share works", "Camera on prop only"],
+              ["Crypto RNG audit data", "Yes — fairness study page", "Mechanical balance varies"],
+              ["Branding at trade shows", "Good on displays", "Strong tactile prop"],
+              ["Risk of mechanical bias", "Software geometry tested", "Wobble / weight imbalance possible"],
+              ["Share proof with audience", "URL + CSV study", "Video of spin only"],
+            ]}
+          />
+        </Card>
 
         <Card className="p-6 md:p-8 lg:p-10 mb-6 md:mb-8 space-y-8">
           <section>

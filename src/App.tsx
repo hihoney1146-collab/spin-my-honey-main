@@ -36,6 +36,9 @@ const ComparisonOnlineVsPhysicalSpinWheels = lazy(
 const WheelOfNamesAlternative = lazy(
   () => import("./pages/WheelOfNamesAlternative")
 );
+const SpinWheelFairnessStudy = lazy(
+  () => import("./pages/SpinWheelFairnessStudy")
+);
 const HowRandomnessWorks = lazy(() => import("./pages/HowRandomnessWorks"));
 const Terms = lazy(() => import("./pages/Terms"));
 const Disclaimer = lazy(() => import("./pages/Disclaimer"));
@@ -204,6 +207,14 @@ const App = () => (
                 element={
                   <Suspense fallback={<PageLoadingFallback />}>
                     <WheelOfNamesAlternative />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/spin-wheel-fairness-study"
+                element={
+                  <Suspense fallback={<PageLoadingFallback />}>
+                    <SpinWheelFairnessStudy />
                   </Suspense>
                 }
               />

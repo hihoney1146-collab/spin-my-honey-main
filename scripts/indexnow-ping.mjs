@@ -1,23 +1,17 @@
 #!/usr/bin/env node
 /**
  * IndexNow ping — notifies Bing, Yandex, Seznam (and any IndexNow participant)
- * of the site's current URL set. Bing's index powers ChatGPT Search / Copilot,
- * so this is part of GEO (Generative Engine Optimization).
+ * of the site's current URL set. Bing's index powers ChatGPT Search / Copilot.
  *
  * Run AFTER a production deploy so the key file and pages are live:
  *   npm run indexnow
  *
- * The key file must be reachable at:
- *   https://onlinespinwheel.fun/<INDEXNOW_KEY>.txt   (see public/<key>.txt)
+ * Key file: https://onlinespinwheel.fun/<INDEXNOW_KEY>.txt
  */
 import path from "path";
 import { fileURLToPath } from "url";
-import {
-  SITE,
-  PAGES_SITEMAP_ROUTES,
-  loadWheelRecords,
-} from "./seo-routes.mjs";
-import { collectBlogSlugs } from "./blog-data-sources.mjs";
+import { SITE } from "./seo-routes.mjs";
+import { collectIndexableUrls } from "./route-registry.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -27,22 +21,8 @@ const HOST = new URL(SITE).host;
 const KEY_LOCATION = `${SITE}/${INDEXNOW_KEY}.txt`;
 const ENDPOINT = "https://api.indexnow.org/indexnow";
 
-function buildUrlList() {
-  const urls = new Set();
-  for (const r of PAGES_SITEMAP_ROUTES) {
-    urls.add(r.path === "/" ? `${SITE}/` : `${SITE}${r.path}`);
-  }
-  for (const wheel of loadWheelRecords(root)) {
-    if (wheel.slug) urls.add(`${SITE}/${wheel.slug}`);
-  }
-  for (const slug of collectBlogSlugs(root)) {
-    urls.add(`${SITE}/blog/${slug}`);
-  }
-  return [...urls];
-}
-
 async function main() {
-  const urlList = buildUrlList();
+  const urlList = collectIndexableUrls(root);
   const payload = {
     host: HOST,
     key: INDEXNOW_KEY,
@@ -65,7 +45,6 @@ async function main() {
     body: JSON.stringify(payload),
   });
 
-  // IndexNow returns 200 or 202 on success.
   if (res.status === 200 || res.status === 202) {
     console.log(`IndexNow: OK (HTTP ${res.status}).`);
   } else {

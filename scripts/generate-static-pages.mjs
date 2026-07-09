@@ -453,6 +453,11 @@ export function applyRouteHead(html, meta) {
   out = setMetaByName(out, "twitter:description", meta.description);
   out = setMetaByName(out, "twitter:image", ogImage);
 
+  const bingValidate = process.env.BING_MSVALIDATE?.trim();
+  if (bingValidate) {
+    out = setMetaByName(out, "msvalidate.01", bingValidate);
+  }
+
   out = stripJsonLdScripts(out);
   out = injectJsonLd(out, meta.jsonLd);
   if (meta.seoContent) out = rootWithSeoContent(out, meta.seoContent);

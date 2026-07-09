@@ -167,12 +167,20 @@ AI citations.
 1. Create/verify the site at <https://www.bing.com/webmasters> (import from GSC is
    fastest).
 2. Submit `https://onlinespinwheel.fun/sitemap.xml`.
-3. IndexNow is implemented in this repo:
+3. **HTML meta verification:** In Bing Webmaster Tools, choose the meta-tag method
+   and copy the `content` value. Set it as a Vercel environment variable on the
+   production project:
+   - **Name:** `BING_MSVALIDATE`
+   - **Value:** the string from `content="..."` (not the full tag)
+   - Redeploy once. Every prerendered page will include
+     `<meta name="msvalidate.01" content="…" />` via
+     `scripts/generate-static-pages.mjs`.
+4. IndexNow is implemented in this repo:
    - Key file: [`public/<key>.txt`](../public) (see
      `scripts/indexnow-ping.mjs` for the current key).
-   - After each production deploy run `npm run indexnow` to ping
-     `api.indexnow.org` (shared by Bing, Yandex, Seznam). This notifies engines
-     of new/updated URLs within minutes.
+   - Production builds automatically ping IndexNow after static generation when
+     `VERCEL_ENV=production` (see `scripts/run-indexnow-if-publish.mjs`).
+   - Manual ping: `npm run indexnow` or set `INDEXNOW_PUBLISH=1` locally.
 
 ---
 
