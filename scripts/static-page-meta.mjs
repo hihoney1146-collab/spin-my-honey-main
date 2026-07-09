@@ -248,6 +248,13 @@ export const fixedRouteMeta = [
     description:
       "Honest comparison: Online Spin Wheel vs WheelOfNames.com, PickerWheel, and spinner apps. Feature table and who each tool fits.",
   },
+  {
+    path: "/result",
+    title: "Spin Result Verification | Online Spin Wheel",
+    description:
+      "Verifiable spin proof records for giveaways and raffles — winner, entry count, UTC timestamp, and cryptographic RNG method.",
+    robots: "noindex, follow",
+  },
 ];
 
 export function canonicalUrl(path) {

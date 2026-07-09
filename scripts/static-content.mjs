@@ -17,6 +17,7 @@ import { fileURLToPath } from "url";
 import {
   getWheelUniqueContent,
 } from "./wheel-content-loader.mjs";
+import { decodeResultId } from "./result-proof-decode.mjs";
 
 const SITE = "https://onlinespinwheel.fun";
 const __root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -199,7 +200,9 @@ ${popular}
   <h3>Can I save a wheel to reuse later?</h3>
   <p>Yes. Your entries are stored in your browser's local storage, so the same names are waiting the next time you open the page on that device. Use Reset to bring back the sample names, or Clear all to start fresh.</p>
   <h3>Can I share my wheel or the result?</h3>
-  <p>Screen-record or screenshot the spin to share the outcome — that is exactly what giveaway hosts post as proof. Every specialty wheel also has its own shareable URL you can send to anyone.</p>
+  <p>Yes. Use Copy link above the wheel to bookmark your exact entries in the URL (no account). After a giveaway spin on the winner picker, raffle, or name picker wheels, tap Get proof link for a verifiable /result/ page you can paste on Instagram or TikTok.</p>
+  <h3>What is streamer mode?</h3>
+  <p>Streamer mode switches the page to a solid chroma-key green (#00FF00) background and hides site header and footer so OBS or Streamlabs can key out everything except the wheel. Toggle it above any wheel, or add ?stream=1 to your shared link.</p>
   <h3>Does it work on mobile phones and tablets?</h3>
   <p>Yes. The wheel is fully responsive and touch-friendly — just tap the wheel to spin — with no app to install. It runs in any modern browser on phones, tablets, laptops, and classroom smartboards.</p>
   <h3>How do I remove a winner so they aren't picked again?</h3>
@@ -694,6 +697,35 @@ ${faqHtml}
 ${exploreNav()}`);
 }
 
+/* ----------------------------------------------------------- Result proof --- */
+
+function formatProofUtc(ms) {
+  return new Date(ms).toISOString().replace("T", " ").replace(/\.\d{3}Z$/, " UTC");
+}
+
+function resultPageContent(proof) {
+  if (!proof) {
+    return mainWrap(`<h1>Spin result verification</h1>
+<p>This verification URL could not be read. Ask the host to generate a new proof link after their spin.</p>
+${exploreNav()}`);
+  }
+  const winners = proof.w.map((w) => `<li>${esc(w)}</li>`).join("\n");
+  const wheel =
+    proof.s && proof.s !== "legacy"
+      ? `<p>Wheel: <a href="/${esc(proof.s)}">/${esc(proof.s)}</a></p>`
+      : "";
+  return mainWrap(`<h1>Verified spin result</h1>
+<p>Read-only proof record encoded in this link — no account lookup.</p>
+<ul>
+${winners}
+</ul>
+<p>Entries in pool: ${esc(String(proof.n))}</p>
+<p>Drawn (UTC): ${esc(formatProofUtc(proof.t))}</p>
+<p>Randomness method: ${esc(proof.m === "crypto-rng" ? "Cryptographic RNG (crypto.getRandomValues)" : String(proof.m))}</p>
+${wheel}
+${exploreNav()}`);
+}
+
 /* ------------------------------------------------- Wheel pages & hub ------- */
 
 function wheelLabel(w) {
@@ -1000,6 +1032,12 @@ export function renderRouteContent(route, { wheels = [], blogPosts = [] } = {}) 
     const post = blogPosts.find((p) => p.slug === slug);
     return post ? blogPostContent(post) : null;
   }
+
+  if (routePath.startsWith("/result/") && routePath.length > "/result/".length) {
+    const id = routePath.slice("/result/".length);
+    return resultPageContent(decodeResultId(id));
+  }
+  if (routePath === "/result") return resultPageContent(null);
 
   const builder = FIXED[routePath];
   return builder ? builder() : null;

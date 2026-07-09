@@ -34,6 +34,7 @@ import {
   getAbsorbedSections,
 } from "@/lib/wheelContentEnrichment";
 import { WHEEL_MODE_FEATURES } from "@/data/wheelModeFeatures";
+import { EmbedWidgetSnippet } from "@/components/EmbedWidgetSnippet";
 
 function wheelOgUrl(slug: string) {
   return `${SITE_ORIGIN}/og/${slug}.png`;
@@ -92,6 +93,9 @@ const WheelProgrammaticPage = () => {
   const relatedBlogs = getRelatedBlogPosts(enriched.relatedBlogSlugs);
   const howToSteps = parseHowToSteps(page.howToUse);
   const modeFeatures = WHEEL_MODE_FEATURES[page.slug];
+  const showStreamerCallout =
+    page.slug === "winner-picker-wheel" ||
+    page.slug === "random-name-picker-wheel";
   const relatedGuides = [
     ...tutorialLinks,
     ...comparisonLinks.slice(0, 2),
@@ -202,6 +206,21 @@ const WheelProgrammaticPage = () => {
             }
           />
         </div>
+
+        {showStreamerCallout ? (
+          <Card className="p-5 md:p-6 mb-6 border-primary/20 bg-primary/5">
+            <h2 className="text-lg font-bold mb-2">Streamer mode (OBS / Streamlabs)</h2>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Toggle <strong className="text-foreground">Streamer mode</strong> above the wheel
+              for a solid chroma-key green background (<code>#00FF00</code>) and hidden site
+              chrome — ideal for giveaway streams on Twitch, YouTube, or TikTok Live. Pair with{" "}
+              <strong className="text-foreground">Get proof link</strong> after your draw and
+              paste the verification URL in chat.
+            </p>
+          </Card>
+        ) : null}
+
+        <EmbedWidgetSnippet slug={page.slug} wheelTitle={page.h1} />
 
         <AdSlot className="mb-10 max-w-3xl mx-auto" />
 

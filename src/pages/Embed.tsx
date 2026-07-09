@@ -1,19 +1,24 @@
-import { SpinWheel } from "@/components/SpinWheel";
-import { PoweredByBadge } from "@/components/PoweredByBadge";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet";
+import { useParams } from "react-router-dom";
+import { WheelBySlug } from "@/components/wheelModes/WheelBySlug";
+import { PoweredByBadge } from "@/components/PoweredByBadge";
+import { getWheelPageBySlug } from "@/lib/wheelPages";
 import { gtagEvent } from "@/lib/analytics";
+import { SITE_ORIGIN } from "@/lib/schema";
 
 const Embed = () => {
+  const { slug = "random-name-picker-wheel" } = useParams<{ slug: string }>();
+  const page = getWheelPageBySlug(slug);
+  const wheelTitle = page?.h1 ?? page?.keywordPrimary ?? "Spin Wheel";
+
   useEffect(() => {
-    // Track embed page views
     gtagEvent("embed_view", {
       event_category: "parasite_seo",
-      event_label: "widget_impression",
+      event_label: slug,
       value: 1,
     });
 
-    // Track parent domain for backlink source tracking
     if (window.parent !== window) {
       try {
         const parentUrl = document.referrer;
@@ -27,30 +32,33 @@ const Embed = () => {
         /* cross-origin referrer blocked */
       }
     }
-  }, []);
+  }, [slug]);
+
+  if (!page) {
+    return (
+      <>
+        <Helmet>
+          <title>Embed — wheel not found</title>
+          <meta name="robots" content="noindex, nofollow" />
+        </Helmet>
+        <p className="p-4 text-center text-sm">Wheel not found.</p>
+      </>
+    );
+  }
 
   return (
     <>
       <Helmet>
-        <title>Embed - Online Spin Wheel Spin Wheel</title>
-        <meta
-          name="description"
-          content="Embed Online Spin Wheel spin wheel on your website for random selections and decision making."
-        />
+        <title>{wheelTitle} — Embed</title>
+        <meta name="description" content={`Embed ${wheelTitle} on your site.`} />
         <meta name="robots" content="noindex, nofollow" />
+        <link rel="canonical" href={`${SITE_ORIGIN}/${slug}`} />
       </Helmet>
 
-      <div className="min-h-screen bg-background p-4 flex flex-col items-center justify-center">
-        {/* Compact version for embedding */}
-        <div className="w-full max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-[1fr_350px] gap-4 items-start">
-            <div className="flex flex-col items-center justify-center">
-              <SpinWheel />
-            </div>
-          </div>
-
-          {/* Attribution Badge */}
-          <div className="mt-4 text-center">
+      <div className="min-h-screen bg-background p-3 flex flex-col items-center justify-center">
+        <div className="w-full max-w-4xl mx-auto">
+          <WheelBySlug slug={slug} presetOptionLabels={page.wheelOptions} compactEmbed />
+          <div className="mt-3 text-center">
             <PoweredByBadge variant="gradient" />
           </div>
         </div>

@@ -6,9 +6,8 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { SpinWheel } from "@/components/SpinWheel";
-import { Ticket, Copy, Link2, Trophy } from "lucide-react";
-import { toast } from "sonner";
-import { buildProofUrl, decodeProofPayload } from "@/lib/proofLink";
+import { ResultProofActions } from "@/components/ResultProofActions";
+import { Ticket, Trophy } from "lucide-react";
 
 type RaffleWheelProps = {
   presetOptionLabels?: string[];
@@ -29,7 +28,7 @@ export function RaffleWheel({ presetOptionLabels }: RaffleWheelProps) {
   const [ticketPaste, setTicketPaste] = useState("");
   const [winnerCount, setWinnerCount] = useState(1);
   const [winners, setWinners] = useState<string[]>([]);
-  const [proofUrl, setProofUrl] = useState<string | null>(null);
+  const [entryCountAtDraw, setEntryCountAtDraw] = useState(0);
 
   const ticketLabels = useMemo(() => {
     const pasted = ticketPaste
@@ -47,26 +46,18 @@ export function RaffleWheel({ presetOptionLabels }: RaffleWheelProps) {
 
   const activeLabels = ticketMode ? ticketLabels : nameLabels;
 
-  const handleWinner = (name: string) => {
+  const handleWinner = (name: string, ctx?: { entryCount: number }) => {
+    if (ctx?.entryCount) setEntryCountAtDraw(ctx.entryCount);
     setWinners((prev) => {
       if (prev.includes(name)) return prev;
       const next = [...prev, name];
-      if (next.length >= winnerCount) {
-        setProofUrl(buildProofUrl("/raffle-wheel", next.slice(0, winnerCount)));
-      }
       return next.slice(0, winnerCount);
     });
   };
 
   const resetDraw = () => {
     setWinners([]);
-    setProofUrl(null);
-  };
-
-  const copyProof = async () => {
-    if (!proofUrl) return;
-    await navigator.clipboard.writeText(proofUrl);
-    toast.success("Raffle proof link copied.");
+    setEntryCountAtDraw(0);
   };
 
   return (
@@ -152,17 +143,12 @@ export function RaffleWheel({ presetOptionLabels }: RaffleWheelProps) {
           </div>
         ) : null}
 
-        {proofUrl ? (
-          <div className="flex flex-wrap gap-2 items-center pt-2 border-t border-border">
-            <Link2 className="h-4 w-4 text-primary shrink-0" />
-            <code className="text-xs truncate max-w-md text-muted-foreground">
-              {proofUrl}
-            </code>
-            <Button size="sm" onClick={copyProof}>
-              <Copy className="mr-2 h-3.5 w-3.5" />
-              Copy proof link
-            </Button>
-          </div>
+        {winners.length >= winnerCount && winners.length > 0 ? (
+          <ResultProofActions
+            winners={winners.slice(0, winnerCount)}
+            entryCount={entryCountAtDraw || activeLabels.length}
+            sourceSlug="raffle-wheel"
+          />
         ) : null}
       </Card>
 
@@ -171,31 +157,10 @@ export function RaffleWheel({ presetOptionLabels }: RaffleWheelProps) {
         presetOptionLabels={activeLabels}
         autoRemoveWinner={winnerCount > 1}
         onWinnerSelected={handleWinner}
+        resultProofSlug="raffle-wheel"
+        shareEnabled
+        streamerToggle
       />
-
-      <RaffleProofBanner />
     </div>
-  );
-}
-
-function RaffleProofBanner() {
-  const params = new URLSearchParams(window.location.search);
-  const token = params.get("proof");
-  if (!token) return null;
-
-  const data = decodeProofPayload(token);
-  if (!data) return null;
-
-  const date = new Date(data.t).toLocaleString("en-US");
-  return (
-    <Card className="p-5 border-primary bg-primary/5">
-      <p className="font-semibold mb-2">Verified raffle result</p>
-      <p className="text-sm text-muted-foreground mb-2">Drawn: {date}</p>
-      <ul className="font-medium">
-        {data.w.map((name) => (
-          <li key={name}>🎟️ {name}</li>
-        ))}
-      </ul>
-    </Card>
   );
 }

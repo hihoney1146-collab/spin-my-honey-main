@@ -1,5 +1,6 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { useTheme } from "next-themes";
+import { useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -7,6 +8,8 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Slider } from "@/components/ui/slider";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 import {
   Trash2,
   Play,
@@ -26,10 +29,22 @@ import {
   Sparkles,
   Trophy,
   Clock3,
+  Copy,
 } from "lucide-react";
 import confetti from "canvas-confetti";
 import { toast } from "sonner";
 import { gtagEvent } from "@/lib/analytics";
+import { cryptoRandom } from "@/lib/cryptoRandom";
+import {
+  applyShareParamsToUrl,
+  buildWheelShareUrl,
+  parseWheelShareParams,
+} from "@/lib/wheelShareUrl";
+import {
+  isStreamerModeFromSearch,
+  setStreamerModeInUrl,
+} from "@/lib/streamerMode";
+import { ResultProofActions } from "@/components/ResultProofActions";
 import {
   Dialog,
   DialogContent,
@@ -232,11 +247,28 @@ export type SpinWheelProps = {
   /** Remove the winning entry automatically after each spin. */
   autoRemoveWinner?: boolean;
   /** Called when a spin completes with the winning label. */
-  onWinnerSelected?: (name: string) => void;
+  onWinnerSelected?: (name: string, context?: { entryCount: number }) => void;
   /** Override spin button label (e.g. classroom fullscreen). */
   spinButtonLabel?: string;
   className?: string;
+  /** Enable verifiable /result/<id> proof link after a spin. */
+  resultProofSlug?: string;
+  /** Sync entries to URL + show Copy link (default true). */
+  shareEnabled?: boolean;
+  /** Show streamer mode toggle (default true). */
+  streamerToggle?: boolean;
+  /** Hide entries panel (embed iframe). */
+  compactEmbed?: boolean;
 };
+
+function entriesFromLabels(labels: string[]): WheelEntry[] {
+  return labels.map((text, i) => ({
+    id: `share-${i + 1}`,
+    text,
+    color: defaultColors[i % defaultColors.length],
+    active: true,
+  }));
+}
 
 export const SpinWheel = ({
   presetOptionLabels,
@@ -244,22 +276,29 @@ export const SpinWheel = ({
   onWinnerSelected,
   spinButtonLabel,
   className,
+  resultProofSlug,
+  shareEnabled = true,
+  streamerToggle = true,
+  compactEmbed = false,
 }: SpinWheelProps = {}) => {
   const { resolvedTheme } = useTheme();
+  const location = useLocation();
   const usePreset =
     Array.isArray(presetOptionLabels) && presetOptionLabels.length > 0;
 
+  const shareFromUrl = shareEnabled ? parseWheelShareParams(location.search) : null;
+  const streamerMode =
+    streamerToggle && (shareFromUrl?.stream || isStreamerModeFromSearch(location.search));
+
   const [entries, setEntries] = useState<WheelEntry[]>(() => {
+    if (shareFromUrl?.entries?.length) {
+      return entriesFromLabels(shareFromUrl.entries);
+    }
     if (
       Array.isArray(presetOptionLabels) &&
       presetOptionLabels.length > 0
     ) {
-      return presetOptionLabels.map((text, i) => ({
-        id: `preset-${i + 1}`,
-        text,
-        color: defaultColors[i % defaultColors.length],
-        active: true,
-      }));
+      return entriesFromLabels(presetOptionLabels);
     }
     // Load from localStorage or use defaults
     const saved = localStorage.getItem("spinWheelEntries");
@@ -298,9 +337,12 @@ export const SpinWheel = ({
   const [winnerId, setWinnerId] = useState<string>("");
   const onWinnerSelectedRef = useRef(onWinnerSelected);
   onWinnerSelectedRef.current = onWinnerSelected;
-  const [spinDurationSeconds, setSpinDurationSeconds] = useState(
-    readSavedSpinDurationSeconds,
+  const [spinDurationSeconds, setSpinDurationSeconds] = useState(() =>
+    shareFromUrl?.duration != null
+      ? shareFromUrl.duration
+      : readSavedSpinDurationSeconds(),
   );
+  const [lastSpinEntryCount, setLastSpinEntryCount] = useState(0);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pointerRef = useRef<HTMLDivElement>(null);
   const [loadedImages, setLoadedImages] = useState<
@@ -409,7 +451,7 @@ export const SpinWheel = ({
 
   useEffect(() => {
     if (!winner || !winnerId) return;
-    onWinnerSelectedRef.current?.(winner);
+    onWinnerSelectedRef.current?.(winner, { entryCount: lastSpinEntryCount });
     if (autoRemoveWinner && entries.length > 2) {
       const timer = window.setTimeout(() => {
         setEntries((prev) => prev.filter((entry) => entry.id !== winnerId));
@@ -420,7 +462,7 @@ export const SpinWheel = ({
       }, 1200);
       return () => window.clearTimeout(timer);
     }
-  }, [winner, winnerId, autoRemoveWinner, entries.length]);
+  }, [winner, winnerId, autoRemoveWinner, entries.length, lastSpinEntryCount]);
 
   useEffect(() => {
     localStorage.setItem(
@@ -447,6 +489,52 @@ export const SpinWheel = ({
     }
     entriesRef.current = entries;
   }, [entries, usePreset]);
+
+  const syncShareUrl = useCallback(() => {
+    if (!shareEnabled || typeof window === "undefined") return;
+    const labels = entries.filter((e) => e.active).map((e) => e.text);
+    applyShareParamsToUrl(location.pathname, {
+      entries: labels,
+      duration: spinDurationSeconds,
+      stream: streamerMode,
+    });
+  }, [
+    shareEnabled,
+    entries,
+    spinDurationSeconds,
+    streamerMode,
+    location.pathname,
+  ]);
+
+  useEffect(() => {
+    if (!shareEnabled) return;
+    const timer = window.setTimeout(syncShareUrl, 400);
+    return () => window.clearTimeout(timer);
+  }, [shareEnabled, syncShareUrl]);
+
+  const copyShareLink = async () => {
+    const labels = entries.filter((e) => e.active).map((e) => e.text);
+    const url = buildWheelShareUrl(location.pathname, {
+      entries: labels,
+      duration: spinDurationSeconds,
+      stream: streamerMode,
+    });
+    if (!url) {
+      toast.error("Add at least one entry before copying a link.");
+      return;
+    }
+    await navigator.clipboard.writeText(url);
+    toast.success("Wheel link copied — bookmark or send to your class.");
+    gtagEvent("wheel_share_link_copied", { event_category: "engagement" });
+  };
+
+  const toggleStreamerMode = (on: boolean) => {
+    setStreamerModeInUrl(on);
+    gtagEvent("streamer_mode_toggle", {
+      event_category: "engagement",
+      event_label: on ? "on" : "off",
+    });
+  };
 
   // Update refs whenever state changes
   useEffect(() => {
@@ -960,6 +1048,7 @@ export const SpinWheel = ({
     isSpinningRef.current = true;
     setIsSpinning(true);
     setWinner(null);
+    setLastSpinEntryCount(activeEntries.length);
     incrementSpinCounter();
     triggerHaptic("medium");
 
@@ -971,8 +1060,8 @@ export const SpinWheel = ({
 
     // WheelOfNames-style physics: moderate rotations, smooth cubic deceleration
     const durationSeconds = spinDurationSeconds;
-    const spins = durationSeconds * 1.35 + 1.8 + Math.random() * 2.4;
-    const extraDegrees = Math.random() * 360;
+    const spins = durationSeconds * 1.35 + 1.8 + cryptoRandom() * 2.4;
+    const extraDegrees = cryptoRandom() * 360;
     const totalRotation = spins * 360 + extraDegrees;
 
     const startRotation = rotationRef.current;
@@ -1085,8 +1174,34 @@ export const SpinWheel = ({
   return (
     <>
       {/* Grid on lg+: wheel + panel share the row (no extra empty strip next to the scrollbar). */}
-      <div className={`w-full px-4 sm:px-6 lg:px-6 xl:px-8 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_340px] xl:grid-cols-[minmax(0,1fr)_400px] 2xl:grid-cols-[minmax(0,1fr)_420px] gap-8 lg:gap-5 xl:gap-6 items-start ${className ?? ""}`}>
+      <div
+        className={`w-full px-4 sm:px-6 lg:px-6 xl:px-8 grid grid-cols-1 ${
+          streamerMode || compactEmbed
+            ? ""
+            : "lg:grid-cols-[minmax(0,1fr)_340px] xl:grid-cols-[minmax(0,1fr)_400px] 2xl:grid-cols-[minmax(0,1fr)_420px]"
+        } gap-8 lg:gap-5 xl:gap-6 items-start ${className ?? ""}`}
+      >
         <div className="flex flex-col items-center justify-center gap-3 sm:gap-4 w-full min-w-0">
+        {streamerToggle && !compactEmbed ? (
+          <div className="w-full max-w-[660px] mx-auto flex flex-wrap items-center justify-between gap-3 mb-1">
+            <div className="flex items-center gap-2">
+              <Switch
+                id="streamer-mode"
+                checked={streamerMode}
+                onCheckedChange={toggleStreamerMode}
+              />
+              <Label htmlFor="streamer-mode" className="cursor-pointer text-sm font-medium">
+                Streamer mode (green screen)
+              </Label>
+            </div>
+            {shareEnabled ? (
+              <Button type="button" variant="outline" size="sm" onClick={copyShareLink} className="gap-2">
+                <Copy className="h-3.5 w-3.5" />
+                Copy link
+              </Button>
+            ) : null}
+          </div>
+        ) : null}
         {/* Wheel Card */}
         <button
           type="button"
@@ -1155,7 +1270,7 @@ export const SpinWheel = ({
         </div>
 
         {/* Winner Display */}
-        {winner && (
+        {winner && !streamerMode ? (
           <Card
             className="w-full max-w-[380px] xs:max-w-[420px] sm:max-w-[500px] md:max-w-[560px] lg:max-w-[580px] xl:max-w-[620px] 2xl:max-w-[660px] mx-auto border-2 shadow-2xl animate-in fade-in zoom-in-95 duration-500 relative overflow-hidden backdrop-blur-xl"
             style={{
@@ -1230,11 +1345,12 @@ export const SpinWheel = ({
               </div>
             </div>
           </Card>
-        )}
+        ) : null}
 
         </div>
 
         {/* Controls Section — right column on large screens */}
+        {!streamerMode && !compactEmbed ? (
         <div className="w-full min-w-0 mt-8 lg:mt-0 lg:z-40">
         <Card className="p-4 lg:p-6 bg-card/95 border border-border/50 shadow-xl backdrop-blur-xl relative overflow-hidden w-full flex flex-col rounded-2xl">
           {/* Header */}
@@ -1633,6 +1749,7 @@ export const SpinWheel = ({
           </div>
         </Card>
         </div>
+        ) : null}
       </div>
 
       {/* Winner Dialog */}
@@ -1662,6 +1779,13 @@ export const SpinWheel = ({
             <p className="text-base lg:text-lg text-muted-foreground text-center">
               Congratulations! 🎊
             </p>
+            {resultProofSlug && winner ? (
+              <ResultProofActions
+                winners={[winner]}
+                entryCount={lastSpinEntryCount}
+                sourceSlug={resultProofSlug}
+              />
+            ) : null}
             <div className="flex gap-2 lg:gap-3 w-full">
               <Button
                 onClick={() => setShowWinnerDialog(false)}

@@ -38,7 +38,12 @@ const HOME_FAQS: { question: string; answer: string }[] = [
   {
     question: "Can I share my wheel or the result?",
     answer:
-      "Screen-record or screenshot the spin to share the outcome — that is exactly what giveaway hosts post as proof. Every specialty wheel also has its own shareable URL you can send to anyone.",
+      "Yes. Use Copy link above the wheel to bookmark your exact entries in the URL (no account). After a giveaway spin on the winner picker, raffle, or name picker wheels, tap Get proof link for a verifiable /result/ page you can paste on Instagram or TikTok.",
+  },
+  {
+    question: "What is streamer mode?",
+    answer:
+      "Streamer mode switches the page to a solid chroma-key green (#00FF00) background and hides site header and footer so OBS or Streamlabs can key out everything except the wheel. Toggle it above any wheel, or add ?stream=1 to your shared link.",
   },
   {
     question: "Does it work on mobile phones and tablets?",

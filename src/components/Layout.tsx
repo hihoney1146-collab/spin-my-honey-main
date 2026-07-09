@@ -34,10 +34,12 @@ import {
   getFeaturedWheelLinks,
 } from "@/lib/siteInternalLinks";
 import { openCookieSettings } from "@/lib/cookieConsentEvents";
+import { isStreamerModeFromSearch, STREAMER_GREEN } from "@/lib/streamerMode";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const streamerMode = isStreamerModeFromSearch(location.search);
 
   const isActive = (path: string) => {
     if (path === BLOG_INDEX_PATH) {
@@ -80,6 +82,14 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
       icon: Youtube,
     },
   ];
+
+  if (streamerMode) {
+    return (
+      <div className="min-h-screen flex flex-col" style={{ backgroundColor: STREAMER_GREEN }}>
+        <main className="flex-1">{children}</main>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-background">

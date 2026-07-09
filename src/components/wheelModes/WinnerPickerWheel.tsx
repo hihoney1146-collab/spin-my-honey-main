@@ -4,55 +4,32 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { SpinWheel } from "@/components/SpinWheel";
-import { Trophy, Copy, Link2 } from "lucide-react";
-import { toast } from "sonner";
-import { SITE_ORIGIN } from "@/lib/schema";
+import { ResultProofActions } from "@/components/ResultProofActions";
+import { Trophy } from "lucide-react";
 
 type WinnerPickerWheelProps = {
   presetOptionLabels?: string[];
 };
-
-function encodeProof(winners: string[]): string {
-  const payload = {
-    w: winners,
-    t: Date.now(),
-  };
-  return btoa(JSON.stringify(payload))
-    .replace(/\+/g, "-")
-    .replace(/\//g, "_")
-    .replace(/=+$/, "");
-}
 
 export function WinnerPickerWheel({
   presetOptionLabels,
 }: WinnerPickerWheelProps) {
   const [winnerCount, setWinnerCount] = useState(1);
   const [winners, setWinners] = useState<string[]>([]);
-  const [proofUrl, setProofUrl] = useState<string | null>(null);
+  const [entryCountAtDraw, setEntryCountAtDraw] = useState(0);
 
-  const handleWinner = (name: string) => {
+  const handleWinner = (name: string, ctx?: { entryCount: number }) => {
+    if (ctx?.entryCount) setEntryCountAtDraw(ctx.entryCount);
     setWinners((prev) => {
       if (prev.includes(name)) return prev;
       const next = [...prev, name];
-      if (next.length >= winnerCount) {
-        const token = encodeProof(next.slice(0, winnerCount));
-        setProofUrl(
-          `${SITE_ORIGIN}/winner-picker-wheel?proof=${token}`,
-        );
-      }
       return next.slice(0, winnerCount);
     });
   };
 
-  const copyProof = async () => {
-    if (!proofUrl) return;
-    await navigator.clipboard.writeText(proofUrl);
-    toast.success("Proof link copied — paste in your giveaway post.");
-  };
-
   const resetDraw = () => {
     setWinners([]);
-    setProofUrl(null);
+    setEntryCountAtDraw(0);
   };
 
   return (
@@ -96,17 +73,12 @@ export function WinnerPickerWheel({
             </ul>
           </div>
         ) : null}
-        {proofUrl ? (
-          <div className="flex flex-wrap gap-2 items-center pt-2 border-t border-border">
-            <Link2 className="h-4 w-4 text-primary shrink-0" />
-            <code className="text-xs truncate max-w-md text-muted-foreground">
-              {proofUrl}
-            </code>
-            <Button size="sm" onClick={copyProof}>
-              <Copy className="mr-2 h-3.5 w-3.5" />
-              Copy proof link
-            </Button>
-          </div>
+        {winners.length >= winnerCount && winners.length > 0 ? (
+          <ResultProofActions
+            winners={winners.slice(0, winnerCount)}
+            entryCount={entryCountAtDraw || winners.length}
+            sourceSlug="winner-picker-wheel"
+          />
         ) : null}
       </Card>
 
@@ -114,34 +86,10 @@ export function WinnerPickerWheel({
         presetOptionLabels={presetOptionLabels}
         autoRemoveWinner={winnerCount > 1}
         onWinnerSelected={handleWinner}
+        resultProofSlug="winner-picker-wheel"
+        shareEnabled
+        streamerToggle
       />
-
-      <WinnerProofBanner />
     </div>
   );
-}
-
-function WinnerProofBanner() {
-  const params = new URLSearchParams(window.location.search);
-  const token = params.get("proof");
-  if (!token) return null;
-
-  try {
-    const padded = token.replace(/-/g, "+").replace(/_/g, "/");
-    const { w, t } = JSON.parse(atob(padded)) as { w: string[]; t: number };
-    const date = new Date(t).toLocaleString("en-US");
-    return (
-      <Card className="p-5 border-primary bg-primary/5">
-        <p className="font-semibold mb-2">Verified giveaway result</p>
-        <p className="text-sm text-muted-foreground mb-2">Drawn: {date}</p>
-        <ul className="font-medium">
-          {w.map((name) => (
-            <li key={name}>🏆 {name}</li>
-          ))}
-        </ul>
-      </Card>
-    );
-  } catch {
-    return null;
-  }
 }

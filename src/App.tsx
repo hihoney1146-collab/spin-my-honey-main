@@ -46,6 +46,7 @@ const WheelProgrammaticPage = lazy(
 );
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Embed = lazy(() => import("./pages/Embed"));
+const ResultPage = lazy(() => import("./pages/ResultPage"));
 import { ReferralTracker } from "./components/ReferralTracker";
 import { CookieConsent } from "./components/CookieConsent";
 import { PageLoadingFallback } from "./components/PageLoadingFallback";
@@ -286,6 +287,14 @@ const App = () => (
                 element={<Navigate to="/zodiac-sign-wheel" replace />}
               />
               <Route
+                path="/result/:id"
+                element={
+                  <Suspense fallback={<PageLoadingFallback />}>
+                    <ResultPage />
+                  </Suspense>
+                }
+              />
+              <Route
                 path="/:slug"
                 element={
                   <Suspense fallback={<PageLoadingFallback />}>
@@ -295,12 +304,16 @@ const App = () => (
               />
             </Route>
             <Route
-              path="/embed"
+              path="/embed/:slug"
               element={
                 <Suspense fallback={<PageLoadingFallback />}>
                   <Embed />
                 </Suspense>
               }
+            />
+            <Route
+              path="/embed"
+              element={<Navigate to="/embed/random-name-picker-wheel" replace />}
             />
             <Route path="/about" element={<Navigate to="/about-us" replace />} />
             <Route path="/contact" element={<Navigate to="/contact-us" replace />} />

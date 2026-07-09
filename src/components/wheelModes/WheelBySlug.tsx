@@ -8,13 +8,20 @@ import { CoinFlipWheel } from "./CoinFlipWheel";
 import { RaffleWheel } from "./RaffleWheel";
 import { PrizeWheel } from "./PrizeWheel";
 import { ClassroomSpinnerWheel } from "./ClassroomSpinnerWheel";
+import { AlphabetSpinnerWheel } from "./AlphabetSpinnerWheel";
+import { RandomNamePickerWheel } from "./RandomNamePickerWheel";
 
 type WheelBySlugProps = {
   slug: string;
   presetOptionLabels?: string[];
+  compactEmbed?: boolean;
 };
 
-export function WheelBySlug({ slug, presetOptionLabels }: WheelBySlugProps) {
+export function WheelBySlug({
+  slug,
+  presetOptionLabels,
+  compactEmbed = false,
+}: WheelBySlugProps) {
   switch (slug) {
     case "team-generator-wheel":
       return <TeamGeneratorWheel />;
@@ -25,6 +32,10 @@ export function WheelBySlug({ slug, presetOptionLabels }: WheelBySlugProps) {
     case "random-student-picker":
       return (
         <RandomStudentPickerWheel presetOptionLabels={presetOptionLabels} />
+      );
+    case "random-name-picker-wheel":
+      return (
+        <RandomNamePickerWheel presetOptionLabels={presetOptionLabels} />
       );
     case "winner-picker-wheel":
       return <WinnerPickerWheel presetOptionLabels={presetOptionLabels} />;
@@ -45,6 +56,9 @@ export function WheelBySlug({ slug, presetOptionLabels }: WheelBySlugProps) {
         <SpinWheel
           key={slug}
           presetOptionLabels={presetOptionLabels}
+          shareEnabled={!compactEmbed}
+          streamerToggle={!compactEmbed}
+          compactEmbed={compactEmbed}
         />
       );
   }

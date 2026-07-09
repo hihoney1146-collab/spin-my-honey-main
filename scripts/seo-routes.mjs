@@ -410,6 +410,7 @@ export function buildRobotsTxt() {
 User-agent: *
 Allow: /
 Disallow: /embed
+Disallow: /result/
 Disallow: /*?*utm_source=
 Disallow: /*?*utm_medium=
 Disallow: /*?*utm_campaign=
