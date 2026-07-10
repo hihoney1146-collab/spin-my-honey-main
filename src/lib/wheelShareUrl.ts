@@ -1,10 +1,13 @@
 const MAX_SHARE_ENTRIES = 120;
 const MAX_ENCODED_LEN = 1800;
 
+import { parseStreamBgParam, streamBgToUrlParam } from "./streamerMode";
+
 export type WheelShareState = {
   entries: string[];
   duration?: number;
   stream?: boolean;
+  streamBg?: string;
 };
 
 function toBase64Url(text: string): string {
@@ -62,7 +65,12 @@ export function buildWheelShareUrl(
   if (state.duration != null && state.duration !== 8) {
     params.set("d", String(state.duration));
   }
-  if (state.stream) params.set("stream", "1");
+  if (state.stream) {
+    params.set("stream", "1");
+    if (state.streamBg) {
+      params.set("bg", streamBgToUrlParam(state.streamBg));
+    }
+  }
   return `${origin}${pathname}?${params.toString()}`;
 }
 
@@ -77,10 +85,12 @@ export function parseWheelShareParams(
   const durationRaw = params.get("d");
   const duration = durationRaw ? Number(durationRaw) : undefined;
   const stream = params.get("stream") === "1";
+  const streamBg = stream ? parseStreamBgParam(params.get("bg")) : undefined;
   return {
     entries,
     duration: Number.isFinite(duration) ? duration : undefined,
     stream,
+    streamBg,
   };
 }
 

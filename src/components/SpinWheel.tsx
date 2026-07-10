@@ -8,7 +8,6 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Slider } from "@/components/ui/slider";
-import { Switch } from "@/components/ui/switch";
 import {
   Trash2,
   Play,
@@ -28,7 +27,6 @@ import {
   Sparkles,
   Trophy,
   Clock3,
-  Copy,
 } from "lucide-react";
 import confetti from "canvas-confetti";
 import { toast } from "sonner";
@@ -40,6 +38,7 @@ import {
   parseWheelShareParams,
 } from "@/lib/wheelShareUrl";
 import { useStreamerMode } from "@/lib/useStreamerMode";
+import { StreamerControls } from "@/components/StreamerControls";
 import { ResultProofActions } from "@/components/ResultProofActions";
 import {
   Dialog,
@@ -279,7 +278,7 @@ export const SpinWheel = ({
 }: SpinWheelProps = {}) => {
   const { resolvedTheme } = useTheme();
   const location = useLocation();
-  const { streamerMode: streamFromUrl, setStreamerMode: setStreamParam } =
+  const { streamerMode: streamFromUrl, setStreamerMode: setStreamParam, streamBg, setStreamBg } =
     useStreamerMode();
   const usePreset =
     Array.isArray(presetOptionLabels) && presetOptionLabels.length > 0;
@@ -327,6 +326,8 @@ export const SpinWheel = ({
   const [entriesPageIndex, setEntriesPageIndex] = useState(0);
   /** Large screens: entries list starts collapsed so the panel does not overlap page content */
   const [desktopEntriesListExpanded, setDesktopEntriesListExpanded] = useState(false);
+  /** Stream layout: entries panel collapsed by default */
+  const [streamEntriesExpanded, setStreamEntriesExpanded] = useState(false);
   const [isSpinning, setIsSpinning] = useState(false);
   const [rotation, setRotation] = useState(0);
   const [winner, setWinner] = useState<string | null>(null);
@@ -495,12 +496,14 @@ export const SpinWheel = ({
       entries: labels,
       duration: spinDurationSeconds,
       stream: streamerMode,
+      streamBg: streamerMode ? streamBg : undefined,
     });
   }, [
     shareEnabled,
     entries,
     spinDurationSeconds,
     streamerMode,
+    streamBg,
     location.pathname,
   ]);
 
@@ -516,6 +519,7 @@ export const SpinWheel = ({
       entries: labels,
       duration: spinDurationSeconds,
       stream: streamerMode,
+      streamBg: streamerMode ? streamBg : undefined,
     });
     if (!url) {
       toast.error("Add at least one entry before copying a link.");
@@ -525,6 +529,12 @@ export const SpinWheel = ({
     toast.success("Wheel link copied — bookmark or send to your class.");
     gtagEvent("wheel_share_link_copied", { event_category: "engagement" });
   };
+
+  useEffect(() => {
+    if (streamerMode) {
+      setStreamEntriesExpanded(false);
+    }
+  }, [streamerMode]);
 
   const toggleStreamerMode = (on: boolean) => {
     setStreamParam(on);
@@ -1163,6 +1173,7 @@ export const SpinWheel = ({
   };
 
   const activeEntries = entries.filter((entry) => entry.active);
+  const segmentColors = activeEntries.map((e) => e.color);
   const entriesTotalPages = Math.max(1, Math.ceil(entries.length / ENTRIES_PAGE_SIZE));
   const pagedEntries = entries.slice(
     entriesPageIndex * ENTRIES_PAGE_SIZE,
@@ -1181,28 +1192,15 @@ export const SpinWheel = ({
       >
         <div className="flex flex-col items-center justify-center gap-3 sm:gap-4 w-full min-w-0">
         {streamerToggle && !compactEmbed ? (
-          <div className="relative z-20 w-full max-w-[660px] mx-auto flex flex-wrap items-center justify-between gap-3 mb-1">
-            <label
-              htmlFor="streamer-mode"
-              className="flex items-center gap-2 cursor-pointer rounded-md py-1 pr-2 focus-within:outline-none focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2"
-            >
-              <Switch
-                id="streamer-mode"
-                checked={streamerMode}
-                onCheckedChange={toggleStreamerMode}
-                aria-label="Streamer mode (green screen)"
-              />
-              <span className="text-sm font-medium select-none">
-                Streamer mode (green screen)
-              </span>
-            </label>
-            {shareEnabled ? (
-              <Button type="button" variant="outline" size="sm" onClick={copyShareLink} className="gap-2">
-                <Copy className="h-3.5 w-3.5" />
-                Copy link
-              </Button>
-            ) : null}
-          </div>
+          <StreamerControls
+            streamerMode={streamerMode}
+            onStreamerModeChange={toggleStreamerMode}
+            streamBg={streamBg}
+            onStreamBgChange={setStreamBg}
+            onCopyLink={copyShareLink}
+            shareEnabled={shareEnabled}
+            segmentColors={segmentColors}
+          />
         ) : null}
         {/* Wheel Card */}
         <button
@@ -1245,9 +1243,23 @@ export const SpinWheel = ({
             onPointerDown={warmUpAudio}
             disabled={isSpinning || activeEntries.length < 2}
             size="lg"
-            className="text-sm sm:text-base lg:text-lg font-bold px-6 sm:px-8 lg:px-10 py-3 sm:py-4 h-auto bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-primary-foreground w-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none rounded-xl border-t border-white/20 relative overflow-hidden group touch-manipulation tracking-wide"
+            className={
+              streamerMode
+                ? "text-sm sm:text-base lg:text-lg font-bold px-6 sm:px-8 lg:px-10 py-3 sm:py-4 h-auto w-full rounded-xl border-2 bg-transparent hover:bg-transparent touch-manipulation tracking-wide"
+                : "text-sm sm:text-base lg:text-lg font-bold px-6 sm:px-8 lg:px-10 py-3 sm:py-4 h-auto bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-primary-foreground w-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none rounded-xl border-t border-white/20 relative overflow-hidden group touch-manipulation tracking-wide"
+            }
+            style={
+              streamerMode
+                ? {
+                    color: "var(--stream-fg)",
+                    borderColor: "var(--stream-fg)",
+                  }
+                : undefined
+            }
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out" />
+            {!streamerMode ? (
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out" />
+            ) : null}
             {isSpinning ? (
               <>
                 <div className="animate-spin mr-2.5 h-4 w-4 sm:h-5 sm:w-5 border-[3px] border-white/30 border-t-white rounded-full relative z-10" />
@@ -1262,9 +1274,14 @@ export const SpinWheel = ({
           </Button>
 
           {activeEntries.length < 2 && (
-            <div className="flex items-center justify-center gap-2 text-destructive">
-              <div className="w-1.5 h-1.5 rounded-full bg-destructive animate-pulse" />
-              <p className="text-xs font-medium">
+            <div
+              className="flex items-center justify-center gap-2"
+              style={streamerMode ? { color: "var(--stream-fg)" } : undefined}
+            >
+              {!streamerMode ? (
+                <div className="w-1.5 h-1.5 rounded-full bg-destructive animate-pulse" />
+              ) : null}
+              <p className={`text-xs font-medium ${streamerMode ? "" : "text-destructive"}`}>
                 Add at least 2 active entries to spin
               </p>
             </div>
@@ -1351,10 +1368,36 @@ export const SpinWheel = ({
 
         </div>
 
-        {/* Controls Section — right column on large screens */}
-        {!streamerMode && !compactEmbed ? (
-        <div className="w-full min-w-0 mt-8 lg:mt-0 lg:z-40">
-        <Card className="p-4 lg:p-6 bg-card/95 border border-border/50 shadow-xl backdrop-blur-xl relative overflow-hidden w-full flex flex-col rounded-2xl">
+        {/* Controls Section — sidebar on desktop; collapsible below wheel in stream mode */}
+        {!compactEmbed ? (
+        <>
+        {streamerMode ? (
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            className="w-full max-w-[660px] mx-auto gap-2 bg-transparent hover:bg-transparent"
+            style={{ color: "var(--stream-fg)", borderColor: "var(--stream-fg)" }}
+            onClick={() => setStreamEntriesExpanded((v) => !v)}
+            aria-expanded={streamEntriesExpanded}
+          >
+            Manage entries ({activeEntries.length})
+            <ChevronDown
+              className={`h-4 w-4 transition-transform ${streamEntriesExpanded ? "rotate-180" : ""}`}
+            />
+          </Button>
+        ) : null}
+        <div
+          className={`w-full min-w-0 ${streamerMode ? "max-w-[660px] mx-auto mt-2" : "mt-8 lg:mt-0 lg:z-40"} ${streamerMode && !streamEntriesExpanded ? "hidden" : ""}`}
+        >
+        <Card
+          className={`p-4 lg:p-6 border shadow-xl relative overflow-hidden w-full flex flex-col rounded-2xl ${
+            streamerMode
+              ? "bg-transparent [&_*]:text-[var(--stream-fg)] [&_input]:text-[var(--stream-fg)] [&_textarea]:text-[var(--stream-fg)]"
+              : "bg-card/95 border-border/50 backdrop-blur-xl"
+          }`}
+          style={streamerMode ? { color: "var(--stream-fg)", borderColor: "var(--stream-fg)" } : undefined}
+        >
           {/* Header */}
           <div className="mb-4 relative z-10 flex-shrink-0">
             <div className="flex items-center justify-between mb-2">
@@ -1751,6 +1794,7 @@ export const SpinWheel = ({
           </div>
         </Card>
         </div>
+        </>
         ) : null}
       </div>
 

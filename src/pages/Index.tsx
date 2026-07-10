@@ -17,6 +17,8 @@ import { Link } from "react-router-dom";
 import type { ReactNode } from "react";
 import { ORGANIZATION_ID } from "@/lib/schema";
 import { getAllBlogPosts } from "@/data/blogPosts";
+import { useStreamerMode } from "@/lib/useStreamerMode";
+import { BLOG_INDEX_PATH } from "@/lib/siteInternalLinks";
 
 const FEATURED_BLOG_SLUGS = [
   "random-name-picker-fair-fun-easy",
@@ -43,7 +45,7 @@ const HOME_FAQS: { question: string; answer: string }[] = [
   {
     question: "What is streamer mode?",
     answer:
-      "Streamer mode switches the page to a solid chroma-key green (#00FF00) background and hides site header and footer so OBS or Streamlabs can key out everything except the wheel. Toggle it above any wheel, or add ?stream=1 to your shared link.",
+      "Streamer mode switches the page to a solid chroma-key background (green, blue, or magenta by default — or pick any color) and hides site header, footer, and marketing sections so OBS or Streamlabs can key out everything except the wheel. Toggle it above any wheel, or add ?stream=1&bg=00FF00 to your shared link.",
   },
   {
     question: "Does it work on mobile phones and tablets?",
@@ -186,6 +188,7 @@ const USE_CASES: {
 ];
 
 const Index = () => {
+  const { streamerMode } = useStreamerMode();
   const featuredPosts = FEATURED_BLOG_SLUGS.map((slug) =>
     getAllBlogPosts().find((p) => p.slug === slug),
   ).filter((p): p is NonNullable<typeof p> => Boolean(p));
@@ -315,13 +318,17 @@ const Index = () => {
         {/* Hero Section — interactive wheel (unchanged) */}
         <section
           id="spin-wheel"
-          className="w-full pt-2 sm:pt-3 md:pt-4 lg:pt-5 pb-4 sm:pb-6 md:pb-8 lg:pb-10 bg-gradient-to-b from-background to-muted/20 relative"
+          className={`w-full pt-2 sm:pt-3 md:pt-4 lg:pt-5 pb-4 sm:pb-6 md:pb-8 lg:pb-10 relative ${
+            streamerMode ? "" : "bg-gradient-to-b from-background to-muted/20"
+          }`}
           itemScope
           itemType="https://schema.org/WebPageElement"
         >
           <SpinWheel />
         </section>
 
+        {!streamerMode ? (
+          <>
         {/* H1 + direct-answer paragraph */}
         <section
           id="intro-answer"
@@ -516,6 +523,8 @@ const Index = () => {
             </div>
           </div>
         </section>
+          </>
+        ) : null}
       </article>
     </>
   );

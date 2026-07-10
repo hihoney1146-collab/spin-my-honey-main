@@ -34,7 +34,8 @@ import {
   getFeaturedWheelLinks,
 } from "@/lib/siteInternalLinks";
 import { openCookieSettings } from "@/lib/cookieConsentEvents";
-import { STREAMER_GREEN } from "@/lib/streamerMode";
+import { useEffect } from "react";
+import { contrastForeground } from "@/lib/contrastColor";
 import { useStreamerMode } from "@/lib/useStreamerMode";
 import { TEAM_AUTHOR_LINKS } from "@/lib/teamLinks";
 import { CONTACT_EMAIL } from "@/lib/schema";
@@ -42,7 +43,18 @@ import { CONTACT_EMAIL } from "@/lib/schema";
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { streamerMode } = useStreamerMode();
+  const { streamerMode, streamBg } = useStreamerMode();
+  const streamFg = streamerMode ? contrastForeground(streamBg) : undefined;
+
+  useEffect(() => {
+    if (!streamerMode) {
+      document.documentElement.style.removeProperty("--stream-bg");
+      document.documentElement.style.removeProperty("--stream-fg");
+      return;
+    }
+    document.documentElement.style.setProperty("--stream-bg", streamBg);
+    document.documentElement.style.setProperty("--stream-fg", streamFg!);
+  }, [streamerMode, streamBg, streamFg]);
 
   const isActive = (path: string) => {
     if (path === BLOG_INDEX_PATH) {
@@ -88,8 +100,16 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
 
   if (streamerMode) {
     return (
-      <div className="min-h-screen flex flex-col" style={{ backgroundColor: STREAMER_GREEN }}>
-        <main className="flex-1">{children}</main>
+      <div
+        className="min-h-screen flex flex-col"
+        data-stream-layout
+        data-stream-bg={streamBg}
+        data-stream-fg={streamFg}
+        style={{ backgroundColor: streamBg, color: streamFg }}
+      >
+        <main className="flex-1 flex flex-col items-center justify-center py-4 px-2">
+          {children}
+        </main>
       </div>
     );
   }

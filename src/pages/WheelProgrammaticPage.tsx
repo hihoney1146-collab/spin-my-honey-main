@@ -32,6 +32,7 @@ import {
 } from "@/lib/wheelContentEnrichment";
 import { WHEEL_MODE_FEATURES } from "@/data/wheelModeFeatures";
 import { EmbedWidgetSnippet } from "@/components/EmbedWidgetSnippet";
+import { useStreamerMode } from "@/lib/useStreamerMode";
 
 function wheelOgUrl(slug: string) {
   return `${SITE_ORIGIN}/og/${slug}.png`;
@@ -39,6 +40,7 @@ function wheelOgUrl(slug: string) {
 
 const WheelProgrammaticPage = () => {
   const { slug } = useParams<{ slug: string }>();
+  const { streamerMode } = useStreamerMode();
   const page = getWheelPageBySlug(slug);
 
   if (!page) {
@@ -153,7 +155,9 @@ const WheelProgrammaticPage = () => {
         </script>
       </Helmet>
 
-      <article className="container mx-auto px-4 py-8 md:py-12 max-w-5xl">
+      <article className={streamerMode ? "w-full" : "container mx-auto px-4 py-8 md:py-12 max-w-5xl"}>
+        {!streamerMode ? (
+          <>
         <nav aria-label="Breadcrumb" className="mb-6">
           <ol className="flex flex-wrap items-center gap-1 text-sm text-muted-foreground">
             <li>
@@ -194,8 +198,10 @@ const WheelProgrammaticPage = () => {
             <time dateTime={lastUpdatedIso}>{lastUpdatedLabel}</time>
           </p>
         </div>
+          </>
+        ) : null}
 
-        <div className="mb-6">
+        <div className={streamerMode ? "" : "mb-6"}>
           <WheelBySlug
             slug={page.slug}
             presetOptionLabels={
@@ -204,6 +210,8 @@ const WheelProgrammaticPage = () => {
           />
         </div>
 
+        {!streamerMode ? (
+          <>
         {showStreamerCallout ? (
           <Card className="p-5 md:p-6 mb-6 border-primary/20 bg-primary/5">
             <h2 className="text-lg font-bold mb-2">Streamer mode (OBS / Streamlabs)</h2>
@@ -465,6 +473,8 @@ const WheelProgrammaticPage = () => {
             </div>
           </Card>
         </div>
+          </>
+        ) : null}
       </article>
     </>
   );
