@@ -15,7 +15,7 @@
     "generate:classroom-game-cards-pdf": "node scripts/generate-classroom-game-cards-pdf.mjs",
     "lint:blog-copy": "node scripts/lint-blog-copy.mjs",
     "polish:emdash": "node scripts/polish-emdash.mjs",
-    "prebuild": "node scripts/generate-wheel-pages-data.mjs && node scripts/generate-fairness-study.mjs && node scripts/lint-blog-copy.mjs && node scripts/lint-direct-answer.mjs && node scripts/generate-public-images.mjs && node scripts/generate-fairness-og-image.mjs && node scripts/generate-blog-inline-images.mjs && node scripts/generate-classroom-game-cards-pdf.mjs && node scripts/generate-sitemap.mjs",
+    "prebuild": "node scripts/generate-wheel-pages-data.mjs && node scripts/generate-fairness-study.mjs && node scripts/lint-blog-copy.mjs && node scripts/lint-direct-answer.mjs && node scripts/generate-sitemap.mjs && node scripts/identity-check.mjs && node scripts/generate-public-images.mjs && node scripts/generate-fairness-og-image.mjs && node scripts/generate-blog-inline-images.mjs && node scripts/generate-classroom-game-cards-pdf.mjs",
     "build": "vite build && node scripts/generate-wheel-og-images.mjs && node scripts/generate-static-pages.mjs && node scripts/run-indexnow-if-publish.mjs",
     "build:dev": "vite build --mode development",
     "build:prod": "vite build && node scripts/generate-static-pages.mjs",
@@ -29,7 +29,7 @@
     "audit:meta": "node scripts/audit-meta.mjs",
     "audit:jsonld": "node scripts/audit-jsonld.mjs",
     "audit:redirects": "node scripts/audit-redirects.mjs",
-    "audit:all": "node scripts/audit-ssr.mjs && node scripts/dup-check.mjs && node scripts/audit-meta.mjs && node scripts/audit-jsonld.mjs && node scripts/audit-redirects.mjs",
+    "audit:all": "node scripts/audit-ssr.mjs && node scripts/dup-check.mjs && node scripts/audit-meta.mjs && node scripts/audit-jsonld.mjs && node scripts/audit-redirects.mjs && node scripts/identity-check.mjs",
     "test:e2e": "playwright test",
     "indexnow": "node scripts/indexnow-ping.mjs",
     "preview": "vite preview"

@@ -18,6 +18,7 @@ import {
   getWheelUniqueContent,
 } from "./wheel-content-loader.mjs";
 import { decodeResultId } from "./result-proof-decode.mjs";
+import { TEAM_AUTHORS, ORG_NAME, CONTACT_EMAIL } from "./team-constants.mjs";
 
 const __rootContent = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const ROUTE_LASTMOD_PATH = path.join(__rootContent, "src", "generated", "routeLastmod.json");
@@ -233,18 +234,29 @@ ${exploreNav()}`);
 /* --------------------------------------------------------------- About ----- */
 
 function aboutContent() {
+  const { armghana, zoha, raja, abdal } = TEAM_AUTHORS;
   return mainWrap(`<h1>About Online Spin Wheel</h1>
-<p>Online Spin Wheel is an independent project built and maintained by <a href="/author/raja-jahangir">Raja Jahangir</a>. It is a one-person project — not a company or agency. Raja designs the tools, writes the code, publishes every wheel, and answers the emails, working from Islamabad, Pakistan, and serving users worldwide.</p>
-<p>The site started because too many online spinners were slow, buried in ads, or vague about whether their results were genuinely random. In early 2026 it launched as a straightforward, cleanly designed way to make random choices, pick contest winners, and gamify classrooms without the hassle.</p>
+<p>${ORG_NAME} is built and maintained by a small independent team dedicated solely to this product. We are not a multi-property agency — we focus on one job: free, fast, trustworthy spin wheels for classrooms, giveaways, streamers, and everyday decisions.</p>
+<p>The site started because too many online spinners were slow, buried in ads, or vague about whether their results were genuinely random. In early 2026 we launched a straightforward, cleanly designed way to make random choices, pick contest winners, and gamify classrooms without logins or bloated interfaces.</p>
 
 <section>
-  <h2>Our story</h2>
-  <p>It began with a simple giveaway problem: picking a fair winner without forcing people into logins, subscriptions, or bloated interfaces. The answer was a clean, mathematically fair wheel that runs instantly in the browser with no app required. Today teachers, creators, and businesses use it daily because it stays fast, private, and free. The wheel does not jump to a result — it spins and slows naturally with momentum and friction simulation. No hidden scripts, no favoritism, just the fair result you need.</p>
+  <h2>Our team</h2>
+  <ul>
+    <li><strong><a href="${armghana.path}">${esc(armghana.name)}</a> — CEO.</strong> Sets product direction and business priorities: which wheels ship, how we keep the core tool free, and how we communicate about fairness and privacy.</li>
+    <li><strong><a href="${zoha.path}">${esc(zoha.name)}</a> — Co-Founder.</strong> Shapes company direction and user experience: responsive layouts, specialty wheel roadmaps, and product focus for real hosts and teachers.</li>
+    <li><strong><a href="${raja.path}">${esc(raja.name)}</a> — Content &amp; SEO Lead.</strong> Owns content, SEO, and quality review: wheel copy, guides, blog posts, and the pre-launch testing checklist every page must pass.</li>
+    <li><strong><a href="${abdal.path}">${esc(abdal.name)}</a> — Social Media Expert.</strong> Manages brand social channels, community engagement, and how we share wheel tips with teachers, streamers, and creators.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Why we built it</h2>
+  <p>It began with a simple giveaway problem: picking a fair winner without forcing people into logins, subscriptions, or bloated interfaces. The answer was a clean, mathematically fair wheel that runs instantly in the browser with no app required. Today, teachers, creators, and businesses use it daily because it stays fast, private, and free. The wheel does not jump to a result — it spins and slows naturally with momentum and friction simulation.</p>
 </section>
 
 <section>
   <h2>How every wheel is tested</h2>
-  <p>Fairness is not assumed here — it is measured. Every wheel is tested for uniform distribution across 10,000 automated spins before launch. If any equal-sized segment wins noticeably more or less often than the rest, the wheel is not published until the distribution is even. The randomness itself comes from the browser's Web Crypto API (<code>crypto.getRandomValues()</code>), the same cryptographically secure source used for encryption keys — never the predictable <code>Math.random()</code>. Because each segment's probability equals its arc divided by 360 degrees, equal slices give every entry identical odds, and each spin is independent of the last.</p>
+  <p>Fairness is a team practice — not a marketing line. Every wheel is tested for uniform distribution across 10,000 automated spins before launch. If any equal-sized segment wins noticeably more or less often than the rest, the wheel is not published until the distribution is even. Randomness comes from the browser's Web Crypto API (<code>crypto.getRandomValues()</code>) — never predictable <code>Math.random()</code>. Read the full explanation on our <a href="/how-randomness-works">how randomness works</a> page and our <a href="/spin-wheel-fairness-study">100,000-spin fairness study</a>.</p>
 </section>
 
 <section>
@@ -254,12 +266,12 @@ function aboutContent() {
 
 <section>
   <h2>Updates &amp; reporting a bug</h2>
-  <p>Content is reviewed regularly and refreshed whenever tools, best practices, or your feedback call for it. Every tool page and blog post shows a visible "Last updated" date wired to real content changes. Found a bug or spotted an error? Email <a href="mailto:hello@onlinespinwheel.fun">hello@onlinespinwheel.fun</a> with the page URL, your device and browser, and what happened versus what you expected. Reports are reviewed and, where valid, fixed and re-dated within 48 hours.</p>
+  <p>Content is reviewed regularly and refreshed whenever tools, best practices, or your feedback call for it. Every tool page and blog post shows a visible "Last updated" date wired to real content changes. Found a bug or spotted an error? Email <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a> with the page URL, your device and browser, and what happened versus what you expected. Reports are reviewed and, where valid, fixed and re-dated within 48 hours.</p>
 </section>
 
 <section>
   <h2>Our commitment</h2>
-  <p>Online Spin Wheel is 100% free and unlimited with no premium tiers or hidden caps, and it is universally accessible on desktop, tablet, and mobile. Questions, feedback, or ideas for a new wheel are always welcome at <a href="mailto:hello@onlinespinwheel.fun">hello@onlinespinwheel.fun</a>.</p>
+  <p>Online Spin Wheel is 100% free and unlimited with no premium tiers or hidden caps, and it is universally accessible on desktop, tablet, and mobile. Questions, feedback, or ideas for a new wheel are always welcome at <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>.</p>
 </section>
 ${exploreNav()}`);
 }
@@ -272,7 +284,7 @@ function contactContent() {
 
 <section>
   <h2>Email us</h2>
-  <p>For general inquiries, feedback, or support, email <a href="mailto:hello@onlinespinwheel.fun">hello@onlinespinwheel.fun</a>. I'm always looking to improve, so share your thoughts, suggestions, or report any issues you encounter — your feedback directly shapes which wheels, guides, and features I build next, and it helps make Online Spin Wheel better for everyone. There is no contact form barrier to real help: a clear email reaches a real person.</p>
+  <p>For general inquiries, feedback, or support, email <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>. We read every message and respond as soon as possible — most support, privacy, and business emails receive a reply within 24–48 hours. Your feedback directly shapes which wheels, guides, and features we build next.</p>
 </section>
 
 <section>
@@ -289,7 +301,7 @@ function contactContent() {
 <section>
   <h2>Business information</h2>
   <ul>
-    <li><strong>Operator:</strong> Online Spin Wheel is an independent project built and maintained by <a href="/author/raja-jahangir">Raja Jahangir</a> — not a company or agency.</li>
+    <li><strong>Operator:</strong> ${ORG_NAME} — a small team dedicated solely to this website. Data controller: ${ORG_NAME} (site owner: confirm registered legal entity name if applicable).</li>
     <li><strong>Based in:</strong> Islamabad, Pakistan. Serving users worldwide online.</li>
     <li><strong>Response time:</strong> typically within 24–48 hours on business days.</li>
   </ul>
@@ -297,12 +309,12 @@ function contactContent() {
 
 <section>
   <h2>Feedback and requests</h2>
-  <p>Have an idea for a new wheel, an accessibility improvement, or a localization request? Reach out with a short description of what you need and who it's for, and I'll suggest a practical approach. Suggestions from schools, nonprofits, and community organizations are especially welcome.</p>
+  <p>Have an idea for a new wheel, an accessibility improvement, or a localization request? Reach out with a short description of what you need and who it's for, and we'll suggest a practical approach. Suggestions from schools, nonprofits, and community organizations are especially welcome.</p>
 </section>
 
 <section>
   <h2>Editorial corrections</h2>
-  <p>Accuracy matters. If you spot an error in a blog post, guide, or wheel description — a broken link, an outdated statistic, or an unclear instruction — email me and reference the page URL. I review reported issues and update published content, refreshing the visible "Last updated" date when I make a change.</p>
+  <p>Accuracy matters. If you spot an error in a blog post, guide, or wheel description — a broken link, an outdated statistic, or an unclear instruction — email us and reference the page URL. We review reported issues and update published content, refreshing the visible "Last updated" date when we make a change.</p>
 </section>
 
 <section>
@@ -323,27 +335,129 @@ ${exploreNav()}`);
 
 /* -------------------------------------------------------------- Author ----- */
 
-function authorContent() {
-  return mainWrap(`<h1>Raja Jahangir — Creator of Online Spin Wheel</h1>
-<p>I'm Raja Jahangir, the independent creator of <a href="/">Online Spin Wheel</a>. Online Spin Wheel is an independent project built and maintained by me — not a company or an agency. I design it, write the code, publish every specialty wheel, and answer the emails. Working from Islamabad, Pakistan, I keep the tool free, fast, and privacy-respecting for teachers, creators, and small businesses around the world.</p>
-<p>I built this site because most spinners I found were slow, cluttered with ads, or vague about whether their results were actually random. I wanted a wheel that loads instantly, works on any phone or smartboard, and is honest about how it picks. So every wheel here draws its randomness from the browser's Web Crypto API (<code>crypto.getRandomValues()</code>) rather than a predictable <code>Math.random()</code>, and your entries never leave your device.</p>
-<p>Each wheel is designed the same way: I start from a real use case — a classroom name draw, a giveaway, a team stand-up — write the content and default entries around it, and then build the interaction so it feels fair to watch. Before a wheel goes live, I test it for uniform distribution across 10,000 automated spins to confirm every equal-sized segment lands with the same probability. If the results drift, the wheel doesn't ship until they don't.</p>
-<p>Fairness is the whole point, so I keep it verifiable rather than asking you to take my word for it. The spin is continuous and visible, you can screen-record it as proof, and I explain the exact mechanism on the <a href="/how-randomness-works">how randomness works</a> page. When I update a tool or a guide, I refresh its visible last-updated date so you always know how current the page is.</p>
+function authorArmghanaContent() {
+  const a = TEAM_AUTHORS.armghana;
+  return mainWrap(`<h1>${esc(a.name)} — CEO, ${ORG_NAME}</h1>
+<p>I'm ${esc(a.name)}, CEO of <a href="/">${ORG_NAME}</a>. Our team built this site because too many online spinners were slow, cluttered, or vague about fairness. We focus on one product — free, browser-based wheels for classrooms, giveaways, and everyday decisions.</p>
+<p>As CEO, I set product direction and business priorities: which wheels ship next, how we keep the core tool free without sacrificing speed, and how we communicate honestly about randomness and privacy. I work with <a href="${TEAM_AUTHORS.zoha.path}">${esc(TEAM_AUTHORS.zoha.name)}</a> on company direction and with <a href="${TEAM_AUTHORS.raja.path}">${esc(TEAM_AUTHORS.raja.name)}</a> on content quality, SEO, and the testing bar every page must meet before it goes live.</p>
+<p>Our team works only on Online Spin Wheel — no unrelated products or agency side projects. Every decision ties back to users who need a fair pick in front of a class, a livestream, or a comment section. When we add a specialty wheel or publish a guide, it is because real hosts and teachers asked for something we could verify works.</p>
+<p>Fairness is a team practice. Before launch, wheels are checked for uniform distribution across 10,000 automated spins; if segments drift, the wheel does not ship. Randomness comes from the browser's Web Crypto API (<code>crypto.getRandomValues()</code>), and user entries stay on the device.</p>
 
 <section>
-  <h2>How I work</h2>
+  <h2>What I focus on as CEO</h2>
   <ul>
-    <li>Design and build every wheel and page myself, end to end.</li>
-    <li>Test each wheel for uniform distribution across 10,000 automated spins before launch.</li>
-    <li>Use cryptographically secure randomness and keep all processing on your device.</li>
-    <li>Maintain fast, server-rendered, structured content so pages are accurate and accessible.</li>
-    <li>Review published content regularly and stamp a visible last-updated date.</li>
+    <li>Product direction: which specialty wheels and guides earn a place on the roadmap.</li>
+    <li>Business priorities: keeping the core spinner free, fast, and sustainable without dark patterns.</li>
+    <li>Quality bar: no wheel ships until distribution testing and content review are complete.</li>
+    <li>Honest communication: clear pages on randomness, privacy, and what data we do not collect.</li>
+    <li>Partnerships and feedback: routing teacher, creator, and nonprofit requests to the right next step.</li>
   </ul>
 </section>
 
 <section>
+  <h2>How our team works together</h2>
+  <p>${esc(TEAM_AUTHORS.zoha.name)} shapes user experience and co-founder direction. ${esc(TEAM_AUTHORS.raja.name)} owns content, SEO, and the 10,000-spin checks documented on our <a href="/how-randomness-works">how randomness works</a> page and in the <a href="/spin-wheel-fairness-study">fairness study</a>. I align those streams so releases stay coordinated — a new wheel always ships with accurate copy, working embeds, and verifiable randomness.</p>
+  <p>We refresh visible last-updated dates when published content changes, respond to bug reports at <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>, and keep server-rendered HTML so crawlers and screen readers see the same facts users do in the app.</p>
+</section>
+
+<section>
   <h2>Connect</h2>
-  <p>Read the <a href="/blog">Online Spin Wheel blog</a>, learn more on the <a href="/about-us">About us</a> page, or connect with me on <a href="https://www.linkedin.com/in/raja-jahangir" rel="noopener noreferrer author">LinkedIn</a>. Follow the project on <a href="https://www.instagram.com/onlinespinwheel/" rel="noopener noreferrer">Instagram</a>, <a href="https://x.com/onlinespinwheel" rel="noopener noreferrer">X</a>, <a href="https://www.youtube.com/@OnlineSpinWheel" rel="noopener noreferrer">YouTube</a>, or <a href="https://www.pinterest.com/onlinespinwheel/" rel="noopener noreferrer">Pinterest</a>. Questions or feedback? Email <a href="mailto:hello@onlinespinwheel.fun">hello@onlinespinwheel.fun</a>.</p>
+  <p>Questions about partnerships or how we operate? Email <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a> or connect on <a href="${a.linkedIn}" rel="noopener noreferrer author">LinkedIn</a>. Read more on our <a href="/about-us">About us</a> page and meet the full leadership team: <a href="${TEAM_AUTHORS.zoha.path}">${esc(TEAM_AUTHORS.zoha.name)}</a> and <a href="${TEAM_AUTHORS.raja.path}">${esc(TEAM_AUTHORS.raja.name)}</a>.</p>
+</section>
+${exploreNav()}`);
+}
+
+function authorZohaContent() {
+  const a = TEAM_AUTHORS.zoha;
+  return mainWrap(`<h1>${esc(a.name)} — Co-Founder, ${ORG_NAME}</h1>
+<p>I'm ${esc(a.name)}, Co-Founder of <a href="/">${ORG_NAME}</a>. Together with <a href="${TEAM_AUTHORS.armghana.path}">${esc(TEAM_AUTHORS.armghana.name)}</a>, I help steer a small team that builds one thing well: free spin wheels that load instantly, work on any device, and explain how they pick — without logins, paywalls, or hidden scripts.</p>
+<p>My work sits at the intersection of product experience and company direction. I focus on what users need when they open a wheel under time pressure — a teacher before period one, a streamer mid-giveaway, a couple deciding where to eat. That means clear defaults, responsive layouts, and specialty pages that answer a real question.</p>
+<p>Online Spin Wheel is intentionally narrow in scope. We do not operate unrelated properties. Every roadmap item must earn its place by making the core product more useful or more trustworthy.</p>
+<p>We test wheels for even segment distribution across 10,000 automated spins before launch, document randomness on our <a href="/how-randomness-works">how randomness works</a> page, and stamp visible last-updated dates when content changes. <a href="${TEAM_AUTHORS.raja.path}">${esc(TEAM_AUTHORS.raja.name)}</a> leads the content and SEO review that keeps those pages accurate.</p>
+
+<section>
+  <h2>What I focus on as Co-Founder</h2>
+  <ul>
+    <li>User experience: layouts that work on phones, projectors, and livestream overlays without extra setup.</li>
+    <li>Roadmap discipline: specialty wheels and guides that solve a concrete host or classroom problem.</li>
+    <li>Trust signals: visible mechanics, honest privacy copy, and no surprise account walls.</li>
+    <li>Release coordination with ${esc(TEAM_AUTHORS.armghana.name)} on priorities and with ${esc(TEAM_AUTHORS.raja.name)} on published accuracy.</li>
+    <li>Feedback loops: turning support emails and social messages into the next useful improvement.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Why we stay focused on one product</h2>
+  <p>Spin wheels look simple, but fairness, speed, and clarity compound when you treat them as a full product — not a side widget on a larger agency site. Staying dedicated to Online Spin Wheel lets us ship embeddable tools, classroom spinners, and decision wheels that share one randomness model and one content standard.</p>
+  <p>When teachers ask for a classroom spinner or creators need a giveaway wheel, we can respond with a tested page and plain-language instructions instead of a generic template. That focus is a deliberate choice ${esc(TEAM_AUTHORS.armghana.name)} and I made when we started building together.</p>
+</section>
+
+<section>
+  <h2>Connect</h2>
+  <p>Feedback shapes what we build next. Email <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a> or connect on <a href="${a.linkedIn}" rel="noopener noreferrer author">LinkedIn</a>. Read the full team story on <a href="/about-us">About us</a> and learn how ${esc(TEAM_AUTHORS.raja.name)} tests every wheel before launch on his <a href="${TEAM_AUTHORS.raja.path}">author page</a>.</p>
+</section>
+${exploreNav()}`);
+}
+
+function authorAbdalContent() {
+  const a = TEAM_AUTHORS.abdal;
+  return mainWrap(`<h1>${esc(a.name)} — Social Media Expert, ${ORG_NAME}</h1>
+<p>I'm ${esc(a.name)}, Social Media Expert at <a href="/">${ORG_NAME}</a>. I work with <a href="${TEAM_AUTHORS.armghana.path}">${esc(TEAM_AUTHORS.armghana.name)}</a>, <a href="${TEAM_AUTHORS.zoha.path}">${esc(TEAM_AUTHORS.zoha.name)}</a>, and <a href="${TEAM_AUTHORS.raja.path}">${esc(TEAM_AUTHORS.raja.name)}</a> on a small team dedicated solely to this product — helping teachers, streamers, and everyday users discover free spin wheels that are fast, fair, and honest about how they pick.</p>
+<p>My role is to grow and serve the community around Online Spin Wheel on the channels where hosts and educators already spend time. That means sharing practical wheel tips, highlighting new specialty wheels, and responding to questions about giveaways, classroom games, and fair random picks — always pointing people to the live tool and our guides rather than hype.</p>
+<p>Social content follows the same standards as the rest of the site. I do not overpromise what the wheels do, I link to our <a href="/how-randomness-works">how randomness works</a> page when fairness comes up, and I coordinate with ${esc(TEAM_AUTHORS.raja.name)} on published copy so posts match what the product actually ships.</p>
+
+<section>
+  <h2>What I focus on</h2>
+  <ul>
+    <li>Brand social channels: Instagram, X, YouTube, and Pinterest for Online Spin Wheel.</li>
+    <li>Community engagement: answering questions from teachers, streamers, and small businesses using the wheels.</li>
+    <li>Sharing useful content: wheel tips, new specialty pages, and links to guides on the <a href="/blog">blog</a>.</li>
+    <li>Coordinating launches with the team so social posts align with tested wheels and accurate copy.</li>
+    <li>Listening for feedback that should reach product and content — new wheel ideas, accessibility requests, or confusing instructions.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>How social fits the team</h2>
+  <p>${esc(TEAM_AUTHORS.armghana.name)} sets product direction; ${esc(TEAM_AUTHORS.zoha.name)} shapes user experience and roadmap priorities; ${esc(TEAM_AUTHORS.raja.name)} owns content, SEO, and the 10,000-spin testing checklist. My job is to carry that same honesty and clarity onto social platforms — no fake urgency, no misleading claims about randomness, and always a path back to the free tool on <a href="/">onlinespinwheel.fun</a>.</p>
+  <p>When we publish a new specialty wheel or a guide like the <a href="/spin-wheel-fairness-study">fairness study</a>, I help make sure the community hears about it in a way that matches what is actually on the page. That keeps trust high for classrooms running live picks and creators running giveaways.</p>
+</section>
+
+<section>
+  <h2>Connect</h2>
+  <p>Find Online Spin Wheel on <a href="https://www.instagram.com/onlinespinwheel/" rel="noopener noreferrer">Instagram</a>, <a href="https://x.com/onlinespinwheel" rel="noopener noreferrer">X</a>, <a href="https://www.youtube.com/@OnlineSpinWheel" rel="noopener noreferrer">YouTube</a>, and <a href="https://www.pinterest.com/onlinespinwheel/" rel="noopener noreferrer">Pinterest</a>. Ideas for posts, collaborations, or community features? Email <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a> or connect on <a href="${a.linkedIn}" rel="noopener noreferrer author">LinkedIn</a>. Read the full team story on <a href="/about-us">About us</a>.</p>
+</section>
+${exploreNav()}`);
+}
+
+function authorContent() {
+  const a = TEAM_AUTHORS.raja;
+  return mainWrap(`<h1>${esc(a.name)} — Content &amp; SEO Lead, ${ORG_NAME}</h1>
+<p>I'm ${esc(a.name)}, Content &amp; SEO Lead at <a href="/">${ORG_NAME}</a>. I work with <a href="${TEAM_AUTHORS.armghana.path}">${esc(TEAM_AUTHORS.armghana.name)}</a> and <a href="${TEAM_AUTHORS.zoha.path}">${esc(TEAM_AUTHORS.zoha.name)}</a> on a small team dedicated solely to this product — free spin wheels that are fast, honest, and privacy-respecting for teachers, creators, and small businesses worldwide.</p>
+<p>I own the words on the site: specialty wheel copy, comparison guides, blog posts, and the SEO structure that helps people find the right tool. Before a page ships, I check that it answers a real use case, links to the live wheel, and does not overpromise what the software does.</p>
+<p>Fairness is measured, not assumed. Before any wheel goes live, I run automated checks across 10,000 spins to confirm each equal-sized segment wins at the same rate. Randomness comes from the browser's Web Crypto API (<code>crypto.getRandomValues()</code>), not predictable <code>Math.random()</code>, and entries you type stay on your device. I document that mechanism on the <a href="/how-randomness-works">how randomness works</a> page and in our <a href="/spin-wheel-fairness-study">fairness study</a>.</p>
+<p>When I update a tool page or guide, I refresh its visible last-updated date. Editorial corrections and bug reports go to <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a> — include the page URL and what you expected versus what happened.</p>
+
+<section>
+  <h2>How I work on the team</h2>
+  <ul>
+    <li>Write and review wheel pages, guides, and blog posts for accuracy and clarity.</li>
+    <li>Test each wheel for uniform distribution across 10,000 automated spins before launch.</li>
+    <li>Use cryptographically secure randomness and keep processing on the user's device.</li>
+    <li>Maintain server-rendered, structured content so pages stay accessible.</li>
+    <li>Refresh visible last-updated dates when published content changes.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Content and SEO responsibilities</h2>
+  <p>I structure specialty wheel pages so each one answers a specific search intent — random name picker, classroom spinner, yes-or-no decision, giveaway wheel — with a direct answer, FAQs, and a link to the live tool. Comparison guides and case studies explain when a spin wheel beats ad-hoc methods without inventing features the app does not have.</p>
+  <p>Blog posts cover classroom games, office icebreakers, and fair giveaway practices. Article schema lists me as author; the site publisher is ${ORG_NAME} as an organization. I coordinate with ${esc(TEAM_AUTHORS.armghana.name)} on launch timing and with ${esc(TEAM_AUTHORS.zoha.name)} on whether a new page improves the core experience.</p>
+</section>
+
+<section>
+  <h2>Connect</h2>
+  <p>Read the <a href="/blog">Online Spin Wheel blog</a>, learn more on the <a href="/about-us">About us</a> page, or connect on <a href="${a.linkedIn}" rel="noopener noreferrer author">LinkedIn</a>. Follow the project on <a href="https://www.instagram.com/onlinespinwheel/" rel="noopener noreferrer">Instagram</a>, <a href="https://x.com/onlinespinwheel" rel="noopener noreferrer">X</a>, <a href="https://www.youtube.com/@OnlineSpinWheel" rel="noopener noreferrer">YouTube</a>, or <a href="https://www.pinterest.com/onlinespinwheel/" rel="noopener noreferrer">Pinterest</a>.</p>
 </section>
 ${exploreNav()}`);
 }
@@ -357,7 +471,7 @@ ${exploreNav()}`);
 }
 
 function privacyContent() {
-  return legalWrap("Privacy Policy", `<p>This Privacy Policy describes how Online Spin Wheel ("we", "us", or "our"), an independent project built and maintained by Raja Jahangir, collects, uses, and protects information when you use our website and tools at <a href="https://onlinespinwheel.fun">https://onlinespinwheel.fun</a>. By using our website, you agree to the collection and use of information in accordance with this policy.</p>
+  return legalWrap("Privacy Policy", `<p>This Privacy Policy describes how ${ORG_NAME} ("we", "us", or "our") collects, uses, and protects information when you use our website and tools at <a href="https://onlinespinwheel.fun">https://onlinespinwheel.fun</a>. ${ORG_NAME} is the data controller for this site. By using our website, you agree to the collection and use of information in accordance with this policy.</p>
 <section><h2>Information we collect</h2><p>Because Online Spin Wheel works directly in your browser, the inputs you type into the wheel (names, numbers, prizes) stay on your local device and are not collected by our servers. To keep the site running and serve relevant advertisements, we collect log data (IP address, browser type and version, pages visited, and time and date of visit), device information (operating system and unique device identifiers), and contact information (your email and message if you contact us).</p></section>
 <section><h2>Cookies and web beacons</h2><p>We use cookies and similar technologies (web beacons and pixels): essential cookies necessary for the site to function, analytical/performance cookies to count visitors and see how they move around the site, and targeting/advertising cookies to deliver more relevant ads.</p></section>
 <section><h2>Local browser storage</h2><p>To improve your experience without an account, we use your browser's localStorage for wheel entries, your cookie-consent choice, referral attribution, and theme preference. You can clear this data anytime in your browser settings.</p></section>
@@ -368,11 +482,11 @@ function privacyContent() {
 <section><h2>CCPA/CPRA rights (California)</h2><p>California residents have the right to know, the right to delete, the right to opt out of "sale"/sharing, and the right to non-discrimination. We do not sell personal data, though sharing with ad networks may be considered a "sale" under CCPA. Contact us to exercise these rights; we have one month to respond.</p></section>
 <section><h2>GDPR rights (EEA/UK)</h2><p>EEA and UK residents have rights to access, rectification, erasure, restriction of processing, objection to processing, and data portability. We rely on your consent (via our cookie banner) to process non-essential advertising cookies, and you can withdraw it at any time.</p></section>
 <section><h2>Children's privacy (COPPA)</h2><p>We comply with COPPA and do not knowingly collect personal information from children under 13. If your child has provided personal data, contact us so we can remove it.</p></section>
-<section><h2>Changes and contact</h2><p>We may update this policy and will post changes on this page. Questions? Email <a href="mailto:hello@onlinespinwheel.fun">hello@onlinespinwheel.fun</a>. Online Spin Wheel is an independent project built and maintained by <a href="/author/raja-jahangir">Raja Jahangir</a>. See also our <a href="/terms-and-conditions">Terms</a> and <a href="/disclaimer">Disclaimer</a>.</p></section>`);
+<section><h2>Changes and contact</h2><p>We may update this policy and will post changes on this page. Questions? Email <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>. Operated by ${ORG_NAME}. See also our <a href="/terms-and-conditions">Terms</a> and <a href="/disclaimer">Disclaimer</a>.</p></section>`);
 }
 
 function cookieContent() {
-  return legalWrap("Cookie Policy", `<p>This Cookie Policy explains how Online Spin Wheel ("we", "us", or "our"), an independent project built and maintained by Raja Jahangir, uses cookies and similar tracking technologies on <a href="https://onlinespinwheel.fun">https://onlinespinwheel.fun</a>. By using the site, you agree to the use of cookies as described below.</p>
+  return legalWrap("Cookie Policy", `<p>This Cookie Policy explains how ${ORG_NAME} ("we", "us", or "our") uses cookies and similar tracking technologies on <a href="https://onlinespinwheel.fun">https://onlinespinwheel.fun</a>. By using the site, you agree to the use of cookies as described below.</p>
 <section><h2>What are cookies?</h2><p>Cookies are small text files stored on your device by websites you visit. They help provide a better, faster, and safer experience, remember preferences, and analyze usage. We also use similar technologies such as web beacons, tracking pixels, and local browser storage.</p></section>
 <section><h2>Types of cookies we use</h2><ul>
 <li><strong>Strictly necessary</strong> — essential for core operation (session IDs, security tokens); session to 1 year.</li>
@@ -387,7 +501,7 @@ function cookieContent() {
 }
 
 function termsContent() {
-  return legalWrap("Terms and Conditions", `<p>These Terms and Conditions ("Terms") govern your use of the Online Spin Wheel website and tool at <a href="https://onlinespinwheel.fun">https://onlinespinwheel.fun</a> (the "Site" and "Service"), an independent project owned and operated by Raja Jahangir. By accessing or using the site, you agree to be bound by these Terms. If you do not agree, you must not use this website.</p>
+  return legalWrap("Terms and Conditions", `<p>These Terms and Conditions ("Terms") govern your use of the ${ORG_NAME} website and tool at <a href="https://onlinespinwheel.fun">https://onlinespinwheel.fun</a> (the "Site" and "Service"), operated by ${ORG_NAME}. By accessing or using the site, you agree to be bound by these Terms. If you do not agree, you must not use this website.</p>
 <section><h2>About the service</h2><p>Online Spin Wheel provides a free, browser-based random picker that lets users add names, numbers, or options to a virtual wheel and spin to generate a random selection, for entertainment, educational, organizational, and general decision-making support.</p></section>
 <section><h2>Ad-supported model</h2><p>The Service is 100% free and ad-supported. By using the site you agree we may display third-party advertisements (such as Google AdSense) and use analytics providers, subject to our <a href="/privacy-policy">Privacy Policy</a> and <a href="/cookie-policy">Cookie Policy</a>.</p></section>
 <section><h2>Eligibility and acceptable use</h2><ul>
@@ -399,16 +513,16 @@ function termsContent() {
 <section><h2>No accounts and user content</h2><p>No account is required. Text you enter is processed locally in your browser and is your responsibility; avoid entering sensitive information. Feedback you email us grants Raja Jahangir a non-exclusive, worldwide, royalty-free license to use it to improve the Service.</p></section>
 <section><h2>Intellectual property</h2><p>Unless stated otherwise, all content — interface, design, text, graphics, logos, physics engine, and code — is owned by Raja Jahangir and protected by law. You may not copy, modify, distribute, sell, or lease any part of the site, but you may display it on your devices, share screen recordings, or live-stream the wheel as part of normal use.</p></section>
 <section><h2>Warranties and liability</h2><p>The Service is provided "AS IS" and "AS AVAILABLE" without warranties of any kind. To the fullest extent permitted by law, Raja Jahangir disclaims all warranties and will not be liable for indirect, incidental, special, consequential, or punitive damages. You agree to indemnify Online Spin Wheel and Raja Jahangir against claims arising from your use or violations of these Terms.</p></section>
-<section><h2>Governing law, changes, and contact</h2><p>These Terms are governed by the laws of Pakistan, with disputes resolved in the courts of Islamabad, Pakistan. We may update these Terms at any time; continued use constitutes acceptance. Questions? Email <a href="mailto:hello@onlinespinwheel.fun">hello@onlinespinwheel.fun</a>. This site is operated by <a href="/author/raja-jahangir">Raja Jahangir</a> as an independent solo project.</p></section>`);
+<section><h2>Governing law, changes, and contact</h2><p>These Terms are governed by the laws of Pakistan, with disputes resolved in the courts of Islamabad, Pakistan. We may update these Terms at any time; continued use constitutes acceptance. Questions? Email <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>. This site is operated by ${ORG_NAME}.</p></section>`);
 }
 
 function disclaimerContent() {
-  return legalWrap("Disclaimer", `<p>The information and tools provided by Online Spin Wheel ("we", "us", or "our"), an independent project built and maintained by Raja Jahangir, on <a href="https://onlinespinwheel.fun">https://onlinespinwheel.fun</a> are for general informational, educational, and entertainment purposes only. All information and services are provided in good faith; however, we make no representation or warranty regarding the accuracy, adequacy, validity, reliability, availability, or completeness of any tool or information on the site.</p>
+  return legalWrap("Disclaimer", `<p>The information and tools provided by ${ORG_NAME} ("we", "us", or "our") on <a href="https://onlinespinwheel.fun">https://onlinespinwheel.fun</a> are for general informational, educational, and entertainment purposes only. All information and services are provided in good faith; however, we make no representation or warranty regarding the accuracy, adequacy, validity, reliability, availability, or completeness of any tool or information on the site.</p>
 <section><h2>"As-is" and entertainment purpose only</h2><p>Online Spin Wheel is a fun, interactive decision-making tool. While we use cryptographically secure algorithms to keep the wheel mathematically fair, the service is provided on an "as-is" and "as-available" basis. It is intended for low-stakes, everyday choices (classroom activities, giveaways, game nights) and should not be used for high-stakes, legally binding, or financial decisions. Any reliance on the results is at your own risk.</p></section>
 <section><h2>Advertising and ad-network disclaimer</h2><p>To keep the tool free, the site is ad-supported and partners with third-party networks including Google AdSense. The presence of an advertisement is not an endorsement, we do not control which specific ads are served, and any interactions or purchases with advertisers are solely between you and the advertiser.</p></section>
 <section><h2>External links disclaimer</h2><p>The site may link to other websites or third-party content that we do not investigate, monitor, or check for accuracy. We do not endorse or assume responsibility for third-party sites and are not a party to any transaction between you and third-party providers.</p></section>
 <section><h2>Limitation of liability and user responsibility</h2><p>Under no circumstances shall Raja Jahangir be liable for any loss or damage arising from use of the site, reliance on its information, or outcomes decided by the wheel. We do not store the data you input on our servers — all processing is local to your browser — and you are responsible for the content you enter and any disputes arising from results.</p></section>
-<section><h2>Contact</h2><p>Questions about this Disclaimer? Email <a href="mailto:hello@onlinespinwheel.fun">hello@onlinespinwheel.fun</a>. Raja Jahangir operates this site as a solo independent project. See also our <a href="/terms-and-conditions">Terms</a> and <a href="/privacy-policy">Privacy Policy</a>.</p></section>`);
+<section><h2>Contact</h2><p>Questions about this Disclaimer? Email <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>. Operated by ${ORG_NAME}. See also our <a href="/terms-and-conditions">Terms</a> and <a href="/privacy-policy">Privacy Policy</a>.</p></section>`);
 }
 
 /* ------------------------------------------ How randomness works ----------- */
@@ -607,7 +721,7 @@ ${exploreNav()}`);
 
 function wheelOfNamesAlternativeContent() {
   return mainWrap(`<h1>Wheel of Names Alternative — Compare Free Pickers</h1>
-<p>Looking for a WheelOfNames-style spinner? This page compares Online Spin Wheel with WheelOfNames.com, PickerWheel.com, and generic mobile spinner apps — without impersonating any brand. We are an independent project by <a href="/author/raja-jahangir">Raja Jahangir</a>.</p>
+<p>Looking for a WheelOfNames-style spinner? This page compares Online Spin Wheel with WheelOfNames.com, PickerWheel.com, and generic mobile spinner apps — without impersonating any brand. We are a small team dedicated solely to ${ORG_NAME}.</p>
 <p>A wheel-of-names tool randomly selects one entry from a pasted list — perfect for classrooms, meetings, and giveaways. WheelOfNames.com popularized the format. Online Spin Wheel offers the same core behavior plus specialty pages for <a href="/raffle-wheel">raffles</a>, <a href="/prize-wheel">prize spins</a>, and <a href="/classroom-spinner">teacher hubs</a>, all running in your browser with no signup. Try our <a href="/random-name-picker-wheel">random name picker wheel</a> for a direct name-list spinner.</p>
 
 <section><h2>Feature comparison</h2>
@@ -961,7 +1075,7 @@ function wheelContent(wheel, wheels) {
   const parts = [];
   parts.push(`<h1>${esc(wheel.h1 || keyword)}</h1>`);
   parts.push(
-    `<p>Reviewed by <a href="/author/raja-jahangir" rel="author">Raja Jahangir</a>, Creator of Online Spin Wheel. Last updated: <time datetime="${esc(
+    `<p>Reviewed by <a href="/author/raja-jahangir" rel="author">Raja Jahangir</a>, Content &amp; SEO Lead at ${ORG_NAME}. Last updated: <time datetime="${esc(
       lastUpdated,
     )}">${esc(fmtDate(lastUpdated))}</time>.</p>`,
   );
@@ -1129,6 +1243,9 @@ const FIXED = {
   "/about-us": () => aboutContent(),
   "/contact-us": () => contactContent(),
   "/author/raja-jahangir": () => authorContent(),
+  "/author/armghana-zeeshan": () => authorArmghanaContent(),
+  "/author/zoha-zeeshan": () => authorZohaContent(),
+  "/author/abdal-khalid": () => authorAbdalContent(),
   "/privacy-policy": () => privacyContent(),
   "/cookie-policy": () => cookieContent(),
   "/terms-and-conditions": () => termsContent(),

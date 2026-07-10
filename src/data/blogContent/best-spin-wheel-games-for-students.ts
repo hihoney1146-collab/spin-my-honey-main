@@ -8,7 +8,7 @@ export const bestSpinWheelGamesForStudents: BlogPost = {
     "12 spin the wheel games for students US K-12 teachers use daily. Free classroom spinner ideas, printable cards, and wheel links.",
   excerpt:
     "US K-12 teachers use spin the wheel games for students to call on volunteers fairly, review vocabulary, and run quick math drills without printing worksheets every morning. This guide lists twelve classroom spinner games with grade bands, setup steps, and the exact wheel to open on your smartboard. You will also find tips for fullscreen projection, remove-after-pick fairness, and session history when you run multiple rounds in one period.",
-  author: "Raja Jahangir (Creator of Online Spin Wheel)",
+  author: "Raja Jahangir (Content & SEO Lead, Online Spin Wheel)",
   updated: "2026-07-09",
   published: "2026-05-05",
   indexed: true,

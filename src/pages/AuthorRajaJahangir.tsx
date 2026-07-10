@@ -1,196 +1,95 @@
-import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft, ExternalLink, MapPin } from "lucide-react";
-import { OptimizedImage } from "@/components/OptimizedImage";
 import jahangirSeo from "@/assets/Jahangir-SEO.jpeg";
-import { ORG_NAME, RAJA_AUTHOR, siteIdentityJsonLd } from "@/lib/schema";
+import { RAJA_AUTHOR } from "@/lib/teamAuthors";
 import { TEAM_LINKEDIN, SITE_SOCIAL_LINKS } from "@/lib/teamLinks";
+import { ORG_NAME } from "@/lib/schema";
+import { AuthorProfilePage } from "@/components/AuthorProfilePage";
 
 const AuthorRajaJahangir = () => {
-  const canonical = RAJA_AUTHOR.url;
   const location = `${RAJA_AUTHOR.locality}, ${RAJA_AUTHOR.country}`;
 
   return (
-    <>
-      <Helmet>
-        <title>Raja Jahangir — Creator of {ORG_NAME}</title>
-        <meta
-          name="description"
-          content="Raja Jahangir is the independent creator of Online Spin Wheel. Learn how he designs, builds, and tests every wheel for fair, uniform random results — and connect with him."
-        />
-        <link rel="canonical" href={canonical} />
-        <meta
-          property="og:title"
-          content="Raja Jahangir — Creator of Online Spin Wheel"
-        />
-        <meta
-          property="og:description"
-          content="Meet Raja Jahangir, the solo maker who builds, tests, and maintains Online Spin Wheel and its free specialty wheels."
-        />
-        <meta property="og:type" content="profile" />
-        <meta property="og:url" content={canonical} />
-        <meta property="og:image" content={RAJA_AUTHOR.image} />
-        {siteIdentityJsonLd().map((node, i) => (
-          <script type="application/ld+json" key={i}>
-            {JSON.stringify(node)}
-          </script>
-        ))}
-      </Helmet>
-
-      <article className="container mx-auto px-4 py-8 md:py-12 max-w-3xl">
-        <nav className="mb-8">
-          <Button asChild variant="ghost" size="sm" className="-ml-3 text-muted-foreground">
-            <Link to="/about-us" className="inline-flex items-center gap-2">
-              <ArrowLeft className="h-4 w-4" />
-              About us
-            </Link>
-          </Button>
-        </nav>
-
-        <header className="flex flex-col sm:flex-row items-center gap-6 mb-10 text-center sm:text-left">
-          <div className="h-40 w-40 rounded-full overflow-hidden border border-border/60 shrink-0">
-            <OptimizedImage
-              src={jahangirSeo}
-              alt="Raja Jahangir, creator of Online Spin Wheel"
-              className="h-full w-full object-cover"
-              width={320}
-              height={320}
-              loading="eager"
-              fetchPriority="high"
-            />
-          </div>
-          <div>
-            <p className="text-sm font-semibold text-primary uppercase tracking-wide mb-1">
-              Creator &amp; maintainer
-            </p>
-            <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-2">
-              Raja Jahangir
-            </h1>
-            <p className="text-lg text-muted-foreground">
-              Creator of {ORG_NAME}
-            </p>
-            <p className="mt-2 inline-flex items-center gap-1.5 text-sm text-muted-foreground">
-              <MapPin className="h-4 w-4 text-primary" aria-hidden="true" />
-              {location}
-            </p>
-          </div>
-        </header>
-
-        <Card className="p-6 md:p-8 space-y-4 text-muted-foreground leading-relaxed">
-          <p>
-            I&apos;m Raja Jahangir, the independent creator of{" "}
-            <Link
-              to="/"
-              className="font-medium text-primary underline underline-offset-2 hover:opacity-90"
-            >
-              Online Spin Wheel
-            </Link>
-            . Online Spin Wheel is an independent project built and maintained by
-            me — not a company or an agency. I design it, write the code, publish
-            every specialty wheel, and answer the emails. Working from{" "}
-            {location}, I keep the tool free, fast, and privacy-respecting for
-            teachers, creators, and small businesses around the world.
-          </p>
-          <p>
-            I built this site because most spinners I found were slow, cluttered
-            with ads, or vague about whether their results were actually random.
-            I wanted a wheel that loads instantly, works on any phone or
-            smartboard, and is honest about how it picks. So every wheel here
-            draws its randomness from the browser&apos;s Web Crypto API
-            (<code>crypto.getRandomValues()</code>) rather than a predictable
-            <code> Math.random()</code>, and your entries never leave your device.
-          </p>
-          <p>
-            Each wheel is designed the same way: I start from a real use case —
-            a classroom name draw, a giveaway, a team stand-up — write the
-            content and default entries around it, and then build the interaction
-            so it feels fair to watch. Before a wheel goes live, I test it for
-            uniform distribution across 10,000 automated spins to confirm every
-            equal-sized segment lands with the same probability. If the results
-            drift, the wheel doesn&apos;t ship until they don&apos;t.
-          </p>
-          <p>
-            Fairness is the whole point, so I keep it verifiable rather than
-            asking you to take my word for it. The spin is continuous and
-            visible, you can screen-record it as proof, and I explain the exact
-            mechanism on the{" "}
-            <Link
-              to="/how-randomness-works"
-              className="font-medium text-primary underline underline-offset-2 hover:opacity-90"
-            >
-              how randomness works
-            </Link>{" "}
-            page. When I update a tool or a guide, I refresh its visible
-            &quot;last updated&quot; date so you always know how current the page is.
-          </p>
-        </Card>
-
+    <AuthorProfilePage
+      canonical={RAJA_AUTHOR.url}
+      title="Raja Jahangir — Content & SEO Lead, Online Spin Wheel"
+      metaDescription="Raja Jahangir leads content, SEO, and quality review for Online Spin Wheel. Learn how the team tests every wheel for fair, uniform random results."
+      ogDescription="Meet Raja Jahangir, Content & SEO Lead at Online Spin Wheel — content, SEO, and 10,000-spin fairness checks."
+      name={RAJA_AUTHOR.name}
+      roleLabel="Content & SEO"
+      jobTitle={RAJA_AUTHOR.jobTitle}
+      location={location}
+      image={{
+        src: jahangirSeo,
+        alt: "Raja Jahangir, Content & SEO Lead at Online Spin Wheel",
+      }}
+      linkedIn={TEAM_LINKEDIN.rajaJahangir}
+      ogImage={RAJA_AUTHOR.image}
+      showBrandSocial
+      brandSocialLinks={SITE_SOCIAL_LINKS}
+      extraSections={
         <section className="mt-8">
-          <h2 className="text-xl font-bold mb-4 text-foreground">
-            How I work
-          </h2>
+          <h2 className="text-xl font-bold mb-4 text-foreground">How I work on the team</h2>
           <ul className="list-disc pl-5 space-y-2 text-muted-foreground">
-            <li>Design and build every wheel and page myself, end to end.</li>
+            <li>Write and review wheel pages, guides, and blog posts for accuracy and clarity.</li>
             <li>
-              Test each wheel for uniform distribution across 10,000 automated
-              spins before launch.
+              Test each wheel for uniform distribution across 10,000 automated spins before launch.
             </li>
             <li>
-              Use cryptographically secure randomness and keep all processing on
-              your device.
+              Use cryptographically secure randomness and keep processing on the user&apos;s device.
             </li>
             <li>
-              Maintain fast, server-rendered, structured content so pages are
-              accurate and accessible.
+              Maintain server-rendered, structured content so pages stay accessible to crawlers and
+              screen readers.
             </li>
-            <li>
-              Review published content regularly and stamp a visible last-updated
-              date.
-            </li>
+            <li>Refresh visible last-updated dates when published content changes.</li>
           </ul>
         </section>
-
-        <section className="mt-8 flex flex-wrap gap-3">
-          <Button asChild>
-            <a
-              href={TEAM_LINKEDIN.rajaJahangir}
-              target="_blank"
-              rel="noopener noreferrer author"
-              className="inline-flex items-center gap-2"
-            >
-              Connect on LinkedIn
-              <ExternalLink className="h-4 w-4" />
-            </a>
-          </Button>
-          <Button asChild variant="outline">
-            <Link to="/blog">Read the blog</Link>
-          </Button>
-        </section>
-
-        <section className="mt-8">
-          <h2 className="text-xl font-bold mb-4 text-foreground">
-            Follow {ORG_NAME}
-          </h2>
-          <ul className="flex flex-wrap gap-x-4 gap-y-2">
-            {SITE_SOCIAL_LINKS.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm font-medium text-primary hover:underline inline-flex items-center gap-1"
-                >
-                  {link.label}
-                  <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
-      </article>
-    </>
+      }
+    >
+      <p>
+        I&apos;m Raja Jahangir, Content &amp; SEO Lead at{" "}
+        <Link to="/" className="font-medium text-primary underline underline-offset-2 hover:opacity-90">
+          {ORG_NAME}
+        </Link>
+        . I work with{" "}
+        <Link to="/author/armghana-zeeshan" className="font-medium text-primary underline underline-offset-2">
+          Armghana Zeeshan
+        </Link>{" "}
+        and{" "}
+        <Link to="/author/zoha-zeeshan" className="font-medium text-primary underline underline-offset-2">
+          Zoha Zeeshan
+        </Link>{" "}
+        on a small team dedicated solely to this product — free spin wheels that are fast, honest, and
+        privacy-respecting for teachers, creators, and small businesses worldwide.
+      </p>
+      <p>
+        I own the words on the site: specialty wheel copy, comparison guides, blog posts, and the SEO
+        structure that helps people find the right tool. Before a page ships, I check that it answers
+        a real use case, links to the live wheel, and does not overpromise what the software does.
+      </p>
+      <p>
+        Fairness is measured, not assumed. Before any wheel goes live, I run automated checks across
+        10,000 spins to confirm each equal-sized segment wins at the same rate. Randomness comes from the browser&apos;s Web Crypto API (
+        <code>crypto.getRandomValues()</code>), not predictable <code>Math.random()</code>, and entries
+        you type stay on your device. I document that mechanism on the{" "}
+        <Link to="/how-randomness-works" className="font-medium text-primary underline underline-offset-2">
+          how randomness works
+        </Link>{" "}
+        page and in our{" "}
+        <Link to="/spin-wheel-fairness-study" className="font-medium text-primary underline underline-offset-2">
+          fairness study
+        </Link>
+        .
+      </p>
+      <p>
+        When I update a tool page or guide, I refresh its visible last-updated date so you always know
+        how current the instructions are. Editorial corrections and bug reports go to{" "}
+        <a href="mailto:hello@onlinespinwheel.fun" className="font-medium text-primary underline underline-offset-2">
+          hello@onlinespinwheel.fun
+        </a>
+        — include the page URL and what you expected versus what happened.
+      </p>
+    </AuthorProfilePage>
   );
 };
 

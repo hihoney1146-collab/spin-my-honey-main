@@ -11,7 +11,7 @@ const Disclaimer = () => {
         <title>Disclaimer - Online Spin Wheel</title>
         <meta
           name="description"
-          content="Disclaimer for Online Spin Wheel (onlinespinwheel.fun), an independent project by Raja Jahangir: informational and entertainment use only, as-is service, ads, external links, liability limits, and contact."
+          content="Disclaimer for Online Spin Wheel (onlinespinwheel.fun): informational and entertainment use only, as-is service, ads, external links, liability limits, and contact."
         />
         <link rel="canonical" href="https://onlinespinwheel.fun/disclaimer" />
       </Helmet>
@@ -30,8 +30,7 @@ const Disclaimer = () => {
           <section>
             <p className="text-muted-foreground leading-relaxed mb-4">
               The information and tools provided by Online Spin Wheel
-              (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;), an independent project built and
-              maintained by Raja Jahangir, on{" "}
+              (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;), operated by Online Spin Wheel, on{" "}
               <a
                 href="https://onlinespinwheel.fun"
                 className="text-primary hover:underline font-medium break-all"
@@ -199,15 +198,7 @@ const Disclaimer = () => {
                 <span className="text-primary mt-1.5 flex-shrink-0">●</span>
                 <span>
                   <strong className="text-foreground">Operated by:</strong>{" "}
-                  Online Spin Wheel is an independent project built and maintained
-                  by{" "}
-                  <Link
-                    to="/author/raja-jahangir"
-                    className="text-primary hover:underline font-medium"
-                  >
-                    Raja Jahangir
-                  </Link>
-                  .
+                  Online Spin Wheel.
                 </span>
               </li>
             </ul>

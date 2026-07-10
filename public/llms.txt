@@ -2,14 +2,18 @@
 
 > Free browser spin wheels for fair random picks: names, numbers, teams, giveaways, classrooms, and decisions.
 
-Last updated: 2026-07-09
+Last updated: 2026-07-10
 
 ## Identity
 - Canonical site: https://onlinespinwheel.fun/
-- Creator (schema.org Person): Raja Jahangir — https://onlinespinwheel.fun/author/raja-jahangir
-- Person @id: https://onlinespinwheel.fun/author/raja-jahangir#person
+- Organization (schema.org): Online Spin Wheel — https://onlinespinwheel.fun/#organization
+- Leadership team (schema.org Person):
+  - Armghana Zeeshan (CEO) — https://onlinespinwheel.fun/author/armghana-zeeshan
+  - Zoha Zeeshan (Co-Founder) — https://onlinespinwheel.fun/author/zoha-zeeshan
+  - Raja Jahangir (Content & SEO Lead) — https://onlinespinwheel.fun/author/raja-jahangir
+  - Abdal Khalid (Social Media Expert) — https://onlinespinwheel.fun/author/abdal-khalid
 - Contact: hello@onlinespinwheel.fun
-- Independent solo project by Raja Jahangir (not Auroxa Tech or any agency)
+- Small independent team dedicated solely to Online Spin Wheel
 
 ## What this site is
 Interactive WebApplication tools using cryptographic randomness (crypto.getRandomValues). No login required for core spinning. Specialty wheels are pre-filled; the homepage wheel accepts custom entries.
@@ -20,7 +24,10 @@ https://onlinespinwheel.fun/all-spin-wheels
 https://onlinespinwheel.fun/blog
 https://onlinespinwheel.fun/about-us
 https://onlinespinwheel.fun/contact-us
+https://onlinespinwheel.fun/author/armghana-zeeshan
+https://onlinespinwheel.fun/author/zoha-zeeshan
 https://onlinespinwheel.fun/author/raja-jahangir
+https://onlinespinwheel.fun/author/abdal-khalid
 https://onlinespinwheel.fun/#homepage-faq
 
 ## Guides, research & comparisons

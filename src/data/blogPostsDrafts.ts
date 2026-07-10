@@ -8,7 +8,7 @@ export const randomNamePickerDraft: BlogPost = {
     "Looking for a fair way to decide? Use our free random name picker wheel to instantly select a winner. Perfect for classrooms, giveaways, and quick decisions!",
   excerpt:
     "Struggling to make a fair choice? A random name picker eliminates bias and makes decision-making effortless. Whether you are a teacher looking for a classroom name picker, a brand hosting a contest, or just trying to divide chores at home, this digital tool ensures every selection is 100% fair and transparent. In this guide, we will explore how different people use name wheels and how you can get the most out of them.",
-  author: "Raja Jahangir (Creator of Online Spin Wheel)",
+  author: "Raja Jahangir (Content & SEO Lead, Online Spin Wheel)",
   updated: "2026-05-05",
   indexed: false,
   blocks: [
@@ -81,7 +81,7 @@ export const couplesDinnerDraft: BlogPost = {
     'Tired of the "I don\'t know, what do you want?" dinner debate? Discover fun ways to decide where to eat for couples, including our free what to eat wheel!',
   excerpt:
     'Every couple knows the dreaded evening question: "Where should we go for dinner?" What starts as a simple inquiry often turns into a frustrating, hour-long debate of "I don\'t know, you pick." If you are tired of this endless loop, it is time to change your routine. Finding fun ways to decide where to eat for couples not only saves time but turns a stressful decision into a playful pre-date activity.',
-  author: "Raja Jahangir (Creator of Online Spin Wheel)",
+  author: "Raja Jahangir (Content & SEO Lead, Online Spin Wheel)",
   updated: "2026-05-05",
   indexed: false,
   blocks: [
@@ -142,7 +142,7 @@ export const virtualSecretSantaDraft: BlogPost = {
     "Learn how to organize a virtual Secret Santa online for remote teams and families. Discover the best rules, gift ideas, and free online generators to use!",
   excerpt:
     "The holiday season is all about connection, but when your family members live in different cities or your corporate team works entirely remotely, celebrating together can feel complicated. Learning how to organize a virtual Secret Santa online is the perfect solution to bridge the distance and bring festive cheer to your digital workspace or family group.",
-  author: "Raja Jahangir (Creator of Online Spin Wheel)",
+  author: "Raja Jahangir (Content & SEO Lead, Online Spin Wheel)",
   updated: "2026-05-05",
   indexed: false,
   blocks: [

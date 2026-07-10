@@ -11,7 +11,7 @@ const Privacy = () => {
         <title>Privacy Policy - Online Spin Wheel</title>
         <meta
           name="description"
-          content="Privacy Policy for Online Spin Wheel (onlinespinwheel.fun), an independent project by Raja Jahangir: what we collect, cookies, ads, CCPA/CPRA, GDPR, COPPA, and how to contact us."
+          content="Privacy Policy for Online Spin Wheel (onlinespinwheel.fun): what we collect, cookies, ads, CCPA/CPRA, GDPR, COPPA, and how to contact us."
         />
         <link rel="canonical" href="https://onlinespinwheel.fun/privacy-policy" />
       </Helmet>
@@ -30,8 +30,7 @@ const Privacy = () => {
           <section>
             <p className="text-muted-foreground leading-relaxed mb-4">
               This Privacy Policy describes how Online Spin Wheel (&quot;we&quot;,
-              &quot;us&quot; or &quot;our&quot;), an independent project built and maintained
-              by Raja Jahangir, collects, uses and protects information when you
+              &quot;us&quot; or &quot;our&quot;), operated by Online Spin Wheel, collects, uses and protects information when you
               use our website and tools at{" "}
               <a
                 href="https://onlinespinwheel.fun"
@@ -555,15 +554,7 @@ const Privacy = () => {
                 <span className="text-primary mt-1.5 flex-shrink-0">●</span>
                 <span>
                   <strong className="text-foreground">Operated by:</strong>{" "}
-                  Online Spin Wheel is an independent project built and maintained
-                  by{" "}
-                  <Link
-                    to="/author/raja-jahangir"
-                    className="text-primary hover:underline font-medium"
-                  >
-                    Raja Jahangir
-                  </Link>
-                  .
+                  Online Spin Wheel.
                 </span>
               </li>
             </ul>

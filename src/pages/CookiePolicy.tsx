@@ -32,8 +32,7 @@ const CookiePolicy = () => {
           <section>
             <p className="text-muted-foreground leading-relaxed">
               This Cookie Policy explains how Online Spin Wheel (&quot;we&quot;,
-              &quot;us&quot; or &quot;our&quot;), an independent project built and maintained by
-              Raja Jahangir, uses cookies and similar tracking technologies on
+              &quot;us&quot; or &quot;our&quot;), operated by Online Spin Wheel, uses cookies and similar tracking technologies on
               our website at{" "}
               <a
                 href="https://onlinespinwheel.fun"
@@ -354,15 +353,7 @@ const CookiePolicy = () => {
                 <span className="text-primary mt-1.5 flex-shrink-0">●</span>
                 <span>
                   <strong className="text-foreground">Operated By:</strong>{" "}
-                  Online Spin Wheel is an independent project built and maintained
-                  by{" "}
-                  <Link
-                    to="/author/raja-jahangir"
-                    className="text-primary hover:underline font-medium"
-                  >
-                    Raja Jahangir
-                  </Link>
-                  .
+                  Operated by Online Spin Wheel.
                 </span>
               </li>
             </ul>

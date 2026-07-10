@@ -16,6 +16,7 @@ import {
   collectBlogPostsFull,
 } from "./blog-data-sources.mjs";
 import { renderRouteContent } from "./static-content.mjs";
+import { siteIdentityJsonLd as teamSiteIdentity, ORG_ID } from "./team-constants.mjs";
 import {
   getWheelUniqueContent,
   wheelOgImageUrl,
@@ -235,28 +236,7 @@ const PERSON_ID = `${SITE}/author/raja-jahangir#person`;
 const WEBSITE_ID = `${SITE}/#website`;
 
 function siteIdentityJsonLd() {
-  return [
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "@id": WEBSITE_ID,
-      name: "Online Spin Wheel",
-      url: `${SITE}/`,
-      inLanguage: "en",
-      publisher: { "@id": PERSON_ID },
-      author: { "@id": PERSON_ID },
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "@id": PERSON_ID,
-      name: "Raja Jahangir",
-      jobTitle: "Creator of Online Spin Wheel",
-      url: `${SITE}/author/raja-jahangir`,
-      image: `${SITE}/raja-jahangir.jpg`,
-      sameAs: ["https://www.linkedin.com/in/raja-jahangir"],
-    },
-  ];
+  return teamSiteIdentity();
 }
 
 function faqJsonLd(faqs = []) {
@@ -339,8 +319,8 @@ function webApplicationJsonLd(route, name) {
     operatingSystem: "Web Browser",
     isAccessibleForFree: true,
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    publisher: { "@id": PERSON_ID },
-    provider: { "@id": WEBSITE_ID },
+    publisher: { "@id": ORG_ID },
+    provider: { "@id": ORG_ID },
   };
 }
 

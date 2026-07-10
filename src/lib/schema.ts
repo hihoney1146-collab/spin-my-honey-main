@@ -1,4 +1,14 @@
-import { TEAM_LINKEDIN } from "./teamLinks";
+import {
+  ABDAL_AUTHOR,
+  ABDAL_PERSON_ID,
+  ARMGHANA_AUTHOR,
+  ARMGHANA_PERSON_ID,
+  ORGANIZATION_ID,
+  RAJA_AUTHOR,
+  RAJA_PERSON_ID,
+  ZOHA_AUTHOR,
+  ZOHA_PERSON_ID,
+} from "./teamAuthors";
 
 export const SITE_ORIGIN = "https://onlinespinwheel.fun";
 export const ORG_NAME = "Online Spin Wheel";
@@ -7,49 +17,76 @@ export const WEBSITE_ID = `${SITE_ORIGIN}/#website`;
 /** Sitewide contact address (domain email; forwarding configured at the registrar). */
 export const CONTACT_EMAIL = "hello@onlinespinwheel.fun";
 
-export const RAJA_AUTHOR = {
-  slug: "raja-jahangir",
-  name: "Raja Jahangir",
-  jobTitle: "Creator of Online Spin Wheel",
-  url: `${SITE_ORIGIN}/author/raja-jahangir`,
-  linkedIn: TEAM_LINKEDIN.rajaJahangir,
-  image: `${SITE_ORIGIN}/raja-jahangir.jpg`,
-  locality: "Islamabad",
-  country: "Pakistan",
-  countryCode: "PK",
-};
+export {
+  RAJA_AUTHOR,
+  PERSON_ID,
+  RAJA_PERSON_ID,
+  ORGANIZATION_ID,
+  ARMGHANA_AUTHOR,
+  ZOHA_AUTHOR,
+  ABDAL_AUTHOR,
+} from "./teamAuthors";
 
-export const PERSON_ID = `${RAJA_AUTHOR.url}#person`;
-
-/** Sitewide Person: Raja Jahangir is the owner, author, and publisher of record. */
-export function personJsonLd(author: typeof RAJA_AUTHOR = RAJA_AUTHOR) {
+export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "@id": `${author.url}#person`,
-    name: author.name,
-    jobTitle: author.jobTitle,
-    url: author.url,
-    image: author.image,
-    sameAs: [author.linkedIn],
-    description:
-      "Raja Jahangir is the independent creator, developer, and maintainer of Online Spin Wheel, a free browser-based random picker.",
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: author.locality,
-      addressCountry: author.countryCode,
-    },
-    knowsAbout: [
-      "Web Development",
-      "Random Selection",
-      "Cryptographic Randomness",
-      "Spin Wheel Tools",
-      "Educational Technology",
+    "@type": "Organization",
+    "@id": ORGANIZATION_ID,
+    name: ORG_NAME,
+    url: SITE_ORIGIN,
+    logo: `${SITE_ORIGIN}/logo.png`,
+    email: CONTACT_EMAIL,
+    founder: [
+      { "@id": ARMGHANA_PERSON_ID },
+      { "@id": ZOHA_PERSON_ID },
     ],
   };
 }
 
-/** Sitewide WebSite entity, authored and published by the Person. */
+type AuthorProfile = {
+  name: string;
+  jobTitle: string;
+  url: string;
+  linkedIn: string;
+  image?: string;
+  locality?: string;
+  countryCode?: string;
+};
+
+export function personJsonLd(author: AuthorProfile, personId: string) {
+  const node: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": personId,
+    name: author.name,
+    jobTitle: author.jobTitle,
+    url: author.url,
+    sameAs: [author.linkedIn],
+  };
+  if (author.image) node.image = author.image;
+  if (author.locality) {
+    node.address = {
+      "@type": "PostalAddress",
+      addressLocality: author.locality,
+      addressCountry: author.countryCode,
+    };
+  }
+  if (author === RAJA_AUTHOR) {
+    node.description =
+      "Raja Jahangir leads content, SEO, and quality review for Online Spin Wheel — a free browser-based random picker built by a small dedicated team.";
+    node.knowsAbout = [
+      "Content Strategy",
+      "Search Engine Optimization",
+      "Random Selection",
+      "Cryptographic Randomness",
+      "Spin Wheel Tools",
+      "Educational Technology",
+    ];
+  }
+  return node;
+}
+
+/** Sitewide WebSite entity, published by the Online Spin Wheel organization. */
 export function websiteJsonLd() {
   return {
     "@context": "https://schema.org",
@@ -58,14 +95,20 @@ export function websiteJsonLd() {
     name: ORG_NAME,
     url: `${SITE_ORIGIN}/`,
     inLanguage: "en",
-    publisher: { "@id": PERSON_ID },
-    author: { "@id": PERSON_ID },
+    publisher: { "@id": ORGANIZATION_ID },
   };
 }
 
-/** Sitewide identity graph: WebSite + Person (publisher/author). */
+/** Sitewide identity graph: WebSite + Organization + team Person entities. */
 export function siteIdentityJsonLd() {
-  return [websiteJsonLd(), personJsonLd()];
+  return [
+    websiteJsonLd(),
+    organizationJsonLd(),
+    personJsonLd(ARMGHANA_AUTHOR, ARMGHANA_PERSON_ID),
+    personJsonLd(ZOHA_AUTHOR, ZOHA_PERSON_ID),
+    personJsonLd(RAJA_AUTHOR, RAJA_PERSON_ID),
+    personJsonLd(ABDAL_AUTHOR, ABDAL_PERSON_ID),
+  ];
 }
 
 /** Parse numbered steps from CSV "How To Use" text */
@@ -111,8 +154,8 @@ export function webPageJsonLd(opts: {
     url: opts.url,
     headline: opts.headline ?? opts.name,
     isPartOf: { "@id": WEBSITE_ID },
-    author: { "@id": PERSON_ID },
-    publisher: { "@id": PERSON_ID },
+    author: { "@id": RAJA_PERSON_ID },
+    publisher: { "@id": ORGANIZATION_ID },
   };
 }
 
@@ -136,15 +179,16 @@ export function articleJsonLd(opts: {
     dateModified: `${opts.dateModified}T12:00:00`,
     author: {
       "@type": "Person",
-      "@id": PERSON_ID,
+      "@id": RAJA_PERSON_ID,
       name: opts.authorName ?? RAJA_AUTHOR.name,
       url: RAJA_AUTHOR.url,
     },
     publisher: {
-      "@type": "Person",
-      "@id": PERSON_ID,
-      name: opts.authorName ?? RAJA_AUTHOR.name,
-      url: RAJA_AUTHOR.url,
+      "@type": "Organization",
+      "@id": ORGANIZATION_ID,
+      name: ORG_NAME,
+      url: SITE_ORIGIN,
+      logo: `${SITE_ORIGIN}/logo.png`,
     },
     ...(opts.image ? { image: opts.image } : {}),
   };
@@ -169,8 +213,8 @@ export function webApplicationJsonLd(opts: {
       price: "0",
       priceCurrency: "USD",
     },
-    publisher: { "@id": PERSON_ID },
-    provider: { "@id": WEBSITE_ID },
+    publisher: { "@id": ORGANIZATION_ID },
+    provider: { "@id": ORGANIZATION_ID },
   };
 }
 

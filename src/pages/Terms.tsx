@@ -11,7 +11,7 @@ const Terms = () => {
         <title>Terms and Conditions - Online Spin Wheel</title>
         <meta
           name="description"
-          content="Terms and Conditions for Online Spin Wheel (onlinespinwheel.fun), an independent project by Raja Jahangir: use of the service, ads, eligibility, randomness, IP, liability, governing law, and contact."
+          content="Terms and Conditions for Online Spin Wheel (onlinespinwheel.fun): use of the service, ads, eligibility, randomness, IP, liability, governing law, and contact."
         />
         <link rel="canonical" href="https://onlinespinwheel.fun/terms-and-conditions" />
       </Helmet>
@@ -34,8 +34,7 @@ const Terms = () => {
               >
                 https://onlinespinwheel.fun
               </a>{" "}
-              (the &quot;Site&quot; and &quot;Service&quot;). The Site is an independent project
-              owned and operated by Raja Jahangir (&quot;we&quot;, &quot;us&quot; or &quot;our&quot;).
+              (the &quot;Site&quot; and &quot;Service&quot;), operated by Online Spin Wheel (&quot;we&quot;, &quot;us&quot; or &quot;our&quot;).
             </p>
             <p className="text-muted-foreground leading-relaxed mb-4">
               By accessing or using the site, you agree to be bound by these Terms.
@@ -307,15 +306,7 @@ const Terms = () => {
                 <span className="text-primary mt-1.5 flex-shrink-0">●</span>
                 <span>
                   <strong className="text-foreground">Operated by:</strong>{" "}
-                  Online Spin Wheel is an independent project built and maintained
-                  by{" "}
-                  <Link
-                    to="/author/raja-jahangir"
-                    className="text-primary hover:underline font-medium"
-                  >
-                    Raja Jahangir
-                  </Link>
-                  .
+                  Online Spin Wheel.
                 </span>
               </li>
             </ul>

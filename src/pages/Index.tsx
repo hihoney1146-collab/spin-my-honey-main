@@ -15,7 +15,7 @@ import {
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import type { ReactNode } from "react";
-import { BLOG_INDEX_PATH } from "@/lib/siteInternalLinks";
+import { ORGANIZATION_ID } from "@/lib/schema";
 import { getAllBlogPosts } from "@/data/blogPosts";
 
 const FEATURED_BLOG_SLUGS = [
@@ -242,7 +242,7 @@ const Index = () => {
               priceCurrency: "USD",
             },
             publisher: {
-              "@id": "https://onlinespinwheel.fun/author/raja-jahangir#person",
+              "@id": ORGANIZATION_ID,
             },
           })}
         </script>

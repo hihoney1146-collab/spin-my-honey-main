@@ -10,6 +10,9 @@ import { lazy, Suspense } from "react";
 import Index from "./pages/Index";
 import BlogPost from "./pages/BlogPost";
 import AuthorRajaJahangir from "./pages/AuthorRajaJahangir";
+import AuthorAbdalKhalid from "./pages/AuthorAbdalKhalid";
+import AuthorArmghanaZeeshan from "./pages/AuthorArmghanaZeeshan";
+import AuthorZohaZeeshan from "./pages/AuthorZohaZeeshan";
 // Lazy load non-critical pages for better initial load performance
 const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
@@ -260,6 +263,9 @@ const App = () => (
               />
               <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/author/raja-jahangir" element={<AuthorRajaJahangir />} />
+              <Route path="/author/armghana-zeeshan" element={<AuthorArmghanaZeeshan />} />
+              <Route path="/author/zoha-zeeshan" element={<AuthorZohaZeeshan />} />
+              <Route path="/author/abdal-khalid" element={<AuthorAbdalKhalid />} />
               {/* Consolidated doorway pages → canonical targets (edge 301s live in vercel.json) */}
               <Route
                 path="/exercise-spin-wheel"

@@ -36,6 +36,7 @@ import {
 import { openCookieSettings } from "@/lib/cookieConsentEvents";
 import { STREAMER_GREEN } from "@/lib/streamerMode";
 import { useStreamerMode } from "@/lib/useStreamerMode";
+import { TEAM_AUTHOR_LINKS } from "@/lib/teamLinks";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
@@ -334,7 +335,6 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                   { to: "/", label: "Home" },
                   { to: WHEEL_HUB_PATH, label: "All Spin Wheels" },
                   { to: "/about-us", label: "About Us" },
-                  { to: "/author/raja-jahangir", label: "Author" },
                   { to: BLOG_INDEX_PATH, label: "Blog" },
                   { to: "/contact-us", label: "Contact" },
                 ].map((link) => (
@@ -345,6 +345,25 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                     >
                       <span className="w-0 group-hover:w-4 h-px bg-primary transition-all duration-300" />
                       {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Leadership */}
+            <div>
+              <h3 className="font-semibold text-base mb-4 text-foreground">Leadership</h3>
+              <ul className="space-y-3">
+                {TEAM_AUTHOR_LINKS.map((link) => (
+                  <li key={link.to}>
+                    <Link
+                      to={link.to}
+                      className="text-sm text-muted-foreground hover:text-primary transition-all duration-200 inline-flex items-center gap-2 group"
+                    >
+                      <span className="w-0 group-hover:w-4 h-px bg-primary transition-all duration-300" />
+                      {link.label}
+                      <span className="text-xs text-muted-foreground/80">({link.role})</span>
                     </Link>
                   </li>
                 ))}

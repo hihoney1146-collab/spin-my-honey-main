@@ -89,7 +89,7 @@ const Contact = () => {
         <title>Contact Us | Online Spin Wheel</title>
         <meta
           name="description"
-          content="Contact Online Spin Wheel, an independent project by Raja Jahangir. Reach out for support, feedback, business inquiries, privacy questions, and advertising-related requests."
+          content="Contact Online Spin Wheel. Reach out for support, feedback, business inquiries, privacy questions, and advertising-related requests."
         />
         <link rel="canonical" href={`${SITE_ORIGIN}/contact-us`} />
         <script type="application/ld+json">
@@ -103,7 +103,7 @@ const Contact = () => {
               name: "Raja Jahangir",
               url: `${SITE_ORIGIN}/author/raja-jahangir`,
               email: CONTACT_EMAIL,
-              jobTitle: "Creator of Online Spin Wheel",
+              jobTitle: "Content & SEO Lead, Online Spin Wheel",
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Islamabad",
@@ -240,14 +240,8 @@ const Contact = () => {
                       <Link to="/" className="text-primary hover:underline font-medium">
                         Online Spin Wheel
                       </Link>{" "}
-                      is an independent project built and maintained by{" "}
-                      <Link
-                        to="/author/raja-jahangir"
-                        className="text-primary hover:underline font-medium"
-                      >
-                        Raja Jahangir
-                      </Link>
-                      .
+                      is operated by a small team dedicated solely to this website,
+                      based in Islamabad, Pakistan and serving users worldwide.
                     </p>
                   </div>
                 </div>

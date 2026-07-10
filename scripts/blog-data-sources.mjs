@@ -275,10 +275,11 @@ export function collectBlogRouteMeta(root, { canonicalUrl, SITE }) {
               url: `${SITE}/author/raja-jahangir`,
             },
             publisher: {
-              "@type": "Person",
-              "@id": `${SITE}/author/raja-jahangir#person`,
-              name: "Raja Jahangir",
-              url: `${SITE}/author/raja-jahangir`,
+              "@type": "Organization",
+              "@id": `${SITE}/#organization`,
+              name: "Online Spin Wheel",
+              url: SITE,
+              logo: `${SITE}/logo.png`,
             },
           },
   }));

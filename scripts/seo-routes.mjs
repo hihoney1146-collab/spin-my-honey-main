@@ -13,6 +13,12 @@ import {
   collectIndexableRoutes,
   FEATURED_TOOL_PATHS,
 } from "./route-registry.mjs";
+import {
+  TEAM_AUTHORS,
+  ORG_NAME,
+  ORG_ID,
+  CONTACT_EMAIL,
+} from "./team-constants.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -110,6 +116,9 @@ export const PAGES_SITEMAP_ROUTES = [
   "/all-spin-wheels",
   "/blog",
   "/author/raja-jahangir",
+  "/author/armghana-zeeshan",
+  "/author/zoha-zeeshan",
+  "/author/abdal-khalid",
   "/about-us",
   "/contact-us",
   "/how-randomness-works",
@@ -436,10 +445,14 @@ export function buildLlmsTxt(root = getProjectRoot()) {
     "",
     "## Identity",
     `- Canonical site: ${SITE}/`,
-    `- Creator (schema.org Person): Raja Jahangir — ${SITE}/author/raja-jahangir`,
-    `- Person @id: ${SITE}/author/raja-jahangir#person`,
-    `- Contact: hello@onlinespinwheel.fun`,
-    `- Independent solo project by Raja Jahangir (not Auroxa Tech or any agency)`,
+    `- Organization (schema.org): ${ORG_NAME} — ${ORG_ID}`,
+    `- Leadership team (schema.org Person):`,
+    `  - ${TEAM_AUTHORS.armghana.name} (CEO) — ${SITE}${TEAM_AUTHORS.armghana.path}`,
+    `  - ${TEAM_AUTHORS.zoha.name} (Co-Founder) — ${SITE}${TEAM_AUTHORS.zoha.path}`,
+    `  - ${TEAM_AUTHORS.raja.name} (Content & SEO Lead) — ${SITE}${TEAM_AUTHORS.raja.path}`,
+    `  - ${TEAM_AUTHORS.abdal.name} (Social Media Expert) — ${SITE}${TEAM_AUTHORS.abdal.path}`,
+    `- Contact: ${CONTACT_EMAIL}`,
+    `- Small independent team dedicated solely to Online Spin Wheel`,
     "",
     "## What this site is",
     "Interactive WebApplication tools using cryptographic randomness (crypto.getRandomValues). No login required for core spinning. Specialty wheels are pre-filled; the homepage wheel accepts custom entries.",
@@ -450,7 +463,10 @@ export function buildLlmsTxt(root = getProjectRoot()) {
     `${SITE}/blog`,
     `${SITE}/about-us`,
     `${SITE}/contact-us`,
+    `${SITE}/author/armghana-zeeshan`,
+    `${SITE}/author/zoha-zeeshan`,
     `${SITE}/author/raja-jahangir`,
+    `${SITE}/author/abdal-khalid`,
     `${SITE}/#homepage-faq`,
     "",
     "## Guides, research & comparisons",

@@ -3,6 +3,8 @@
  * Keep in sync with React Helmet where possible.
  */
 
+import { siteIdentityJsonLd, ORG_ID, WEBSITE_ID } from "./team-constants.mjs";
+
 const SITE = "https://onlinespinwheel.fun";
 const DEFAULT_OG_IMAGE = `${SITE}/og-image.png`;
 
@@ -17,33 +19,7 @@ export const fixedRouteMeta = [
       "Spin the wheel for a fair, random pick. Add names, numbers, or choices and let crypto-grade randomness decide — no signup, works on any phone, tablet, or computer.",
     ogType: "website",
     jsonLd: [
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "@id": `${SITE}/#website`,
-        name: "Online Spin Wheel",
-        url: `${SITE}/`,
-        description:
-          "Free online spin wheel picker for names, numbers, prizes, classrooms, and fair random decisions.",
-        inLanguage: "en",
-        publisher: { "@id": `${SITE}/author/raja-jahangir#person` },
-        author: { "@id": `${SITE}/author/raja-jahangir#person` },
-      },
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "@id": `${SITE}/author/raja-jahangir#person`,
-        name: "Raja Jahangir",
-        jobTitle: "Creator of Online Spin Wheel",
-        url: `${SITE}/author/raja-jahangir`,
-        image: `${SITE}/raja-jahangir.jpg`,
-        sameAs: ["https://www.linkedin.com/in/raja-jahangir"],
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: "Islamabad",
-          addressCountry: "PK",
-        },
-      },
+      ...siteIdentityJsonLd(),
       {
         "@context": "https://schema.org",
         "@type": "WebApplication",
@@ -55,8 +31,8 @@ export const fixedRouteMeta = [
         operatingSystem: "Web Browser",
         isAccessibleForFree: true,
         offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-        publisher: { "@id": `${SITE}/author/raja-jahangir#person` },
-        provider: { "@id": `${SITE}/#website` },
+        publisher: { "@id": ORG_ID },
+        provider: { "@id": ORG_ID },
       },
       {
         "@context": "https://schema.org",
@@ -160,20 +136,41 @@ export const fixedRouteMeta = [
     path: "/about-us",
     title: "About Us - Online Spin Wheel",
     description:
-      "Online Spin Wheel is an independent project built and maintained by Raja Jahangir. How every wheel is tested across 10,000 spins, and what data we do and don't collect.",
+      "Online Spin Wheel is built by a small dedicated team. How every wheel is tested across 10,000 spins, and what data we do and don't collect.",
   },
   {
     path: "/author/raja-jahangir",
-    title: "Raja Jahangir — Creator of Online Spin Wheel",
+    title: "Raja Jahangir — Content & SEO Lead, Online Spin Wheel",
     description:
-      "Raja Jahangir is the independent creator of Online Spin Wheel. How he designs, builds, and tests every wheel for fair, uniform random results.",
+      "Raja Jahangir leads content, SEO, and quality review for Online Spin Wheel. How the team tests every wheel for fair, uniform random results.",
+    ogType: "profile",
+  },
+  {
+    path: "/author/armghana-zeeshan",
+    title: "Armghana Zeeshan — CEO, Online Spin Wheel",
+    description:
+      "Armghana Zeeshan is CEO of Online Spin Wheel. Product direction, business priorities, and the standards behind every free fair spin wheel.",
+    ogType: "profile",
+  },
+  {
+    path: "/author/zoha-zeeshan",
+    title: "Zoha Zeeshan — Co-Founder, Online Spin Wheel",
+    description:
+      "Zoha Zeeshan is Co-Founder of Online Spin Wheel. Company direction, user experience, and roadmap for free fair random pickers.",
+    ogType: "profile",
+  },
+  {
+    path: "/author/abdal-khalid",
+    title: "Abdal Khalid — Social Media Expert, Online Spin Wheel",
+    description:
+      "Abdal Khalid is Social Media Expert at Online Spin Wheel. Brand social channels, community engagement, and sharing wheel tips with teachers and creators.",
     ogType: "profile",
   },
   {
     path: "/contact-us",
     title: "Contact Us | Online Spin Wheel",
     description:
-      "Contact Online Spin Wheel, an independent project by Raja Jahangir, for support, feedback, privacy questions, and business inquiries.",
+      "Contact Online Spin Wheel for support, feedback, privacy questions, and business inquiries.",
   },
   {
     path: "/privacy-policy",
