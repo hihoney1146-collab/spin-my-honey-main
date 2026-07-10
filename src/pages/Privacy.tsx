@@ -133,9 +133,8 @@ const Privacy = () => {
               Local browser storage
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              To improve your experience without creating an account, we use your
-              browser&apos;s <strong className="text-foreground">localStorage</strong>{" "}
-              for:
+              To improve your experience without creating an account, we save a
+              small amount of data in your browser&apos;s local storage for:
             </p>
             <ul className="space-y-3 text-muted-foreground ml-1 mb-4">
               <li className="flex items-start gap-2">

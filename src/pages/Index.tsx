@@ -40,12 +40,12 @@ const HOME_FAQS: { question: string; answer: string }[] = [
   {
     question: "Can I share my wheel or the result?",
     answer:
-      "Yes. Use Copy link above the wheel to bookmark your exact entries in the URL (no account). After a giveaway spin on the winner picker, raffle, or name picker wheels, tap Get proof link for a verifiable /result/ page you can paste on Instagram or TikTok.",
+      "Yes. Use Copy link above the wheel to bookmark your exact entries in the link (no account). After a giveaway spin on the winner picker, raffle, or name picker wheels, tap Get proof link for a verifiable result page you can paste on Instagram or TikTok.",
   },
   {
     question: "What is streamer mode?",
     answer:
-      "Streamer mode switches the page to a solid chroma-key background (green, blue, or magenta by default — or pick any color) and hides site header, footer, and marketing sections so OBS or Streamlabs can key out everything except the wheel. Toggle it above any wheel, or add ?stream=1&bg=00FF00 to your shared link.",
+      "Streamer mode switches the page to a solid chroma-key background (green, blue, or magenta by default — or pick any color) and hides the site header, footer, and marketing sections so OBS or Streamlabs can key out everything except the wheel. Turn it on with the toggle above any wheel, choose a background color, then use Copy link to share that stream-ready setup.",
   },
   {
     question: "Does it work on mobile phones and tablets?",
@@ -60,7 +60,7 @@ const HOME_FAQS: { question: string; answer: string }[] = [
   {
     question: "Is the wheel really random?",
     answer:
-      "Yes. Each spin is seeded with crypto.getRandomValues() and the pointer lands based on segment angles, so every equal-sized entry has exactly the same probability. Spins are independent, so past results never affect the next one.",
+      "Yes. Each spin uses the browser's secure random number generator — the same kind of randomness used for encryption — and the pointer lands based on segment size, so every equal-sized entry has exactly the same chance. Spins are independent, so past results never affect the next one.",
   },
 ];
 
@@ -234,7 +234,7 @@ const Index = () => {
             "@type": "WebApplication",
             name: "Online Spin Wheel",
             description:
-              "Free online spin wheel and random picker for names, numbers, prizes, classrooms, teams, and fair decisions. Results use crypto.getRandomValues() and work on any device with no signup.",
+              "Free online spin wheel and random picker for names, numbers, prizes, classrooms, teams, and fair decisions. Results use secure browser randomness and work on any device with no signup.",
             url: "https://onlinespinwheel.fun/",
             applicationCategory: "UtilityApplication",
             operatingSystem: "Web Browser",
@@ -340,8 +340,7 @@ const Index = () => {
             </h1>
             <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
               Online Spin Wheel is a free random picker: add names, numbers, or
-              choices, then spin to get one fair result. It chooses winners with{" "}
-              <code className="text-foreground font-medium">crypto.getRandomValues()</code>,
+              choices, then spin to get one fair result. It chooses winners with
               the same secure randomness browsers use for encryption, so every
               entry has an equal chance. No signup or install — it works instantly
               on phones, tablets, and computers.
@@ -435,17 +434,15 @@ const Index = () => {
               </h2>
             </div>
             <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed">
-              Every spin starts with a fresh random seed from{" "}
-              <code className="text-foreground font-medium">crypto.getRandomValues()</code>,
-              the browser&apos;s cryptographically secure generator — the same
-              source used for encryption keys, not a predictable{" "}
-              <code className="text-foreground font-medium">Math.random()</code>. That
-              seed sets the wheel&apos;s speed and friction, and where the pointer
-              stops depends purely on each segment&apos;s angle, so equal-sized
-              slices give every entry identical odds. Spins are also independent:
-              the wheel has no memory, so a name that just won is exactly as likely
-              to win again next time. It all runs on your device — your entries
-              never touch our servers. Learn more about{" "}
+              Every spin starts with a fresh random value from the browser&apos;s
+              secure generator — the same kind of randomness used for encryption
+              keys, not a simple predictable formula. That value sets the
+              wheel&apos;s speed and friction, and where the pointer stops depends
+              purely on each segment&apos;s size, so equal-sized slices give every
+              entry identical odds. Spins are also independent: the wheel has no
+              memory, so a name that just won is exactly as likely to win again next
+              time. It all runs on your device — your entries never touch our
+              servers. Learn more about{" "}
               <Link to="/how-randomness-works" className="text-primary hover:underline font-medium">
                 how randomness works
               </Link>

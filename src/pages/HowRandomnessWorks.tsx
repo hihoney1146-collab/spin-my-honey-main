@@ -12,7 +12,7 @@ const HowRandomnessWorks = () => {
         <title>How Randomness Works | Online Spin Wheel</title>
         <meta
           name="description"
-          content="How the Online Spin Wheel stays fair: crypto.getRandomValues() seeds, equal-probability segments, and why every spin is independent of the last."
+          content="How the Online Spin Wheel stays fair: secure browser randomness, equal-probability segments, and why every spin is independent of the last."
         />
         <link rel="canonical" href={CANONICAL} />
         <meta property="og:title" content="How Randomness Works" />
@@ -64,19 +64,16 @@ const HowRandomnessWorks = () => {
               Where the randomness comes from
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-3">
-              When you press spin, the wheel asks your browser for random data
-              using <code>crypto.getRandomValues()</code>. This is the Web Crypto
-              API — the same cryptographically secure source browsers use to
-              generate encryption keys and secure session tokens. It draws on
-              your device&apos;s hardware entropy, so the value cannot be
-              predicted or reproduced.
+              When you press spin, the wheel asks your browser for a secure random
+              value — the same kind of randomness browsers use to generate encryption
+              keys and secure session tokens. It draws on your device&apos;s hardware
+              entropy, so the value cannot be predicted or reproduced.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              That matters because the common alternative, <code>Math.random()</code>,
-              is only pseudo-random: it follows a deterministic formula that a
-              motivated observer could anticipate. For a fair draw in front of an
-              audience, cryptographic randomness is the honest choice, and it is
-              what we use on every wheel.
+              That matters because a simple built-in random formula is only
+              pseudo-random: it follows a pattern a motivated observer could
+              anticipate. For a fair draw in front of an audience, cryptographic
+              randomness is the honest choice, and it is what we use on every wheel.
             </p>
           </Card>
 

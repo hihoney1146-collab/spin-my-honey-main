@@ -47,8 +47,8 @@ const AuthorArmghanaZeeshan = () => (
     <p>
       Fairness is a team practice here. Before launch, wheels are checked for uniform distribution
       across 10,000 automated spins; if segments drift, the wheel does not ship. Randomness comes from
-      the browser&apos;s Web Crypto API (<code>crypto.getRandomValues()</code>), and user entries stay
-      on the device. I hold the team to that standard on every release.
+      the browser&apos;s secure generator, and user entries stay on the device. I hold the team to that
+      standard on every release.
     </p>
     <p>
       Questions about partnerships, accessibility, or how we operate? Email{" "}

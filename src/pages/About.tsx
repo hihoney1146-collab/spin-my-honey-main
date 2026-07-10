@@ -138,10 +138,9 @@ const About = () => {
               distribution is even.
             </p>
             <p className="text-base md:text-lg">
-              Randomness comes from your browser&apos;s Web Crypto API (
-              <code>crypto.getRandomValues()</code>), the same cryptographically secure source used
-              for encryption keys — never predictable <code>Math.random()</code>. Read the full
-              explanation on our{" "}
+              Randomness comes from your browser&apos;s built-in secure generator —
+              the same kind of randomness used for encryption keys — never a simple
+              predictable formula. Read the full explanation on our{" "}
               <Link to="/how-randomness-works" className="text-primary hover:underline font-medium">
                 how randomness works
               </Link>{" "}
@@ -163,8 +162,8 @@ const About = () => {
                 <h3 className="text-lg md:text-xl font-semibold">Cryptographic security</h3>
               </div>
               <p className="text-sm md:text-base text-muted-foreground">
-                We use crypto.getRandomValues() for hardware-level random seeds. Every spin is
-                unpredictable and mathematically fair.
+                We use the browser&apos;s secure random generator for hardware-level
+                random seeds. Every spin is unpredictable and mathematically fair.
               </p>
             </Card>
             <Card className="p-4 bg-primary/5 border border-primary/20">

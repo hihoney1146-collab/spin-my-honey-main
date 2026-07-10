@@ -174,7 +174,7 @@ function homeContent(wheels) {
     .join("\n");
 
   return mainWrap(`<h1>Spin the Wheel — Free Online Spin Wheel &amp; Random Picker</h1>
-<p>Online Spin Wheel is a free random picker: add names, numbers, or choices, then spin to get one fair result. It chooses winners with <code>crypto.getRandomValues()</code>, the same secure randomness browsers use for encryption, so every entry has an equal chance. No signup or install — it works instantly on phones, tablets, and computers.</p>
+<p>Online Spin Wheel is a free random picker: add names, numbers, or choices, then spin to get one fair result. It chooses winners with the same secure randomness browsers use for encryption, so every entry has an equal chance. No signup or install — it works instantly on phones, tablets, and computers.</p>
 
 <section id="how-to-spin">
   <h2>How to spin the wheel</h2>
@@ -201,7 +201,7 @@ function homeContent(wheels) {
 
 <section id="why-fair">
   <h2>Why our results are fair</h2>
-  <p>Every spin starts with a fresh random seed from <code>crypto.getRandomValues()</code>, the browser's cryptographically secure generator — the same source used for encryption keys, not a predictable <code>Math.random()</code>. That seed sets the wheel's speed and friction, and where the pointer stops depends purely on each segment's angle, so equal-sized slices give every entry identical odds. Spins are also independent: the wheel has no memory, so a name that just won is exactly as likely to win again next time. It all runs on your device — your entries never touch our servers. Learn more about <a href="/how-randomness-works">how randomness works</a>.</p>
+  <p>Every spin starts with a fresh random value from the browser's secure generator — the same kind of randomness used for encryption keys, not a simple predictable formula. That value sets the wheel's speed and friction, and where the pointer stops depends purely on each segment's size, so equal-sized slices give every entry identical odds. Spins are also independent: the wheel has no memory, so a name that just won is exactly as likely to win again next time. It all runs on your device — your entries never touch our servers. Learn more about <a href="/how-randomness-works">how randomness works</a>.</p>
 </section>
 
 <section id="popular-spin-wheels">
@@ -218,15 +218,15 @@ ${popular}
   <h3>Can I save a wheel to reuse later?</h3>
   <p>Yes. Your entries are stored in your browser's local storage, so the same names are waiting the next time you open the page on that device. Use Reset to bring back the sample names, or Clear all to start fresh.</p>
   <h3>Can I share my wheel or the result?</h3>
-  <p>Yes. Use Copy link above the wheel to bookmark your exact entries in the URL (no account). After a giveaway spin on the winner picker, raffle, or name picker wheels, tap Get proof link for a verifiable /result/ page you can paste on Instagram or TikTok.</p>
+  <p>Yes. Use Copy link above the wheel to bookmark your exact entries in the link (no account). After a giveaway spin on the winner picker, raffle, or name picker wheels, tap Get proof link for a verifiable result page you can paste on Instagram or TikTok.</p>
   <h3>What is streamer mode?</h3>
-  <p>Streamer mode switches the page to a solid chroma-key green (#00FF00) background and hides site header and footer so OBS or Streamlabs can key out everything except the wheel. Toggle it above any wheel, or add ?stream=1 to your shared link.</p>
+  <p>Streamer mode switches the page to a solid chroma-key background (green, blue, or magenta by default — or pick any color) and hides the site header, footer, and marketing sections so OBS or Streamlabs can key out everything except the wheel. Turn it on with the toggle above any wheel, choose a background color, then use Copy link to share that stream-ready setup.</p>
   <h3>Does it work on mobile phones and tablets?</h3>
   <p>Yes. The wheel is fully responsive and touch-friendly — just tap the wheel to spin — with no app to install. It runs in any modern browser on phones, tablets, laptops, and classroom smartboards.</p>
   <h3>How do I remove a winner so they aren't picked again?</h3>
   <p>After a spin, the winner dialog has a Remove Winner button that deletes that entry from the wheel. You can also delete any entry manually in the list, which is ideal for multi-round draws.</p>
   <h3>Is the wheel really random?</h3>
-  <p>Yes. Each spin is seeded with <code>crypto.getRandomValues()</code> and the pointer lands based on segment angles, so every equal-sized entry has exactly the same probability. Spins are independent, so past results never affect the next one.</p>
+  <p>Yes. Each spin uses the browser's secure random number generator — the same kind of randomness used for encryption — and the pointer lands based on segment size, so every equal-sized entry has exactly the same chance. Spins are independent, so past results never affect the next one.</p>
 </section>
 ${exploreNav()}`);
 }
@@ -256,7 +256,7 @@ function aboutContent() {
 
 <section>
   <h2>How every wheel is tested</h2>
-  <p>Fairness is a team practice — not a marketing line. Every wheel is tested for uniform distribution across 10,000 automated spins before launch. If any equal-sized segment wins noticeably more or less often than the rest, the wheel is not published until the distribution is even. Randomness comes from the browser's Web Crypto API (<code>crypto.getRandomValues()</code>) — never predictable <code>Math.random()</code>. Read the full explanation on our <a href="/how-randomness-works">how randomness works</a> page and our <a href="/spin-wheel-fairness-study">100,000-spin fairness study</a>.</p>
+  <p>Fairness is a team practice — not a marketing line. Every wheel is tested for uniform distribution across 10,000 automated spins before launch. If any equal-sized segment wins noticeably more or less often than the rest, the wheel is not published until the distribution is even. Randomness comes from the browser's built-in secure generator — never a simple predictable formula. Read the full explanation on our <a href="/how-randomness-works">how randomness works</a> page and our <a href="/spin-wheel-fairness-study">100,000-spin fairness study</a>.</p>
 </section>
 
 <section>
@@ -341,7 +341,7 @@ function authorArmghanaContent() {
 <p>I'm ${esc(a.name)}, CEO of <a href="/">${ORG_NAME}</a>. Our team built this site because too many online spinners were slow, cluttered, or vague about fairness. We focus on one product — free, browser-based wheels for classrooms, giveaways, and everyday decisions.</p>
 <p>As CEO, I set product direction and business priorities: which wheels ship next, how we keep the core tool free without sacrificing speed, and how we communicate honestly about randomness and privacy. I work with <a href="${TEAM_AUTHORS.zoha.path}">${esc(TEAM_AUTHORS.zoha.name)}</a> on company direction and with <a href="${TEAM_AUTHORS.raja.path}">${esc(TEAM_AUTHORS.raja.name)}</a> on content quality, SEO, and the testing bar every page must meet before it goes live.</p>
 <p>Our team works only on Online Spin Wheel — no unrelated products or agency side projects. Every decision ties back to users who need a fair pick in front of a class, a livestream, or a comment section. When we add a specialty wheel or publish a guide, it is because real hosts and teachers asked for something we could verify works.</p>
-<p>Fairness is a team practice. Before launch, wheels are checked for uniform distribution across 10,000 automated spins; if segments drift, the wheel does not ship. Randomness comes from the browser's Web Crypto API (<code>crypto.getRandomValues()</code>), and user entries stay on the device.</p>
+<p>Fairness is a team practice. Before launch, wheels are checked for uniform distribution across 10,000 automated spins; if segments drift, the wheel does not ship. Randomness comes from the browser's secure generator, and user entries stay on the device.</p>
 
 <section>
   <h2>What I focus on as CEO</h2>
@@ -435,7 +435,7 @@ function authorContent() {
   return mainWrap(`<h1>${esc(a.name)} — Content &amp; SEO Lead, ${ORG_NAME}</h1>
 <p>I'm ${esc(a.name)}, Content &amp; SEO Lead at <a href="/">${ORG_NAME}</a>. I work with <a href="${TEAM_AUTHORS.armghana.path}">${esc(TEAM_AUTHORS.armghana.name)}</a> and <a href="${TEAM_AUTHORS.zoha.path}">${esc(TEAM_AUTHORS.zoha.name)}</a> on a small team dedicated solely to this product — free spin wheels that are fast, honest, and privacy-respecting for teachers, creators, and small businesses worldwide.</p>
 <p>I own the words on the site: specialty wheel copy, comparison guides, blog posts, and the SEO structure that helps people find the right tool. Before a page ships, I check that it answers a real use case, links to the live wheel, and does not overpromise what the software does.</p>
-<p>Fairness is measured, not assumed. Before any wheel goes live, I run automated checks across 10,000 spins to confirm each equal-sized segment wins at the same rate. Randomness comes from the browser's Web Crypto API (<code>crypto.getRandomValues()</code>), not predictable <code>Math.random()</code>, and entries you type stay on your device. I document that mechanism on the <a href="/how-randomness-works">how randomness works</a> page and in our <a href="/spin-wheel-fairness-study">fairness study</a>.</p>
+<p>Fairness is measured, not assumed. Before any wheel goes live, I run automated checks across 10,000 spins to confirm each equal-sized segment wins at the same rate. Randomness comes from the browser's secure generator, not a simple predictable formula, and entries you type stay on your device. I document that mechanism on the <a href="/how-randomness-works">how randomness works</a> page and in our <a href="/spin-wheel-fairness-study">fairness study</a>.</p>
 <p>When I update a tool page or guide, I refresh its visible last-updated date. Editorial corrections and bug reports go to <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a> — include the page URL and what you expected versus what happened.</p>
 
 <section>
@@ -474,7 +474,7 @@ function privacyContent() {
   return legalWrap("Privacy Policy", `<p>This Privacy Policy describes how ${ORG_NAME} ("we", "us", or "our") collects, uses, and protects information when you use our website and tools at <a href="https://onlinespinwheel.fun">https://onlinespinwheel.fun</a>. ${ORG_NAME} is the data controller for this site. By using our website, you agree to the collection and use of information in accordance with this policy.</p>
 <section><h2>Information we collect</h2><p>Because Online Spin Wheel works directly in your browser, the inputs you type into the wheel (names, numbers, prizes) stay on your local device and are not collected by our servers. To keep the site running and serve relevant advertisements, we collect log data (IP address, browser type and version, pages visited, and time and date of visit), device information (operating system and unique device identifiers), and contact information (your email and message if you contact us).</p></section>
 <section><h2>Cookies and web beacons</h2><p>We use cookies and similar technologies (web beacons and pixels): essential cookies necessary for the site to function, analytical/performance cookies to count visitors and see how they move around the site, and targeting/advertising cookies to deliver more relevant ads.</p></section>
-<section><h2>Local browser storage</h2><p>To improve your experience without an account, we use your browser's localStorage for wheel entries, your cookie-consent choice, referral attribution, and theme preference. You can clear this data anytime in your browser settings.</p></section>
+<section><h2>Local browser storage</h2><p>To improve your experience without an account, we save a small amount of data in your browser's local storage for wheel entries, your cookie-consent choice, referral attribution, and theme preference. You can clear this data anytime in your browser settings.</p></section>
 <section><h2>Contact form processing (Web3Forms)</h2><p>When you submit our contact form, your name, email, and message are sent to Web3Forms so we can receive your inquiry by email. Do not send sensitive personal data through the form.</p></section>
 <section><h2>Google Analytics, Consent Mode, and AdSense</h2><p>We use Google Analytics for aggregated traffic insight and Google AdSense for ads and measurement. Google Consent Mode loads advertising and analytics tags with consent defaults set to denied until you accept cookies; your choice updates consent via gtag. Google's DoubleClick DART cookie may serve ads based on your visits; opt out at <a href="https://policies.google.com/technologies/ads" rel="noopener noreferrer">policies.google.com/technologies/ads</a>.</p></section>
 <section><h2>Do Not Track and Global Privacy Control</h2><p>We do not respond to all Do Not Track signals uniformly. Where supported, we aim to respect Global Privacy Control as a request to limit sale or sharing of personal information.</p></section>
@@ -494,7 +494,7 @@ function cookieContent() {
 <li><strong>Functional</strong> — remember choices like saved wheel entries and preferences; up to 1 year.</li>
 <li><strong>Targeting &amp; advertising</strong> — Google AdSense/DoubleClick DART for ads and measurement; up to 13 months.</li>
 </ul></section>
-<section><h2>Local storage</h2><p>We store wheel entries, your consent choice, theme preference, and basic referral attribution in localStorage. This stays on your device unless you clear site data.</p></section>
+<section><h2>Local storage</h2><p>We store wheel entries, your consent choice, theme preference, and basic referral attribution in your browser's local storage. This stays on your device unless you clear site data.</p></section>
 <section><h2>Google Consent Mode</h2><p>Analytics and AdSense load with Consent Mode defaults set to denied until you choose Accept or Decline. Personalized ads and ad-related storage apply only after Accept. Our banner is a custom implementation, not a Google-certified CMP for the EEA/UK/CH.</p></section>
 <section><h2>Managing cookies</h2><p>Use the consent banner and the footer "Cookie settings" link to accept or decline non-essential cookies anytime; declining limits personalized ads and analytics while the wheel keeps working. You can also clear or block cookies in your browser, and opt out via <a href="https://myadcenter.google.com/" rel="noopener noreferrer">Google Ad Settings</a>, <a href="https://optout.networkadvertising.org/" rel="noopener noreferrer">NAI</a>, and <a href="https://optout.aboutads.info/" rel="noopener noreferrer">DAA</a>. Where supported, we honor Global Privacy Control.</p></section>
 <section><h2>Changes and contact</h2><p>We may update this policy to reflect changes in practice or law. Questions? Email <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>. For more detail, read our full <a href="/privacy-policy">Privacy Policy</a>.</p></section>`);
@@ -530,7 +530,7 @@ function disclaimerContent() {
 function howRandomnessWorksContent() {
   return mainWrap(`<h1>How Randomness Works on Online Spin Wheel</h1>
 <p>Every spin on Online Spin Wheel is decided by cryptographically secure randomness generated on your device, not by a predictable pattern or a rigged outcome. This page explains exactly how a winner is chosen, why each entry has an equal chance, and why one spin never influences the next.</p>
-<section><h2>Where the randomness comes from</h2><p>When you press spin, the wheel asks your browser for random data using <code>crypto.getRandomValues()</code>. This is the Web Crypto API — the same cryptographically secure source browsers use to generate encryption keys and secure session tokens. It draws on your device's hardware entropy, so the value cannot be predicted or reproduced. That matters because the common alternative, <code>Math.random()</code>, is only pseudo-random: it follows a deterministic formula that a motivated observer could anticipate. For a fair draw in front of an audience, cryptographic randomness is the honest choice, and it is what we use on every wheel.</p></section>
+<section><h2>Where the randomness comes from</h2><p>When you press spin, the wheel asks your browser for a secure random value — the same kind of randomness browsers use to generate encryption keys and secure session tokens. It draws on your device's hardware entropy, so the value cannot be predicted or reproduced. That matters because a simple built-in random formula is only pseudo-random: it follows a pattern a motivated observer could anticipate. For a fair draw in front of an audience, cryptographic randomness is the honest choice, and it is what we use on every wheel.</p></section>
 <section><h2>How that seed becomes a winner</h2><p>The secure random value seeds the wheel's physics: a starting velocity, a friction curve, and a natural deceleration. The wheel is not told the answer in advance and then animated backward — it genuinely spins and slows to a stop, and wherever the pointer lands is the result. The winning entry is simply the segment beneath the pointer. Each segment's probability equals its arc divided by 360 degrees, so when every slice is the same size, every entry has exactly the same chance of being chosen.</p></section>
 <section><h2>Why every spin is independent</h2><p>The wheel has no memory. Each spin requests a fresh random seed, so previous results have zero effect on the next outcome. A name that just won is exactly as likely to win again on the following spin — there is no "due" entry and no streak-balancing. This property is called statistical independence, and it is what makes the wheel trustworthy for repeated draws. If you want unique winners across rounds, remove each winner from the wheel after they are picked; otherwise, leaving them in keeps every spin a clean, equal-odds event.</p></section>
 <section><h2>Fairness you can verify</h2><p>All of this runs in your browser. Your entries are never sent to a server, so there is no hidden step where an outcome could be edited. Because the spin is visible and continuous, you can screen-record it as proof for a giveaway or classroom draw. Ready to try it? Spin the <a href="/">free online spin wheel</a> on the homepage, or browse the <a href="/all-spin-wheels">full specialty wheel directory</a>. The same fair randomness powers every wheel on the site, from the <a href="/random-name-picker-wheel">random name picker wheel</a> to the <a href="/winner-picker-wheel">winner picker wheel</a>.</p></section>
@@ -636,7 +636,7 @@ function comparisonRngContent() {
 <tr><td>Shareable proof link</td><td>Yes — winner/raffle wheels</td><td>Not built-in</td></tr>
 </tbody>
 </table></section>
-<section><h2>How each works</h2><p>A plain RNG returns a number instantly with no animation. A spin wheel maps your entries to segments and uses randomness plus a physics simulation to land on one visibly. Under the hood, Online Spin Wheel uses the same cryptographically secure randomness (<code>crypto.getRandomValues()</code>) as a quality RNG, so fairness is equivalent.</p></section>
+<section><h2>How each works</h2><p>A plain random-number tool returns a number instantly with no animation. A spin wheel maps your entries to segments and uses randomness plus a physics simulation to land on one visibly. Under the hood, Online Spin Wheel uses the same secure browser randomness as a quality random-number tool, so fairness is equivalent.</p></section>
 <section><h2>Engagement and transparency</h2><p>The wheel's biggest advantage is visibility. When you spin live on screen, participants watch the selection happen, which builds trust for giveaways, classrooms, and events. A raw number appears with no suspense and no obvious proof of fairness to onlookers.</p></section>
 <section><h2>When to use which</h2><ul>
 <li><strong>Use a spin wheel</strong> for audiences, giveaways, classrooms, streams, and any moment where showing fairness matters.</li>
@@ -832,7 +832,7 @@ ${exploreNav()}`);
 <tbody>${summaryRows}</tbody>
 </table></section>
 <section><h2>Methodology</h2>
-<p>For each segment count k, we simulated ${study.spinsPerConfig.toLocaleString()} independent spins. Each spin drew a landing angle with <code>crypto.getRandomValues</code> (via Node <code>crypto.randomInt</code>), then mapped the angle to a slice index using the same formula as production <code>getCurrentSegment()</code> (equal arc width, pointer on the right).</p>
+<p>For each segment count k, we simulated ${study.spinsPerConfig.toLocaleString()} independent spins. Each spin drew a landing angle with the same secure browser randomness used in production, then mapped the angle to a slice index using the same equal-arc formula as the live wheel (pointer on the right).</p>
 <p>Expected count per slice is n/k. We computed Pearson's chi-square statistic χ² = Σ(O−E)²/E with k−1 degrees of freedom and compared to the α = 0.05 critical value. Configurations with χ² ≤ critical value are consistent with a uniform distribution.</p>
 <p>This study does not cover weighted slices, removed entries mid-session, or human timing — only equal segments and cryptographic landing angles.</p>
 </section>
@@ -961,7 +961,7 @@ ${winners}
 </ul>
 <p>Entries in pool: ${esc(String(proof.n))}</p>
 <p>Drawn (UTC): ${esc(formatProofUtc(proof.t))}</p>
-<p>Randomness method: ${esc(proof.m === "crypto-rng" ? "Cryptographic RNG (crypto.getRandomValues)" : String(proof.m))}</p>
+<p>Randomness method: ${esc(proof.m === "crypto-rng" ? "Secure browser randomness (cryptographic)" : String(proof.m))}</p>
 ${wheel}
 ${exploreNav()}`);
 }
@@ -1050,7 +1050,7 @@ function wheelGettingStartedSection(wheel) {
     : `<p>The ${esc(label)} runs in your browser with no signup — paste entries, spin once, and reset when you need a fresh pool.</p>`;
   return `<section><h2>Getting started</h2>${lead}<p>Enable remove-after-pick on the ${esc(
     label,
-  )} when each option should win once, and add <code>?stream=1</code> for a green-screen backdrop on stream recordings.</p><p>Project the ${esc(
+  )} when each option should win once, and turn on Streamer mode for a chroma-key backdrop on stream recordings.</p><p>Project the ${esc(
     label,
   )} fullscreen on a smartboard or TV so everyone sees the same spin without crowding one phone.</p></section>`;
 }

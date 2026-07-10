@@ -69,9 +69,9 @@ const AuthorRajaJahangir = () => {
       </p>
       <p>
         Fairness is measured, not assumed. Before any wheel goes live, I run automated checks across
-        10,000 spins to confirm each equal-sized segment wins at the same rate. Randomness comes from the browser&apos;s Web Crypto API (
-        <code>crypto.getRandomValues()</code>), not predictable <code>Math.random()</code>, and entries
-        you type stay on your device. I document that mechanism on the{" "}
+        10,000 spins to confirm each equal-sized segment wins at the same rate. Randomness comes from
+        the browser&apos;s secure generator, not a simple predictable formula, and entries you type
+        stay on your device. I document that mechanism on the{" "}
         <Link to="/how-randomness-works" className="font-medium text-primary underline underline-offset-2">
           how randomness works
         </Link>{" "}

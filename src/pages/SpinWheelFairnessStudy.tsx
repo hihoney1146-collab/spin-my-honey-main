@@ -113,12 +113,9 @@ const SpinWheelFairnessStudy = () => {
           <div className="space-y-4 text-muted-foreground leading-relaxed">
             <p>
               For each segment count k, we simulated {studyData.spinsPerConfig.toLocaleString()}{" "}
-              independent spins. Each spin drew a landing angle with{" "}
-              <code className="text-foreground">crypto.getRandomValues</code> (via Node{" "}
-              <code className="text-foreground">crypto.randomInt</code>), then mapped the angle
-              to a slice index using the same formula as production{" "}
-              <code className="text-foreground">getCurrentSegment()</code> (equal arc width, pointer
-              on the right).
+              independent spins. Each spin drew a landing angle with the same secure browser
+              randomness used in production, then mapped the angle to a slice index using the same
+              equal-arc formula as the live wheel (pointer on the right).
             </p>
             <p>
               Expected count per slice is n/k. We computed Pearson&apos;s chi-square statistic χ² =

@@ -11,7 +11,7 @@ const CookiePolicy = () => {
         <title>Cookie Policy - Online Spin Wheel</title>
         <meta
           name="description"
-          content="Cookie Policy for Online Spin Wheel: cookie types, Google AdSense and Consent Mode, localStorage, how to manage cookies, DNT/GPC, and contact."
+          content="Cookie Policy for Online Spin Wheel: cookie types, Google AdSense and Consent Mode, browser local storage, how to manage cookies, DNT/GPC, and contact."
         />
         <link rel="canonical" href="https://onlinespinwheel.fun/cookie-policy" />
       </Helmet>
@@ -148,7 +148,7 @@ const CookiePolicy = () => {
               Local storage (not always a cookie)
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              We also store data in your browser&apos;s localStorage for wheel entries,
+              We also save data in your browser&apos;s local storage for wheel entries,
               your cookie consent choice, theme preference, and basic referral
               attribution. This stays on your device unless you clear site data.
             </p>

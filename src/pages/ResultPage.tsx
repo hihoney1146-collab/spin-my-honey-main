@@ -83,7 +83,7 @@ const ResultPage = () => {
                   <dt className="text-sm font-medium text-muted-foreground">Randomness method</dt>
                   <dd className="text-lg font-semibold mt-1">
                     {proof.m === "crypto-rng"
-                      ? "Cryptographic RNG (crypto.getRandomValues)"
+                      ? "Secure browser randomness (cryptographic)"
                       : proof.m}
                   </dd>
                 </div>

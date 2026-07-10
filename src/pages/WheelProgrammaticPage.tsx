@@ -217,8 +217,8 @@ const WheelProgrammaticPage = () => {
             <h2 className="text-lg font-bold mb-2">Streamer mode (OBS / Streamlabs)</h2>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Toggle <strong className="text-foreground">Streamer mode</strong> above the wheel
-              for a solid chroma-key green background (<code>#00FF00</code>) and hidden site
-              chrome — ideal for giveaway streams on Twitch, YouTube, or TikTok Live. Pair with{" "}
+              for a solid chroma-key background and hidden site chrome — ideal for giveaway
+              streams on Twitch, YouTube, or TikTok Live. Pair with{" "}
               <strong className="text-foreground">Get proof link</strong> after your draw and
               paste the verification URL in chat.
             </p>
