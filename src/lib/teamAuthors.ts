@@ -1,6 +1,6 @@
 const SITE_ORIGIN = "https://onlinespinwheel.fun";
 export const ORG_NAME = "Online Spin Wheel";
-export const CONTACT_EMAIL = "hello@onlinespinwheel.fun";
+export const CONTACT_EMAIL = "onlinespinwheel@gmail.com";
 
 export const ORGANIZATION_ID = `${SITE_ORIGIN}/#organization`;
 

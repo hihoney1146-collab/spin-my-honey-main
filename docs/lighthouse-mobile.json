@@ -2175,8 +2175,8 @@
                 "width": 346,
                 "height": 20
               },
-              "snippet": "<a href=\"mailto:hello@onlinespinwheel.fun\" class=\"text-sm font-semibold text-primary hover:underline flex items-center gap-2…\">",
-              "nodeLabel": "hello@onlinespinwheel.fun"
+              "snippet": "<a href=\"mailto:onlinespinwheel@gmail.com\" class=\"text-sm font-semibold text-primary hover:underline flex items-center gap-2…\">",
+              "nodeLabel": "onlinespinwheel@gmail.com"
             },
             "subItems": {
               "type": "subitems",
@@ -4520,7 +4520,7 @@
                 "height": 78
               },
               "snippet": "<div class=\"p-4 bg-primary/5 rounded-lg border border-primary/20 hover:border-primary/…\">",
-              "nodeLabel": "Email us at:\n\nhello@onlinespinwheel.fun"
+              "nodeLabel": "Email us at:\n\nonlinespinwheel@gmail.com"
             },
             "subItems": {
               "type": "subitems",

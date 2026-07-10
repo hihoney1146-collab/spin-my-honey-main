@@ -497,7 +497,7 @@ function cookieContent() {
 <section><h2>Local storage</h2><p>We store wheel entries, your consent choice, theme preference, and basic referral attribution in localStorage. This stays on your device unless you clear site data.</p></section>
 <section><h2>Google Consent Mode</h2><p>Analytics and AdSense load with Consent Mode defaults set to denied until you choose Accept or Decline. Personalized ads and ad-related storage apply only after Accept. Our banner is a custom implementation, not a Google-certified CMP for the EEA/UK/CH.</p></section>
 <section><h2>Managing cookies</h2><p>Use the consent banner and the footer "Cookie settings" link to accept or decline non-essential cookies anytime; declining limits personalized ads and analytics while the wheel keeps working. You can also clear or block cookies in your browser, and opt out via <a href="https://myadcenter.google.com/" rel="noopener noreferrer">Google Ad Settings</a>, <a href="https://optout.networkadvertising.org/" rel="noopener noreferrer">NAI</a>, and <a href="https://optout.aboutads.info/" rel="noopener noreferrer">DAA</a>. Where supported, we honor Global Privacy Control.</p></section>
-<section><h2>Changes and contact</h2><p>We may update this policy to reflect changes in practice or law. Questions? Email <a href="mailto:hello@onlinespinwheel.fun">hello@onlinespinwheel.fun</a>. For more detail, read our full <a href="/privacy-policy">Privacy Policy</a>.</p></section>`);
+<section><h2>Changes and contact</h2><p>We may update this policy to reflect changes in practice or law. Questions? Email <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>. For more detail, read our full <a href="/privacy-policy">Privacy Policy</a>.</p></section>`);
 }
 
 function termsContent() {

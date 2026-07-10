@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ZOHA_AUTHOR } from "@/lib/teamAuthors";
 import { TEAM_LINKEDIN } from "@/lib/teamLinks";
-import { ORG_NAME } from "@/lib/schema";
+import { ORG_NAME, CONTACT_EMAIL } from "@/lib/schema";
 import { AuthorProfilePage } from "@/components/AuthorProfilePage";
 
 const AuthorZohaZeeshan = () => (
@@ -54,8 +54,8 @@ const AuthorZohaZeeshan = () => (
     <p>
       Feedback shapes what we build next. If you have an idea for a wheel, spotted confusing copy, or
       want to discuss how your organization uses the tool, reach us at{" "}
-      <a href="mailto:hello@onlinespinwheel.fun" className="font-medium text-primary underline underline-offset-2">
-        hello@onlinespinwheel.fun
+      <a href={`mailto:${CONTACT_EMAIL}`} className="font-medium text-primary underline underline-offset-2">
+        {CONTACT_EMAIL}
       </a>
       . You can also read the full team story on{" "}
       <Link to="/about-us" className="font-medium text-primary underline underline-offset-2">

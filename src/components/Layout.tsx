@@ -37,6 +37,7 @@ import { openCookieSettings } from "@/lib/cookieConsentEvents";
 import { STREAMER_GREEN } from "@/lib/streamerMode";
 import { useStreamerMode } from "@/lib/useStreamerMode";
 import { TEAM_AUTHOR_LINKS } from "@/lib/teamLinks";
+import { CONTACT_EMAIL } from "@/lib/schema";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
@@ -243,10 +244,10 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                         Need help? Contact us
                       </p>
                       <a
-                        href="mailto:hello@onlinespinwheel.fun"
+                        href={`mailto:${CONTACT_EMAIL}`}
                         className="text-sm font-semibold text-primary hover:underline block text-center"
                       >
-                        hello@onlinespinwheel.fun
+                        {CONTACT_EMAIL}
                       </a>
                     </div>
                   </div>
@@ -446,11 +447,11 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                     Email us at:
                   </p>
                   <a
-                    href="mailto:hello@onlinespinwheel.fun"
+                    href={`mailto:${CONTACT_EMAIL}`}
                     className="text-sm font-semibold text-primary hover:underline flex items-center gap-2 group-hover:gap-3 transition-all duration-300"
                   >
                     <Mail className="h-4 w-4 flex-shrink-0" />
-                    <span className="break-all">hello@onlinespinwheel.fun</span>
+                    <span className="break-all">{CONTACT_EMAIL}</span>
                   </a>
                 </div>
                 <p className="text-xs text-muted-foreground italic">

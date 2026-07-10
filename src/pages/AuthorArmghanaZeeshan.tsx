@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ARMGHANA_AUTHOR } from "@/lib/teamAuthors";
 import { TEAM_LINKEDIN } from "@/lib/teamLinks";
-import { ORG_NAME } from "@/lib/schema";
+import { ORG_NAME, CONTACT_EMAIL } from "@/lib/schema";
 import { AuthorProfilePage } from "@/components/AuthorProfilePage";
 
 const AuthorArmghanaZeeshan = () => (
@@ -52,8 +52,8 @@ const AuthorArmghanaZeeshan = () => (
     </p>
     <p>
       Questions about partnerships, accessibility, or how we operate? Email{" "}
-      <a href="mailto:hello@onlinespinwheel.fun" className="font-medium text-primary underline underline-offset-2">
-        hello@onlinespinwheel.fun
+      <a href={`mailto:${CONTACT_EMAIL}`} className="font-medium text-primary underline underline-offset-2">
+        {CONTACT_EMAIL}
       </a>{" "}
       or connect on LinkedIn. Read more on our{" "}
       <Link to="/about-us" className="font-medium text-primary underline underline-offset-2">

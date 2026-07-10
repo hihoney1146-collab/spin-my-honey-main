@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import jahangirSeo from "@/assets/Jahangir-SEO.jpeg";
 import { RAJA_AUTHOR } from "@/lib/teamAuthors";
 import { TEAM_LINKEDIN, SITE_SOCIAL_LINKS } from "@/lib/teamLinks";
-import { ORG_NAME } from "@/lib/schema";
+import { ORG_NAME, CONTACT_EMAIL } from "@/lib/schema";
 import { AuthorProfilePage } from "@/components/AuthorProfilePage";
 
 const AuthorRajaJahangir = () => {
@@ -84,8 +84,8 @@ const AuthorRajaJahangir = () => {
       <p>
         When I update a tool page or guide, I refresh its visible last-updated date so you always know
         how current the instructions are. Editorial corrections and bug reports go to{" "}
-        <a href="mailto:hello@onlinespinwheel.fun" className="font-medium text-primary underline underline-offset-2">
-          hello@onlinespinwheel.fun
+        <a href={`mailto:${CONTACT_EMAIL}`} className="font-medium text-primary underline underline-offset-2">
+          {CONTACT_EMAIL}
         </a>
         — include the page URL and what you expected versus what happened.
       </p>

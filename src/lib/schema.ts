@@ -15,7 +15,7 @@ export const ORG_NAME = "Online Spin Wheel";
 export const WEBSITE_ID = `${SITE_ORIGIN}/#website`;
 
 /** Sitewide contact address (domain email; forwarding configured at the registrar). */
-export const CONTACT_EMAIL = "hello@onlinespinwheel.fun";
+export const CONTACT_EMAIL = "onlinespinwheel@gmail.com";
 
 export {
   RAJA_AUTHOR,

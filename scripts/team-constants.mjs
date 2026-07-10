@@ -4,7 +4,7 @@ export const SITE = "https://onlinespinwheel.fun";
 export const ORG_NAME = "Online Spin Wheel";
 export const ORG_ID = `${SITE}/#organization`;
 export const WEBSITE_ID = `${SITE}/#website`;
-export const CONTACT_EMAIL = "hello@onlinespinwheel.fun";
+export const CONTACT_EMAIL = "onlinespinwheel@gmail.com";
 
 export const TEAM_AUTHORS = {
   armghana: {
