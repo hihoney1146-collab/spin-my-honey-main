@@ -28,10 +28,11 @@ export function StreamerControls({
     segmentColors.length > 0 &&
     hasChromaSegmentCollision(streamBg, segmentColors);
 
-  const streamStyle = streamerMode
+  const streamControlStyle = streamerMode
     ? ({
         color: "var(--stream-fg)",
         borderColor: "var(--stream-fg)",
+        backgroundColor: "transparent",
       } as const)
     : undefined;
 
@@ -59,10 +60,14 @@ export function StreamerControls({
             variant="outline"
             size="sm"
             onClick={onCopyLink}
-            className="gap-2"
-            style={streamStyle}
+            className={
+              streamerMode
+                ? "gap-2 border-2 !bg-transparent hover:!bg-transparent hover:!opacity-90 shadow-none !text-[color:var(--stream-fg)] !border-[color:var(--stream-fg)] hover:!text-[color:var(--stream-fg)] [&_svg]:!text-[color:var(--stream-fg)]"
+                : "gap-2"
+            }
+            style={streamControlStyle}
           >
-            <Copy className="h-3.5 w-3.5" />
+            <Copy className="h-3.5 w-3.5" aria-hidden="true" />
             Copy link
           </Button>
         ) : null}

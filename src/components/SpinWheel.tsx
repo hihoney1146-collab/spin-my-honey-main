@@ -1245,7 +1245,7 @@ export const SpinWheel = ({
             size="lg"
             className={
               streamerMode
-                ? "text-sm sm:text-base lg:text-lg font-bold px-6 sm:px-8 lg:px-10 py-3 sm:py-4 h-auto w-full rounded-xl border-2 bg-transparent hover:bg-transparent touch-manipulation tracking-wide"
+                ? "text-sm sm:text-base lg:text-lg font-bold px-6 sm:px-8 lg:px-10 py-3 sm:py-4 h-auto w-full rounded-xl border-2 !bg-transparent hover:!bg-transparent hover:!opacity-90 shadow-none touch-manipulation tracking-wide !text-[color:var(--stream-fg)] !border-[color:var(--stream-fg)] hover:!text-[color:var(--stream-fg)] [&_svg]:!text-[color:var(--stream-fg)]"
                 : "text-sm sm:text-base lg:text-lg font-bold px-6 sm:px-8 lg:px-10 py-3 sm:py-4 h-auto bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-primary-foreground w-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none rounded-xl border-t border-white/20 relative overflow-hidden group touch-manipulation tracking-wide"
             }
             style={
@@ -1253,6 +1253,7 @@ export const SpinWheel = ({
                 ? {
                     color: "var(--stream-fg)",
                     borderColor: "var(--stream-fg)",
+                    backgroundColor: "transparent",
                   }
                 : undefined
             }
@@ -1376,8 +1377,12 @@ export const SpinWheel = ({
             type="button"
             variant="outline"
             size="sm"
-            className="w-full max-w-[660px] mx-auto gap-2 bg-transparent hover:bg-transparent"
-            style={{ color: "var(--stream-fg)", borderColor: "var(--stream-fg)" }}
+            className="w-full max-w-[660px] mx-auto gap-2 border-2 !bg-transparent hover:!bg-transparent hover:!opacity-90 shadow-none !text-[color:var(--stream-fg)] !border-[color:var(--stream-fg)] hover:!text-[color:var(--stream-fg)] [&_svg]:!text-[color:var(--stream-fg)]"
+            style={{
+              color: "var(--stream-fg)",
+              borderColor: "var(--stream-fg)",
+              backgroundColor: "transparent",
+            }}
             onClick={() => setStreamEntriesExpanded((v) => !v)}
             aria-expanded={streamEntriesExpanded}
           >
