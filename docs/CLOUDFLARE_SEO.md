@@ -121,7 +121,7 @@ fixing GSC "Couldn't fetch" and AdSense "ads.txt not found".
 - **Field / expression:**
 
   ```txt
-  (http.request.uri.path in {"/ads.txt" "/robots.txt" "/llms.txt" "/sitemap.xml" "/pages-sitemap.xml" "/wheels-sitemap.xml" "/blog-sitemap.xml" "/images-sitemap.xml"})
+  (http.request.uri.path in {"/ads.txt" "/robots.txt" "/llms.txt" "/sitemap" "/sitemap.xml" "/sitemap.txt" "/pages-sitemap.xml" "/wheels-sitemap.xml" "/blog-sitemap.xml" "/images-sitemap.xml" "/sitemap-index.xml"})
   ```
 
 - **Action:** `Skip` → all managed rules, Bot Fight Mode, rate limiting, and any
@@ -137,7 +137,9 @@ fixing GSC "Couldn't fetch" and AdSense "ads.txt not found".
 
 `Caching → Configuration`, `Rules → Transform Rules`
 
-- Purge the cache after every deploy, then resubmit `/sitemap.xml` in GSC.
+- Purge the cache after every deploy, then resubmit **`/sitemap`** (extensionless) in GSC.
+  Prefer `/sitemap` over `/sitemap.xml` — Cloudflare has been reported to mangle `.xml`
+  responses for Googlebot even when browsers see valid XML.
 - Ensure `*.xml` is served as `application/xml` and `ads.txt`/`robots.txt`/
   `llms.txt` as `text/plain` (Vercel already sets these via `vercel.json`
   headers). Cloudflare must not rewrite `Content-Type` to `text/html`.
@@ -155,7 +157,8 @@ fixing GSC "Couldn't fetch" and AdSense "ads.txt not found".
   (`redirects` array) and by **Always Use HTTPS** in Cloudflare — a single hop
   each, no chains.
 - In GSC, register the **Domain property** (covers www + apex + http/https) or
-  the apex URL-prefix property, and submit only `https://onlinespinwheel.fun/sitemap.xml`.
+  the apex URL-prefix property, and submit **`https://onlinespinwheel.fun/sitemap`**
+  (fallback: `/sitemap.txt`). See [GSC_CHECKLIST.md](./GSC_CHECKLIST.md).
 
 ---
 
@@ -166,7 +169,7 @@ AI citations.
 
 1. Create/verify the site at <https://www.bing.com/webmasters> (import from GSC is
    fastest).
-2. Submit `https://onlinespinwheel.fun/sitemap.xml`.
+2. Submit `https://onlinespinwheel.fun/sitemap` (or `/sitemap.txt`).
 3. **HTML meta verification:** In Bing Webmaster Tools, choose the meta-tag method
    and copy the `content` value. Set it as a Vercel environment variable on the
    production project:
@@ -197,10 +200,12 @@ npm run verify:ads-txt
 # Spot checks
 curl -sI -A "Googlebot/2.1 (+http://www.google.com/bot.html)" https://onlinespinwheel.fun/ads.txt
 curl -sI -A "Mediapartners-Google" https://onlinespinwheel.fun/
-curl -sI https://onlinespinwheel.fun/sitemap.xml
+curl -sI https://onlinespinwheel.fun/sitemap
+curl -sI https://onlinespinwheel.fun/sitemap.txt
 ```
 
 **Phase 0 is complete only when:** every `verify-crawler-access.sh` line is `200`,
 `/ads.txt` returns `text/plain` to `Mediapartners-Google`/`AdsBot-Google`, and
-`/sitemap.xml` returns `application/xml` starting with `<?xml` to `Googlebot`.
+`/sitemap` returns `application/xml` starting with `<?xml` to `Googlebot` (and has
+**no** `Content-Security-Policy` header).
 Any `403` / `429` / `503` means a Cloudflare rule above still needs adjustment.

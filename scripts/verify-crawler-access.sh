@@ -28,6 +28,7 @@ USER_AGENTS=(
 PATHS=(
   "/"
   "/ads.txt"
+  "/sitemap"
   "/sitemap.xml"
   "/robots.txt"
   "/llms.txt"

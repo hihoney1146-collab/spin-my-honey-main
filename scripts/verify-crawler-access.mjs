@@ -15,7 +15,7 @@ const USER_AGENTS = [
   "ClaudeBot",
   "PerplexityBot",
 ];
-const PATHS = ["/", "/ads.txt", "/sitemap.xml", "/robots.txt", "/llms.txt", "/about-us", "/yes-or-no-wheel"];
+const PATHS = ["/", "/ads.txt", "/sitemap", "/sitemap.xml", "/robots.txt", "/llms.txt", "/about-us", "/yes-or-no-wheel"];
 
 let fail = 0;
 const lines = [`Crawler-access check against ${ORIGIN}`, "-".repeat(65)];

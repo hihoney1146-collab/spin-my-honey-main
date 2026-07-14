@@ -304,7 +304,7 @@ export const CHILD_SITEMAPS = [
   { filename: "images-sitemap.xml", builder: buildImagesSitemapXml },
 ];
 
-/** Sitemap index kept for tooling/debugging; root sitemap uses a direct urlset for GSC simplicity. */
+/** Sitemap index kept for tooling/debugging; root /sitemap.xml is a direct urlset for GSC. */
 export function buildSitemapIndexXml(root = getProjectRoot()) {
   const lastmod = getSitemapLastmod();
   const entries = CHILD_SITEMAPS.map((c) =>
@@ -341,20 +341,25 @@ export function buildSitemapXml(root = getProjectRoot()) {
 }
 
 export function buildTextSitemap(root = getProjectRoot()) {
-  return collectSitemapEntries(root)
-    .map((block) => block.match(/<loc>(.*?)<\/loc>/)?.[1])
-    .filter(Boolean)
-    .join("\n") + "\n";
+  return (
+    collectSitemapEntries(root)
+      .map((block) => block.match(/<loc>(.*?)<\/loc>/)?.[1])
+      .filter(Boolean)
+      .join("\n") + "\n"
+  );
 }
 
 export function writeAllSitemapFiles(root = getProjectRoot()) {
   const publicDir = path.join(root, "public");
   fs.mkdirSync(publicDir, { recursive: true });
 
-  // Single source of truth: /sitemap.xml is a real sitemap index that references
-  // the child sitemaps below (matches the claims in llms.txt and robots.txt).
+  // GSC primary: one urlset (no child-index hop; fewer Cloudflare edge failures).
+  fs.writeFileSync(path.join(publicDir, "sitemap.xml"), buildSitemapXml(root), "utf8");
+  // Extensionless / text alternatives (Cloudflare sometimes mangles .xml for Googlebot).
+  fs.writeFileSync(path.join(publicDir, "sitemap.txt"), buildTextSitemap(root), "utf8");
+  // Index kept for humans/tools that prefer child partitions.
   fs.writeFileSync(
-    path.join(publicDir, "sitemap.xml"),
+    path.join(publicDir, "sitemap-index.xml"),
     buildSitemapIndexXml(root),
     "utf8",
   );
@@ -389,7 +394,9 @@ Disallow: /*?*utm_campaign=
 Disallow: /*?*fbclid=
 Disallow: /*?*gclid=
 
+Sitemap: ${SITE}/sitemap
 Sitemap: ${SITE}/sitemap.xml
+Sitemap: ${SITE}/sitemap.txt
 `;
 }
 
@@ -487,11 +494,10 @@ export function buildLlmsTxt(root = getProjectRoot()) {
     `${SITE}/disclaimer`,
     "",
     "## Machine-readable resources",
-    `- Sitemap index: ${SITE}/sitemap.xml`,
-    `- Pages: ${SITE}/pages-sitemap.xml`,
-    `- Wheels: ${SITE}/wheels-sitemap.xml`,
-    `- Blog: ${SITE}/blog-sitemap.xml`,
-    `- Images: ${SITE}/images-sitemap.xml`,
+    `- Primary sitemap (urlset): ${SITE}/sitemap`,
+    `- Also: ${SITE}/sitemap.xml and ${SITE}/sitemap.txt`,
+    `- Child partitions: ${SITE}/pages-sitemap.xml, ${SITE}/wheels-sitemap.xml, ${SITE}/blog-sitemap.xml, ${SITE}/images-sitemap.xml`,
+    `- Index (optional): ${SITE}/sitemap-index.xml`,
     `- Original data (fairness study CSV): ${SITE}/downloads/spin-wheel-fairness-study-100k.csv`,
     `- ads.txt: ${SITE}/ads.txt`,
     "",

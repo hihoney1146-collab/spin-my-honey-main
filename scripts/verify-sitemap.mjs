@@ -5,7 +5,9 @@
 const SITE = process.env.SITE_ORIGIN || "https://onlinespinwheel.fun";
 
 const SITEMAPS = [
-  { path: "/sitemap.xml", kind: "index", minLocs: 4 },
+  { path: "/sitemap", kind: "urlset", minLocs: 50 },
+  { path: "/sitemap.xml", kind: "urlset", minLocs: 50 },
+  { path: "/sitemap.txt", kind: "text", minLocs: 50 },
   { path: "/pages-sitemap.xml", kind: "urlset", minLocs: 10 },
   { path: "/wheels-sitemap.xml", kind: "urlset", minLocs: 40 },
   { path: "/blog-sitemap.xml", kind: "urlset", minLocs: 1 },
@@ -87,10 +89,16 @@ for (const { path, kind, minLocs } of SITEMAPS) {
       failed++;
       continue;
     }
-    if (kind === "urlset" && !body.includes("<urlset")) {
+    if ((kind === "urlset" || kind === "image") && !body.includes("<urlset")) {
       console.error(`FAIL ${path}: expected urlset`);
       failed++;
       continue;
+    }
+
+    // CSP on crawler endpoints makes GSC flaky — warn loudly
+    const csp = res.headers.get("content-security-policy");
+    if (csp) {
+      console.warn(`WARN ${path}: has Content-Security-Policy (prefer none on sitemaps)`);
     }
 
     const locs =
@@ -130,13 +138,18 @@ try {
         failed++;
       }
     }
+    if (!body.includes("Sitemap:")) {
+      console.error("FAIL robots.txt: missing Sitemap directive");
+      robotsOk = false;
+      failed++;
+    }
+    if (!body.includes(`${SITE}/sitemap`)) {
+      console.error("FAIL robots.txt: missing extensionless /sitemap");
+      robotsOk = false;
+      failed++;
+    }
     if (robotsOk) {
-      if (!body.includes("Sitemap:")) {
-        console.error("FAIL robots.txt: missing Sitemap directive");
-        failed++;
-      } else {
-        console.log(`OK  ${SITE}/robots.txt`);
-      }
+      console.log(`OK  ${SITE}/robots.txt`);
     }
   }
 } catch (err) {
@@ -145,11 +158,11 @@ try {
 }
 
 console.log("\n=== GSC checklist ===\n");
-console.log(`1. Submit only: ${SITE}/sitemap.xml (a sitemap index referencing 4 child sitemaps)`);
-console.log("2. Confirm every child sitemap above returns 200 with application/xml");
-console.log(`3. Also submit ${SITE}/sitemap.xml in Bing Webmaster Tools, then run: npm run indexnow`);
-console.log("4. Request indexing: /, /all-spin-wheels, /random-name-picker-wheel, /about-us, /author/raja-jahangir");
-console.log("5. Purge Cloudflare cache after deploy\n");
+console.log(`1. PRIMARY submit in GSC: ${SITE}/sitemap  (extensionless — best with Cloudflare)`);
+console.log(`2. Fallback: ${SITE}/sitemap.txt  (URL list — often succeeds when XML fails)`);
+console.log(`3. Also listed: ${SITE}/sitemap.xml (same urlset as /sitemap)`);
+console.log("4. Purge Cloudflare cache after deploy, remove old failed submissions, wait, resubmit");
+console.log("5. Bing Webmaster: same /sitemap URL, then npm run indexnow\n");
 
 if (failed > 0) {
   console.error(`${failed} check(s) failed.`);

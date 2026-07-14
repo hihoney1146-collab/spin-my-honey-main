@@ -12,4 +12,6 @@ Disallow: /*?*utm_campaign=
 Disallow: /*?*fbclid=
 Disallow: /*?*gclid=
 
+Sitemap: https://onlinespinwheel.fun/sitemap
 Sitemap: https://onlinespinwheel.fun/sitemap.xml
+Sitemap: https://onlinespinwheel.fun/sitemap.txt
