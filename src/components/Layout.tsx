@@ -37,7 +37,6 @@ import { openCookieSettings } from "@/lib/cookieConsentEvents";
 import { useEffect } from "react";
 import { contrastForeground } from "@/lib/contrastColor";
 import { useStreamerMode } from "@/lib/useStreamerMode";
-import { TEAM_AUTHOR_LINKS } from "@/lib/teamLinks";
 import { CONTACT_EMAIL } from "@/lib/schema";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
@@ -286,7 +285,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Main Footer Content */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-8 py-8 sm:py-12 md:py-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-8 py-8 sm:py-12 md:py-16">
             {/* Brand Section */}
             <div className="sm:col-span-2 lg:col-span-1">
               <Link to="/" className="inline-flex items-center gap-2 mb-4 group">
@@ -366,25 +365,6 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                     >
                       <span className="w-0 group-hover:w-4 h-px bg-primary transition-all duration-300" />
                       {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Leadership */}
-            <div>
-              <h3 className="font-semibold text-base mb-4 text-foreground">Leadership</h3>
-              <ul className="space-y-3">
-                {TEAM_AUTHOR_LINKS.map((link) => (
-                  <li key={link.to}>
-                    <Link
-                      to={link.to}
-                      className="text-sm text-muted-foreground hover:text-primary transition-all duration-200 inline-flex items-center gap-2 group"
-                    >
-                      <span className="w-0 group-hover:w-4 h-px bg-primary transition-all duration-300" />
-                      {link.label}
-                      <span className="text-xs text-muted-foreground/80">({link.role})</span>
                     </Link>
                   </li>
                 ))}
