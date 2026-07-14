@@ -9,7 +9,7 @@ export const bestIcebreakerGamesOfficeMeetings: BlogPost = {
   excerpt:
     "This is not a generic list of icebreaker games for work. Every activity here starts with a spin on Online Spin Wheel, prompt roulette, yes-or-no debates, truth-or-dare lite, team shuffles, and more, built for five-minute openings on Zoom and hybrid US meetings. Facilitators get a printable run sheet, example prompts to paste on each wheel, and paths to the exact tools to screen-share.",
   author: "Raja Jahangir (Content & SEO Lead, Online Spin Wheel)",
-  updated: "2026-07-09",
+  updated: "2026-07-14",
   published: "2026-05-05",
   indexed: true,
   relatedWheels: [

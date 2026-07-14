@@ -64,31 +64,8 @@ const SCENES = [
       slices: ["evidence", "theme", "context", "infer", "summarize", "compare"],
     }),
   },
-  {
-    file: "icebreaker-wheel-prompts.png",
-    svg: wheelSceneSvg({
-      title: "Spin-the-wheel icebreaker prompts",
-      subtitle: "Paste team prompts, one spin, one share-out",
-      accent: "#9f7aea",
-      slices: [
-        "Weekend win",
-        "Hidden talent",
-        "Dream trip",
-        "Snack hot take",
-        "First job",
-        "Two truths",
-      ],
-    }),
-  },
-  {
-    file: "icebreaker-hybrid-meeting.png",
-    svg: wheelSceneSvg({
-      title: "Hybrid meeting icebreaker",
-      subtitle: "Zoom gallery + shared wheel on screen share",
-      accent: "#ed8936",
-      slices: ["Intro", "Prompt", "Follow-up", "Shout-out", "Next", "Wrap"],
-    }),
-  },
+  // icebreaker-wheel-prompts.png + icebreaker-hybrid-meeting.png are curated
+  // Gemini assets in public/blog/ (do not regenerate — keeps alignment correct).
 ];
 
 for (const { file, svg } of SCENES) {
@@ -98,3 +75,6 @@ for (const { file, svg } of SCENES) {
 }
 
 console.log(`\nGenerated ${SCENES.length} blog inline images.`);
+console.log(
+  "Skipped curated: icebreaker-wheel-prompts.png, icebreaker-hybrid-meeting.png",
+);
