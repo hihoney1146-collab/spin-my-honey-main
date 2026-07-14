@@ -239,19 +239,34 @@ function siteIdentityJsonLd() {
   return teamSiteIdentity();
 }
 
-function faqJsonLd(faqs = []) {
+function faqJsonLd(faqs = [], pageUrl) {
   if (!faqs.length) return null;
+  const base = pageUrl ? pageUrl.replace(/\/$/, "") : "";
+  const faqPageId = base ? `${base}#faq` : undefined;
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
+    ...(faqPageId
+      ? {
+          "@id": faqPageId,
+          url: base,
+          inLanguage: "en",
+          isPartOf: { "@id": WEBSITE_ID },
+        }
+      : {}),
+    mainEntity: faqs.map((faq, index) => {
+      const questionId = faqPageId ? `${faqPageId}-q${index + 1}` : undefined;
+      return {
+        "@type": "Question",
+        ...(questionId ? { "@id": questionId } : {}),
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          ...(questionId ? { "@id": `${questionId}-answer` } : {}),
+          text: faq.answer,
+        },
+      };
+    }),
   };
 }
 
@@ -340,7 +355,10 @@ function enrichRoute(route, wheels, blogRoutes, blogPosts) {
     jsonLd.push(...siteIdentityJsonLd());
     jsonLd.push(wheelBreadcrumbJsonLd(route.wheel));
     jsonLd.push(webApplicationJsonLd(route, route.wheel.h1 || wheelLabel(route.wheel)));
-    const faqLd = faqJsonLd(route.wheel.faqs);
+    const faqLd = faqJsonLd(
+      route.wheel.faqs,
+      canonicalUrl(route.path),
+    );
     if (faqLd) jsonLd.push(faqLd);
     seoContent =
       renderRouteContent(route, { wheels, blogPosts }) ||

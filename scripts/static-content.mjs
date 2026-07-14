@@ -764,17 +764,37 @@ function wheelOfNamesAlternativeContent() {
 <li><a href="/all-spin-wheels">All spin wheels</a></li>
 </ul></section>
 
-<section><h2>Frequently asked questions</h2>
-<h3>Do I need an account to use Online Spin Wheel?</h3>
-<p>No. Core spinning works without signup. Your entries stay in the browser on your device.</p>
-<h3>How is Online Spin Wheel different from a generic name spinner?</h3>
-<p>Besides a free name picker, we publish 40+ specialty pages — raffles, classroom hubs, prize wheels — plus multi-winner proof links and ticket-number raffle mode.</p>
-<h3>Do my names get uploaded to a server?</h3>
-<p>No. Entries are processed in your browser and stay on your device.</p>
-<h3>Which tool is best for Instagram giveaways?</h3>
-<p>Look for multi-winner draws and shareable proof links. Our winner picker and raffle wheels support both.</p>
-<h3>Can I import a class list?</h3>
-<p>Yes — paste one name per line (up to 400). The classroom spinner adds remove-after-pick, teams, and a timer.</p>
+<section itemscope itemtype="https://schema.org/FAQPage" id="faq"><h2>Frequently asked questions</h2>
+<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+<h3 itemprop="name">Do I need an account to use Online Spin Wheel?</h3>
+<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+<p itemprop="text">No. Core spinning works without signup. Your entries stay in the browser on your device.</p>
+</div>
+</div>
+<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+<h3 itemprop="name">How is Online Spin Wheel different from a generic name spinner?</h3>
+<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+<p itemprop="text">Besides a free name picker, we publish 40+ specialty pages — raffles, classroom hubs, prize wheels — plus multi-winner proof links and ticket-number raffle mode.</p>
+</div>
+</div>
+<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+<h3 itemprop="name">Do my names get uploaded to a server?</h3>
+<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+<p itemprop="text">No. Entries are processed in your browser and stay on your device.</p>
+</div>
+</div>
+<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+<h3 itemprop="name">Which tool is best for Instagram giveaways?</h3>
+<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+<p itemprop="text">Look for multi-winner draws and shareable proof links. Our winner picker and raffle wheels support both.</p>
+</div>
+</div>
+<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+<h3 itemprop="name">Can I import a class list?</h3>
+<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+<p itemprop="text">Yes — paste one name per line (up to 400). The classroom spinner adds remove-after-pick, teams, and a timer.</p>
+</div>
+</div>
 </section>
 ${exploreNav()}`);
 }

@@ -67,53 +67,79 @@ export const fixedRouteMeta = [
       {
         "@context": "https://schema.org",
         "@type": "FAQPage",
+        "@id": `${SITE}/#faq`,
+        url: `${SITE}/`,
+        inLanguage: "en",
+        isPartOf: { "@id": WEBSITE_ID },
         mainEntity: [
           {
             "@type": "Question",
+            "@id": `${SITE}/#faq-q1`,
             name: "What is the maximum number of entries I can add?",
             acceptedAnswer: {
               "@type": "Answer",
+              "@id": `${SITE}/#faq-q1-answer`,
               text: "There is no hard limit. You can paste hundreds of names at once (up to 400 lines per paste) and the wheel resizes every segment automatically. For readability, keep it under about 20 visible slices; larger lists still pick fairly.",
             },
           },
           {
             "@type": "Question",
+            "@id": `${SITE}/#faq-q2`,
             name: "Can I save a wheel to reuse later?",
             acceptedAnswer: {
               "@type": "Answer",
+              "@id": `${SITE}/#faq-q2-answer`,
               text: "Yes. Your entries are stored in your browser's local storage, so the same names are waiting the next time you open the page on that device. Use Reset to bring back the sample names, or Clear all to start fresh.",
             },
           },
           {
             "@type": "Question",
+            "@id": `${SITE}/#faq-q3`,
             name: "Can I share my wheel or the result?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Screen-record or screenshot the spin to share the outcome — that is exactly what giveaway hosts post as proof. Every specialty wheel also has its own shareable URL you can send to anyone.",
+              "@id": `${SITE}/#faq-q3-answer`,
+              text: "Yes. Use Copy link above the wheel to bookmark your exact entries in the link (no account). After a giveaway spin on the winner picker, raffle, or name picker wheels, tap Get proof link for a verifiable result page you can paste on Instagram or TikTok.",
             },
           },
           {
             "@type": "Question",
+            "@id": `${SITE}/#faq-q4`,
+            name: "What is streamer mode?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              "@id": `${SITE}/#faq-q4-answer`,
+              text: "Streamer mode switches the page to a solid chroma-key background (green, blue, or magenta by default — or pick any color) and hides the site header, footer, and marketing sections so OBS or Streamlabs can key out everything except the wheel. Turn it on with the toggle above any wheel, choose a background color, then use Copy link to share that stream-ready setup.",
+            },
+          },
+          {
+            "@type": "Question",
+            "@id": `${SITE}/#faq-q5`,
             name: "Does it work on mobile phones and tablets?",
             acceptedAnswer: {
               "@type": "Answer",
+              "@id": `${SITE}/#faq-q5-answer`,
               text: "Yes. The wheel is fully responsive and touch-friendly — just tap the wheel to spin — with no app to install. It runs in any modern browser on phones, tablets, laptops, and classroom smartboards.",
             },
           },
           {
             "@type": "Question",
+            "@id": `${SITE}/#faq-q6`,
             name: "How do I remove a winner so they aren't picked again?",
             acceptedAnswer: {
               "@type": "Answer",
+              "@id": `${SITE}/#faq-q6-answer`,
               text: "After a spin, the winner dialog has a Remove Winner button that deletes that entry from the wheel. You can also delete any entry manually in the list, which is ideal for multi-round draws.",
             },
           },
           {
             "@type": "Question",
+            "@id": `${SITE}/#faq-q7`,
             name: "Is the wheel really random?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Yes. Each spin is seeded with crypto.getRandomValues() and the pointer lands based on segment angles, so every equal-sized entry has exactly the same probability. Spins are independent, so past results never affect the next one.",
+              "@id": `${SITE}/#faq-q7-answer`,
+              text: "Yes. Each spin uses the browser's secure random number generator — the same kind of randomness used for encryption — and the pointer lands based on segment size, so every equal-sized entry has exactly the same chance. Spins are independent, so past results never affect the next one.",
             },
           },
         ],
@@ -244,6 +270,68 @@ export const fixedRouteMeta = [
     title: "Online Spin Wheel — Feature Comparison",
     description:
       "Compare Online Spin Wheel with other free pickers: no account, browser-only entries, 40+ specialty pages, raffle proof links, and a classroom hub.",
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "@id": `${SITE}/wheel-of-names-alternative#faq`,
+        url: `${SITE}/wheel-of-names-alternative`,
+        inLanguage: "en",
+        isPartOf: { "@id": `${SITE}/#website` },
+        mainEntity: [
+          {
+            "@type": "Question",
+            "@id": `${SITE}/wheel-of-names-alternative#faq-q1`,
+            name: "Do I need an account to use Online Spin Wheel?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              "@id": `${SITE}/wheel-of-names-alternative#faq-q1-answer`,
+              text: "No. Core spinning works without signup. Your entries stay in the browser on your device.",
+            },
+          },
+          {
+            "@type": "Question",
+            "@id": `${SITE}/wheel-of-names-alternative#faq-q2`,
+            name: "How is Online Spin Wheel different from a generic name spinner?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              "@id": `${SITE}/wheel-of-names-alternative#faq-q2-answer`,
+              text: "Besides a free name picker, we publish 40+ specialty pages — raffles, classroom hubs, prize wheels — plus multi-winner proof links and ticket-number raffle mode.",
+            },
+          },
+          {
+            "@type": "Question",
+            "@id": `${SITE}/wheel-of-names-alternative#faq-q3`,
+            name: "Do my names get uploaded to a server?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              "@id": `${SITE}/wheel-of-names-alternative#faq-q3-answer`,
+              text: "No. Entries are processed in your browser and stay on your device.",
+            },
+          },
+          {
+            "@type": "Question",
+            "@id": `${SITE}/wheel-of-names-alternative#faq-q4`,
+            name: "Which tool is best for Instagram giveaways?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              "@id": `${SITE}/wheel-of-names-alternative#faq-q4-answer`,
+              text: "Look for multi-winner draws and shareable proof links. Our winner picker and raffle wheels support both.",
+            },
+          },
+          {
+            "@type": "Question",
+            "@id": `${SITE}/wheel-of-names-alternative#faq-q5`,
+            name: "Can I import a class list?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              "@id": `${SITE}/wheel-of-names-alternative#faq-q5-answer`,
+              text: "Yes — paste one name per line (up to 400). The classroom spinner adds remove-after-pick, teams, and a timer.",
+            },
+          },
+        ],
+      },
+    ],
   },
   {
     path: "/spin-wheel-fairness-study",

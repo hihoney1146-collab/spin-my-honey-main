@@ -186,7 +186,9 @@ const BlogPost = () => {
           image: featuredAbsolute,
           authorName: RAJA_AUTHOR.name,
         }),
-        ...(post.faqs?.length ? [faqPageJsonLd(post.faqs)] : []),
+        ...(post.faqs?.length
+          ? [faqPageJsonLd(post.faqs, { pageUrl: canonical })]
+          : []),
       ]
     : [...siteIdentityJsonLd()];
 

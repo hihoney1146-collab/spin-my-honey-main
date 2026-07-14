@@ -139,6 +139,7 @@ const WheelProgrammaticPage = () => {
                       q: f.question,
                       a: f.answer,
                     })),
+                    { pageUrl: canonical },
                   ),
                 ]
               : []),
@@ -400,25 +401,39 @@ const WheelProgrammaticPage = () => {
           ))}
 
           {displayFaqs.length > 0 ? (
-            <Card className="p-6 md:p-8">
+            <Card
+              className="p-6 md:p-8"
+              id="faq"
+              itemScope
+              itemType="https://schema.org/FAQPage"
+            >
               <h2 className="text-xl md:text-2xl font-bold mb-6">
                 Frequently Asked Questions
               </h2>
-              <dl className="space-y-6">
+              <div className="space-y-6">
                 {displayFaqs.map((item, i) => (
                   <div
                     key={i}
                     className="border-b border-border/60 pb-6 last:border-0 last:pb-0"
+                    itemScope
+                    itemProp="mainEntity"
+                    itemType="https://schema.org/Question"
                   >
-                    <dt className="font-semibold text-foreground mb-2">
+                    <h3 className="font-semibold text-foreground mb-2" itemProp="name">
                       {item.question}
-                    </dt>
-                    <dd className="text-muted-foreground leading-relaxed whitespace-pre-line">
-                      {item.answer}
-                    </dd>
+                    </h3>
+                    <div
+                      itemScope
+                      itemProp="acceptedAnswer"
+                      itemType="https://schema.org/Answer"
+                    >
+                      <p className="text-muted-foreground leading-relaxed whitespace-pre-line" itemProp="text">
+                        {item.answer}
+                      </p>
+                    </div>
                   </div>
                 ))}
-              </dl>
+              </div>
             </Card>
           ) : null}
 

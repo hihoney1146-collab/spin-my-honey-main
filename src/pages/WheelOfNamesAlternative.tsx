@@ -107,8 +107,15 @@ const WheelOfNamesAlternative = () => {
               dateModified: "2026-07-14",
               authorName: RAJA_AUTHOR.name,
             }),
-            faqPageJsonLd(FAQS.map((f) => ({ q: f.q, a: f.a }))),
           ])}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(
+            faqPageJsonLd(
+              FAQS.map((f) => ({ q: f.q, a: f.a })),
+              { pageUrl: canonical },
+            ),
+          )}
         </script>
       </Helmet>
 
@@ -233,16 +240,40 @@ const WheelOfNamesAlternative = () => {
           </ul>
         </Card>
 
-        <Card className="p-6 md:p-8">
+        <Card
+          className="p-6 md:p-8"
+          id="faq"
+          itemScope
+          itemType="https://schema.org/FAQPage"
+        >
           <h2 className="text-xl font-bold mb-6">Frequently asked questions</h2>
-          <dl className="space-y-6">
+          <div className="space-y-6">
             {FAQS.map((f) => (
-              <div key={f.q} className="border-b border-border/60 pb-6 last:border-0">
-                <dt className="font-semibold mb-2">{f.q}</dt>
-                <dd className="text-muted-foreground leading-relaxed">{f.a}</dd>
+              <div
+                key={f.q}
+                className="border-b border-border/60 pb-6 last:border-0"
+                itemScope
+                itemProp="mainEntity"
+                itemType="https://schema.org/Question"
+              >
+                <h3 className="font-semibold mb-2" itemProp="name">
+                  {f.q}
+                </h3>
+                <div
+                  itemScope
+                  itemProp="acceptedAnswer"
+                  itemType="https://schema.org/Answer"
+                >
+                  <p
+                    className="text-muted-foreground leading-relaxed"
+                    itemProp="text"
+                  >
+                    {f.a}
+                  </p>
+                </div>
               </div>
             ))}
-          </dl>
+          </div>
         </Card>
       </article>
     </>

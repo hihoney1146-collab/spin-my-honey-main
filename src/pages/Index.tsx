@@ -15,7 +15,7 @@ import {
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import type { ReactNode } from "react";
-import { ORGANIZATION_ID } from "@/lib/schema";
+import { ORGANIZATION_ID, faqPageJsonLd, SITE_ORIGIN } from "@/lib/schema";
 import { getAllBlogPosts } from "@/data/blogPosts";
 import { useStreamerMode } from "@/lib/useStreamerMode";
 import { BLOG_INDEX_PATH } from "@/lib/siteInternalLinks";
@@ -299,18 +299,12 @@ const Index = () => {
         </script>
 
         <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: HOME_FAQS.map((faq) => ({
-              "@type": "Question",
-              name: faq.question,
-              acceptedAnswer: {
-                "@type": "Answer",
-                text: faq.answer,
-              },
-            })),
-          })}
+          {JSON.stringify(
+            faqPageJsonLd(
+              HOME_FAQS.map((faq) => ({ q: faq.question, a: faq.answer })),
+              { pageUrl: `${SITE_ORIGIN}/` },
+            ),
+          )}
         </script>
       </Helmet>
 
@@ -501,6 +495,8 @@ const Index = () => {
         <section
           id="homepage-faq"
           className="w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-14"
+          itemScope
+          itemType="https://schema.org/FAQPage"
         >
           <div className="max-w-3xl mx-auto">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight mb-6 sm:mb-8 text-center">
@@ -508,13 +504,28 @@ const Index = () => {
             </h2>
             <div className="space-y-4">
               {HOME_FAQS.map((faq) => (
-                <Card key={faq.question} className="p-5 sm:p-6 border-2 border-border/50">
-                  <h3 className="text-base sm:text-lg font-bold mb-2">
+                <Card
+                  key={faq.question}
+                  className="p-5 sm:p-6 border-2 border-border/50"
+                  itemScope
+                  itemProp="mainEntity"
+                  itemType="https://schema.org/Question"
+                >
+                  <h3 className="text-base sm:text-lg font-bold mb-2" itemProp="name">
                     {faq.question}
                   </h3>
-                  <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                    {faq.answer}
-                  </p>
+                  <div
+                    itemScope
+                    itemProp="acceptedAnswer"
+                    itemType="https://schema.org/Answer"
+                  >
+                    <p
+                      className="text-sm sm:text-base text-muted-foreground leading-relaxed"
+                      itemProp="text"
+                    >
+                      {faq.answer}
+                    </p>
+                  </div>
                 </Card>
               ))}
             </div>

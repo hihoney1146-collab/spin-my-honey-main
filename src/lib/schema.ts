@@ -233,19 +233,54 @@ export function breadcrumbListJsonLd(
   };
 }
 
+/**
+ * FAQPage JSON-LD (Google FAQ rich-result shape).
+ * Pass pageUrl so each Question/Answer gets stable @ids tied to the page.
+ */
 export function faqPageJsonLd(
   faqs: { q: string; a: string }[],
+  options?: { pageUrl?: string },
 ) {
+  const raw = options?.pageUrl?.trim();
+  const isHome = raw === SITE_ORIGIN || raw === `${SITE_ORIGIN}/`;
+  const pageUrl = !raw
+    ? undefined
+    : isHome
+      ? `${SITE_ORIGIN}/`
+      : raw.replace(/\/$/, "");
+  const faqPageId = pageUrl
+    ? isHome
+      ? `${SITE_ORIGIN}/#faq`
+      : `${pageUrl}#faq`
+    : undefined;
+
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.q.replace(/^\s*A:\s*/i, "").trim(),
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.a.replace(/^\s*A:\s*/i, "").trim(),
-      },
-    })),
+    ...(faqPageId
+      ? {
+          "@id": faqPageId,
+          url: pageUrl,
+          inLanguage: "en",
+          isPartOf: { "@id": WEBSITE_ID },
+        }
+      : {}),
+    mainEntity: faqs.map((faq, index) => {
+      const name = faq.q.replace(/^\s*A:\s*/i, "").trim();
+      const text = faq.a.replace(/^\s*A:\s*/i, "").trim();
+      const questionId = faqPageId
+        ? `${faqPageId}-q${index + 1}`
+        : undefined;
+      return {
+        "@type": "Question",
+        ...(questionId ? { "@id": questionId } : {}),
+        name,
+        acceptedAnswer: {
+          "@type": "Answer",
+          ...(questionId ? { "@id": `${questionId}-answer` } : {}),
+          text,
+        },
+      };
+    }),
   };
 }
