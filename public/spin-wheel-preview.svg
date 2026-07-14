@@ -10,7 +10,7 @@
     <radialGradient id="g6" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#9b59b6"/><stop offset="100%" stop-color="#682683"/></radialGradient>
     <radialGradient id="hub" cx="50%" cy="35%" r="65%"><stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#e2e8f0"/></radialGradient>
   </defs>
-  <!-- Segments: center 320,320; radius 250; clockwise from east (matches pointer on the right) -->
+  <!-- Clockwise from east (pointer side): Red, Orange, Yellow, Green, Light green, Blue, Purple -->
   <path d="M 320 320 L 570.00 320.00 A 250 250 0 0 1 475.87 515.46 Z" fill="url(#g0)" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
   <path d="M 320 320 L 475.87 515.46 A 250 250 0 0 1 264.37 563.73 Z" fill="url(#g1)" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
   <path d="M 320 320 L 264.37 563.73 A 250 250 0 0 1 94.76 428.47 Z" fill="url(#g2)" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
@@ -19,21 +19,21 @@
   <path d="M 320 320 L 264.37 76.27 A 250 250 0 0 1 475.87 124.54 Z" fill="url(#g5)" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
   <path d="M 320 320 L 475.87 124.54 A 250 250 0 0 1 570.00 320.00 Z" fill="url(#g6)" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
   <circle cx="320" cy="320" r="250" fill="none" stroke="rgba(15,23,42,0.35)" stroke-width="3"/>
-  <!-- Labels: always at +radius along segment mid-angle; flip 180° when mid is on the left/bottom so letters stay upright -->
+  <!-- Names centered on tiles: Mudabber→orange, Jacob→green, Abdal→light green -->
   <g transform="translate(320 320) rotate(25.714285714285715)">
     <text x="155" y="0" fill="#ffffff" font-family="Inter, Segoe UI, system-ui, sans-serif" font-size="24" font-weight="700" text-anchor="middle" dominant-baseline="middle" style="paint-order:stroke" stroke="rgba(0,0,0,0.35)" stroke-width="0.6">Jahangir</text>
   </g>
   <g transform="translate(320 320) rotate(77.14285714285714)">
-    <text x="155" y="0" fill="#ffffff" font-family="Inter, Segoe UI, system-ui, sans-serif" font-size="24" font-weight="700" text-anchor="middle" dominant-baseline="middle" style="paint-order:stroke" stroke="rgba(0,0,0,0.35)" stroke-width="0.6">Adam</text>
+    <text x="155" y="0" fill="#ffffff" font-family="Inter, Segoe UI, system-ui, sans-serif" font-size="24" font-weight="700" text-anchor="middle" dominant-baseline="middle" style="paint-order:stroke" stroke="rgba(0,0,0,0.35)" stroke-width="0.6">Mudabber</text>
   </g>
   <g transform="translate(320 320) rotate(128.57142857142858)">
-    <text x="155" y="0" transform="rotate(180 155 0)" fill="#ffffff" font-family="Inter, Segoe UI, system-ui, sans-serif" font-size="24" font-weight="700" text-anchor="middle" dominant-baseline="middle" style="paint-order:stroke" stroke="rgba(0,0,0,0.35)" stroke-width="0.6">Jacob</text>
+    <text x="155" y="0" transform="rotate(180 155 0)" fill="#ffffff" font-family="Inter, Segoe UI, system-ui, sans-serif" font-size="24" font-weight="700" text-anchor="middle" dominant-baseline="middle" style="paint-order:stroke" stroke="rgba(0,0,0,0.35)" stroke-width="0.6">Adam</text>
   </g>
   <g transform="translate(320 320) rotate(180)">
-    <text x="155" y="0" transform="rotate(180 155 0)" fill="#ffffff" font-family="Inter, Segoe UI, system-ui, sans-serif" font-size="24" font-weight="700" text-anchor="middle" dominant-baseline="middle" style="paint-order:stroke" stroke="rgba(0,0,0,0.35)" stroke-width="0.6">Abdal</text>
+    <text x="155" y="0" transform="rotate(180 155 0)" fill="#ffffff" font-family="Inter, Segoe UI, system-ui, sans-serif" font-size="24" font-weight="700" text-anchor="middle" dominant-baseline="middle" style="paint-order:stroke" stroke="rgba(0,0,0,0.35)" stroke-width="0.6">Jacob</text>
   </g>
   <g transform="translate(320 320) rotate(231.42857142857144)">
-    <text x="155" y="0" transform="rotate(180 155 0)" fill="#ffffff" font-family="Inter, Segoe UI, system-ui, sans-serif" font-size="24" font-weight="700" text-anchor="middle" dominant-baseline="middle" style="paint-order:stroke" stroke="rgba(0,0,0,0.35)" stroke-width="0.6">Mudabber</text>
+    <text x="155" y="0" transform="rotate(180 155 0)" fill="#ffffff" font-family="Inter, Segoe UI, system-ui, sans-serif" font-size="24" font-weight="700" text-anchor="middle" dominant-baseline="middle" style="paint-order:stroke" stroke="rgba(0,0,0,0.35)" stroke-width="0.6">Abdal</text>
   </g>
   <g transform="translate(320 320) rotate(282.8571428571429)">
     <text x="155" y="0" fill="#ffffff" font-family="Inter, Segoe UI, system-ui, sans-serif" font-size="24" font-weight="700" text-anchor="middle" dominant-baseline="middle" style="paint-order:stroke" stroke="rgba(0,0,0,0.35)" stroke-width="0.6">Gabriel</text>

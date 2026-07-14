@@ -377,7 +377,7 @@ const Index = () => {
               </ol>
               <figure className="m-0">
                 <img
-                  src="/spin-wheel-preview.svg"
+                  src="/spin-wheel-preview.svg?v=2"
                   width={640}
                   height={640}
                   loading="lazy"

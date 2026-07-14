@@ -183,7 +183,7 @@ function homeContent(wheels) {
     <li><strong>Spin it.</strong> Click "Spin the Wheel" or tap the wheel itself, then watch it decelerate naturally until the red pointer settles on one segment.</li>
     <li><strong>Use the winner.</strong> Read the highlighted result, then remove that entry for a multi-round draw or spin again to pick another.</li>
   </ol>
-  <p><img src="/spin-wheel-preview.svg" width="640" height="640" alt="The Online Spin Wheel showing seven colored name segments, a white SPIN hub, and a red pointer on the right" /></p>
+  <p><img src="/spin-wheel-preview.svg?v=2" width="640" height="640" alt="The Online Spin Wheel showing seven colored name segments, a white SPIN hub, and a red pointer on the right" /></p>
 </section>
 
 <section id="use-cases">

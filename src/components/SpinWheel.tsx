@@ -313,10 +313,10 @@ export const SpinWheel = ({
     }
     return [
       { id: "1", text: "Jahangir", color: defaultColors[0], active: true },
-      { id: "2", text: "Adam", color: defaultColors[1], active: true },
-      { id: "3", text: "Jacob", color: defaultColors[2], active: true },
-      { id: "4", text: "Abdal", color: defaultColors[3], active: true },
-      { id: "5", text: "Mudabber", color: defaultColors[4], active: true },
+      { id: "2", text: "Mudabber", color: defaultColors[1], active: true },
+      { id: "3", text: "Adam", color: defaultColors[2], active: true },
+      { id: "4", text: "Jacob", color: defaultColors[3], active: true },
+      { id: "5", text: "Abdal", color: defaultColors[4], active: true },
       { id: "6", text: "Gabriel", color: defaultColors[5], active: true },
       { id: "7", text: "Hanna", color: defaultColors[6], active: true },
     ];
@@ -982,10 +982,10 @@ export const SpinWheel = ({
   const resetEntries = () => {
     const reset = [
       { id: "1", text: "Jahangir", color: defaultColors[0], active: true },
-      { id: "2", text: "Adam", color: defaultColors[1], active: true },
-      { id: "3", text: "Jacob", color: defaultColors[2], active: true },
-      { id: "4", text: "Abdal", color: defaultColors[3], active: true },
-      { id: "5", text: "Mudabber", color: defaultColors[4], active: true },
+      { id: "2", text: "Mudabber", color: defaultColors[1], active: true },
+      { id: "3", text: "Adam", color: defaultColors[2], active: true },
+      { id: "4", text: "Jacob", color: defaultColors[3], active: true },
+      { id: "5", text: "Abdal", color: defaultColors[4], active: true },
       { id: "6", text: "Gabriel", color: defaultColors[5], active: true },
       { id: "7", text: "Hanna", color: defaultColors[6], active: true },
     ];
