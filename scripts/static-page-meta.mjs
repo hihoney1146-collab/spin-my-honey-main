@@ -241,9 +241,9 @@ export const fixedRouteMeta = [
   },
   {
     path: "/wheel-of-names-alternative",
-    title: "Wheel of Names Alternative — Compare Free Pickers",
+    title: "Online Spin Wheel — Feature Comparison",
     description:
-      "Honest comparison: Online Spin Wheel vs WheelOfNames.com, PickerWheel, and spinner apps. Feature table and who each tool fits.",
+      "Compare Online Spin Wheel with other free pickers: no account, browser-only entries, 40+ specialty pages, raffle proof links, and a classroom hub.",
   },
   {
     path: "/spin-wheel-fairness-study",

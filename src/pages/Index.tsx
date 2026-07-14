@@ -175,7 +175,7 @@ const USE_CASES: {
       <>
         Evaluating WheelOfNames-style tools? Read our{" "}
         <Link to="/wheel-of-names-alternative" className="text-primary hover:underline font-medium">
-          wheel of names alternative
+          feature comparison
         </Link>{" "}
         comparison or spin the{" "}
         <Link to="/random-name-picker-wheel" className="text-primary hover:underline font-medium">

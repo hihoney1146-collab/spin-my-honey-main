@@ -92,7 +92,7 @@ const AllSpinWheelsPage = () => {
             </li>
             <li>
               <Link to="/wheel-of-names-alternative" className="text-primary font-medium hover:underline">
-                Wheel of names alternative — honest comparison
+                Online Spin Wheel — feature comparison
               </Link>
             </li>
           </ul>

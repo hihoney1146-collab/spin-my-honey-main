@@ -13,111 +13,82 @@ import {
 
 const FAQS = [
   {
-    q: "Is Online Spin Wheel the same as WheelOfNames.com?",
-    a: "No. We are a separate site (onlinespinwheel.fun) built by Raja Jahangir. This page compares features honestly so you can pick the tool that fits — including our random name picker wheel if you want a WheelOfNames-style experience with specialty pages for classrooms and giveaways.",
+    q: "Do I need an account to use Online Spin Wheel?",
+    a: "No. Core spinning works without signup. Your entries stay in the browser on your device.",
   },
   {
-    q: "What is the best free wheel of names alternative?",
-    a: "For US teachers and giveaway hosts who want one bookmark, Online Spin Wheel offers a name picker plus classroom hub, raffle wheel, and proof links without an account. WheelOfNames.com remains a solid choice if you only need a basic name spinner and prefer that interface.",
+    q: "How is Online Spin Wheel different from a generic name spinner?",
+    a: "Besides a free name picker, we publish 40+ specialty pages — raffles, classroom hubs, prize wheels — plus multi-winner proof links and ticket-number raffle mode.",
   },
   {
-    q: "Do I need to download an app?",
-    a: "None of the browser-based tools in this comparison require a download. Generic spinner apps from app stores may need installs and often show more ads.",
+    q: "Do my names get uploaded to a server?",
+    a: "No. Entries are processed in your browser and stay on your device. We do not require you to store lists online to spin.",
   },
   {
     q: "Which tool is best for Instagram giveaways?",
-    a: "Look for multi-winner draws and shareable proof links. Our winner picker and raffle wheels support both; basic name pickers may require manual screenshots only.",
+    a: "Look for multi-winner draws and shareable proof links. Our winner picker and raffle wheels support both; many generic pickers only offer manual remove-after-spin.",
   },
   {
     q: "Can I import a class list?",
-    a: "Yes on Online Spin Wheel — paste one name per line (up to 400). The classroom spinner hub adds remove-after-pick and session history for teachers.",
+    a: "Yes — paste one name per line (up to 400). The classroom spinner hub adds remove-after-pick, teams, and a timer for teachers.",
   },
 ];
 
 type Row = {
   feature: string;
   ours: string;
-  wheelOfNames: string;
-  pickerWheel: string;
-  apps: string;
+  others: string;
 };
 
 const TABLE_ROWS: Row[] = [
   {
     feature: "Account required",
     ours: "No",
-    wheelOfNames: "No (basic use)",
-    pickerWheel: "Optional for saves",
-    apps: "Often yes",
+    others: "Varies — some require signup for extra entries or saving",
   },
   {
     feature: "Entries stay on your device",
-    ours: "Yes — browser-only processing",
-    wheelOfNames: "Yes for standard spins",
-    pickerWheel: "Varies by mode",
-    apps: "Varies; check privacy policy",
+    ours: "Yes, browser-only processing",
+    others: "Varies — some process/store entries on a server",
   },
   {
     feature: "Image slices on wheel",
     ours: "Yes",
-    wheelOfNames: "Yes",
-    pickerWheel: "Yes",
-    apps: "Some apps only",
+    others: "Varies",
   },
   {
     feature: "Specialty tool pages (40+)",
     ours: "Yes — raffles, classrooms, prizes",
-    wheelOfNames: "Single generic wheel",
-    pickerWheel: "Several modes",
-    apps: "One app per install",
+    others: "Typically a single generic wheel",
   },
   {
     feature: "Multi-winner + proof link",
-    ours: "Yes (raffle & winner wheels)",
-    wheelOfNames: "Manual remove-after-pick",
-    pickerWheel: "Varies",
-    apps: "Rare",
+    ours: "Yes, raffle & winner wheels",
+    others: "Often manual remove-after-spin",
   },
   {
     feature: "Classroom hub (picker + teams + timer)",
-    ours: "Yes — classroom spinner page",
-    wheelOfNames: "Name picker only",
-    pickerWheel: "Separate tools",
-    apps: "Not typical",
+    ours: "Yes, classroom spinner page",
+    others: "Often name picker only",
   },
   {
     feature: "Ticket-number raffle mode",
-    ours: "Yes — raffle wheel",
-    wheelOfNames: "Use numeric entries manually",
-    pickerWheel: "Some number modes",
-    apps: "Uncommon",
-  },
-  {
-    feature: "Smartboard / phone friendly",
-    ours: "Yes + fullscreen classroom mode",
-    wheelOfNames: "Yes",
-    pickerWheel: "Yes",
-    apps: "Phone-only often",
-  },
-  {
-    feature: "Explains randomness openly",
-    ours: "Yes — how randomness works page",
-    wheelOfNames: "Limited public detail",
-    pickerWheel: "Varies",
-    apps: "Rare",
+    ours: "Yes, raffle wheel",
+    others: "Often requires manual numeric entries",
   },
 ];
 
 const WheelOfNamesAlternative = () => {
   const canonical = `${SITE_ORIGIN}/wheel-of-names-alternative`;
+  const title = "Online Spin Wheel — Feature Comparison";
 
   return (
     <>
       <Helmet>
-        <title>Wheel of Names Alternative — Compare Free Pickers</title>
+        <title>{title}</title>
         <meta
           name="description"
-          content="Honest comparison: Online Spin Wheel vs WheelOfNames.com, PickerWheel, and spinner apps. Feature table, who each tool fits, and links to our free name picker."
+          content="Compare Online Spin Wheel with other free pickers: no account, browser-only entries, 40+ specialty pages, raffle proof links, and a classroom hub."
         />
         <link rel="canonical" href={canonical} />
         <script type="application/ld+json">
@@ -126,14 +97,14 @@ const WheelOfNamesAlternative = () => {
             breadcrumbListJsonLd([
               { name: "Home", url: `${SITE_ORIGIN}/` },
               { name: "Comparisons", url: `${SITE_ORIGIN}/all-spin-wheels` },
-              { name: "Wheel of Names Alternative" },
+              { name: "Feature Comparison" },
             ]),
             articleJsonLd({
-              title: "Wheel of Names Alternative — Compare Free Pickers",
+              title,
               description:
-                "Honest comparison of Online Spin Wheel vs WheelOfNames.com, PickerWheel, and spinner apps.",
+                "Feature comparison of Online Spin Wheel versus other free online pickers and spinner apps.",
               url: canonical,
-              dateModified: "2026-07-09",
+              dateModified: "2026-07-14",
               authorName: RAJA_AUTHOR.name,
             }),
             faqPageJsonLd(FAQS.map((f) => ({ q: f.q, a: f.a }))),
@@ -149,71 +120,65 @@ const WheelOfNamesAlternative = () => {
             </div>
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
-            Wheel of Names Alternative — Compare Free Pickers
+            Online Spin Wheel — Feature Comparison
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Looking for a WheelOfNames-style spinner? This page compares Online
-            Spin Wheel with WheelOfNames.com, PickerWheel, and generic mobile
-            spinner apps — without impersonating any brand. We are an independent
-            project by{" "}
-            <Link to="/author/raja-jahangir" className="text-primary hover:underline">
-              Raja Jahangir
-            </Link>
-            .
+            See how Online Spin Wheel compares with other free online pickers and
+            spinner apps — what we include by default, and what often varies
+            elsewhere.
           </p>
         </div>
 
         <Card className="p-6 md:p-8 mb-8">
           <p className="text-muted-foreground leading-relaxed mb-4">
-            A wheel-of-names tool randomly selects one entry from a pasted list —
-            perfect for classrooms, meetings, and giveaways. WheelOfNames.com
-            popularized the format. Online Spin Wheel offers the same core behavior
-            plus specialty pages for raffles, prize spins, and teacher hubs, all
-            running in your browser with no signup.
+            Online Spin Wheel is a free browser spinner for classrooms, meetings,
+            and giveaways. Beyond a basic name list, we ship specialty pages for{" "}
+            <Link to="/raffle-wheel" className="text-primary font-medium hover:underline">
+              raffles
+            </Link>
+            ,{" "}
+            <Link to="/prize-wheel" className="text-primary font-medium hover:underline">
+              prize spins
+            </Link>
+            , and a{" "}
+            <Link to="/classroom-spinner" className="text-primary font-medium hover:underline">
+              classroom hub
+            </Link>
+            — all without signup, with entries processed on your device.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Try our{" "}
             <Link to="/random-name-picker-wheel" className="text-primary font-medium hover:underline">
               random name picker wheel
             </Link>{" "}
-            for a direct name-list spinner, or browse the{" "}
-            <Link to="/classroom-spinner" className="text-primary font-medium hover:underline">
-              classroom spinner
-            </Link>{" "}
-            if you need teams and a timer on the same page.
+            for a direct name-list spinner.
           </p>
         </Card>
 
         <Card className="p-4 md:p-6 mb-8 overflow-x-auto">
           <h2 className="text-xl md:text-2xl font-bold mb-4">Feature comparison</h2>
-          <table className="w-full text-sm md:text-base border-collapse min-w-[640px]">
+          <table className="w-full text-sm md:text-base border-collapse min-w-[520px]">
             <thead>
               <tr className="border-b border-border">
                 <th className="text-left py-3 pr-4 font-semibold">Feature</th>
                 <th className="text-left py-3 pr-4 font-semibold text-primary">
-                  Online Spin Wheel
+                  Online Spin Wheel (Us)
                 </th>
-                <th className="text-left py-3 pr-4 font-semibold">WheelOfNames.com</th>
-                <th className="text-left py-3 pr-4 font-semibold">PickerWheel.com</th>
-                <th className="text-left py-3 font-semibold">Spinner apps</th>
+                <th className="text-left py-3 font-semibold">Others</th>
               </tr>
             </thead>
             <tbody>
               {TABLE_ROWS.map((row) => (
                 <tr key={row.feature} className="border-b border-border/50">
-                  <td className="py-3 pr-4 font-medium text-foreground">{row.feature}</td>
-                  <td className="py-3 pr-4 text-muted-foreground">{row.ours}</td>
-                  <td className="py-3 pr-4 text-muted-foreground">{row.wheelOfNames}</td>
-                  <td className="py-3 pr-4 text-muted-foreground">{row.pickerWheel}</td>
-                  <td className="py-3 text-muted-foreground">{row.apps}</td>
+                  <td className="py-3 pr-4 font-medium text-foreground align-top">
+                    {row.feature}
+                  </td>
+                  <td className="py-3 pr-4 text-muted-foreground align-top">{row.ours}</td>
+                  <td className="py-3 text-muted-foreground align-top">{row.others}</td>
                 </tr>
               ))}
             </tbody>
           </table>
-          <p className="text-xs text-muted-foreground mt-4">
-            Competitor details reflect publicly visible features as of 2026 and may
-            change. We do not speak for WheelOfNames.com or PickerWheel.com.
-          </p>
         </Card>
 
         <div className="grid md:grid-cols-2 gap-6 mb-8">
@@ -223,10 +188,10 @@ const WheelOfNamesAlternative = () => {
               Best for Online Spin Wheel
             </h2>
             <ul className="space-y-2 text-muted-foreground text-sm">
-              <li>US teachers who want picker + teams + timer in one tab</li>
+              <li>Teachers who want picker + teams + timer in one tab</li>
               <li>Giveaway hosts who need proof links and ticket-number raffles</li>
               <li>Organizers who want 40+ preset specialty wheels beyond names</li>
-              <li>Anyone who wants published randomness documentation</li>
+              <li>Anyone who wants entries to stay on their device</li>
             </ul>
           </Card>
           <Card className="p-6">
@@ -235,25 +200,15 @@ const WheelOfNamesAlternative = () => {
               When another tool may fit
             </h2>
             <ul className="space-y-2 text-muted-foreground text-sm">
-              <li>
-                <strong className="text-foreground">WheelOfNames.com:</strong> you
-                only need a familiar single-page name spinner and already use that
-                workflow daily.
-              </li>
-              <li>
-                <strong className="text-foreground">PickerWheel.com:</strong> you
-                want their specific multi-tool layout and saved-wheel account flow.
-              </li>
-              <li>
-                <strong className="text-foreground">Mobile apps:</strong> you need
-                offline spins with no browser tab (check ads and privacy first).
-              </li>
+              <li>You only need a single generic name spinner and already prefer that interface.</li>
+              <li>You need offline spins with no browser tab (check ads and privacy first).</li>
+              <li>You want account-based cloud saving more than a free browser-only flow.</li>
             </ul>
           </Card>
         </div>
 
         <Card className="p-6 md:p-8 mb-8">
-          <h2 className="text-xl font-bold mb-4">Related money pages</h2>
+          <h2 className="text-xl font-bold mb-4">Related pages</h2>
           <ul className="grid sm:grid-cols-2 gap-2 text-sm">
             <li>
               <Link to="/raffle-wheel" className="text-primary hover:underline">
