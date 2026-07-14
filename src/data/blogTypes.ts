@@ -2,6 +2,9 @@ export type BlogImage = {
   src: string;
   alt: string;
   caption?: string;
+  /** Intrinsic pixel size — omit forced wrong aspect if unknown. */
+  width?: number;
+  height?: number;
 };
 
 export type BlogChecklist = {

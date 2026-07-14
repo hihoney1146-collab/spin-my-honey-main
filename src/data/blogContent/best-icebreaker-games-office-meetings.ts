@@ -1,4 +1,6 @@
 import type { BlogPost } from "../blogTypes";
+import icebreakerPromptsImg from "@/assets/Gemini_Generated_Image_2fvhgo2fvhgo2fvh.png";
+import icebreakerHybridImg from "@/assets/Gemini_Generated_Image_l98inll98inll98i.png";
 
 export const bestIcebreakerGamesOfficeMeetings: BlogPost = {
   slug: "best-icebreaker-games-office-meetings",
@@ -56,10 +58,12 @@ export const bestIcebreakerGamesOfficeMeetings: BlogPost = {
       ],
       images: [
         {
-          src: "/blog/icebreaker-wheel-prompts.png",
+          src: icebreakerPromptsImg,
           alt: "Spin wheel filled with professional icebreaker prompts for a team meeting",
           caption:
             "Paste HR-safe prompts on the wheel so every spin surfaces a different conversation starter.",
+          width: 1575,
+          height: 656,
         },
       ],
     },
@@ -126,10 +130,12 @@ export const bestIcebreakerGamesOfficeMeetings: BlogPost = {
       ],
       images: [
         {
-          src: "/blog/icebreaker-hybrid-meeting.png",
+          src: icebreakerHybridImg,
           alt: "Hybrid meeting with spin wheel displayed on screen for in-room and remote participants",
           caption:
             "Mirror the same wheel on the conference display and screen share so hybrid attendees stay in sync.",
+          width: 1436,
+          height: 736,
         },
       ],
     },

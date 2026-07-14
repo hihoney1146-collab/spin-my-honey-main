@@ -64,8 +64,18 @@ const SCENES = [
       slices: ["evidence", "theme", "context", "infer", "summarize", "compare"],
     }),
   },
-  // icebreaker-wheel-prompts.png + icebreaker-hybrid-meeting.png are curated
-  // Gemini assets in public/blog/ (do not regenerate — keeps alignment correct).
+  // icebreaker images: copy curated Gemini assets (never SVG-regenerate).
+];
+
+const CURATED_BLOG_COPIES = [
+  {
+    from: path.join(root, "src", "assets", "Gemini_Generated_Image_2fvhgo2fvhgo2fvh.png"),
+    to: "icebreaker-wheel-prompts.png",
+  },
+  {
+    from: path.join(root, "src", "assets", "Gemini_Generated_Image_l98inll98inll98i.png"),
+    to: "icebreaker-hybrid-meeting.png",
+  },
 ];
 
 for (const { file, svg } of SCENES) {
@@ -74,7 +84,13 @@ for (const { file, svg } of SCENES) {
   console.log(`✅ public/blog/${file} (800×450)`);
 }
 
-console.log(`\nGenerated ${SCENES.length} blog inline images.`);
-console.log(
-  "Skipped curated: icebreaker-wheel-prompts.png, icebreaker-hybrid-meeting.png",
-);
+for (const { from, to } of CURATED_BLOG_COPIES) {
+  if (!fs.existsSync(from)) {
+    console.warn(`⚠ Missing curated asset: ${from}`);
+    continue;
+  }
+  fs.copyFileSync(from, path.join(outDir, to));
+  console.log(`✅ public/blog/${to} (from Gemini asset)`);
+}
+
+console.log(`\nGenerated ${SCENES.length} SVG blog images + ${CURATED_BLOG_COPIES.length} curated copies.`);

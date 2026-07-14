@@ -405,10 +405,11 @@ const BlogPost = () => {
                       <img
                         src={img.src}
                         alt={img.alt}
-                        className="w-full h-auto"
+                        className="w-full h-auto object-contain bg-background"
                         loading="lazy"
-                        width={800}
-                        height={450}
+                        width={img.width ?? 1200}
+                        height={img.height ?? 675}
+                        decoding="async"
                       />
                       {img.caption ? (
                         <figcaption className="px-4 py-3 text-sm text-muted-foreground border-t border-border/40">
