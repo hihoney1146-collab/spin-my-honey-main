@@ -12,6 +12,11 @@
     { "source": "/contact", "destination": "/contact-us", "permanent": true },
     { "source": "/privacy", "destination": "/privacy-policy", "permanent": true },
 
+    { "source": "/author/armghana-zeeshan", "destination": "/team/ceo", "permanent": true },
+    { "source": "/author/zoha-zeeshan", "destination": "/team/co-founder", "permanent": true },
+    { "source": "/author/raja-jahangir", "destination": "/team/content", "permanent": true },
+    { "source": "/author/abdal-khalid", "destination": "/team/social", "permanent": true },
+
     { "source": "/exercise-spin-wheel", "destination": "/exercise-picker-wheel", "permanent": true },
     { "source": "/date-night-idea-wheel", "destination": "/date-night-wheel", "permanent": true },
     { "source": "/what-movie-should-i-watch-wheel", "destination": "/movie-picker-wheel", "permanent": true },

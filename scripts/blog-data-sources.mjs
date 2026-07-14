@@ -270,9 +270,9 @@ export function collectBlogRouteMeta(root, { canonicalUrl, SITE }) {
             dateModified: `${post.updated}T12:00:00`,
             author: {
               "@type": "Person",
-              "@id": `${SITE}/author/raja-jahangir#person`,
+              "@id": `${SITE}/team/content#person`,
               name: "Raja Jahangir",
-              url: `${SITE}/author/raja-jahangir`,
+              url: `${SITE}/team/content`,
             },
             publisher: {
               "@type": "Organization",

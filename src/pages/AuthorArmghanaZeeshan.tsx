@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ARMGHANA_AUTHOR } from "@/lib/teamAuthors";
+import { ARMGHANA_AUTHOR, ZOHA_AUTHOR, RAJA_AUTHOR } from "@/lib/teamAuthors";
 import { TEAM_LINKEDIN } from "@/lib/teamLinks";
 import { ORG_NAME, CONTACT_EMAIL } from "@/lib/schema";
 import { AuthorProfilePage } from "@/components/AuthorProfilePage";
@@ -29,11 +29,11 @@ const AuthorArmghanaZeeshan = () => (
       As CEO, I set product direction and business priorities: which wheels ship next, how we keep the
       core tool free without sacrificing speed, and how we communicate honestly about randomness and
       privacy. I work closely with{" "}
-      <Link to="/author/zoha-zeeshan" className="font-medium text-primary underline underline-offset-2">
+      <Link to={ZOHA_AUTHOR.path} className="font-medium text-primary underline underline-offset-2">
         Zoha Zeeshan
       </Link>{" "}
       on company direction and with{" "}
-      <Link to="/author/raja-jahangir" className="font-medium text-primary underline underline-offset-2">
+      <Link to={RAJA_AUTHOR.path} className="font-medium text-primary underline underline-offset-2">
         Raja Jahangir
       </Link>{" "}
       on content quality, SEO, and the testing bar every page must meet before it goes live.

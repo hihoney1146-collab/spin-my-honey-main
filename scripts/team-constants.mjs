@@ -6,35 +6,39 @@ export const ORG_ID = `${SITE}/#organization`;
 export const WEBSITE_ID = `${SITE}/#website`;
 export const CONTACT_EMAIL = "onlinespinwheel@gmail.com";
 
+/** Role-based paths — no personal names in URLs. */
 export const TEAM_AUTHORS = {
   armghana: {
-    slug: "armghana-zeeshan",
+    slug: "ceo",
+    legacySlug: "armghana-zeeshan",
     name: "Armghana Zeeshan",
     jobTitle: "CEO, Online Spin Wheel",
     shortRole: "CEO",
-    path: "/author/armghana-zeeshan",
-    url: `${SITE}/author/armghana-zeeshan`,
-    personId: `${SITE}/author/armghana-zeeshan#person`,
+    path: "/team/ceo",
+    url: `${SITE}/team/ceo`,
+    personId: `${SITE}/team/ceo#person`,
     linkedIn: "https://www.linkedin.com/in/armghana-zeeshan-bb157924a/",
   },
   zoha: {
-    slug: "zoha-zeeshan",
+    slug: "co-founder",
+    legacySlug: "zoha-zeeshan",
     name: "Zoha Zeeshan",
     jobTitle: "Co-Founder, Online Spin Wheel",
     shortRole: "Co-Founder",
-    path: "/author/zoha-zeeshan",
-    url: `${SITE}/author/zoha-zeeshan`,
-    personId: `${SITE}/author/zoha-zeeshan#person`,
+    path: "/team/co-founder",
+    url: `${SITE}/team/co-founder`,
+    personId: `${SITE}/team/co-founder#person`,
     linkedIn: "https://www.linkedin.com/in/zoha-zeeshan-7b9957352/",
   },
   raja: {
-    slug: "raja-jahangir",
+    slug: "content",
+    legacySlug: "raja-jahangir",
     name: "Raja Jahangir",
     jobTitle: "Content & SEO Lead, Online Spin Wheel",
     shortRole: "Content & SEO Lead",
-    path: "/author/raja-jahangir",
-    url: `${SITE}/author/raja-jahangir`,
-    personId: `${SITE}/author/raja-jahangir#person`,
+    path: "/team/content",
+    url: `${SITE}/team/content`,
+    personId: `${SITE}/team/content#person`,
     linkedIn: "https://www.linkedin.com/in/raja-jahangir",
     image: `${SITE}/raja-jahangir.jpg`,
     locality: "Islamabad",
@@ -42,16 +46,24 @@ export const TEAM_AUTHORS = {
     countryCode: "PK",
   },
   abdal: {
-    slug: "abdal-khalid",
+    slug: "social",
+    legacySlug: "abdal-khalid",
     name: "Abdal Khalid",
     jobTitle: "Social Media Expert, Online Spin Wheel",
     shortRole: "Social Media Expert",
-    path: "/author/abdal-khalid",
-    url: `${SITE}/author/abdal-khalid`,
-    personId: `${SITE}/author/abdal-khalid#person`,
+    path: "/team/social",
+    url: `${SITE}/team/social`,
+    personId: `${SITE}/team/social#person`,
     linkedIn: "https://www.linkedin.com/in/abdal-khalid",
   },
 };
+
+export const AUTHOR_LEGACY_REDIRECTS = [
+  { from: `/author/${TEAM_AUTHORS.armghana.legacySlug}`, to: TEAM_AUTHORS.armghana.path },
+  { from: `/author/${TEAM_AUTHORS.zoha.legacySlug}`, to: TEAM_AUTHORS.zoha.path },
+  { from: `/author/${TEAM_AUTHORS.raja.legacySlug}`, to: TEAM_AUTHORS.raja.path },
+  { from: `/author/${TEAM_AUTHORS.abdal.legacySlug}`, to: TEAM_AUTHORS.abdal.path },
+];
 
 export function organizationJsonLd() {
   return {

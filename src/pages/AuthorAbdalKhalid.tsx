@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ABDAL_AUTHOR } from "@/lib/teamAuthors";
+import { ABDAL_AUTHOR, ARMGHANA_AUTHOR, ZOHA_AUTHOR, RAJA_AUTHOR } from "@/lib/teamAuthors";
 import { TEAM_LINKEDIN } from "@/lib/teamLinks";
 import { ORG_NAME, CONTACT_EMAIL } from "@/lib/schema";
 import { AuthorProfilePage } from "@/components/AuthorProfilePage";
@@ -22,15 +22,15 @@ const AuthorAbdalKhalid = () => (
         {ORG_NAME}
       </Link>
       . I work with{" "}
-      <Link to="/author/armghana-zeeshan" className="font-medium text-primary underline underline-offset-2">
+      <Link to={ARMGHANA_AUTHOR.path} className="font-medium text-primary underline underline-offset-2">
         Armghana Zeeshan
       </Link>
       ,{" "}
-      <Link to="/author/zoha-zeeshan" className="font-medium text-primary underline underline-offset-2">
+      <Link to={ZOHA_AUTHOR.path} className="font-medium text-primary underline underline-offset-2">
         Zoha Zeeshan
       </Link>
       , and{" "}
-      <Link to="/author/raja-jahangir" className="font-medium text-primary underline underline-offset-2">
+      <Link to={RAJA_AUTHOR.path} className="font-medium text-primary underline underline-offset-2">
         Raja Jahangir
       </Link>{" "}
       on a small team dedicated solely to this product — helping teachers, streamers, and everyday

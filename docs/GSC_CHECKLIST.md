@@ -29,7 +29,7 @@ browsers get `200`. Prefer the extensionless URL:
 - `/random-name-picker-wheel`
 - `/yes-or-no-wheel`
 - `/about-us`
-- `/author/raja-jahangir`
+- `/team/content`
 
 ## If status is still "Couldn't fetch"
 

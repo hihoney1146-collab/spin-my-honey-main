@@ -165,31 +165,31 @@ export const fixedRouteMeta = [
       "Online Spin Wheel is built by a small dedicated team. How every wheel is tested across 10,000 spins, and what data we do and don't collect.",
   },
   {
-    path: "/author/raja-jahangir",
-    title: "Raja Jahangir — Content & SEO Lead, Online Spin Wheel",
+    path: "/team/content",
+    title: "Content & SEO Lead | Online Spin Wheel",
     description:
-      "Raja Jahangir leads content, SEO, and quality review for Online Spin Wheel. How the team tests every wheel for fair, uniform random results.",
+      "Content, SEO, and quality review for Online Spin Wheel. How the team tests every wheel for fair, uniform random results.",
     ogType: "profile",
   },
   {
-    path: "/author/armghana-zeeshan",
-    title: "Armghana Zeeshan — CEO, Online Spin Wheel",
+    path: "/team/ceo",
+    title: "CEO | Online Spin Wheel",
     description:
-      "Armghana Zeeshan is CEO of Online Spin Wheel. Product direction, business priorities, and the standards behind every free fair spin wheel.",
+      "CEO of Online Spin Wheel. Product direction, business priorities, and the standards behind every free fair spin wheel.",
     ogType: "profile",
   },
   {
-    path: "/author/zoha-zeeshan",
-    title: "Zoha Zeeshan — Co-Founder, Online Spin Wheel",
+    path: "/team/co-founder",
+    title: "Co-Founder | Online Spin Wheel",
     description:
-      "Zoha Zeeshan is Co-Founder of Online Spin Wheel. Company direction, user experience, and roadmap for free fair random pickers.",
+      "Co-Founder of Online Spin Wheel. Company direction, user experience, and roadmap for free fair random pickers.",
     ogType: "profile",
   },
   {
-    path: "/author/abdal-khalid",
-    title: "Abdal Khalid — Social Media Expert, Online Spin Wheel",
+    path: "/team/social",
+    title: "Social Media | Online Spin Wheel",
     description:
-      "Abdal Khalid is Social Media Expert at Online Spin Wheel. Brand social channels, community engagement, and sharing wheel tips with teachers and creators.",
+      "Social Media at Online Spin Wheel. Brand social channels, community engagement, and sharing wheel tips with teachers and creators.",
     ogType: "profile",
   },
   {

@@ -8,10 +8,10 @@ Last updated: 2026-07-14
 - Canonical site: https://onlinespinwheel.fun/
 - Organization (schema.org): Online Spin Wheel — https://onlinespinwheel.fun/#organization
 - Leadership team (schema.org Person):
-  - Armghana Zeeshan (CEO) — https://onlinespinwheel.fun/author/armghana-zeeshan
-  - Zoha Zeeshan (Co-Founder) — https://onlinespinwheel.fun/author/zoha-zeeshan
-  - Raja Jahangir (Content & SEO Lead) — https://onlinespinwheel.fun/author/raja-jahangir
-  - Abdal Khalid (Social Media Expert) — https://onlinespinwheel.fun/author/abdal-khalid
+  - Armghana Zeeshan (CEO) — https://onlinespinwheel.fun/team/ceo
+  - Zoha Zeeshan (Co-Founder) — https://onlinespinwheel.fun/team/co-founder
+  - Raja Jahangir (Content & SEO Lead) — https://onlinespinwheel.fun/team/content
+  - Abdal Khalid (Social Media Expert) — https://onlinespinwheel.fun/team/social
 - Contact: onlinespinwheel@gmail.com
 - Small independent team dedicated solely to Online Spin Wheel
 
@@ -24,10 +24,10 @@ https://onlinespinwheel.fun/all-spin-wheels
 https://onlinespinwheel.fun/blog
 https://onlinespinwheel.fun/about-us
 https://onlinespinwheel.fun/contact-us
-https://onlinespinwheel.fun/author/armghana-zeeshan
-https://onlinespinwheel.fun/author/zoha-zeeshan
-https://onlinespinwheel.fun/author/raja-jahangir
-https://onlinespinwheel.fun/author/abdal-khalid
+https://onlinespinwheel.fun/team/ceo
+https://onlinespinwheel.fun/team/co-founder
+https://onlinespinwheel.fun/team/content
+https://onlinespinwheel.fun/team/social
 https://onlinespinwheel.fun/#homepage-faq
 
 ## Guides, research & comparisons

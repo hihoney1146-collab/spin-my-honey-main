@@ -262,10 +262,14 @@ const App = () => (
                 }
               />
               <Route path="/blog/:slug" element={<BlogPost />} />
-              <Route path="/author/raja-jahangir" element={<AuthorRajaJahangir />} />
-              <Route path="/author/armghana-zeeshan" element={<AuthorArmghanaZeeshan />} />
-              <Route path="/author/zoha-zeeshan" element={<AuthorZohaZeeshan />} />
-              <Route path="/author/abdal-khalid" element={<AuthorAbdalKhalid />} />
+              <Route path="/team/content" element={<AuthorRajaJahangir />} />
+              <Route path="/team/ceo" element={<AuthorArmghanaZeeshan />} />
+              <Route path="/team/co-founder" element={<AuthorZohaZeeshan />} />
+              <Route path="/team/social" element={<AuthorAbdalKhalid />} />
+              <Route path="/author/raja-jahangir" element={<Navigate to="/team/content" replace />} />
+              <Route path="/author/armghana-zeeshan" element={<Navigate to="/team/ceo" replace />} />
+              <Route path="/author/zoha-zeeshan" element={<Navigate to="/team/co-founder" replace />} />
+              <Route path="/author/abdal-khalid" element={<Navigate to="/team/social" replace />} />
               {/* Consolidated doorway pages → canonical targets (edge 301s live in vercel.json) */}
               <Route
                 path="/exercise-spin-wheel"

@@ -26,6 +26,10 @@ export const REDIRECT_PATHS = new Set([
   "/zodiac-wheel-planets",
   "/wheel-of-fortune-zodiac",
   "/egyptian-zodiac-wheel",
+  "/author/armghana-zeeshan",
+  "/author/zoha-zeeshan",
+  "/author/raja-jahangir",
+  "/author/abdal-khalid",
 ]);
 
 /** Phase 6 money pages + research (also in wheels sitemap when applicable). */

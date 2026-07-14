@@ -7,6 +7,7 @@ import { Building2, Clock, Mail, MapPin, MessageSquare, Send } from "lucide-reac
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { CONTACT_EMAIL } from "@/lib/schema";
+import { RAJA_AUTHOR } from "@/lib/teamAuthors";
 import { useState } from "react";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -101,7 +102,7 @@ const Contact = () => {
             about: {
               "@type": "Person",
               name: "Raja Jahangir",
-              url: `${SITE_ORIGIN}/author/raja-jahangir`,
+              url: RAJA_AUTHOR.url,
               email: CONTACT_EMAIL,
               jobTitle: "Content & SEO Lead, Online Spin Wheel",
               address: {

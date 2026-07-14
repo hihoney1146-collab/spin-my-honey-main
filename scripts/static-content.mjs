@@ -1092,7 +1092,7 @@ function wheelContent(wheel, wheels) {
   const parts = [];
   parts.push(`<h1>${esc(wheel.h1 || keyword)}</h1>`);
   parts.push(
-    `<p>Reviewed by <a href="/author/raja-jahangir" rel="author">Raja Jahangir</a>, Content &amp; SEO Lead at ${ORG_NAME}. Last updated: <time datetime="${esc(
+    `<p>Reviewed by <a href="${TEAM_AUTHORS.raja.path}" rel="author">${esc(TEAM_AUTHORS.raja.name)}</a>, Content &amp; SEO Lead at ${ORG_NAME}. Last updated: <time datetime="${esc(
       lastUpdated,
     )}">${esc(fmtDate(lastUpdated))}</time>.</p>`,
   );
@@ -1259,10 +1259,10 @@ ${exploreNav()}`);
 const FIXED = {
   "/about-us": () => aboutContent(),
   "/contact-us": () => contactContent(),
-  "/author/raja-jahangir": () => authorContent(),
-  "/author/armghana-zeeshan": () => authorArmghanaContent(),
-  "/author/zoha-zeeshan": () => authorZohaContent(),
-  "/author/abdal-khalid": () => authorAbdalContent(),
+  "/team/content": () => authorContent(),
+  "/team/ceo": () => authorArmghanaContent(),
+  "/team/co-founder": () => authorZohaContent(),
+  "/team/social": () => authorAbdalContent(),
   "/privacy-policy": () => privacyContent(),
   "/cookie-policy": () => cookieContent(),
   "/terms-and-conditions": () => termsContent(),

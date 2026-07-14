@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ZOHA_AUTHOR } from "@/lib/teamAuthors";
+import { ZOHA_AUTHOR, ARMGHANA_AUTHOR, RAJA_AUTHOR } from "@/lib/teamAuthors";
 import { TEAM_LINKEDIN } from "@/lib/teamLinks";
 import { ORG_NAME, CONTACT_EMAIL } from "@/lib/schema";
 import { AuthorProfilePage } from "@/components/AuthorProfilePage";
@@ -22,7 +22,7 @@ const AuthorZohaZeeshan = () => (
         {ORG_NAME}
       </Link>
       . Together with{" "}
-      <Link to="/author/armghana-zeeshan" className="font-medium text-primary underline underline-offset-2">
+      <Link to={ARMGHANA_AUTHOR.path} className="font-medium text-primary underline underline-offset-2">
         Armghana Zeeshan
       </Link>
       , I help steer a small team that builds one thing well: free spin wheels that load instantly,
@@ -46,7 +46,7 @@ const AuthorZohaZeeshan = () => (
         how randomness works
       </Link>{" "}
       page, and stamp visible last-updated dates when content changes.{" "}
-      <Link to="/author/raja-jahangir" className="font-medium text-primary underline underline-offset-2">
+      <Link to={RAJA_AUTHOR.path} className="font-medium text-primary underline underline-offset-2">
         Raja Jahangir
       </Link>{" "}
       leads the content and SEO review that keeps those pages accurate.

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import jahangirSeo from "@/assets/Jahangir-SEO.jpeg";
-import { RAJA_AUTHOR } from "@/lib/teamAuthors";
+import { RAJA_AUTHOR, ARMGHANA_AUTHOR, ZOHA_AUTHOR } from "@/lib/teamAuthors";
 import { TEAM_LINKEDIN, SITE_SOCIAL_LINKS } from "@/lib/teamLinks";
 import { ORG_NAME, CONTACT_EMAIL } from "@/lib/schema";
 import { AuthorProfilePage } from "@/components/AuthorProfilePage";
@@ -52,11 +52,11 @@ const AuthorRajaJahangir = () => {
           {ORG_NAME}
         </Link>
         . I work with{" "}
-        <Link to="/author/armghana-zeeshan" className="font-medium text-primary underline underline-offset-2">
+        <Link to={ARMGHANA_AUTHOR.path} className="font-medium text-primary underline underline-offset-2">
           Armghana Zeeshan
         </Link>{" "}
         and{" "}
-        <Link to="/author/zoha-zeeshan" className="font-medium text-primary underline underline-offset-2">
+        <Link to={ZOHA_AUTHOR.path} className="font-medium text-primary underline underline-offset-2">
           Zoha Zeeshan
         </Link>{" "}
         on a small team dedicated solely to this product — free spin wheels that are fast, honest, and

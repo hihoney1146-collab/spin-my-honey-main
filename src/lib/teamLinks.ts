@@ -1,19 +1,26 @@
 /** Official profile links for E-E-A-T attribution. */
 
+import {
+  ARMGHANA_AUTHOR,
+  ZOHA_AUTHOR,
+  RAJA_AUTHOR,
+  ABDAL_AUTHOR,
+} from "./teamAuthors";
+
 /** Real, live public profile(s) for the Online Spin Wheel team. */
 export const TEAM_LINKEDIN = {
-  armghanaZeeshan: "https://www.linkedin.com/in/armghana-zeeshan-bb157924a/",
-  zohaZeeshan: "https://www.linkedin.com/in/zoha-zeeshan-7b9957352/",
-  rajaJahangir: "https://www.linkedin.com/in/raja-jahangir",
-  abdalKhalid: "https://www.linkedin.com/in/abdal-khalid",
+  armghanaZeeshan: ARMGHANA_AUTHOR.linkedIn,
+  zohaZeeshan: ZOHA_AUTHOR.linkedIn,
+  rajaJahangir: RAJA_AUTHOR.linkedIn,
+  abdalKhalid: ABDAL_AUTHOR.linkedIn,
 } as const;
 
-/** Footer / About leadership links (author profile pages). */
+/** About / team profile links (role-based paths — no names in URLs). */
 export const TEAM_AUTHOR_LINKS = [
-  { to: "/author/armghana-zeeshan", label: "Armghana Zeeshan", role: "CEO" },
-  { to: "/author/zoha-zeeshan", label: "Zoha Zeeshan", role: "Co-Founder" },
-  { to: "/author/raja-jahangir", label: "Raja Jahangir", role: "Content & SEO Lead" },
-  { to: "/author/abdal-khalid", label: "Abdal Khalid", role: "Social Media Expert" },
+  { to: ARMGHANA_AUTHOR.path, label: ARMGHANA_AUTHOR.name, role: ARMGHANA_AUTHOR.shortRole },
+  { to: ZOHA_AUTHOR.path, label: ZOHA_AUTHOR.name, role: ZOHA_AUTHOR.shortRole },
+  { to: RAJA_AUTHOR.path, label: RAJA_AUTHOR.name, role: RAJA_AUTHOR.shortRole },
+  { to: ABDAL_AUTHOR.path, label: ABDAL_AUTHOR.name, role: ABDAL_AUTHOR.shortRole },
 ] as const;
 
 /** Verified live brand profiles for Online Spin Wheel (footer + author page). */
