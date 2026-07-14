@@ -34,19 +34,19 @@ export const bestIcebreakerGamesOfficeMeetings: BlogPost = {
     {
       heading: "2. Before you share your screen",
       paragraphs: [
-        "Open the wheel you need in a clean browser tab, /random-name-picker-wheel for names, /yes-or-no-wheel for binary prompts, /team-generator-wheel for breakout groups. Test audio and screen-share on Zoom, Google Meet, or Teams so the spin animation is visible to remote attendees. Hybrid rooms should mirror the same tab on the in-room display.",
-        "Load example prompts from the sections below or swap in your own HR-approved lines. Keep personal medical, political, and compensation topics off the wheel. Five minutes means one or two spins total, not a twenty-minute warm-up.",
+        "Before the meeting starts, open one clean browser tab with the tool you need: the random name picker for who speaks, the yes-or-no wheel for binary prompts, or the team generator for breakout groups. Test screen share on Zoom, Google Meet, or Teams so everyone can see the spin. In hybrid rooms, mirror that same tab on the conference-room display.",
+        "Load prompts from the sections below, or swap in your own HR-approved lines. Keep medical, political, and pay topics off the wheel. Five minutes means one or two spins total, not a long warm-up.",
       ],
       checklist: {
         title: "5-minute spin icebreaker run sheet",
         items: [
-          "Pick one wheel-first format from this guide and open the matching path before the meeting starts.",
-          "Paste participant first names or prompts into the wheel; confirm slice count matches headcount.",
-          "Share screen on Zoom/Meet/Teams and ask remote attendees to pin the shared window.",
-          "State the rule out loud: whoever the wheel lands on answers in 30–45 seconds, then you spin again or close.",
-          "Enable remove-after-pick on name wheels so the same person is not chosen twice in one round.",
-          "Set a visible timer (phone or meeting timer) for five minutes maximum, including spins.",
-          "Note session history if you need an audit trail for who spoke first in a workshop.",
+          "Pick one format from this guide and open the matching wheel before the meeting starts.",
+          "Paste first names or prompts into the wheel; make sure the slice count matches your headcount.",
+          "Share screen on Zoom, Meet, or Teams and ask remote attendees to pin the shared window.",
+          "Say the rule out loud: whoever the wheel lands on answers in 30 to 45 seconds, then you spin again or close.",
+          "Turn on remove-after-pick on name wheels so the same person is not chosen twice in one round.",
+          "Set a visible timer for five minutes maximum, including spins.",
+          "Keep session history if you need a simple record of who spoke first.",
           "End with one sentence handoff to the agenda: \"Great, let's move to item one.\"",
         ],
       },
@@ -54,7 +54,7 @@ export const bestIcebreakerGamesOfficeMeetings: BlogPost = {
     {
       heading: "3. Eight spin-the-wheel icebreaker formats with example prompts",
       paragraphs: [
-        "Each activity lists wheel labels you can paste as-is for a US office culture. Adjust tone for your company; keep prompts optional to answer.",
+        "Each activity below is written as plain instructions you can follow live. Adjust the tone for your company, and keep answering optional if someone prefers to pass.",
       ],
       images: [
         {
@@ -70,55 +70,65 @@ export const bestIcebreakerGamesOfficeMeetings: BlogPost = {
     {
       heading: "Prompt Roulette",
       paragraphs: [
-        "Wheel: /random-name-picker-wheel for who speaks; second tab with prompts on /random-name-picker-wheel or a custom list on the name field after removing names. · Example prompt slices: \"What is one tool you tried this month?\" \"Share a win from last week in one sentence.\" \"What meeting time works best for your time zone?\" \"Name a colleague who helped you recently.\" · Flow: Spin for name, spin prompt wheel (or read the next line), speaker answers in 45 seconds. Two rounds fit five minutes for teams under twelve.",
+        "Open two wheels side by side, or use one wheel twice. Put attendee names on the random name picker. Put short prompts on a second list (or clear names and paste prompts into the same tool).",
+        "Good prompt examples: \"What is one tool you tried this month?\" \"Share a win from last week in one sentence.\" \"What meeting time works best for your time zone?\" \"Name a colleague who helped you recently.\"",
+        "Spin once for who speaks, spin again (or read the next prompt), and give that person about 45 seconds. Two rounds usually fit five minutes for teams under twelve.",
       ],
     },
     {
       heading: "Yes or No Debate Spin",
       paragraphs: [
-        "Wheel: /yes-or-no-wheel after you load the debate topic as the question above the spin, or alternate two wheels, topics on a custom list, sides on yes-or-no. · Example topics: \"Should cameras stay on for all-hands?\" \"Is async update enough instead of this meeting?\" \"Does pineapple belong on pizza?\" · Flow: Spin yes-or-no to assign the speaker's forced stance; they defend for thirty seconds. Light topics only, skip anything that touches protected classes or management decisions.",
+        "Open the yes-or-no wheel and pick one light debate topic for the round. Funny or low-stakes works best: \"Should cameras stay on for all-hands?\" \"Is an async update enough instead of this meeting?\" \"Does pineapple belong on pizza?\"",
+        "Spin yes or no to assign a forced stance. That person defends the side for about thirty seconds. Skip anything involving protected classes, personal performance, or real management decisions.",
       ],
     },
     {
       heading: "Truth or Dare Lite",
       paragraphs: [
-        "Wheel: /truth-or-dare-spinner-online with professional truths and mild dares only. · Example truths: \"What is your go-to lunch during busy weeks?\" \"What app do you open first each morning?\" · Example dares: \"Show your coffee mug to the camera.\" \"Type your favorite emoji in chat.\" \"Share your phone wallpaper, work-appropriate only.\" · Flow: Spin; attendee picks truth or dare from the result. Skip dares for external client calls.",
+        "Use the truth-or-dare spinner with work-safe truths and mild dares only. Example truths: \"What is your go-to lunch during busy weeks?\" \"What app do you open first each morning?\" Example dares: \"Show your coffee mug to the camera.\" \"Type your favorite emoji in chat.\" \"Share your phone wallpaper if it is work-appropriate.\"",
+        "Spin once. The selected person answers the truth or does the dare. Skip dare slices on client calls or executive meetings.",
       ],
     },
     {
       heading: "Team Shuffle Icebreaker",
       paragraphs: [
-        "Wheel: /team-generator-wheel · Setup: Paste attendee names, set number of teams to match breakout rooms. · Flow: Spin once before the main agenda; announce groups aloud and send Zoom breakouts immediately. Icebreaker question for each room: \"What is one goal your sub-team shares this quarter?\" Use session history to prove groups were random if someone asks.",
+        "Open the team generator and paste attendee names. Set the number of teams to match the breakout rooms you need.",
+        "Spin once before the main agenda. Read the groups aloud, then open Zoom or Teams breakouts right away. Give each room one quick question, such as \"What is one goal your sub-team shares this quarter?\" Session history can show the draw was random if anyone asks.",
       ],
     },
     {
       heading: "Winner Picks the Next Prompt",
       paragraphs: [
-        "Wheel: /winner-picker-wheel for first speaker; prompt list on a second wheel or numbered doc. · Example prompts: \"Best book you read this year?\" \"One skill you want to learn?\" \"Favorite local lunch spot?\" \"What podcast do you recommend?\" · Flow: First spin picks speaker; after they answer, they click spin on the prompt wheel for the next person. Chains quickly through small teams.",
+        "Use the winner picker for the first speaker, and keep a short prompt list nearby (a second wheel or a numbered doc). Prompt ideas: \"Best book you read this year?\" \"One skill you want to learn?\" \"Favorite local lunch spot?\" \"What podcast do you recommend?\"",
+        "The first spin picks who talks. After they answer, that person spins for the next prompt or the next speaker. The chain moves quickly through small teams.",
       ],
     },
     {
       heading: "Two Truths Wheel",
       paragraphs: [
-        "Wheel: Custom labels on /random-name-picker-wheel, use three spins per person instead of one. · Slices for round one: \"Truth A\", \"Truth B\", \"Lie\" as order markers, or paste specific sentence starters: \"I have visited three countries\", \"I speak two languages\", \"I once met a celebrity\". · Flow: Spinner tells two truths and one lie; chat guesses. Reveal answer after ten seconds. Works well when new hires are on the call.",
+        "Put simple labels on the random name picker, or paste sentence starters your team can mix and match. Examples: \"I have visited three countries.\" \"I speak two languages.\" \"I once met a celebrity.\"",
+        "The selected person shares two truths and one lie. Chat guesses for about ten seconds, then they reveal the answer. This works especially well when new hires are on the call.",
       ],
     },
     {
       heading: "Quick Poll Spin",
       paragraphs: [
-        "Wheel: /yes-or-no-wheel with fun binary polls. · Example slices: \"Coffee vs tea?\" \"Cats vs dogs?\" \"Morning person vs night owl?\" \"Spreadsheet vs slides?\" · Flow: Spin; everyone votes yes or no in chat to match the option they prefer, no long explanations. Three spins in under three minutes wakes up a quiet stand-up.",
+        "Load fun pairwise choices on the yes-or-no wheel or as short slices on a name picker: coffee vs tea, cats vs dogs, morning person vs night owl, spreadsheet vs slides.",
+        "Spin, then everyone votes in chat for the option they prefer. No long explanations. Three spins in under three minutes can wake up a quiet stand-up.",
       ],
     },
     {
       heading: "New Hire Spotlight",
       paragraphs: [
-        "Wheel: /random-name-picker-wheel filtered to new hires only. · Example prompts on a second list: \"What surprised you about our onboarding?\" \"What is one thing you are excited to learn?\" \"Where did you work before joining?\" · Flow: One spin, one minute of spotlight, then hand off to the agenda owner. Limit to one new hire per meeting so veterans are not skipped every week.",
+        "Paste only the new hires' names onto the random name picker so veterans are not pulled into this round. Keep a short prompt list ready: \"What surprised you about our onboarding?\" \"What is one thing you are excited to learn?\" \"Where did you work before joining?\"",
+        "Spin once, give that person about a minute, then hand the meeting back to the agenda owner. Limit it to one new hire per meeting so the same person is not spotlighted every week while everyone else waits.",
       ],
     },
     {
       heading: "Meeting Mood Meter",
       paragraphs: [
-        "Wheel: Paste mood prompts on /random-name-picker-wheel slices: \"One word for your energy today\", \"Green/yellow/red check-in\", \"What would help this meeting succeed?\" · Flow: Spin a name; speaker answers in one sentence. Full room gets a fast temperature read without a lengthy round-robin. Facilitators note reds privately after the call if your culture supports follow-ups.",
+        "Paste attendee names on the random name picker. Keep three quick mood questions ready: \"One word for your energy today.\" \"Green, yellow, or red check-in.\" \"What would help this meeting succeed?\"",
+        "Spin a name. That person answers in one sentence. You get a fast temperature check without a long round-robin. If someone says red and your culture allows it, follow up privately after the call.",
       ],
     },
     {
@@ -142,7 +152,7 @@ export const bestIcebreakerGamesOfficeMeetings: BlogPost = {
     {
       heading: "5. Related wheels for facilitators",
       paragraphs: [
-        "Bookmark these paths for recurring meetings: /team-generator-wheel for random breakout groups, /random-name-picker-wheel for who speaks first, /yes-or-no-wheel for binary polls and debates, /truth-or-dare-spinner-online for light truths and camera-friendly dares, and /winner-picker-wheel for chain-style prompt picks. All are free, browser-based, and built for screen-share on US corporate laptops.",
+        "Bookmark these tools for recurring meetings: the team generator for breakout groups, the random name picker for who speaks first, the yes-or-no wheel for binary polls and debates, the truth-or-dare spinner for light truths and camera-friendly dares, and the winner picker for chain-style prompt picks. All are free, browser-based, and built for screen share on US corporate laptops.",
         "Pair remove-after-pick with name wheels when you run multiple spins in one huddle. Use session history after workshops to confirm everyone had a chance to introduce themselves before you dive into slides.",
       ],
     },
@@ -151,14 +161,14 @@ export const bestIcebreakerGamesOfficeMeetings: BlogPost = {
       paragraphs: [
         "Choose Prompt Roulette or Quick Poll Spin if you need the lowest prep. Paste names and three prompts, share screen, and stop at five minutes on the timer. If the room loosens up, keep the same wheel links for next week; students of habit appreciate not learning a new game every Monday.",
         "Spin the wheel icebreaker games will not replace thoughtful team culture, but they give hybrid US teams a fair, visible way to hear more voices before the real work begins.",
-        "Save your best-performing prompt list in a doc linked from the meeting invite. Rotating three wheels across the month, Prompt Roulette, Quick Poll Spin, and Meeting Mood Meter, keeps energy up without asking managers to invent new games from scratch every quarter.",
+        "Save your best-performing prompt list in a doc linked from the meeting invite. Rotating three formats across the month, Prompt Roulette, Quick Poll Spin, and Meeting Mood Meter, keeps energy up without asking managers to invent new games from scratch every quarter.",
       ],
     },
   ],
   faqs: [
     {
       q: "What are good spin the wheel icebreaker games for Zoom meetings?",
-      a: "Prompt Roulette, Yes or No Debate Spin, Quick Poll Spin, and Meeting Mood Meter all run in five minutes over screen-share. Each starts with a spin on /random-name-picker-wheel or /yes-or-no-wheel.",
+      a: "Prompt Roulette, Yes or No Debate Spin, Quick Poll Spin, and Meeting Mood Meter all run in five minutes over screen share. Start with the random name picker or the yes-or-no wheel.",
     },
     {
       q: "How long should a wheel icebreaker take?",
@@ -178,7 +188,7 @@ export const bestIcebreakerGamesOfficeMeetings: BlogPost = {
     },
     {
       q: "Which wheel do I use to split people into breakout groups?",
-      a: "Open /team-generator-wheel, paste attendee names, set the number of teams, and spin once. Use the result to assign Zoom or Teams breakout rooms.",
+      a: "Open the team generator, paste attendee names, set the number of teams, and spin once. Use the result to assign Zoom or Teams breakout rooms.",
     },
   ],
 };
