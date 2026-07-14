@@ -4,7 +4,7 @@ export const CONTACT_EMAIL = "onlinespinwheel@gmail.com";
 
 export const ORGANIZATION_ID = `${SITE_ORIGIN}/#organization`;
 
-/** Role-based paths — no personal names in URLs. */
+/** Role-based paths, no personal names in URLs. */
 export const ARMGHANA_AUTHOR = {
   slug: "ceo",
   /** Legacy URL slug (redirect source only). */
@@ -78,5 +78,5 @@ export const ZOHA_PERSON_ID = personId(ZOHA_AUTHOR.url);
 export const RAJA_PERSON_ID = personId(RAJA_AUTHOR.url);
 export const ABDAL_PERSON_ID = personId(ABDAL_AUTHOR.url);
 
-/** @deprecated Use RAJA_PERSON_ID — kept for article author references. */
+/** @deprecated Use RAJA_PERSON_ID, kept for article author references. */
 export const PERSON_ID = RAJA_PERSON_ID;

@@ -45,12 +45,12 @@ const HOME_FAQS: { question: string; answer: string }[] = [
   {
     question: "What is streamer mode?",
     answer:
-      "Streamer mode switches the page to a solid chroma-key background (green, blue, or magenta by default — or pick any color) and hides the site header, footer, and marketing sections so OBS or Streamlabs can key out everything except the wheel. Turn it on with the toggle above any wheel, choose a background color, then use Copy link to share that stream-ready setup.",
+      "Streamer mode switches the page to a solid chroma-key background (green, blue, or magenta by default, or pick any color) and hides the site header, footer, and marketing sections so OBS or Streamlabs can key out everything except the wheel. Turn it on with the toggle above any wheel, choose a background color, then use Copy link to share that stream-ready setup.",
   },
   {
     question: "Does it work on mobile phones and tablets?",
     answer:
-      "Yes. The wheel is fully responsive and touch-friendly — just tap the wheel to spin — with no app to install. It runs in any modern browser on phones, tablets, laptops, and classroom smartboards.",
+      "Yes. The wheel is fully responsive and touch-friendly, just tap the wheel to spin, with no app to install. It runs in any modern browser on phones, tablets, laptops, and classroom smartboards.",
   },
   {
     question: "How do I remove a winner so they aren't picked again?",
@@ -60,7 +60,7 @@ const HOME_FAQS: { question: string; answer: string }[] = [
   {
     question: "Is the wheel really random?",
     answer:
-      "Yes. Each spin uses the browser's secure random number generator — the same kind of randomness used for encryption — and the pointer lands based on segment size, so every equal-sized entry has exactly the same chance. Spins are independent, so past results never affect the next one.",
+      "Yes. Each spin uses the browser's secure random number generator, the same kind of randomness used for encryption, and the pointer lands based on segment size, so every equal-sized entry has exactly the same chance. Spins are independent, so past results never affect the next one.",
   },
 ];
 
@@ -72,7 +72,7 @@ const HOW_TO_STEPS: {
   {
     icon: ListPlus,
     title: "Add your entries",
-    text: "Type or paste names, numbers, or choices into the panel beside the wheel — one per line, up to 400 at a time.",
+    text: "Type or paste names, numbers, or choices into the panel beside the wheel, one per line, up to 400 at a time.",
   },
   {
     icon: Play,
@@ -117,7 +117,7 @@ const USE_CASES: {
         <Link to="/classroom-spinner" className="text-primary hover:underline font-medium">
           classroom spinner
         </Link>{" "}
-        for student picking, teams, and a timer — or use the{" "}
+        for student picking, teams, and a timer, or use the{" "}
         <Link to="/random-student-picker" className="text-primary hover:underline font-medium">
           random student picker
         </Link>
@@ -201,7 +201,7 @@ const Index = () => {
         </title>
         <meta
           name="description"
-          content="Spin the wheel for a fair, random pick. Add names, numbers, or choices and let crypto-grade randomness decide — no signup, works on any phone, tablet, or computer."
+          content="Spin the wheel for a fair, random pick. Add names, numbers, or choices and let crypto-grade randomness decide, no signup, works on any phone, tablet, or computer."
         />
         <link rel="canonical" href="https://onlinespinwheel.fun/" />
 
@@ -215,7 +215,7 @@ const Index = () => {
         <meta property="og:image" content="https://onlinespinwheel.fun/og-image.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Online Spin Wheel — free random picker" />
+        <meta property="og:image:alt" content="Online Spin Wheel, free random picker" />
         <meta property="og:site_name" content="Online Spin Wheel" />
 
         <meta name="twitter:card" content="summary_large_image" />
@@ -309,7 +309,7 @@ const Index = () => {
       </Helmet>
 
       <article>
-        {/* Hero Section — interactive wheel (unchanged) */}
+        {/* Hero Section, interactive wheel (unchanged) */}
         <section
           id="spin-wheel"
           className={`w-full pt-2 sm:pt-3 md:pt-4 lg:pt-5 pb-4 sm:pb-6 md:pb-8 lg:pb-10 relative ${
@@ -330,13 +330,13 @@ const Index = () => {
         >
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-4">
-              Spin the Wheel — Free Online Spin Wheel &amp; Random Picker
+              Spin the Wheel, Free Online Spin Wheel &amp; Random Picker
             </h1>
             <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
               Online Spin Wheel is a free random picker: add names, numbers, or
               choices, then spin to get one fair result. It chooses winners with
               the same secure randomness browsers use for encryption, so every
-              entry has an equal chance. No signup or install — it works instantly
+              entry has an equal chance. No signup or install, it works instantly
               on phones, tablets, and computers.
             </p>
           </div>
@@ -379,7 +379,7 @@ const Index = () => {
                   className="w-full max-w-sm mx-auto h-auto rounded-2xl border-2 border-border/50 shadow-lg"
                 />
                 <figcaption className="mt-2 text-center text-xs text-muted-foreground">
-                  The wheel with its default sample names — tap it to spin.
+                  The wheel with its default sample names, tap it to spin.
                 </figcaption>
               </figure>
                   </div>
@@ -429,13 +429,13 @@ const Index = () => {
             </div>
             <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed">
               Every spin starts with a fresh random value from the browser&apos;s
-              secure generator — the same kind of randomness used for encryption
+              secure generator, the same kind of randomness used for encryption
               keys, not a simple predictable formula. That value sets the
               wheel&apos;s speed and friction, and where the pointer stops depends
               purely on each segment&apos;s size, so equal-sized slices give every
               entry identical odds. Spins are also independent: the wheel has no
               memory, so a name that just won is exactly as likely to win again next
-              time. It all runs on your device — your entries never touch our
+              time. It all runs on your device, your entries never touch our
               servers. Learn more about{" "}
               <Link to="/how-randomness-works" className="text-primary hover:underline font-medium">
                 how randomness works
@@ -488,7 +488,7 @@ const Index = () => {
           </section>
         )}
 
-        {/* Popular spin wheels — curated grid */}
+        {/* Popular spin wheels, curated grid */}
         <WheelDirectory />
 
         {/* FAQ */}

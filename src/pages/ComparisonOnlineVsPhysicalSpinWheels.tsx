@@ -74,7 +74,7 @@ const ComparisonOnlineVsPhysicalSpinWheels = () => {
               ["Edit labels between spins", "Instant paste/type", "Manual sticker or reprint"],
               ["Needs batteries or storage", "No", "Yes"],
               ["Hybrid / remote meetings", "Screen share works", "Camera on prop only"],
-              ["Crypto RNG audit data", "Yes — fairness study page", "Mechanical balance varies"],
+              ["Crypto RNG audit data", "Yes, fairness study page", "Mechanical balance varies"],
               ["Branding at trade shows", "Good on displays", "Strong tactile prop"],
               ["Risk of mechanical bias", "Software geometry tested", "Wobble / weight imbalance possible"],
               ["Share proof with audience", "URL + CSV study", "Video of spin only"],

@@ -34,7 +34,7 @@ function wheelSceneSvg({ title, subtitle, accent, slices = ["A", "B", "C", "D", 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
   <rect width="800" height="450" fill="#121218"/>
   <rect x="24" y="24" width="752" height="402" rx="16" fill="#1e1e28" stroke="#333" stroke-width="2"/>
-  <text x="40" y="56" fill="${accent}" font-family="Segoe UI,Arial,sans-serif" font-size="13" font-weight="600">ONLINE SPIN WHEEL — SCREEN CAPTURE STYLE</text>
+  <text x="40" y="56" fill="${accent}" font-family="Segoe UI,Arial,sans-serif" font-size="13" font-weight="600">ONLINE SPIN WHEEL, SCREEN CAPTURE STYLE</text>
   <text x="40" y="88" fill="#f7fafc" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="700">${title}</text>
   <text x="40" y="112" fill="#a0aec0" font-family="Segoe UI,Arial,sans-serif" font-size="14">${subtitle}</text>
   <circle cx="400" cy="250" r="148" fill="none" stroke="${accent}" stroke-width="4"/>
@@ -59,7 +59,7 @@ const SCENES = [
     file: "students-vocabulary-wheel-game.png",
     svg: wheelSceneSvg({
       title: "Vocabulary lightning round",
-      subtitle: "Weekly word list on the wheel — spin → define → remove",
+      subtitle: "Weekly word list on the wheel, spin → define → remove",
       accent: "#63b3ed",
       slices: ["evidence", "theme", "context", "infer", "summarize", "compare"],
     }),
@@ -68,7 +68,7 @@ const SCENES = [
     file: "icebreaker-wheel-prompts.png",
     svg: wheelSceneSvg({
       title: "Spin-the-wheel icebreaker prompts",
-      subtitle: "Paste team prompts — one spin, one share-out",
+      subtitle: "Paste team prompts, one spin, one share-out",
       accent: "#9f7aea",
       slices: [
         "Weekend win",

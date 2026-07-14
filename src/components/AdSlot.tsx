@@ -65,7 +65,7 @@ export function AdSlot({
         <div className="flex min-h-[280px] items-center justify-center px-4 text-center text-xs text-muted-foreground">
           {consent === "accepted"
             ? `${label} (enabled after AdSense approval)`
-            : `${label} — reserved slot`}
+            : `${label}, reserved slot`}
         </div>
       )}
     </div>

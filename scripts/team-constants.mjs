@@ -6,7 +6,7 @@ export const ORG_ID = `${SITE}/#organization`;
 export const WEBSITE_ID = `${SITE}/#website`;
 export const CONTACT_EMAIL = "onlinespinwheel@gmail.com";
 
-/** Role-based paths — no personal names in URLs. */
+/** Role-based paths, no personal names in URLs. */
 export const TEAM_AUTHORS = {
   armghana: {
     slug: "ceo",

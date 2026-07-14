@@ -65,7 +65,7 @@ const HowRandomnessWorks = () => {
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-3">
               When you press spin, the wheel asks your browser for a secure random
-              value — the same kind of randomness browsers use to generate encryption
+              value, the same kind of randomness browsers use to generate encryption
               keys and secure session tokens. It draws on your device&apos;s hardware
               entropy, so the value cannot be predicted or reproduced.
             </p>
@@ -84,8 +84,7 @@ const HowRandomnessWorks = () => {
             <p className="text-muted-foreground leading-relaxed mb-3">
               The secure random value seeds the wheel&apos;s physics: a starting
               velocity, a friction curve, and a natural deceleration. The wheel
-              is not told the answer in advance and then animated backward —
-              it genuinely spins and slows to a stop, and wherever the pointer
+              is not told the answer in advance and then animated backward, it genuinely spins and slows to a stop, and wherever the pointer
               lands is the result.
             </p>
             <p className="text-muted-foreground leading-relaxed">
@@ -103,8 +102,7 @@ const HowRandomnessWorks = () => {
             <p className="text-muted-foreground leading-relaxed mb-3">
               The wheel has no memory. Each spin requests a fresh random seed, so
               previous results have zero effect on the next outcome. A name that
-              just won is exactly as likely to win again on the following spin —
-              there is no &quot;due&quot; entry and no streak-balancing.
+              just won is exactly as likely to win again on the following spin, there is no &quot;due&quot; entry and no streak-balancing.
             </p>
             <p className="text-muted-foreground leading-relaxed">
               This property is called statistical independence, and it is what

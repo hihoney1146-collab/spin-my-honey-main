@@ -58,7 +58,7 @@ export function buildResultProofUrl(
   return `${origin}/result/${encodeResultId(full)}`;
 }
 
-/** @deprecated Use buildResultProofUrl — kept for legacy ?proof= query links */
+/** @deprecated Use buildResultProofUrl, kept for legacy ?proof= query links */
 export function encodeProofPayload(winners: string[]): string {
   return encodeResultId({
     w: winners,

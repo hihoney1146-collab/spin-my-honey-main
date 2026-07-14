@@ -70,13 +70,13 @@ const ComparisonSpinWheelVsTraditionalMethods = () => {
             caption="Digital spin wheel compared with classic physical selection methods"
             columns={["Feature", "Digital spin wheel", "Hat / straws / coins"]}
             rows={[
-              ["Equal odds when slices are equal size", "Yes — geometry + crypto RNG", "Yes if items identical"],
-              ["Audience sees every option", "Yes — on screen", "Often hidden in container"],
-              ["Risk of duplicate slips or bias", "Low — software list", "Possible if slips differ"],
-              ["Setup time for 30+ names", "Paste list — seconds", "Write/cut slips — minutes"],
+              ["Equal odds when slices are equal size", "Yes, geometry + crypto RNG", "Yes if items identical"],
+              ["Audience sees every option", "Yes, on screen", "Often hidden in container"],
+              ["Risk of duplicate slips or bias", "Low, software list", "Possible if slips differ"],
+              ["Setup time for 30+ names", "Paste list, seconds", "Write/cut slips, minutes"],
               ["Reusable without printing", "Yes", "Often requires new materials"],
-              ["Works on Zoom / hybrid", "Yes — screen share", "Awkward remotely"],
-              ["Audit trail / proof link", "Yes — on this site", "Manual video only"],
+              ["Works on Zoom / hybrid", "Yes, screen share", "Awkward remotely"],
+              ["Audit trail / proof link", "Yes, on this site", "Manual video only"],
               ["Storage between events", "Browser or URL share", "Physical space"],
             ]}
           />

@@ -43,7 +43,7 @@ export function RandomNumberWheel({ presetOptionLabels }: RandomNumberWheelProps
     }
 
     if (noRepeat && used.size >= size) {
-      toast.info("All numbers in range used — reset to draw again.");
+      toast.info("All numbers in range used, reset to draw again.");
       return;
     }
 

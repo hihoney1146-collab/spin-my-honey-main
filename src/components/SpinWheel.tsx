@@ -124,7 +124,7 @@ function syncCanvasPhysicalSize(canvas: HTMLCanvasElement): number {
 let tickBuffer: AudioBuffer | null = null;
 const ensureTickBuffer = (ctx: AudioContext) => {
   if (tickBuffer && tickBuffer.sampleRate === ctx.sampleRate) return tickBuffer;
-  const len = Math.floor(ctx.sampleRate * 0.012); // 12ms — crisp click
+  const len = Math.floor(ctx.sampleRate * 0.012); // 12ms, crisp click
   const buf = ctx.createBuffer(1, len, ctx.sampleRate);
   const d = buf.getChannelData(0);
   for (let i = 0; i < len; i++) {
@@ -183,7 +183,7 @@ const createSliderSound = (ctx: AudioContext, value: number) => {
 
 const createWinSound = (ctx: AudioContext) => {
   const now = ctx.currentTime;
-  // Celebratory ascending fanfare — two layers for richness
+  // Celebratory ascending fanfare, two layers for richness
   const melody = [523.25, 659.25, 783.99, 1046.50];
   melody.forEach((freq, i) => {
     ["triangle", "sine"].forEach((type) => {
@@ -526,7 +526,7 @@ export const SpinWheel = ({
       return;
     }
     await navigator.clipboard.writeText(url);
-    toast.success("Wheel link copied — bookmark or send to your class.");
+    toast.success("Wheel link copied, bookmark or send to your class.");
     gtagEvent("wheel_share_link_copied", { event_category: "engagement" });
   };
 
@@ -571,7 +571,7 @@ export const SpinWheel = ({
     return () => ro.disconnect();
   }, [entries, loadedImages, resolvedTheme]);
 
-  // Continuous slow idle spin — CSS transform only, zero canvas work
+  // Continuous slow idle spin, CSS transform only, zero canvas work
   useEffect(() => {
     const active = entries.filter((e) => e.active);
     // Empty wheel (watermark): spin forever. Single active slice: no idle spin.
@@ -637,7 +637,7 @@ export const SpinWheel = ({
   }, [entries.map((e) => e.id + e.imageUrl).join(",")]);
 
   // Draw the static wheel face (thin outer stroke + slices + text + hub) onto the
-  // visible canvas. Called only when entries/images change — never during animation.
+  // visible canvas. Called only when entries/images change, never during animation.
   // Rotation is handled entirely by CSS transform on the canvas element.
   const drawWheel = () => {
     const canvas = canvasRef.current;
@@ -766,7 +766,7 @@ export const SpinWheel = ({
         ctx.restore();
       }
 
-      // Slice border — thin divider
+      // Slice border, thin divider
       ctx.beginPath();
       ctx.moveTo(0, 0);
       ctx.arc(0, 0, radius, startAngle, endAngle);
@@ -774,7 +774,7 @@ export const SpinWheel = ({
       ctx.strokeStyle = "rgba(255, 255, 255, 0.35)";
       ctx.stroke();
 
-      // Text — auto-scaled
+      // Text, auto-scaled
       ctx.save();
       ctx.rotate(startAngle + sliceAngle / 2);
       const maxTextWidth = radius * 0.52;
@@ -803,14 +803,14 @@ export const SpinWheel = ({
       ctx.restore();
     });
 
-    // Thin outer rim (stroke only — no thick filled donut)
+    // Thin outer rim (stroke only, no thick filled donut)
     ctx.beginPath();
     ctx.arc(0, 0, radius, 0, 2 * Math.PI);
     ctx.strokeStyle = "rgba(15, 23, 42, 0.28)";
     ctx.lineWidth = 1.25;
     ctx.stroke();
 
-    // Center hub — drop shadow only in dark mode (light mode: no glow under wheel)
+    // Center hub, drop shadow only in dark mode (light mode: no glow under wheel)
     const hubUseShadow = resolvedTheme === "dark";
     ctx.shadowColor = hubUseShadow ? "rgba(0,0,0,0.2)" : "transparent";
     ctx.shadowBlur = hubUseShadow ? 10 : 0;
@@ -1083,7 +1083,7 @@ export const SpinWheel = ({
       return Math.floor(((360 - rot) % 360 + 360) % 360 / sliceAngle) % activeEntries.length;
     };
 
-    // Smooth power curve — feels like real friction
+    // Smooth power curve, feels like real friction
     const ease = (t: number): number => 1 - Math.pow(1 - t, 3.5);
 
     const animate = (now: number) => {
@@ -1094,7 +1094,7 @@ export const SpinWheel = ({
       const newRotation = (startRotation + totalRotation * easedProgress) % 360;
       rotationRef.current = newRotation;
 
-      // Tick on EVERY segment crossing — volume fades as wheel slows
+      // Tick on EVERY segment crossing, volume fades as wheel slows
       const currentSegment = getCurrentSegment(newRotation);
       if (currentSegment !== lastSegmentIndex) {
         const speed = 1 - progress; // 1 at start, 0 at end
@@ -1221,7 +1221,7 @@ export const SpinWheel = ({
               : "cursor-pointer"
               }`}
           />
-          {/* Pointer — pure HTML, bounces on each tick */}
+          {/* Pointer, pure HTML, bounces on each tick */}
           <div
             ref={pointerRef}
             className={`absolute top-1/2 right-0 -translate-y-1/2 translate-x-[30%] w-0 h-0 pointer-events-none dark:drop-shadow-[2px_2px_3px_rgba(0,0,0,0.45)] ${activeEntries.length === 0 ? "opacity-0" : "opacity-100"}`}
@@ -1369,7 +1369,7 @@ export const SpinWheel = ({
 
         </div>
 
-        {/* Controls Section — sidebar on desktop; collapsible below wheel in stream mode */}
+        {/* Controls Section, sidebar on desktop; collapsible below wheel in stream mode */}
         {!compactEmbed ? (
         <>
         {streamerMode ? (
@@ -1426,7 +1426,7 @@ export const SpinWheel = ({
 
           <Separator className="mb-3 lg:mb-4 flex-shrink-0" />
 
-          {/* Bulk paste — one entry per line */}
+          {/* Bulk paste, one entry per line */}
           <div className="mb-3 lg:mb-4 relative z-10 flex-shrink-0">
             <label className="text-[10px] lg:text-[11px] font-bold text-foreground/80 mb-1.5 lg:mb-2 flex items-center gap-1.5 uppercase tracking-wide">
               <div className="w-1 h-1 rounded-full bg-primary" />
@@ -1439,7 +1439,7 @@ export const SpinWheel = ({
             <Textarea
               value={bulkPasteText}
               onChange={(e) => setBulkPasteText(e.target.value)}
-              placeholder={"Alice\nBob\nCharlie"}
+              placeholder={"Alice\nBob\nCharlie\nDana\nSam\nJordan"}
               rows={5}
               className="min-h-[120px] lg:min-h-[160px] text-xs lg:text-sm border-2 border-border focus-visible:border-primary bg-background/80 backdrop-blur-sm resize-y font-medium leading-relaxed placeholder:text-muted-foreground/70"
               aria-label="Paste multiple wheel entries, one per line"
@@ -1554,7 +1554,7 @@ export const SpinWheel = ({
 
           <Separator className="mb-3 lg:mb-4 flex-shrink-0" />
 
-          {/* Entries List — paginated; lg+ collapsible header so the panel stays short and avoids overlapping page content */}
+          {/* Entries List, paginated; lg+ collapsible header so the panel stays short and avoids overlapping page content */}
           <div className="relative z-10 flex flex-col">
             <div className="lg:hidden text-[10px] font-bold text-foreground/80 mb-1.5 flex items-center justify-between uppercase tracking-wide flex-shrink-0">
               <span className="flex items-center gap-1.5">

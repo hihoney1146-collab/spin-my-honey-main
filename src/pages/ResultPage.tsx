@@ -16,7 +16,7 @@ const ResultPage = () => {
   const canonical = `${SITE_ORIGIN}/result/${id ?? ""}`;
 
   const title = proof
-    ? `Verified spin result — ${proof.w.join(", ")} | Online Spin Wheel`
+    ? `Verified spin result, ${proof.w.join(", ")} | Online Spin Wheel`
     : "Spin result verification | Online Spin Wheel";
 
   const description = proof
@@ -104,7 +104,7 @@ const ResultPage = () => {
             </Card>
 
             <p className="text-sm text-muted-foreground mt-6 leading-relaxed">
-              This page is a read-only record encoded in the link itself — no account or database
+              This page is a read-only record encoded in the link itself, no account or database
               lookup. Hosts share it on Instagram, TikTok, or email so entrants can verify the draw
               was fair.
             </p>

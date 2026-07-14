@@ -11,9 +11,9 @@ const AuthorRajaJahangir = () => {
   return (
     <AuthorProfilePage
       canonical={RAJA_AUTHOR.url}
-      title="Raja Jahangir — Content & SEO Lead, Online Spin Wheel"
+      title="Raja Jahangir, Content & SEO Lead, Online Spin Wheel"
       metaDescription="Raja Jahangir leads content, SEO, and quality review for Online Spin Wheel. Learn how the team tests every wheel for fair, uniform random results."
-      ogDescription="Meet Raja Jahangir, Content & SEO Lead at Online Spin Wheel — content, SEO, and 10,000-spin fairness checks."
+      ogDescription="Meet Raja Jahangir, Content & SEO Lead at Online Spin Wheel, content, SEO, and 10,000-spin fairness checks."
       name={RAJA_AUTHOR.name}
       roleLabel="Content & SEO"
       jobTitle={RAJA_AUTHOR.jobTitle}
@@ -59,7 +59,7 @@ const AuthorRajaJahangir = () => {
         <Link to={ZOHA_AUTHOR.path} className="font-medium text-primary underline underline-offset-2">
           Zoha Zeeshan
         </Link>{" "}
-        on a small team dedicated solely to this product — free spin wheels that are fast, honest, and
+        on a small team dedicated solely to this product, free spin wheels that are fast, honest, and
         privacy-respecting for teachers, creators, and small businesses worldwide.
       </p>
       <p>
@@ -86,8 +86,7 @@ const AuthorRajaJahangir = () => {
         how current the instructions are. Editorial corrections and bug reports go to{" "}
         <a href={`mailto:${CONTACT_EMAIL}`} className="font-medium text-primary underline underline-offset-2">
           {CONTACT_EMAIL}
-        </a>
-        — include the page URL and what you expected versus what happened.
+        </a>, include the page URL and what you expected versus what happened.
       </p>
     </AuthorProfilePage>
   );

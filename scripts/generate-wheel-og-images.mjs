@@ -29,7 +29,7 @@ const WHEEL_COLORS = [
 
 function loadWheels() {
   if (!fs.existsSync(wheelJsonPath)) {
-    console.error("❌ Missing wheelPages.json — run prebuild first.");
+    console.error("❌ Missing wheelPages.json, run prebuild first.");
     process.exit(1);
   }
   return JSON.parse(fs.readFileSync(wheelJsonPath, "utf8"));
@@ -174,10 +174,10 @@ async function main() {
       await import("playwright");
       playwrightOk = true;
     } catch {
-      console.warn("⚠️  playwright not installed — using sharp SVG fallback.");
+      console.warn("⚠️  playwright not installed, using sharp SVG fallback.");
     }
   } else {
-    console.warn("⚠️  dist/ missing — using sharp SVG fallback for OG images.");
+    console.warn("⚠️  dist/ missing, using sharp SVG fallback for OG images.");
   }
 
   if (playwrightOk) {
@@ -187,7 +187,7 @@ async function main() {
       console.log(`✅ OG images → public/og/ (${wheels.length} files)`);
       return;
     } catch (err) {
-      console.warn(`⚠️  Playwright OG failed (${err.message}) — falling back to sharp.`);
+      console.warn(`⚠️  Playwright OG failed (${err.message}), falling back to sharp.`);
     }
   }
 

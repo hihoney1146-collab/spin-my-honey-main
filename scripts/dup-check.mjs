@@ -111,7 +111,7 @@ const lines = [
 ];
 
 if (duplicates.length === 0 && intraDuplicates.length === 0) {
-  lines.push("**PASS** — no duplicate long sentences across or within indexable routes.");
+  lines.push("**PASS**, no duplicate long sentences across or within indexable routes.");
 } else {
   if (duplicates.length > 0) {
     lines.push("## Cross-page duplicates");

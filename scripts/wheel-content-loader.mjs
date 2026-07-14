@@ -1,6 +1,6 @@
 /**
  * Load per-wheel unique SEO content from src/data/wheelUniqueContent.ts
- * (build-time only — mirrors client bundle data).
+ * (build-time only, mirrors client bundle data).
  */
 import fs from "fs";
 import path from "path";

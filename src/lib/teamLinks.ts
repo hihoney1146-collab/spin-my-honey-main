@@ -15,7 +15,7 @@ export const TEAM_LINKEDIN = {
   abdalKhalid: ABDAL_AUTHOR.linkedIn,
 } as const;
 
-/** About / team profile links (role-based paths — no names in URLs). */
+/** About / team profile links (role-based paths, no names in URLs). */
 export const TEAM_AUTHOR_LINKS = [
   { to: ARMGHANA_AUTHOR.path, label: ARMGHANA_AUTHOR.name, role: ARMGHANA_AUTHOR.shortRole },
   { to: ZOHA_AUTHOR.path, label: ZOHA_AUTHOR.name, role: ZOHA_AUTHOR.shortRole },

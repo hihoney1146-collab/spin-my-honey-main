@@ -721,7 +721,7 @@ const ABSORBED_SECTIONS: Record<string, AbsorbedSection[]> = {
     {
       heading: "Ruling Planets of Each Zodiac Sign",
       intro:
-        "In astrology, every sign is governed by a ruling planet that shapes its core energy — Mars brings bold, fiery drive to Aries, while dreamy Neptune rules Pisces. Here is the ruling planet for each Western zodiac sign.",
+        "In astrology, every sign is governed by a ruling planet that shapes its core energy, Mars brings bold, fiery drive to Aries, while dreamy Neptune rules Pisces. Here is the ruling planet for each Western zodiac sign.",
       table: {
         columns: ["Zodiac Sign", "Ruling Planet"],
         rows: [
@@ -743,7 +743,7 @@ const ABSORBED_SECTIONS: Record<string, AbsorbedSection[]> = {
     {
       heading: "Egyptian Zodiac Signs",
       intro:
-        "Ancient Egyptian astrology assigns each person to a deity rather than a constellation. These twelve gods and goddesses form the Egyptian zodiac — a mystical alternative to the Western system that is popular with mythology lovers and history fans. Edit the wheel to spin for a random Egyptian sign instead.",
+        "Ancient Egyptian astrology assigns each person to a deity rather than a constellation. These twelve gods and goddesses form the Egyptian zodiac, a mystical alternative to the Western system that is popular with mythology lovers and history fans. Edit the wheel to spin for a random Egyptian sign instead.",
       items: [
         "Nile",
         "Amon-Ra",

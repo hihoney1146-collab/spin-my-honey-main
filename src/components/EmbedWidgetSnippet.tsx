@@ -19,12 +19,12 @@ export function EmbedWidgetSnippet({ slug, wheelTitle }: EmbedWidgetSnippetProps
   width="500"
   height="520"
   frameborder="0"
-  title="${wheelTitle.replace(/"/g, "&quot;")} — Online Spin Wheel"
+  title="${wheelTitle.replace(/"/g, "&quot;")}, Online Spin Wheel"
   style="border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"
 ></iframe>
 <p style="text-align:center;margin-top:10px;font-size:14px;">
   <a href="${toolUrl}?utm_source=embed&amp;utm_medium=widget&amp;utm_campaign=backlink"
-     target="_blank" rel="noopener noreferrer">${wheelTitle} — Online Spin Wheel</a>
+     target="_blank" rel="noopener noreferrer">${wheelTitle}, Online Spin Wheel</a>
 </p>`;
 
   const [copied, setCopied] = useState(false);

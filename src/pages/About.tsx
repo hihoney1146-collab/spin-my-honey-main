@@ -34,7 +34,7 @@ const About = () => {
           </div>
           <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6">
             Online Spin Wheel is built and maintained by a small independent team dedicated solely to
-            this product — not a multi-property agency. We focus on one job: free, fast, trustworthy
+            this product, not a multi-property agency. We focus on one job: free, fast, trustworthy
             spin wheels for classrooms, giveaways, streamers, and everyday decisions.
           </p>
           <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -76,8 +76,8 @@ const About = () => {
               <h3 className="text-lg font-semibold text-foreground mb-2">
                 <Link to="/team/ceo" className="text-primary hover:underline">
                   Armghana Zeeshan
-                </Link>{" "}
-                — CEO
+                </Link>
+                , CEO
               </h3>
               <p className="text-base md:text-lg">
                 Sets product direction and business priorities: which wheels ship, how we keep the core
@@ -88,21 +88,21 @@ const About = () => {
               <h3 className="text-lg font-semibold text-foreground mb-2">
                 <Link to="/team/co-founder" className="text-primary hover:underline">
                   Zoha Zeeshan
-                </Link>{" "}
-                — Co-Founder
+                </Link>
+                , Co-Founder
               </h3>
               <p className="text-base md:text-lg">
-                Shapes company direction and user experience: responsive layouts, specialty wheel
-                roadmaps, and decisions that keep the product focused on real hosts, teachers, and
-                creators.
+                Co-Founder responsibilities include company direction with the CEO, user experience
+                across phones and projectors, specialty-wheel roadmap priorities, honest trust signals,
+                and releasing new pages with accurate content and testing.
               </p>
             </div>
             <div>
               <h3 className="text-lg font-semibold text-foreground mb-2">
                 <Link to="/team/content" className="text-primary hover:underline">
                   Raja Jahangir
-                </Link>{" "}
-                — Content &amp; SEO Lead
+                </Link>
+                , Content &amp; SEO Lead
               </h3>
               <p className="text-base md:text-lg">
                 Owns content, SEO, and quality review: wheel copy, guides, blog posts, structured
@@ -113,8 +113,8 @@ const About = () => {
               <h3 className="text-lg font-semibold text-foreground mb-2">
                 <Link to="/team/social" className="text-primary hover:underline">
                   Abdal Khalid
-                </Link>{" "}
-                — Social Media Expert
+                </Link>
+                , Social Media Expert
               </h3>
               <p className="text-base md:text-lg">
                 Manages brand social channels and community engagement: sharing wheel tips, highlighting
@@ -132,14 +132,13 @@ const About = () => {
           </div>
           <div className="space-y-4 text-muted-foreground leading-relaxed">
             <p className="text-base md:text-lg">
-              Fairness is a team practice — not a marketing line. Every wheel is tested for uniform
+              Fairness is a team practice, not a marketing line. Every wheel is tested for uniform
               distribution across 10,000 automated spins before launch. If any equal-sized segment
               wins noticeably more or less often than the rest, the wheel is not published until the
               distribution is even.
             </p>
             <p className="text-base md:text-lg">
-              Randomness comes from your browser&apos;s built-in secure generator —
-              the same kind of randomness used for encryption keys — never a simple
+              Randomness comes from your browser&apos;s built-in secure generator, the same kind of randomness used for encryption keys, never a simple
               predictable formula. Read the full explanation on our{" "}
               <Link to="/how-randomness-works" className="text-primary hover:underline font-medium">
                 how randomness works
@@ -193,12 +192,12 @@ const About = () => {
                 <li className="flex items-start gap-2">
                   <span className="text-primary mt-1">•</span>
                   <span>
-                    The names, numbers, or options you type into the wheel — they stay on your device.
+                    The names, numbers, or options you type into the wheel, they stay on your device.
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary mt-1">•</span>
-                  <span>Accounts, sign-ups, or passwords — none are required.</span>
+                  <span>Accounts, sign-ups, or passwords, none are required.</span>
                 </li>
               </ul>
             </div>
@@ -217,7 +216,7 @@ const About = () => {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary mt-1">•</span>
-                  <span>Your email and message if you contact us — used only to reply.</span>
+                  <span>Your email and message if you contact us, used only to reply.</span>
                 </li>
               </ul>
             </div>

@@ -231,7 +231,7 @@ export function collectBlogPostsFull(root) {
           const post = new Function(`"use strict";return (${trimmed});`)();
           pushPost(post);
         } catch {
-          /* inline object parse failed — skip */
+          /* inline object parse failed, skip */
         }
         continue;
       }

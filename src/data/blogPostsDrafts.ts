@@ -1,6 +1,6 @@
 import type { BlogPost } from "./blogTypes";
 
-/** Shell posts — noindex until expanded (Phase 7). */
+/** Shell posts, noindex until expanded (Phase 7). */
 export const randomNamePickerDraft: BlogPost = {
   slug: "random-name-picker-fair-fun-easy",
   title: "How a Random Name Picker Makes Decisions Fair, Fun & Easy | Online Spin Wheel",

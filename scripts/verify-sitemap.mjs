@@ -95,7 +95,7 @@ for (const { path, kind, minLocs } of SITEMAPS) {
       continue;
     }
 
-    // CSP on crawler endpoints makes GSC flaky — warn loudly
+    // CSP on crawler endpoints makes GSC flaky, warn loudly
     const csp = res.headers.get("content-security-policy");
     if (csp) {
       console.warn(`WARN ${path}: has Content-Security-Policy (prefer none on sitemaps)`);
@@ -158,8 +158,8 @@ try {
 }
 
 console.log("\n=== GSC checklist ===\n");
-console.log(`1. PRIMARY submit in GSC: ${SITE}/sitemap  (extensionless — best with Cloudflare)`);
-console.log(`2. Fallback: ${SITE}/sitemap.txt  (URL list — often succeeds when XML fails)`);
+console.log(`1. PRIMARY submit in GSC: ${SITE}/sitemap  (extensionless, best with Cloudflare)`);
+console.log(`2. Fallback: ${SITE}/sitemap.txt  (URL list, often succeeds when XML fails)`);
 console.log(`3. Also listed: ${SITE}/sitemap.xml (same urlset as /sitemap)`);
 console.log("4. Purge Cloudflare cache after deploy, remove old failed submissions, wait, resubmit");
 console.log("5. Bing Webmaster: same /sitemap URL, then npm run indexnow\n");

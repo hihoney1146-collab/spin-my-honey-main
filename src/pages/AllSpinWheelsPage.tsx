@@ -77,22 +77,22 @@ const AllSpinWheelsPage = () => {
           <ul className="grid sm:grid-cols-2 gap-2 text-sm">
             <li>
               <Link to="/raffle-wheel" className="text-primary font-medium hover:underline">
-                Raffle wheel — ticket numbers &amp; proof links
+                Raffle wheel, ticket numbers &amp; proof links
               </Link>
             </li>
             <li>
               <Link to="/prize-wheel" className="text-primary font-medium hover:underline">
-                Prize wheel — labeled giveaway slices
+                Prize wheel, labeled giveaway slices
               </Link>
             </li>
             <li>
               <Link to="/classroom-spinner" className="text-primary font-medium hover:underline">
-                Classroom spinner — teacher hub
+                Classroom spinner, teacher hub
               </Link>
             </li>
             <li>
               <Link to="/wheel-of-names-alternative" className="text-primary font-medium hover:underline">
-                Online Spin Wheel — feature comparison
+                Online Spin Wheel, feature comparison
               </Link>
             </li>
           </ul>

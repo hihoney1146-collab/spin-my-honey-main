@@ -7,9 +7,9 @@ import { AuthorProfilePage } from "@/components/AuthorProfilePage";
 const AuthorAbdalKhalid = () => (
   <AuthorProfilePage
     canonical={ABDAL_AUTHOR.url}
-    title="Abdal Khalid — Social Media Expert, Online Spin Wheel"
+    title="Abdal Khalid, Social Media Expert, Online Spin Wheel"
     metaDescription="Abdal Khalid is Social Media Expert at Online Spin Wheel. He manages brand social channels, community engagement, and how we share wheel tips with teachers and creators."
-    ogDescription="Meet Abdal Khalid, Social Media Expert at Online Spin Wheel — growing community around fair, free spin wheels."
+    ogDescription="Meet Abdal Khalid, Social Media Expert at Online Spin Wheel, growing community around fair, free spin wheels."
     name={ABDAL_AUTHOR.name}
     roleLabel="Team"
     jobTitle={ABDAL_AUTHOR.jobTitle}
@@ -33,14 +33,14 @@ const AuthorAbdalKhalid = () => (
       <Link to={RAJA_AUTHOR.path} className="font-medium text-primary underline underline-offset-2">
         Raja Jahangir
       </Link>{" "}
-      on a small team dedicated solely to this product — helping teachers, streamers, and everyday
+      on a small team dedicated solely to this product, helping teachers, streamers, and everyday
       users discover free spin wheels that are fast, fair, and honest about how they pick.
     </p>
     <p>
       My role is to grow and serve the community around Online Spin Wheel on the channels where
       hosts and educators already spend time. That means sharing practical wheel tips, highlighting
       new specialty wheels, and responding to questions about giveaways, classroom games, and fair
-      random picks — always pointing people to the live tool and our guides rather than hype.
+      random picks, always pointing people to the live tool and our guides rather than hype.
     </p>
     <p>
       Social content here follows the same standards as the rest of the site. I do not overpromise

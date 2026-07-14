@@ -1,5 +1,5 @@
 /**
- * OG image for /spin-wheel-fairness-study — summary table preview.
+ * OG image for /spin-wheel-fairness-study, summary table preview.
  */
 import fs from "fs";
 import path from "path";
@@ -44,7 +44,7 @@ function buildSvg(study) {
 }
 
 if (!fs.existsSync(studyPath)) {
-  console.warn("⚠️  fairnessStudy.json missing — skip OG image");
+  console.warn("⚠️  fairnessStudy.json missing, skip OG image");
   process.exit(0);
 }
 

@@ -40,7 +40,7 @@ export function contrastRatio(fgHex: string, bgHex: string): number {
   return (lighter + 0.05) / (darker + 0.05);
 }
 
-/** Pick #000000 or #FFFFFF — whichever contrasts more with the background. */
+/** Pick #000000 or #FFFFFF, whichever contrasts more with the background. */
 export function contrastForeground(bgHex: string): "#000000" | "#FFFFFF" {
   const onBlack = contrastRatio("#000000", bgHex);
   const onWhite = contrastRatio("#FFFFFF", bgHex);

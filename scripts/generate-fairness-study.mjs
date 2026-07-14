@@ -52,7 +52,7 @@ function chiSquare(observed, expected) {
 
 function critical05(df) {
   if (CHI2_CRIT_05[df] != null) return CHI2_CRIT_05[df];
-  // Rough upper bound for large df (Wilson-Hilferty not needed — table covers our range).
+  // Rough upper bound for large df (Wilson-Hilferty not needed, table covers our range).
   return df + 1.645 * Math.sqrt(2 * df);
 }
 

@@ -90,7 +90,7 @@ export function SecretSantaWheel() {
       return;
     }
     setAssignments(result);
-    toast.success("Secret Santa assignments ready — share reveal links below.");
+    toast.success("Secret Santa assignments ready, share reveal links below.");
   };
 
   const copyLink = async (giver: string, receiver: string) => {
@@ -144,7 +144,7 @@ export function SecretSantaWheel() {
           </h3>
           <p className="text-sm text-muted-foreground mb-4">
             Send each giver their private link. Recipients see only who they
-            draw — not the full list.
+            draw, not the full list.
           </p>
           <ul className="space-y-3">
             {[...assignments.keys()].map((giver) => (

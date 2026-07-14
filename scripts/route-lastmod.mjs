@@ -76,5 +76,5 @@ const isMain =
 
 if (isMain) {
   const reg = updateRouteLastmodRegistry();
-  console.log(`✅ routeLastmod.json — ${Object.keys(reg.routes).length} routes`);
+  console.log(`✅ routeLastmod.json, ${Object.keys(reg.routes).length} routes`);
 }

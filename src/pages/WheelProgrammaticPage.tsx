@@ -111,12 +111,12 @@ const WheelProgrammaticPage = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonical} />
         <meta property="og:image" content={ogImage} />
-        <meta property="og:image:alt" content={`${page.h1} — preview`} />
+        <meta property="og:image:alt" content={`${page.h1}, preview`} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={page.title} />
         <meta name="twitter:description" content={page.metaDescription} />
         <meta name="twitter:image" content={ogImage} />
-        <meta name="twitter:image:alt" content={`${page.h1} — preview`} />
+        <meta name="twitter:image:alt" content={`${page.h1}, preview`} />
         <script type="application/ld+json">
           {JSON.stringify([
             ...siteIdentityJsonLd(),
@@ -218,7 +218,7 @@ const WheelProgrammaticPage = () => {
             <h2 className="text-lg font-bold mb-2">Streamer mode (OBS / Streamlabs)</h2>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Toggle <strong className="text-foreground">Streamer mode</strong> above the wheel
-              for a solid chroma-key background and hidden site chrome — ideal for giveaway
+              for a solid chroma-key background and hidden site chrome, ideal for giveaway
               streams on Twitch, YouTube, or TikTok Live. Pair with{" "}
               <strong className="text-foreground">Get proof link</strong> after your draw and
               paste the verification URL in chat.

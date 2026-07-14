@@ -1,5 +1,5 @@
 /**
- * Phase 9.2 — tool pages: directAnswer ≤ 100 words, declarative tone.
+ * Phase 9.2, tool pages: directAnswer ≤ 100 words, declarative tone.
  */
 import fs from "fs";
 import path from "path";

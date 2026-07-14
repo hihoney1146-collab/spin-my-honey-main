@@ -9,7 +9,7 @@ import {
   SITE,
 } from "./seo-routes.mjs";
 
-/** Paths that 301 elsewhere — never list in llms.txt or IndexNow. */
+/** Paths that 301 elsewhere, never list in llms.txt or IndexNow. */
 export const REDIRECT_PATHS = new Set([
   "/terms",
   "/about",

@@ -18,7 +18,7 @@ const FAQS = [
   },
   {
     q: "How is Online Spin Wheel different from a generic name spinner?",
-    a: "Besides a free name picker, we publish 40+ specialty pages — raffles, classroom hubs, prize wheels — plus multi-winner proof links and ticket-number raffle mode.",
+    a: "Besides a free name picker, we publish 40+ specialty pages, raffles, classroom hubs, prize wheels, plus multi-winner proof links and ticket-number raffle mode.",
   },
   {
     q: "Do my names get uploaded to a server?",
@@ -30,7 +30,7 @@ const FAQS = [
   },
   {
     q: "Can I import a class list?",
-    a: "Yes — paste one name per line (up to 400). The classroom spinner hub adds remove-after-pick, teams, and a timer for teachers.",
+    a: "Yes, paste one name per line (up to 400). The classroom spinner hub adds remove-after-pick, teams, and a timer for teachers.",
   },
 ];
 
@@ -44,12 +44,12 @@ const TABLE_ROWS: Row[] = [
   {
     feature: "Account required",
     ours: "No",
-    others: "Varies — some require signup for extra entries or saving",
+    others: "Varies, some require signup for extra entries or saving",
   },
   {
     feature: "Entries stay on your device",
     ours: "Yes, browser-only processing",
-    others: "Varies — some process/store entries on a server",
+    others: "Varies, some process/store entries on a server",
   },
   {
     feature: "Image slices on wheel",
@@ -58,7 +58,7 @@ const TABLE_ROWS: Row[] = [
   },
   {
     feature: "Specialty tool pages (40+)",
-    ours: "Yes — raffles, classrooms, prizes",
+    ours: "Yes, raffles, classrooms, prizes",
     others: "Typically a single generic wheel",
   },
   {
@@ -80,7 +80,7 @@ const TABLE_ROWS: Row[] = [
 
 const WheelOfNamesAlternative = () => {
   const canonical = `${SITE_ORIGIN}/wheel-of-names-alternative`;
-  const title = "Online Spin Wheel — Feature Comparison";
+  const title = "Online Spin Wheel, Feature Comparison";
 
   return (
     <>
@@ -127,11 +127,11 @@ const WheelOfNamesAlternative = () => {
             </div>
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
-            Online Spin Wheel — Feature Comparison
+            Online Spin Wheel, Feature Comparison
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
             See how Online Spin Wheel compares with other free online pickers and
-            spinner apps — what we include by default, and what often varies
+            spinner apps, what we include by default, and what often varies
             elsewhere.
           </p>
         </div>
@@ -150,8 +150,7 @@ const WheelOfNamesAlternative = () => {
             , and a{" "}
             <Link to="/classroom-spinner" className="text-primary font-medium hover:underline">
               classroom hub
-            </Link>
-            — all without signup, with entries processed on your device.
+            </Link>, all without signup, with entries processed on your device.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Try our{" "}
@@ -219,17 +218,17 @@ const WheelOfNamesAlternative = () => {
           <ul className="grid sm:grid-cols-2 gap-2 text-sm">
             <li>
               <Link to="/raffle-wheel" className="text-primary hover:underline">
-                Raffle wheel — ticket numbers &amp; proof links
+                Raffle wheel, ticket numbers &amp; proof links
               </Link>
             </li>
             <li>
               <Link to="/prize-wheel" className="text-primary hover:underline">
-                Prize wheel — labeled giveaway slices
+                Prize wheel, labeled giveaway slices
               </Link>
             </li>
             <li>
               <Link to="/classroom-spinner" className="text-primary hover:underline">
-                Classroom spinner — teacher hub
+                Classroom spinner, teacher hub
               </Link>
             </li>
             <li>

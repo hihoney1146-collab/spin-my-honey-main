@@ -36,10 +36,10 @@ const SpinWheelFairnessStudy = () => {
         <meta property="og:type" content="article" />
         <meta property="og:url" content={canonical} />
         <meta property="og:image" content={ogImage} />
-        <meta property="og:image:alt" content="Spin Wheel Fairness Study — preview" />
+        <meta property="og:image:alt" content="Spin Wheel Fairness Study, preview" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={ogImage} />
-        <meta name="twitter:image:alt" content="Spin Wheel Fairness Study — preview" />
+        <meta name="twitter:image:alt" content="Spin Wheel Fairness Study, preview" />
         <script type="application/ld+json">
           {JSON.stringify([
             ...siteIdentityJsonLd(),
@@ -124,7 +124,7 @@ const SpinWheelFairnessStudy = () => {
             </p>
             <p>
               This study does not cover weighted slices, removed entries mid-session, or human
-              timing — only equal segments and cryptographic landing angles.
+              timing, only equal segments and cryptographic landing angles.
             </p>
           </div>
         </section>
@@ -132,11 +132,11 @@ const SpinWheelFairnessStudy = () => {
         {studyData.summaries.map((summary) => (
           <section key={summary.segmentCount} className="mb-10">
             <h2 className="text-xl md:text-2xl font-bold mb-2">
-              {summary.segmentCount} segments — {summary.totalSpins.toLocaleString()} spins
+              {summary.segmentCount} segments, {summary.totalSpins.toLocaleString()} spins
             </h2>
             <p className="text-sm text-muted-foreground mb-4">
               χ² = {summary.chiSquare} (df = {summary.degreesOfFreedom}, critical 0.05 ={" "}
-              {summary.critical05}) —{" "}
+              {summary.critical05}), {" "}
               {summary.uniformPass ? "uniform (pass)" : "review needed"} · max deviation{" "}
               {summary.maxDeviationPct}%
             </p>

@@ -1,4 +1,4 @@
-/** Re-exports — prefer @/lib/resultProof for new code. */
+/** Re-exports, prefer @/lib/resultProof for new code. */
 export {
   encodeProofPayload,
   decodeProofPayload,

@@ -149,7 +149,7 @@ async function main() {
     font,
     color: rgb(0.3, 0.3, 0.35),
   });
-  cover.drawText("By Raja Jahangir — Online Spin Wheel — 2026", {
+  cover.drawText("By Raja Jahangir, Online Spin Wheel, 2026", {
     x: 72,
     y: 72,
     size: 9,

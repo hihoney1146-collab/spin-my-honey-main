@@ -28,9 +28,9 @@ export function ResultProofActions({
     setProofUrl(url);
     try {
       await navigator.clipboard.writeText(url);
-      toast.success("Proof link copied — paste in your giveaway post.");
+      toast.success("Proof link copied, paste in your giveaway post.");
     } catch {
-      toast.success("Proof link ready — copy it below.");
+      toast.success("Proof link ready, copy it below.");
     }
   };
 

@@ -38,7 +38,7 @@ const Embed = () => {
     return (
       <>
         <Helmet>
-          <title>Embed — wheel not found</title>
+          <title>Embed, wheel not found</title>
           <meta name="robots" content="noindex, nofollow" />
         </Helmet>
         <p className="p-4 text-center text-sm">Wheel not found.</p>
@@ -49,7 +49,7 @@ const Embed = () => {
   return (
     <>
       <Helmet>
-        <title>{wheelTitle} — Embed</title>
+        <title>{wheelTitle}, Embed</title>
         <meta name="description" content={`Embed ${wheelTitle} on your site.`} />
         <meta name="robots" content="noindex, nofollow" />
         <link rel="canonical" href={`${SITE_ORIGIN}/${slug}`} />

@@ -41,7 +41,7 @@ for (const loc of allLocs) {
   if (REDIRECT_PATHS.has(p)) issues.push(`sitemap lists redirect path ${p}`);
 }
 
-// llms.txt — only flag standalone URL lines, not substrings like /privacy-policy
+// llms.txt, only flag standalone URL lines, not substrings like /privacy-policy
 const llms = fs.readFileSync(path.join(root, "public", "llms.txt"), "utf8");
 const llmsLines = llms.split(/\r?\n/).map((l) => l.trim());
 for (const rp of REDIRECT_PATHS) {
@@ -50,7 +50,7 @@ for (const rp of REDIRECT_PATHS) {
       line === `${SITE}${rp}` ||
       line.startsWith(`${SITE}${rp} `) ||
       line.startsWith(`${SITE}${rp}\t`) ||
-      line.startsWith(`${SITE}${rp}—`),
+      line.startsWith(`${SITE}${rp}, `),
   );
   if (bad) issues.push(`llms.txt lists redirect path ${rp}`);
 }
@@ -80,7 +80,7 @@ const out = [
 if (issues.length) {
   for (const i of issues) out.push(`- ${i}`);
 } else {
-  out.push("**PASS** — no redirect paths in sitemaps/llms.txt; all Phase 6+ pages indexed.");
+  out.push("**PASS**, no redirect paths in sitemaps/llms.txt; all Phase 6+ pages indexed.");
 }
 fs.writeFileSync(path.join(root, "docs", "REDIRECT_AUDIT.md"), out.join("\n"), "utf8");
 console.log(`Redirect audit: ${issues.length} issues`);

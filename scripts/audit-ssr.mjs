@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Phase 1.1 — SSR audit.
+ * Phase 1.1, SSR audit.
  *
  * Reads the built static HTML for every indexable route (the exact bytes Vercel
  * serves to a no-JS crawler / curl), counts crawler-visible words, and writes
@@ -71,7 +71,7 @@ const lines = [];
 lines.push("# SSR Content Audit");
 lines.push("");
 lines.push(
-  `Generated ${now} from built \`dist/\` HTML — the exact bytes served to a` +
+  `Generated ${now} from built \`dist/\` HTML, the exact bytes served to a` +
     " no-JS crawler (equivalent to `curl` against production).",
 );
 lines.push("");

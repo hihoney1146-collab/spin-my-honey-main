@@ -14,9 +14,9 @@ const DEFAULT_OG_IMAGE = `${SITE}/og-image.png`;
 export const fixedRouteMeta = [
   {
     path: "/",
-    title: "Online Spin Wheel — Free Random Picker Tool",
+    title: "Online Spin Wheel, Free Random Picker Tool",
     description:
-      "Spin the wheel for a fair, random pick. Add names, numbers, or choices and let crypto-grade randomness decide — no signup, works on any phone, tablet, or computer.",
+      "Spin the wheel for a fair, random pick. Add names, numbers, or choices and let crypto-grade randomness decide, no signup, works on any phone, tablet, or computer.",
     ogType: "website",
     jsonLd: [
       ...siteIdentityJsonLd(),
@@ -109,7 +109,7 @@ export const fixedRouteMeta = [
             acceptedAnswer: {
               "@type": "Answer",
               "@id": `${SITE}/#faq-q4-answer`,
-              text: "Streamer mode switches the page to a solid chroma-key background (green, blue, or magenta by default — or pick any color) and hides the site header, footer, and marketing sections so OBS or Streamlabs can key out everything except the wheel. Turn it on with the toggle above any wheel, choose a background color, then use Copy link to share that stream-ready setup.",
+              text: "Streamer mode switches the page to a solid chroma-key background (green, blue, or magenta by default, or pick any color) and hides the site header, footer, and marketing sections so OBS or Streamlabs can key out everything except the wheel. Turn it on with the toggle above any wheel, choose a background color, then use Copy link to share that stream-ready setup.",
             },
           },
           {
@@ -119,7 +119,7 @@ export const fixedRouteMeta = [
             acceptedAnswer: {
               "@type": "Answer",
               "@id": `${SITE}/#faq-q5-answer`,
-              text: "Yes. The wheel is fully responsive and touch-friendly — just tap the wheel to spin — with no app to install. It runs in any modern browser on phones, tablets, laptops, and classroom smartboards.",
+              text: "Yes. The wheel is fully responsive and touch-friendly, just tap the wheel to spin, with no app to install. It runs in any modern browser on phones, tablets, laptops, and classroom smartboards.",
             },
           },
           {
@@ -139,7 +139,7 @@ export const fixedRouteMeta = [
             acceptedAnswer: {
               "@type": "Answer",
               "@id": `${SITE}/#faq-q7-answer`,
-              text: "Yes. Each spin uses the browser's secure random number generator — the same kind of randomness used for encryption — and the pointer lands based on segment size, so every equal-sized entry has exactly the same chance. Spins are independent, so past results never affect the next one.",
+              text: "Yes. Each spin uses the browser's secure random number generator, the same kind of randomness used for encryption, and the pointer lands based on segment size, so every equal-sized entry has exactly the same chance. Spins are independent, so past results never affect the next one.",
             },
           },
         ],
@@ -150,7 +150,7 @@ export const fixedRouteMeta = [
     path: "/all-spin-wheels",
     title: "All specialty spin wheels | Online Spin Wheel",
     description:
-      "Browse every free specialty spin wheel on Online Spin Wheel—decision wheels, pickers, classroom tools, games, and more.",
+      "Browse every free specialty spin wheel on Online Spin Wheel, decision wheels, pickers, classroom tools, games, and more.",
   },
   {
     path: "/blog",
@@ -257,7 +257,7 @@ export const fixedRouteMeta = [
     path: "/comparison-spin-wheel-vs-traditional-methods",
     title: "Spin Wheel vs Traditional Methods | Online Spin Wheel",
     description:
-      "Spin wheels vs hats, dice, and paper draws—pros, cons, and when to use each.",
+      "Spin wheels vs hats, dice, and paper draws, pros, cons, and when to use each.",
   },
   {
     path: "/comparison-online-vs-physical-spin-wheels",
@@ -267,7 +267,7 @@ export const fixedRouteMeta = [
   },
   {
     path: "/wheel-of-names-alternative",
-    title: "Online Spin Wheel — Feature Comparison",
+    title: "Online Spin Wheel, Feature Comparison",
     description:
       "Compare Online Spin Wheel with other free pickers: no account, browser-only entries, 40+ specialty pages, raffle proof links, and a classroom hub.",
     jsonLd: [
@@ -296,7 +296,7 @@ export const fixedRouteMeta = [
             acceptedAnswer: {
               "@type": "Answer",
               "@id": `${SITE}/wheel-of-names-alternative#faq-q2-answer`,
-              text: "Besides a free name picker, we publish 40+ specialty pages — raffles, classroom hubs, prize wheels — plus multi-winner proof links and ticket-number raffle mode.",
+              text: "Besides a free name picker, we publish 40+ specialty pages, raffles, classroom hubs, prize wheels, plus multi-winner proof links and ticket-number raffle mode.",
             },
           },
           {
@@ -326,7 +326,7 @@ export const fixedRouteMeta = [
             acceptedAnswer: {
               "@type": "Answer",
               "@id": `${SITE}/wheel-of-names-alternative#faq-q5-answer`,
-              text: "Yes — paste one name per line (up to 400). The classroom spinner adds remove-after-pick, teams, and a timer.",
+              text: "Yes, paste one name per line (up to 400). The classroom spinner adds remove-after-pick, teams, and a timer.",
             },
           },
         ],
@@ -345,7 +345,7 @@ export const fixedRouteMeta = [
     path: "/result",
     title: "Spin Result Verification | Online Spin Wheel",
     description:
-      "Verifiable spin proof records for giveaways and raffles — winner, entry count, UTC timestamp, and cryptographic RNG method.",
+      "Verifiable spin proof records for giveaways and raffles, winner, entry count, UTC timestamp, and cryptographic RNG method.",
     robots: "noindex, follow",
   },
 ];

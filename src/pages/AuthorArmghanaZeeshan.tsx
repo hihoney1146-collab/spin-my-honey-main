@@ -7,9 +7,9 @@ import { AuthorProfilePage } from "@/components/AuthorProfilePage";
 const AuthorArmghanaZeeshan = () => (
   <AuthorProfilePage
     canonical={ARMGHANA_AUTHOR.url}
-    title="Armghana Zeeshan — CEO, Online Spin Wheel"
+    title="Armghana Zeeshan, CEO, Online Spin Wheel"
     metaDescription="Armghana Zeeshan is CEO of Online Spin Wheel. She sets product direction, business priorities, and the standards that keep every free spin wheel fast, fair, and trustworthy."
-    ogDescription="Meet Armghana Zeeshan, CEO of Online Spin Wheel — leading product direction for a small team dedicated solely to fair random pickers."
+    ogDescription="Meet Armghana Zeeshan, CEO of Online Spin Wheel, leading product direction for a small team dedicated solely to fair random pickers."
     name={ARMGHANA_AUTHOR.name}
     roleLabel="Leadership"
     jobTitle={ARMGHANA_AUTHOR.jobTitle}
@@ -22,8 +22,8 @@ const AuthorArmghanaZeeshan = () => (
         {ORG_NAME}
       </Link>
       . Our team built this site because too many online spinners were slow, cluttered, or vague about
-      fairness. We focus on one product — free, browser-based wheels for classrooms, giveaways, and
-      everyday decisions — and we treat that focus as a strength rather than a limitation.
+      fairness. We focus on one product, free, browser-based wheels for classrooms, giveaways, and
+      everyday decisions, and we treat that focus as a strength rather than a limitation.
     </p>
     <p>
       As CEO, I set product direction and business priorities: which wheels ship next, how we keep the
@@ -39,7 +39,7 @@ const AuthorArmghanaZeeshan = () => (
       on content quality, SEO, and the testing bar every page must meet before it goes live.
     </p>
     <p>
-      We are a small independent team dedicated solely to Online Spin Wheel — not a multi-property
+      We are a small independent team dedicated solely to Online Spin Wheel, not a multi-property
       agency. That means every decision ties back to users who need a fair pick in front of a class,
       a livestream, or a comment section. When we add a specialty wheel or publish a guide, it is
       because real hosts and teachers asked for something we could verify works.

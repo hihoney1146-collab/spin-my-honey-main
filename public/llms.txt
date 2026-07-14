@@ -6,12 +6,12 @@ Last updated: 2026-07-14
 
 ## Identity
 - Canonical site: https://onlinespinwheel.fun/
-- Organization (schema.org): Online Spin Wheel — https://onlinespinwheel.fun/#organization
+- Organization (schema.org): Online Spin Wheel, https://onlinespinwheel.fun/#organization
 - Leadership team (schema.org Person):
-  - Armghana Zeeshan (CEO) — https://onlinespinwheel.fun/team/ceo
-  - Zoha Zeeshan (Co-Founder) — https://onlinespinwheel.fun/team/co-founder
-  - Raja Jahangir (Content & SEO Lead) — https://onlinespinwheel.fun/team/content
-  - Abdal Khalid (Social Media Expert) — https://onlinespinwheel.fun/team/social
+  - Armghana Zeeshan (CEO), https://onlinespinwheel.fun/team/ceo
+  - Zoha Zeeshan (Co-Founder), https://onlinespinwheel.fun/team/co-founder
+  - Raja Jahangir (Content & SEO Lead), https://onlinespinwheel.fun/team/content
+  - Abdal Khalid (Social Media Expert), https://onlinespinwheel.fun/team/social
 - Contact: onlinespinwheel@gmail.com
 - Small independent team dedicated solely to Online Spin Wheel
 
@@ -45,77 +45,77 @@ https://onlinespinwheel.fun/wheel-of-names-alternative
 Directory hub: https://onlinespinwheel.fun/all-spin-wheels
 
 ## Decision (8)
-https://onlinespinwheel.fun/coin-flip-wheel — Coin Flip Wheel: Need a fair 50/50 call right now? Spin heads or tails, watch your streak counter climb, and settle the tie on the spot.
-https://onlinespinwheel.fun/date-night-wheel — Date Night Wheel: Both of you saying I don't know what to do? Spin romantic and playful date ideas and leave the house with a plan already picked.
-https://onlinespinwheel.fun/dinner-picker-wheel — Dinner Picker Wheel: Staring at an empty fridge and zero ideas? Spin preloaded meals or your own list and let dinner pick itself tonight.
-https://onlinespinwheel.fun/exercise-picker-wheel — Exercise Picker Wheel: Same gym routine every Tuesday? Spin pushups, cardio, yoga, or custom moves and build a fresh circuit in under a minute.
-https://onlinespinwheel.fun/movie-picker-wheel — Movie Picker Wheel: Three streaming apps open and still nothing to watch? Spin genres or titles from your queue and press play immediately.
-https://onlinespinwheel.fun/outfit-picker-wheel — Outfit Picker Wheel: Nothing feels right in the closet? Spin Casual, Formal, Streetwear, or your own labels and dress to the result before coffee gets cold.
-https://onlinespinwheel.fun/should-i-text-him-wheel — Should I Text Him Wheel: Thumb hovering over send again? Spin relationship-flavored outcomes and break the overthink cycle before you double-text.
-https://onlinespinwheel.fun/yes-or-no-wheel — Yes or No Wheel: Weighing a simple yes-or-no call? Spin for Yes, No, or Maybe in seconds and move on without another group chat debate.
+https://onlinespinwheel.fun/coin-flip-wheel, Coin Flip Wheel: Need a fair 50/50 call right now? Spin heads or tails, watch your streak counter climb, and settle the tie on the spot.
+https://onlinespinwheel.fun/date-night-wheel, Date Night Wheel: Both of you saying I don't know what to do? Spin romantic and playful date ideas and leave the house with a plan already picked.
+https://onlinespinwheel.fun/dinner-picker-wheel, Dinner Picker Wheel: Staring at an empty fridge and zero ideas? Spin preloaded meals or your own list and let dinner pick itself tonight.
+https://onlinespinwheel.fun/exercise-picker-wheel, Exercise Picker Wheel: Same gym routine every Tuesday? Spin pushups, cardio, yoga, or custom moves and build a fresh circuit in under a minute.
+https://onlinespinwheel.fun/movie-picker-wheel, Movie Picker Wheel: Three streaming apps open and still nothing to watch? Spin genres or titles from your queue and press play immediately.
+https://onlinespinwheel.fun/outfit-picker-wheel, Outfit Picker Wheel: Nothing feels right in the closet? Spin Casual, Formal, Streetwear, or your own labels and dress to the result before coffee gets cold.
+https://onlinespinwheel.fun/should-i-text-him-wheel, Should I Text Him Wheel: Thumb hovering over send again? Spin relationship-flavored outcomes and break the overthink cycle before you double-text.
+https://onlinespinwheel.fun/yes-or-no-wheel, Yes or No Wheel: Weighing a simple yes-or-no call? Spin for Yes, No, or Maybe in seconds and move on without another group chat debate.
 
 ## Education & Learning (9)
-https://onlinespinwheel.fun/abcd-spin-wheel — ABCD Spin Wheel: Stuck between four quiz answers? Spin A, B, C, or D for a blind guess, or let the wheel assign MC sections during review games.
-https://onlinespinwheel.fun/classroom-spinner — Classroom Spinner: One page for teachers: random student selector, team maker, and countdown timer with fullscreen classroom mode for smartboards.
-https://onlinespinwheel.fun/alphabet-spinner-wheel — Alphabet Spinner Wheel: Teaching phonics or playing word games? Spin A through Z, exclude letters already used, and call out whatever consonant or vowel lands.
-https://onlinespinwheel.fun/random-animal-picker-wheel — Random Animal Picker Wheel: Need a science fair topic or sketch subject? Spin lions, sharks, penguins, or your custom creature list and learn about whatever lands.
-https://onlinespinwheel.fun/random-country-wheel — Random Country Wheel: Brushing up on capitals or picking your next trip? Spin countries from around the globe and quiz yourself on flags, maps, and facts.
-https://onlinespinwheel.fun/random-day-picker-wheel — Random Day Picker Wheel: Assign chores or study blocks fairly. Spin Monday through Sunday—or swap in months—and let the calendar pick who does what.
-https://onlinespinwheel.fun/random-student-picker — Random Student Picker: Paste your class roster, spin in fullscreen mode, auto-remove picked students, and review session history so every kid gets a turn.
-https://onlinespinwheel.fun/random-word-generator-wheel — Random Word Generator Wheel: Running Pictionary or fighting writer's block? Spin nouns and verbs from our word list or paste your own vocabulary for instant prompts.
-https://onlinespinwheel.fun/what-to-draw-wheel — What to Draw Wheel: Blank sketchbook staring back? Spin surreal, cute, or spooky drawing prompts and start sketching before perfectionism kicks in.
+https://onlinespinwheel.fun/abcd-spin-wheel, ABCD Spin Wheel: Stuck between four quiz answers? Spin A, B, C, or D for a blind guess, or let the wheel assign MC sections during review games.
+https://onlinespinwheel.fun/classroom-spinner, Classroom Spinner: One page for teachers: random student selector, team maker, and countdown timer with fullscreen classroom mode for smartboards.
+https://onlinespinwheel.fun/alphabet-spinner-wheel, Alphabet Spinner Wheel: Teaching phonics or playing word games? Spin A through Z, exclude letters already used, and call out whatever consonant or vowel lands.
+https://onlinespinwheel.fun/random-animal-picker-wheel, Random Animal Picker Wheel: Need a science fair topic or sketch subject? Spin lions, sharks, penguins, or your custom creature list and learn about whatever lands.
+https://onlinespinwheel.fun/random-country-wheel, Random Country Wheel: Brushing up on capitals or picking your next trip? Spin countries from around the globe and quiz yourself on flags, maps, and facts.
+https://onlinespinwheel.fun/random-day-picker-wheel, Random Day Picker Wheel: Assign chores or study blocks fairly. Spin Monday through Sunday, or swap in months, and let the calendar pick who does what.
+https://onlinespinwheel.fun/random-student-picker, Random Student Picker: Paste your class roster, spin in fullscreen mode, auto-remove picked students, and review session history so every kid gets a turn.
+https://onlinespinwheel.fun/random-word-generator-wheel, Random Word Generator Wheel: Running Pictionary or fighting writer's block? Spin nouns and verbs from our word list or paste your own vocabulary for instant prompts.
+https://onlinespinwheel.fun/what-to-draw-wheel, What to Draw Wheel: Blank sketchbook staring back? Spin surreal, cute, or spooky drawing prompts and start sketching before perfectionism kicks in.
 
 ## Events & Giveaways (2)
-https://onlinespinwheel.fun/prize-wheel — Prize Wheel: Spin labeled prize slices for store promos, stream giveaways, or party games — plus an honest guide if you want a physical wheel instead.
-https://onlinespinwheel.fun/raffle-wheel — Raffle Wheel: Running a school carnival or live giveaway? Spin ticket numbers or names, draw multiple winners, and share a proof link after your stream.
+https://onlinespinwheel.fun/prize-wheel, Prize Wheel: Spin labeled prize slices for store promos, stream giveaways, or party games, plus an honest guide if you want a physical wheel instead.
+https://onlinespinwheel.fun/raffle-wheel, Raffle Wheel: Running a school carnival or live giveaway? Spin ticket numbers or names, draw multiple winners, and share a proof link after your stream.
 
 ## Events & Parties (1)
-https://onlinespinwheel.fun/secret-santa-wheel-generator — Secret Santa Wheel Generator: Run office or family Secret Santa with assignment mode, couple exclusions, and private reveal links so each gifter sees only their match.
+https://onlinespinwheel.fun/secret-santa-wheel-generator, Secret Santa Wheel Generator: Run office or family Secret Santa with assignment mode, couple exclusions, and private reveal links so each gifter sees only their match.
 
 ## Food & Lifestyle (2)
-https://onlinespinwheel.fun/fast-food-wheel — Fast Food Wheel: Office lunch stalemate again? Spin McDonald's, Taco Bell, local spots, or your own list and head to whatever restaurant wins.
-https://onlinespinwheel.fun/self-care-wheel — Self Care Wheel: Too fried to choose a break activity? Spin meditate, walk, journal, or your custom rituals and honor whatever wellness task appears.
+https://onlinespinwheel.fun/fast-food-wheel, Fast Food Wheel: Office lunch stalemate again? Spin McDonald's, Taco Bell, local spots, or your own list and head to whatever restaurant wins.
+https://onlinespinwheel.fun/self-care-wheel, Self Care Wheel: Too fried to choose a break activity? Spin meditate, walk, journal, or your custom rituals and honor whatever wellness task appears.
 
 ## Games & Fun (2)
-https://onlinespinwheel.fun/pokemon-randomizer-wheel — Pokemon Randomizer Wheel: Starting a Nuzlocke or need a sketch subject? Spin Pikachu, Charizard, Eevee, or your custom roster for randomized Pokemon challenges.
-https://onlinespinwheel.fun/twister-spinner-online — Twister Spinner Online: Missing the Twister arrow? Spin Left Hand Red and Right Foot Green combos on your phone while friends stay on the mat.
+https://onlinespinwheel.fun/pokemon-randomizer-wheel, Pokemon Randomizer Wheel: Starting a Nuzlocke or need a sketch subject? Spin Pikachu, Charizard, Eevee, or your custom roster for randomized Pokemon challenges.
+https://onlinespinwheel.fun/twister-spinner-online, Twister Spinner Online: Missing the Twister arrow? Spin Left Hand Red and Right Foot Green combos on your phone while friends stay on the mat.
 
 ## Gaming & eSports (2)
-https://onlinespinwheel.fun/fortnite-drop-location-wheel — Fortnite Drop Location Wheel: Squad stuck asking where we dropping? Spin current POIs, land on the result, and add randomness to every battle bus jump.
-https://onlinespinwheel.fun/roblox-game-picker-wheel — Roblox Game Picker Wheel: Bored of the same Roblox sim? Spin Adopt Me, Blox Fruits, or your favorites list and play whatever experience the wheel names.
+https://onlinespinwheel.fun/fortnite-drop-location-wheel, Fortnite Drop Location Wheel: Squad stuck asking where we dropping? Spin current POIs, land on the result, and add randomness to every battle bus jump.
+https://onlinespinwheel.fun/roblox-game-picker-wheel, Roblox Game Picker Wheel: Bored of the same Roblox sim? Spin Adopt Me, Blox Fruits, or your favorites list and play whatever experience the wheel names.
 
 ## Movies & Entertainment (1)
-https://onlinespinwheel.fun/horror-movie-picker-wheel — Horror Movie Picker Wheel: Lights off and nobody picked a scary movie yet? Spin slasher, paranormal, or your watchlist titles and start screaming together.
+https://onlinespinwheel.fun/horror-movie-picker-wheel, Horror Movie Picker Wheel: Lights off and nobody picked a scary movie yet? Spin slasher, paranormal, or your watchlist titles and start screaming together.
 
 ## Parenting & Family (2)
-https://onlinespinwheel.fun/bedtime-story-picker-wheel — Bedtime Story Picker Wheel: Kids demanding the same book again? Spin Cinderella, Peter Pan, or your shelf titles and make bedtime stories feel brand new.
-https://onlinespinwheel.fun/family-game-night-picker-wheel — Family Game Night Picker Wheel: Kids fighting over Monopoly versus Mario Kart? Spin your family's game list and start playing whatever the wheel chooses.
+https://onlinespinwheel.fun/bedtime-story-picker-wheel, Bedtime Story Picker Wheel: Kids demanding the same book again? Spin Cinderella, Peter Pan, or your shelf titles and make bedtime stories feel brand new.
+https://onlinespinwheel.fun/family-game-night-picker-wheel, Family Game Night Picker Wheel: Kids fighting over Monopoly versus Mario Kart? Spin your family's game list and start playing whatever the wheel chooses.
 
 ## Party Games (1)
-https://onlinespinwheel.fun/truth-or-dare-spinner-online — Truth or Dare Spinner Online: No bottle handy? Spin Truth, Dare, or Double Dare online for sleepovers, teen parties, or video-call hangouts with your custom prompts.
+https://onlinespinwheel.fun/truth-or-dare-spinner-online, Truth or Dare Spinner Online: No bottle handy? Spin Truth, Dare, or Double Dare online for sleepovers, teen parties, or video-call hangouts with your custom prompts.
 
 ## Self Improvement (1)
-https://onlinespinwheel.fun/random-hobby-generator-wheel — Random Hobby Generator Wheel: Weekend disappearing into scrolling? Spin photography, baking, coding, or custom hobbies and commit to trying whatever lands this week.
+https://onlinespinwheel.fun/random-hobby-generator-wheel, Random Hobby Generator Wheel: Weekend disappearing into scrolling? Spin photography, baking, coding, or custom hobbies and commit to trying whatever lands this week.
 
 ## Social Media & Tools (1)
-https://onlinespinwheel.fun/instagram-wheel-picker — Instagram Wheel Picker: Running an IG giveaway? Paste comment @handles, spin on camera, and post the recording so followers see a transparent winner pick.
+https://onlinespinwheel.fun/instagram-wheel-picker, Instagram Wheel Picker: Running an IG giveaway? Paste comment @handles, spin on camera, and post the recording so followers see a transparent winner pick.
 
 ## Travel & Lifestyle (1)
-https://onlinespinwheel.fun/random-travel-destination-wheel — Random Travel Destination Wheel: Every destination sounds amazing? Spin Paris, Tokyo, Bali, or your bucket list and start planning the trip the wheel selects.
+https://onlinespinwheel.fun/random-travel-destination-wheel, Random Travel Destination Wheel: Every destination sounds amazing? Spin Paris, Tokyo, Bali, or your bucket list and start planning the trip the wheel selects.
 
 ## Utilities & Tools (7)
-https://onlinespinwheel.fun/nfl-team-picker-wheel — NFL Team Picker Wheel: Setting up a Madden bracket or fantasy draft order? Spin all 32 NFL teams—or your custom list—and play whoever the wheel assigns.
-https://onlinespinwheel.fun/pick-out-of-a-hat-generator — Pick Out of a Hat Generator: Forgot the paper slips? Paste names into our magic hat spinner, draw winners fairly, and remove picks so nobody wins twice.
-https://onlinespinwheel.fun/random-color-wheel — Random Color Wheel: Running a three-marker art challenge or need an accent hue? Spin named colors or paste hex codes for instant palette picks.
-https://onlinespinwheel.fun/random-name-picker-wheel — Random Name Picker Wheel: Paste your participant list, spin the Wheel of Names, and display a fair winner for class, raffles, or stream giveaways in seconds.
-https://onlinespinwheel.fun/random-number-wheel — Random Number Wheel: Set your min-max range, toggle no-repeat picks, and spin visible digits for bingo, board games, or classroom math drills.
-https://onlinespinwheel.fun/team-generator-wheel — Team Generator Wheel: Split PE classes, office workshops, or gaming lobbies into balanced teams—spin once per player and skip the captains argument.
-https://onlinespinwheel.fun/winner-picker-wheel — Winner Picker Wheel: Paste commenter @handles, remove duplicate entries, spin live, and screen-record proof for Instagram or TikTok giveaway winners.
+https://onlinespinwheel.fun/nfl-team-picker-wheel, NFL Team Picker Wheel: Setting up a Madden bracket or fantasy draft order? Spin all 32 NFL teams, or your custom list, and play whoever the wheel assigns.
+https://onlinespinwheel.fun/pick-out-of-a-hat-generator, Pick Out of a Hat Generator: Forgot the paper slips? Paste names into our magic hat spinner, draw winners fairly, and remove picks so nobody wins twice.
+https://onlinespinwheel.fun/random-color-wheel, Random Color Wheel: Running a three-marker art challenge or need an accent hue? Spin named colors or paste hex codes for instant palette picks.
+https://onlinespinwheel.fun/random-name-picker-wheel, Random Name Picker Wheel: Paste your participant list, spin the Wheel of Names, and display a fair winner for class, raffles, or stream giveaways in seconds.
+https://onlinespinwheel.fun/random-number-wheel, Random Number Wheel: Set your min-max range, toggle no-repeat picks, and spin visible digits for bingo, board games, or classroom math drills.
+https://onlinespinwheel.fun/team-generator-wheel, Team Generator Wheel: Split PE classes, office workshops, or gaming lobbies into balanced teams, spin once per player and skip the captains argument.
+https://onlinespinwheel.fun/winner-picker-wheel, Winner Picker Wheel: Paste commenter @handles, remove duplicate entries, spin live, and screen-record proof for Instagram or TikTok giveaway winners.
 
 ## Zodiac & Fortune (3)
-https://onlinespinwheel.fun/chinese-zodiac-wheel — Chinese Zodiac Wheel: Celebrating Lunar New Year or teaching Eastern astrology? Spin the twelve Chinese zodiac animals and build games around whichever creature lands.
-https://onlinespinwheel.fun/daily-horoscope-wheel — Daily Horoscope Wheel: Skip the lengthy horoscope sites. Spin once for a fun daily theme like Lucky Day or Focus on Health and start your morning with a prompt.
-https://onlinespinwheel.fun/zodiac-sign-wheel — Zodiac Sign Wheel: Hosting an astrology-themed hangout? Spin Aries through Pisces at random and build games, readings, or posts around whichever sign appears.
+https://onlinespinwheel.fun/chinese-zodiac-wheel, Chinese Zodiac Wheel: Celebrating Lunar New Year or teaching Eastern astrology? Spin the twelve Chinese zodiac animals and build games around whichever creature lands.
+https://onlinespinwheel.fun/daily-horoscope-wheel, Daily Horoscope Wheel: Skip the lengthy horoscope sites. Spin once for a fun daily theme like Lucky Day or Focus on Health and start your morning with a prompt.
+https://onlinespinwheel.fun/zodiac-sign-wheel, Zodiac Sign Wheel: Hosting an astrology-themed hangout? Spin Aries through Pisces at random and build games, readings, or posts around whichever sign appears.
 
 ## Blog (indexed posts)
 https://onlinespinwheel.fun/blog

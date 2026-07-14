@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * IndexNow ping — notifies Bing, Yandex, Seznam (and any IndexNow participant)
+ * IndexNow ping, notifies Bing, Yandex, Seznam (and any IndexNow participant)
  * of the site's current URL set. Bing's index powers ChatGPT Search / Copilot.
  *
  * Run AFTER a production deploy so the key file and pages are live:
@@ -34,7 +34,7 @@ async function main() {
   console.log(`Key location: ${KEY_LOCATION}`);
 
   if (process.env.DRY_RUN === "1") {
-    console.log("DRY_RUN=1 — not sending. First 5 URLs:");
+    console.log("DRY_RUN=1, not sending. First 5 URLs:");
     console.log(urlList.slice(0, 5).join("\n"));
     return;
   }
@@ -55,6 +55,6 @@ async function main() {
 }
 
 main().catch((err) => {
-  console.error(`IndexNow: error — ${err.message}`);
+  console.error(`IndexNow: error, ${err.message}`);
   process.exit(1);
 });

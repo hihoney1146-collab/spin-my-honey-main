@@ -70,15 +70,15 @@ const ComparisonSpinWheelVsRandomNumberGenerator = () => {
             caption="Honest feature comparison for fair selection tools"
             columns={["Feature", "Spin wheel", "Random number generator"]}
             rows={[
-              ["Shows all options before the draw", "Yes — labeled slices", "No — one number only"],
-              ["Group can watch the selection", "Yes — spin animation", "Only if you show the screen"],
-              ["Works with names without numbering", "Yes — paste labels", "Requires mapping names to IDs"],
+              ["Shows all options before the draw", "Yes, labeled slices", "No, one number only"],
+              ["Group can watch the selection", "Yes, spin animation", "Only if you show the screen"],
+              ["Works with names without numbering", "Yes, paste labels", "Requires mapping names to IDs"],
               ["Typical speed", "3–60 seconds per spin", "Instant"],
               ["Engagement / suspense", "High", "Low"],
-              ["Crypto RNG (Online Spin Wheel)", "Yes", "Yes — on our number wheel"],
+              ["Crypto RNG (Online Spin Wheel)", "Yes", "Yes, on our number wheel"],
               ["Best for classrooms & live events", "Strong fit", "Weaker unless projected"],
               ["Best for large numeric ranges", "Awkward beyond ~100 slices", "Strong fit"],
-              ["Shareable proof link", "Yes — winner/raffle wheels", "Not built-in"],
+              ["Shareable proof link", "Yes, winner/raffle wheels", "Not built-in"],
             ]}
           />
         </Card>

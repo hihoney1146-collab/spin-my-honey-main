@@ -80,7 +80,7 @@ for (const { path: route, kind } of routes) {
   }
   if (og) {
     if (ogImages.has(og) && kind === "wheel")
-      /* wheels may share default during OG gen failure — still track */;
+      /* wheels may share default during OG gen failure, still track */;
     ogImages.set(og, route);
   }
 }
@@ -98,7 +98,7 @@ if (issues.length) {
   out.push("| --- | --- |");
   for (const i of issues) out.push(`| \`${i.route}\` | ${i.msg.replace(/\|/g, "\\|")} |`);
 } else {
-  out.push("**PASS** — every indexable route has a unique title (<60 chars), description, and wheel-specific OG image.");
+  out.push("**PASS**, every indexable route has a unique title (<60 chars), description, and wheel-specific OG image.");
 }
 
 const outPath = path.join(root, "docs", "META_AUDIT.md");

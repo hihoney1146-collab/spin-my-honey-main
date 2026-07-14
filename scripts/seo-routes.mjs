@@ -110,7 +110,7 @@ export function loadWheelsGroupedByCategory(root = getProjectRoot()) {
     }));
 }
 
-/** Static pages (hub, about, guides) — not wheels or blog posts */
+/** Static pages (hub, about, guides), not wheels or blog posts */
 export const PAGES_SITEMAP_ROUTES = [
   "/",
   "/all-spin-wheels",
@@ -136,7 +136,7 @@ export const PAGES_SITEMAP_ROUTES = [
   "/disclaimer",
 ];
 
-/** @deprecated Use PAGES_SITEMAP_ROUTES — kept for scripts that import FIXED_ROUTES */
+/** @deprecated Use PAGES_SITEMAP_ROUTES, kept for scripts that import FIXED_ROUTES */
 export const FIXED_ROUTES = PAGES_SITEMAP_ROUTES;
 
 /** Featured wheels surfaced in llms.txt (hub has full list) */
@@ -228,7 +228,7 @@ export function buildImagesSitemapXml(root = getProjectRoot()) {
       images: [
         {
           loc: `${SITE}/og-image.png`,
-          title: "Online Spin Wheel — free random picker",
+          title: "Online Spin Wheel, free random picker",
           caption:
             "Colorful online spin wheel for names, numbers, prizes, and fair random decisions",
         },
@@ -376,7 +376,7 @@ export function writeAllSitemapFiles(root = getProjectRoot()) {
 }
 
 /**
- * Production robots.txt — single rule group; all crawlers inherit Allow.
+ * Production robots.txt, single rule group; all crawlers inherit Allow.
  * No conflicting Disallow/Allow pairs per bot.
  */
 export function buildRobotsTxt() {
@@ -401,7 +401,7 @@ Sitemap: ${SITE}/sitemap.txt
 }
 
 /**
- * llms.txt for AI crawlers — built from the route registry (no redirect URLs).
+ * llms.txt for AI crawlers, built from the route registry (no redirect URLs).
  */
 export function buildLlmsTxt(root = getProjectRoot()) {
   const buildDate = getSitemapLastmod();
@@ -420,8 +420,8 @@ export function buildLlmsTxt(root = getProjectRoot()) {
       const desc = (rec?.metaDescription || "").trim();
       wheelLines.push(
         desc
-          ? `${SITE}/${w.slug} — ${label}: ${desc}`
-          : `${SITE}/${w.slug} — ${label}`,
+          ? `${SITE}/${w.slug}, ${label}: ${desc}`
+          : `${SITE}/${w.slug}, ${label}`,
       );
     }
   }
@@ -452,12 +452,12 @@ export function buildLlmsTxt(root = getProjectRoot()) {
     "",
     "## Identity",
     `- Canonical site: ${SITE}/`,
-    `- Organization (schema.org): ${ORG_NAME} — ${ORG_ID}`,
+    `- Organization (schema.org): ${ORG_NAME}, ${ORG_ID}`,
     `- Leadership team (schema.org Person):`,
-    `  - ${TEAM_AUTHORS.armghana.name} (CEO) — ${SITE}${TEAM_AUTHORS.armghana.path}`,
-    `  - ${TEAM_AUTHORS.zoha.name} (Co-Founder) — ${SITE}${TEAM_AUTHORS.zoha.path}`,
-    `  - ${TEAM_AUTHORS.raja.name} (Content & SEO Lead) — ${SITE}${TEAM_AUTHORS.raja.path}`,
-    `  - ${TEAM_AUTHORS.abdal.name} (Social Media Expert) — ${SITE}${TEAM_AUTHORS.abdal.path}`,
+    `  - ${TEAM_AUTHORS.armghana.name} (CEO), ${SITE}${TEAM_AUTHORS.armghana.path}`,
+    `  - ${TEAM_AUTHORS.zoha.name} (Co-Founder), ${SITE}${TEAM_AUTHORS.zoha.path}`,
+    `  - ${TEAM_AUTHORS.raja.name} (Content & SEO Lead), ${SITE}${TEAM_AUTHORS.raja.path}`,
+    `  - ${TEAM_AUTHORS.abdal.name} (Social Media Expert), ${SITE}${TEAM_AUTHORS.abdal.path}`,
     `- Contact: ${CONTACT_EMAIL}`,
     `- Small independent team dedicated solely to Online Spin Wheel`,
     "",

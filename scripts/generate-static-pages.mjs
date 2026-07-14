@@ -370,7 +370,7 @@ function enrichRoute(route, wheels, blogRoutes, blogPosts) {
       buildGenericSeoContent({ ...route, title }, wheels, blogRoutes);
   }
 
-  return { ...route, title, jsonLd, seoContent, ogImage, ogImageAlt: `${label} — preview` };
+  return { ...route, title, jsonLd, seoContent, ogImage, ogImageAlt: `${label}, preview` };
 }
 
 function escapeRegex(s) {

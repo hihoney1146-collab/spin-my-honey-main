@@ -81,7 +81,7 @@ const lines = [
 ];
 
 if (hits.length === 0) {
-  lines.push("**PASS** — no banned solo-operator or Auroxa phrases found.");
+  lines.push("**PASS**, no banned solo-operator or Auroxa phrases found.");
 } else {
   lines.push("| location | pattern |");
   lines.push("| --- | --- |");

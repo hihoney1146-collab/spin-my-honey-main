@@ -16,7 +16,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
   "yes-or-no-wheel": {
     directAnswer:
       "A Yes or No Wheel settles binary dilemmas by landing on Yes, No, or Maybe instead of replaying the same mental loop. Hold your question in mind, tap Spin, and let the slice under the pointer become your answer. Each result is independent, so the wheel suits lunch votes, roommate chores, and low-stakes choices where momentum beats perfection.",
-    title: "Yes or No Wheel — Maybe Slice Included",
+    title: "Yes or No Wheel, Maybe Slice Included",
     metaDescription:
       "Weighing a simple yes-or-no call? Spin for Yes, No, or Maybe in seconds and move on without another group chat debate.",
     useCases: [
@@ -26,7 +26,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       },
       {
         heading: "Roommate chore standoffs",
-        body: "List who handles dishes versus trash, spin once, and whoever lands on the slice owns the task tonight—no passive-aggressive sticky notes required.",
+        body: "List who handles dishes versus trash, spin once, and whoever lands on the slice owns the task tonight, no passive-aggressive sticky notes required.",
       },
       {
         heading: "Group lunch votes",
@@ -46,7 +46,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Should I type my question on the wheel?",
         answer:
-          "You do not have to—the wheel does not store questions. Many people silently hold the dilemma in mind, spin, and treat the landing slice as the nudge they needed.",
+          "You do not have to, the wheel does not store questions. Many people silently hold the dilemma in mind, spin, and treat the landing slice as the nudge they needed.",
       },
       {
         question: "Is every spin independent?",
@@ -77,7 +77,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
   "dinner-picker-wheel": {
     directAnswer:
       "The Dinner Picker Wheel ends the nightly what-should-we-eat spiral by randomly selecting cuisines and dishes you actually enjoy. Load pizza, tacos, stir-fry, or delivery favorites, spin once, and let the highlighted slice dictate dinner. Families skip veto rounds, roommates rotate cooking duty, and solo diners escape the same three takeout apps.",
-    title: "Dinner Picker Wheel — End Menu Paralysis",
+    title: "Dinner Picker Wheel, End Menu Paralysis",
     metaDescription:
       "Staring at an empty fridge and zero ideas? Spin preloaded meals or your own list and let dinner pick itself tonight.",
     useCases: [
@@ -102,7 +102,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Can I list delivery apps instead of cuisines?",
         answer:
-          "Yes. Replace default slices with DoorDash favorites—Thai, BBQ, salad bar—and spin when nobody wants to scroll menus.",
+          "Yes. Replace default slices with DoorDash favorites, Thai, BBQ, salad bar, and spin when nobody wants to scroll menus.",
       },
       {
         question: "What if someone hates the result?",
@@ -133,7 +133,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
   "movie-picker-wheel": {
     directAnswer:
       "The Movie Picker Wheel stops streaming scroll fatigue by randomly choosing a genre or title from your shortlist. Load action, documentary, romance, or exact film names, spin, and start watching before the popcorn gets cold. Couples end veto wars, friend groups run watch parties, and solo viewers finally pick something without another couch scroll session.",
-    title: "Movie Picker Wheel — Stop Endless Scrolling",
+    title: "Movie Picker Wheel, Stop Endless Scrolling",
     metaDescription:
       "Three streaming apps open and still nothing to watch? Spin genres or titles from your queue and press play immediately.",
     useCases: [
@@ -163,7 +163,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Does the wheel stream movies?",
         answer:
-          "No. It only selects a title or genre—you still open your streaming app or library to watch.",
+          "No. It only selects a title or genre, you still open your streaming app or library to watch.",
       },
       {
         question: "What if we land on something we already saw?",
@@ -193,8 +193,8 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "should-i-text-him-wheel": {
     directAnswer:
-      "The Should I Text Him Wheel turns overthinking into a single spin when you keep drafting and deleting messages. Load outcomes like Send it, Wait an hour, or Let him text first, spin, and treat the result as a mood check—not a relationship contract. Friends use it at sleepovers, daters after first dates, and anyone pausing before midnight texts.",
-    title: "Should I Text Him Wheel — End the Draft Loop",
+      "The Should I Text Him Wheel turns overthinking into a single spin when you keep drafting and deleting messages. Load outcomes like Send it, Wait an hour, or Let him text first, spin, and treat the result as a mood check, not a relationship contract. Friends use it at sleepovers, daters after first dates, and anyone pausing before midnight texts.",
+    title: "Should I Text Him Wheel, End the Draft Loop",
     metaDescription:
       "Thumb hovering over send again? Spin relationship-flavored outcomes and break the overthink cycle before you double-text.",
     useCases: [
@@ -204,7 +204,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       },
       {
         heading: "Group chat interventions",
-        body: "Friends huddle around one phone, spin together, and laugh at whatever fate says—often the best cure for spiraling.",
+        body: "Friends huddle around one phone, spin together, and laugh at whatever fate says, often the best cure for spiraling.",
       },
       {
         heading: "Ex-boundary reminders",
@@ -219,12 +219,12 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Is this actual relationship advice?",
         answer:
-          "No—it is a playful randomizer. Trust your boundaries and context; the wheel only interrupts rumination with a surprise nudge.",
+          "No, it is a playful randomizer. Trust your boundaries and context; the wheel only interrupts rumination with a surprise nudge.",
       },
       {
         question: "Can I rename slices for her or them?",
         answer:
-          "Edit every label. Should I text her, Should I call my mom—whatever dilemma fits your inbox.",
+          "Edit every label. Should I text her, Should I call my mom, whatever dilemma fits your inbox.",
       },
       {
         question: "What default outcomes ship?",
@@ -249,8 +249,8 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "outfit-picker-wheel": {
     directAnswer:
-      "The Outfit Picker Wheel picks a style vibe—casual, formal, streetwear, cozy—so you stop staring at a full closet every morning. Spin once, match the highlighted aesthetic with pieces you own, and leave on time. Creators use it for TikTok challenges, students for dress-code days, and minimalists to rotate looks without buying more clothes.",
-    title: "Outfit Picker Wheel — Morning Style in One Spin",
+      "The Outfit Picker Wheel picks a style vibe, casual, formal, streetwear, cozy, so you stop staring at a full closet every morning. Spin once, match the highlighted aesthetic with pieces you own, and leave on time. Creators use it for TikTok challenges, students for dress-code days, and minimalists to rotate looks without buying more clothes.",
+    title: "Outfit Picker Wheel, Morning Style in One Spin",
     metaDescription:
       "Nothing feels right in the closet? Spin Casual, Formal, Streetwear, or your own labels and dress to the result before coffee gets cold.",
     useCases: [
@@ -275,17 +275,17 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Can I spin for shirt color only?",
         answer:
-          "Replace style names with Red, Navy, White, or Olive slices and spin twice—once for tops, once for bottoms.",
+          "Replace style names with Red, Navy, White, or Olive slices and spin twice, once for tops, once for bottoms.",
       },
       {
         question: "Does the wheel know my wardrobe?",
         answer:
-          "No inventory tracking— you interpret the style label with whatever hangs in your closet.",
+          "No inventory tracking, you interpret the style label with whatever hangs in your closet.",
       },
       {
         question: "Is it useful for uniform schools?",
         answer:
-          "Add accessory slices—watch, scarf, sneakers—to vary compliant outfits while dress codes stay satisfied.",
+          "Add accessory slices, watch, scarf, sneakers, to vary compliant outfits while dress codes stay satisfied.",
       },
       {
         question: "Can teams use it for themed events?",
@@ -305,14 +305,14 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "date-night-wheel": {
     directAnswer:
-      "The Date Night Wheel assigns couple activities—bowling, stargazing, cooking together, arcade nights—from a shared list so neither partner carries the planning burden alone. Customize slices with local spots, spin on Saturday afternoon, and treat the result as the plan unless you both agree to respin. Long-distance pairs spin over video chat and sync activities in parallel cities.",
-    title: "Date Night Wheel — Shared Plans, Zero Debate",
+      "The Date Night Wheel assigns couple activities, bowling, stargazing, cooking together, arcade nights, from a shared list so neither partner carries the planning burden alone. Customize slices with local spots, spin on Saturday afternoon, and treat the result as the plan unless you both agree to respin. Long-distance pairs spin over video chat and sync activities in parallel cities.",
+    title: "Date Night Wheel, Shared Plans, Zero Debate",
     metaDescription:
       "Both of you saying I don't know what to do? Spin romantic and playful date ideas and leave the house with a plan already picked.",
     useCases: [
       {
         heading: "New relationship icebreakers",
-        body: "Early daters load low-pressure activities—mini golf, coffee walk—to avoid expensive dinners every Friday.",
+        body: "Early daters load low-pressure activities, mini golf, coffee walk, to avoid expensive dinners every Friday.",
       },
       {
         heading: "Anniversary surprises",
@@ -341,7 +341,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Does it book reservations?",
         answer:
-          "It only picks the activity—you still call the restaurant or buy tickets after the spin.",
+          "It only picks the activity, you still call the restaurant or buy tickets after the spin.",
       },
       {
         question: "Can long-distance couples use it?",
@@ -361,8 +361,8 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "coin-flip-wheel": {
     directAnswer:
-      "The Coin Flip Wheel simulates heads-or-tails decisions with a visible spin, a running streak counter, and a heads-versus-tails tally for game nights. Call your side, spin, and read the slice under the pointer—no pocket change required. Coaches pick kickoffs, siblings split chores, and streamers display tallies on screen during tiebreakers.",
-    title: "Coin Flip Wheel — Streak Counter Built In",
+      "The Coin Flip Wheel simulates heads-or-tails decisions with a visible spin, a running streak counter, and a heads-versus-tails tally for game nights. Call your side, spin, and read the slice under the pointer, no pocket change required. Coaches pick kickoffs, siblings split chores, and streamers display tallies on screen during tiebreakers.",
+    title: "Coin Flip Wheel, Streak Counter Built In",
     metaDescription:
       "Need a fair 50/50 call right now? Spin heads or tails, watch your streak counter climb, and settle the tie on the spot.",
     useCases: [
@@ -392,12 +392,12 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Can I rename slices beyond Heads and Tails?",
         answer:
-          "Yes—swap labels to Team Blue and Team Gold or Yes and No while keeping the same streak tracking.",
+          "Yes, swap labels to Team Blue and Team Gold or Yes and No while keeping the same streak tracking.",
       },
       {
         question: "Is a long heads streak rigged?",
         answer:
-          "No. Streaks happen naturally in fair randomness; the counter only displays history—it does not balance future spins.",
+          "No. Streaks happen naturally in fair randomness; the counter only displays history, it does not balance future spins.",
       },
       {
         question: "Does it support best-two-of-three?",
@@ -422,8 +422,8 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "exercise-picker-wheel": {
     directAnswer:
-      "The Exercise Picker Wheel assigns your next move—pushups, squats, planks, yoga flows—from a list you control, keeping home workouts from repeating the same three exercises. Spin between sets for circuit training, let PE teachers call warm-ups randomly, or run fitness challenges with friends. Edit slices anytime to match injury limits or available equipment.",
-    title: "Exercise Picker Wheel — Random Workout Moves",
+      "The Exercise Picker Wheel assigns your next move, pushups, squats, planks, yoga flows, from a list you control, keeping home workouts from repeating the same three exercises. Spin between sets for circuit training, let PE teachers call warm-ups randomly, or run fitness challenges with friends. Edit slices anytime to match injury limits or available equipment.",
+    title: "Exercise Picker Wheel, Random Workout Moves",
     metaDescription:
       "Same gym routine every Tuesday? Spin pushups, cardio, yoga, or custom moves and build a fresh circuit in under a minute.",
     useCases: [
@@ -453,12 +453,12 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "How do I add rep counts?",
         answer:
-          "Include numbers in slice text—10 squats, 30-second plank—so each spin specifies volume.",
+          "Include numbers in slice text, 10 squats, 30-second plank, so each spin specifies volume.",
       },
       {
         question: "Does it track calories?",
         answer:
-          "No metrics here—pair the wheel with your watch or fitness app for burn estimates.",
+          "No metrics here, pair the wheel with your watch or fitness app for burn estimates.",
       },
       {
         question: "Can I save separate leg-day and arm-day wheels?",
@@ -478,8 +478,8 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "zodiac-sign-wheel": {
     directAnswer:
-      "The Zodiac Sign Wheel randomly highlights one of twelve Western star signs—Aries through Pisces—for party games, astrology study, or social posts. Spin during sleepovers to assign faux readings, let classroom groups research whichever sign lands, or screenshot results for Instagram stories. Each sign occupies an equal slice, so every spin gives every constellation the same chance.",
-    title: "Zodiac Sign Wheel — Random Star Sign Draw",
+      "The Zodiac Sign Wheel randomly highlights one of twelve Western star signs, Aries through Pisces, for party games, astrology study, or social posts. Spin during sleepovers to assign faux readings, let classroom groups research whichever sign lands, or screenshot results for Instagram stories. Each sign occupies an equal slice, so every spin gives every constellation the same chance.",
+    title: "Zodiac Sign Wheel, Random Star Sign Draw",
     metaDescription:
       "Hosting an astrology-themed hangout? Spin Aries through Pisces at random and build games, readings, or posts around whichever sign appears.",
     useCases: [
@@ -497,7 +497,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       },
       {
         heading: "Compatibility icebreakers",
-        body: "Pairs spin two signs—one each—and compare popular compatibility charts for laughs, not life decisions.",
+        body: "Pairs spin two signs, one each, and compare popular compatibility charts for laughs, not life decisions.",
       },
     ],
     faqs: [
@@ -514,7 +514,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Does this calculate my birth chart?",
         answer:
-          "No ephemeris data here—only random sign selection for entertainment and games.",
+          "No ephemeris data here, only random sign selection for entertainment and games.",
       },
       {
         question: "Is Chinese zodiac included?",
@@ -534,8 +534,8 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "daily-horoscope-wheel": {
     directAnswer:
-      "The Daily Horoscope Wheel delivers a playful daily theme—Lucky Day, Romantic Energy, Stay Cautious—in one spin instead of reading long horoscope columns. Treat it like a morning prompt card: spin once, note the vibe, and carry that intention through meetings or errands. It does not replace professional charts; it offers a quick ritual for lighthearted fortune flavor.",
-    title: "Daily Horoscope Wheel — One-Spin Day Themes",
+      "The Daily Horoscope Wheel delivers a playful daily theme, Lucky Day, Romantic Energy, Stay Cautious, in one spin instead of reading long horoscope columns. Treat it like a morning prompt card: spin once, note the vibe, and carry that intention through meetings or errands. It does not replace professional charts; it offers a quick ritual for lighthearted fortune flavor.",
+    title: "Daily Horoscope Wheel, One-Spin Day Themes",
     metaDescription:
       "Skip the lengthy horoscope sites. Spin once for a fun daily theme like Lucky Day or Focus on Health and start your morning with a prompt.",
     useCases: [
@@ -549,7 +549,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       },
       {
         heading: "Wellness check-ins",
-        body: "Therapists' clients spin between sessions as a low-stakes mood conversation starter—not a diagnosis.",
+        body: "Therapists' clients spin between sessions as a low-stakes mood conversation starter, not a diagnosis.",
       },
       {
         heading: "Storytime with kids",
@@ -560,7 +560,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Do I need my birth date?",
         answer:
-          "No birth data required—themes apply generally, not by natal chart.",
+          "No birth data required, themes apply generally, not by natal chart.",
       },
       {
         question: "What themes ship by default?",
@@ -590,8 +590,8 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "chinese-zodiac-wheel": {
     directAnswer:
-      "The Chinese Zodiac Wheel selects one of twelve lunar-calendar animals—Rat, Ox, Tiger, Rabbit, Dragon, Snake, Horse, Goat, Monkey, Rooster, Dog, Pig—for cultural lessons, Lunar New Year parties, and trivia nights. Spin to assign research topics, lucky mascots, or party characters. Each animal sits on an equal slice, mirroring the traditional twelve-year cycle without requiring birth-year math on the spot.",
-    title: "Chinese Zodiac Wheel — Lunar Animal Picker",
+      "The Chinese Zodiac Wheel selects one of twelve lunar-calendar animals, Rat, Ox, Tiger, Rabbit, Dragon, Snake, Horse, Goat, Monkey, Rooster, Dog, Pig, for cultural lessons, Lunar New Year parties, and trivia nights. Spin to assign research topics, lucky mascots, or party characters. Each animal sits on an equal slice, mirroring the traditional twelve-year cycle without requiring birth-year math on the spot.",
+    title: "Chinese Zodiac Wheel, Lunar Animal Picker",
     metaDescription:
       "Celebrating Lunar New Year or teaching Eastern astrology? Spin the twelve Chinese zodiac animals and build games around whichever creature lands.",
     useCases: [
@@ -631,7 +631,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Does the wheel know my birth year?",
         answer:
-          "It does not calculate years—you interpret which animal matches your birth date separately.",
+          "It does not calculate years, you interpret which animal matches your birth date separately.",
       },
     ],
     relatedWheels: [
@@ -646,8 +646,8 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "random-name-picker-wheel": {
     directAnswer:
-      "The Random Name Picker Wheel—often called Wheel of Names—draws one winner from a pasted list for classrooms, raffles, and livestreams. Bulk-paste entries, spin with sound and animation, then remove the chosen name so the next round excludes prior winners. Teachers call on students fairly, HR teams pick meeting speakers, and creators select commenters without favoritism accusations.",
-    title: "Random Name Picker — Wheel of Names Online",
+      "The Random Name Picker Wheel, often called Wheel of Names, draws one winner from a pasted list for classrooms, raffles, and livestreams. Bulk-paste entries, spin with sound and animation, then remove the chosen name so the next round excludes prior winners. Teachers call on students fairly, HR teams pick meeting speakers, and creators select commenters without favoritism accusations.",
+    title: "Random Name Picker, Wheel of Names Online",
     metaDescription:
       "Paste your participant list, spin the Wheel of Names, and display a fair winner for class, raffles, or stream giveaways in seconds.",
     useCases: [
@@ -677,7 +677,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Can I remove a winner after the spin?",
         answer:
-          "Yes—delete or deactivate the chosen name so later spins only consider remaining participants.",
+          "Yes, delete or deactivate the chosen name so later spins only consider remaining participants.",
       },
       {
         question: "Does it save my list overnight?",
@@ -703,7 +703,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
   "random-number-wheel": {
     directAnswer:
       "The Random Number Wheel picks integers inside a min-max range you define, with an optional no-repeat toggle so lottery-style draws never duplicate until the pool empties. Replace dice during board games, assign bingo balls, or generate math warm-up digits for classrooms. Each spin highlights one number on the wheel face for groups on a projector or stream overlay.",
-    title: "Random Number Wheel — Range and No-Repeat",
+    title: "Random Number Wheel, Range and No-Repeat",
     metaDescription:
       "Set your min-max range, toggle no-repeat picks, and spin visible digits for bingo, board games, or classroom math drills.",
     useCases: [
@@ -738,7 +738,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Can I pick decimals?",
         answer:
-          "Slices accept text—type 1.5 or 2.75 if your game needs fractional values.",
+          "Slices accept text, type 1.5 or 2.75 if your game needs fractional values.",
       },
       {
         question: "Is this cryptographically secure for high-stakes lotteries?",
@@ -758,10 +758,10 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "team-generator-wheel": {
     directAnswer:
-      "The Team Generator Wheel assigns players to squads with balanced output—ideal for PE class teams, office icebreakers, and gaming lobby drafts. Enter team labels, spin once per person, and watch names distribute across groups without manual counting. Coaches shuffle mixed-skill sides, managers randomize workshop tables, and Discord admins draft squads without best-friend stacking.",
-    title: "Team Generator Wheel — Balanced Group Splits",
+      "The Team Generator Wheel assigns players to squads with balanced output, ideal for PE class teams, office icebreakers, and gaming lobby drafts. Enter team labels, spin once per person, and watch names distribute across groups without manual counting. Coaches shuffle mixed-skill sides, managers randomize workshop tables, and Discord admins draft squads without best-friend stacking.",
+    title: "Team Generator Wheel, Balanced Group Splits",
     metaDescription:
-      "Split PE classes, office workshops, or gaming lobbies into balanced teams—spin once per player and skip the captains argument.",
+      "Split PE classes, office workshops, or gaming lobbies into balanced teams, spin once per player and skip the captains argument.",
     useCases: [
       {
         heading: "PE class scrimmages",
@@ -784,7 +784,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "How many teams can I create?",
         answer:
-          "Add as many team slices as you need—Team A through Team H or color names—all with equal spin odds.",
+          "Add as many team slices as you need, Team A through Team H or color names, all with equal spin odds.",
       },
       {
         question: "Does it balance skill levels automatically?",
@@ -814,8 +814,8 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "winner-picker-wheel": {
     directAnswer:
-      "The Winner Picker Wheel draws giveaway champions from pasted Instagram or TikTok comment lists with duplicate-entry cleanup and screen-record proof you can post to Stories. Paste @handles, dedupe repeat tags, spin live, and archive the video for US sweepstakes disclosure basics—official rules, free entry, no purchase necessary—not legal advice. Brands gain transparent winner moments followers trust.",
-    title: "Winner Picker Wheel — IG and TikTok Draws",
+      "The Winner Picker Wheel draws giveaway champions from pasted Instagram or TikTok comment lists with duplicate-entry cleanup and screen-record proof you can post to Stories. Paste @handles, dedupe repeat tags, spin live, and archive the video for US sweepstakes disclosure basics, official rules, free entry, no purchase necessary, not legal advice. Brands gain transparent winner moments followers trust.",
+    title: "Winner Picker Wheel, IG and TikTok Draws",
     metaDescription:
       "Paste commenter @handles, remove duplicate entries, spin live, and screen-record proof for Instagram or TikTok giveaway winners.",
     useCases: [
@@ -850,7 +850,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Does this satisfy US contest disclosure rules?",
         answer:
-          "You still need written official rules covering eligibility, odds, and NO PURCHASE NECESSARY—consult counsel for regulated promos; this wheel only randomizes picks.",
+          "You still need written official rules covering eligibility, odds, and NO PURCHASE NECESSARY, consult counsel for regulated promos; this wheel only randomizes picks.",
       },
       {
         question: "Can I pick multiple winners in one session?",
@@ -860,7 +860,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Does it pull comments automatically from Instagram?",
         answer:
-          "No API import—you paste the eligible list you exported or copied from the platform.",
+          "No API import, you paste the eligible list you exported or copied from the platform.",
       },
     ],
     relatedWheels: [
@@ -876,7 +876,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
   "pick-out-of-a-hat-generator": {
     directAnswer:
       "The Pick Out of a Hat Generator replaces crumpled paper slips with a digital draw that feels like reaching into a top hat. Paste names or ticket numbers, spin, and reveal one random entry while optionally removing it from the pool for the next round. PTA raffles, podcast giveaways, and coffee clubs use it when nobody brought a real hat.",
-    title: "Pick Out of a Hat — Digital Name Draw",
+    title: "Pick Out of a Hat, Digital Name Draw",
     metaDescription:
       "Forgot the paper slips? Paste names into our magic hat spinner, draw winners fairly, and remove picks so nobody wins twice.",
     useCases: [
@@ -901,7 +901,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "How is this different from Wheel of Names?",
         answer:
-          "Same fair random engine—this page frames the experience as a classic hat draw for users searching that phrase.",
+          "Same fair random engine, this page frames the experience as a classic hat draw for users searching that phrase.",
       },
       {
         question: "Can I put numbers instead of names?",
@@ -931,10 +931,10 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "nfl-team-picker-wheel": {
     directAnswer:
-      "The NFL Team Picker Wheel assigns a franchise—from Chiefs to Cowboys to Ravens—for Madden tournaments, fantasy draft order, and friendly wagers. Spin before kickoff to decide which team you must win with, or randomize draft slots so nobody grabs the same powerhouse every season. Edit slices each year to match current rosters or trim to playoff contenders only.",
-    title: "NFL Team Picker Wheel — Madden Draft Randomizer",
+      "The NFL Team Picker Wheel assigns a franchise, from Chiefs to Cowboys to Ravens, for Madden tournaments, fantasy draft order, and friendly wagers. Spin before kickoff to decide which team you must win with, or randomize draft slots so nobody grabs the same powerhouse every season. Edit slices each year to match current rosters or trim to playoff contenders only.",
+    title: "NFL Team Picker Wheel, Madden Draft Randomizer",
     metaDescription:
-      "Setting up a Madden bracket or fantasy draft order? Spin all 32 NFL teams—or your custom list—and play whoever the wheel assigns.",
+      "Setting up a Madden bracket or fantasy draft order? Spin all 32 NFL teams, or your custom list, and play whoever the wheel assigns.",
     useCases: [
       {
         heading: "Madden house rules",
@@ -972,7 +972,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Will it simulate a schedule?",
         answer:
-          "It picks one team per spin—build a season manually by spinning multiple times.",
+          "It picks one team per spin, build a season manually by spinning multiple times.",
       },
     ],
     relatedWheels: [
@@ -987,9 +987,9 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "alphabet-spinner-wheel": {
     directAnswer:
-      "The Alphabet Spinner Wheel—also titled Letter Spinner—Random Alphabet Wheel (A–Z)—picks one letter for phonics drills, Scattergories rounds, and spelling bees. Use the exclude-letters option to drop already-used consonants so rounds stay fresh. Kindergarten teachers project it on smartboards, ESL tutors randomize vocabulary starts, and party hosts spin before naming categories.",
-    title: "Letter Spinner — Random Alphabet Wheel (A-Z)",
-    h1: "Letter Spinner — Random Alphabet Wheel (A-Z)",
+      "The Alphabet Spinner Wheel, also titled Letter Spinner, Random Alphabet Wheel (A–Z), picks one letter for phonics drills, Scattergories rounds, and spelling bees. Use the exclude-letters option to drop already-used consonants so rounds stay fresh. Kindergarten teachers project it on smartboards, ESL tutors randomize vocabulary starts, and party hosts spin before naming categories.",
+    title: "Letter Spinner, Random Alphabet Wheel (A-Z)",
+    h1: "Letter Spinner, Random Alphabet Wheel (A-Z)",
     metaDescription:
       "Teaching phonics or playing word games? Spin A through Z, exclude letters already used, and call out whatever consonant or vowel lands.",
     useCases: [
@@ -1045,7 +1045,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
   "random-word-generator-wheel": {
     directAnswer:
       "The Random Word Generator Wheel surfaces vocabulary words for Pictionary, Charades, creative writing, and ESL drills. Spin to land on nouns like Ocean or Whisper, then draw, act, or define the term. Authors break writer's block, teachers review spelling lists, and party hosts avoid repeating the same easy words every round by editing slices between games.",
-    title: "Random Word Generator — Vocabulary Spinner",
+    title: "Random Word Generator, Vocabulary Spinner",
     metaDescription:
       "Running Pictionary or fighting writer's block? Spin nouns and verbs from our word list or paste your own vocabulary for instant prompts.",
     useCases: [
@@ -1080,7 +1080,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Does it generate definitions?",
         answer:
-          "Only the word appears—you look up meanings or act them out in games.",
+          "Only the word appears, you look up meanings or act them out in games.",
       },
       {
         question: "Can I weight harder words?",
@@ -1101,7 +1101,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
   "random-country-wheel": {
     directAnswer:
       "The Random Country Wheel lands on nations like Japan, Brazil, or Egypt for geography quizzes, travel brainstorming, and classroom research assignments. Spin once, then name the capital, flag colors, or continent of the highlighted country. Travel vloggers film spin-to-fly challenges, teachers replace flashcards, and trivia hosts keep rounds unpredictable by removing countries already used.",
-    title: "Random Country Wheel — Geography Quiz Spinner",
+    title: "Random Country Wheel, Geography Quiz Spinner",
     metaDescription:
       "Brushing up on capitals or picking your next trip? Spin countries from around the globe and quiz yourself on flags, maps, and facts.",
     useCases: [
@@ -1140,7 +1140,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Does it show maps or flags?",
         answer:
-          "Text labels only—learners look up visuals after the spin.",
+          "Text labels only, learners look up visuals after the spin.",
       },
       {
         question: "Can I spin for capitals instead?",
@@ -1150,7 +1150,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Can I add territories and regions?",
         answer:
-          "Paste any label you want—territories, states, or regions—into the entry list.",
+          "Paste any label you want, territories, states, or regions, into the entry list.",
       },
     ],
     supplementalSections: [
@@ -1171,8 +1171,8 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "random-animal-picker-wheel": {
     directAnswer:
-      "The Random Animal Picker Wheel selects creatures—from lions to penguins—for science reports, sketch prompts, and zoo-trip games. Young learners spin, then draw or research whichever animal appears, while art teachers assign daily wildlife studies. Customize slices for marine-only units or jungle habitats, and remove species after use so biodiversity lessons cover the whole wheel over time.",
-    title: "Random Animal Picker — Wildlife Spinner",
+      "The Random Animal Picker Wheel selects creatures, from lions to penguins, for science reports, sketch prompts, and zoo-trip games. Young learners spin, then draw or research whichever animal appears, while art teachers assign daily wildlife studies. Customize slices for marine-only units or jungle habitats, and remove species after use so biodiversity lessons cover the whole wheel over time.",
+    title: "Random Animal Picker, Wildlife Spinner",
     metaDescription:
       "Need a science fair topic or sketch subject? Spin lions, sharks, penguins, or your custom creature list and learn about whatever lands.",
     useCases: [
@@ -1211,7 +1211,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Does it play animal sounds?",
         answer:
-          "No audio—kids mimic sounds themselves during games.",
+          "No audio, kids mimic sounds themselves during games.",
       },
       {
         question: "Can pet names go on the wheel?",
@@ -1242,10 +1242,10 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "random-day-picker-wheel": {
     directAnswer:
-      "The Random Day Picker Wheel chooses weekdays—Monday through Sunday—for chore charts, study schedules, and toddler calendar lessons. Spin to assign dish duty, rotate which child picks dinner, or teach young kids the sequence of days with a colorful spinner. Swap slices for months when you need a random January-through-December picker instead of weekdays.",
-    title: "Random Day Picker — Weekday Scheduler",
+      "The Random Day Picker Wheel chooses weekdays, Monday through Sunday, for chore charts, study schedules, and toddler calendar lessons. Spin to assign dish duty, rotate which child picks dinner, or teach young kids the sequence of days with a colorful spinner. Swap slices for months when you need a random January-through-December picker instead of weekdays.",
+    title: "Random Day Picker, Weekday Scheduler",
     metaDescription:
-      "Assign chores or study blocks fairly. Spin Monday through Sunday—or swap in months—and let the calendar pick who does what.",
+      "Assign chores or study blocks fairly. Spin Monday through Sunday, or swap in months, and let the calendar pick who does what.",
     useCases: [
       {
         heading: "Sibling chore rotation",
@@ -1277,12 +1277,12 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "What if Saturday lands twice in a row?",
         answer:
-          "Each spin is independent—remove Saturday temporarily if you need variety.",
+          "Each spin is independent, remove Saturday temporarily if you need variety.",
       },
       {
         question: "Does it integrate with Google Calendar?",
         answer:
-          "No export—you manually add the chosen day to your planner.",
+          "No export, you manually add the chosen day to your planner.",
       },
       {
         question: "Can I add holidays?",
@@ -1314,13 +1314,13 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
   "random-student-picker": {
     directAnswer:
       "The Random Student Picker helps US teachers call on learners fairly using remove-after-pick mode, session history, and fullscreen classroom mode designed for projectors. Paste your roster, spin, and the chosen name can drop from the pool automatically so every student participates before repeats. History logs who went already, which subs trust on day one.",
-    title: "Random Student Picker — Classroom Fair Call",
+    title: "Random Student Picker, Classroom Fair Call",
     metaDescription:
       "Paste your class roster, spin in fullscreen mode, auto-remove picked students, and review session history so every kid gets a turn.",
     useCases: [
       {
         heading: "Cold-call reading rounds",
-        body: "ELA teachers spin before each paragraph so shy readers know the wheel—not favoritism—decides.",
+        body: "ELA teachers spin before each paragraph so shy readers know the wheel, not favoritism, decides.",
       },
       {
         heading: "Lab partner assignment",
@@ -1354,7 +1354,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Can I import from Google Classroom?",
         answer:
-          "Copy names from your gradebook and bulk paste—no direct LMS sync yet.",
+          "Copy names from your gradebook and bulk paste, no direct LMS sync yet.",
       },
       {
         question: "Does it work offline after loading?",
@@ -1374,8 +1374,8 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "what-to-draw-wheel": {
     directAnswer:
-      "The What to Draw Wheel generates art prompts—a flying cat, haunted house, alien spaceship—when blank pages intimidate sketchers. Illustrators spin once before opening Procreate, art teachers assign warm-up subjects, and kids' camps run timed drawing races. Customize slices with anatomy drills or landscape themes, and delete prompts after use so weekly challenges never repeat until you reset the list.",
-    title: "What to Draw Wheel — Art Prompt Generator",
+      "The What to Draw Wheel generates art prompts, a flying cat, haunted house, alien spaceship, when blank pages intimidate sketchers. Illustrators spin once before opening Procreate, art teachers assign warm-up subjects, and kids' camps run timed drawing races. Customize slices with anatomy drills or landscape themes, and delete prompts after use so weekly challenges never repeat until you reset the list.",
+    title: "What to Draw Wheel, Art Prompt Generator",
     metaDescription:
       "Blank sketchbook staring back? Spin surreal, cute, or spooky drawing prompts and start sketching before perfectionism kicks in.",
     useCases: [
@@ -1400,12 +1400,12 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Are default prompts kid-safe?",
         answer:
-          "Yes—flying cats and cute monsters dominate; edit slices if teens want edgier themes.",
+          "Yes, flying cats and cute monsters dominate; edit slices if teens want edgier themes.",
       },
       {
         question: "Can I add reference links?",
         answer:
-          "Slice text is plain words only—keep Pinterest tabs open separately.",
+          "Slice text is plain words only, keep Pinterest tabs open separately.",
       },
       {
         question: "Does it specify medium?",
@@ -1431,7 +1431,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
   "abcd-spin-wheel": {
     directAnswer:
       "The ABCD Spin Wheel randomly selects A, B, C, or D when trivia players want a blind guess or teachers gamify multiple-choice review. Spin before revealing the answer key, assign letter topics to student groups, or swap slices to True and False for binary quizzes. Equal slice sizes keep every letter mathematically fair for standardized-test practice games.",
-    title: "ABCD Spin Wheel — Multiple Choice Picker",
+    title: "ABCD Spin Wheel, Multiple Choice Picker",
     metaDescription:
       "Stuck between four quiz answers? Spin A, B, C, or D for a blind guess, or let the wheel assign MC sections during review games.",
     useCases: [
@@ -1466,7 +1466,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Does it read question text aloud?",
         answer:
-          "No—display your test question separately; the wheel only picks the letter.",
+          "No, display your test question separately; the wheel only picks the letter.",
       },
       {
         question: "Can I log spins for grading?",
@@ -1487,7 +1487,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
   "twister-spinner-online": {
     directAnswer:
       "Twister Spinner Online replaces lost cardboard spinners with digital Left Hand Red and Right Foot Green combinations during living-room party games. Tap spin between poses so referees call moves fairly when the physical arrow breaks. All sixteen classic color-and-limb pairings ship ready, and phones sit beside the mat while one player operates the virtual dial.",
-    title: "Twister Spinner Online — Virtual Party Dial",
+    title: "Twister Spinner Online, Virtual Party Dial",
     metaDescription:
       "Missing the Twister arrow? Spin Left Hand Red and Right Foot Green combos on your phone while friends stay on the mat.",
     useCases: [
@@ -1512,7 +1512,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Are all classic moves included?",
         answer:
-          "Yes—left and right hands and feet across red, yellow, blue, and green match the retail game.",
+          "Yes, left and right hands and feet across red, yellow, blue, and green match the retail game.",
       },
       {
         question: "Can I add custom dares?",
@@ -1522,12 +1522,12 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Does it work one-handed?",
         answer:
-          "A single tap starts the spin—ideal when your other limbs are already tangled.",
+          "A single tap starts the spin, ideal when your other limbs are already tangled.",
       },
       {
         question: "Is audio available for calls?",
         answer:
-          "Visual labels only—referees shout the result for players on the mat.",
+          "Visual labels only, referees shout the result for players on the mat.",
       },
     ],
     relatedWheels: [
@@ -1542,8 +1542,8 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "fast-food-wheel": {
     directAnswer:
-      "The Fast Food Wheel picks chains like Taco Bell, Wendy's, or local spots when lunch debates stall at the office. Load drive-thru favorites, spin once, and whoever suggested the wheel pays—or follow house rules. Road trips, dorm dinners, and DoorDash groups use it to escape the same three delivery apps every weekday.",
-    title: "Fast Food Wheel — Lunch Roulette Picker",
+      "The Fast Food Wheel picks chains like Taco Bell, Wendy's, or local spots when lunch debates stall at the office. Load drive-thru favorites, spin once, and whoever suggested the wheel pays, or follow house rules. Road trips, dorm dinners, and DoorDash groups use it to escape the same three delivery apps every weekday.",
+    title: "Fast Food Wheel, Lunch Roulette Picker",
     metaDescription:
       "Office lunch stalemate again? Spin McDonald's, Taco Bell, local spots, or your own list and head to whatever restaurant wins.",
     useCases: [
@@ -1578,7 +1578,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Does it integrate with delivery apps?",
         answer:
-          "It names the restaurant—you still order through your preferred app.",
+          "It names the restaurant, you still order through your preferred app.",
       },
       {
         question: "Can we ban a result permanently?",
@@ -1598,8 +1598,8 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "random-color-wheel": {
     directAnswer:
-      "The Random Color Wheel selects hues—red, cyan, magenta—for art challenges, design brainstorming, and classroom games. Creators spin before three-marker YouTube videos, UI designers pick accent colors randomly, and teachers organize color-of-the-day activities. Paste hex codes on slices when brand guidelines need exact values instead of basic color names.",
-    title: "Random Color Wheel — Palette Spinner",
+      "The Random Color Wheel selects hues, red, cyan, magenta, for art challenges, design brainstorming, and classroom games. Creators spin before three-marker YouTube videos, UI designers pick accent colors randomly, and teachers organize color-of-the-day activities. Paste hex codes on slices when brand guidelines need exact values instead of basic color names.",
+    title: "Random Color Wheel, Palette Spinner",
     metaDescription:
       "Running a three-marker art challenge or need an accent hue? Spin named colors or paste hex codes for instant palette picks.",
     useCases: [
@@ -1654,8 +1654,8 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "self-care-wheel": {
     directAnswer:
-      "The Self Care Wheel nudges you toward small wellness actions—meditate ten minutes, journal, take a walk—when burnout makes even resting feel like a decision. Spin once during work breaks, pick the highlighted ritual, and log completion however you like. Remote workers step away from Slack, students unplug between study blocks, and parents model healthy pauses for kids watching.",
-    title: "Self Care Wheel — Daily Wellness Nudge",
+      "The Self Care Wheel nudges you toward small wellness actions, meditate ten minutes, journal, take a walk, when burnout makes even resting feel like a decision. Spin once during work breaks, pick the highlighted ritual, and log completion however you like. Remote workers step away from Slack, students unplug between study blocks, and parents model healthy pauses for kids watching.",
+    title: "Self Care Wheel, Daily Wellness Nudge",
     metaDescription:
       "Too fried to choose a break activity? Spin meditate, walk, journal, or your custom rituals and honor whatever wellness task appears.",
     useCases: [
@@ -1685,7 +1685,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Does it track streaks?",
         answer:
-          "No built-in habit tracker—mark completions in your journal or habit app.",
+          "No built-in habit tracker, mark completions in your journal or habit app.",
       },
       {
         question: "Are activities clinical treatment?",
@@ -1711,7 +1711,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
   "pokemon-randomizer-wheel": {
     directAnswer:
       "The Pokemon Randomizer Wheel picks creatures like Pikachu, Charizard, or Eevee for Nuzlocke runs, fan-art prompts, and starter debates. Gamers spin before catching the first route encounter allowed, artists sketch whichever sprite appears, and streamers let chat vote on randomized team rules. Swap slices for other anime rosters when you outgrow Kanto.",
-    title: "Pokemon Randomizer — Character Challenge Wheel",
+    title: "Pokemon Randomizer, Character Challenge Wheel",
     metaDescription:
       "Starting a Nuzlocke or need a sketch subject? Spin Pikachu, Charizard, Eevee, or your custom roster for randomized Pokemon challenges.",
     useCases: [
@@ -1741,7 +1741,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Does it connect to Nintendo games?",
         answer:
-          "No game integration—it is a planning and challenge tool only.",
+          "No game integration, it is a planning and challenge tool only.",
       },
       {
         question: "Can I weight legendaries lower?",
@@ -1767,7 +1767,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
   "secret-santa-wheel-generator": {
     directAnswer:
       "The Secret Santa Wheel Generator runs holiday gift exchanges with assignment mode, spouse exclusions, and shareable per-person reveal links so gifters learn their match privately. Organizers paste coworker or family names, set who cannot draw whom, spin assignments, and send each participant a unique URL. No more paper slips, and nobody sees the full pairing sheet early.",
-    title: "Secret Santa Wheel — Assignments and Exclusions",
+    title: "Secret Santa Wheel, Assignments and Exclusions",
     metaDescription:
       "Run office or family Secret Santa with assignment mode, couple exclusions, and private reveal links so each gifter sees only their match.",
     useCases: [
@@ -1797,7 +1797,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Can I block certain pairings?",
         answer:
-          "Set exclusions—roommates, spouses, last year's match—before generating assignments.",
+          "Set exclusions, roommates, spouses, last year's match, before generating assignments.",
       },
       {
         question: "What are per-person reveal links?",
@@ -1812,7 +1812,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Does it store addresses?",
         answer:
-          "Only names on the wheel—shipping details stay in your separate chat thread.",
+          "Only names on the wheel, shipping details stay in your separate chat thread.",
       },
     ],
     relatedWheels: [
@@ -1827,8 +1827,8 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "horror-movie-picker-wheel": {
     directAnswer:
-      "The Horror Movie Picker Wheel chooses subgenres—slasher, found footage, paranormal—for spooky nights when everyone wants scares but nobody picks the title. Load classic categories or specific films, spin in the dark, and commit before someone suggests a comedy instead. Halloween hosts, horror YouTubers, and sleepover teens use it to escape endless Shudder browsing.",
-    title: "Horror Movie Picker — Scary Night Roulette",
+      "The Horror Movie Picker Wheel chooses subgenres, slasher, found footage, paranormal, for spooky nights when everyone wants scares but nobody picks the title. Load classic categories or specific films, spin in the dark, and commit before someone suggests a comedy instead. Halloween hosts, horror YouTubers, and sleepover teens use it to escape endless Shudder browsing.",
+    title: "Horror Movie Picker, Scary Night Roulette",
     metaDescription:
       "Lights off and nobody picked a scary movie yet? Spin slasher, paranormal, or your watchlist titles and start screaming together.",
     useCases: [
@@ -1858,7 +1858,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Does it know streaming availability?",
         answer:
-          "It only names genres or titles—you check apps afterward.",
+          "It only names genres or titles, you check apps afterward.",
       },
       {
         question: "Can I list specific franchises?",
@@ -1884,7 +1884,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
   "family-game-night-picker-wheel": {
     directAnswer:
       "The Family Game Night Picker Wheel selects board games, card games, or active games like Twister when kids and parents argue over what to play. Load Monopoly, Uno, Charades, or video-game titles, let the youngest spin, and setup starts immediately. Removing played games keeps month-long Friday traditions fresh without repeating the same shelf favorite every week.",
-    title: "Family Game Night Wheel — Pick What to Play",
+    title: "Family Game Night Wheel, Pick What to Play",
     metaDescription:
       "Kids fighting over Monopoly versus Mario Kart? Spin your family's game list and start playing whatever the wheel chooses.",
     useCases: [
@@ -1909,7 +1909,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Can we add video games?",
         answer:
-          "Yes—Mario Kart and Minecraft slices coexist with Jenga and Scrabble.",
+          "Yes, Mario Kart and Minecraft slices coexist with Jenga and Scrabble.",
       },
       {
         question: "What if setup takes too long?",
@@ -1919,7 +1919,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Does it teach fairness?",
         answer:
-          "Kids see the wheel—not parents—pick, which reduces my-game-was-ignored meltdowns.",
+          "Kids see the wheel, not parents, pick, which reduces my-game-was-ignored meltdowns.",
       },
       {
         question: "Can grandparents use it on tablets?",
@@ -1940,7 +1940,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
   "bedtime-story-picker-wheel": {
     directAnswer:
       "The Bedtime Story Picker Wheel chooses fairy tales and bedtime titles so kids feel involved in storytime while parents escape reading the same book nightly. Let children tap spin on a tablet, read whichever tale lands, and remove stories already heard this week. Custom slices can list library books on the shelf for a personalized routine.",
-    title: "Bedtime Story Wheel — Nightly Tale Picker",
+    title: "Bedtime Story Wheel, Nightly Tale Picker",
     metaDescription:
       "Kids demanding the same book again? Spin Cinderella, Peter Pan, or your shelf titles and make bedtime stories feel brand new.",
     useCases: [
@@ -1975,7 +1975,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Are defaults scary?",
         answer:
-          "Classic gentle fairy tales ship by default—edit if your child prefers nonfiction.",
+          "Classic gentle fairy tales ship by default, edit if your child prefers nonfiction.",
       },
       {
         question: "Can we spin twice for chapter books?",
@@ -1996,7 +1996,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
   "instagram-wheel-picker": {
     directAnswer:
       "The Instagram Wheel Picker selects giveaway winners from pasted comment @handles with the visual spin followers expect on Stories. Copy eligible entries, dedupe tags, spin on camera, and post the recording so your audience trusts the drawing. Micro-influencers, bakeries, and boutiques use it instead of screenshotting comment threads manually.",
-    title: "Instagram Wheel Picker — Story Giveaway Draw",
+    title: "Instagram Wheel Picker, Story Giveaway Draw",
     metaDescription:
       "Running an IG giveaway? Paste comment @handles, spin on camera, and post the recording so followers see a transparent winner pick.",
     useCases: [
@@ -2036,7 +2036,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Does TikTok work the same way?",
         answer:
-          "Yes—paste TikTok usernames and record the spin for parallel platforms.",
+          "Yes, paste TikTok usernames and record the spin for parallel platforms.",
       },
     ],
     relatedWheels: [
@@ -2051,8 +2051,8 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "fortnite-drop-location-wheel": {
     directAnswer:
-      "The Fortnite Drop Location Wheel picks map POIs—Tilted Towers, Retail Row, Loot Lake—for squads tired of landing the same hotspot. Update slice labels each season, spin in the lobby, and drop wherever the wheel mandates for challenge streams or casual nights. Streamers boost engagement by letting chat suggest locations before the spin.",
-    title: "Fortnite Drop Wheel — Squad Landing Picker",
+      "The Fortnite Drop Location Wheel picks map POIs, Tilted Towers, Retail Row, Loot Lake, for squads tired of landing the same hotspot. Update slice labels each season, spin in the lobby, and drop wherever the wheel mandates for challenge streams or casual nights. Streamers boost engagement by letting chat suggest locations before the spin.",
+    title: "Fortnite Drop Wheel, Squad Landing Picker",
     metaDescription:
       "Squad stuck asking where we dropping? Spin current POIs, land on the result, and add randomness to every battle bus jump.",
     useCases: [
@@ -2077,7 +2077,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Does it update automatically each season?",
         answer:
-          "You edit slice names when Epic reshapes the island—no live API sync.",
+          "You edit slice names when Epic reshapes the island, no live API sync.",
       },
       {
         question: "Can I ban hot drops?",
@@ -2092,7 +2092,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Does it work for Zero Build?",
         answer:
-          "Same POI names apply—strategy changes but landing points do not.",
+          "Same POI names apply, strategy changes but landing points do not.",
       },
     ],
     relatedWheels: [
@@ -2107,8 +2107,8 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "roblox-game-picker-wheel": {
     directAnswer:
-      "The Roblox Game Picker Wheel chooses experiences—Adopt Me, Blox Fruits, Tower of Hell—when millions of titles overwhelm players. Paste favorites, spin before opening the app, and commit to the result for YouTube challenge videos or friend-group nights. No account linking occurs; the wheel only outputs the next game name to search.",
-    title: "Roblox Game Picker — Experience Roulette",
+      "The Roblox Game Picker Wheel chooses experiences, Adopt Me, Blox Fruits, Tower of Hell, when millions of titles overwhelm players. Paste favorites, spin before opening the app, and commit to the result for YouTube challenge videos or friend-group nights. No account linking occurs; the wheel only outputs the next game name to search.",
+    title: "Roblox Game Picker, Experience Roulette",
     metaDescription:
       "Bored of the same Roblox sim? Spin Adopt Me, Blox Fruits, or your favorites list and play whatever experience the wheel names.",
     useCases: [
@@ -2133,7 +2133,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Does it launch Roblox automatically?",
         answer:
-          "No—you copy the title into Roblox search yourself after the spin.",
+          "No, you copy the title into Roblox search yourself after the spin.",
       },
       {
         question: "Can I mix horror and tycoon games?",
@@ -2164,7 +2164,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
   "truth-or-dare-spinner-online": {
     directAnswer:
       "Truth or Dare Spinner Online assigns Truth, Dare, Double Dare, or Pass slices so party groups skip the empty bottle in the middle of the circle. Customize dares for your friend group, share the screen on Zoom, or let teens tap spins during sleepovers. Generic labels keep the tool family-safe until you add your own inside jokes.",
-    title: "Truth or Dare Spinner — Party Bottle Replacement",
+    title: "Truth or Dare Spinner, Party Bottle Replacement",
     metaDescription:
       "No bottle handy? Spin Truth, Dare, or Double Dare online for sleepovers, teen parties, or video-call hangouts with your custom prompts.",
     useCases: [
@@ -2194,7 +2194,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Is the default wheel spicy?",
         answer:
-          "Defaults are generic Truth/Dare text—you control intensity via edits.",
+          "Defaults are generic Truth/Dare text, you control intensity via edits.",
       },
       {
         question: "Does Pass mean skip?",
@@ -2220,7 +2220,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
   "random-travel-destination-wheel": {
     directAnswer:
       "The Random Travel Destination Wheel points wanderlusters toward cities like Paris, Tokyo, Bali, or Cape Town when bucket lists grow faster than budgets allow. Spin for actual trip planning, classroom geography prompts, or daydream research sessions. Filter slices to domestic road-trip stops or luxury escapes by editing the list before you spin.",
-    title: "Random Travel Wheel — Vacation Roulette",
+    title: "Random Travel Wheel, Vacation Roulette",
     metaDescription:
       "Every destination sounds amazing? Spin Paris, Tokyo, Bali, or your bucket list and start planning the trip the wheel selects.",
     useCases: [
@@ -2254,7 +2254,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Does it book flights?",
         answer:
-          "It only names a place—you handle logistics separately.",
+          "It only names a place, you handle logistics separately.",
       },
       {
         question: "Can I weight dream trips?",
@@ -2264,7 +2264,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Is visa info included?",
         answer:
-          "No travel advisories—research entry rules after the spin.",
+          "No travel advisories, research entry rules after the spin.",
       },
       {
         question: "Can couples save different lists?",
@@ -2290,8 +2290,8 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "random-hobby-generator-wheel": {
     directAnswer:
-      "The Random Hobby Generator Wheel suggests pastimes—photography, gardening, coding, yoga—when weekends disappear into scrolling. Spin once, try the activity for a week, and track what sticks. Parents assign screen-free options to bored kids, retirees explore new skills, and accountability partners spin together to learn the same hobby in parallel.",
-    title: "Random Hobby Generator — New Passion Picker",
+      "The Random Hobby Generator Wheel suggests pastimes, photography, gardening, coding, yoga, when weekends disappear into scrolling. Spin once, try the activity for a week, and track what sticks. Parents assign screen-free options to bored kids, retirees explore new skills, and accountability partners spin together to learn the same hobby in parallel.",
+    title: "Random Hobby Generator, New Passion Picker",
     metaDescription:
       "Weekend disappearing into scrolling? Spin photography, baking, coding, or custom hobbies and commit to trying whatever lands this week.",
     useCases: [
@@ -2316,7 +2316,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Are hobbies expensive to start?",
         answer:
-          "Defaults mix free options like writing with gear-based ones like photography—edit to match your budget.",
+          "Defaults mix free options like writing with gear-based ones like photography, edit to match your budget.",
       },
       {
         question: "Can I remove hobbies I already do?",
@@ -2331,7 +2331,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Can teens customize slices?",
         answer:
-          "Yes—add skateboarding, coding, or baking tailored to their interests.",
+          "Yes, add skateboarding, coding, or baking tailored to their interests.",
       },
     ],
     relatedWheels: [
@@ -2346,11 +2346,11 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "raffle-wheel": {
     directAnswer:
-      "The Raffle Wheel runs transparent multi-winner draws for US school carnivals, church fundraisers, and brand giveaways — paste entrant names or switch to ticket-number mode and spin numbered stubs instead of labels. Draw several winners without replacement, screen-record the animation, and copy a timestamped proof link followers can verify after the live stream ends.",
-    title: "Raffle Wheel — Multi-Winner Virtual Draw",
+      "The Raffle Wheel runs transparent multi-winner draws for US school carnivals, church fundraisers, and brand giveaways, paste entrant names or switch to ticket-number mode and spin numbered stubs instead of labels. Draw several winners without replacement, screen-record the animation, and copy a timestamped proof link followers can verify after the live stream ends.",
+    title: "Raffle Wheel, Multi-Winner Virtual Draw",
     metaDescription:
       "Running a school carnival or live giveaway? Spin ticket numbers or names, draw multiple winners, and share a proof link after your stream.",
-    h1: "Raffle Wheel — Virtual Multi-Winner Draw",
+    h1: "Raffle Wheel, Virtual Multi-Winner Draw",
     useCases: [
       {
         heading: "School carnival ticket stubs",
@@ -2397,7 +2397,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Do I need accounts or uploads?",
         answer:
-          "No. Entries stay in your browser. Paste names or tickets, spin, and optionally record the screen — nothing is sent to our servers.",
+          "No. Entries stay in your browser. Paste names or tickets, spin, and optionally record the screen, nothing is sent to our servers.",
       },
     ],
     relatedWheels: [
@@ -2412,11 +2412,11 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "prize-wheel": {
     directAnswer:
-      "The Prize Wheel labels each slice with rewards — Grand Prize, gift cards, bonus entries — so carnivals, retail promos, and stream giveaways feel like a game show. Spin once for a single winner or run several rounds, customize colors, and screen-record the landing slice for your audience. Need hardware instead? The buyer guide below explains what to look for in tabletop prize wheels.",
-    title: "Prize Wheel — Free Spinning Giveaway Tool",
+      "The Prize Wheel labels each slice with rewards, Grand Prize, gift cards, bonus entries, so carnivals, retail promos, and stream giveaways feel like a game show. Spin once for a single winner or run several rounds, customize colors, and screen-record the landing slice for your audience. Need hardware instead? The buyer guide below explains what to look for in tabletop prize wheels.",
+    title: "Prize Wheel, Free Spinning Giveaway Tool",
     metaDescription:
-      "Spin labeled prize slices for store promos, stream giveaways, or party games — plus an honest guide if you want a physical wheel instead.",
-    h1: "Prize Wheel — Spin for Giveaways & Promos",
+      "Spin labeled prize slices for store promos, stream giveaways, or party games, plus an honest guide if you want a physical wheel instead.",
+    h1: "Prize Wheel, Spin for Giveaways & Promos",
     useCases: [
       {
         heading: "Retail grand-opening promos",
@@ -2432,7 +2432,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       },
       {
         heading: "Corporate wellness challenges",
-        body: "HR teams swap slices weekly — water bottle, gift card, extra PTO hour — and spin at all-hands to reward participation milestones.",
+        body: "HR teams swap slices weekly, water bottle, gift card, extra PTO hour, and spin at all-hands to reward participation milestones.",
       },
       {
         heading: "Farmers market vendors",
@@ -2442,7 +2442,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
     supplementalSections: [
       {
         heading: "Need a physical prize wheel? What to look for",
-        body: "Dry-erase tabletop wheels ($30–$120) let staff rewrite prizes with markers — ideal for rotating retail promos. Look for a stable base, smooth bearing spin, and segments you can relabel without peeling stickers. Floor-standing wheels ($150–$400) suit trade shows but need transport storage. Check weight balance so the pointer does not favor one wedge after repeated spins. If you only run occasional online giveaways, a free browser prize wheel avoids storage, shipping, and bias from worn hardware — spin live on a tablet and screen-record instead.",
+        body: "Dry-erase tabletop wheels ($30–$120) let staff rewrite prizes with markers, ideal for rotating retail promos. Look for a stable base, smooth bearing spin, and segments you can relabel without peeling stickers. Floor-standing wheels ($150–$400) suit trade shows but need transport storage. Check weight balance so the pointer does not favor one wedge after repeated spins. If you only run occasional online giveaways, a free browser prize wheel avoids storage, shipping, and bias from worn hardware, spin live on a tablet and screen-record instead.",
       },
     ],
     faqs: [
@@ -2464,7 +2464,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Does it work on a phone at my booth?",
         answer:
-          "Yes. Open the page on any phone or tablet, tap to spin, and tilt the screen toward customers — no app install required.",
+          "Yes. Open the page on any phone or tablet, tap to spin, and tilt the screen toward customers, no app install required.",
       },
       {
         question: "How is this different from the raffle wheel?",
@@ -2484,11 +2484,11 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "classroom-spinner": {
     directAnswer:
-      "The Classroom Spinner is a teacher hub that combines random student selection, balanced team creation, and a fullscreen countdown timer in one projector-ready page. Call on learners fairly with remove-after-pick mode, split the roster into groups for lab days, and run think-pair-share timers without juggling three separate apps — built for US K–12 classrooms and subs who need obvious controls on day one.",
-    title: "Classroom Spinner — Teacher Wheel Hub",
+      "The Classroom Spinner is a teacher hub that combines random student selection, balanced team creation, and a fullscreen countdown timer in one projector-ready page. Call on learners fairly with remove-after-pick mode, split the roster into groups for lab days, and run think-pair-share timers without juggling three separate apps, built for US K–12 classrooms and subs who need obvious controls on day one.",
+    title: "Classroom Spinner, Teacher Wheel Hub",
     metaDescription:
       "One page for teachers: random student selector, team maker, and countdown timer with fullscreen classroom mode for smartboards.",
-    h1: "Classroom Spinner — Teacher Wheel Hub",
+    h1: "Classroom Spinner, Teacher Wheel Hub",
     useCases: [
       {
         heading: "Cold-calling in middle school ELA",
@@ -2515,7 +2515,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Does this replace the random student picker?",
         answer:
-          "It includes the same student-picker behavior plus team generation and a timer — one bookmark for daily classroom routines.",
+          "It includes the same student-picker behavior plus team generation and a timer, one bookmark for daily classroom routines.",
       },
       {
         question: "How does fullscreen classroom mode work?",
@@ -2530,7 +2530,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Is student data stored online?",
         answer:
-          "No. Rosters and history stay in your browser session on that device — nothing is uploaded to our servers.",
+          "No. Rosters and history stay in your browser session on that device, nothing is uploaded to our servers.",
       },
       {
         question: "Does the team maker balance sizes?",

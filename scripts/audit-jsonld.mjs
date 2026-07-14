@@ -95,7 +95,7 @@ if (issues.length) {
   out.push("| --- | --- |");
   for (const i of issues) out.push(`| \`${i.route}\` | ${i.msg} |`);
 } else {
-  out.push("**PASS** — all JSON-LD parses; no Review/AggregateRating on tools; no Auroxa references.");
+  out.push("**PASS**, all JSON-LD parses; no Review/AggregateRating on tools; no Auroxa references.");
 }
 
 fs.writeFileSync(path.join(root, "docs", "JSONLD_AUDIT.md"), out.join("\n"), "utf8");

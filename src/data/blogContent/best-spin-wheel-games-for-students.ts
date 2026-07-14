@@ -25,14 +25,14 @@ export const bestSpinWheelGamesForStudents: BlogPost = {
       heading: "1. What US teachers get from spin-the-wheel classroom games",
       paragraphs: [
         "Elementary homeroom teachers, middle school ELA leads, and high school science instructors across the US all face the same friction: students tune out when participation feels predictable or unfair. Spin the wheel games for students add a visible moment of suspense before anyone speaks, which raises attention without turning every lesson into a full game show.",
-        "A classroom spinner also removes favoritism complaints. When the flapper lands on a name or task, the choice came from the wheel—not from you pointing at the same volunteers. That single shift makes shy students more willing to try and competitive students more willing to wait their turn.",
+        "A classroom spinner also removes favoritism complaints. When the flapper lands on a name or task, the choice came from the wheel, not from you pointing at the same volunteers. That single shift makes shy students more willing to try and competitive students more willing to wait their turn.",
         "The activities below are built for American K-12 schedules: five- to fifteen-minute blocks you can drop into bell work, review, or end-of-period wind-down. Each game names a grade band, what to type on the wheel, and which tool on Online Spin Wheel to open.",
       ],
     },
     {
       heading: "2. Set up your classroom spinner before first period",
       paragraphs: [
-        "Open the classroom spinner hub at /classroom-spinner on the device connected to your projector or interactive board. Paste your class roster, vocabulary list, or custom labels into the text box—the wheel redraws slices automatically. For a distraction-free view during instruction, tap fullscreen so browser tabs and taskbars disappear behind the spin animation.",
+        "Open the classroom spinner hub at /classroom-spinner on the device connected to your projector or interactive board. Paste your class roster, vocabulary list, or custom labels into the text box, the wheel redraws slices automatically. For a distraction-free view during instruction, tap fullscreen so browser tabs and taskbars disappear behind the spin animation.",
         "Turn on remove-after-pick when you are drawing multiple volunteers in one round. After each spin, the selected slice drops off the wheel so the same student cannot be chosen twice before everyone has had a turn. Session history logs each result in order, which helps you verify fairness if a parent or administrator asks how groups were formed.",
         "Bookmark the wheels you use weekly: the random student picker at /random-student-picker for participation, the alphabet spinner at /alphabet-spinner-wheel for phonics, and the ABCD review wheel at /abcd-spin-wheel for multiple-choice-style drills. Related tools you may also want handy: /random-number-wheel for math warm-ups and /prize-wheel for positive reinforcement Fridays.",
       ],
@@ -48,7 +48,7 @@ export const bestSpinWheelGamesForStudents: BlogPost = {
     {
       heading: "3. Twelve spin-the-wheel games by grade band",
       paragraphs: [
-        "Copy the grade band that matches your roster, paste the suggested labels, and spin once to start. Every activity below requires an actual wheel spin—no manual calling or paper slips.",
+        "Copy the grade band that matches your roster, paste the suggested labels, and spin once to start. Every activity below requires an actual wheel spin, no manual calling or paper slips.",
       ],
     },
     {
@@ -74,37 +74,37 @@ export const bestSpinWheelGamesForStudents: BlogPost = {
     {
       heading: "Math Minute Generator",
       paragraphs: [
-        "Grades 1–6 · Setup: Open /random-number-wheel and set a range matching your standard—for example 0–12 for multiplication facts or 10–99 for two-digit addition. · Play: Spin twice per turn to build a problem (first spin = factor A, second spin = factor B). The class solves on whiteboards; first correct row stands. Session history shows which number pairs already appeared so you avoid repeats within the same warm-up.",
+        "Grades 1–6 · Setup: Open /random-number-wheel and set a range matching your standard, for example 0–12 for multiplication facts or 10–99 for two-digit addition. · Play: Spin twice per turn to build a problem (first spin = factor A, second spin = factor B). The class solves on whiteboards; first correct row stands. Session history shows which number pairs already appeared so you avoid repeats within the same warm-up.",
       ],
     },
     {
       heading: "Spelling Slice Challenge",
       paragraphs: [
-        "Grades 1–5 · Setup: Place ten spelling words on /classroom-spinner. · Play: Spinner calls a classmate to spell the landed word aloud without looking at notes. Misses go to the end of the line; perfect spellers spin next. Remove-after-pick optional here because words—not students—are removed after use. Run in fullscreen during Friday assessments to keep eyes on the board.",
+        "Grades 1–5 · Setup: Place ten spelling words on /classroom-spinner. · Play: Spinner calls a classmate to spell the landed word aloud without looking at notes. Misses go to the end of the line; perfect spellers spin next. Remove-after-pick optional here because words, not students, are removed after use. Run in fullscreen during Friday assessments to keep eyes on the board.",
       ],
     },
     {
       heading: "Group Captain Picker",
       paragraphs: [
-        "Grades 3–12 · Setup: Paste project groups or table numbers plus one captain slot per group on /random-student-picker. · Play: Spin to name captains who then choose teammates—or spin captains first, then spin remaining students into balanced groups using session history as your audit trail. Works for science fair teams, debate prep, and peer editing circles.",
+        "Grades 3–12 · Setup: Paste project groups or table numbers plus one captain slot per group on /random-student-picker. · Play: Spin to name captains who then choose teammates, or spin captains first, then spin remaining students into balanced groups using session history as your audit trail. Works for science fair teams, debate prep, and peer editing circles.",
       ],
     },
     {
       heading: "Classroom Job Roulette",
       paragraphs: [
-        "Grades K–5 · Setup: List jobs (line leader, librarian, botanist, tech helper) on /classroom-spinner. · Play: Monday morning spin assigns jobs for the week. Because jobs are slices—not names—reuse the same wheel daily and only spin for substitutes when someone is absent. Pair with the random student picker when a job needs a backup helper on the spot.",
+        "Grades K–5 · Setup: List jobs (line leader, librarian, botanist, tech helper) on /classroom-spinner. · Play: Monday morning spin assigns jobs for the week. Because jobs are slices, not names, reuse the same wheel daily and only spin for substitutes when someone is absent. Pair with the random student picker when a job needs a backup helper on the spot.",
       ],
     },
     {
       heading: "ABCD Review Categories",
       paragraphs: [
-        "Grades 4–12 · Setup: Label four quadrants on /abcd-spin-wheel with units you are reviewing—Colonial America, Civil War, Industrial Era, Modern US, for example. · Play: Land on a category; the selected student asks the class one review question from that unit. Classmates raise hands; you pick or spin again for the answerer. Ideal before state benchmarks when you need broad coverage fast.",
+        "Grades 4–12 · Setup: Label four quadrants on /abcd-spin-wheel with units you are reviewing, Colonial America, Civil War, Industrial Era, Modern US, for example. · Play: Land on a category; the selected student asks the class one review question from that unit. Classmates raise hands; you pick or spin again for the answerer. Ideal before state benchmarks when you need broad coverage fast.",
       ],
     },
     {
       heading: "Friday Prize Spin",
       paragraphs: [
-        "Grades K–12 · Setup: Load low-cost rewards on /prize-wheel—extra recess minutes, sticker, partner work choice, positive note home. · Play: Students who met weekly goals spin once. Remove-after-pick ensures one reward per student. Display session history on the board so the class sees transparent results. Keep prizes academic and inclusive; avoid food-based rewards if your district restricts them.",
+        "Grades K–12 · Setup: Load low-cost rewards on /prize-wheel, extra recess minutes, sticker, partner work choice, positive note home. · Play: Students who met weekly goals spin once. Remove-after-pick ensures one reward per student. Display session history on the board so the class sees transparent results. Keep prizes academic and inclusive; avoid food-based rewards if your district restricts them.",
       ],
     },
     {
@@ -135,7 +135,7 @@ export const bestSpinWheelGamesForStudents: BlogPost = {
       heading: "4. Wheels to bookmark for the school year",
       paragraphs: [
         "Keep these paths one click away on your teacher laptop: /random-student-picker for fair participation, /classroom-spinner for custom lists and jobs, /alphabet-spinner-wheel for phonics and spelling, /abcd-spin-wheel for unit review, /random-number-wheel for math drills, and /prize-wheel for positive reinforcement. Together they cover most spin the wheel games for students without paid apps or student accounts.",
-        "If your district blocks new bookmarks, save one link—/classroom-spinner—and duplicate wheels by changing labels between periods. Data stays in your browser session; reopen the same path after lunch and your list is still there on most Chromebooks and Windows devices used in US schools.",
+        "If your district blocks new bookmarks, save one link, /classroom-spinner, and duplicate wheels by changing labels between periods. Data stays in your browser session; reopen the same path after lunch and your list is still there on most Chromebooks and Windows devices used in US schools.",
       ],
     },
     {
@@ -147,13 +147,13 @@ export const bestSpinWheelGamesForStudents: BlogPost = {
         label: "Download printable game cards (PDF)",
         href: "/downloads/classroom-spin-wheel-game-cards.pdf",
         description:
-          "Printable spin-the-wheel game cards with setup lines for all twelve activities—hand to a substitute or use when Wi-Fi is down.",
+          "Printable spin-the-wheel game cards with setup lines for all twelve activities, hand to a substitute or use when Wi-Fi is down.",
       },
     },
     {
       heading: "6. Start with one game tomorrow",
       paragraphs: [
-        "Pick the single activity closest to tomorrow's lesson objective—vocabulary, math facts, or fair calling—and run it once in fullscreen with remove-after-pick enabled. Students learn the routine in one period; you can layer additional classroom spinner games as the month goes on.",
+        "Pick the single activity closest to tomorrow's lesson objective, vocabulary, math facts, or fair calling, and run it once in fullscreen with remove-after-pick enabled. Students learn the routine in one period; you can layer additional classroom spinner games as the month goes on.",
         "When a game works, duplicate your wheel labels into session history notes or a saved doc so you can reuse the same list for finals review. Fair spins build trust; predictable prep saves you planning time every week.",
       ],
     },
@@ -161,7 +161,7 @@ export const bestSpinWheelGamesForStudents: BlogPost = {
   faqs: [
     {
       q: "What are the best spin the wheel games for students in US classrooms?",
-      a: "The twelve activities in this guide—Random Volunteer Spin, Vocabulary Lightning Round, Math Minute Generator, and nine more—cover K–12 participation, review, and rewards. Each names a grade band and the wheel path to open.",
+      a: "The twelve activities in this guide, Random Volunteer Spin, Vocabulary Lightning Round, Math Minute Generator, and nine more, cover K–12 participation, review, and rewards. Each names a grade band and the wheel path to open.",
     },
     {
       q: "Do I need an account to use classroom spinner games?",
@@ -173,7 +173,7 @@ export const bestSpinWheelGamesForStudents: BlogPost = {
     },
     {
       q: "Can I project the wheel fullscreen on a smartboard?",
-      a: "Yes. Fullscreen hides browser chrome so only the wheel shows on your projector or interactive panel—useful when students sit far from the screen.",
+      a: "Yes. Fullscreen hides browser chrome so only the wheel shows on your projector or interactive panel, useful when students sit far from the screen.",
     },
     {
       q: "Which wheel should I use for picking students versus vocabulary words?",
