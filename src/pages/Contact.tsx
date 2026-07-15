@@ -206,7 +206,7 @@ const Contact = () => {
                   </p>
                   <a
                     href={`mailto:${CONTACT_EMAIL}`}
-                    className="text-primary hover:underline font-semibold"
+                    className="text-primary underline underline-offset-2 font-semibold"
                   >
                     {CONTACT_EMAIL}
                   </a>
@@ -238,7 +238,7 @@ const Contact = () => {
                   <div>
                     <p className="font-medium text-foreground">Operator</p>
                     <p>
-                      <Link to="/" className="text-primary hover:underline font-medium">
+                      <Link to="/" className="text-primary underline underline-offset-2 font-medium">
                         Online Spin Wheel
                       </Link>{" "}
                       is operated by a small team dedicated solely to this website,
@@ -274,7 +274,7 @@ const Contact = () => {
                 <li>• We typically respond within 24-48 hours</li>
                 <li>
                   • Check our{" "}
-                  <Link to="/#homepage-faq" className="text-primary hover:underline font-medium">
+                  <Link to="/#homepage-faq" className="text-primary underline underline-offset-2 font-medium">
                     FAQ section
                   </Link>{" "}
                   on the homepage before contacting us

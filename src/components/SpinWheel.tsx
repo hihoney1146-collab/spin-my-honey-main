@@ -280,6 +280,16 @@ export const SpinWheel = ({
   const location = useLocation();
   const { streamerMode: streamFromUrl, setStreamerMode: setStreamParam, streamBg, setStreamBg } =
     useStreamerMode();
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sync = () => setPrefersReducedMotion(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
   const usePreset =
     Array.isArray(presetOptionLabels) && presetOptionLabels.length > 0;
 
@@ -577,7 +587,7 @@ export const SpinWheel = ({
     // Empty wheel (watermark): spin forever. Single active slice: no idle spin.
     const idleSpinAllowed = active.length === 0 || active.length >= 2;
 
-    if (isSpinning || !idleSpinAllowed) {
+    if (prefersReducedMotion || isSpinning || !idleSpinAllowed) {
       if (continuousSpinRef.current !== null) {
         cancelAnimationFrame(continuousSpinRef.current);
         continuousSpinRef.current = null;
@@ -601,7 +611,7 @@ export const SpinWheel = ({
         continuousSpinRef.current = null;
       }
     };
-  }, [isSpinning, entries]);
+  }, [isSpinning, entries, prefersReducedMotion]);
 
   // Preload images when entries change
   useEffect(() => {
@@ -1067,8 +1077,12 @@ export const SpinWheel = ({
     });
 
     // WheelOfNames-style physics: moderate rotations, smooth cubic deceleration
-    const durationSeconds = spinDurationSeconds;
-    const spins = durationSeconds * 1.35 + 1.8 + cryptoRandom() * 2.4;
+    const durationSeconds = prefersReducedMotion
+      ? Math.min(1.2, spinDurationSeconds)
+      : spinDurationSeconds;
+    const spins = prefersReducedMotion
+      ? 1.2 + cryptoRandom() * 0.4
+      : durationSeconds * 1.35 + 1.8 + cryptoRandom() * 2.4;
     const extraDegrees = cryptoRandom() * 360;
     const totalRotation = spins * 360 + extraDegrees;
 
@@ -1138,33 +1152,36 @@ export const SpinWheel = ({
           playSoundEffect("win");
           setShowWinnerDialog(true);
 
-          // Left side party popper
-          confetti({
-            particleCount: 100,
-            spread: 60,
-            origin: { x: 0.2, y: 0.6 },
-            angle: 60,
-            colors: ["#ff6b6b", "#feca57", "#48dbfb", "#ff9ff3", "#54a0ff"],
-          });
-
-          // Right side party popper
-          confetti({
-            particleCount: 100,
-            spread: 60,
-            origin: { x: 0.8, y: 0.6 },
-            angle: 120,
-            colors: ["#ff6b6b", "#feca57", "#48dbfb", "#ff9ff3", "#54a0ff"],
-          });
-
-          // Center burst
-          setTimeout(() => {
+          // Confetti respects prefers-reduced-motion
+          if (!prefersReducedMotion) {
+            // Left side party popper
             confetti({
-              particleCount: 150,
-              spread: 100,
-              origin: { y: 0.5 },
+              particleCount: 100,
+              spread: 60,
+              origin: { x: 0.2, y: 0.6 },
+              angle: 60,
               colors: ["#ff6b6b", "#feca57", "#48dbfb", "#ff9ff3", "#54a0ff"],
             });
-          }, 200);
+
+            // Right side party popper
+            confetti({
+              particleCount: 100,
+              spread: 60,
+              origin: { x: 0.8, y: 0.6 },
+              angle: 120,
+              colors: ["#ff6b6b", "#feca57", "#48dbfb", "#ff9ff3", "#54a0ff"],
+            });
+
+            // Center burst
+            setTimeout(() => {
+              confetti({
+                particleCount: 150,
+                spread: 100,
+                origin: { y: 0.5 },
+                colors: ["#ff6b6b", "#feca57", "#48dbfb", "#ff9ff3", "#54a0ff"],
+              });
+            }, 200);
+          }
         }, 300);
       }
     };
@@ -1414,7 +1431,7 @@ export const SpinWheel = ({
               </div>
               <Badge
                 variant="secondary"
-                className="text-xs font-semibold px-2.5 py-0.5 bg-primary/10 text-primary border-0"
+                className="text-xs font-semibold px-2.5 py-0.5 bg-primary text-primary-foreground border-0"
               >
                 {activeEntries.length} Active
               </Badge>
@@ -1519,7 +1536,7 @@ export const SpinWheel = ({
               </label>
               <Badge
                 variant="secondary"
-                className="text-[10px] font-bold px-2 py-0.5 bg-primary/10 text-primary border-0"
+                className="text-[10px] font-bold px-2 py-0.5 bg-primary text-primary-foreground border-0"
               >
                 {formatSpinDuration(spinDurationSeconds)}
               </Badge>
@@ -1568,13 +1585,15 @@ export const SpinWheel = ({
             <button
               type="button"
               id="entries-list-heading"
+              aria-expanded={desktopEntriesListExpanded}
+              aria-controls="entries-list-panel"
               aria-label={
                 desktopEntriesListExpanded
                   ? "Collapse entries list"
                   : "Expand entries list"
               }
               onClick={() => setDesktopEntriesListExpanded((o) => !o)}
-              className="hidden lg:flex text-[11px] font-bold text-foreground/80 mb-2 w-full items-center justify-between gap-2 uppercase tracking-wide flex-shrink-0 rounded-lg text-left cursor-pointer px-2 py-1.5 -mx-2 hover:bg-muted/70 transition-colors"
+              className="hidden lg:flex text-[11px] font-bold text-foreground/80 mb-2 w-full items-center justify-between gap-2 uppercase tracking-wide flex-shrink-0 rounded-lg text-left cursor-pointer px-2 py-1.5 -mx-2 hover:bg-muted/70 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
             >
               <span className="flex items-center gap-1.5 min-w-0">
                 <div className="w-1 h-1 rounded-full bg-primary flex-shrink-0" />
@@ -1670,8 +1689,8 @@ export const SpinWheel = ({
                     }`}
                 >
                   {/* Entry Number (global index) */}
-                  <div className="flex items-center justify-center min-w-[20px] lg:min-w-[24px] h-5 lg:h-6 rounded-md bg-primary/10 border border-primary/20 flex-shrink-0">
-                    <span className="text-[9px] lg:text-[10px] font-bold text-primary">
+                  <div className="flex items-center justify-center min-w-[20px] lg:min-w-[24px] h-5 lg:h-6 rounded-md bg-muted border border-border flex-shrink-0">
+                    <span className="text-[9px] lg:text-[10px] font-bold text-foreground">
                       {entriesPageIndex * ENTRIES_PAGE_SIZE + index + 1}
                     </span>
                   </div>
@@ -1686,11 +1705,16 @@ export const SpinWheel = ({
                       : "text-muted-foreground hover:text-foreground hover:bg-muted border border-border"
                       }`}
                     title={entry.active ? "Deactivate" : "Activate"}
+                    aria-label={
+                      entry.active
+                        ? `Deactivate entry ${entry.text || "untitled"}`
+                        : `Activate entry ${entry.text || "untitled"}`
+                    }
                   >
                     {entry.active ? (
-                      <Check className="h-3 w-3 lg:h-3.5 lg:w-3.5" />
+                      <Check className="h-3 w-3 lg:h-3.5 lg:w-3.5" aria-hidden="true" />
                     ) : (
-                      <Minus className="h-3 w-3 lg:h-3.5 lg:w-3.5" />
+                      <Minus className="h-3 w-3 lg:h-3.5 lg:w-3.5" aria-hidden="true" />
                     )}
                   </Button>
 
@@ -1708,6 +1732,7 @@ export const SpinWheel = ({
                         }
                         className="w-full h-full opacity-0 cursor-pointer"
                         title="Change color"
+                        aria-label={`Color for entry ${entry.text || "untitled"}`}
                         disabled={!entry.active}
                       />
                     </div>
@@ -1751,8 +1776,13 @@ export const SpinWheel = ({
                         } ${!entry.active ? "opacity-50 cursor-not-allowed" : ""
                         }`}
                       title={entry.imageUrl ? "Change image" : "Add image"}
+                      aria-label={
+                        entry.imageUrl
+                          ? `Change image for ${entry.text || "untitled"}`
+                          : `Add image for ${entry.text || "untitled"}`
+                      }
                     >
-                      <ImageIcon className="h-3 w-3 lg:h-3.5 lg:w-3.5" />
+                      <ImageIcon className="h-3 w-3 lg:h-3.5 lg:w-3.5" aria-hidden="true" />
                     </label>
                   </div>
 
@@ -1764,8 +1794,9 @@ export const SpinWheel = ({
                       variant="ghost"
                       className="h-6 w-6 lg:h-7 lg:w-7 flex-shrink-0 text-red-600 hover:text-white hover:bg-red-500 border border-transparent hover:border-red-400 rounded-md"
                       title="Remove image"
+                      aria-label={`Remove image from ${entry.text || "untitled"}`}
                     >
-                      <X className="h-3 w-3 lg:h-3.5 lg:w-3.5" />
+                      <X className="h-3 w-3 lg:h-3.5 lg:w-3.5" aria-hidden="true" />
                     </Button>
                   )}
 
@@ -1778,6 +1809,7 @@ export const SpinWheel = ({
                       }`}
                     disabled={!entry.active}
                     placeholder="Entry name"
+                    aria-label={`Entry name ${entriesPageIndex * ENTRIES_PAGE_SIZE + index + 1}`}
                   />
 
                   {/* Remove Button */}
@@ -1785,10 +1817,11 @@ export const SpinWheel = ({
                     onClick={() => removeEntry(entry.id)}
                     size="icon"
                     variant="ghost"
-                    className="h-6 w-6 lg:h-7 lg:w-7 text-muted-foreground hover:text-white hover:bg-red-500 opacity-0 group-hover:opacity-100 transition-all flex-shrink-0 border border-transparent hover:border-red-400 rounded-md"
+                    className="h-6 w-6 lg:h-7 lg:w-7 text-muted-foreground hover:text-white hover:bg-red-500 opacity-0 group-hover:opacity-100 focus:opacity-100 transition-all flex-shrink-0 border border-transparent hover:border-red-400 rounded-md"
                     title="Remove"
+                    aria-label={`Remove entry ${entry.text || "untitled"}`}
                   >
-                    <Trash2 className="h-3 w-3 lg:h-3.5 lg:w-3.5" />
+                    <Trash2 className="h-3 w-3 lg:h-3.5 lg:w-3.5" aria-hidden="true" />
                   </Button>
                 </div>
               ))}

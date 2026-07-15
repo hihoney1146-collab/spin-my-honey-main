@@ -29,6 +29,7 @@
     "audit:meta": "node scripts/audit-meta.mjs",
     "audit:jsonld": "node scripts/audit-jsonld.mjs",
     "audit:redirects": "node scripts/audit-redirects.mjs",
+    "audit:a11y": "node scripts/audit-a11y.mjs",
     "audit:all": "node scripts/audit-ssr.mjs && node scripts/dup-check.mjs && node scripts/audit-meta.mjs && node scripts/audit-jsonld.mjs && node scripts/audit-redirects.mjs && node scripts/identity-check.mjs",
     "test:e2e": "playwright test",
     "test:unit": "vitest run",
@@ -94,6 +95,7 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.10.1",
     "@eslint/js": "^9.32.0",
     "@playwright/test": "^1.49.1",
     "@tailwindcss/typography": "^0.5.16",

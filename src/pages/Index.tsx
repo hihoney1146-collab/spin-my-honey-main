@@ -97,11 +97,11 @@ const USE_CASES: {
     body: (
       <>
         Run ticket-number draws with proof links on the{" "}
-        <Link to="/raffle-wheel" className="text-primary hover:underline font-medium">
+        <Link to="/raffle-wheel" className="text-primary underline underline-offset-2 font-medium">
           raffle wheel
         </Link>{" "}
         or paste @handles on the{" "}
-        <Link to="/winner-picker-wheel" className="text-primary hover:underline font-medium">
+        <Link to="/winner-picker-wheel" className="text-primary underline underline-offset-2 font-medium">
           winner picker wheel
         </Link>
         .
@@ -114,11 +114,11 @@ const USE_CASES: {
     body: (
       <>
         Open the{" "}
-        <Link to="/classroom-spinner" className="text-primary hover:underline font-medium">
+        <Link to="/classroom-spinner" className="text-primary underline underline-offset-2 font-medium">
           classroom spinner
         </Link>{" "}
         for student picking, teams, and a timer, or use the{" "}
-        <Link to="/random-student-picker" className="text-primary hover:underline font-medium">
+        <Link to="/random-student-picker" className="text-primary underline underline-offset-2 font-medium">
           random student picker
         </Link>
         .
@@ -131,7 +131,7 @@ const USE_CASES: {
     body: (
       <>
         Label slices for store giveaways and stream rewards with the{" "}
-        <Link to="/prize-wheel" className="text-primary hover:underline font-medium">
+        <Link to="/prize-wheel" className="text-primary underline underline-offset-2 font-medium">
           prize wheel
         </Link>
         .
@@ -144,7 +144,7 @@ const USE_CASES: {
     body: (
       <>
         Assign tasks, pick a presenter, or split people into squads with the{" "}
-        <Link to="/team-generator-wheel" className="text-primary hover:underline font-medium">
+        <Link to="/team-generator-wheel" className="text-primary underline underline-offset-2 font-medium">
           team generator wheel
         </Link>
         .
@@ -157,11 +157,11 @@ const USE_CASES: {
     body: (
       <>
         Settle &ldquo;where do we eat?&rdquo; and &ldquo;what do we watch?&rdquo; with the{" "}
-        <Link to="/dinner-picker-wheel" className="text-primary hover:underline font-medium">
+        <Link to="/dinner-picker-wheel" className="text-primary underline underline-offset-2 font-medium">
           dinner picker wheel
         </Link>{" "}
         and{" "}
-        <Link to="/movie-picker-wheel" className="text-primary hover:underline font-medium">
+        <Link to="/movie-picker-wheel" className="text-primary underline underline-offset-2 font-medium">
           movie picker wheel
         </Link>
         .
@@ -174,11 +174,11 @@ const USE_CASES: {
     body: (
       <>
         Evaluating WheelOfNames-style tools? Read our{" "}
-        <Link to="/wheel-of-names-alternative" className="text-primary hover:underline font-medium">
+        <Link to="/wheel-of-names-alternative" className="text-primary underline underline-offset-2 font-medium">
           feature comparison
         </Link>{" "}
         comparison or spin the{" "}
-        <Link to="/random-name-picker-wheel" className="text-primary hover:underline font-medium">
+        <Link to="/random-name-picker-wheel" className="text-primary underline underline-offset-2 font-medium">
           random name picker
         </Link>
         .
@@ -437,7 +437,7 @@ const Index = () => {
               memory, so a name that just won is exactly as likely to win again next
               time. It all runs on your device, your entries never touch our
               servers. Learn more about{" "}
-              <Link to="/how-randomness-works" className="text-primary hover:underline font-medium">
+              <Link to="/how-randomness-works" className="text-primary underline underline-offset-2 font-medium">
                 how randomness works
               </Link>
               .
@@ -480,7 +480,7 @@ const Index = () => {
                 ))}
               </ul>
               <p className="mt-6 text-sm text-muted-foreground">
-                <Link to={BLOG_INDEX_PATH} className="text-primary hover:underline font-medium">
+                <Link to={BLOG_INDEX_PATH} className="text-primary underline underline-offset-2 font-medium">
                   View all blog posts
                 </Link>
               </p>

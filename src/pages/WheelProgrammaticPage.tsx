@@ -240,7 +240,7 @@ const WheelProgrammaticPage = () => {
             <li>
               <Link
                 to={WHEEL_HUB_PATH}
-                className="font-medium text-primary hover:underline"
+                className="font-medium text-primary underline underline-offset-2"
               >
                 All specialty wheels
               </Link>
@@ -249,7 +249,7 @@ const WheelProgrammaticPage = () => {
               <li key={l.to}>
                 <Link
                   to={l.to}
-                  className="font-medium text-primary hover:underline"
+                  className="font-medium text-primary underline underline-offset-2"
                 >
                   {l.label}
                 </Link>
@@ -259,7 +259,7 @@ const WheelProgrammaticPage = () => {
               <li key={l.to}>
                 <Link
                   to={l.to}
-                  className="font-medium text-primary hover:underline"
+                  className="font-medium text-primary underline underline-offset-2"
                 >
                   {l.label}
                 </Link>
@@ -469,19 +469,19 @@ const WheelProgrammaticPage = () => {
             <div className="flex flex-wrap gap-3 text-sm">
               <Link
                 to={WHEEL_HUB_PATH}
-                className="font-medium text-primary hover:underline"
+                className="font-medium text-primary underline underline-offset-2"
               >
                 Browse all wheels
               </Link>
               <Link
                 to={BLOG_INDEX_PATH}
-                className="font-medium text-primary hover:underline"
+                className="font-medium text-primary underline underline-offset-2"
               >
                 Read our blog
               </Link>
               <Link
                 to="/"
-                className="font-medium text-primary hover:underline"
+                className="font-medium text-primary underline underline-offset-2"
               >
                 Back to homepage
               </Link>

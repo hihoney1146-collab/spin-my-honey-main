@@ -45,12 +45,17 @@ export function EmbedWidgetSnippet({ slug, wheelTitle }: EmbedWidgetSnippetProps
       <h3 className="text-lg font-bold">Embed this wheel</h3>
       <p className="text-sm text-muted-foreground">
         Paste this iframe on your site. The attribution link below points back to{" "}
-        <a href={toolUrl} className="text-primary hover:underline">
+        <a href={toolUrl} className="text-primary underline underline-offset-2 hover:opacity-90">
           {toolUrl.replace("https://", "")}
         </a>{" "}
         (followed link for SEO).
       </p>
-      <pre className="bg-background border border-border rounded-lg p-3 text-xs overflow-x-auto max-h-48">
+      <pre
+        tabIndex={0}
+        role="region"
+        aria-label={`Embed code for ${wheelTitle}`}
+        className="bg-background border border-border rounded-lg p-3 text-xs overflow-x-auto max-h-48 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+      >
         <code>{embedCode}</code>
       </pre>
       <Button type="button" onClick={copySnippet} variant="secondary" className="gap-2">

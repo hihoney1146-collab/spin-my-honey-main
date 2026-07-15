@@ -105,21 +105,21 @@ export const CookieConsent = () => {
                   our{" "}
                   <Link
                     to="/cookie-policy"
-                    className="text-primary hover:underline font-medium"
+                    className="text-primary underline underline-offset-2 font-medium"
                   >
                     Cookie Policy
                   </Link>
                   ,{" "}
                   <Link
                     to="/privacy-policy"
-                    className="text-primary hover:underline font-medium"
+                    className="text-primary underline underline-offset-2 font-medium"
                   >
                     Privacy Policy
                   </Link>
                   , and{" "}
                   <Link
                     to="/disclaimer"
-                    className="text-primary hover:underline font-medium"
+                    className="text-primary underline underline-offset-2 font-medium"
                   >
                     Disclaimer
                   </Link>

@@ -106,7 +106,17 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
         data-stream-fg={streamFg}
         style={{ backgroundColor: streamBg, color: streamFg }}
       >
-        <main className="flex-1 flex flex-col items-center justify-center py-4 px-2">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-background focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-foreground focus:ring-2 focus:ring-primary focus:ring-offset-2"
+        >
+          Skip to content
+        </a>
+        <main
+          id="main-content"
+          tabIndex={-1}
+          className="flex-1 flex flex-col items-center justify-center py-4 px-2"
+        >
           {children}
         </main>
       </div>
@@ -115,6 +125,12 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-background focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-foreground focus:ring-2 focus:ring-primary focus:ring-offset-2"
+      >
+        Skip to content
+      </a>
       <header className="border-b bg-card/95 backdrop-blur-md sticky top-0 z-50 shadow-sm">
         <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between min-h-[4.25rem] h-[4.25rem] sm:h-20 md:h-20 lg:h-24">
@@ -165,8 +181,8 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                       relative px-3 xl:px-4 py-2 rounded-lg font-medium text-sm xl:text-base
                       transition-all duration-300 ease-out
                       ${active
-                        ? "text-primary bg-primary/10 shadow-sm"
-                        : "text-foreground/70 hover:text-primary hover:bg-primary/5"
+                        ? "text-foreground bg-muted shadow-sm"
+                        : "text-foreground/80 hover:text-primary hover:bg-primary/5"
                       }
                       whitespace-nowrap
                     `}
@@ -193,8 +209,9 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                     variant="ghost"
                     size="icon"
                     className="relative h-10 w-10 hover:bg-primary/10"
+                    aria-label="Open menu"
                   >
-                    <Menu className="h-5 w-5 sm:h-6 sm:w-6 transition-transform" />
+                    <Menu className="h-5 w-5 sm:h-6 sm:w-6 transition-transform" aria-hidden="true" />
                     <span className="sr-only">Open menu</span>
                   </Button>
                 </SheetTrigger>
@@ -244,7 +261,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                           flex items-center gap-3 px-4 py-3 rounded-lg
                           transition-all duration-200
                           ${active
-                              ? "bg-primary/10 text-primary font-semibold border-l-4 border-primary"
+                              ? "bg-muted text-foreground font-semibold border-l-4 border-primary"
                               : "text-foreground/70 hover:bg-primary/5 hover:text-primary border-l-4 border-transparent"
                             }
                         `}
@@ -277,7 +294,9 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
         </nav>
       </header>
 
-      <main className="flex-1">{children}</main>
+      <main id="main-content" tabIndex={-1} className="flex-1">
+        {children}
+      </main>
 
       <footer className="relative border-t bg-card/95 backdrop-blur-md mt-auto">
         {/* Decorative line */}

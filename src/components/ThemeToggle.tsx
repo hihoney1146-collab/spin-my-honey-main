@@ -18,8 +18,9 @@ export function ThemeToggle() {
         size="icon"
         className="h-9 w-9 rounded-lg"
         disabled
+        aria-label="Toggle theme"
       >
-        <Sun className="h-4 w-4" />
+        <Sun className="h-4 w-4" aria-hidden="true" />
       </Button>
     );
   }

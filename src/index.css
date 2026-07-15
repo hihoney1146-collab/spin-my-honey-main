@@ -20,7 +20,7 @@ All colors MUST be HSL.
     --primary: 280 85% 55%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 200 95% 50%;
+    --secondary: 200 90% 35%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 240 5% 96%;
@@ -81,14 +81,15 @@ All colors MUST be HSL.
     --popover: 240 8% 15%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 280 85% 65%;
-    --primary-foreground: 0 0% 100%;
+    /* Brighter primary for link text on dark surfaces; dark fg on solid buttons */
+    --primary: 280 85% 72%;
+    --primary-foreground: 280 40% 10%;
 
-    --secondary: 200 95% 55%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 200 90% 55%;
+    --secondary-foreground: 200 80% 8%;
 
     --muted: 240 8% 20%;
-    --muted-foreground: 240 5% 65%;
+    --muted-foreground: 240 5% 70%;
 
     --accent: 45 95% 60%;
     --accent-foreground: 240 10% 10%;
@@ -98,7 +99,7 @@ All colors MUST be HSL.
 
     --border: 240 8% 25%;
     --input: 240 8% 25%;
-    --ring: 280 85% 65%;
+    --ring: 280 85% 72%;
 
     --shadow-glow: 0 10px 40px -10px hsl(var(--primary) / 0.6);
     --shadow-card: 0 4px 20px -2px hsl(0 0% 0% / 0.4);
@@ -120,6 +121,27 @@ All colors MUST be HSL.
     scroll-behavior: smooth;
     scrollbar-width: thin;
     scrollbar-color: hsl(var(--muted-foreground) / 0.4) transparent;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+
+    .animate-digit-roll,
+    .animate-bounce,
+    .animate-spin {
+      animation: none !important;
+    }
   }
 
   /* Better text rendering */

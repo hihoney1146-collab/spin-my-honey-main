@@ -74,7 +74,7 @@ const About = () => {
           <div className="space-y-6 text-muted-foreground leading-relaxed">
             <div>
               <h3 className="text-lg font-semibold text-foreground mb-2">
-                <Link to="/team/ceo" className="text-primary hover:underline">
+                <Link to="/team/ceo" className="text-primary underline underline-offset-2">
                   Armghana Zeeshan
                 </Link>
                 , CEO
@@ -86,7 +86,7 @@ const About = () => {
             </div>
             <div>
               <h3 className="text-lg font-semibold text-foreground mb-2">
-                <Link to="/team/co-founder" className="text-primary hover:underline">
+                <Link to="/team/co-founder" className="text-primary underline underline-offset-2">
                   Zoha Zeeshan
                 </Link>
                 , Co-Founder
@@ -99,7 +99,7 @@ const About = () => {
             </div>
             <div>
               <h3 className="text-lg font-semibold text-foreground mb-2">
-                <Link to="/team/content" className="text-primary hover:underline">
+                <Link to="/team/content" className="text-primary underline underline-offset-2">
                   Raja Jahangir
                 </Link>
                 , Content &amp; SEO Lead
@@ -111,7 +111,7 @@ const About = () => {
             </div>
             <div>
               <h3 className="text-lg font-semibold text-foreground mb-2">
-                <Link to="/team/social" className="text-primary hover:underline">
+                <Link to="/team/social" className="text-primary underline underline-offset-2">
                   Abdal Khalid
                 </Link>
                 , Social Media Expert
@@ -140,11 +140,11 @@ const About = () => {
             <p className="text-base md:text-lg">
               Randomness comes from your browser&apos;s built-in secure generator, the same kind of randomness used for encryption keys, never a simple
               predictable formula. Read the full explanation on our{" "}
-              <Link to="/how-randomness-works" className="text-primary hover:underline font-medium">
+              <Link to="/how-randomness-works" className="text-primary underline underline-offset-2 font-medium">
                 how randomness works
               </Link>{" "}
               page and our{" "}
-              <Link to="/spin-wheel-fairness-study" className="text-primary hover:underline font-medium">
+              <Link to="/spin-wheel-fairness-study" className="text-primary underline underline-offset-2 font-medium">
                 100,000-spin fairness study
               </Link>
               .
@@ -208,7 +208,7 @@ const About = () => {
                   <span className="text-primary mt-1">•</span>
                   <span>
                     Standard analytics and ad measurement to keep the tool free (see our{" "}
-                    <Link to="/privacy-policy" className="text-primary hover:underline">
+                    <Link to="/privacy-policy" className="text-primary underline underline-offset-2">
                       Privacy Policy
                     </Link>
                     ).
@@ -236,7 +236,7 @@ const About = () => {
             </p>
             <p className="text-base md:text-lg">
               Found a bug or spotted an error? Email{" "}
-              <a href={`mailto:${CONTACT_EMAIL}`} className="text-primary hover:underline font-medium">
+              <a href={`mailto:${CONTACT_EMAIL}`} className="text-primary underline underline-offset-2 font-medium">
                 {CONTACT_EMAIL}
               </a>{" "}
               with the page URL, your device and browser, and what happened versus what you expected.
