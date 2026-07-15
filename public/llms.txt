@@ -2,7 +2,7 @@
 
 > Free browser spin wheels for fair random picks: names, numbers, teams, giveaways, classrooms, and decisions.
 
-Last updated: 2026-07-14
+Last updated: 2026-07-15
 
 ## Identity
 - Canonical site: https://onlinespinwheel.fun/
@@ -60,13 +60,13 @@ https://onlinespinwheel.fun/classroom-spinner, Classroom Spinner: One page for t
 https://onlinespinwheel.fun/alphabet-spinner-wheel, Alphabet Spinner Wheel: Teaching phonics or playing word games? Spin A through Z, exclude letters already used, and call out whatever consonant or vowel lands.
 https://onlinespinwheel.fun/random-animal-picker-wheel, Random Animal Picker Wheel: Need a science fair topic or sketch subject? Spin lions, sharks, penguins, or your custom creature list and learn about whatever lands.
 https://onlinespinwheel.fun/random-country-wheel, Random Country Wheel: Brushing up on capitals or picking your next trip? Spin countries from around the globe and quiz yourself on flags, maps, and facts.
-https://onlinespinwheel.fun/random-day-picker-wheel, Random Day Picker Wheel: Assign chores or study blocks fairly. Spin Monday through Sunday, or swap in months, and let the calendar pick who does what.
+https://onlinespinwheel.fun/random-day-picker-wheel, Random Day Picker Wheel: Assign chores or study blocks fairly. Spin Monday through Sunday—or swap in months—and let the calendar pick who does what.
 https://onlinespinwheel.fun/random-student-picker, Random Student Picker: Paste your class roster, spin in fullscreen mode, auto-remove picked students, and review session history so every kid gets a turn.
 https://onlinespinwheel.fun/random-word-generator-wheel, Random Word Generator Wheel: Running Pictionary or fighting writer's block? Spin nouns and verbs from our word list or paste your own vocabulary for instant prompts.
 https://onlinespinwheel.fun/what-to-draw-wheel, What to Draw Wheel: Blank sketchbook staring back? Spin surreal, cute, or spooky drawing prompts and start sketching before perfectionism kicks in.
 
 ## Events & Giveaways (2)
-https://onlinespinwheel.fun/prize-wheel, Prize Wheel: Spin labeled prize slices for store promos, stream giveaways, or party games, plus an honest guide if you want a physical wheel instead.
+https://onlinespinwheel.fun/prize-wheel, Prize Wheel: Spin labeled prize slices for store promos, stream giveaways, or party games — plus an honest guide if you want a physical wheel instead.
 https://onlinespinwheel.fun/raffle-wheel, Raffle Wheel: Running a school carnival or live giveaway? Spin ticket numbers or names, draw multiple winners, and share a proof link after your stream.
 
 ## Events & Parties (1)
@@ -104,12 +104,12 @@ https://onlinespinwheel.fun/instagram-wheel-picker, Instagram Wheel Picker: Runn
 https://onlinespinwheel.fun/random-travel-destination-wheel, Random Travel Destination Wheel: Every destination sounds amazing? Spin Paris, Tokyo, Bali, or your bucket list and start planning the trip the wheel selects.
 
 ## Utilities & Tools (7)
-https://onlinespinwheel.fun/nfl-team-picker-wheel, NFL Team Picker Wheel: Setting up a Madden bracket or fantasy draft order? Spin all 32 NFL teams, or your custom list, and play whoever the wheel assigns.
+https://onlinespinwheel.fun/nfl-team-picker-wheel, NFL Team Picker Wheel: Setting up a Madden bracket or fantasy draft order? Spin all 32 NFL teams—or your custom list—and play whoever the wheel assigns.
 https://onlinespinwheel.fun/pick-out-of-a-hat-generator, Pick Out of a Hat Generator: Forgot the paper slips? Paste names into our magic hat spinner, draw winners fairly, and remove picks so nobody wins twice.
 https://onlinespinwheel.fun/random-color-wheel, Random Color Wheel: Running a three-marker art challenge or need an accent hue? Spin named colors or paste hex codes for instant palette picks.
 https://onlinespinwheel.fun/random-name-picker-wheel, Random Name Picker Wheel: Paste your participant list, spin the Wheel of Names, and display a fair winner for class, raffles, or stream giveaways in seconds.
 https://onlinespinwheel.fun/random-number-wheel, Random Number Wheel: Set your min-max range, toggle no-repeat picks, and spin visible digits for bingo, board games, or classroom math drills.
-https://onlinespinwheel.fun/team-generator-wheel, Team Generator Wheel: Split PE classes, office workshops, or gaming lobbies into balanced teams, spin once per player and skip the captains argument.
+https://onlinespinwheel.fun/team-generator-wheel, Team Generator Wheel: Split PE classes, office workshops, or gaming lobbies into balanced teams—spin once per player and skip the captains argument.
 https://onlinespinwheel.fun/winner-picker-wheel, Winner Picker Wheel: Paste commenter @handles, remove duplicate entries, spin live, and screen-record proof for Instagram or TikTok giveaway winners.
 
 ## Zodiac & Fortune (3)
@@ -119,7 +119,6 @@ https://onlinespinwheel.fun/zodiac-sign-wheel, Zodiac Sign Wheel: Hosting an ast
 
 ## Blog (indexed posts)
 https://onlinespinwheel.fun/blog
-https://onlinespinwheel.fun/blog/best-icebreaker-games-office-meetings
 https://onlinespinwheel.fun/blog/best-spin-wheel-games-for-students
 
 ## Legal & trust
@@ -131,7 +130,7 @@ https://onlinespinwheel.fun/disclaimer
 ## Machine-readable resources
 - Primary sitemap (urlset): https://onlinespinwheel.fun/sitemap
 - Also: https://onlinespinwheel.fun/sitemap.xml and https://onlinespinwheel.fun/sitemap.txt
-- Child partitions: https://onlinespinwheel.fun/pages-sitemap.xml, https://onlinespinwheel.fun/wheels-sitemap.xml, https://onlinespinwheel.fun/blog-sitemap.xml, https://onlinespinwheel.fun/images-sitemap.xml
+- Child partitions: https://onlinespinwheel.fun/pages-sitemap, https://onlinespinwheel.fun/wheels-sitemap, https://onlinespinwheel.fun/blog-sitemap, https://onlinespinwheel.fun/images-sitemap
 - Index (optional): https://onlinespinwheel.fun/sitemap-index.xml
 - Original data (fairness study CSV): https://onlinespinwheel.fun/downloads/spin-wheel-fairness-study-100k.csv
 - ads.txt: https://onlinespinwheel.fun/ads.txt

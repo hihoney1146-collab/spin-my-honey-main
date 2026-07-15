@@ -9,16 +9,17 @@ npm run verify:ads-txt
 
 ## Submit sitemap (important)
 
-GSC often reports **Couldn't fetch** for `/sitemap.xml` behind Cloudflare even when
-browsers get `200`. Prefer the extensionless URL:
+GSC often reports **Couldn't fetch** for `*.xml` sitemaps behind Cloudflare even when
+browsers get `200`. Prefer extensionless URLs:
 
 1. Open [Google Search Console](https://search.google.com/search-console)
 2. Property: `https://onlinespinwheel.fun` (Domain property or apex URL-prefix)
-3. **Sitemaps** → remove any old failed rows (`sitemap.xml` that still says Couldn't fetch)
+3. **Sitemaps** → **remove** failed rows (`pages-sitemap.xml`, `wheels-sitemap.xml`, etc.)
 4. Add **exactly**: `sitemap`  
    Full URL: `https://onlinespinwheel.fun/sitemap`
 5. If that still fails within 24h, also add: `sitemap.txt`
-6. Do **not** submit child files (`pages-sitemap.xml`, etc.) unless debugging
+6. Do **not** resubmit `*.xml` child files unless debugging — use extensionless
+   `/pages-sitemap`, `/wheels-sitemap`, `/blog-sitemap`, `/images-sitemap` if needed
 
 `robots.txt` lists `/sitemap`, `/sitemap.xml`, and `/sitemap.txt` (same URL set).
 

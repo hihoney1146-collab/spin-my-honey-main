@@ -121,7 +121,7 @@ fixing GSC "Couldn't fetch" and AdSense "ads.txt not found".
 - **Field / expression:**
 
   ```txt
-  (http.request.uri.path in {"/ads.txt" "/robots.txt" "/llms.txt" "/sitemap" "/sitemap.xml" "/sitemap.txt" "/pages-sitemap.xml" "/wheels-sitemap.xml" "/blog-sitemap.xml" "/images-sitemap.xml" "/sitemap-index.xml"})
+  (http.request.uri.path in {"/ads.txt" "/robots.txt" "/llms.txt" "/sitemap" "/sitemap.xml" "/sitemap.txt" "/pages-sitemap" "/pages-sitemap.xml" "/wheels-sitemap" "/wheels-sitemap.xml" "/blog-sitemap" "/blog-sitemap.xml" "/images-sitemap" "/images-sitemap.xml" "/sitemap-index.xml"})
   ```
 
 - **Action:** `Skip` → all managed rules, Bot Fight Mode, rate limiting, and any

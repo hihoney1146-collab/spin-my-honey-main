@@ -35,13 +35,13 @@
     { "source": "/sitemap.xml", "destination": "/api/sitemap" },
     { "source": "/sitemap.txt", "destination": "/api/sitemap?format=txt" },
     {
-      "source": "/((?!api/|.*\\.(?:xml|txt|png|jpe?g|webp|svg|gif|ico|pdf|csv|json|js|css|map|woff2?)$).*)",
+      "source": "/((?!api/|(?:sitemap|pages-sitemap|wheels-sitemap|blog-sitemap|images-sitemap)(?:\\.xml)?$|.*\\.(?:xml|txt|png|jpe?g|webp|svg|gif|ico|pdf|csv|json|js|css|map|woff2?)$).*)",
       "destination": "/index.html"
     }
   ],
   "headers": [
     {
-      "source": "/(sitemap|sitemap\\.xml|pages-sitemap\\.xml|blog-sitemap\\.xml|wheels-sitemap\\.xml|images-sitemap\\.xml|sitemap-index\\.xml)",
+      "source": "/(sitemap|sitemap\\.xml|pages-sitemap|pages-sitemap\\.xml|blog-sitemap|blog-sitemap\\.xml|wheels-sitemap|wheels-sitemap\\.xml|images-sitemap|images-sitemap\\.xml|sitemap-index\\.xml)",
       "headers": [
         {
           "key": "Content-Type",
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "source": "/((?!api(?:/|$)|embed(?:/|$)|ads\\.txt$|robots\\.txt$|llms\\.txt$|sitemap(?:\\.xml|\\.txt)?$|.*sitemap\\.xml$).*)",
+      "source": "/((?!api(?:/|$)|embed(?:/|$)|ads\\.txt$|robots\\.txt$|llms\\.txt$|sitemap(?:\\.xml|\\.txt)?$|.*sitemap(?:\\.xml)?$).*)",
       "headers": [
         {
           "key": "Strict-Transport-Security",

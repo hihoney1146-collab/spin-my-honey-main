@@ -8,9 +8,13 @@ const SITEMAPS = [
   { path: "/sitemap", kind: "urlset", minLocs: 50 },
   { path: "/sitemap.xml", kind: "urlset", minLocs: 50 },
   { path: "/sitemap.txt", kind: "text", minLocs: 50 },
+  { path: "/pages-sitemap", kind: "urlset", minLocs: 10 },
   { path: "/pages-sitemap.xml", kind: "urlset", minLocs: 10 },
+  { path: "/wheels-sitemap", kind: "urlset", minLocs: 40 },
   { path: "/wheels-sitemap.xml", kind: "urlset", minLocs: 40 },
+  { path: "/blog-sitemap", kind: "urlset", minLocs: 1 },
   { path: "/blog-sitemap.xml", kind: "urlset", minLocs: 1 },
+  { path: "/images-sitemap", kind: "image", minLocs: 1 },
   { path: "/images-sitemap.xml", kind: "image", minLocs: 1 },
 ];
 
@@ -158,11 +162,12 @@ try {
 }
 
 console.log("\n=== GSC checklist ===\n");
-console.log(`1. PRIMARY submit in GSC: ${SITE}/sitemap  (extensionless, best with Cloudflare)`);
+console.log(`1. PRIMARY submit in GSC: ${SITE}/sitemap  (extensionless full urlset)`);
 console.log(`2. Fallback: ${SITE}/sitemap.txt  (URL list, often succeeds when XML fails)`);
-console.log(`3. Also listed: ${SITE}/sitemap.xml (same urlset as /sitemap)`);
-console.log("4. Purge Cloudflare cache after deploy, remove old failed submissions, wait, resubmit");
-console.log("5. Bing Webmaster: same /sitemap URL, then npm run indexnow\n");
+console.log(`3. Remove failed *.xml child rows in GSC (Couldn't fetch behind Cloudflare)`);
+console.log("4. Optional children: /pages-sitemap /wheels-sitemap /blog-sitemap /images-sitemap");
+console.log("5. Purge Cloudflare cache after deploy, wait, resubmit /sitemap only");
+console.log("6. Bing Webmaster: same /sitemap URL, then npm run indexnow\n");
 
 if (failed > 0) {
   console.error(`${failed} check(s) failed.`);

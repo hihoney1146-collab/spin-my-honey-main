@@ -1,11 +1,9 @@
 /**
  * Serves the primary XML sitemap at /sitemap and /sitemap.xml (vercel rewrites).
- * Extensionless /sitemap avoids Cloudflare mangling .xml responses for Googlebot.
+ * Extensionless /sitemap prefers the static public/sitemap file on Vercel; this
+ * handler is the fallback and always returns the prebuilt full urlset.
  */
-import {
-  buildSitemapXml,
-  buildTextSitemap,
-} from "../scripts/seo-routes.mjs";
+import { SITEMAP_XML, SITEMAP_TXT } from "./sitemap-payload.js";
 
 function wantsText(req) {
   const raw = req.url || "";
@@ -25,10 +23,10 @@ export default function handler(req, res) {
 
   if (wantsText(req)) {
     res.setHeader("Content-Type", "text/plain; charset=utf-8");
-    res.status(200).send(buildTextSitemap());
+    res.status(200).send(SITEMAP_TXT);
     return;
   }
 
   res.setHeader("Content-Type", "application/xml; charset=utf-8");
-  res.status(200).send(buildSitemapXml());
+  res.status(200).send(SITEMAP_XML);
 }
