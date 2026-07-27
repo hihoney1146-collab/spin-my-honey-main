@@ -21,6 +21,10 @@ import {
   getWheelUniqueContent,
   wheelOgImageUrl,
 } from "./wheel-content-loader.mjs";
+import {
+  WHEEL_MERGE_REDIRECTS,
+  wheelRobotsDirective,
+} from "./wheel-index-policy.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -479,22 +483,25 @@ export function applyRouteHead(html, meta) {
 
 /** @returns {import('./static-page-meta.mjs').RouteMeta[]} */
 function loadWheelRouteMeta() {
-  const wheels = loadWheelPages();
-  return wheels.map((p) => ({
-    path: `/${p.slug}`,
-    title: p.title || "Online Spin Wheel",
-    description: p.metaDescription || p.h1 || "Free online spin wheel.",
-    h1: p.h1,
-    wheel: p,
-    jsonLd: {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      name: p.title || p.h1,
-      description: p.metaDescription,
-      url: canonicalUrl(`/${p.slug}`),
-      headline: p.h1,
-    },
-  }));
+  const mergeSources = new Set(Object.keys(WHEEL_MERGE_REDIRECTS));
+  return loadWheelPages()
+    .filter((p) => p.slug && !mergeSources.has(p.slug))
+    .map((p) => ({
+      path: `/${p.slug}`,
+      title: p.title || "Online Spin Wheel",
+      description: p.metaDescription || p.h1 || "Free online spin wheel.",
+      h1: p.h1,
+      wheel: p,
+      robots: wheelRobotsDirective(p.slug),
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        name: p.title || p.h1,
+        description: p.metaDescription,
+        url: canonicalUrl(`/${p.slug}`),
+        headline: p.h1,
+      },
+    }));
 }
 
 const distPath = path.join(root, "dist");

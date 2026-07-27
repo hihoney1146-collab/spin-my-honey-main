@@ -18,7 +18,7 @@ export const bestSpinWheelGamesForStudents: BlogPost = {
     "alphabet-spinner-wheel",
     "abcd-spin-wheel",
     "random-number-wheel",
-    "prize-wheel",
+    "raffle-wheel",
   ],
   blocks: [
     {

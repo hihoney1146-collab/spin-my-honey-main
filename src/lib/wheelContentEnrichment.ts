@@ -759,6 +759,21 @@ const ABSORBED_SECTIONS: Record<string, AbsorbedSection[]> = {
         "Sekhmet",
       ],
     },
+    {
+      heading: "Daily fortune themes (from Daily Horoscope Wheel)",
+      intro:
+        "The former daily-horoscope-wheel URL now redirects here. Use these day-theme slices when you want a one-spin mood or focus for the day instead of a birth sign.",
+      items: [
+        "Focus on one hard task",
+        "Rest without guilt",
+        "Reach out to a friend",
+        "Tidy one small space",
+        "Learn something new for ten minutes",
+        "Move your body outdoors",
+        "Say no to one extra ask",
+        "Celebrate a small win",
+      ],
+    },
   ],
 };
 

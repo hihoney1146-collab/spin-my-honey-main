@@ -18,7 +18,7 @@ const FAQS = [
   },
   {
     q: "How is Online Spin Wheel different from a generic name spinner?",
-    a: "Besides a free name picker, we publish 40+ specialty pages, raffles, classroom hubs, prize wheels, plus multi-winner proof links and ticket-number raffle mode.",
+    a: "Besides a free name picker, we publish focused specialty tools (raffles with prize-draw and ticket modes, classroom hubs, multi-winner proof links), not dozens of clone spinners.",
   },
   {
     q: "Do my names get uploaded to a server?",
@@ -57,7 +57,7 @@ const TABLE_ROWS: Row[] = [
     others: "Varies",
   },
   {
-    feature: "Specialty tool pages (40+)",
+    feature: "Focused specialty tools (raffle, classroom, name picker, and more)",
     ours: "Yes, raffles, classrooms, prizes",
     others: "Typically a single generic wheel",
   },
@@ -88,7 +88,7 @@ const WheelOfNamesAlternative = () => {
         <title>{title}</title>
         <meta
           name="description"
-          content="Compare Online Spin Wheel with other free pickers: no account, browser-only entries, 40+ specialty pages, raffle proof links, and a classroom hub."
+          content="Compare Online Spin Wheel with other free pickers: no account, browser-only entries, raffle proof links, classroom hub, and focused specialty tools."
         />
         <link rel="canonical" href={canonical} />
         <script type="application/ld+json">
@@ -144,7 +144,7 @@ const WheelOfNamesAlternative = () => {
               raffles
             </Link>
             ,{" "}
-            <Link to="/prize-wheel" className="text-primary font-medium hover:underline">
+            <Link to="/raffle-wheel" className="text-primary font-medium hover:underline">
               prize spins
             </Link>
             , and a{" "}
@@ -196,7 +196,7 @@ const WheelOfNamesAlternative = () => {
             <ul className="space-y-2 text-muted-foreground text-sm">
               <li>Teachers who want picker + teams + timer in one tab</li>
               <li>Giveaway hosts who need proof links and ticket-number raffles</li>
-              <li>Organizers who want 40+ preset specialty wheels beyond names</li>
+              <li>Organizers who want raffle, classroom, and specialty decision tools beyond names</li>
               <li>Anyone who wants entries to stay on their device</li>
             </ul>
           </Card>
@@ -222,8 +222,8 @@ const WheelOfNamesAlternative = () => {
               </Link>
             </li>
             <li>
-              <Link to="/prize-wheel" className="text-primary hover:underline">
-                Prize wheel, labeled giveaway slices
+              <Link to="/raffle-wheel" className="text-primary hover:underline">
+                Raffle &amp; prize wheel, labeled giveaway slices
               </Link>
             </li>
             <li>

@@ -2346,15 +2346,19 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "raffle-wheel": {
     directAnswer:
-      "The Raffle Wheel runs transparent multi-winner draws for US school carnivals, church fundraisers, and brand giveaways, paste entrant names or switch to ticket-number mode and spin numbered stubs instead of labels. Draw several winners without replacement, screen-record the animation, and copy a timestamped proof link followers can verify after the live stream ends.",
-    title: "Raffle Wheel, Multi-Winner Virtual Draw",
+      "The Raffle Wheel runs prize draws and ticket raffles in one tool: paste entrant names, switch to ticket-number mode, or load labeled prize slices (Grand Prize, gift card, bonus entry) for game-show-style spins. Draw multiple winners without replacement, screen-record the animation, and copy a timestamped proof link followers can verify after the live stream ends.",
+    title: "Raffle Wheel — Prize Draws, Tickets & Multi-Winner Picks",
     metaDescription:
-      "Running a school carnival or live giveaway? Spin ticket numbers or names, draw multiple winners, and share a proof link after your stream.",
-    h1: "Raffle Wheel, Virtual Multi-Winner Draw",
+      "Run prize-wheel style giveaways or ticket raffles: labeled prizes, ticket numbers, multi-winner draws, and a shareable proof link for streams and school events.",
+    h1: "Raffle Wheel — Prize Draws & Multi-Winner Raffles",
     useCases: [
       {
         heading: "School carnival ticket stubs",
         body: "PTA volunteers paste Ticket #001 through #200, spin live on the gym projector, and remove each winning stub so the next round cannot repeat a holder.",
+      },
+      {
+        heading: "Labeled prize-wheel promos",
+        body: "Retail and stream giveaways load Grand Prize, gift card, free merch, and Try Again slices—the same prize-wheel job—then spin once per customer or subscriber while the audience watches the landing label.",
       },
       {
         heading: "Church raffle nights",
@@ -2380,6 +2384,11 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
           "Yes. Toggle ticket-number mode, paste stubs like #047, or auto-generate a numbered range. The wheel treats each ticket as its own slice.",
       },
       {
+        question: "Is this also a prize wheel?",
+        answer:
+          "Yes. Use labeled prize slices (Grand Prize, discounts, merch) for classic prize-wheel giveaways, or switch to ticket/name mode for numbered raffles. One page covers both intents after we merged the old prize-wheel URL here.",
+      },
+      {
         question: "How do multi-winner raffle draws work?",
         answer:
           "Set how many winners you need. Each spin removes the prior winner from the pool when drawing multiple prizes in one session.",
@@ -2390,23 +2399,18 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
           "After the final winner, copy the proof URL with timestamp and results. Post it beside your live recording so entrants can verify the outcome.",
       },
       {
-        question: "Is this the same as a prize wheel?",
-        answer:
-          "Raffle mode focuses on entrants and ticket numbers. For labeled prize slices like Gift Card or Grand Prize, try our prize wheel page.",
-      },
-      {
         question: "Do I need accounts or uploads?",
         answer:
-          "No. Entries stay in your browser. Paste names or tickets, spin, and optionally record the screen, nothing is sent to our servers.",
+          "No. Entries stay in your browser. Paste names, tickets, or prize labels, spin, and optionally record the screen—nothing is sent to our servers.",
       },
     ],
     relatedWheels: [
-      { slug: "prize-wheel", anchor: "Labeled prize slice wheel" },
       { slug: "winner-picker-wheel", anchor: "Social giveaway winner picker" },
       { slug: "pick-out-of-a-hat-generator", anchor: "Classic hat draw online" },
       { slug: "random-name-picker-wheel", anchor: "Name-only raffle picker" },
-      { slug: "instagram-wheel-picker", anchor: "Comment handle picker" },
       { slug: "classroom-spinner", anchor: "Teacher classroom hub" },
+      { slug: "coin-flip-wheel", anchor: "Coin-flip tiebreaker" },
+      { slug: "team-generator-wheel", anchor: "Split entrants into teams" },
     ],
   },
 

@@ -1,5 +1,6 @@
 import { SpinWheel } from "@/components/SpinWheel";
 import { WheelDirectory } from "@/components/WheelDirectory";
+import { AdSlot } from "@/components/AdSlot";
 import { Card } from "@/components/ui/card";
 import {
   ListPlus,
@@ -131,8 +132,8 @@ const USE_CASES: {
     body: (
       <>
         Label slices for store giveaways and stream rewards with the{" "}
-        <Link to="/prize-wheel" className="text-primary underline underline-offset-2 font-medium">
-          prize wheel
+        <Link to="/raffle-wheel" className="text-primary underline underline-offset-2 font-medium">
+          raffle / prize wheel
         </Link>
         .
       </>
@@ -383,6 +384,17 @@ const Index = () => {
                 </figcaption>
               </figure>
                   </div>
+          </div>
+        </section>
+
+        {/* Reserved ad region: below interactive wheel + how-to, away from Spin CTA (accidental-click policy). */}
+        <section
+          id="home-ad-mid"
+          className="w-full px-4 sm:px-6 lg:px-8 py-6 sm:py-8"
+          aria-label="Advertisement"
+        >
+          <div className="max-w-3xl mx-auto">
+            <AdSlot label="Advertisement" />
           </div>
         </section>
 

@@ -1,12 +1,17 @@
 #!/usr/bin/env node
 /**
- * Redirect / sitemap / llms.txt consistency audit.
+ * Redirect / sitemap / llms.txt consistency audit + single-hop chain check.
  */
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { REDIRECT_PATHS, collectIndexableRoutes } from "./route-registry.mjs";
+import {
+  REDIRECT_PATHS,
+  REDIRECT_MAP,
+  collectIndexableRoutes,
+} from "./route-registry.mjs";
 import { SITE } from "./seo-routes.mjs";
+import { NOINDEX_WHEEL_SET } from "./wheel-index-policy.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const issues = [];
@@ -39,6 +44,10 @@ for (const f of sitemapFiles) {
 for (const loc of allLocs) {
   const p = pathFromLoc(loc);
   if (REDIRECT_PATHS.has(p)) issues.push(`sitemap lists redirect path ${p}`);
+  const slug = p.replace(/^\//, "");
+  if (NOINDEX_WHEEL_SET.has(slug)) {
+    issues.push(`sitemap lists noindex wheel ${p}`);
+  }
 }
 
 // llms.txt, only flag standalone URL lines, not substrings like /privacy-policy
@@ -54,11 +63,21 @@ for (const rp of REDIRECT_PATHS) {
   );
   if (bad) issues.push(`llms.txt lists redirect path ${rp}`);
 }
+for (const slug of NOINDEX_WHEEL_SET) {
+  const p = `/${slug}`;
+  const bad = llmsLines.some(
+    (line) =>
+      line === `${SITE}${p}` ||
+      line.startsWith(`${SITE}${p} `) ||
+      line.startsWith(`${SITE}${p}\t`) ||
+      line.startsWith(`${SITE}${p}, `),
+  );
+  if (bad) issues.push(`llms.txt lists noindex wheel ${p}`);
+}
 
-// Required new pages
+// Required featured pages (prize-wheel merged into raffle)
 const required = [
   "/raffle-wheel",
-  "/prize-wheel",
   "/classroom-spinner",
   "/wheel-of-names-alternative",
   "/spin-wheel-fairness-study",
@@ -71,6 +90,43 @@ for (const r of required) {
   }
 }
 
+// Single-hop chain audit: every redirect destination must not itself redirect
+for (const [src, dest] of Object.entries(REDIRECT_MAP)) {
+  if (REDIRECT_MAP[dest] || REDIRECT_PATHS.has(dest)) {
+    const next = REDIRECT_MAP[dest] || "(in REDIRECT_PATHS)";
+    issues.push(
+      `redirect chain: ${src} → ${dest} → ${next} (must be exactly one hop)`,
+    );
+  }
+}
+
+// vercel.json must match REDIRECT_MAP for wheel/legacy paths (spot-check file)
+const vercelPath = path.join(root, "vercel.json");
+if (fs.existsSync(vercelPath)) {
+  const vercel = JSON.parse(fs.readFileSync(vercelPath, "utf8"));
+  const edge = new Map(
+    (vercel.redirects || [])
+      .filter((r) => r.source && r.destination && !r.has)
+      .map((r) => [
+        r.source.startsWith("/") ? r.source : `/${r.source}`,
+        r.destination.replace(/^https:\/\/onlinespinwheel\.fun/, "") || "/",
+      ]),
+  );
+  for (const [src, dest] of edge) {
+    if (edge.has(dest)) {
+      issues.push(
+        `vercel.json chain: ${src} → ${dest} → ${edge.get(dest)} (one hop only)`,
+      );
+    }
+    const expected = REDIRECT_MAP[src];
+    if (expected && expected !== dest) {
+      issues.push(
+        `vercel.json mismatch for ${src}: edge=${dest} registry=${expected}`,
+      );
+    }
+  }
+}
+
 const out = [
   "# Redirect & Sitemap Consistency",
   "",
@@ -80,7 +136,9 @@ const out = [
 if (issues.length) {
   for (const i of issues) out.push(`- ${i}`);
 } else {
-  out.push("**PASS**, no redirect paths in sitemaps/llms.txt; all Phase 6+ pages indexed.");
+  out.push(
+    "**PASS**, no redirect paths or noindex wheels in sitemaps/llms.txt; all redirects are single-hop; featured pages indexed.",
+  );
 }
 fs.writeFileSync(path.join(root, "docs", "REDIRECT_AUDIT.md"), out.join("\n"), "utf8");
 console.log(`Redirect audit: ${issues.length} issues`);

@@ -5,13 +5,13 @@
 const SITE = process.env.SITE_ORIGIN || "https://onlinespinwheel.fun";
 
 const SITEMAPS = [
-  { path: "/sitemap", kind: "urlset", minLocs: 50 },
-  { path: "/sitemap.xml", kind: "urlset", minLocs: 50 },
-  { path: "/sitemap.txt", kind: "text", minLocs: 50 },
+  { path: "/sitemap", kind: "urlset", minLocs: 35 },
+  { path: "/sitemap.xml", kind: "urlset", minLocs: 35 },
+  { path: "/sitemap.txt", kind: "text", minLocs: 35 },
   { path: "/pages-sitemap", kind: "urlset", minLocs: 10 },
   { path: "/pages-sitemap.xml", kind: "urlset", minLocs: 10 },
-  { path: "/wheels-sitemap", kind: "urlset", minLocs: 40 },
-  { path: "/wheels-sitemap.xml", kind: "urlset", minLocs: 40 },
+  { path: "/wheels-sitemap", kind: "urlset", minLocs: 15 },
+  { path: "/wheels-sitemap.xml", kind: "urlset", minLocs: 15 },
   { path: "/blog-sitemap", kind: "urlset", minLocs: 1 },
   { path: "/blog-sitemap.xml", kind: "urlset", minLocs: 1 },
   { path: "/images-sitemap", kind: "image", minLocs: 1 },

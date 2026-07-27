@@ -1,4 +1,4 @@
-/** Real tool behavior for differentiated wheels (Phase 5.6). */
+/** Real tool behavior for differentiated wheels — must match shipped UI only. */
 export const WHEEL_MODE_FEATURES: Record<string, string> = {
   "team-generator-wheel":
     "Paste participant names and choose how many teams you need. The generator shuffles the roster and distributes names in round-robin order so squad sizes stay balanced within one person, ideal for PE classes, office icebreakers, and gaming squads.",
@@ -15,9 +15,31 @@ export const WHEEL_MODE_FEATURES: Record<string, string> = {
   "alphabet-spinner-wheel":
     "Spin A through Z with an exclude-letters panel, uncheck glyphs already used in phonics drills, Scattergories, or spelling bees so only fresh letters remain on the wheel.",
   "raffle-wheel":
-    "Switch between entrant names and ticket-number mode, draw multiple winners without replacement, and copy a timestamped proof link to post after your live raffle stream.",
-  "prize-wheel":
-    "Load labeled prize slices, Grand Prize, gift cards, bonus entries, and spin for game-show-style giveaways on a phone, tablet, or booth display.",
+    "Choose ticket-number mode, entrant-name mode, or prize-label mode (classic prize-wheel slices). Draw multiple winners without replacement and copy a timestamped proof link after your live draw.",
   "classroom-spinner":
     "Teacher hub with student picker (remove-after-pick + history), balanced team generator, and a countdown timer, all in one fullscreen smartboard layout.",
+  "random-name-picker-wheel":
+    "Name picker with remove-after-pick, session history, proof link, and streamer-mode controls for live overlays.",
+  "abcd-spin-wheel":
+    "Locks the wheel to A–D for multiple-choice call-outs, optional remove-after-pick, projector fullscreen, and a session list of answers already called.",
+  "should-i-text-him-wheel":
+    "Context chips (casual / mixed signals / high emotion) swap the outcome pool, then a one-minute cooldown after each spin slows impulsive re-rolls.",
+  "chinese-zodiac-wheel":
+    "Birth-year calculator highlights the matching Chinese zodiac animal and reorders the wheel so that animal is ready to spin (Gregorian approximation noted on-page).",
+  "self-care-wheel":
+    "Filter chips rebuild the wheel from structured pools: 5-minute, no-spend, evening, or movement prompts.",
+  "pokemon-randomizer-wheel":
+    "Challenge-pool filters (starters, types, nuzlocke-style rules, generation vibe) rebuild the wheel from rule labels rather than a static character list.",
+  "outfit-picker-wheel":
+    "Occasion and weather filters (work, casual, date, rain, heat) swap curated outfit datasets onto the wheel.",
+  "yes-or-no-wheel":
+    "Set Yes / No / Maybe weights that rebuild the wheel slices, plus an optional best-of-N tracker for majority outcomes.",
+  "dinner-picker-wheel":
+    "Filters rebuild dinner pools: anything, leftovers, delivery, cook-at-home, or fast-casual/chains (absorbs the old fast-food page).",
+  "movie-picker-wheel":
+    "Mood filters (any, short, cozy, horror) or paste your own watchlist so the wheel spins titles you already care about.",
+  "date-night-wheel":
+    "Budget and location filters (anything, at home, go out, budget, treat night) rebuild the plan pool before you spin.",
+  "zodiac-sign-wheel":
+    "Month/day birth-date helper highlights the matching Western sign and pins it first on the wheel; absorbed daily-theme slices live in page sections.",
 };

@@ -301,11 +301,32 @@ const App = () => (
               />
               <Route
                 path="/wheel-of-fortune-zodiac"
-                element={<Navigate to="/daily-horoscope-wheel" replace />}
+                element={<Navigate to="/zodiac-sign-wheel" replace />}
               />
               <Route
                 path="/egyptian-zodiac-wheel"
                 element={<Navigate to="/zodiac-sign-wheel" replace />}
+              />
+              <Route path="/prize-wheel" element={<Navigate to="/raffle-wheel" replace />} />
+              <Route
+                path="/instagram-wheel-picker"
+                element={<Navigate to="/winner-picker-wheel" replace />}
+              />
+              <Route
+                path="/fast-food-wheel"
+                element={<Navigate to="/dinner-picker-wheel" replace />}
+              />
+              <Route
+                path="/horror-movie-picker-wheel"
+                element={<Navigate to="/movie-picker-wheel" replace />}
+              />
+              <Route
+                path="/daily-horoscope-wheel"
+                element={<Navigate to="/zodiac-sign-wheel" replace />}
+              />
+              <Route
+                path="/pick-out-of-a-hat-generator"
+                element={<Navigate to="/random-name-picker-wheel" replace />}
               />
               <Route
                 path="/result/:id"

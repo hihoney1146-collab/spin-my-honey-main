@@ -33,6 +33,7 @@ import {
 import { WHEEL_MODE_FEATURES } from "@/data/wheelModeFeatures";
 import { EmbedWidgetSnippet } from "@/components/EmbedWidgetSnippet";
 import { useStreamerMode } from "@/lib/useStreamerMode";
+import { wheelRobotsDirective } from "@/data/wheelIndexPolicy";
 
 function wheelOgUrl(slug: string) {
   return `${SITE_ORIGIN}/og/${slug}.png`;
@@ -106,6 +107,9 @@ const WheelProgrammaticPage = () => {
         <meta name="description" content={page.metaDescription} />
         {keywords.length ? <meta name="keywords" content={keywords.join(", ")} /> : null}
         <link rel="canonical" href={canonical} />
+        {wheelRobotsDirective(page.slug) ? (
+          <meta name="robots" content={wheelRobotsDirective(page.slug)} />
+        ) : null}
         <meta property="og:title" content={page.title} />
         <meta property="og:description" content={page.metaDescription} />
         <meta property="og:type" content="website" />

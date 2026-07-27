@@ -93,6 +93,15 @@ const Contact = () => {
           content="Contact Online Spin Wheel. Reach out for support, feedback, business inquiries, privacy questions, and advertising-related requests."
         />
         <link rel="canonical" href={`${SITE_ORIGIN}/contact-us`} />
+        <meta property="og:title" content="Contact Us | Online Spin Wheel" />
+        <meta
+          property="og:description"
+          content="Contact Online Spin Wheel for support, feedback, business inquiries, privacy questions, and advertising-related requests."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`${SITE_ORIGIN}/contact-us`} />
+        <meta property="og:image" content={`${SITE_ORIGIN}/og-image.png`} />
+        <meta name="twitter:card" content="summary_large_image" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",

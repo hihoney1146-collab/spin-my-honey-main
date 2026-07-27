@@ -15,6 +15,16 @@ const About = () => {
           content="Online Spin Wheel is built by a small dedicated team: Armghana Zeeshan (CEO), Zoha Zeeshan (Co-Founder), Raja Jahangir (Content & SEO Lead), and Abdal Khalid (Social Media Expert). Learn how we test every wheel across 10,000 spins."
         />
         <link rel="canonical" href="https://onlinespinwheel.fun/about-us" />
+        <meta property="og:title" content="About Us - Online Spin Wheel" />
+        <meta
+          property="og:description"
+          content="Online Spin Wheel is built by a small dedicated team: Armghana Zeeshan (CEO), Zoha Zeeshan (Co-Founder), Raja Jahangir (Content & SEO Lead), and Abdal Khalid (Social Media Expert)."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://onlinespinwheel.fun/about-us" />
+        <meta property="og:image" content="https://onlinespinwheel.fun/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="About Us - Online Spin Wheel" />
       </Helmet>
 
       <article className="container mx-auto px-4 py-8 md:py-12 max-w-5xl">

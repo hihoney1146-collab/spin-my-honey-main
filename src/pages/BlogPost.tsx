@@ -109,7 +109,7 @@ const BLOG_RELATED_WHEELS: Record<string, string[]> = {
     "alphabet-spinner-wheel",
     "abcd-spin-wheel",
     "random-number-wheel",
-    "prize-wheel",
+    "raffle-wheel",
   ],
   "fun-ways-decide-where-to-eat-couples": [
     "dinner-picker-wheel",

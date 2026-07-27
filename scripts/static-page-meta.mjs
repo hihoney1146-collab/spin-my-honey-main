@@ -296,7 +296,7 @@ export const fixedRouteMeta = [
             acceptedAnswer: {
               "@type": "Answer",
               "@id": `${SITE}/wheel-of-names-alternative#faq-q2-answer`,
-              text: "Besides a free name picker, we publish 40+ specialty pages, raffles, classroom hubs, prize wheels, plus multi-winner proof links and ticket-number raffle mode.",
+              text: "Besides a free name picker, we publish focused specialty tools, raffles with prize-draw and ticket modes, classroom hubs, plus multi-winner proof links.",
             },
           },
           {

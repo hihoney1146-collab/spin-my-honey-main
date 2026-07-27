@@ -14,6 +14,15 @@ const Privacy = () => {
           content="Privacy Policy for Online Spin Wheel (onlinespinwheel.fun): what we collect, cookies, ads, CCPA/CPRA, GDPR, COPPA, and how to contact us."
         />
         <link rel="canonical" href="https://onlinespinwheel.fun/privacy-policy" />
+        <meta property="og:title" content="Privacy Policy - Online Spin Wheel" />
+        <meta
+          property="og:description"
+          content="Privacy Policy for Online Spin Wheel: what we collect, cookies, ads, CCPA/CPRA, GDPR, COPPA, and how to contact us."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://onlinespinwheel.fun/privacy-policy" />
+        <meta property="og:image" content="https://onlinespinwheel.fun/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
 
       <article className="container mx-auto px-4 py-8 md:py-12 max-w-5xl">

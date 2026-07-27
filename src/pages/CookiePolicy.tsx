@@ -14,6 +14,15 @@ const CookiePolicy = () => {
           content="Cookie Policy for Online Spin Wheel: cookie types, Google AdSense and Consent Mode, browser local storage, how to manage cookies, DNT/GPC, and contact."
         />
         <link rel="canonical" href="https://onlinespinwheel.fun/cookie-policy" />
+        <meta property="og:title" content="Cookie Policy - Online Spin Wheel" />
+        <meta
+          property="og:description"
+          content="Cookie Policy for Online Spin Wheel: cookie types, Google AdSense and Consent Mode, browser local storage, how to manage cookies, and contact."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://onlinespinwheel.fun/cookie-policy" />
+        <meta property="og:image" content="https://onlinespinwheel.fun/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
 
       <article className="container mx-auto px-4 py-8 md:py-12 max-w-5xl">

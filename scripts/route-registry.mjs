@@ -8,6 +8,11 @@ import {
   getProjectRoot,
   SITE,
 } from "./seo-routes.mjs";
+import {
+  WHEEL_MERGE_REDIRECTS,
+  NOINDEX_WHEEL_SLUGS,
+  isWheelIndexableSlug,
+} from "./wheel-index-policy.mjs";
 
 /** Paths that 301 elsewhere, never list in llms.txt or IndexNow. */
 export const REDIRECT_PATHS = new Set([
@@ -30,15 +35,46 @@ export const REDIRECT_PATHS = new Set([
   "/author/zoha-zeeshan",
   "/author/raja-jahangir",
   "/author/abdal-khalid",
+  ...Object.keys(WHEEL_MERGE_REDIRECTS).map((s) => `/${s}`),
 ]);
+
+/** Edge + SPA redirect map (source path → destination path). One hop only. */
+export const REDIRECT_MAP = {
+  "/terms": "/terms-and-conditions",
+  "/about": "/about-us",
+  "/contact": "/contact-us",
+  "/privacy": "/privacy-policy",
+  "/spin-wheel-free": "/all-spin-wheels",
+  "/spin-wheel-picker": "/all-spin-wheels",
+  "/giveaway-winner-picker-wheel": "/winner-picker-wheel",
+  "/exercise-spin-wheel": "/exercise-picker-wheel",
+  "/date-night-idea-wheel": "/date-night-wheel",
+  "/what-movie-should-i-watch-wheel": "/movie-picker-wheel",
+  "/zodiac-sign-wheel-game": "/zodiac-sign-wheel",
+  "/zodiac-wheel-dates": "/zodiac-sign-wheel",
+  "/zodiac-wheel-planets": "/zodiac-sign-wheel",
+  "/wheel-of-fortune-zodiac": "/zodiac-sign-wheel",
+  "/egyptian-zodiac-wheel": "/zodiac-sign-wheel",
+  "/author/armghana-zeeshan": "/team/ceo",
+  "/author/zoha-zeeshan": "/team/co-founder",
+  "/author/raja-jahangir": "/team/content",
+  "/author/abdal-khalid": "/team/social",
+  ...Object.fromEntries(
+    Object.entries(WHEEL_MERGE_REDIRECTS).map(([from, to]) => [
+      `/${from}`,
+      `/${to}`,
+    ]),
+  ),
+};
 
 /** Phase 6 money pages + research (also in wheels sitemap when applicable). */
 export const FEATURED_TOOL_PATHS = [
   "/raffle-wheel",
-  "/prize-wheel",
   "/classroom-spinner",
   "/wheel-of-names-alternative",
 ];
+
+export { NOINDEX_WHEEL_SLUGS };
 
 /**
  * @param {string} [root]
@@ -59,7 +95,7 @@ export function collectIndexableRoutes(root = getProjectRoot()) {
   }
 
   for (const w of loadWheelRecords(root)) {
-    if (w.slug) {
+    if (w.slug && isWheelIndexableSlug(w.slug)) {
       add(`/${w.slug}`, "wheel", {
         label: w.keywordPrimary || w.h1 || w.title || w.slug,
         description: (w.metaDescription || "").trim(),

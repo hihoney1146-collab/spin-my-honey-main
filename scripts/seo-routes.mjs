@@ -19,6 +19,7 @@ import {
   ORG_ID,
   CONTACT_EMAIL,
 } from "./team-constants.mjs";
+import { isWheelIndexableSlug } from "./wheel-index-policy.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -89,6 +90,11 @@ export function loadWheelRecords(root = getProjectRoot()) {
     title: slug,
     category: "Other",
   }));
+}
+
+/** Wheels eligible for sitemap / llms / IndexNow (excludes NOINDEX + MERGE sources). */
+export function loadIndexableWheelRecords(root = getProjectRoot()) {
+  return loadWheelRecords(root).filter((w) => isWheelIndexableSlug(w.slug));
 }
 
 /** @returns {{ category: string; wheels: { slug: string; title: string }[] }[]} */
@@ -210,7 +216,7 @@ export function buildBlogSitemapXml(root = getProjectRoot()) {
 }
 
 export function buildWheelsSitemapXml(root = getProjectRoot()) {
-  const blocks = loadWheelRecords(root).map((wheel) =>
+  const blocks = loadIndexableWheelRecords(root).map((wheel) =>
     urlBlock(`/${wheel.slug}`, wheelSitemapLastmod(wheel.slug)),
   );
   return wrapUrlset(blocks);
@@ -346,7 +352,7 @@ export function collectSitemapEntries(root = getProjectRoot()) {
     blocks.push(urlBlock(`/blog/${post.slug}`, getRouteLastmod(`/blog/${post.slug}`)));
   }
 
-  for (const wheel of loadWheelRecords(root)) {
+  for (const wheel of loadIndexableWheelRecords(root)) {
     blocks.push(urlBlock(`/${wheel.slug}`, wheelSitemapLastmod(wheel.slug)));
   }
 
@@ -410,7 +416,7 @@ export function writeAllSitemapFiles(root = getProjectRoot()) {
 
   const pageCount = PAGES_SITEMAP_ROUTES.length;
   const blogCount = collectBlogSlugs(root).length;
-  const wheelCount = loadWheelSlugsFromCsv(root).length;
+  const wheelCount = loadIndexableWheelRecords(root).length;
 
   return { pageCount, blogCount, wheelCount };
 }
@@ -453,8 +459,10 @@ export function buildLlmsTxt(root = getProjectRoot()) {
   const grouped = loadWheelsGroupedByCategory(root);
   const wheelLines = [];
   for (const { category, wheels: catWheels } of grouped) {
-    wheelLines.push("", `## ${category} (${catWheels.length})`);
-    for (const w of catWheels) {
+    const indexedWheels = catWheels.filter((w) => isWheelIndexableSlug(w.slug));
+    if (!indexedWheels.length) continue;
+    wheelLines.push("", `## ${category} (${indexedWheels.length})`);
+    for (const w of indexedWheels) {
       const rec = loadWheelRecords(root).find((r) => r.slug === w.slug);
       const label = rec?.keywordPrimary || rec?.h1 || w.title || w.slug;
       const desc = (rec?.metaDescription || "").trim();

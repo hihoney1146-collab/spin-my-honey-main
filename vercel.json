@@ -24,8 +24,15 @@
     { "source": "/zodiac-sign-wheel-game", "destination": "/zodiac-sign-wheel", "permanent": true },
     { "source": "/zodiac-wheel-dates", "destination": "/zodiac-sign-wheel", "permanent": true },
     { "source": "/zodiac-wheel-planets", "destination": "/zodiac-sign-wheel", "permanent": true },
-    { "source": "/wheel-of-fortune-zodiac", "destination": "/daily-horoscope-wheel", "permanent": true },
-    { "source": "/egyptian-zodiac-wheel", "destination": "/zodiac-sign-wheel", "permanent": true }
+    { "source": "/wheel-of-fortune-zodiac", "destination": "/zodiac-sign-wheel", "permanent": true },
+    { "source": "/egyptian-zodiac-wheel", "destination": "/zodiac-sign-wheel", "permanent": true },
+
+    { "source": "/prize-wheel", "destination": "/raffle-wheel", "permanent": true },
+    { "source": "/instagram-wheel-picker", "destination": "/winner-picker-wheel", "permanent": true },
+    { "source": "/fast-food-wheel", "destination": "/dinner-picker-wheel", "permanent": true },
+    { "source": "/horror-movie-picker-wheel", "destination": "/movie-picker-wheel", "permanent": true },
+    { "source": "/daily-horoscope-wheel", "destination": "/zodiac-sign-wheel", "permanent": true },
+    { "source": "/pick-out-of-a-hat-generator", "destination": "/random-name-picker-wheel", "permanent": true }
   ],
   "rewrites": [
     { "source": "/ads.txt", "destination": "/api/ads" },

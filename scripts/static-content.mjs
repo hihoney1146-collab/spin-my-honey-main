@@ -192,9 +192,9 @@ function homeContent(wheels) {
     <li><strong>Giveaways &amp; raffles:</strong> paste entrant names and draw a transparent winner on screen with the <a href="/raffle-wheel">raffle wheel</a> or <a href="/winner-picker-wheel">winner picker wheel</a>.</li>
     <li><strong>Teachers &amp; classrooms:</strong> call on students fairly using the <a href="/classroom-spinner">classroom spinner</a> hub or <a href="/random-student-picker">random student picker</a>.</li>
     <li><strong>Teams &amp; meetings:</strong> assign tasks, pick a presenter, or split people into squads with the <a href="/team-generator-wheel">team generator wheel</a>.</li>
-    <li><strong>Prize &amp; promo spins:</strong> label slices for store giveaways with the <a href="/prize-wheel">prize wheel</a>.</li>
+    <li><strong>Prize &amp; promo spins:</strong> label slices for store giveaways with the <a href="/raffle-wheel">raffle &amp; prize wheel</a>.</li>
     <li><strong>Food &amp; movie nights:</strong> settle "where do we eat?" and "what do we watch?" with the <a href="/dinner-picker-wheel">dinner picker wheel</a> and <a href="/movie-picker-wheel">movie picker wheel</a>.</li>
-    <li><strong>Games &amp; streams:</strong> run dares and audience picks live with the <a href="/truth-or-dare-spinner-online">truth or dare spinner</a> or an <a href="/instagram-wheel-picker">Instagram comment picker</a>.</li>
+    <li><strong>Games &amp; streams:</strong> run live giveaways with the <a href="/winner-picker-wheel">winner picker</a> (paste @handles, dedupe, proof link).</li>
     <li><strong>Feature comparison:</strong> see how we stack up on our <a href="/wheel-of-names-alternative">Online Spin Wheel feature comparison</a> page.</li>
   </ul>
 </section>
@@ -616,8 +616,8 @@ function caseStudyCommunityContent() {
 <section><h2>Related tools</h2><ul>
 <li><a href="/winner-picker-wheel">Winner picker wheel</a></li>
 <li><a href="/random-name-picker-wheel">Random name picker wheel</a></li>
-<li><a href="/pick-out-of-a-hat-generator">Pick out of a hat generator</a></li>
-<li><a href="/instagram-wheel-picker">Instagram wheel picker</a></li>
+<li><a href="/random-name-picker-wheel">Pick out of a hat generator</a></li>
+<li><a href="/winner-picker-wheel">Instagram / giveaway picker</a></li>
 </ul></section>
 ${exploreNav()}`);
 }
@@ -667,7 +667,7 @@ function comparisonTraditionalContent() {
 <tr><td>Audit trail / proof link</td><td>Yes, on this site</td><td>Manual video only</td></tr>
 </tbody>
 </table></section>
-<section><h2>Names in a hat</h2><p>Drawing from a hat is familiar but slow: you write every slip, folding can bias which is grabbed, and slips get lost. A spin wheel accepts a pasted list instantly, can't be "felt for," and reuses the same entries next time. Our <a href="/pick-out-of-a-hat-generator">pick out of a hat generator</a> recreates the tradition digitally.</p></section>
+<section><h2>Names in a hat</h2><p>Drawing from a hat is familiar but slow: you write every slip, folding can bias which is grabbed, and slips get lost. A spin wheel accepts a pasted list instantly, can't be "felt for," and reuses the same entries next time. Our <a href="/random-name-picker-wheel">random name picker</a> recreates the tradition digitally.</p></section>
 <section><h2>Dice and coins</h2><p>Dice and coins are great for a handful of outcomes but don't scale, you can't map 30 students to a coin. A wheel handles any number of custom options and shows the result clearly. For simple binaries, the <a href="/yes-or-no-wheel">yes or no wheel</a> and <a href="/coin-flip-wheel">coin flip wheel</a> keep the ritual while adding visibility.</p></section>
 <section><h2>Comparison at a glance</h2><ul>
 <li><strong>Speed:</strong> wheel is instant; physical methods take setup time.</li>
@@ -682,7 +682,7 @@ function comparisonTraditionalContent() {
 <li><a href="/coin-flip-wheel">Coin flip wheel</a></li>
 <li><a href="/random-name-picker-wheel">Random name picker wheel</a></li>
 <li><a href="/team-generator-wheel">Team generator wheel</a></li>
-<li><a href="/pick-out-of-a-hat-generator">Pick out of a hat generator</a></li>
+<li><a href="/random-name-picker-wheel">Random name picker wheel</a></li>
 </ul></section>
 ${exploreNav()}`);
 }
@@ -714,7 +714,7 @@ function comparisonPhysicalContent() {
 </ul></section>
 <section><h2>Related tools</h2><ul>
 <li><a href="/winner-picker-wheel">Winner picker wheel</a></li>
-<li><a href="/instagram-wheel-picker">Instagram wheel picker</a></li>
+<li><a href="/winner-picker-wheel">Winner picker for giveaways</a></li>
 <li><a href="/all-spin-wheels">Browse all spin wheels</a></li>
 </ul></section>
 ${exploreNav()}`);
@@ -723,7 +723,7 @@ ${exploreNav()}`);
 function wheelOfNamesAlternativeContent() {
   return mainWrap(`<h1>Online Spin Wheel, Feature Comparison</h1>
 <p>See how Online Spin Wheel compares with other free online pickers and spinner apps, what we include by default, and what often varies elsewhere.</p>
-<p>Online Spin Wheel is a free browser spinner for classrooms, meetings, and giveaways. Beyond a basic name list, we ship specialty pages for <a href="/raffle-wheel">raffles</a>, <a href="/prize-wheel">prize spins</a>, and a <a href="/classroom-spinner">classroom hub</a>, all without signup, with entries processed on your device. Try our <a href="/random-name-picker-wheel">random name picker wheel</a> for a direct name-list spinner.</p>
+<p>Online Spin Wheel is a free browser spinner for classrooms, meetings, and giveaways. Beyond a basic name list, we ship specialty pages for <a href="/raffle-wheel">raffles and prize draws</a>, and a <a href="/classroom-spinner">classroom hub</a>, all without signup, with entries processed on your device. Try our <a href="/random-name-picker-wheel">random name picker wheel</a> for a direct name-list spinner.</p>
 
 <section><h2>Feature comparison</h2>
 <table>
@@ -732,7 +732,7 @@ function wheelOfNamesAlternativeContent() {
 <tr><td>Account required</td><td>No</td><td>Varies, some require signup for extra entries or saving</td></tr>
 <tr><td>Entries stay on your device</td><td>Yes, browser-only processing</td><td>Varies, some process/store entries on a server</td></tr>
 <tr><td>Image slices on wheel</td><td>Yes</td><td>Varies</td></tr>
-<tr><td>Specialty tool pages (40+)</td><td>Yes, raffles, classrooms, prizes</td><td>Typically a single generic wheel</td></tr>
+<tr><td>Focused specialty tools</td><td>Yes, raffles, classrooms, decision tools</td><td>Typically a single generic wheel</td></tr>
 <tr><td>Multi-winner + proof link</td><td>Yes, raffle &amp; winner wheels</td><td>Often manual remove-after-spin</td></tr>
 <tr><td>Classroom hub (picker + teams + timer)</td><td>Yes, classroom spinner page</td><td>Often name picker only</td></tr>
 <tr><td>Ticket-number raffle mode</td><td>Yes, raffle wheel</td><td>Often requires manual numeric entries</td></tr>
@@ -744,7 +744,7 @@ function wheelOfNamesAlternativeContent() {
 <ul>
 <li>Teachers who want picker + teams + timer in one tab</li>
 <li>Giveaway hosts who need proof links and ticket-number raffles</li>
-<li>Organizers who want 40+ preset specialty wheels beyond names</li>
+<li>Organizers who want raffle, classroom, and specialty decision tools beyond names</li>
 <li>Anyone who wants entries to stay on their device</li>
 </ul>
 </section>
@@ -758,8 +758,7 @@ function wheelOfNamesAlternativeContent() {
 </section>
 
 <section><h2>Related pages</h2><ul>
-<li><a href="/raffle-wheel">Raffle wheel</a></li>
-<li><a href="/prize-wheel">Prize wheel</a></li>
+<li><a href="/raffle-wheel">Raffle &amp; prize wheel</a></li>
 <li><a href="/classroom-spinner">Classroom spinner</a></li>
 <li><a href="/random-name-picker-wheel">Random name picker wheel</a></li>
 <li><a href="/all-spin-wheels">All spin wheels</a></li>
@@ -775,7 +774,7 @@ function wheelOfNamesAlternativeContent() {
 <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
 <h3 itemprop="name">How is Online Spin Wheel different from a generic name spinner?</h3>
 <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-<p itemprop="text">Besides a free name picker, we publish 40+ specialty pages, raffles, classroom hubs, prize wheels, plus multi-winner proof links and ticket-number raffle mode.</p>
+<p itemprop="text">Besides a free name picker, we publish focused specialty tools, raffles with prize-draw and ticket modes, classroom hubs, plus multi-winner proof links.</p>
 </div>
 </div>
 <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
@@ -876,9 +875,9 @@ function blogIndexContent(posts) {
     .join("\n");
 
   return mainWrap(`<h1>Online Spin Wheel Blog, Guides &amp; Ideas</h1>
-<p>Practical articles on fair random selection for classrooms, teams, couples, and celebrations, powered by Online Spin Wheel. Learn how to run transparent giveaways, energize a classroom, break the ice with remote teams, decide where to eat, and organize a virtual Secret Santa.</p>
+<p>Practical articles on fair random selection for classrooms, teams, couples, and celebrations, powered by Online Spin Wheel. Learn how to run transparent giveaways, energize a classroom, break the ice with remote teams, decide where to eat, and organize a virtual Secret Santa without apps or accounts.</p>
 <section><h2>What you will find here</h2>
-<p>Every article is written for real hosts and teachers who need a fair pick in front of an audience. We cover classroom spin-wheel games, office icebreakers, couple decision rituals, and seasonal giveaways. Each post links to the matching free tool on this site so you can try the idea in the same tab.</p>
+<p>Every article is written for real hosts and teachers who need a fair pick in front of an audience. We cover classroom spin-wheel games, office icebreakers, couple decision rituals, and seasonal giveaways. Each post links to the matching free tool on this site so you can try the idea in the same tab, paste your list, and spin while everyone watches.</p>
 <p>Indexed guides below are fully expanded with step-by-step workflows, printable prompts where helpful, and links to specialty wheels such as the <a href="/random-name-picker-wheel">random name picker</a>, <a href="/classroom-spinner">classroom spinner</a>, and <a href="/winner-picker-wheel">winner picker</a>. Draft posts stay out of search until they meet the same depth bar.</p>
 <p>New articles focus on classroom fairness, hybrid meeting icebreakers, couple decision rituals, and giveaway transparency. Each post names the exact wheel to open, how many entries to paste, and what to say to the audience before the first spin so nobody doubts the outcome. Start with the indexed guides in the list below.</p>
 </section>
@@ -889,7 +888,7 @@ function blogIndexContent(posts) {
 <li><strong>Couples &amp; friends:</strong> dinner decisions, date ideas, and low-stakes yes-or-no calls.</li>
 <li><strong>Giveaways:</strong> transparent winner picks, proof links, and multi-winner raffle flows.</li>
 </ul>
-<p>Want the tools first? Browse the <a href="/all-spin-wheels">full wheel directory</a> or read <a href="/how-randomness-works">how randomness works</a> before your next live draw.</p>
+<p>Want the tools first? Browse the <a href="/all-spin-wheels">full wheel directory</a> or read <a href="/how-randomness-works">how randomness works</a> before your next live draw. Bookmark this page when you need a fair classroom call-out, office icebreaker, or giveaway workflow you can open on a projector in under a minute.</p>
 <p>We publish on a rolling schedule: classroom and giveaway guides ship first, with couple and seasonal posts following once they pass the same editorial bar as our indexed articles. Draft posts remain reachable by URL for internal review but carry <code>noindex</code> until expanded.</p>
 </section>
 <ul>
@@ -1022,7 +1021,7 @@ function wheelOgImagePath(slug) {
   return `/og/${slug}.png`;
 }
 
-/** Real tool behavior described in SSR for differentiated wheels (Phase 5.6). */
+/** Real tool behavior described in SSR — must match shipped UI only (sync with src/data/wheelModeFeatures.ts). */
 const WHEEL_MODE_FEATURES = {
   "team-generator-wheel":
     "Paste participant names and choose how many teams you need. The generator shuffles the roster and distributes names in round-robin order so squad sizes stay balanced within one person, ideal for PE classes, office icebreakers, and gaming squads.",
@@ -1038,26 +1037,34 @@ const WHEEL_MODE_FEATURES = {
     "Every flip updates a running heads-versus-tails tally and streak counter so tiebreakers, kickoff calls, and stream overlays show transparent stats on screen.",
   "alphabet-spinner-wheel":
     "Spin A through Z with an exclude-letters panel, uncheck glyphs already used in phonics drills, Scattergories, or spelling bees so only fresh letters remain on the wheel.",
-  "chinese-zodiac-wheel":
-    "Spin the twelve Chinese zodiac animals with birth-year hints on each slice, then use the result for lunar New Year lessons, personality quizzes, or party icebreakers.",
-  "instagram-wheel-picker":
-    "Paste @handles from your giveaway comments, spin to pick a winner, and screenshot the result for Instagram Stories or Reels without leaving the browser tab.",
-  "pokemon-randomizer-wheel":
-    "Load Kanto starters or your custom creature list, spin for a random Pokémon challenge, and remove species after use so nuzlocke runs cycle through the full roster.",
-  "random-color-wheel":
-    "Spin named colors for art prompts, design critiques, or wardrobe challenges, then match the swatch to a real object in the room before the timer expires.",
-  "random-hobby-generator-wheel":
-    "Spin pastimes like photography, baking, or yoga when weekends disappear into scrolling, then commit to trying whichever hobby lands for seven days.",
-  "random-word-generator-wheel":
-    "Draw vocabulary words for spelling bees, creative writing warm-ups, or ESL drills, and remove terms after they are used so every student sees a fresh word.",
-  "roblox-game-picker-wheel":
-    "Spin popular Roblox experiences when your squad cannot agree on a server, then join the winning game and remove it after play so repeats wait until the list resets.",
   "raffle-wheel":
-    "Switch between entrant names and ticket-number mode, draw multiple winners without replacement, and copy a timestamped proof link to post after your live raffle stream.",
-  "prize-wheel":
-    "Load labeled prize slices, Grand Prize, gift cards, bonus entries, and spin for game-show-style giveaways on a phone, tablet, or booth display.",
+    "Choose ticket-number mode, entrant-name mode, or prize-label mode (classic prize-wheel slices). Draw multiple winners without replacement and copy a timestamped proof link after your live draw.",
   "classroom-spinner":
     "Teacher hub with student picker (remove-after-pick + history), balanced team generator, and a countdown timer, all in one fullscreen smartboard layout.",
+  "random-name-picker-wheel":
+    "Name picker with remove-after-pick, session history, proof link, and streamer-mode controls for live overlays.",
+  "abcd-spin-wheel":
+    "Locks the wheel to A–D for multiple-choice call-outs, optional remove-after-pick, projector fullscreen, and a session list of answers already called.",
+  "should-i-text-him-wheel":
+    "Context chips (casual / mixed signals / high emotion) swap the outcome pool, then a one-minute cooldown after each spin slows impulsive re-rolls.",
+  "chinese-zodiac-wheel":
+    "Birth-year calculator highlights the matching Chinese zodiac animal and reorders the wheel so that animal is ready to spin (Gregorian approximation noted on-page).",
+  "self-care-wheel":
+    "Filter chips rebuild the wheel from structured pools: 5-minute, no-spend, evening, or movement prompts.",
+  "pokemon-randomizer-wheel":
+    "Challenge-pool filters (starters, types, nuzlocke-style rules, generation vibe) rebuild the wheel from rule labels rather than a static character list.",
+  "outfit-picker-wheel":
+    "Occasion and weather filters (work, casual, date, rain, heat) swap curated outfit datasets onto the wheel.",
+  "yes-or-no-wheel":
+    "Set Yes / No / Maybe weights that rebuild the wheel slices, plus an optional best-of-N tracker for majority outcomes.",
+  "dinner-picker-wheel":
+    "Filters rebuild dinner pools: anything, leftovers, delivery, cook-at-home, or fast-casual/chains (absorbs the old fast-food page).",
+  "movie-picker-wheel":
+    "Mood filters (any, short, cozy, horror) or paste your own watchlist so the wheel spins titles you already care about.",
+  "date-night-wheel":
+    "Budget and location filters (anything, at home, go out, budget, treat night) rebuild the plan pool before you spin.",
+  "zodiac-sign-wheel":
+    "Month/day birth-date helper highlights the matching Western sign and pins it first on the wheel; absorbed daily-theme slices live in page sections.",
 };
 
 function wheelGettingStartedSection(wheel) {
@@ -1246,7 +1253,7 @@ ${items}
 <p>Browse every free specialty spin wheel on Online Spin Wheel, organized by category. Each wheel is pre-filled and ready to spin, decision makers, classroom pickers, giveaway tools, games, zodiac wheels, and more. Every tool runs in your browser with cryptographically secure randomness, no account, and no downloads. Pick a category below to jump straight to the wheel you need, or start with the homepage wheel and add your own custom entries.</p>
 <section><h2>Popular money pages</h2><ul>
   <li><a href="/raffle-wheel">Raffle wheel</a>, ticket-number mode, multi-winner draws, proof links</li>
-  <li><a href="/prize-wheel">Prize wheel</a>, labeled giveaway slices plus physical-wheel buyer guide</li>
+  <li><a href="/raffle-wheel">Prize / raffle wheel</a>, labeled prize slices, tickets, multi-winner draws</li>
   <li><a href="/classroom-spinner">Classroom spinner</a>, student picker, teams, and timer hub</li>
   <li><a href="/wheel-of-names-alternative">Wheel of names alternative</a>, compare free picker tools</li>
 </ul></section>

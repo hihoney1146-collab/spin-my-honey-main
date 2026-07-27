@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { getAllWheelRecords } from "@/lib/wheelPages";
 import { BLOG_INDEX_PATH } from "@/lib/siteInternalLinks";
+import { INDEXED_WHEEL_COUNT_PHASE_C, isHubListedWheelSlug } from "@/data/wheelIndexPolicy";
 import { ArrowLeft } from "lucide-react";
 
 const SITE_ORIGIN = "https://onlinespinwheel.fun";
@@ -12,6 +13,7 @@ function groupWheelsByCategory(
 ): { category: string; wheels: ReturnType<typeof getAllWheelRecords> }[] {
   const map = new Map<string, ReturnType<typeof getAllWheelRecords>>();
   for (const w of wheels) {
+    if (!isHubListedWheelSlug(w.slug)) continue;
     const cat = w.category?.trim() || "Other";
     const list = map.get(cat) ?? [];
     list.push(w);
@@ -63,31 +65,36 @@ const AllSpinWheelsPage = () => {
           All specialty spin wheels
         </h1>
         <p className="text-lg text-muted-foreground mb-6 max-w-3xl">
-          Every page below is a ready-to-use spin wheel with preset options, how-to
-          steps, and FAQs. Pick the tool that matches your situation, then customize
-          entries if you need to.
+          Browse our specialty tools (about {INDEXED_WHEEL_COUNT_PHASE_C} indexed
+          decision and classroom wheels, plus a few utility pages kept live for
+          bookmarks). Each ready-to-use wheel includes presets you can edit.
+          Prefer a blank slate? Use the{" "}
+          <Link to="/" className="text-primary underline underline-offset-2">
+            homepage spinner
+          </Link>
+          .
         </p>
 
         <Card className="p-5 md:p-6 mb-8 border-primary/20 bg-primary/5">
-          <h2 className="text-lg font-bold mb-3">Popular money pages</h2>
+          <h2 className="text-lg font-bold mb-3">Popular tools</h2>
           <p className="text-sm text-muted-foreground mb-4">
-            High-intent tools for raffles, prizes, classrooms, and name-picker
-            comparisons:
+            High-intent tools for raffles and prize draws, classrooms, and
+            name-picker comparisons:
           </p>
           <ul className="grid sm:grid-cols-2 gap-2 text-sm">
             <li>
               <Link to="/raffle-wheel" className="text-primary font-medium hover:underline">
-                Raffle wheel, ticket numbers &amp; proof links
-              </Link>
-            </li>
-            <li>
-              <Link to="/prize-wheel" className="text-primary font-medium hover:underline">
-                Prize wheel, labeled giveaway slices
+                Raffle &amp; prize wheel, tickets, labels, proof links
               </Link>
             </li>
             <li>
               <Link to="/classroom-spinner" className="text-primary font-medium hover:underline">
                 Classroom spinner, teacher hub
+              </Link>
+            </li>
+            <li>
+              <Link to="/random-name-picker-wheel" className="text-primary font-medium hover:underline">
+                Random name picker
               </Link>
             </li>
             <li>

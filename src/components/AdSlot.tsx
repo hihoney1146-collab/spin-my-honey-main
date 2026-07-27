@@ -12,6 +12,7 @@ type AdSlotProps = {
 /**
  * Reserved ad region with fixed min-height to limit CLS before/after AdSense fill.
  * Do not pass a live adSlot until AdSense approval.
+ * Place well below primary CTAs (e.g. Spin) to avoid accidental clicks.
  */
 export function AdSlot({
   adSlot,
@@ -19,15 +20,24 @@ export function AdSlot({
   label = "Advertisement",
 }: AdSlotProps) {
   const ref = useRef<HTMLModElement>(null);
-  const [ready, setReady] = useState(false);
+  const [consent, setConsent] = useState(() => readCookieConsent());
+  const ready = consent === "accepted";
 
   useEffect(() => {
-    const consent = readCookieConsent();
-    if (consent !== "accepted") return;
-
-    loadAdSenseScript();
-    setReady(true);
+    const sync = () => setConsent(readCookieConsent());
+    sync();
+    window.addEventListener("storage", sync);
+    window.addEventListener("cookie-consent-changed", sync);
+    return () => {
+      window.removeEventListener("storage", sync);
+      window.removeEventListener("cookie-consent-changed", sync);
+    };
   }, []);
+
+  useEffect(() => {
+    if (!ready) return;
+    loadAdSenseScript();
+  }, [ready]);
 
   useEffect(() => {
     if (!ready || !adSlot || !ref.current) return;
@@ -40,13 +50,12 @@ export function AdSlot({
     }
   }, [ready, adSlot]);
 
-  const consent = readCookieConsent();
-  const reserved = (
+  return (
     <div
       className={`min-h-[280px] w-full rounded-lg border border-dashed border-border/80 bg-muted/20 ${className}`}
       aria-label={label}
     >
-      {consent === "accepted" && adSlot ? (
+      {ready && adSlot ? (
         <>
           <p className="text-[10px] uppercase tracking-wide text-muted-foreground mb-1 text-center pt-2">
             {label}
@@ -63,13 +72,11 @@ export function AdSlot({
         </>
       ) : (
         <div className="flex min-h-[280px] items-center justify-center px-4 text-center text-xs text-muted-foreground">
-          {consent === "accepted"
+          {ready
             ? `${label} (enabled after AdSense approval)`
             : `${label}, reserved slot`}
         </div>
       )}
     </div>
   );
-
-  return reserved;
 }

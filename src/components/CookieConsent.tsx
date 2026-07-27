@@ -34,6 +34,7 @@ export const CookieConsent = () => {
     if (value === "accepted") {
       loadAdSenseScript();
     }
+    window.dispatchEvent(new Event("cookie-consent-changed"));
     setIsVisible(false);
   }, []);
 
@@ -155,14 +156,16 @@ export const CookieConsent = () => {
               </Button>
             </div>
 
-            <button
-              type="button"
-              onClick={() => setIsVisible(false)}
-              className="absolute top-2 right-2 p-1 text-muted-foreground hover:text-foreground rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-              aria-label="Close cookie preferences"
-            >
-              <X className="h-4 w-4" />
-            </button>
+            {storedChoice ? (
+              <button
+                type="button"
+                onClick={() => setIsVisible(false)}
+                className="absolute top-2 right-2 p-1 text-muted-foreground hover:text-foreground rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                aria-label="Close cookie preferences"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            ) : null}
           </Card>
         </motion.div>
       )}

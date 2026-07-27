@@ -14,6 +14,15 @@ const Terms = () => {
           content="Terms and Conditions for Online Spin Wheel (onlinespinwheel.fun): use of the service, ads, eligibility, randomness, IP, liability, governing law, and contact."
         />
         <link rel="canonical" href="https://onlinespinwheel.fun/terms-and-conditions" />
+        <meta property="og:title" content="Terms and Conditions - Online Spin Wheel" />
+        <meta
+          property="og:description"
+          content="Terms and Conditions for Online Spin Wheel: use of the service, ads, eligibility, randomness, IP, liability, governing law, and contact."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://onlinespinwheel.fun/terms-and-conditions" />
+        <meta property="og:image" content="https://onlinespinwheel.fun/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
 
       <article className="container mx-auto px-4 py-8 md:py-12 max-w-5xl">

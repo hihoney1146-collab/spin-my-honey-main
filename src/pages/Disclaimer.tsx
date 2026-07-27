@@ -14,6 +14,15 @@ const Disclaimer = () => {
           content="Disclaimer for Online Spin Wheel (onlinespinwheel.fun): informational and entertainment use only, as-is service, ads, external links, liability limits, and contact."
         />
         <link rel="canonical" href="https://onlinespinwheel.fun/disclaimer" />
+        <meta property="og:title" content="Disclaimer - Online Spin Wheel" />
+        <meta
+          property="og:description"
+          content="Disclaimer for Online Spin Wheel: informational and entertainment use only, as-is service, ads, external links, liability limits, and contact."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://onlinespinwheel.fun/disclaimer" />
+        <meta property="og:image" content="https://onlinespinwheel.fun/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
 
       <article className="container mx-auto px-4 py-8 md:py-12 max-w-5xl">
