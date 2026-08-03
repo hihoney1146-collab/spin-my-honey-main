@@ -164,6 +164,48 @@ function splitArrayElements(arrayLiteral) {
   return elements;
 }
 
+/**
+ * Evaluate a BlogPost object literal. Vite asset imports (`src: icebreakerPromptsImg`)
+ * are not defined in Node — stub them so sitemap/llms generation still gets slug/indexed.
+ */
+function evalBlogPostLiteral(literal) {
+  const stubAssetSrc = (src) =>
+    src.replace(/\bsrc:\s*([A-Za-z_$][\w$]*)/g, 'src: ""');
+
+  try {
+    // eslint-disable-next-line no-new-func
+    return new Function(`"use strict";return (${stubAssetSrc(literal)});`)();
+  } catch {
+    // Broader stub for any remaining free identifiers used as values
+    const stubbed = stubAssetSrc(literal).replace(
+      /(:\s*)([A-Za-z_$][\w$]*)(\s*[,}\n\r])/g,
+      (match, pre, id, post) => {
+        if (["true", "false", "null", "undefined"].includes(id)) return match;
+        return `${pre}null${post}`;
+      },
+    );
+    // eslint-disable-next-line no-new-func
+    return new Function(`"use strict";return (${stubbed});`)();
+  }
+}
+
+/** Regex fallback so an indexed post is never silently dropped from the sitemap. */
+function blogPostMetaFromLiteral(literal) {
+  const slug = literal.match(/\bslug:\s*["']([^"']+)["']/)?.[1];
+  if (!slug) return null;
+  const indexedRaw = literal.match(/\bindexed:\s*(true|false)/)?.[1];
+  const updated =
+    literal.match(/\bupdated:\s*["']([^"']+)["']/)?.[1] ??
+    new Date().toISOString().slice(0, 10);
+  return {
+    slug,
+    indexed: indexedRaw === undefined ? true : indexedRaw === "true",
+    updated,
+    title: "",
+    metaDescription: "",
+  };
+}
+
 function loadBlogPostExportsFromFile(filePath, exportsByName) {
   if (!fs.existsSync(filePath)) return;
   const src = fs.readFileSync(filePath, "utf8");
@@ -175,11 +217,18 @@ function loadBlogPostExportsFromFile(filePath, exportsByName) {
     const literal = extractBracedLiteral(src, start);
     if (!literal) continue;
     try {
-      // eslint-disable-next-line no-new-func
-      const post = new Function(`"use strict";return (${literal});`)();
+      const post = evalBlogPostLiteral(literal);
       if (post?.slug) exportsByName.set(name, post);
     } catch (err) {
-      console.warn(`⚠️  Could not parse BlogPost export ${name}: ${err.message}`);
+      const fallback = blogPostMetaFromLiteral(literal);
+      if (fallback) {
+        console.warn(
+          `⚠️  BlogPost ${name}: full parse failed (${err.message}); using slug/indexed fallback for sitemap`,
+        );
+        exportsByName.set(name, fallback);
+      } else {
+        console.warn(`⚠️  Could not parse BlogPost export ${name}: ${err.message}`);
+      }
     }
   }
 }

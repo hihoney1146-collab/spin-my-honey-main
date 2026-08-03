@@ -392,6 +392,20 @@ export function writeAllSitemapFiles(root = getProjectRoot()) {
   const xml = buildSitemapXml(root);
   const txt = buildTextSitemap(root);
 
+  const locCount = (xml.match(/<loc>/g) || []).length;
+  if (locCount < 1) {
+    throw new Error(
+      "Refusing to write empty sitemap urlset — collectSitemapEntries returned no URLs",
+    );
+  }
+  // Guard against silent blog drops (e.g. asset-import parse failures).
+  const blogSlugs = collectBlogSlugs(root);
+  if (blogSlugs.length === 0) {
+    console.warn(
+      "⚠️  No indexed blog posts in sitemap — check blog-data-sources parse warnings",
+    );
+  }
+
   // GSC primary: one urlset (no child-index hop; fewer Cloudflare edge failures).
   fs.writeFileSync(path.join(publicDir, "sitemap.xml"), xml, "utf8");
   // Extensionless static file — Vercel serves this before /api rewrite; avoids incomplete
@@ -440,8 +454,11 @@ Disallow: /*?*utm_campaign=
 Disallow: /*?*fbclid=
 Disallow: /*?*gclid=
 
+# Primary for GSC (extensionless urlset; most reliable behind Cloudflare)
 Sitemap: ${SITE}/sitemap
+# Same urlset with .xml extension (prefer /sitemap if GSC reports Couldn't fetch)
 Sitemap: ${SITE}/sitemap.xml
+# Plain-text URL list fallback
 Sitemap: ${SITE}/sitemap.txt
 `;
 }
