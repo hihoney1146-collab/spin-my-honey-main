@@ -21,7 +21,7 @@ export const NOINDEX_WHEEL_SLUGS = [
   "random-hobby-generator-wheel",
 ] as const;
 
-/** Phase C merges (hat deferred). */
+/** Phase C merges (incl. hat). */
 export const WHEEL_MERGE_REDIRECTS: Record<string, string> = {
   "prize-wheel": "raffle-wheel",
   "instagram-wheel-picker": "winner-picker-wheel",

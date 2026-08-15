@@ -254,6 +254,8 @@ export type SpinWheelProps = {
   streamerToggle?: boolean;
   /** Hide entries panel (embed iframe). */
   compactEmbed?: boolean;
+  /** Start the desktop entries list expanded (filter wheels that rebuild the pool). */
+  entriesListDefaultExpanded?: boolean;
 };
 
 function entriesFromLabels(labels: string[]): WheelEntry[] {
@@ -275,6 +277,7 @@ export const SpinWheel = ({
   shareEnabled = true,
   streamerToggle = true,
   compactEmbed = false,
+  entriesListDefaultExpanded = false,
 }: SpinWheelProps = {}) => {
   const { resolvedTheme } = useTheme();
   const location = useLocation();
@@ -335,7 +338,9 @@ export const SpinWheel = ({
   const [bulkPasteText, setBulkPasteText] = useState("");
   const [entriesPageIndex, setEntriesPageIndex] = useState(0);
   /** Large screens: entries list starts collapsed so the panel does not overlap page content */
-  const [desktopEntriesListExpanded, setDesktopEntriesListExpanded] = useState(false);
+  const [desktopEntriesListExpanded, setDesktopEntriesListExpanded] = useState(
+    entriesListDefaultExpanded,
+  );
   /** Stream layout: entries panel collapsed by default */
   const [streamEntriesExpanded, setStreamEntriesExpanded] = useState(false);
   const [isSpinning, setIsSpinning] = useState(false);

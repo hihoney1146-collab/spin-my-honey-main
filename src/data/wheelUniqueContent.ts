@@ -193,113 +193,57 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "should-i-text-him-wheel": {
     directAnswer:
-      "The Should I Text Him Wheel turns overthinking into a single spin when you keep drafting and deleting messages. Load outcomes like Send it, Wait an hour, or Let him text first, spin, and treat the result as a mood check, not a relationship contract. Friends use it at sleepovers, daters after first dates, and anyone pausing before midnight texts.",
+      "The Should I Text Him Wheel swaps curated outcome sets with context chips (casual, mixed signals, high emotion), then starts a one-minute cooldown after each spin so you cannot rapid-fire re-rolls when emotions run hot.",
     title: "Should I Text Him Wheel, End the Draft Loop",
     metaDescription:
-      "Thumb hovering over send again? Spin relationship-flavored outcomes and break the overthink cycle before you double-text.",
+      "Pick a texting context to swap outcomes, spin once, then wait out the cooldown before another roll so overthinking slows down.",
     useCases: [
-      {
-        heading: "Post-first-date anxiety",
-        body: "Spin between Text tomorrow, Send a meme, and Sleep on it so you do not fire off a novel at 1 a.m.",
-      },
-      {
-        heading: "Group chat interventions",
-        body: "Friends huddle around one phone, spin together, and laugh at whatever fate says, often the best cure for spiraling.",
-      },
-      {
-        heading: "Ex-boundary reminders",
-        body: "Customize extra No slices when temptation hits, making the wheel lean toward self-respect during weak moments.",
-      },
-      {
-        heading: "Long-distance check-ins",
-        body: "Couples spin for Call instead, Send a voice note, or Plan a visit when schedules feel out of sync.",
-      },
+      { heading: "Post-first-date anxiety", body: "Casual context offers short hello vs wait-until-tomorrow outcomes instead of a midnight novel." },
+      { heading: "Mixed signals nights", body: "Mixed signals chips favor clarifying questions, waiting, or deleting the draft." },
+      { heading: "High emotion spirals", body: "High emotion pools lean toward not texting tonight and journaling first, then the cooldown locks re-spins." },
+      { heading: "Friend interventions", body: "Pass the phone, choose a context together, and honor one spin plus the cooldown." },
     ],
     faqs: [
-      {
-        question: "Is this actual relationship advice?",
-        answer:
-          "No, it is a playful randomizer. Trust your boundaries and context; the wheel only interrupts rumination with a surprise nudge.",
-      },
-      {
-        question: "Can I rename slices for her or them?",
-        answer:
-          "Edit every label. Should I text her, Should I call my mom, whatever dilemma fits your inbox.",
-      },
-      {
-        question: "What default outcomes ship?",
-        answer:
-          "Yes do it, No way, Wait an hour, Send a meme, Let him text first, and Sleep on it appear out of the box.",
-      },
-      {
-        question: "Should I spin multiple times until I like the answer?",
-        answer:
-          "One honest spin keeps the ritual fun. Repeated respins usually mean you already know what you want.",
-      },
+      { question: "What do the context chips change?", answer: "Each chip loads a different curated outcome set (casual, mixed signals, or high emotion) onto the wheel before you spin." },
+      { question: "What is the cooldown?", answer: "After a spin, the wheel locks for about 60 seconds so impulsive re-rolls are harder when feelings are loud." },
+      { question: "Is this relationship advice?", answer: "No. It is a playful randomizer that interrupts rumination. Trust your boundaries and context." },
+      { question: "Can I rename slices?", answer: "Yes. Edit labels after a context loads if you need Should I text her or call instead." },
     ],
     relatedWheels: [
       { slug: "yes-or-no-wheel", anchor: "Binary yes-or-no wheel" },
       { slug: "date-night-wheel", anchor: "Date night idea wheel" },
-      { slug: "truth-or-dare-spinner-online", anchor: "Truth or dare party spinner" },
       { slug: "outfit-picker-wheel", anchor: "Outfit picker for date night" },
       { slug: "coin-flip-wheel", anchor: "Fifty-fifty coin flip" },
       { slug: "self-care-wheel", anchor: "Self-care instead of texting" },
+      { slug: "movie-picker-wheel", anchor: "Stay-in movie night" },
     ],
   },
 
   "outfit-picker-wheel": {
     directAnswer:
-      "The Outfit Picker Wheel picks a style vibe, casual, formal, streetwear, cozy, so you stop staring at a full closet every morning. Spin once, match the highlighted aesthetic with pieces you own, and leave on time. Creators use it for TikTok challenges, students for dress-code days, and minimalists to rotate looks without buying more clothes.",
+      "The Outfit Picker Wheel filters a tagged outfit dataset with separate occasion and weather toggles. Choose work, casual, or date, then any weather, rain, or heat. The wheel rebuilds to matching looks so mornings stop in one spin.",
     title: "Outfit Picker Wheel, Morning Style in One Spin",
     metaDescription:
-      "Nothing feels right in the closet? Spin Casual, Formal, Streetwear, or your own labels and dress to the result before coffee gets cold.",
+      "Set occasion and weather filters to rebuild outfit slices, then spin a matching look for work, casual days, or dates.",
     useCases: [
-      {
-        heading: "School dress-up days",
-        body: "Teachers load Spirit Week themes on the wheel so homeroom spins each morning instead of copying last year's costume.",
-      },
-      {
-        heading: "Pack-light travel",
-        body: "Travelers assign capsule outfits to slices and spin daily so a carry-on feels fresh across a week abroad.",
-      },
-      {
-        heading: "DTI and Roblox fashion games",
-        body: "Players spin Vintage or Party slices before building avatars, adding constraints that make design streams funnier.",
-      },
-      {
-        heading: "Color-coordinated families",
-        body: "Parents spin primary-color slices so photo-day outfits match without buying matching sets for every sibling.",
-      },
+      { heading: "Rainy commute mornings", body: "Pick Work plus Rain to keep waterproof shells and boots in the pool." },
+      { heading: "Hot weekend plans", body: "Casual plus Heat favors linen, shorts, and breathable layers." },
+      { heading: "Date night packing", body: "Date occasion with Any weather spins statement tops and dress-plus-jacket combos." },
+      { heading: "Capsule closet days", body: "Filters shrink options so a small wardrobe still feels intentional." },
     ],
     faqs: [
-      {
-        question: "Can I spin for shirt color only?",
-        answer:
-          "Replace style names with Red, Navy, White, or Olive slices and spin twice, once for tops, once for bottoms.",
-      },
-      {
-        question: "Does the wheel know my wardrobe?",
-        answer:
-          "No inventory tracking, you interpret the style label with whatever hangs in your closet.",
-      },
-      {
-        question: "Is it useful for uniform schools?",
-        answer:
-          "Add accessory slices, watch, scarf, sneakers, to vary compliant outfits while dress codes stay satisfied.",
-      },
-      {
-        question: "Can teams use it for themed events?",
-        answer:
-          "Load decade themes or company colors so booth staff spin matching looks before a trade show opens.",
-      },
+      { question: "How do occasion and weather work together?", answer: "Both toggles filter one structured dataset. Only outfits tagged for that occasion and weather (or any-weather) stay on the wheel." },
+      { question: "Does the wheel know my wardrobe?", answer: "No inventory tracking. You interpret each label with whatever hangs in your closet." },
+      { question: "What occasions are available?", answer: "Work, Casual, and Date. Pair any of them with Any weather, Rain, or Heat." },
+      { question: "Can I edit the resulting list?", answer: "Yes. After filters load slices, edit names on the wheel if you want personal outfits." },
     ],
     relatedWheels: [
-      { slug: "random-color-wheel", anchor: "Random color picker wheel" },
       { slug: "date-night-wheel", anchor: "Date night outfit pairing" },
       { slug: "should-i-text-him-wheel", anchor: "Text-or-wait relationship wheel" },
       { slug: "self-care-wheel", anchor: "Self-care morning ritual" },
-      { slug: "random-day-picker-wheel", anchor: "Outfit-by-day scheduler" },
       { slug: "yes-or-no-wheel", anchor: "Wear-it-or-change yes-no wheel" },
+      { slug: "dinner-picker-wheel", anchor: "Dinner after you get dressed" },
+      { slug: "movie-picker-wheel", anchor: "Movie night stay-in look" },
     ],
   },
 
@@ -416,7 +360,6 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       { slug: "winner-picker-wheel", anchor: "Giveaway winner picker" },
       { slug: "abcd-spin-wheel", anchor: "ABCD quiz guess wheel" },
       { slug: "nfl-team-picker-wheel", anchor: "NFL team coin-flip style pick" },
-      { slug: "pick-out-of-a-hat-generator", anchor: "Digital hat draw tool" },
     ],
   },
 
@@ -590,113 +533,90 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "chinese-zodiac-wheel": {
     directAnswer:
-      "The Chinese Zodiac Wheel selects one of twelve lunar-calendar animals, Rat, Ox, Tiger, Rabbit, Dragon, Snake, Horse, Goat, Monkey, Rooster, Dog, Pig, for cultural lessons, Lunar New Year parties, and trivia nights. Spin to assign research topics, lucky mascots, or party characters. Each animal sits on an equal slice, mirroring the traditional twelve-year cycle without requiring birth-year math on the spot.",
+      "The Chinese Zodiac Wheel pairs a birth-year calculator with the twelve animals. Enter a year, see which animal matches (Gregorian approximation), and the wheel reorders so that animal is ready to spin for Lunar New Year games or classroom units.",
     title: "Chinese Zodiac Wheel, Lunar Animal Picker",
     metaDescription:
-      "Celebrating Lunar New Year or teaching Eastern astrology? Spin the twelve Chinese zodiac animals and build games around whichever creature lands.",
+      "Enter a birth year to highlight the matching Chinese zodiac animal, then spin the twelve-animal wheel for class, parties, or trivia.",
     useCases: [
-      {
-        heading: "Lunar New Year classroom units",
-        body: "Students spin an animal, then present customs or famous people born under that sign.",
-      },
-      {
-        heading: "Restaurant promotion nights",
-        body: "Owners spin nightly to feature a zodiac-themed dish special matching the animal result.",
-      },
-      {
-        heading: "Family reunion games",
-        body: "Relatives spin to pick conversation starters about each person's birth animal.",
-      },
-      {
-        heading: "Museum scavenger hunts",
-        body: "Visitors spin, then find one artifact related to their assigned zodiac creature in the gallery.",
-      },
+      { heading: "Lunar New Year classroom units", body: "Students look up their birth year, then present customs for the highlighted animal." },
+      { heading: "Restaurant promotion nights", body: "Owners look up the year of the table host and feature a zodiac-themed dish special." },
+      { heading: "Family reunion games", body: "Relatives enter birth years and spin conversation starters about each person's animal." },
+      { heading: "Museum scavenger hunts", body: "Visitors calculate their animal, then find one artifact related to that creature in the gallery." },
     ],
     faqs: [
-      {
-        question: "How is this different from Western zodiac?",
-        answer:
-          "Chinese astrology uses a twelve-year animal cycle tied to lunar New Year dates, not monthly sun signs.",
-      },
-      {
-        question: "Which animals are included?",
-        answer:
-          "Rat, Ox, Tiger, Rabbit, Dragon, Snake, Horse, Goat, Monkey, Rooster, Dog, and Pig.",
-      },
-      {
-        question: "Can I spin for lucky numbers too?",
-        answer:
-          "Add custom slices with favored digits beside animals if your celebration mixes both traditions.",
-      },
-      {
-        question: "Does the wheel know my birth year?",
-        answer:
-          "It does not calculate years, you interpret which animal matches your birth date separately.",
-      },
+      { question: "How does the birth-year calculator work?", answer: "Enter a year between 1900 and 2100 and tap Show animal. The tool maps the year onto the twelve-animal cycle and pins that animal first on the wheel." },
+      { question: "Is the year mapping exact for lunar New Year?", answer: "It uses a Gregorian approximation. Births in late January or early February can fall in the prior animal depending on the lunar New Year date that year." },
+      { question: "Which animals are included?", answer: "Rat, Ox, Tiger, Rabbit, Dragon, Snake, Horse, Goat, Monkey, Rooster, Dog, and Pig." },
+      { question: "How is this different from Western zodiac?", answer: "Chinese astrology uses a twelve-year animal cycle, not monthly sun signs. Use the Western zodiac wheel for month-and-day signs." },
     ],
     relatedWheels: [
       { slug: "zodiac-sign-wheel", anchor: "Western star sign wheel" },
-      { slug: "daily-horoscope-wheel", anchor: "Daily fortune theme wheel" },
-      { slug: "random-animal-picker-wheel", anchor: "General animal picker" },
       { slug: "secret-santa-wheel-generator", anchor: "Holiday gift exchange wheel" },
-      { slug: "family-game-night-picker-wheel", anchor: "Family game night wheel" },
-      { slug: "random-country-wheel", anchor: "Country culture research wheel" },
+      { slug: "random-name-picker-wheel", anchor: "Name picker for party games" },
+      { slug: "yes-or-no-wheel", anchor: "Quick yes-no decision wheel" },
+      { slug: "date-night-wheel", anchor: "Date night idea wheel" },
+      { slug: "self-care-wheel", anchor: "Wellness self-care wheel" },
     ],
   },
 
   "random-name-picker-wheel": {
     directAnswer:
-      "The Random Name Picker Wheel, often called Wheel of Names, draws one winner from a pasted list for classrooms, raffles, and livestreams. Bulk-paste entries, spin with sound and animation, then remove the chosen name so the next round excludes prior winners. Teachers call on students fairly, HR teams pick meeting speakers, and creators select commenters without favoritism accusations.",
+      "The Random Name Picker Wheel (Wheel of Names) is a digital hat draw: paste names, spin, and optionally remove the winner so the next pick comes from the remaining slips. Turn on weighted entries with Name:weight lines when someone deserves extra chances, review session history for substitutes, then share a proof link for livestreams.",
     title: "Random Name Picker, Wheel of Names Online",
     metaDescription:
-      "Paste your participant list, spin the Wheel of Names, and display a fair winner for class, raffles, or stream giveaways in seconds.",
+      "Paste names, spin a fair Wheel of Names, remove winners after each pick, add optional weights, and keep session history for class or stream giveaways.",
     useCases: [
       {
         heading: "Classroom participation",
-        body: "Teachers paste rosters, spin for readers, and delete names until everyone has a turn.",
+        body: "Teachers paste rosters, enable remove-after-pick, and work through the list until everyone has a turn.",
       },
       {
         heading: "Meeting speaker order",
         body: "Managers randomize who presents first so the same volunteer does not always go last.",
       },
       {
-        heading: "Baby shower games",
-        body: "Hosts load gift-giver names and spin to decide who opens the next present.",
+        heading: "Baby shower and party hat draws",
+        body: "Hosts load gift-giver names like slips in a hat and spin to decide who opens the next present.",
       },
       {
-        heading: "Workshop icebreakers",
-        body: "Facilitators spin to pick who shares fun facts, keeping large groups engaged without awkward silence.",
+        heading: "Weighted livestream shoutouts",
+        body: "Creators give subscribers extra weight (Name:3) while still spinning live with a proof link.",
       },
     ],
     faqs: [
       {
-        question: "How many names can I paste?",
+        question: "What is remove-after-pick?",
         answer:
-          "Hundreds of entries fit comfortably; slices shrink automatically to stay readable.",
+          "When enabled, the chosen name drops from the pool after each spin so later rounds only include remaining people, the same fairness rule as emptying a hat.",
       },
       {
-        question: "Can I remove a winner after the spin?",
+        question: "How do weighted entries work?",
         answer:
-          "Yes, delete or deactivate the chosen name so later spins only consider remaining participants.",
+          "Toggle Weighted entries and write Name:weight on a line (Alex:3). That name gets three equal slices. Leave the toggle off for classic equal chances.",
       },
       {
-        question: "Does it save my list overnight?",
+        question: "Where is session history?",
         answer:
-          "Browser storage keeps your customized list on the same device until you clear site data.",
+          "Every completed spin appends to the Session history list under the wheel so you can see who already went without guessing.",
       },
       {
-        question: "Is it fair for graded raffles?",
+        question: "Is this the same as a pick-out-of-a-hat generator?",
         answer:
-          "Screen-record the spin and keep the timestamp if auditors ask for proof of random selection.",
+          "Yes. This page is the hat-style name draw: paste slips, spin, remove winners, or weight a few names when the rules call for it.",
+      },
+      {
+        question: "Can I prove the spin for a raffle?",
+        answer:
+          "Use the proof link after a spin and screen-record if auditors want timestamped evidence of the random selection.",
       },
     ],
     relatedWheels: [
       { slug: "random-student-picker", anchor: "Classroom student picker" },
       { slug: "winner-picker-wheel", anchor: "Social giveaway winner wheel" },
-      { slug: "pick-out-of-a-hat-generator", anchor: "Virtual hat name draw" },
       { slug: "team-generator-wheel", anchor: "Random team generator" },
-      { slug: "instagram-wheel-picker", anchor: "Instagram comment picker" },
       { slug: "secret-santa-wheel-generator", anchor: "Secret Santa name draw" },
+      { slug: "raffle-wheel", anchor: "Raffle and prize draw wheel" },
+      { slug: "classroom-spinner", anchor: "Classroom spinner hub" },
     ],
   },
 
@@ -751,7 +671,6 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       { slug: "winner-picker-wheel", anchor: "Raffle winner name wheel" },
       { slug: "abcd-spin-wheel", anchor: "Letter answer ABCD wheel" },
       { slug: "alphabet-spinner-wheel", anchor: "A-Z letter spinner" },
-      { slug: "pick-out-of-a-hat-generator", anchor: "Hat draw for numbers" },
       { slug: "random-day-picker-wheel", anchor: "Day-of-week number picker" },
     ],
   },
@@ -866,7 +785,6 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
     relatedWheels: [
       { slug: "instagram-wheel-picker", anchor: "Instagram-focused giveaway wheel" },
       { slug: "random-name-picker-wheel", anchor: "General Wheel of Names" },
-      { slug: "pick-out-of-a-hat-generator", anchor: "Magic hat winner draw" },
       { slug: "secret-santa-wheel-generator", anchor: "Holiday name assignment" },
       { slug: "coin-flip-wheel", anchor: "Coin-flip tiebreaker" },
       { slug: "random-number-wheel", anchor: "Numbered ticket draw" },
@@ -1430,56 +1348,28 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "abcd-spin-wheel": {
     directAnswer:
-      "The ABCD Spin Wheel randomly selects A, B, C, or D when trivia players want a blind guess or teachers gamify multiple-choice review. Spin before revealing the answer key, assign letter topics to student groups, or swap slices to True and False for binary quizzes. Equal slice sizes keep every letter mathematically fair for standardized-test practice games.",
+      "The ABCD Spin Wheel locks to A, B, C, and D for multiple-choice call-outs. Teachers enable remove-after-pick so used letters drop out, open projector fullscreen for the smartboard, and review the answers-called list under the wheel. Equal letter slices keep blind-guess games fair during quiz review.",
     title: "ABCD Spin Wheel, Multiple Choice Picker",
     metaDescription:
-      "Stuck between four quiz answers? Spin A, B, C, or D for a blind guess, or let the wheel assign MC sections during review games.",
+      "Lock A-D for quiz call-outs, remove letters after each pick, and use projector fullscreen so the whole class can see the spin.",
     useCases: [
-      {
-        heading: "SAT practice games",
-        body: "Tutors spin when students freeze on elimination questions, then discuss why the letter was or was not correct.",
-      },
-      {
-        heading: "Zoom trivia nights",
-        body: "Hosts spin on shared screens while teams shout their own reasoning before the letter appears.",
-      },
-      {
-        heading: "Workshop polling",
-        body: "Facilitators map A–D to four discussion topics and spin to pick which breakout question starts.",
-      },
-      {
-        heading: "True-or-false variant",
-        body: "Replace letters with True and False slices for quick warm-ups without loading a separate wheel.",
-      },
+      { heading: "SAT practice games", body: "Tutors spin when students freeze on elimination questions, then discuss why the letter was or was not correct." },
+      { heading: "Projector review days", body: "Fullscreen classroom mode puts a large tap-to-spin control on the board while remove-after-pick cycles through leftover letters." },
+      { heading: "Workshop polling", body: "Facilitators map A-D to four discussion topics and spin to pick which breakout question starts." },
+      { heading: "Session logging", body: "The answers-called list shows which letters already appeared so you do not argue about repeats mid-period." },
     ],
     faqs: [
-      {
-        question: "Is every letter equally likely?",
-        answer:
-          "Default wheels duplicate A–D twice for color variety, but each letter still carries equal probability.",
-      },
-      {
-        question: "Can teachers disable certain letters?",
-        answer:
-          "Delete slices to run three-option quizzes if a question only has three choices.",
-      },
-      {
-        question: "Does it read question text aloud?",
-        answer:
-          "No, display your test question separately; the wheel only picks the letter.",
-      },
-      {
-        question: "Can I log spins for grading?",
-        answer:
-          "Screenshot results if you award participation points for engaging with the spinner.",
-      },
+      { question: "Are the letters locked to A-D?", answer: "Yes. This mode always seeds four slices labeled A through D for multiple-choice call-outs." },
+      { question: "What does remove letter after pick do?", answer: "After a spin, that letter drops from the pool so the next spin only chooses among remaining options until you reload." },
+      { question: "What is projector fullscreen?", answer: "It expands the wheel to a full-screen classroom layout with a large tap-to-spin button meant for smartboards and projectors." },
+      { question: "Where do I see past answers?", answer: "The Answers called list under the wheel keeps an ordered history of every letter spun this session." },
     ],
     relatedWheels: [
       { slug: "alphabet-spinner-wheel", anchor: "Full alphabet A-Z spinner" },
       { slug: "yes-or-no-wheel", anchor: "True-false yes-no wheel" },
       { slug: "random-student-picker", anchor: "Pick who answers next" },
       { slug: "random-number-wheel", anchor: "Numeric quiz picker" },
-      { slug: "random-word-generator-wheel", anchor: "Vocabulary quiz words" },
+      { slug: "classroom-spinner", anchor: "Classroom spinner hub" },
       { slug: "coin-flip-wheel", anchor: "Fifty-fifty answer coin flip" },
     ],
   },
@@ -1654,113 +1544,57 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "self-care-wheel": {
     directAnswer:
-      "The Self Care Wheel nudges you toward small wellness actions, meditate ten minutes, journal, take a walk, when burnout makes even resting feel like a decision. Spin once during work breaks, pick the highlighted ritual, and log completion however you like. Remote workers step away from Slack, students unplug between study blocks, and parents model healthy pauses for kids watching.",
+      "The Self Care Wheel rebuilds its pool from filter chips: 5-minute, no-spend, evening, or movement. Tap a chip, spin once, and take the highlighted ritual during a break when deciding feels harder than resting.",
     title: "Self Care Wheel, Daily Wellness Nudge",
     metaDescription:
-      "Too fried to choose a break activity? Spin meditate, walk, journal, or your custom rituals and honor whatever wellness task appears.",
+      "Filter self-care prompts by 5-minute, no-spend, evening, or movement, then spin a matching wellness action for your break.",
     useCases: [
-      {
-        heading: "Pomodoro breaks",
-        body: "After four focus sprints, spin to decide whether the next pause is stretch or tea.",
-      },
-      {
-        heading: "Therapy homework",
-        body: "Clients spin between grounding exercises their counselor listed on a shared slice list.",
-      },
-      {
-        heading: "Sunday reset routines",
-        body: "Households spin weekly to assign one deep-care task like bath or long walk.",
-      },
-      {
-        heading: "Teacher lounge recharge",
-        body: "Staff rooms keep the wheel on a tablet so five-minute breaks feel intentional.",
-      },
+      { heading: "Pomodoro breaks", body: "After focus sprints, choose the 5-minute chip and spin for a quick reset." },
+      { heading: "Budget burnout days", body: "No-spend filters keep suggestions free when money stress is already high." },
+      { heading: "Evening wind-down", body: "Evening chips favor low-light rituals before bed instead of another scroll session." },
+      { heading: "Movement snacks", body: "Movement chips rebuild the wheel with walks, mobility, and short circuits." },
     ],
     faqs: [
-      {
-        question: "Can I build a blank template?",
-        answer:
-          "Clear defaults and type your therapist-approved or personal coping strategies.",
-      },
-      {
-        question: "Does it track streaks?",
-        answer:
-          "No built-in habit tracker, mark completions in your journal or habit app.",
-      },
-      {
-        question: "Are activities clinical treatment?",
-        answer:
-          "These are gentle suggestions, not medical advice; follow your care team for serious needs.",
-      },
-      {
-        question: "Can kids use it?",
-        answer:
-          "Swap slices for child-friendly options like drink water or hug a stuffed animal.",
-      },
+      { question: "What do the filter chips do?", answer: "Each chip swaps the entire wheel pool from a structured dataset (5-minute, no-spend, evening, or movement)." },
+      { question: "Can I still customize slices?", answer: "Yes. After a filter loads, you can edit the wheel entries like any other spinner if you need personal coping strategies." },
+      { question: "Are activities clinical treatment?", answer: "These are gentle suggestions, not medical advice. Follow your care team for serious needs." },
+      { question: "Does it track streaks?", answer: "No built-in habit tracker. Mark completions in your journal or habit app." },
     ],
     relatedWheels: [
-      { slug: "exercise-picker-wheel", anchor: "Movement break wheel" },
-      { slug: "random-hobby-generator-wheel", anchor: "Restful hobby ideas" },
-      { slug: "bedtime-story-picker-wheel", anchor: "Calm bedtime ritual" },
-      { slug: "daily-horoscope-wheel", anchor: "Daily mood theme wheel" },
       { slug: "date-night-wheel", anchor: "Couples recharge date" },
       { slug: "yes-or-no-wheel", anchor: "Take a break yes-no" },
+      { slug: "outfit-picker-wheel", anchor: "Outfit for a walk outside" },
+      { slug: "should-i-text-him-wheel", anchor: "Pause before texting" },
+      { slug: "movie-picker-wheel", anchor: "Cozy movie night" },
+      { slug: "dinner-picker-wheel", anchor: "Simple dinner decision" },
     ],
   },
 
   "pokemon-randomizer-wheel": {
     directAnswer:
-      "The Pokemon Randomizer Wheel picks creatures like Pikachu, Charizard, or Eevee for Nuzlocke runs, fan-art prompts, and starter debates. Gamers spin before catching the first route encounter allowed, artists sketch whichever sprite appears, and streamers let chat vote on randomized team rules. Swap slices for other anime rosters when you outgrow Kanto.",
-    title: "Pokemon Randomizer, Character Challenge Wheel",
+      "The Pokemon Randomizer Wheel rebuilds challenge pools with filters for starters, types, nuzlocke-style rules, and generation vibe. Labels stay generic-safe for licensing, focusing on run rules rather than a character name dump.",
+    title: "Pokemon Randomizer, Challenge Rules Wheel",
     metaDescription:
-      "Starting a Nuzlocke or need a sketch subject? Spin Pikachu, Charizard, Eevee, or your custom roster for randomized Pokemon challenges.",
+      "Filter starter, type, nuzlocke-style, or generation-vibe challenge rules, then spin a fair constraint for your next run or stream.",
     useCases: [
-      {
-        heading: "Nuzlocke starter locks",
-        body: "Runners spin once and must keep whichever starter the wheel mandates through the league.",
-      },
-      {
-        heading: "Art stream prompts",
-        body: "Illustrators spin hourly and speed-draw the highlighted evolution line.",
-      },
-      {
-        heading: "Trading card pack bets",
-        body: "Friends spin to determine which type they must pull from booster packs tonight.",
-      },
-      {
-        heading: "Anime mashup nights",
-        body: "Replace slices with Naruto or Dragon Ball names for crossover fan-art sessions.",
-      },
+      { heading: "Nuzlocke rule nights", body: "Spin the nuzlocke-style pool for first-encounter, nickname, or permadeath constraints." },
+      { heading: "Starter locks", body: "Starter filters force grass, fire, water, or no-evolve rules before the run begins." },
+      { heading: "Type challenges", body: "Type filters load mono-type, dual-type, or ban rules for creative teams." },
+      { heading: "Generation vibe sessions", body: "Generation chips set a ruleset feel without requiring licensed creature names on the wheel." },
     ],
     faqs: [
-      {
-        question: "Can I paste all 1025 Pokemon?",
-        answer:
-          "Bulk paste huge lists; slices shrink but remain selectable.",
-      },
-      {
-        question: "Does it connect to Nintendo games?",
-        answer:
-          "No game integration, it is a planning and challenge tool only.",
-      },
-      {
-        question: "Can I weight legendaries lower?",
-        answer:
-          "Include fewer Mewtwo slices than Pidgey slices to adjust odds manually.",
-      },
-      {
-        question: "Is it kid-friendly?",
-        answer:
-          "Defaults use well-known cute and cool Pokemon suitable for family streams.",
-      },
+      { question: "What do the challenge filters change?", answer: "Each chip reloads a fixed dataset of rule labels (starters, types, nuzlocke-style, or generation vibe) onto the wheel." },
+      { question: "Why are there no character names?", answer: "The utility is the filter UX with generic-safe challenge labels to avoid licensing issues while still randomizing run constraints." },
+      { question: "Does it connect to Nintendo games?", answer: "No game integration. It is a planning and challenge tool only." },
+      { question: "Can I customize after filtering?", answer: "Yes. Edit slices after a pool loads if your house rules need extra constraints." },
     ],
     relatedWheels: [
-      { slug: "roblox-game-picker-wheel", anchor: "Roblox experience picker" },
-      { slug: "fortnite-drop-location-wheel", anchor: "Fortnite drop zone wheel" },
-      { slug: "what-to-draw-wheel", anchor: "General art prompt wheel" },
-      { slug: "random-animal-picker-wheel", anchor: "Real animal picker" },
-      { slug: "winner-picker-wheel", anchor: "Stream giveaway picker" },
       { slug: "team-generator-wheel", anchor: "Multiplayer team split" },
+      { slug: "winner-picker-wheel", anchor: "Stream giveaway picker" },
+      { slug: "yes-or-no-wheel", anchor: "Keep or reroll challenge" },
+      { slug: "random-name-picker-wheel", anchor: "Pick who chooses the rule" },
+      { slug: "coin-flip-wheel", anchor: "Fifty-fifty tiebreaker" },
+      { slug: "what-to-draw-wheel", anchor: "General art prompt wheel" },
     ],
   },
 
@@ -1817,7 +1651,6 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
     ],
     relatedWheels: [
       { slug: "random-name-picker-wheel", anchor: "General name draw wheel" },
-      { slug: "pick-out-of-a-hat-generator", anchor: "Virtual hat name picker" },
       { slug: "winner-picker-wheel", anchor: "Holiday raffle winner" },
       { slug: "instagram-wheel-picker", anchor: "Social giveaway spinner" },
       { slug: "family-game-night-picker-wheel", anchor: "Holiday game night picker" },
@@ -2042,7 +1875,6 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
     relatedWheels: [
       { slug: "winner-picker-wheel", anchor: "Multi-platform winner picker" },
       { slug: "random-name-picker-wheel", anchor: "Wheel of Names draw" },
-      { slug: "pick-out-of-a-hat-generator", anchor: "Hat-style name draw" },
       { slug: "coin-flip-wheel", anchor: "Coin-flip backup tiebreak" },
       { slug: "secret-santa-wheel-generator", anchor: "Holiday name assignments" },
       { slug: "random-number-wheel", anchor: "Numbered entry draw" },
@@ -2406,7 +2238,6 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
     ],
     relatedWheels: [
       { slug: "winner-picker-wheel", anchor: "Social giveaway winner picker" },
-      { slug: "pick-out-of-a-hat-generator", anchor: "Classic hat draw online" },
       { slug: "random-name-picker-wheel", anchor: "Name-only raffle picker" },
       { slug: "classroom-spinner", anchor: "Teacher classroom hub" },
       { slug: "coin-flip-wheel", anchor: "Coin-flip tiebreaker" },
@@ -2482,7 +2313,6 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       { slug: "instagram-wheel-picker", anchor: "Instagram prize spinner" },
       { slug: "family-game-night-picker-wheel", anchor: "Family game prizes" },
       { slug: "random-color-wheel", anchor: "Color prize challenges" },
-      { slug: "pick-out-of-a-hat-generator", anchor: "Hat-style prize draw" },
     ],
   },
 

@@ -8,92 +8,129 @@ type OutfitPickerWheelProps = {
   presetOptionLabels?: string[];
 };
 
-const DATASET: Record<string, string[]> = {
-  work: [
-    "Blazer + trousers",
-    "Knit sweater + chinos",
-    "Button-down + dark jeans",
-    "Midi dress + cardigan",
-    "Smart polo + slacks",
-    "Layered shirt + blazer",
-  ],
-  casual: [
-    "Tee + jeans",
-    "Hoodie + joggers",
-    "Flannel + denim",
-    "Sundress + sneakers",
-    "Overshirt + shorts",
-    "Athleisure set",
-  ],
-  date: [
-    "Nice jeans + statement top",
-    "Blouse + skirt",
-    "Dark denim + boots",
-    "Simple dress + jacket",
-    "Button-up + chinos",
-    "Layered neutrals",
-  ],
-  rain: [
-    "Waterproof shell + jeans",
-    "Trench + boots",
-    "Hoodie under rain jacket",
-    "Dark layers + umbrella",
-    "Quick-dry pants + sneakers",
-    "Knit + packable shell",
-  ],
-  heat: [
-    "Linen shirt + shorts",
-    "Tank + wide pants",
-    "Breathable tee + skirt",
-    "Light dress + sandals",
-    "Open shirt + tee",
-    "Athletic shorts set",
-  ],
+type Occasion = "work" | "casual" | "date";
+type Weather = "any" | "rain" | "heat";
+
+type OutfitItem = {
+  label: string;
+  occasion: Occasion[];
+  weather: Weather[];
 };
 
-type FilterKey = keyof typeof DATASET;
+const OUTFITS: OutfitItem[] = [
+  { label: "Blazer + trousers", occasion: ["work"], weather: ["any"] },
+  { label: "Knit sweater + chinos", occasion: ["work", "casual"], weather: ["any"] },
+  { label: "Button-down + dark jeans", occasion: ["work", "date"], weather: ["any"] },
+  { label: "Midi dress + cardigan", occasion: ["work", "date"], weather: ["any"] },
+  { label: "Smart polo + slacks", occasion: ["work"], weather: ["any", "heat"] },
+  { label: "Tee + jeans", occasion: ["casual"], weather: ["any", "heat"] },
+  { label: "Hoodie + joggers", occasion: ["casual"], weather: ["any", "rain"] },
+  { label: "Flannel + denim", occasion: ["casual", "date"], weather: ["any"] },
+  { label: "Sundress + sneakers", occasion: ["casual", "date"], weather: ["heat"] },
+  { label: "Overshirt + shorts", occasion: ["casual"], weather: ["heat"] },
+  { label: "Athleisure set", occasion: ["casual"], weather: ["any", "heat"] },
+  { label: "Nice jeans + statement top", occasion: ["date"], weather: ["any"] },
+  { label: "Blouse + skirt", occasion: ["date", "work"], weather: ["any", "heat"] },
+  { label: "Dark denim + boots", occasion: ["date", "casual"], weather: ["any", "rain"] },
+  { label: "Simple dress + jacket", occasion: ["date"], weather: ["any", "rain"] },
+  { label: "Waterproof shell + jeans", occasion: ["work", "casual", "date"], weather: ["rain"] },
+  { label: "Trench + boots", occasion: ["work", "date"], weather: ["rain"] },
+  { label: "Hoodie under rain jacket", occasion: ["casual"], weather: ["rain"] },
+  { label: "Linen shirt + shorts", occasion: ["casual", "date"], weather: ["heat"] },
+  { label: "Tank + wide pants", occasion: ["casual"], weather: ["heat"] },
+  { label: "Breathable tee + skirt", occasion: ["casual", "date"], weather: ["heat"] },
+  { label: "Light dress + sandals", occasion: ["date", "casual"], weather: ["heat"] },
+];
+
+const FALLBACK = ["Tee + jeans", "Blazer + trousers", "Hoodie + joggers", "Simple dress + jacket"];
+
+function filterOutfits(occasion: Occasion, weather: Weather): string[] {
+  const matches = OUTFITS.filter(
+    (item) =>
+      item.occasion.includes(occasion) &&
+      (weather === "any"
+        ? item.weather.includes("any") || item.weather.length > 0
+        : item.weather.includes(weather) || item.weather.includes("any"))
+  ).map((item) => item.label);
+  const unique = [...new Set(matches)];
+  return unique.length >= 2 ? unique : FALLBACK;
+}
 
 export function OutfitPickerWheel({
   presetOptionLabels,
 }: OutfitPickerWheelProps) {
-  const [filter, setFilter] = useState<FilterKey>("casual");
+  const [occasion, setOccasion] = useState<Occasion>("casual");
+  const [weather, setWeather] = useState<Weather>("any");
+
   const labels = useMemo(() => {
-    if (presetOptionLabels?.length && filter === "casual") {
+    if (
+      presetOptionLabels?.length &&
+      occasion === "casual" &&
+      weather === "any"
+    ) {
       return presetOptionLabels;
     }
-    return DATASET[filter];
-  }, [filter, presetOptionLabels]);
+    return filterOutfits(occasion, weather);
+  }, [occasion, weather, presetOptionLabels]);
 
   return (
     <div className="space-y-4">
-      <Card className="p-4 md:p-5 space-y-3">
+      <Card className="p-4 md:p-5 space-y-4">
         <div className="flex items-center gap-2 text-primary font-semibold">
           <Shirt className="h-5 w-5" />
-          <span>Occasion &amp; weather</span>
+          <span>Occasion &amp; weather filters</span>
         </div>
-        <div className="flex flex-wrap gap-2" role="group" aria-label="Outfit filter">
-          {(Object.keys(DATASET) as FilterKey[]).map((key) => (
-            <Button
-              key={key}
-              type="button"
-              size="sm"
-              variant={filter === key ? "default" : "outline"}
-              onClick={() => setFilter(key)}
-            >
-              {key === "work"
-                ? "Work"
-                : key === "casual"
-                  ? "Casual"
-                  : key === "date"
-                    ? "Date"
-                    : key === "rain"
-                      ? "Rain"
-                      : "Heat"}
-            </Button>
+        <div className="space-y-2">
+          <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+            Occasion
+          </p>
+          <div className="flex flex-wrap gap-2" role="group" aria-label="Occasion">
+            {(["work", "casual", "date"] as Occasion[]).map((key) => (
+              <Button
+                key={key}
+                type="button"
+                size="sm"
+                variant={occasion === key ? "default" : "outline"}
+                onClick={() => setOccasion(key)}
+              >
+                {key === "work" ? "Work" : key === "casual" ? "Casual" : "Date"}
+              </Button>
+            ))}
+          </div>
+        </div>
+        <div className="space-y-2">
+          <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+            Weather
+          </p>
+          <div className="flex flex-wrap gap-2" role="group" aria-label="Weather">
+            {(["any", "rain", "heat"] as Weather[]).map((key) => (
+              <Button
+                key={key}
+                type="button"
+                size="sm"
+                variant={weather === key ? "default" : "outline"}
+                onClick={() => setWeather(key)}
+              >
+                {key === "any" ? "Any weather" : key === "rain" ? "Rain" : "Heat"}
+              </Button>
+            ))}
+          </div>
+        </div>
+        <p className="text-sm text-muted-foreground">
+          Both toggles rebuild the wheel from a tagged outfit dataset (
+          {labels.length} looks match).
+        </p>
+        <ul className="text-sm text-foreground grid sm:grid-cols-2 gap-1">
+          {labels.map((label) => (
+            <li key={label}>{label}</li>
           ))}
-        </div>
+        </ul>
       </Card>
-      <SpinWheel key={labels.join("|")} presetOptionLabels={labels} />
+      <SpinWheel
+        key={labels.join("|")}
+        presetOptionLabels={labels}
+        entriesListDefaultExpanded
+      />
     </div>
   );
 }

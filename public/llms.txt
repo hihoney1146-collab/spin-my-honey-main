@@ -2,7 +2,7 @@
 
 > Free browser spin wheels for fair random picks: names, numbers, teams, giveaways, classrooms, and decisions.
 
-Last updated: 2026-08-03
+Last updated: 2026-08-12
 
 ## Identity
 - Canonical site: https://onlinespinwheel.fun/
@@ -49,12 +49,12 @@ https://onlinespinwheel.fun/coin-flip-wheel, Coin Flip Wheel: Need a fair 50/50 
 https://onlinespinwheel.fun/date-night-wheel, Date Night Wheel: Both of you saying I don't know what to do? Spin romantic and playful date ideas and leave the house with a plan already picked.
 https://onlinespinwheel.fun/dinner-picker-wheel, Dinner Picker Wheel: Staring at an empty fridge and zero ideas? Spin preloaded meals or your own list and let dinner pick itself tonight.
 https://onlinespinwheel.fun/movie-picker-wheel, Movie Picker Wheel: Three streaming apps open and still nothing to watch? Spin genres or titles from your queue and press play immediately.
-https://onlinespinwheel.fun/outfit-picker-wheel, Outfit Picker Wheel: Nothing feels right in the closet? Spin Casual, Formal, Streetwear, or your own labels and dress to the result before coffee gets cold.
-https://onlinespinwheel.fun/should-i-text-him-wheel, Should I Text Him Wheel: Thumb hovering over send again? Spin relationship-flavored outcomes and break the overthink cycle before you double-text.
+https://onlinespinwheel.fun/outfit-picker-wheel, Outfit Picker Wheel: Set occasion and weather filters to rebuild outfit slices, then spin a matching look for work, casual days, or dates.
+https://onlinespinwheel.fun/should-i-text-him-wheel, Should I Text Him Wheel: Pick a texting context to swap outcomes, spin once, then wait out the cooldown before another roll so overthinking slows down.
 https://onlinespinwheel.fun/yes-or-no-wheel, Yes or No Wheel: Weighing a simple yes-or-no call? Spin for Yes, No, or Maybe in seconds and move on without another group chat debate.
 
 ## Education & Learning (3)
-https://onlinespinwheel.fun/abcd-spin-wheel, ABCD Spin Wheel: Stuck between four quiz answers? Spin A, B, C, or D for a blind guess, or let the wheel assign MC sections during review games.
+https://onlinespinwheel.fun/abcd-spin-wheel, ABCD Spin Wheel: Lock A-D for quiz call-outs, remove letters after each pick, and use projector fullscreen so the whole class can see the spin.
 https://onlinespinwheel.fun/alphabet-spinner-wheel, Alphabet Spinner Wheel: Teaching phonics or playing word games? Spin A through Z, exclude letters already used, and call out whatever consonant or vowel lands.
 https://onlinespinwheel.fun/random-student-picker, Random Student Picker: Paste your class roster, spin in fullscreen mode, auto-remove picked students, and review session history so every kid gets a turn.
 
@@ -62,10 +62,10 @@ https://onlinespinwheel.fun/random-student-picker, Random Student Picker: Paste 
 https://onlinespinwheel.fun/secret-santa-wheel-generator, Secret Santa Wheel Generator: Run office or family Secret Santa with assignment mode, couple exclusions, and private reveal links so each gifter sees only their match.
 
 ## Food & Lifestyle (1)
-https://onlinespinwheel.fun/self-care-wheel, Self Care Wheel: Too fried to choose a break activity? Spin meditate, walk, journal, or your custom rituals and honor whatever wellness task appears.
+https://onlinespinwheel.fun/self-care-wheel, Self Care Wheel: Filter self-care prompts by 5-minute, no-spend, evening, or movement, then spin a matching wellness action for your break.
 
 ## Games & Fun (1)
-https://onlinespinwheel.fun/pokemon-randomizer-wheel, Pokemon Randomizer Wheel: Starting a Nuzlocke or need a sketch subject? Spin Pikachu, Charizard, Eevee, or your custom roster for randomized Pokemon challenges.
+https://onlinespinwheel.fun/pokemon-randomizer-wheel, Pokemon Randomizer Wheel: Filter starter, type, nuzlocke-style, or generation-vibe challenge rules, then spin a fair constraint for your next run or stream.
 
 ## Host fair multi-winner raffle draws with ticket-number mode or pasted entrant names. Spin live and copy a proof link for your audience. (1)
 https://onlinespinwheel.fun/raffle-wheel, Raffle Wheel: Run prize-wheel style giveaways or ticket raffles: labeled prizes, ticket numbers, multi-winner draws, and a shareable proof link for streams and school events.
@@ -74,13 +74,13 @@ https://onlinespinwheel.fun/raffle-wheel, Raffle Wheel: Run prize-wheel style gi
 https://onlinespinwheel.fun/classroom-spinner, Classroom Spinner: One page for teachers: random student selector, team maker, and countdown timer with fullscreen classroom mode for smartboards.
 
 ## Utilities & Tools (4)
-https://onlinespinwheel.fun/random-name-picker-wheel, Random Name Picker Wheel: Paste your participant list, spin the Wheel of Names, and display a fair winner for class, raffles, or stream giveaways in seconds.
+https://onlinespinwheel.fun/random-name-picker-wheel, Random Name Picker Wheel: Paste names, spin a fair Wheel of Names, remove winners after each pick, add optional weights, and keep session history for class or stream giveaways.
 https://onlinespinwheel.fun/random-number-wheel, Random Number Wheel: Set your min-max range, toggle no-repeat picks, and spin visible digits for bingo, board games, or classroom math drills.
 https://onlinespinwheel.fun/team-generator-wheel, Team Generator Wheel: Split PE classes, office workshops, or gaming lobbies into balanced teams, spin once per player and skip the captains argument.
 https://onlinespinwheel.fun/winner-picker-wheel, Winner Picker Wheel: Paste commenter @handles, remove duplicate entries, spin live, and screen-record proof for Instagram or TikTok giveaway winners.
 
 ## Zodiac & Fortune (2)
-https://onlinespinwheel.fun/chinese-zodiac-wheel, Chinese Zodiac Wheel: Celebrating Lunar New Year or teaching Eastern astrology? Spin the twelve Chinese zodiac animals and build games around whichever creature lands.
+https://onlinespinwheel.fun/chinese-zodiac-wheel, Chinese Zodiac Wheel: Enter a birth year to highlight the matching Chinese zodiac animal, then spin the twelve-animal wheel for class, parties, or trivia.
 https://onlinespinwheel.fun/zodiac-sign-wheel, Zodiac Sign Wheel: Hosting an astrology-themed hangout? Spin Aries through Pisces at random and build games, readings, or posts around whichever sign appears.
 
 ## Blog (indexed posts)

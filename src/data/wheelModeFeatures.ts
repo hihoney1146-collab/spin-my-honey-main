@@ -19,7 +19,7 @@ export const WHEEL_MODE_FEATURES: Record<string, string> = {
   "classroom-spinner":
     "Teacher hub with student picker (remove-after-pick + history), balanced team generator, and a countdown timer, all in one fullscreen smartboard layout.",
   "random-name-picker-wheel":
-    "Name picker with remove-after-pick, session history, proof link, and streamer-mode controls for live overlays.",
+    "Name picker (Wheel of Names / digital hat draw) with remove-after-pick, session history, optional Name:weight entries that multiply slices, proof link, and streamer-mode controls.",
   "abcd-spin-wheel":
     "Locks the wheel to A–D for multiple-choice call-outs, optional remove-after-pick, projector fullscreen, and a session list of answers already called.",
   "should-i-text-him-wheel":
@@ -31,7 +31,7 @@ export const WHEEL_MODE_FEATURES: Record<string, string> = {
   "pokemon-randomizer-wheel":
     "Challenge-pool filters (starters, types, nuzlocke-style rules, generation vibe) rebuild the wheel from rule labels rather than a static character list.",
   "outfit-picker-wheel":
-    "Occasion and weather filters (work, casual, date, rain, heat) swap curated outfit datasets onto the wheel.",
+    "Separate occasion (work / casual / date) and weather (any / rain / heat) toggles filter a tagged outfit dataset onto the wheel.",
   "yes-or-no-wheel":
     "Set Yes / No / Maybe weights that rebuild the wheel slices, plus an optional best-of-N tracker for majority outcomes.",
   "dinner-picker-wheel":

@@ -1,6 +1,8 @@
 import type { BlogPost } from "./blogTypes";
 import { bestSpinWheelGamesForStudents } from "./blogContent/best-spin-wheel-games-for-students";
 import { bestIcebreakerGamesOfficeMeetings } from "./blogContent/best-icebreaker-games-office-meetings";
+import { spinWheelTeamBuildingActivities } from "./blogContent/spin-wheel-team-building-activities";
+import { classroomSpinnerBeyondNamePicking } from "./blogContent/classroom-spinner-beyond-name-picking";
 import {
   randomNamePickerDraft,
   couplesDinnerDraft,
@@ -13,6 +15,8 @@ export const blogPosts: BlogPost[] = [
   randomNamePickerDraft,
   bestIcebreakerGamesOfficeMeetings,
   bestSpinWheelGamesForStudents,
+  spinWheelTeamBuildingActivities,
+  classroomSpinnerBeyondNamePicking,
   couplesDinnerDraft,
   virtualSecretSantaDraft,
 ];

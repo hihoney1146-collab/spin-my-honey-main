@@ -80,8 +80,20 @@ export function SelfCareWheel({ presetOptionLabels }: SelfCareWheelProps) {
             </Button>
           ))}
         </div>
+        <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+          On the wheel now ({labels.length})
+        </p>
+        <ul className="text-sm text-foreground grid sm:grid-cols-2 gap-1">
+          {labels.map((label) => (
+            <li key={label}>{label}</li>
+          ))}
+        </ul>
       </Card>
-      <SpinWheel key={labels.join("|")} presetOptionLabels={labels} />
+      <SpinWheel
+        key={labels.join("|")}
+        presetOptionLabels={labels}
+        entriesListDefaultExpanded
+      />
     </div>
   );
 }
