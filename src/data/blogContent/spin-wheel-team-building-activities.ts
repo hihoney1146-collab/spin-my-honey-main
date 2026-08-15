@@ -2,8 +2,8 @@ import type { BlogPost } from "../blogTypes";
 
 export const spinWheelTeamBuildingActivities: BlogPost = {
   slug: "spin-wheel-team-building-activities",
-  title:
-    "Spin Wheel Team Building Activities for Meetings and Offsites | Online Spin Wheel",
+    title:
+    "Team Building Spin Wheel Activities for Meetings | Online Spin Wheel",
   metaDescription:
     "Run fair team building with a spin wheel: role assignment, standup rotation, breakout groups, and offsite games. Free tools, no signup.",
   excerpt:

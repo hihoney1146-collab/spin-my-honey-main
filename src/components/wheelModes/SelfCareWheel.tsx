@@ -45,14 +45,9 @@ const DATASET: Record<string, string[]> = {
 
 type FilterKey = keyof typeof DATASET;
 
-export function SelfCareWheel({ presetOptionLabels }: SelfCareWheelProps) {
+export function SelfCareWheel({ presetOptionLabels: _presetOptionLabels }: SelfCareWheelProps) {
   const [filter, setFilter] = useState<FilterKey>("5-min");
-  const labels = useMemo(() => {
-    if (presetOptionLabels?.length && filter === "5-min") {
-      return presetOptionLabels;
-    }
-    return DATASET[filter];
-  }, [filter, presetOptionLabels]);
+  const labels = useMemo(() => DATASET[filter], [filter]);
 
   return (
     <div className="space-y-4">

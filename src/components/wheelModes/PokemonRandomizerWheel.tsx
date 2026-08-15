@@ -47,15 +47,10 @@ const POOLS: Record<string, string[]> = {
 type PoolKey = keyof typeof POOLS;
 
 export function PokemonRandomizerWheel({
-  presetOptionLabels,
+  presetOptionLabels: _presetOptionLabels,
 }: PokemonRandomizerWheelProps) {
   const [pool, setPool] = useState<PoolKey>("starters");
-  const labels = useMemo(() => {
-    if (presetOptionLabels?.length && pool === "starters") {
-      return presetOptionLabels;
-    }
-    return POOLS[pool];
-  }, [pool, presetOptionLabels]);
+  const labels = useMemo(() => POOLS[pool], [pool]);
 
   return (
     <div className="space-y-4">

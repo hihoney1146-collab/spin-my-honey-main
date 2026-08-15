@@ -57,21 +57,12 @@ function filterOutfits(occasion: Occasion, weather: Weather): string[] {
 }
 
 export function OutfitPickerWheel({
-  presetOptionLabels,
+  presetOptionLabels: _presetOptionLabels,
 }: OutfitPickerWheelProps) {
   const [occasion, setOccasion] = useState<Occasion>("casual");
   const [weather, setWeather] = useState<Weather>("any");
 
-  const labels = useMemo(() => {
-    if (
-      presetOptionLabels?.length &&
-      occasion === "casual" &&
-      weather === "any"
-    ) {
-      return presetOptionLabels;
-    }
-    return filterOutfits(occasion, weather);
-  }, [occasion, weather, presetOptionLabels]);
+  const labels = useMemo(() => filterOutfits(occasion, weather), [occasion, weather]);
 
   return (
     <div className="space-y-4">

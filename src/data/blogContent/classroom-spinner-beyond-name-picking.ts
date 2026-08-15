@@ -2,8 +2,8 @@ import type { BlogPost } from "../blogTypes";
 
 export const classroomSpinnerBeyondNamePicking: BlogPost = {
   slug: "classroom-spinner-beyond-name-picking",
-  title:
-    "Classroom Spinner Beyond Name Picking: Centers, Subs, and Review | Online Spin Wheel",
+    title:
+    "Classroom Spinner Beyond Name Picking | Online Spin Wheel",
   metaDescription:
     "Expand classroom spinner use past calling on students: centers, sub plans, ABCD review, and jobs. Free tools for US K-12, no student accounts.",
   excerpt:

@@ -38,7 +38,7 @@ const POOLS: Record<string, string[]> = {
 type ContextKey = keyof typeof POOLS;
 
 export function ShouldITextHimWheel({
-  presetOptionLabels,
+  presetOptionLabels: _presetOptionLabels,
 }: ShouldITextHimWheelProps) {
   const [context, setContext] = useState<ContextKey>("chill");
   const [cooldownUntil, setCooldownUntil] = useState(0);
@@ -50,12 +50,7 @@ export function ShouldITextHimWheel({
     return () => window.clearInterval(id);
   }, [cooldownUntil]);
 
-  const labels = useMemo(() => {
-    if (presetOptionLabels?.length && context === "chill") {
-      return presetOptionLabels;
-    }
-    return POOLS[context];
-  }, [context, presetOptionLabels]);
+  const labels = useMemo(() => POOLS[context], [context]);
 
   const remainingSec = Math.max(0, Math.ceil((cooldownUntil - now) / 1000));
   const cooling = remainingSec > 0;
