@@ -2,7 +2,7 @@
 
 > Free browser spin wheels for fair random picks: names, numbers, teams, giveaways, classrooms, and decisions.
 
-Last updated: 2026-08-12
+Last updated: 2026-08-17
 
 ## Identity
 - Canonical site: https://onlinespinwheel.fun/
@@ -87,6 +87,8 @@ https://onlinespinwheel.fun/zodiac-sign-wheel, Zodiac Sign Wheel: Hosting an ast
 https://onlinespinwheel.fun/blog
 https://onlinespinwheel.fun/blog/best-icebreaker-games-office-meetings
 https://onlinespinwheel.fun/blog/best-spin-wheel-games-for-students
+https://onlinespinwheel.fun/blog/classroom-spinner-beyond-name-picking
+https://onlinespinwheel.fun/blog/spin-wheel-team-building-activities
 
 ## Legal & trust
 https://onlinespinwheel.fun/privacy-policy

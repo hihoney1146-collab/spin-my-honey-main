@@ -26,6 +26,8 @@ const SIGNS: { name: string; start: [number, number]; end: [number, number] }[] 
     { name: "Sagittarius", start: [11, 22], end: [12, 21] },
   ];
 
+const SIGN_NAMES = SIGNS.map((s) => s.name);
+
 function signForMd(month: number, day: number): string | null {
   for (const s of SIGNS) {
     const [sm, sd] = s.start;
@@ -38,49 +40,45 @@ function signForMd(month: number, day: number): string | null {
       ) {
         return s.name;
       }
-    } else {
-      // wraps year (Capricorn)
-      if (
-        (month === sm && day >= sd) ||
-        (month === em && day <= ed) ||
-        month > sm ||
-        month < em
-      ) {
-        return s.name;
-      }
+    } else if (
+      (month === sm && day >= sd) ||
+      (month === em && day <= ed) ||
+      month > sm ||
+      month < em
+    ) {
+      return s.name;
     }
   }
   return null;
 }
 
 export function ZodiacSignWheel({
-  presetOptionLabels,
+  presetOptionLabels: _presetOptionLabels,
 }: ZodiacSignWheelProps) {
-  const base =
-    presetOptionLabels?.length === 12
-      ? presetOptionLabels
-      : SIGNS.map((s) => s.name);
-  const [md, setMd] = useState("");
+  const [month, setMonth] = useState("");
+  const [day, setDay] = useState("");
   const [highlight, setHighlight] = useState<string | null>(null);
 
   const labels = useMemo(() => {
-    if (!highlight) return base;
-    return [highlight, ...base.filter((l) => l !== highlight)];
-  }, [base, highlight]);
+    if (!highlight) return SIGN_NAMES;
+    return [highlight, ...SIGN_NAMES.filter((l) => l !== highlight)];
+  }, [highlight]);
 
   const lookup = () => {
-    const m = md.match(/^(\d{1,2})[\/\-](\d{1,2})$/);
-    if (!m) {
+    const m = Number(month);
+    const d = Number(day);
+    if (
+      !Number.isFinite(m) ||
+      !Number.isFinite(d) ||
+      m < 1 ||
+      m > 12 ||
+      d < 1 ||
+      d > 31
+    ) {
       setHighlight(null);
       return;
     }
-    const month = Number(m[1]);
-    const day = Number(m[2]);
-    if (month < 1 || month > 12 || day < 1 || day > 31) {
-      setHighlight(null);
-      return;
-    }
-    setHighlight(signForMd(month, day));
+    setHighlight(signForMd(m, d));
   };
 
   return (
@@ -90,15 +88,31 @@ export function ZodiacSignWheel({
           <Star className="h-5 w-5" />
           <span>Birth date → Western sign</span>
         </div>
+        <p className="text-sm text-muted-foreground">
+          Enter month and day to highlight that Western sign and pin it first on
+          the wheel (tropical dates; not a natal chart).
+        </p>
         <div className="flex flex-wrap items-end gap-3">
           <div className="space-y-2">
-            <Label htmlFor="zodiac-md">Month / day</Label>
+            <Label htmlFor="zodiac-month">Month</Label>
             <Input
-              id="zodiac-md"
-              placeholder="7/27"
-              value={md}
-              onChange={(e) => setMd(e.target.value)}
-              className="w-28"
+              id="zodiac-month"
+              inputMode="numeric"
+              placeholder="7"
+              value={month}
+              onChange={(e) => setMonth(e.target.value)}
+              className="w-20"
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="zodiac-day">Day</Label>
+            <Input
+              id="zodiac-day"
+              inputMode="numeric"
+              placeholder="27"
+              value={day}
+              onChange={(e) => setDay(e.target.value)}
+              className="w-20"
             />
           </div>
           <Button type="button" onClick={lookup}>
@@ -107,11 +121,27 @@ export function ZodiacSignWheel({
         </div>
         {highlight ? (
           <p className="text-sm font-medium">
-            {md} → <strong>{highlight}</strong> (pinned first on the wheel)
+            {month}/{day} → <strong>{highlight}</strong> (pinned first on the
+            wheel)
           </p>
         ) : null}
+        <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+          On the wheel now ({labels.length})
+        </p>
+        <ul className="text-sm text-foreground grid sm:grid-cols-2 gap-1">
+          {labels.map((label) => (
+            <li key={label}>
+              {label}
+              {highlight === label ? " (highlighted)" : ""}
+            </li>
+          ))}
+        </ul>
       </Card>
-      <SpinWheel key={labels.join("|")} presetOptionLabels={labels} />
+      <SpinWheel
+        key={labels.join("|")}
+        presetOptionLabels={labels}
+        entriesListDefaultExpanded
+      />
     </div>
   );
 }

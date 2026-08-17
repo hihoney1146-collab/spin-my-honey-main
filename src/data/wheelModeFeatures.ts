@@ -33,13 +33,13 @@ export const WHEEL_MODE_FEATURES: Record<string, string> = {
   "outfit-picker-wheel":
     "Separate occasion (work / casual / date) and weather (any / rain / heat) toggles filter a tagged outfit dataset onto the wheel.",
   "yes-or-no-wheel":
-    "Set Yes / No / Maybe weights that rebuild the wheel slices, plus an optional best-of-N tracker for majority outcomes.",
+    "Editable Yes / No / Maybe weights rebuild slice sizes (and shown percentages), plus an optional Best of 3 run that reports the majority.",
   "dinner-picker-wheel":
-    "Filters rebuild dinner pools: anything, leftovers, delivery, cook-at-home, or fast-casual/chains (absorbs the old fast-food page).",
+    "Cuisine, leftovers, delivery, cook-at-home, and fast-casual/chains chips each load their own meal list (chains absorb the old fast-food page). The default Cuisine pool is on the wheel immediately.",
   "movie-picker-wheel":
-    "Mood filters (any, short, cozy, horror) or paste your own watchlist so the wheel spins titles you already care about.",
+    "Mood (any, cozy, horror) and length (any, short) filters rebuild a tagged dataset; Paste my watchlist drives slices from your titles. Horror absorbs the old horror-movie page.",
   "date-night-wheel":
-    "Budget and location filters (anything, at home, go out, budget, treat night) rebuild the plan pool before you spin.",
+    "Separate Where (anywhere / at home / go out) and Budget (any / budget / treat) filters rebuild a tagged plan dataset. Defaults own the full pool on load.",
   "zodiac-sign-wheel":
-    "Month/day birth-date helper highlights the matching Western sign and pins it first on the wheel; absorbed daily-theme slices live in page sections.",
+    "Month and day inputs highlight the matching Western sign and pin it first on the wheel (tropical dates; not a natal chart).",
 };

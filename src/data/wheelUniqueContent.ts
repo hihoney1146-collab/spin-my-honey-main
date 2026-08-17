@@ -41,7 +41,17 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Does the Yes or No Wheel include Maybe?",
         answer:
-          "Yes. The default wheel ships with Yes, No, Maybe, and a few playful variants like Definitely or Spin Again. You can delete any slice you do not want before spinning.",
+          "Yes. Default weights are Yes 2, No 2, and Maybe 1, so Maybe is on the wheel with a smaller slice. Set Maybe weight to 0 to run a strict Yes/No spin.",
+      },
+      {
+        question: "How do the Yes / No / Maybe weights work?",
+        answer:
+          "Each weight is how many equal slices that answer gets. Yes 3 and No 1 means Yes has three times the chance of No. The On the wheel now list shows slice counts and percentages before you spin.",
+      },
+      {
+        question: "What is Best of 3?",
+        answer:
+          "Turn on Best of 3 to track three spins and show the majority (or a tie). Reset the run when you start a new question.",
       },
       {
         question: "Should I type my question on the wheel?",
@@ -100,9 +110,14 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
     ],
     faqs: [
       {
-        question: "Can I list delivery apps instead of cuisines?",
+        question: "What do the dinner filter chips change?",
         answer:
-          "Yes. Replace default slices with DoorDash favorites, Thai, BBQ, salad bar, and spin when nobody wants to scroll menus.",
+          "Cuisine, leftovers, delivery, cook-at-home, and fast-casual/chains each load a different meal list onto the wheel. The default Cuisine chip owns the pool as soon as the page opens.",
+      },
+      {
+        question: "Where did the fast-food wheel go?",
+        answer:
+          "It redirects here. Use the Fast-casual / chains chip for burger, pizza, chicken sandwich, taco, and similar chain-style picks.",
       },
       {
         question: "What if someone hates the result?",
@@ -121,7 +136,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       },
     ],
     relatedWheels: [
-      { slug: "fast-food-wheel", anchor: "Fast food restaurant wheel" },
+      { slug: "raffle-wheel", anchor: "Raffle after dinner events" },
       { slug: "date-night-wheel", anchor: "Date night activity picker" },
       { slug: "yes-or-no-wheel", anchor: "Quick yes-or-no decisions" },
       { slug: "self-care-wheel", anchor: "Self-care activity wheel" },
@@ -156,9 +171,14 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
     ],
     faqs: [
       {
+        question: "How do mood and length filters work?",
+        answer:
+          "Mood (any, cozy, horror) and length (any, short) rebuild the wheel from a tagged title-style dataset. Horror / thriller is the old horror-movie page dataset. The default Any mood + Any length pool is on the wheel immediately.",
+      },
+      {
         question: "Can I paste Netflix titles directly?",
         answer:
-          "Yes. Delete the default genres and type exact movie names from your queue so the wheel chooses a specific film.",
+          "Yes. Choose Paste my watchlist and enter at least two titles, one per line. Those titles become the slices.",
       },
       {
         question: "Does the wheel stream movies?",
@@ -182,7 +202,6 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       },
     ],
     relatedWheels: [
-      { slug: "horror-movie-picker-wheel", anchor: "Horror movie night wheel" },
       { slug: "date-night-wheel", anchor: "Date night plan spinner" },
       { slug: "family-game-night-picker-wheel", anchor: "Family game night picker" },
       { slug: "dinner-picker-wheel", anchor: "Dinner before the movie" },
@@ -273,9 +292,14 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
     ],
     faqs: [
       {
+        question: "How do the Where and Budget filters work?",
+        answer:
+          "They independently filter a tagged plan dataset. At home plus Budget shows low-cost indoor plans; Go out plus Treat night shows pricier outings. Both default to Anywhere / Any budget so the full pool is on the wheel immediately.",
+      },
+      {
         question: "Can we mix at-home and going-out ideas?",
         answer:
-          "Absolutely. Board-game night slices sit beside restaurant slices so budget and energy levels stay flexible.",
+          "Leave Where on Anywhere, or switch between At home and Go out. Budget stays separate so a cheap night out is not mixed with a treat-night reservation unless you choose Any budget.",
       },
       {
         question: "What if one partner hates the result?",
@@ -296,7 +320,6 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
     relatedWheels: [
       { slug: "dinner-picker-wheel", anchor: "Dinner before date night" },
       { slug: "movie-picker-wheel", anchor: "Movie after your date" },
-      { slug: "fast-food-wheel", anchor: "Casual fast-food date wheel" },
       { slug: "self-care-wheel", anchor: "Couples self-care wheel" },
       { slug: "random-travel-destination-wheel", anchor: "Dream trip destination wheel" },
       { slug: "yes-or-no-wheel", anchor: "Go-out-or-stay-in wheel" },
@@ -447,7 +470,12 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Which signs appear on the wheel?",
         answer:
-          "All twelve Western signs: Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius, Capricorn, Aquarius, and Pisces.",
+          "All twelve Western signs: Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius, Capricorn, Aquarius, and Pisces. That list is on the wheel as soon as the page loads.",
+      },
+      {
+        question: "Does the wheel know my birth date?",
+        answer:
+          "Enter month and day, then Show sign. The matching tropical sign is highlighted and pinned first on the wheel. This is not a natal chart.",
       },
       {
         question: "Can I remove signs already used in a game?",
@@ -457,7 +485,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Does this calculate my birth chart?",
         answer:
-          "No ephemeris data here, only random sign selection for entertainment and games.",
+          "No natal chart. Month and day only highlight a tropical sign for games and prompts.",
       },
       {
         question: "Is Chinese zodiac included?",
@@ -466,7 +494,6 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       },
     ],
     relatedWheels: [
-      { slug: "daily-horoscope-wheel", anchor: "Daily horoscope mood wheel" },
       { slug: "chinese-zodiac-wheel", anchor: "Chinese zodiac animal wheel" },
       { slug: "date-night-wheel", anchor: "Astrology date night ideas" },
       { slug: "truth-or-dare-spinner-online", anchor: "Party truth or dare spinner" },

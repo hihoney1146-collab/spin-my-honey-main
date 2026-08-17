@@ -1,8 +1,8 @@
 # SSR Content Audit
 
-Generated 2026-08-12 from built `dist/` HTML, the exact bytes served to a no-JS crawler (equivalent to `curl` against production).
+Generated 2026-08-17 from built `dist/` HTML, the exact bytes served to a no-JS crawler (equivalent to `curl` against production).
 
-- Routes audited: **45**
+- Routes audited: **47**
 - Threshold: **400** crawler-visible words
 - Below threshold: **0**, Missing HTML: **0**
 
@@ -13,9 +13,11 @@ Generated 2026-08-12 from built `dist/` HTML, the exact bytes served to a no-JS 
 | `/about-us` | 556 | PASS |
 | `/all-spin-wheels` | 458 | PASS |
 | `/alphabet-spinner-wheel` | 431 | PASS |
-| `/blog` | 453 | PASS |
+| `/blog` | 517 | PASS |
 | `/blog/best-icebreaker-games-office-meetings` | 1882 | PASS |
 | `/blog/best-spin-wheel-games-for-students` | 1852 | PASS |
+| `/blog/classroom-spinner-beyond-name-picking` | 855 | PASS |
+| `/blog/spin-wheel-team-building-activities` | 911 | PASS |
 | `/case-study-community-event-using-spin-wheels` | 407 | PASS |
 | `/case-study-school-using-spin-wheels` | 421 | PASS |
 | `/chinese-zodiac-wheel` | 445 | PASS |
@@ -26,11 +28,11 @@ Generated 2026-08-12 from built `dist/` HTML, the exact bytes served to a no-JS 
 | `/comparison-spin-wheel-vs-traditional-methods` | 483 | PASS |
 | `/contact-us` | 459 | PASS |
 | `/cookie-policy` | 332 | PASS (legal) |
-| `/date-night-wheel` | 455 | PASS |
-| `/dinner-picker-wheel` | 459 | PASS |
+| `/date-night-wheel` | 525 | PASS |
+| `/dinner-picker-wheel` | 505 | PASS |
 | `/disclaimer` | 344 | PASS (legal) |
 | `/how-randomness-works` | 457 | PASS |
-| `/movie-picker-wheel` | 483 | PASS |
+| `/movie-picker-wheel` | 530 | PASS |
 | `/outfit-picker-wheel` | 400 | PASS |
 | `/pokemon-randomizer-wheel` | 423 | PASS |
 | `/privacy-policy` | 585 | PASS |
@@ -51,5 +53,5 @@ Generated 2026-08-12 from built `dist/` HTML, the exact bytes served to a no-JS 
 | `/tutorial-adding-images-to-spin-wheels` | 515 | PASS |
 | `/wheel-of-names-alternative` | 430 | PASS |
 | `/winner-picker-wheel` | 496 | PASS |
-| `/yes-or-no-wheel` | 588 | PASS |
-| `/zodiac-sign-wheel` | 886 | PASS |
+| `/yes-or-no-wheel` | 646 | PASS |
+| `/zodiac-sign-wheel` | 929 | PASS |

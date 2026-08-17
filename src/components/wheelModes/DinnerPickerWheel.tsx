@@ -9,15 +9,15 @@ type DinnerPickerWheelProps = {
 };
 
 const POOLS: Record<string, string[]> = {
-  any: [
-    "Pasta night",
-    "Tacos",
-    "Stir-fry",
-    "Salad bowls",
-    "Soup + bread",
-    "Grain bowls",
-    "Eggs-for-dinner",
-    "Leftovers remix",
+  cuisine: [
+    "Italian pasta",
+    "Mexican tacos",
+    "Thai curry",
+    "Japanese bowls",
+    "Indian dal and rice",
+    "Mediterranean mezze",
+    "Chinese stir-fry",
+    "American comfort food",
   ],
   leftovers: [
     "Remix leftovers into a bowl",
@@ -30,13 +30,13 @@ const POOLS: Record<string, string[]> = {
   delivery: [
     "Pizza delivery",
     "Thai takeout",
-    "Burgers",
+    "Burgers delivered",
     "Sushi order",
     "Indian takeout",
-    "Mediterranean bowls",
+    "Mediterranean bowls to-go",
   ],
   cook: [
-    "Sheet-pan veggies + protein",
+    "Sheet-pan veggies and protein",
     "One-pot pasta",
     "Stir-fry in 20 minutes",
     "Taco assembly line",
@@ -49,20 +49,25 @@ const POOLS: Record<string, string[]> = {
     "Chicken sandwich spot",
     "Taco / Mexican fast casual",
     "Sandwich shop",
-    "Coffee + bakery dinner",
+    "Coffee plus bakery dinner",
   ],
+};
+
+const LABELS: Record<keyof typeof POOLS, string> = {
+  cuisine: "Cuisine",
+  leftovers: "Leftovers",
+  delivery: "Delivery",
+  cook: "Cook at home",
+  chains: "Fast-casual / chains",
 };
 
 type Key = keyof typeof POOLS;
 
 export function DinnerPickerWheel({
-  presetOptionLabels,
+  presetOptionLabels: _presetOptionLabels,
 }: DinnerPickerWheelProps) {
-  const [filter, setFilter] = useState<Key>("any");
-  const labels = useMemo(() => {
-    if (presetOptionLabels?.length && filter === "any") return presetOptionLabels;
-    return POOLS[filter];
-  }, [filter, presetOptionLabels]);
+  const [filter, setFilter] = useState<Key>("cuisine");
+  const labels = useMemo(() => POOLS[filter], [filter]);
 
   return (
     <div className="space-y-4">
@@ -71,7 +76,11 @@ export function DinnerPickerWheel({
           <Utensils className="h-5 w-5" />
           <span>Dinner filters</span>
         </div>
-        <div className="flex flex-wrap gap-2">
+        <p className="text-sm text-muted-foreground">
+          Each chip loads its own meal list. Fast-casual / chains is the old
+          fast-food wheel dataset.
+        </p>
+        <div className="flex flex-wrap gap-2" role="group" aria-label="Dinner filter">
           {(Object.keys(POOLS) as Key[]).map((key) => (
             <Button
               key={key}
@@ -80,20 +89,24 @@ export function DinnerPickerWheel({
               variant={filter === key ? "default" : "outline"}
               onClick={() => setFilter(key)}
             >
-              {key === "any"
-                ? "Anything"
-                : key === "leftovers"
-                  ? "Leftovers"
-                  : key === "delivery"
-                    ? "Delivery"
-                    : key === "cook"
-                      ? "Cook at home"
-                      : "Fast-casual / chains"}
+              {LABELS[key]}
             </Button>
           ))}
         </div>
+        <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+          On the wheel now ({labels.length})
+        </p>
+        <ul className="text-sm text-foreground grid sm:grid-cols-2 gap-1">
+          {labels.map((label) => (
+            <li key={label}>{label}</li>
+          ))}
+        </ul>
       </Card>
-      <SpinWheel key={labels.join("|")} presetOptionLabels={labels} />
+      <SpinWheel
+        key={labels.join("|")}
+        presetOptionLabels={labels}
+        entriesListDefaultExpanded
+      />
     </div>
   );
 }

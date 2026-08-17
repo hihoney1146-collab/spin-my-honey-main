@@ -1,6 +1,6 @@
 # JSON-LD Audit
 
-Routes checked: **45**
+Routes checked: **47**
 Issues: **0**
 
 **PASS**, all JSON-LD parses; no Review/AggregateRating on tools; no Auroxa references.
