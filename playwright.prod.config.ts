@@ -3,7 +3,7 @@ import { defineConfig } from "@playwright/test";
 export default defineConfig({
   testDir: "e2e",
   timeout: 90_000,
-  testMatch: "prod-tier1-click.spec.ts",
+  testMatch: /.*(prod-tier1-click|tier2-modes)\.spec\.ts/,
   use: {
     baseURL: "https://onlinespinwheel.fun",
     headless: true,
