@@ -1,6 +1,6 @@
 # SSR Content Audit
 
-Generated 2026-08-17 from built `dist/` HTML, the exact bytes served to a no-JS crawler (equivalent to `curl` against production).
+Generated 2026-08-20 from built `dist/` HTML, the exact bytes served to a no-JS crawler (equivalent to `curl` against production).
 
 - Routes audited: **47**
 - Threshold: **400** crawler-visible words
@@ -8,50 +8,50 @@ Generated 2026-08-17 from built `dist/` HTML, the exact bytes served to a no-JS 
 
 | route | ssr_words | status |
 | --- | ---: | --- |
-| `/` | 807 | PASS |
+| `/` | 880 | PASS |
 | `/abcd-spin-wheel` | 451 | PASS |
-| `/about-us` | 556 | PASS |
-| `/all-spin-wheels` | 458 | PASS |
-| `/alphabet-spinner-wheel` | 431 | PASS |
-| `/blog` | 517 | PASS |
-| `/blog/best-icebreaker-games-office-meetings` | 1882 | PASS |
-| `/blog/best-spin-wheel-games-for-students` | 1852 | PASS |
-| `/blog/classroom-spinner-beyond-name-picking` | 855 | PASS |
-| `/blog/spin-wheel-team-building-activities` | 911 | PASS |
-| `/case-study-community-event-using-spin-wheels` | 407 | PASS |
-| `/case-study-school-using-spin-wheels` | 421 | PASS |
+| `/about-us` | 618 | PASS |
+| `/all-spin-wheels` | 418 | PASS |
+| `/alphabet-spinner-wheel` | 420 | PASS |
+| `/blog` | 579 | PASS |
+| `/blog/best-icebreaker-games-office-meetings` | 1966 | PASS |
+| `/blog/best-spin-wheel-games-for-students` | 1932 | PASS |
+| `/blog/classroom-spinner-beyond-name-picking` | 933 | PASS |
+| `/blog/spin-wheel-team-building-activities` | 993 | PASS |
+| `/case-study-community-event-using-spin-wheels` | 469 | PASS |
+| `/case-study-school-using-spin-wheels` | 483 | PASS |
 | `/chinese-zodiac-wheel` | 445 | PASS |
 | `/classroom-spinner` | 461 | PASS |
-| `/coin-flip-wheel` | 485 | PASS |
-| `/comparison-online-vs-physical-spin-wheels` | 505 | PASS |
-| `/comparison-spin-wheel-vs-random-number-generator` | 511 | PASS |
-| `/comparison-spin-wheel-vs-traditional-methods` | 483 | PASS |
-| `/contact-us` | 459 | PASS |
-| `/cookie-policy` | 332 | PASS (legal) |
-| `/date-night-wheel` | 525 | PASS |
-| `/dinner-picker-wheel` | 505 | PASS |
-| `/disclaimer` | 344 | PASS (legal) |
-| `/how-randomness-works` | 457 | PASS |
-| `/movie-picker-wheel` | 530 | PASS |
+| `/coin-flip-wheel` | 480 | PASS |
+| `/comparison-online-vs-physical-spin-wheels` | 567 | PASS |
+| `/comparison-spin-wheel-vs-random-number-generator` | 573 | PASS |
+| `/comparison-spin-wheel-vs-traditional-methods` | 545 | PASS |
+| `/contact-us` | 521 | PASS |
+| `/cookie-policy` | 394 | PASS (legal) |
+| `/date-night-wheel` | 521 | PASS |
+| `/dinner-picker-wheel` | 501 | PASS |
+| `/disclaimer` | 406 | PASS |
+| `/how-randomness-works` | 519 | PASS |
+| `/movie-picker-wheel` | 523 | PASS |
 | `/outfit-picker-wheel` | 400 | PASS |
-| `/pokemon-randomizer-wheel` | 423 | PASS |
-| `/privacy-policy` | 585 | PASS |
+| `/pokemon-randomizer-wheel` | 419 | PASS |
+| `/privacy-policy` | 647 | PASS |
 | `/raffle-wheel` | 551 | PASS |
 | `/random-name-picker-wheel` | 496 | PASS |
-| `/random-number-wheel` | 456 | PASS |
+| `/random-number-wheel` | 453 | PASS |
 | `/random-student-picker` | 460 | PASS |
-| `/secret-santa-wheel-generator` | 457 | PASS |
+| `/secret-santa-wheel-generator` | 447 | PASS |
 | `/self-care-wheel` | 417 | PASS |
 | `/should-i-text-him-wheel` | 424 | PASS |
-| `/spin-wheel-fairness-study` | 1049 | PASS |
-| `/team-generator-wheel` | 465 | PASS |
-| `/team/ceo` | 431 | PASS |
-| `/team/co-founder` | 443 | PASS |
-| `/team/content` | 426 | PASS |
-| `/team/social` | 419 | PASS |
-| `/terms-and-conditions` | 486 | PASS |
-| `/tutorial-adding-images-to-spin-wheels` | 515 | PASS |
-| `/wheel-of-names-alternative` | 430 | PASS |
-| `/winner-picker-wheel` | 496 | PASS |
-| `/yes-or-no-wheel` | 646 | PASS |
-| `/zodiac-sign-wheel` | 929 | PASS |
+| `/spin-wheel-fairness-study` | 1111 | PASS |
+| `/team-generator-wheel` | 454 | PASS |
+| `/team/ceo` | 493 | PASS |
+| `/team/co-founder` | 505 | PASS |
+| `/team/content` | 488 | PASS |
+| `/team/social` | 481 | PASS |
+| `/terms-and-conditions` | 548 | PASS |
+| `/tutorial-adding-images-to-spin-wheels` | 577 | PASS |
+| `/wheel-of-names-alternative` | 595 | PASS |
+| `/winner-picker-wheel` | 493 | PASS |
+| `/yes-or-no-wheel` | 643 | PASS |
+| `/zodiac-sign-wheel` | 916 | PASS |

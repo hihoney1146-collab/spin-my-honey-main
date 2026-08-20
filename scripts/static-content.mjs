@@ -19,6 +19,7 @@ import {
 } from "./wheel-content-loader.mjs";
 import { decodeResultId } from "./result-proof-decode.mjs";
 import { TEAM_AUTHORS, ORG_NAME, CONTACT_EMAIL } from "./team-constants.mjs";
+import { isWheelIndexableSlug, INDEXED_WHEEL_COUNT, NOINDEX_WHEEL_SET } from "./wheel-index-policy.mjs";
 
 const __rootContent = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const ROUTE_LASTMOD_PATH = path.join(__rootContent, "src", "generated", "routeLastmod.json");
@@ -145,20 +146,65 @@ ${inner}
 }
 
 function exploreNav() {
-  const links = [
-    ["/", "Online Spin Wheel home"],
-    ["/all-spin-wheels", "All spin wheels"],
-    ["/random-name-picker-wheel", "Random name picker wheel"],
-    ["/yes-or-no-wheel", "Yes or no wheel"],
-    ["/blog", "Spin wheel blog"],
-    ["/about-us", "About us"],
-    ["/contact-us", "Contact us"],
+  const groups = [
+    [
+      "Explore",
+      [
+        ["/", "Online Spin Wheel home"],
+        ["/all-spin-wheels", "All spin wheels"],
+        ["/blog", "Spin wheel blog"],
+        ["/blog/best-spin-wheel-games-for-students", "Spin wheel games for students"],
+        ["/blog/best-icebreaker-games-office-meetings", "Icebreaker games for meetings"],
+        ["/blog/spin-wheel-team-building-activities", "Team-building spin wheel activities"],
+        ["/blog/classroom-spinner-beyond-name-picking", "Classroom spinner beyond names"],
+        ["/about-us", "About us"],
+        ["/contact-us", "Contact us"],
+      ],
+    ],
+    [
+      "Guides and research",
+      [
+        ["/how-randomness-works", "How randomness works"],
+        ["/spin-wheel-fairness-study", "Fairness study"],
+        ["/tutorial-adding-images-to-spin-wheels", "Add images to wheels"],
+        ["/wheel-of-names-alternative", "Feature comparison"],
+        ["/comparison-spin-wheel-vs-random-number-generator", "Wheel vs random number generator"],
+        ["/comparison-spin-wheel-vs-traditional-methods", "Wheel vs traditional methods"],
+        ["/comparison-online-vs-physical-spin-wheels", "Online vs physical wheels"],
+        ["/case-study-school-using-spin-wheels", "School case study"],
+        ["/case-study-community-event-using-spin-wheels", "Community event case study"],
+      ],
+    ],
+    [
+      "Team",
+      [
+        ["/team/ceo", "CEO"],
+        ["/team/co-founder", "Co-Founder"],
+        ["/team/content", "Content & SEO Lead"],
+        ["/team/social", "Social Media Expert"],
+      ],
+    ],
+    [
+      "Legal",
+      [
+        ["/privacy-policy", "Privacy policy"],
+        ["/cookie-policy", "Cookie policy"],
+        ["/terms-and-conditions", "Terms and conditions"],
+        ["/disclaimer", "Disclaimer"],
+      ],
+    ],
   ];
-  return `<nav aria-label="Explore more">
-  <h2>Explore more of Online Spin Wheel</h2>
+  const sections = groups
+    .map(
+      ([title, links]) => `  <h3>${esc(title)}</h3>
   <ul>
 ${links.map(([href, label]) => `    <li><a href="${href}">${esc(label)}</a></li>`).join("\n")}
-  </ul>
+  </ul>`,
+    )
+    .join("\n");
+  return `<nav aria-label="Explore more">
+  <h2>Explore more of Online Spin Wheel</h2>
+${sections}
 </nav>`;
 }
 
@@ -166,7 +212,7 @@ ${links.map(([href, label]) => `    <li><a href="${href}">${esc(label)}</a></li>
 
 function homeContent(wheels) {
   const popular = wheels
-    .slice(0, 16)
+    .filter((w) => isWheelIndexableSlug(w.slug))
     .map(
       (w) =>
         `<li><a href="/${esc(w.slug)}">${esc(w.keywordPrimary || w.h1 || w.title || w.slug)}</a></li>`,
@@ -593,7 +639,7 @@ function caseStudySchoolContent() {
 <section><h2>Related tools</h2><ul>
 <li><a href="/random-student-picker">Random student picker</a></li>
 <li><a href="/alphabet-spinner-wheel">Alphabet spinner wheel</a></li>
-<li><a href="/random-word-generator-wheel">Random word generator wheel</a></li>
+<li><a href="/abcd-spin-wheel">ABCD classroom quiz wheel</a></li>
 <li><a href="/team-generator-wheel">Team generator wheel</a></li>
 </ul></section>
 ${exploreNav()}`);
@@ -723,7 +769,7 @@ ${exploreNav()}`);
 function wheelOfNamesAlternativeContent() {
   return mainWrap(`<h1>Online Spin Wheel, Feature Comparison</h1>
 <p>See how Online Spin Wheel compares with other free online pickers and spinner apps, what we include by default, and what often varies elsewhere.</p>
-<p>Online Spin Wheel is a free browser spinner for classrooms, meetings, and giveaways. Beyond a basic name list, we ship specialty pages for <a href="/raffle-wheel">raffles and prize draws</a>, and a <a href="/classroom-spinner">classroom hub</a>, all without signup, with entries processed on your device. Try our <a href="/random-name-picker-wheel">random name picker wheel</a> for a direct name-list spinner.</p>
+<p>Online Spin Wheel is a free browser spinner for classrooms, meetings, and giveaways. Beyond a basic name list, we ship ${INDEXED_WHEEL_COUNT} indexed specialty tools, including <a href="/raffle-wheel">raffles and prize draws</a>, a <a href="/classroom-spinner">classroom hub</a>, weighted yes/no, dinner and movie filters, and birth-date helpers, all without signup, with entries processed on your device. Try our <a href="/random-name-picker-wheel">random name picker wheel</a> for a direct name-list spinner.</p>
 
 <section><h2>Feature comparison</h2>
 <table>
@@ -732,7 +778,11 @@ function wheelOfNamesAlternativeContent() {
 <tr><td>Account required</td><td>No</td><td>Varies, some require signup for extra entries or saving</td></tr>
 <tr><td>Entries stay on your device</td><td>Yes, browser-only processing</td><td>Varies, some process/store entries on a server</td></tr>
 <tr><td>Image slices on wheel</td><td>Yes</td><td>Varies</td></tr>
-<tr><td>Focused specialty tools</td><td>Yes, raffles, classrooms, decision tools</td><td>Typically a single generic wheel</td></tr>
+<tr><td>Focused specialty tools</td><td>Yes, ${INDEXED_WHEEL_COUNT} indexed tools with real controls (filters, weights, calculators), not clone label lists</td><td>Typically a single generic wheel</td></tr>
+<tr><td>Weighted yes/no + best-of-3</td><td>Yes, yes-or-no wheel</td><td>Often equal two-slice only</td></tr>
+<tr><td>Dinner / movie / date filters</td><td>Yes, chips rebuild the pool from tagged datasets</td><td>Often a static food or movie list</td></tr>
+<tr><td>Birth-year / birth-date helpers</td><td>Yes, Chinese zodiac and Western sign wheels</td><td>Often a static animal or sign list</td></tr>
+<tr><td>Name picker history + optional weights</td><td>Yes, random name picker</td><td>Often paste-and-spin only</td></tr>
 <tr><td>Multi-winner + proof link</td><td>Yes, raffle &amp; winner wheels</td><td>Often manual remove-after-spin</td></tr>
 <tr><td>Classroom hub (picker + teams + timer)</td><td>Yes, classroom spinner page</td><td>Often name picker only</td></tr>
 <tr><td>Ticket-number raffle mode</td><td>Yes, raffle wheel</td><td>Often requires manual numeric entries</td></tr>
@@ -761,6 +811,8 @@ function wheelOfNamesAlternativeContent() {
 <li><a href="/raffle-wheel">Raffle &amp; prize wheel</a></li>
 <li><a href="/classroom-spinner">Classroom spinner</a></li>
 <li><a href="/random-name-picker-wheel">Random name picker wheel</a></li>
+<li><a href="/self-care-wheel">Self care wheel</a></li>
+<li><a href="/pokemon-randomizer-wheel">Pokemon randomizer wheel</a></li>
 <li><a href="/all-spin-wheels">All spin wheels</a></li>
 </ul></section>
 
@@ -774,7 +826,7 @@ function wheelOfNamesAlternativeContent() {
 <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
 <h3 itemprop="name">How is Online Spin Wheel different from a generic name spinner?</h3>
 <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-<p itemprop="text">Besides a free name picker, we publish focused specialty tools, raffles with prize-draw and ticket modes, classroom hubs, plus multi-winner proof links.</p>
+<p itemprop="text">Besides a free name picker, we publish ${INDEXED_WHEEL_COUNT} indexed specialty tools with real controls: raffles with prize-draw and ticket modes, classroom hubs, weighted yes/no, dinner and movie filters, plus multi-winner proof links, not dozens of clone spinners.</p>
 </div>
 </div>
 <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
@@ -943,6 +995,16 @@ ${faqs
 </section>`
     : "";
 
+  const relatedSlugs = (Array.isArray(post.relatedWheels) ? post.relatedWheels : []).filter(
+    (s) => isWheelIndexableSlug(s),
+  );
+  const relatedHtml = relatedSlugs.length
+    ? `<nav aria-label="Related tools"><h2>Related tools</h2>
+<ul>
+${relatedSlugs.map((s) => `  <li><a href="/${esc(s)}">${esc(s.replace(/-/g, " "))}</a></li>`).join("\n")}
+</ul></nav>`
+    : "";
+
   return mainWrap(`<h1>${esc(shortTitle)}</h1>
 <p>Written by ${esc(post.author || "Online Spin Wheel")}. Last updated ${esc(post.updated || "")}.</p>
 <section>
@@ -951,6 +1013,7 @@ ${faqs
 </section>
 ${blockHtml}
 ${faqHtml}
+${relatedHtml}
 ${exploreNav()}`);
 }
 
@@ -994,27 +1057,28 @@ function listHtml(items) {
 }
 
 function relatedWheels(wheel, wheels, count = 6) {
-  const same = wheels.filter(
-    (w) => w.slug !== wheel.slug && w.category === wheel.category,
+  const pool = wheels.filter(
+    (w) => w.slug !== wheel.slug && isWheelIndexableSlug(w.slug),
   );
-  const rest = wheels.filter(
-    (w) => w.slug !== wheel.slug && w.category !== wheel.category,
-  );
+  const same = pool.filter((w) => w.category === wheel.category);
+  const rest = pool.filter((w) => w.category !== wheel.category);
   return [...same, ...rest].slice(0, count);
 }
 
 function relatedWheelLinksFromUnique(wheel, wheels, count = 6) {
   const unique = getWheelUniqueContent(wheel.slug);
   if (unique?.relatedWheels?.length) {
-    return unique.relatedWheels.slice(0, count).map(({ slug, anchor }) => ({
-      slug,
-      anchor,
-    }));
+    return unique.relatedWheels
+      .filter((l) => l.slug !== wheel.slug && isWheelIndexableSlug(l.slug))
+      .slice(0, count)
+      .map(({ slug, anchor }) => ({ slug, anchor }));
   }
-  return relatedWheels(wheel, wheels, count).map((w) => ({
-    slug: w.slug,
-    anchor: wheelLabel(w),
-  }));
+  return relatedWheels(wheel, wheels, count)
+    .filter((w) => isWheelIndexableSlug(w.slug))
+    .map((w) => ({
+      slug: w.slug,
+      anchor: wheelLabel(w),
+    }));
 }
 
 function wheelOgImagePath(slug) {
@@ -1223,42 +1287,53 @@ function wheelContent(wheel, wheels) {
 }
 
 function allSpinWheelsContent(wheels) {
-  const byCat = new Map();
-  for (const w of wheels) {
-    const c = (w.category || "Other").trim();
-    if (!byCat.has(c)) byCat.set(c, []);
-    byCat.get(c).push(w);
-  }
-  const categories = [...byCat.entries()].sort(([a], [b]) => a.localeCompare(b));
+  const indexed = wheels.filter((w) => isWheelIndexableSlug(w.slug));
+  const extras = wheels.filter((w) => w.slug && NOINDEX_WHEEL_SET.has(w.slug));
 
-  const sections = categories
-    .map(([category, list]) => {
-      const items = list
-        .sort((a, b) => wheelLabel(a).localeCompare(wheelLabel(b)))
-        .map(
-          (w) =>
-            `    <li><a href="/${esc(w.slug)}">${esc(wheelLabel(w))}</a></li>`,
-        )
-        .join("\n");
-      return `<section>
-  <h2>${esc(category)} (${list.length})</h2>
+  function sectionsFor(list) {
+    const byCat = new Map();
+    for (const w of list) {
+      const c = (w.category || "Other").trim();
+      if (!byCat.has(c)) byCat.set(c, []);
+      byCat.get(c).push(w);
+    }
+    const categories = [...byCat.entries()].sort(([a], [b]) => a.localeCompare(b));
+    return categories
+      .map(([category, items]) => {
+        const lis = items
+          .sort((a, b) => wheelLabel(a).localeCompare(wheelLabel(b)))
+          .map(
+            (w) =>
+              `    <li><a href="/${esc(w.slug)}">${esc(wheelLabel(w))}</a></li>`,
+          )
+          .join("\n");
+        return `<section>
+  <h2>${esc(category)} (${items.length})</h2>
   <ul>
-${items}
+${lis}
   </ul>
 </section>`;
-    })
-    .join("\n");
+      })
+      .join("\n");
+  }
+
+  const extraBlock = extras.length
+    ? `<section><h2>More tools, live but not in search (${extras.length})</h2>
+<p>These URLs still work for bookmarks. They stay out of search because they are the same spinner with a different starter list, not a distinct utility.</p>
+${sectionsFor(extras)}</section>`
+    : "";
 
   return mainWrap(`<h1>All Spin Wheels, Free Specialty Wheel Directory</h1>
-<p>Browse every free specialty spin wheel on Online Spin Wheel, organized by category. Each wheel is pre-filled and ready to spin, decision makers, classroom pickers, giveaway tools, games, zodiac wheels, and more. Every tool runs in your browser with cryptographically secure randomness, no account, and no downloads. Pick a category below to jump straight to the wheel you need, or start with the homepage wheel and add your own custom entries.</p>
-<section><h2>Popular money pages</h2><ul>
+<p>Browse ${INDEXED_WHEEL_COUNT} indexed specialty spin wheels on Online Spin Wheel. Each indexed tool has a real control, filters, modes, or calculators, not just a different default label list. Extra bookmark-only tools are listed separately and are not in search.</p>
+<section><h2>Popular tools</h2><ul>
   <li><a href="/raffle-wheel">Raffle wheel</a>, ticket-number mode, multi-winner draws, proof links</li>
-  <li><a href="/raffle-wheel">Prize / raffle wheel</a>, labeled prize slices, tickets, multi-winner draws</li>
   <li><a href="/classroom-spinner">Classroom spinner</a>, student picker, teams, and timer hub</li>
-  <li><a href="/wheel-of-names-alternative">Wheel of names alternative</a>, compare free picker tools</li>
+  <li><a href="/random-name-picker-wheel">Random name picker</a>, remove-after-pick, history, optional weights</li>
+  <li><a href="/wheel-of-names-alternative">Feature comparison</a>, compare free picker tools</li>
 </ul></section>
-<p>These wheels cover everyday choices (what to eat, yes or no, coin flips), education (student pickers, alphabet and word wheels), events and giveaways (winner pickers, Secret Santa), games and parties, movies and entertainment, zodiac and fortune, health and fitness, travel, and more. Whatever you need to decide fairly, there is a wheel for it. Use the category headings below to jump directly to the tool you need.</p>
-${sections}
+<h2>Indexed tools (${indexed.length})</h2>
+${sectionsFor(indexed)}
+${extraBlock}
 ${exploreNav()}`);
 }
 

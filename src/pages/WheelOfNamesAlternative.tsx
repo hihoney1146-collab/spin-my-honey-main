@@ -18,7 +18,7 @@ const FAQS = [
   },
   {
     q: "How is Online Spin Wheel different from a generic name spinner?",
-    a: "Besides a free name picker, we publish focused specialty tools (raffles with prize-draw and ticket modes, classroom hubs, multi-winner proof links), not dozens of clone spinners.",
+    a: "Besides a free name picker, we publish 21 indexed specialty tools with real controls (raffles with prize-draw and ticket modes, classroom hubs, weighted yes/no, dinner and movie filters, multi-winner proof links), not dozens of clone spinners.",
   },
   {
     q: "Do my names get uploaded to a server?",
@@ -57,9 +57,29 @@ const TABLE_ROWS: Row[] = [
     others: "Varies",
   },
   {
-    feature: "Focused specialty tools (raffle, classroom, name picker, and more)",
-    ours: "Yes, raffles, classrooms, prizes",
+    feature: "Focused specialty tools",
+    ours: "Yes, 21 indexed tools with real controls (filters, weights, calculators)",
     others: "Typically a single generic wheel",
+  },
+  {
+    feature: "Weighted yes/no + best-of-3",
+    ours: "Yes, yes-or-no wheel",
+    others: "Often equal two-slice only",
+  },
+  {
+    feature: "Dinner / movie / date filters",
+    ours: "Yes, chips rebuild the pool from tagged datasets",
+    others: "Often a static food or movie list",
+  },
+  {
+    feature: "Birth-year / birth-date helpers",
+    ours: "Yes, Chinese zodiac and Western sign wheels",
+    others: "Often a static animal or sign list",
+  },
+  {
+    feature: "Name picker history + optional weights",
+    ours: "Yes, random name picker",
+    others: "Often paste-and-spin only",
   },
   {
     feature: "Multi-winner + proof link",
@@ -88,7 +108,7 @@ const WheelOfNamesAlternative = () => {
         <title>{title}</title>
         <meta
           name="description"
-          content="Compare Online Spin Wheel with other free pickers: no account, browser-only entries, raffle proof links, classroom hub, and focused specialty tools."
+          content="Compare Online Spin Wheel with other free pickers: no account, browser-only entries, 21 indexed specialty tools with real controls, raffle proof links, classroom hub."
         />
         <link rel="canonical" href={canonical} />
         <script type="application/ld+json">
@@ -139,7 +159,8 @@ const WheelOfNamesAlternative = () => {
         <Card className="p-6 md:p-8 mb-8">
           <p className="text-muted-foreground leading-relaxed mb-4">
             Online Spin Wheel is a free browser spinner for classrooms, meetings,
-            and giveaways. Beyond a basic name list, we ship specialty pages for{" "}
+            and giveaways. Beyond a basic name list, we ship 21 indexed specialty
+            tools, including{" "}
             <Link to="/raffle-wheel" className="text-primary font-medium hover:underline">
               raffles
             </Link>
@@ -234,6 +255,16 @@ const WheelOfNamesAlternative = () => {
             <li>
               <Link to="/random-name-picker-wheel" className="text-primary hover:underline">
                 Random name picker wheel
+              </Link>
+            </li>
+            <li>
+              <Link to="/pokemon-randomizer-wheel" className="text-primary hover:underline">
+                Pokemon randomizer wheel
+              </Link>
+            </li>
+            <li>
+              <Link to="/self-care-wheel" className="text-primary hover:underline">
+                Self care wheel
               </Link>
             </li>
           </ul>

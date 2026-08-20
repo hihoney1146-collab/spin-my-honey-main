@@ -1,5 +1,6 @@
 import { getAllBlogPosts } from "@/data/blogPosts";
-import { getAllWheelSlugs, getWheelPageBySlug } from "@/lib/wheelPages";
+import { getWheelPageBySlug } from "@/lib/wheelPages";
+import { isWheelIndexableSlug } from "@/data/wheelIndexPolicy";
 
 export type SiteLinkItem = {
   to: string;
@@ -64,17 +65,24 @@ export const comparisonLinks: SiteLinkItem[] = [
   },
 ];
 
-const FEATURED_WHEEL_COUNT = 6;
+const FEATURED_WHEEL_SLUGS = [
+  "random-name-picker-wheel",
+  "yes-or-no-wheel",
+  "random-student-picker",
+  "team-generator-wheel",
+  "winner-picker-wheel",
+  "dinner-picker-wheel",
+] as const;
 
-/** First CSV rows as quick entry points; full list lives on WHEEL_HUB_PATH. */
+/** Featured indexed wheels; full lists live on WHEEL_HUB_PATH. */
 export function getFeaturedWheelLinks(): SiteLinkItem[] {
-  return getAllWheelSlugs()
-    .slice(0, FEATURED_WHEEL_COUNT)
-    .map((slug) => {
+  return FEATURED_WHEEL_SLUGS.filter((slug) => isWheelIndexableSlug(slug)).map(
+    (slug) => {
       const rec = getWheelPageBySlug(slug);
       return {
         to: `/${slug}`,
         label: rec?.keywordPrimary || slug.replace(/-/g, " "),
       };
-    });
+    },
+  );
 }

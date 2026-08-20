@@ -10,10 +10,12 @@ import {
   Zap,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { NoindexFollow } from "@/components/NoindexFollow";
 
 const TutorialCreatingYourFirstSpinWheel = () => {
   return (
     <>
+      <NoindexFollow />
       <Helmet>
         <title>
           Spin Wheel Free: The Easiest Way to Make Fair Decisions Online

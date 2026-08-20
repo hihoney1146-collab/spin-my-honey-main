@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { getAllWheelRecords } from "@/lib/wheelPages";
 import { BLOG_INDEX_PATH } from "@/lib/siteInternalLinks";
-import { INDEXED_WHEEL_COUNT_PHASE_C, isHubListedWheelSlug } from "@/data/wheelIndexPolicy";
+import { isNoindexWheelSlug, INDEXED_WHEEL_COUNT_PHASE_C, isWheelIndexableSlug } from "@/data/wheelIndexPolicy";
 import { ArrowLeft } from "lucide-react";
 
 const SITE_ORIGIN = "https://onlinespinwheel.fun";
@@ -13,7 +13,6 @@ function groupWheelsByCategory(
 ): { category: string; wheels: ReturnType<typeof getAllWheelRecords> }[] {
   const map = new Map<string, ReturnType<typeof getAllWheelRecords>>();
   for (const w of wheels) {
-    if (!isHubListedWheelSlug(w.slug)) continue;
     const cat = w.category?.trim() || "Other";
     const list = map.get(cat) ?? [];
     list.push(w);
@@ -29,8 +28,11 @@ function groupWheelsByCategory(
 
 const AllSpinWheelsPage = () => {
   const wheels = getAllWheelRecords();
-  const grouped = groupWheelsByCategory(wheels);
-  const categories = grouped.map((g) => g.category);
+  const indexed = wheels.filter((w) => isWheelIndexableSlug(w.slug));
+  const extras = wheels.filter((w) => isNoindexWheelSlug(w.slug));
+  const groupedIndexed = groupWheelsByCategory(indexed);
+  const groupedExtras = groupWheelsByCategory(extras);
+  const categories = groupedIndexed.map((g) => g.category);
 
   return (
     <>
@@ -38,13 +40,13 @@ const AllSpinWheelsPage = () => {
         <title>All specialty spin wheels | Online Spin Wheel</title>
         <meta
           name="description"
-          content="Browse every free specialty spin wheel on Online Spin Wheel, decision wheels, classroom pickers, party games, yes/no tools, and more. Open any wheel and spin in your browser."
+          content={`Browse ${INDEXED_WHEEL_COUNT_PHASE_C} indexed specialty spin wheels — raffles, classrooms, weighted yes/no, dinner and movie filters, and more. Extra bookmark-only tools sit in a separate list.`}
         />
         <link rel="canonical" href={`${SITE_ORIGIN}/all-spin-wheels`} />
         <meta property="og:title" content="All specialty spin wheels | Online Spin Wheel" />
         <meta
           property="og:description"
-          content="Browse every free specialty spin wheel, decision wheels, pickers, games, and more."
+          content={`Browse ${INDEXED_WHEEL_COUNT_PHASE_C} indexed specialty wheels plus bookmark-only extras.`}
         />
         <meta property="og:url" content={`${SITE_ORIGIN}/all-spin-wheels`} />
         <meta property="og:image" content={`${SITE_ORIGIN}/og-image.png`} />
@@ -65,10 +67,10 @@ const AllSpinWheelsPage = () => {
           All specialty spin wheels
         </h1>
         <p className="text-lg text-muted-foreground mb-6 max-w-3xl">
-          Browse our specialty tools (about {INDEXED_WHEEL_COUNT_PHASE_C} indexed
-          decision and classroom wheels, plus a few utility pages kept live for
-          bookmarks). Each ready-to-use wheel includes presets you can edit.
-          Prefer a blank slate? Use the{" "}
+          Browse {INDEXED_WHEEL_COUNT_PHASE_C} indexed specialty wheels, each with
+          a real control (filters, modes, or calculators), not a cloned label list.
+          Extra bookmark-only tools sit in a separate list below and are not in
+          search. Prefer a blank slate? Use the{" "}
           <Link to="/" className="text-primary underline underline-offset-2">
             homepage spinner
           </Link>
@@ -112,15 +114,15 @@ const AllSpinWheelsPage = () => {
               main spin wheel
             </Link>{" "}
             for a blank slate, or jump to a specialty wheel when you already know the
-            format, classroom name picker, yes/no decision, random number, party game, or
-            team icebreaker.
+            format: classroom name picker, weighted yes/no, raffle tickets, dinner
+            filters, or team splits.
           </p>
           <p>
             Specialty wheels are grouped by category below.
             {categories.length > 0 ? (
               <>
                 {" "}
-                We currently highlight themes such as{" "}
+                Indexed tools currently cover{" "}
                 {categories.slice(0, 5).join(", ")}
                 {categories.length > 5 ? ", and more" : ""}.
               </>
@@ -157,17 +159,17 @@ const AllSpinWheelsPage = () => {
               random number wheel when you need digits, not labels.
             </li>
             <li>
-              <strong className="text-foreground">Parties and games:</strong> browse
-              party and family wheels for chores, prizes, or turn order.
+              <strong className="text-foreground">Giveaways:</strong> use the raffle
+              or winner picker when you need multi-winner draws and proof links.
             </li>
           </ul>
         </div>
 
         <div className="space-y-8">
           <h2 className="text-lg font-semibold text-foreground">
-            Full directory ({wheels.length} wheels by category)
+            Indexed tools ({indexed.length})
           </h2>
-          {grouped.map(({ category, wheels: categoryWheels }) => (
+          {groupedIndexed.map(({ category, wheels: categoryWheels }) => (
             <Card key={category} className="p-4 md:p-6">
               <h3 className="text-base md:text-lg font-semibold mb-3 text-foreground border-b border-border/60 pb-2">
                 {category}
@@ -190,6 +192,40 @@ const AllSpinWheelsPage = () => {
             </Card>
           ))}
         </div>
+
+        {extras.length > 0 ? (
+          <div className="space-y-8 mt-12">
+            <h2 className="text-lg font-semibold text-foreground">
+              More tools, live but not in search ({extras.length})
+            </h2>
+            <p className="text-sm text-muted-foreground max-w-3xl">
+              These URLs still work for bookmarks. They are marked noindex because they
+              are the same spinner with a different starter list, not a distinct utility.
+            </p>
+            {groupedExtras.map(({ category, wheels: categoryWheels }) => (
+              <Card key={`extra-${category}`} className="p-4 md:p-6 border-dashed">
+                <h3 className="text-base md:text-lg font-semibold mb-3 text-foreground border-b border-border/60 pb-2">
+                  {category}
+                  <span className="text-sm font-normal text-muted-foreground ml-2">
+                    ({categoryWheels.length})
+                  </span>
+                </h3>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
+                  {categoryWheels.map((w) => (
+                    <li key={w.slug}>
+                      <Link
+                        to={`/${w.slug}`}
+                        className="text-sm text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-2 group py-1"
+                      >
+                        <span className="group-hover:underline">{w.title}</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </Card>
+            ))}
+          </div>
+        ) : null}
       </article>
     </>
   );

@@ -22,10 +22,12 @@ import {
   PlayCircle,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { NoindexFollow } from "@/components/NoindexFollow";
 
 const HowToCreateFairGiveawaysWithSpinWheels = () => {
   return (
     <>
+      <NoindexFollow />
       <Helmet>
         <title>
           Spin Wheel Winner Picker: The Ultimate Guide to Fair, Fun Random Winner Selection | Online Spin Wheel

@@ -527,7 +527,7 @@ export function buildLlmsTxt(root = getProjectRoot()) {
     `- Small independent team dedicated solely to Online Spin Wheel`,
     "",
     "## What this site is",
-    "Interactive WebApplication tools using cryptographic randomness (crypto.getRandomValues). No login required for core spinning. Specialty wheels are pre-filled; the homepage wheel accepts custom entries.",
+    "Interactive WebApplication tools using cryptographic randomness (crypto.getRandomValues). No login required for core spinning. The indexed set is 21 specialty wheels with real controls plus the homepage spinner; leftover clone URLs stay live with noindex.",
     "",
     "## Primary entry points",
     `${SITE}/`,

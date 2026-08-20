@@ -6,6 +6,7 @@ import { ArrowLeft, Download, Home } from "lucide-react";
 import { BLOG_INDEX_PATH, WHEEL_HUB_PATH } from "@/lib/siteInternalLinks";
 import { getBlogPostBySlug } from "@/data/blogPosts";
 import { getWheelPageBySlug } from "@/lib/wheelPages";
+import { isWheelIndexableSlug } from "@/data/wheelIndexPolicy";
 import { buildBlogTableOfContents } from "@/lib/blogToc";
 import {
   getBlogFeaturedImageSrc,
@@ -93,14 +94,13 @@ const BLOG_RELATED_WHEELS: Record<string, string[]> = {
     "random-name-picker-wheel",
     "random-student-picker",
     "winner-picker-wheel",
-    "pick-out-of-a-hat-generator",
     "team-generator-wheel",
   ],
   "best-icebreaker-games-office-meetings": [
     "team-generator-wheel",
     "random-name-picker-wheel",
     "yes-or-no-wheel",
-    "truth-or-dare-spinner-online",
+    "coin-flip-wheel",
     "winner-picker-wheel",
   ],
   "best-spin-wheel-games-for-students": [
@@ -113,7 +113,6 @@ const BLOG_RELATED_WHEELS: Record<string, string[]> = {
   ],
   "fun-ways-decide-where-to-eat-couples": [
     "dinner-picker-wheel",
-    "fast-food-wheel",
     "date-night-wheel",
     "movie-picker-wheel",
   ],
@@ -121,7 +120,7 @@ const BLOG_RELATED_WHEELS: Record<string, string[]> = {
     "secret-santa-wheel-generator",
     "random-name-picker-wheel",
     "winner-picker-wheel",
-    "family-game-night-picker-wheel",
+    "team-generator-wheel",
   ],
 };
 
@@ -490,7 +489,10 @@ const BlogPost = () => {
             post.relatedWheels ?? BLOG_RELATED_WHEELS[post.slug] ?? [];
           const wheels = slugs
             .map((s) => getWheelPageBySlug(s))
-            .filter(Boolean) as Array<{ slug: string; keywordPrimary: string; h1: string; metaDescription: string }>;
+            .filter(
+              (w): w is NonNullable<typeof w> =>
+                Boolean(w && isWheelIndexableSlug(w.slug)),
+            );
           if (wheels.length === 0) return null;
           return (
             <section className="mt-10 rounded-xl border border-primary/15 bg-primary/5 p-6 md:p-8">

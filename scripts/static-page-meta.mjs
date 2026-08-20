@@ -150,7 +150,7 @@ export const fixedRouteMeta = [
     path: "/all-spin-wheels",
     title: "All specialty spin wheels | Online Spin Wheel",
     description:
-      "Browse every free specialty spin wheel on Online Spin Wheel, decision wheels, pickers, classroom tools, games, and more.",
+      "Browse 21 indexed specialty spin wheels — raffles, classrooms, weighted yes/no, dinner and movie filters — plus bookmark-only extras in a separate list.",
   },
   {
     path: "/blog",
@@ -269,7 +269,7 @@ export const fixedRouteMeta = [
     path: "/wheel-of-names-alternative",
     title: "Online Spin Wheel, Feature Comparison",
     description:
-      "Compare Online Spin Wheel with other free pickers: no account, browser-only entries, 40+ specialty pages, raffle proof links, and a classroom hub.",
+      "Compare Online Spin Wheel with other free pickers: no account, browser-only entries, 21 indexed specialty tools with real controls, raffle proof links, and a classroom hub.",
     jsonLd: [
       {
         "@context": "https://schema.org",
@@ -296,7 +296,7 @@ export const fixedRouteMeta = [
             acceptedAnswer: {
               "@type": "Answer",
               "@id": `${SITE}/wheel-of-names-alternative#faq-q2-answer`,
-              text: "Besides a free name picker, we publish focused specialty tools, raffles with prize-draw and ticket modes, classroom hubs, plus multi-winner proof links.",
+              text: "Besides a free name picker, we publish 21 indexed specialty tools with real controls: raffles with prize-draw and ticket modes, classroom hubs, weighted yes/no, dinner and movie filters, plus multi-winner proof links.",
             },
           },
           {

@@ -53,7 +53,9 @@ export function isHubListedWheelSlug(slug: string | undefined): boolean {
   return Boolean(slug && !isMergedWheelSlug(slug));
 }
 
-/** Indexed specialty wheel count after Phase C + hat merge. */
+export function isWheelIndexableSlug(slug: string | undefined): boolean {
+  return Boolean(slug && !isNoindexWheelSlug(slug) && !isMergedWheelSlug(slug));
+}
 export const INDEXED_WHEEL_COUNT_PHASE_C = 21;
 
 /** Target after all enrichments (same as post-hat merge). */

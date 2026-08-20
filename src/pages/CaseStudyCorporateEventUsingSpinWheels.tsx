@@ -2,10 +2,12 @@ import { Card } from "@/components/ui/card";
 import { Helmet } from "react-helmet";
 import { Briefcase, Users, TrendingUp, ArrowRight, Award } from "lucide-react";
 import { Link } from "react-router-dom";
+import { NoindexFollow } from "@/components/NoindexFollow";
 
 const CaseStudyCorporateEventUsingSpinWheels = () => {
   return (
     <>
+      <NoindexFollow />
       <Helmet>
         <title>
           Case Study: Corporate Conference Improves Event Management with Spin

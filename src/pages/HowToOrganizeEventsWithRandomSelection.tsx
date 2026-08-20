@@ -8,10 +8,12 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { NoindexFollow } from "@/components/NoindexFollow";
 
 const HowToOrganizeEventsWithRandomSelection = () => {
   return (
     <>
+      <NoindexFollow />
       <Helmet>
         <title>
           How to Organize Events with Random Selection Tools | Online Spin Wheel

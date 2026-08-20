@@ -1,17 +1,17 @@
 import { Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { getWheelsGroupedByCategory } from "@/lib/wheelPages";
+import { INDEXED_WHEEL_COUNT_PHASE_C } from "@/data/wheelIndexPolicy";
 
 /**
- * Homepage wheel directory: every CSV wheel grouped by category with
- * primary-keyword anchor text → /slug (SEO + internal linking).
+ * Homepage wheel directory: indexed specialty wheels grouped by category.
  */
 export function WheelDirectory() {
-  const groups = getWheelsGroupedByCategory();
+  const groups = getWheelsGroupedByCategory({ indexableOnly: true });
 
   return (
     <section
-      id="browse-full-collection"
+      id="browse-indexed-wheels"
       aria-labelledby="wheel-directory-heading"
       className="w-full px-4 sm:px-6 lg:px-8 py-10 sm:py-12 md:py-14 bg-muted/20 border-t border-border/60"
     >
@@ -21,11 +21,11 @@ export function WheelDirectory() {
             id="wheel-directory-heading"
             className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground tracking-tight"
           >
-            Browse Our Full Collection
+            Indexed specialty wheels
           </h2>
           <p className="mt-3 text-sm sm:text-base text-muted-foreground leading-relaxed">
-            Explore specialty spin wheels organized by category. Each link opens that
-            wheel&apos;s page. Merged tools redirect to their surviving URL.
+            Explore {INDEXED_WHEEL_COUNT_PHASE_C} indexed specialty spin wheels, each with a real control
+            (filters, modes, or calculators), organized by category.
           </p>
         </header>
 

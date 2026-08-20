@@ -67,7 +67,7 @@ const CARDS = [
     grades: "All grades",
     setup: "Slices: extra recess, homework pass, choice seat, teacher helper.",
     play: "Whole class earns spin after goal met. One spin only.",
-    wheel: "/prize-wheel",
+    wheel: "/raffle-wheel",
   },
 ];
 

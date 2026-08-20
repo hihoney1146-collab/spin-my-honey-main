@@ -1,6 +1,6 @@
 import wheelPagesData from "@/generated/wheelPages.json";
 import { getWheelUniqueContent } from "@/data/wheelUniqueContent";
-import { isHubListedWheelSlug, isMergedWheelSlug } from "@/data/wheelIndexPolicy";
+import { isHubListedWheelSlug, isWheelIndexableSlug } from "@/data/wheelIndexPolicy";
 
 export type WheelFaq = {
   question: string;
@@ -64,7 +64,8 @@ export function getRelatedWheelLinks(
   const unique = getWheelUniqueContent(slug);
   if (unique?.relatedWheels?.length) {
     return unique.relatedWheels
-      .slice(0, limit * 2)
+      .filter((l) => l.slug !== slug && isWheelIndexableSlug(l.slug))
+      .slice(0, limit)
       .map(({ slug: relatedSlug, anchor }) => {
         const page = bySlug.get(relatedSlug);
         return {
@@ -72,15 +73,13 @@ export function getRelatedWheelLinks(
           anchor,
           h1: page?.h1 || anchor,
         };
-      })
-      .filter((l) => l.slug !== slug && !isMergedWheelSlug(l.slug))
-      .slice(0, limit);
+      });
   }
 
   const current = bySlug.get(slug);
   if (!current) return [];
   const others = pages.filter(
-    (p) => p.slug !== slug && isHubListedWheelSlug(p.slug),
+    (p) => p.slug !== slug && isWheelIndexableSlug(p.slug),
   );
   const sameCat = others.filter((p) => p.category === current.category);
   const diffCat = others.filter((p) => p.category !== current.category);
@@ -110,10 +109,14 @@ export type WheelCategoryGroup = {
  * All wheels from CSV (via wheelPages.json), grouped by Category.
  * Categories sorted A–Z; "Other" last. Wheels within a category sorted by primary keyword.
  */
-export function getWheelsGroupedByCategory(): WheelCategoryGroup[] {
-  const records = getAllWheelRecords().filter(
-    (p) => p.slug && isHubListedWheelSlug(p.slug),
-  );
+export function getWheelsGroupedByCategory(
+  opts: { indexableOnly?: boolean } = {},
+): WheelCategoryGroup[] {
+  const records = getAllWheelRecords().filter((p) => {
+    if (!p.slug) return false;
+    if (opts.indexableOnly) return isWheelIndexableSlug(p.slug);
+    return isHubListedWheelSlug(p.slug);
+  });
   const map = new Map<string, WheelPageRecord[]>();
   for (const p of records) {
     const raw = (p.category ?? "").trim();

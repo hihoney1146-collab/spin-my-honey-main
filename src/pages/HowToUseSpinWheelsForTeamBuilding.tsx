@@ -9,10 +9,12 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { NoindexFollow } from "@/components/NoindexFollow";
 
 const HowToUseSpinWheelsForTeamBuilding = () => {
   return (
     <>
+      <NoindexFollow />
       <Helmet>
         <title>
           How to Use Spin Wheels for Team Building Activities | Online Spin Wheel

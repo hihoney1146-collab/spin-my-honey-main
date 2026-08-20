@@ -22,9 +22,10 @@ import { useStreamerMode } from "@/lib/useStreamerMode";
 import { BLOG_INDEX_PATH } from "@/lib/siteInternalLinks";
 
 const FEATURED_BLOG_SLUGS = [
-  "random-name-picker-fair-fun-easy",
+  "best-spin-wheel-games-for-students",
   "best-icebreaker-games-office-meetings",
-  "virtual-secret-santa-online",
+  "spin-wheel-team-building-activities",
+  "classroom-spinner-beyond-name-picking",
 ] as const;
 
 const HOME_FAQS: { question: string; answer: string }[] = [

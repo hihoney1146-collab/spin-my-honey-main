@@ -24,6 +24,7 @@ import {
 import {
   WHEEL_MERGE_REDIRECTS,
   wheelRobotsDirective,
+  isWheelIndexableSlug,
 } from "./wheel-index-policy.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -124,17 +125,19 @@ function wheelLabel(wheel) {
 function relatedWheelLinks(wheel, wheels, count = 6) {
   const unique = getWheelUniqueContent(wheel.slug);
   if (unique?.relatedWheels?.length) {
-    return unique.relatedWheels.slice(0, count).map(({ slug, anchor }) => ({
-      href: `/${slug}`,
-      label: anchor,
-    }));
+    return unique.relatedWheels
+      .filter((l) => l.slug !== wheel.slug && isWheelIndexableSlug(l.slug))
+      .slice(0, count)
+      .map(({ slug, anchor }) => ({
+        href: `/${slug}`,
+        label: anchor,
+      }));
   }
-  const sameCategory = wheels.filter(
-    (w) => w.slug !== wheel.slug && w.category === wheel.category,
+  const pool = wheels.filter(
+    (w) => w.slug !== wheel.slug && isWheelIndexableSlug(w.slug),
   );
-  const rest = wheels.filter(
-    (w) => w.slug !== wheel.slug && w.category !== wheel.category,
-  );
+  const sameCategory = pool.filter((w) => w.category === wheel.category);
+  const rest = pool.filter((w) => w.category !== wheel.category);
   return [...sameCategory, ...rest].slice(0, count).map((w) => ({
     href: `/${w.slug}`,
     label: wheelLabel(w),
@@ -186,15 +189,15 @@ function buildGenericSeoContent(route, wheels, blogRoutes) {
   if (route.path === "/") {
     sections.push(
       `<section><h2>Popular spin wheels</h2>${htmlList(
-        wheels.slice(0, 16),
+        wheels.filter((w) => isWheelIndexableSlug(w.slug)).slice(0, 16),
         (wheel) => `<a href="/${escapeHtml(wheel.slug)}">${escapeHtml(wheelLabel(wheel))}</a>`,
       )}</section>`,
       `<section><h2>Why use Online Spin Wheel?</h2><p>Use the wheel for names, numbers, classroom picks, giveaways, teams, games, and everyday decisions. The tool works in your browser with no account required.</p></section>`,
     );
   } else if (route.path === "/all-spin-wheels") {
     sections.push(
-      `<section><h2>All wheel pages</h2>${htmlList(
-        wheels,
+      `<section><h2>Indexed wheel pages</h2>${htmlList(
+        wheels.filter((w) => isWheelIndexableSlug(w.slug)),
         (wheel) => `<a href="/${escapeHtml(wheel.slug)}">${escapeHtml(wheelLabel(wheel))}</a>`,
       )}</section>`,
     );
@@ -504,6 +507,29 @@ function loadWheelRouteMeta() {
     }));
 }
 
+const LEGACY_NOINDEX_PAGE_PATHS = [
+  "/how-to-use-spin-wheels-in-classrooms",
+  "/how-to-create-fair-giveaways-with-spin-wheels",
+  "/how-to-use-spin-wheels-for-team-building",
+  "/how-to-organize-events-with-random-selection",
+  "/how-to-make-decisions-faster-with-spin-wheels",
+  "/tutorial-creating-your-first-spin-wheel",
+  "/tutorial-customizing-spin-wheel-colors",
+  "/tutorial-managing-spin-wheel-entries",
+  "/tutorial-advanced-spin-wheel-features",
+  "/case-study-corporate-event-using-spin-wheels",
+];
+
+function loadLegacyNoindexRouteMeta() {
+  return LEGACY_NOINDEX_PAGE_PATHS.map((p) => ({
+    path: p,
+    title: "Online Spin Wheel",
+    description:
+      "This leftover guide URL stays available for old bookmarks and is not in search.",
+    robots: "noindex, follow",
+  }));
+}
+
 const distPath = path.join(root, "dist");
 const indexPath = path.join(distPath, "index.html");
 
@@ -520,6 +546,7 @@ const routes = [
   ...fixedRouteMeta,
   ...blogRoutes,
   ...loadWheelRouteMeta(),
+  ...loadLegacyNoindexRouteMeta(),
 ].map((route) => enrichRoute(route, wheels, blogRoutes, blogPosts));
 
 console.log("🚀 Generating static HTML pages with route-specific metadata...\n");

@@ -42,6 +42,8 @@ export function isWheelIndexableSlug(slug) {
   return true;
 }
 
+export const INDEXED_WHEEL_COUNT = 21;
+
 export function wheelRobotsDirective(slug) {
   if (NOINDEX_WHEEL_SET.has(slug)) return "noindex, follow";
   return undefined;

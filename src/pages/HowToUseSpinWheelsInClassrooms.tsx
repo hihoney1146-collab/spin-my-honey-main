@@ -2,10 +2,12 @@ import { Card } from "@/components/ui/card";
 import { Helmet } from "react-helmet";
 import { Palette, CheckCircle2, ArrowRight, Sparkles, Wand2, Lightbulb, Layers, Monitor, Paintbrush, Dices } from "lucide-react";
 import { Link } from "react-router-dom";
+import { NoindexFollow } from "@/components/NoindexFollow";
 
 const HowToUseSpinWheelsInClassrooms = () => {
   return (
     <>
+      <NoindexFollow />
       <Helmet>
         <title>
           Spin the Wheel 8 Colors - Interactive Color Picker | Online Spin Wheel

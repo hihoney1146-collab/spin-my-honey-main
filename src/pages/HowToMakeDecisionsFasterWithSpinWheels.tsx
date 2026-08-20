@@ -2,10 +2,12 @@ import { Card } from "@/components/ui/card";
 import { Helmet } from "react-helmet";
 import { Zap, Clock, CheckCircle2, TrendingUp, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { NoindexFollow } from "@/components/NoindexFollow";
 
 const HowToMakeDecisionsFasterWithSpinWheels = () => {
   return (
     <>
+      <NoindexFollow />
       <Helmet>
         <title>How to Make Decisions Faster with Spin Wheels | Online Spin Wheel</title>
         <meta

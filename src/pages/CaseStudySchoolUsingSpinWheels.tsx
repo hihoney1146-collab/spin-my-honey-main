@@ -641,17 +641,17 @@ const CaseStudySchoolUsingSpinWheels = () => {
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
-                to="/"
+                to="/classroom-spinner"
                 className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
               >
                 Create Your Classroom Wheel
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                to="/"
+                to="/case-study-community-event-using-spin-wheels"
                 className="inline-flex items-center gap-2 border-2 border-primary text-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary/10 transition-colors"
               >
-                Read More Case Studies
+                Read the community event case study
                 <GraduationCap className="h-4 w-4" />
               </Link>
             </div>
@@ -669,10 +669,10 @@ const CaseStudySchoolUsingSpinWheels = () => {
               Explore more real-world examples of spin wheels in action.
             </p>
             <Link
-              to="/"
+              to="/case-study-community-event-using-spin-wheels"
               className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
             >
-              Browse Case Studies
+              Community event case study
               <ArrowRight className="h-4 w-4" />
             </Link>
           </Card>

@@ -2,10 +2,12 @@ import { Card } from "@/components/ui/card";
 import { Helmet } from "react-helmet";
 import { List, CheckCircle2, Edit, Trash2, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { NoindexFollow } from "@/components/NoindexFollow";
 
 const TutorialManagingSpinWheelEntries = () => {
   return (
     <>
+      <NoindexFollow />
       <Helmet>
         <title>Managing Spin Wheel Entries - Complete Guide | Online Spin Wheel</title>
         <meta

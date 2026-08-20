@@ -2,10 +2,12 @@ import { Card } from "@/components/ui/card";
 import { Helmet } from "react-helmet";
 import { Settings, CheckCircle2, Sparkles, ArrowRight, Trophy, Users } from "lucide-react";
 import { Link } from "react-router-dom";
+import { NoindexFollow } from "@/components/NoindexFollow";
 
 const TutorialAdvancedSpinWheelFeatures = () => {
   return (
     <>
+      <NoindexFollow />
       <Helmet>
         <title>Spin Wheel Winner Picker: Ultimate Guide to Fair Winner Selection</title>
         <meta

@@ -30,7 +30,7 @@
     "audit:jsonld": "node scripts/audit-jsonld.mjs",
     "audit:redirects": "node scripts/audit-redirects.mjs",
     "audit:a11y": "node scripts/audit-a11y.mjs",
-    "audit:all": "node scripts/audit-ssr.mjs && node scripts/dup-check.mjs && node scripts/audit-meta.mjs && node scripts/audit-jsonld.mjs && node scripts/audit-redirects.mjs && node scripts/identity-check.mjs",
+    "audit:all": "node scripts/audit-ssr.mjs && node scripts/dup-check.mjs && node scripts/audit-meta.mjs && node scripts/audit-jsonld.mjs && node scripts/audit-redirects.mjs && node scripts/identity-check.mjs && node scripts/audit-internal-links.mjs",
     "test:e2e": "playwright test",
     "test:unit": "vitest run",
     "indexnow": "node scripts/indexnow-ping.mjs",

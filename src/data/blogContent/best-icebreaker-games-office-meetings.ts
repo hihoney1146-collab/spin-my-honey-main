@@ -16,7 +16,7 @@ export const bestIcebreakerGamesOfficeMeetings: BlogPost = {
     "team-generator-wheel",
     "random-name-picker-wheel",
     "yes-or-no-wheel",
-    "truth-or-dare-spinner-online",
+    "coin-flip-wheel",
     "winner-picker-wheel",
   ],
   blocks: [
@@ -83,7 +83,7 @@ export const bestIcebreakerGamesOfficeMeetings: BlogPost = {
     {
       heading: "Truth or Dare Lite",
       paragraphs: [
-        "Use the truth-or-dare spinner with work-safe truths and mild dares only. Example truths: \"What is your go-to lunch during busy weeks?\" \"What app do you open first each morning?\" Example dares: \"Show your coffee mug to the camera.\" \"Type your favorite emoji in chat.\" \"Share your phone wallpaper if it is work-appropriate.\"",
+        "Paste work-safe prompts on the yes-or-no wheel or name picker (truths as slices, or a two-slice Truth / Dare wheel you label yourself). Example truths: \"What is your go-to lunch during busy weeks?\" \"What app do you open first each morning?\" Example dares: \"Show your coffee mug to the camera.\" \"Type your favorite emoji in chat.\" \"Share your phone wallpaper if it is work-appropriate.\"",
         "Spin once. The selected person answers the truth or does the dare. Skip dare slices on client calls or executive meetings.",
       ],
     },
@@ -150,7 +150,7 @@ export const bestIcebreakerGamesOfficeMeetings: BlogPost = {
     {
       heading: "5. Related wheels for facilitators",
       paragraphs: [
-        "Bookmark these tools for recurring meetings: the team generator for breakout groups, the random name picker for who speaks first, the yes-or-no wheel for binary polls and debates, the truth-or-dare spinner for light truths and camera-friendly dares, and the winner picker for chain-style prompt picks. All are free, browser-based, and built for screen share on US corporate laptops.",
+        "Bookmark these tools for recurring meetings: the team generator for breakout groups, the random name picker for who speaks first, the yes-or-no wheel for binary polls and debates, and the winner picker for chain-style prompt picks. All are free, browser-based, and built for screen share on US corporate laptops.",
         "Pair remove-after-pick with name wheels when you run multiple spins in one huddle. Use session history after workshops to confirm everyone had a chance to introduce themselves before you dive into slides.",
       ],
     },

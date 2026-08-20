@@ -1,6 +1,6 @@
 # Duplicate Sentence Scan
 
-Generated 2026-08-17 from `dist/` prerendered HTML (47 indexable routes).
+Generated 2026-08-20 from `dist/` prerendered HTML (47 indexable routes).
 
 Rule: flag sentences with **≥ 9 words** shared verbatim between **≥ 2** pages, or repeated **within** the same page.
 

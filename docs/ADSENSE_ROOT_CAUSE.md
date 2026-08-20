@@ -1,150 +1,242 @@
-# AdSense root cause — Phase A (forensic, report only)
+# AdSense root cause — Phases A–D final report
 
-**Status:** Phase A complete. **STOP — awaiting owner approval before Phases B/C/D.**  
-**Scope:** Indexed wheel pages only for the verdict table. Infrastructure / Cloudflare / sitemap plumbing are out of scope (verified clean).  
-**Date:** 2026-07-27  
-**Metric of success:** AdSense approval (not rankings alone, not word count).
-
----
-
-## 1. Executive summary — why the second rejection most likely happened
-
-A skeptical human reviewer who opens this site after the mid-to-late July 2026 remediation still sees **dozens of indexed URLs that are the same interactive control with different default slice labels and different surrounding essays**. Unique copy, OG images, SSR, doorway 301s, team pages, and the fairness study raised quality on paper — they did **not** change the inventory shape AdSense scores as “value.”
-
-### Ranked causes
-
-| Rank | Cause | Evidence | Confidence |
-|------|--------|----------|------------|
-| 1 | **Indexed inventory is mostly one tool × many presets** | `WheelBySlug` default path is plain `SpinWheel` + `presetOptionLabels`. Only **11** slugs mount a dedicated mode component; of those, `prize-wheel` and `random-name-picker-wheel` are still thin wrappers (presets and/or proof link only). **~32** indexed wheels are functionally the homepage spinner with a different starter list. | **High** |
-| 2 | **Page count vs substance mismatch** | Current crawlable set is on the order of **forty-plus wheels** plus guides/legal/blog (~**sixty-plus** sitemap URLs). Substance that would stand alone without the widget (fairness study, comparisons, expanded blog, real modes) is a **minority** of that set. Reviewers judge the whole indexed footprint, not the best five pages. | **High** |
-| 3 | **“Unique text” remediation treated a structural problem as a copy problem** | Every wheel already has `WHEEL_UNIQUE_CONTENT` entries; second rejection still landed. That falsifies “more differentiated prose clears Low value content” for this site shape. | **High** |
-| 4 | **Overlapping intents still indexed side-by-side** | Hat draw vs name picker vs Instagram picker vs winner picker; dinner vs fast food; movie vs horror; prize vs raffle (raffle is real multi-winner; prize is presets marketed as a mode). Cluster consolidation was started (zodiac doorway 301s) but **utility clones remain indexed**. | **Medium** |
-| 5 | **Mode marketing ahead of mode reality (trust risk)** | `wheelModeFeatures.ts` describes prize-wheel behavior that `PrizeWheel.tsx` does not implement (plain `SpinWheel` + labels). Inflates perceived differentiation in audits without changing the product a reviewer clicks. | **Medium** |
-
-**Not the cause (per verified facts — do not re-open):** ads.txt, Cloudflare crawler blocks, sitemap fetch failures, missing SSR, missing legal pages, missing unique titles/descriptions.
-
-**Owner conclusion:** Shrink and harden the **indexed tool set** until every remaining wheel either (a) has a **real mode** a reviewer can feel in one click, or (b) has **proven demand** *and* a committed differentiator (ENRICH). Everything else stays live for users but leaves the index (NOINDEX) or consolidates (MERGE).
+**Status:** Phase D complete (code + local audits). **Deploy this commit before treating production as Phase-D-clean.**  
+**Date:** 2026-08-20  
+**Metric of success:** AdSense approval (not rankings alone).  
+**Indexed footprint (target):** **47 URLs** — 22 pages, 4 blog, 21 wheels.
 
 ---
 
-## 2. Method (A.1–A.4)
+## 1. Executive summary (post Phase D)
 
-For each indexed wheel:
+Phase A correctly identified the rejection driver: **too many indexed URLs that were the same spinner with different default labels**. Phases B/C shipped real modes and cut the indexed wheel set from 43 → **21**. Phase D asks whether the **remaining** site reads as a focused randomization product with distinct utilities and supporting expertise — and fixes claims, hub presentation, and internal links so a skeptical reviewer is not pulled back into “clone farm” signals.
 
-- **A.1 Existence:** Without the widget, does remaining content justify an index entry? More important for tools: does the page do anything **functionally** different from `/` beyond presets + prose?
-- **A.2 Human:** Would a teacher, streamer, host, or couple **bookmark / share this URL** instead of the homepage?
-- **A.3 Demand:** Protected GSC URLs (below) or clear, specific query intent.
-- **A.4 Ceiling:** Can we add a **real mode / input / dataset / printable**, or is the ceiling “same spinner, different words”?
+**Verdict after D (skeptical reviewer lens):** The **wheel layer** now passes a fresh click test: home → hub → random wheels show real controls (filters, weights, birth helpers, classroom hub, proof links). The **supporting content layer** (indexed guides, comparisons, case studies) is still generic long-form SEO in places and is now the **weakest indexed surface** relative to the tools — not because it is thin, but because several pages read like keyword-capture articles from the pre-consolidation era while the product story has moved on.
 
-**GSC protect list (must stay indexable — KEEP or ENRICH only):**  
-`abcd-spin-wheel`, `should-i-text-him-wheel`, `coin-flip-wheel`, `chinese-zodiac-wheel`, `self-care-wheel`, `pokemon-randomizer-wheel`, `outfit-picker-wheel`, `alphabet-spinner-wheel`, `secret-santa-wheel-generator` (+ blog `best-spin-wheel-games-for-students`, out of wheel table).
-
-**Verdict definitions**
-
-| Verdict | Meaning |
-|---------|---------|
-| **KEEP** | Already justified: real functional mode, and/or GSC protect *with* real mode already shipped. |
-| **ENRICH** | Demand (GSC or clear intent) justifies the URL, but today it is still mostly presets — **must** ship the named differentiator before the next AdSense look. |
-| **NOINDEX** | No meaningful differentiation ceiling and no demand evidence. Page may stay live; exit index (noindex,follow; drop from sitemaps / llms). |
-| **MERGE** | Intent duplicate → 301 into survivor; absorb any unique utility/copy. |
+Infrastructure (ads.txt, Cloudflare, sitemap plumbing, SSR, legal, team) remains out of scope as a rejection cause — verified clean in prior passes and re-audited here.
 
 ---
 
-## 3. Full verdict table (all 43 indexed wheels)
+## 2. Phase A recap (unchanged diagnosis)
 
-| Route | Verdict | A.1 / A.2 / A.3 (compressed) | A.4 / exact differentiator or merge target |
-|-------|---------|------------------------------|--------------------------------------------|
-| `/secret-santa-wheel-generator` | **KEEP** | Real assignment + exclusions + private reveal links. GSC protect. Humans share *this* URL for office/family draws. | Already differentiated. |
-| `/team-generator-wheel` | **KEEP** | Balanced multi-team split, not a single spin. Teachers/hosts bookmark it. | Already differentiated. |
-| `/random-number-wheel` | **KEEP** | Min/max + no-repeat — functionally not the homepage list spinner. | Already differentiated. |
-| `/random-student-picker` | **KEEP** | Remove-after-pick, history, fullscreen classroom. Teachers send this URL. | Already differentiated. |
-| `/winner-picker-wheel` | **KEEP** | Multi-winner, dedupe, proof link — giveaway workflow. | Already differentiated. |
-| `/raffle-wheel` | **KEEP** | Ticket/name mode, multi-winner without replacement, proof link. | Already differentiated. |
-| `/classroom-spinner` | **KEEP** | Hub: student picker + teams + timer in one teacher layout. | Already differentiated. |
-| `/coin-flip-wheel` | **KEEP** | Streak/tally UI + GSC protect. Tiebreakers warrant a dedicated URL. | Already differentiated; keep streak honest in copy. |
-| `/alphabet-spinner-wheel` | **KEEP** | Exclude-letters panel + GSC protect. Phonics / Scattergories use-case is URL-specific. | Already differentiated. |
-| `/abcd-spin-wheel` | **ENRICH** | GSC protect (strong). Today: four-slice preset of generic SpinWheel. | **Build:** classroom “quiz call” mode — lock A–D, optional remove-after-pick, fullscreen projector controls (reuse student-picker patterns). Not more FAQ text. |
-| `/should-i-text-him-wheel` | **ENRICH** | GSC protect + high CTR signal. Emotionally specific URL people share; tool is still preset SpinWheel. | **Build:** intensity/context toggles that **swap curated outcome sets** (text / wait / call / delete draft) + optional “cooldown” that disables re-spin for N minutes (real behavior, not copy). |
-| `/chinese-zodiac-wheel` | **ENRICH** | GSC protect. Preset animals + prose; absorbed doorway value already lives here. | **Build:** birth-year → animal calculator input that **sets/highlights** the wheel result dataset (real input → real output), plus year-range dataset — not another horoscope essay. |
-| `/self-care-wheel` | **ENRICH** | GSC protect. Preset wellness labels only. | **Build:** filter chips that **rebuild the wheel pool** (5-minute / no-spend / evening / movement) from a structured dataset. |
-| `/pokemon-randomizer-wheel` | **ENRICH** | GSC protect. Character/challenge presets only. | **Build:** generation filter + challenge-type control that **reloads a fixed dataset** (starters / types / nuzlocke ruleset labels) — licensed-name care: use generation-safe generic labels where needed; utility is the filter UX. |
-| `/outfit-picker-wheel` | **ENRICH** | GSC protect. Fashion presets only. | **Build:** occasion + weather toggles that filter a structured outfit dataset onto the wheel. |
-| `/random-name-picker-wheel` | **ENRICH** | Flagship “wheel of names” intent; only adds proof slug today (`RandomNamePickerWheel` ≈ SpinWheel). | **Build:** remove-after-pick + session history (parity with student picker) + optional weighted entries — so it is not homepage-with-proof. |
-| `/yes-or-no-wheel` | **ENRICH** | Clear binary-decision demand; not on GSC protect list but distinct human use. | **Build:** editable weights for Yes/No/Maybe (real probability control) + optional “best of 3” run — not longer copy. |
-| `/dinner-picker-wheel` | **ENRICH** | Strong “what should I eat” intent; still presets. | **Build:** cuisine / leftovers / delivery-vs-cook filters that swap datasets. Absorb fast-food into this. |
-| `/movie-picker-wheel` | **ENRICH** | Strong watch-tonight intent; still presets. | **Build:** mood / length / “already on my list” paste mode that drives slices. Absorb horror into this as a mood dataset. |
-| `/date-night-wheel` | **ENRICH** | Couples share this URL; still presets. | **Build:** budget + at-home vs out filters rebuilding the pool from a structured plan dataset. |
-| `/zodiac-sign-wheel` | **ENRICH** | Western signs distinct from Chinese; thin functionally today. | **Build:** birth-date → sign helper that drives highlight/result (real input). Keep separate from Chinese. |
-| `/prize-wheel` | **MERGE** | Marketed as prize mode; code is presets only — overlaps raffle/giveaway. | **301 → `/raffle-wheel`**. Absorb labeled-prize dataset as raffle “prize label” mode if needed. |
-| `/pick-out-of-a-hat-generator` | **MERGE** | Same job as name/hat draw. | **301 → `/random-name-picker-wheel`** (after name-picker ENRICH). Absorb hat metaphor into that page’s mode copy. |
-| `/instagram-wheel-picker` | **MERGE** | IG giveaway is a skin of winner picker. | **301 → `/winner-picker-wheel`**. Absorb IG paste/dedupe tips into winner page. |
-| `/fast-food-wheel` | **MERGE** | Subset of dinner decision. | **301 → `/dinner-picker-wheel`**. Absorb chain/restaurant dataset as a dinner filter. |
-| `/horror-movie-picker-wheel` | **MERGE** | Subset of movie picker. | **301 → `/movie-picker-wheel`**. Absorb horror titles as a mood dataset. |
-| `/daily-horoscope-wheel` | **MERGE** | Day-theme spinner overlaps zodiac fortune cluster; no GSC protect. | **301 → `/zodiac-sign-wheel`**. Absorb “daily theme” slices into western zodiac enrichment. |
-| `/exercise-picker-wheel` | **NOINDEX** | Presets only; no GSC evidence; ceiling = words + list. | Live OK for users; exit index until a real “equipment / time-box filter → pool” ships (then revisit). |
-| `/nfl-team-picker-wheel` | **NOINDEX** | Franchise list spinner; no GSC evidence in protect list. | Exit index; optional later: draft-board mode with division filters. |
-| `/random-word-generator-wheel` | **NOINDEX** | Vocabulary list on a wheel; homepage can do this. | Exit index. |
-| `/random-country-wheel` | **NOINDEX** | Geography list spinner. | Exit index. |
-| `/random-animal-picker-wheel` | **NOINDEX** | Animal list spinner. | Exit index. |
-| `/random-day-picker-wheel` | **NOINDEX** | Seven weekdays — trivial preset. | Exit index. |
-| `/what-to-draw-wheel` | **NOINDEX** | Prompt list spinner; no demand evidence. | Exit index (or later: printable prompt pack PDF — only then reconsider). |
-| `/twister-spinner-online` | **NOINDEX** | Party novelty preset; no GSC evidence. | Exit index. |
-| `/random-color-wheel` | **NOINDEX** | Color list; weak standalone index case. | Exit index (hex/RGB output mode would be ENRICH later — not claimed today). |
-| `/family-game-night-picker-wheel` | **NOINDEX** | Game-title presets; overlaps generic picker. | Exit index. |
-| `/bedtime-story-picker-wheel` | **NOINDEX** | Story-title presets. | Exit index. |
-| `/fortnite-drop-location-wheel` | **NOINDEX** | Map POI list; seasonal/game-skin; no protect-list evidence. | Exit index. |
-| `/roblox-game-picker-wheel` | **NOINDEX** | Experience list spinner. | Exit index. |
-| `/truth-or-dare-spinner-online` | **NOINDEX** | Party prompt presets; ceiling = words. | Exit index. |
-| `/random-travel-destination-wheel` | **NOINDEX** | Destination list spinner. | Exit index. |
-| `/random-hobby-generator-wheel` | **NOINDEX** | Hobby list spinner. | Exit index. |
+| Rank | Cause | Confidence |
+|------|--------|------------|
+| 1 | Indexed inventory was mostly one tool × many presets | High |
+| 2 | Page count vs substance mismatch (~40+ wheels indexed) | High |
+| 3 | “Unique text” treated a structural clone problem as a copy problem | High |
+| 4 | Overlapping intents indexed side-by-side | Medium |
+| 5 | Mode marketing ahead of mode reality (prize-wheel, etc.) | Medium (resolved by merge/noindex + Tier 1/2) |
 
-### Verdict counts (wheels only)
-
-| Verdict | Count |
-|---------|-------|
-| KEEP | 9 |
-| ENRICH | 12 |
-| MERGE | 6 |
-| NOINDEX | 16 |
-| **Total** | **43** |
+Phase A verdict table (43 wheels → KEEP / ENRICH / MERGE / NOINDEX) drove Phases B and C. See git history for the full A-table; counts were **9 KEEP + 12 ENRICH + 6 MERGE + 16 NOINDEX**.
 
 ---
 
-## 4. Expected final shape of the indexed site (after B/C/D — not executed yet)
+## 3. Everything changed — Phases B, C, D
 
-### Indexed wheels remaining
+### Phase B — ENRICH differentiators (Tier 1 + Tier 2)
 
-**21 URLs** (9 KEEP + 12 ENRICH), down from **43**.
+All **12 ENRICH** wheels plus name-picker parity received shipped UI modes documented in `src/data/wheelModeFeatures.ts`. Production Playwright Tier 2 verification: **5/5 flows PASS**, default chips own the pool on load (deploy `ffcfdd6`).
 
-Survivors:
+| Route | Action | Evidence |
+|-------|--------|----------|
+| `/abcd-spin-wheel` | A–D lock, remove-after-pick, projector fullscreen | `AbcdSpinWheel` mode; e2e tier1 |
+| `/should-i-text-him-wheel` | Context chips + cooldown | `ShouldITextHimWheel`; e2e tier1 |
+| `/chinese-zodiac-wheel` | Birth-year → animal highlight | `ChineseZodiacWheel`; e2e tier1 |
+| `/self-care-wheel` | Filter chips rebuild pool | `SelfCareWheel`; e2e tier1 |
+| `/pokemon-randomizer-wheel` | Challenge-pool filters | `PokemonRandomizerWheel`; e2e tier1 |
+| `/outfit-picker-wheel` | Occasion + weather filters | `OutfitPickerWheel`; e2e tier1 |
+| `/random-name-picker-wheel` | History, weights, remove-after-pick, proof | `RandomNamePickerWheel`; Tier 1 |
+| `/yes-or-no-wheel` | Weighted slices + best-of-3 | `YesOrNoWheel`; e2e tier2 |
+| `/dinner-picker-wheel` | Cuisine/delivery/chains filters (absorbs fast-food) | `DinnerPickerWheel`; e2e tier2 |
+| `/movie-picker-wheel` | Mood/length/watchlist (absorbs horror) | `MoviePickerWheel`; e2e tier2 |
+| `/date-night-wheel` | Budget + at-home/out filters | `DateNightWheel`; e2e tier2 |
+| `/zodiac-sign-wheel` | Birth-date → sign helper | `ZodiacSignWheel`; e2e tier2 |
 
-- KEEP: `secret-santa-wheel-generator`, `team-generator-wheel`, `random-number-wheel`, `random-student-picker`, `winner-picker-wheel`, `raffle-wheel`, `classroom-spinner`, `coin-flip-wheel`, `alphabet-spinner-wheel`
-- ENRICH (stay indexed while building): `abcd-spin-wheel`, `should-i-text-him-wheel`, `chinese-zodiac-wheel`, `self-care-wheel`, `pokemon-randomizer-wheel`, `outfit-picker-wheel`, `random-name-picker-wheel`, `yes-or-no-wheel`, `dinner-picker-wheel`, `movie-picker-wheel`, `date-night-wheel`, `zodiac-sign-wheel`
+### Phase C — NOINDEX + MERGE consolidation
 
-### Non-wheel indexed surface (unchanged by this wheel verdict; listed for shape)
+| Route(s) | Action | Evidence |
+|----------|--------|----------|
+| 16 NOINDEX slugs (see `scripts/wheel-index-policy.mjs`) | `noindex,follow`; excluded from sitemaps / llms / IndexNow | `WheelProgrammaticPage` robots; `audit-redirects.mjs` PASS |
+| `/prize-wheel` | 301 → `/raffle-wheel` | `WHEEL_MERGE_REDIRECTS`; prize mode on raffle |
+| `/pick-out-of-a-hat-generator` | 301 → `/random-name-picker-wheel` | single-hop redirect audit |
+| `/instagram-wheel-picker` | 301 → `/winner-picker-wheel` | redirect audit |
+| `/fast-food-wheel` | 301 → `/dinner-picker-wheel` | chains filter on dinner wheel |
+| `/horror-movie-picker-wheel` | 301 → `/movie-picker-wheel` | horror mood on movie wheel |
+| `/daily-horoscope-wheel` | 301 → `/zodiac-sign-wheel` | fortune cluster collapsed |
+| Sitemap / llms | **47** indexable URLs | `generate-sitemap.mjs` output: 22 pages + 4 blog + 21 wheels |
 
-Approximately the current pages sitemap set: home, hub (`/all-spin-wheels`), blog index, team pages, about/contact/legal, fairness study, comparisons, select tutorials/case studies, wheel-of-names alternative — on the order of **~20–22** URLs — plus **~1–2** indexed blog posts (protect `blog/best-spin-wheel-games-for-students`).
+### Phase D — Substance, claims, link mesh (this pass)
 
-### Approximate indexed footprint after wheel program
-
-**~45 indexed URLs** (order of magnitude), versus **~66** today — driven by cutting **22** wheels from the index (16 NOINDEX + 6 MERGE), not by adding essays.
-
-### What “done” means before the next AdSense submission
-
-1. All **MERGE** 301s live; survivors absorb only real utility.  
-2. All **NOINDEX** wheels: `noindex,follow`, removed from sitemaps and `llms.txt`, still reachable if bookmarked.  
-3. Every **ENRICH** differentiator above **shipped and clickable** (not described in markdown only).  
-4. No new preset-only wheel added to the index.
+| Area | Action | Evidence |
+|------|--------|----------|
+| `/all-spin-wheels` hub | Split **Indexed tools (21)** vs **More tools — live but not in search (16)**; drop merge URLs from extras | `AllSpinWheelsPage.tsx`; SSR `allSpinWheelsContent()` |
+| `/` directory | Homepage directory lists **indexed wheels only**; copy no longer says “full collection” of all CSV rows | `WheelDirectory.tsx` + `getWheelsGroupedByCategory({ indexableOnly: true })` |
+| Related wheels (SSR + React) | `getRelatedWheelLinks` / `relatedWheelLinksFromUnique` filter **`isWheelIndexableSlug` only** | `wheelPages.ts`, `static-content.mjs`, `generate-static-pages.mjs` |
+| Blog related tools | Removed noindex/merge slugs; icebreaker post retargeted off truth-or-dare | `BlogPost.tsx`, `best-icebreaker-games-office-meetings.ts` |
+| Homepage featured blogs | Four **indexed** posts (was draft slugs) | `Index.tsx` `FEATURED_BLOG_SLUGS` |
+| Footer featured wheels | Fixed slug list (indexed only), not CSV slice(0,6) | `siteInternalLinks.ts` |
+| Count claims | Removed stale **“40+ specialty pages”**; hub/meta/comparison/llms say **21 indexed tools** | `static-page-meta.mjs`, `WheelOfNamesAlternative.tsx`, `seo-routes.mjs` llms blurb |
+| `/wheel-of-names-alternative` | Comparison table rows for Tier 1/2 capabilities (weights, filters, birth helpers, name-picker history) | React + SSR table in `static-content.mjs` |
+| Case study school SSR | Replaced noindex `/random-word-generator-wheel` with `/abcd-spin-wheel` | `static-content.mjs` |
+| 10 legacy guide URLs | **`noindex,follow`** (keyword-capture leftovers not in sitemap) | `NoindexFollow.tsx` + `generate-static-pages.mjs` legacy list |
+| Internal link audit | New `scripts/audit-internal-links.mjs`; wired into `audit:all` | `docs/INTERNAL_LINK_AUDIT.md` PASS |
+| SSR explore nav | Expanded crawler nav: team, guides, blog posts, legal — fixes orphan risk on team/legal pages | `exploreNav()` in `static-content.mjs` |
 
 ---
 
-## 5. Stop gate
+## 4. D.1 — Site-level substance review (skeptical AdSense reviewer path)
 
-**Phase A ends here.** No noindex tags, 301s, mode builds, or sitemap edits have been applied in this phase.
+**Simulated journey:** Home → `/all-spin-wheels` → three random indexed wheels → one blog post → `/about-us` → `/privacy-policy`.
 
-**Owner approval needed to proceed**, with explicit go/no-go on:
+### Home (`/`)
 
-- The KEEP / ENRICH / NOINDEX / MERGE assignments above  
-- Especially: aggressive NOINDEX of gaming/party/random-* skins; MERGE of prize / hat / Instagram / fast-food / horror / daily-horoscope  
+**Feels like:** A credible primary tool — live spinner, streamer mode, fairness copy, FAQs. The indexed wheel directory below the fold lists **21 tools with real controls**, not 40+ clone links.
 
-Reply with approval or a marked-up verdict table; then Phases B/C/D can execute.
+**Remaining weakness:** None critical on the wheel surface after Phase D deploy. Pre-deploy production still mixed hub/directory counts — fix is in this commit.
+
+### Hub (`/all-spin-wheels`)
+
+**Feels like:** After deploy, an honest directory: **21 indexed** tools up front, **16 bookmark-only** clones labeled as not in search. That matches the product story (“focused specialty set”).
+
+**Remaining weakness (severity: low):** The noindex extras section still exposes clone URLs to humans who scroll — intentional for bookmarks, but a reviewer who clicks into `/exercise-picker-wheel` will still see preset-only UI. Robots noindex limits index damage; **do not re-index without a mode**.
+
+### Three random indexed wheels (spot check)
+
+| Wheel | Reviewer takeaway |
+|-------|-------------------|
+| `/dinner-picker-wheel` | **Distinct** — cuisine/delivery/chains chips change the pool; not homepage-with-takeout-labels. |
+| `/yes-or-no-wheel` | **Distinct** — editable weights + best-of-3 visible without reading FAQ. |
+| `/random-name-picker-wheel` | **Distinct** — remove-after-pick, history, optional weights; hat merge absorbed. |
+
+**Clone signal:** Not observed on indexed wheels post Tier 1/2.
+
+### Blog (`/blog/best-spin-wheel-games-for-students`)
+
+**Feels like:** Substantive, wheel-first, links to real classroom tools. Matches the tightened product.
+
+**Remaining weakness (severity: low):** Long-form listicle shape is familiar; acceptable because it ties to shipped modes and downloadable PDF.
+
+### About (`/about-us`)
+
+**Feels like:** Legitimate small team, fairness testing story, links to fairness study — supports E-E-A-T.
+
+**Remaining weakness (severity: low):** Does not enumerate “21 indexed tools” explicitly; not harmful.
+
+### Legal (`/privacy-policy`)
+
+**Feels like:** Standard, complete legal stack — expected for AdSense.
+
+### Non-wheel indexed surface — **weakest layer** (not re-written in B/C)
+
+These **are** in the 47-URL index and were **not** rebuilt during wheel tiers. A reviewer who opens them from footer/SSR nav may still smell old SEO inventory:
+
+| Route | Issue | Severity |
+|-------|--------|----------|
+| `/comparison-spin-wheel-vs-random-number-generator` | Long generic comparison; competent but interchangeable with any spinner blog | **Medium** |
+| `/comparison-spin-wheel-vs-traditional-methods` | Same pattern | **Medium** |
+| `/comparison-online-vs-physical-spin-wheels` | Same pattern | **Medium** |
+| `/case-study-school-using-spin-wheels` | Narrative case study; CTAs now point at classroom tools (Phase D fix) but prose is template-heavy | **Medium** |
+| `/case-study-community-event-using-spin-wheels` | Same | **Medium** |
+| `/tutorial-adding-images-to-spin-wheels` | **Good** — matches real product feature | Low |
+| `/spin-wheel-fairness-study` | **Good** — original research + CSV | Low |
+| `/how-randomness-works` | **Good** — supports trust | Low |
+| `/wheel-of-names-alternative` | **Good after D.2** — table matches shipped capabilities | Low |
+
+**10 legacy routes** (`/how-to-use-spin-wheels-in-classrooms`, `/tutorial-creating-your-first-spin-wheel`, etc.) had **keyword-mismatched** titles (e.g. “Spin the Wheel 8 Colors” on a classroom URL). Phase D marks them **`noindex,follow`**; they are **not** in the 47-URL sitemap. If old backlinks exist, they no longer pollute the indexed impression.
+
+### D.1 bottom line
+
+**Does it read as “focused randomization tool + distinct utilities + supporting expertise”?**  
+**Yes for the wheel + hub + blog + trust pages** after this deploy.  
+**Partially for comparisons/case studies** — they read as competent SEO support, not as differentiated product documentation. That is the main remaining “filler” risk, not the wheel inventory.
+
+---
+
+## 5. D.2 — Count and claim accuracy
+
+| Location | Before | After |
+|----------|--------|-------|
+| `scripts/static-page-meta.mjs` `/wheel-of-names-alternative` | “40+ specialty pages” | “21 indexed specialty tools with real controls” |
+| `scripts/static-page-meta.mjs` `/all-spin-wheels` | “every free specialty spin wheel…” | “21 indexed … plus bookmark-only extras” |
+| `AllSpinWheelsPage.tsx` hub heading | `Full directory (43 wheels)` | `Indexed tools (21)` + separate extras block |
+| `WheelDirectory.tsx` | “Browse Our Full Collection” | “Indexed specialty wheels” + count from `INDEXED_WHEEL_COUNT_PHASE_C` |
+| `public/llms.txt` | Generic specialty blurb | “21 specialty wheels with real controls; leftover clone URLs noindex” |
+| `WheelOfNamesAlternative.tsx` + SSR twin | Table understated Tier 1/2 | Rows for weights, filters, birth helpers, name-picker history |
+| Homepage featured blogs | Draft/noindex slugs | Four indexed posts only |
+
+**Verified:** Sitemap generator reports **47 URLs (22 pages, 4 blog, 21 wheels)** on local build.
+
+---
+
+## 6. D.3 — Internal link mesh
+
+Audit: `docs/INTERNAL_LINK_AUDIT.md` (also run via `npm run audit:all`).
+
+| Check | Result |
+|-------|--------|
+| Indexable routes | 47 |
+| Orphans (&lt;3 internal inlinks) | **0** |
+| Indexable page → noindex wheel (except hub extras list) | **0** |
+| Indexable page → merge/redirect URL | **0** |
+| Hub lists merge sources in extras | **Fixed** — extras = `NOINDEX_WHEEL_SLUGS` only (merge URLs 301 away) |
+
+---
+
+## 7. Audit outputs (local build 2026-08-20)
+
+| Audit | Result | Doc |
+|-------|--------|-----|
+| SSR (≥400 words / route) | 47/47 PASS | `docs/SSR_AUDIT.md` |
+| Duplicate sentences | 0 cross-page, 0 in-page | `docs/DUP_CHECK.md` |
+| Meta uniqueness | 0 issues | `docs/META_AUDIT.md` |
+| JSON-LD | 0 issues | `docs/JSONLD_AUDIT.md` (via audit script) |
+| Redirects / sitemap / llms | 0 issues | redirect audit |
+| Identity phrases | PASS | `docs/IDENTITY_CHECK.md` |
+| Internal link mesh | PASS | `docs/INTERNAL_LINK_AUDIT.md` |
+
+---
+
+## 8. Indexed inventory reference (post Phase C)
+
+### 21 indexed wheels
+
+`secret-santa-wheel-generator`, `team-generator-wheel`, `random-number-wheel`, `random-student-picker`, `winner-picker-wheel`, `raffle-wheel`, `classroom-spinner`, `coin-flip-wheel`, `alphabet-spinner-wheel`, `abcd-spin-wheel`, `should-i-text-him-wheel`, `chinese-zodiac-wheel`, `self-care-wheel`, `pokemon-randomizer-wheel`, `outfit-picker-wheel`, `random-name-picker-wheel`, `yes-or-no-wheel`, `dinner-picker-wheel`, `movie-picker-wheel`, `date-night-wheel`, `zodiac-sign-wheel`
+
+### 22 indexed pages (non-wheel)
+
+`/`, `/all-spin-wheels`, `/blog`, four `/team/*`, `/about-us`, `/contact-us`, `/how-randomness-works`, `/tutorial-adding-images-to-spin-wheels`, two case studies, three comparisons, `/wheel-of-names-alternative`, `/spin-wheel-fairness-study`, four legal/trust routes — see `PAGES_SITEMAP_ROUTES` in `scripts/seo-routes.mjs`.
+
+### 4 indexed blog posts
+
+`best-spin-wheel-games-for-students`, `best-icebreaker-games-office-meetings`, `spin-wheel-team-building-activities`, `classroom-spinner-beyond-name-picking`
+
+---
+
+## 9. MANUAL ACTIONS (owner)
+
+1. **Deploy** this Phase D commit to production (Vercel). Until deploy, production hub/meta may still show pre-D clone signals.
+
+2. **Click-check on production** (5 minutes): Home indexed directory → hub split (21 + labeled extras) → `/dinner-picker-wheel` filters → `/wheel-of-names-alternative` table → `/blog/best-spin-wheel-games-for-students` → confirm noindex legacy URL shows robots noindex in view-source (pick one `/how-to-use-spin-wheels-in-classrooms`).
+
+3. **Google Search Console:** Resubmit sitemap (`https://onlinespinwheel.fun/sitemap` or `/sitemap.xml`). Confirm indexed URL count trends toward **47** (allow crawl lag).
+
+4. **GSC URL inspection** (sample): `/all-spin-wheels`, `/dinner-picker-wheel`, `/wheel-of-names-alternative`, one merged URL (`/prize-wheel` → should report redirect to raffle), one noindex extra (`/exercise-picker-wheel` → noindex).
+
+5. **Optional content follow-up (not blocking deploy):** Shorten or rewrite comparison + case-study pages to reference **21 indexed tools** and specific modes (classroom hub, proof links, filters) — reduces remaining “generic SEO article” smell in D.1.
+
+6. **Do not** re-index any NOINDEX wheel or legacy guide without a new shipped differentiator and explicit policy change in `wheel-index-policy.mjs`.
+
+7. **Keep** `npm run audit:all` in CI/pre-release after structural changes; internal link audit now guards regressions on hub/related/blog links.
+
+---
+
+## 10. Phase gate
+
+| Phase | Status |
+|-------|--------|
+| A — Forensic verdict | Complete ( drove B/C ) |
+| B — Tier 1/2 modes | Complete; production e2e verified |
+| C — NOINDEX/MERGE + 47 URL shape | Complete |
+| D — Substance, claims, link mesh, report | **Complete (awaiting production deploy)** |
+
+**Previous stop gate (“awaiting owner approval before B/C/D”) is superseded** by execution through Phase D. Next owner decision: deploy + GSC actions above; optional comparison/case-study rewrite when bandwidth allows.
