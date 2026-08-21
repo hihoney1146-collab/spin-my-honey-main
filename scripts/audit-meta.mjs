@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 /**
  * Verify unique title (<60 chars), meta description, and og:image per indexable route.
+ * Also fail if any canonical, og:url, internal link, sitemap entry, or llms.txt
+ * entry contains a query string.
  */
 import fs from "fs";
 import path from "path";
@@ -79,9 +81,47 @@ for (const { path: route, kind } of routes) {
     else descs.set(desc, route);
   }
   if (og) {
-    if (ogImages.has(og) && kind === "wheel")
-      /* wheels may share default during OG gen failure, still track */;
     ogImages.set(og, route);
+  }
+
+  const canonical = pick(html, /<link\s+rel=["']canonical["'][^>]*href=["']([^"']*)/i);
+  const ogUrl = pick(html, /<meta\s+property=["']og:url["'][^>]*content=["']([^"']*)/i);
+  if (canonical.includes("?")) {
+    issues.push({ route, msg: `canonical has query string: ${canonical}` });
+  }
+  if (ogUrl.includes("?")) {
+    issues.push({ route, msg: `og:url has query string: ${ogUrl}` });
+  }
+
+  const hrefRe = /href=["']([^"']+)["']/gi;
+  let hm;
+  while ((hm = hrefRe.exec(html))) {
+    const href = hm[1].replace(/&amp;/g, "&").trim();
+    if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) {
+      continue;
+    }
+    if (href.includes("?") && (href.startsWith("/") || href.startsWith(SITE))) {
+      issues.push({ route, msg: `internal link has query string: ${href}` });
+    }
+  }
+}
+
+for (const rel of [
+  "public/sitemap.xml",
+  "public/sitemap",
+  "public/pages-sitemap.xml",
+  "public/wheels-sitemap.xml",
+  "public/blog-sitemap.xml",
+  "public/llms.txt",
+]) {
+  const p = path.join(root, rel);
+  if (!fs.existsSync(p)) continue;
+  const text = fs.readFileSync(p, "utf8");
+  const bad = text.match(/https?:\/\/[^\s"'<>]+\?[^\s"'<>]*/g);
+  if (bad?.length) {
+    for (const u of [...new Set(bad)].slice(0, 10)) {
+      issues.push({ route: rel, msg: `query string URL: ${u}` });
+    }
   }
 }
 
@@ -98,7 +138,9 @@ if (issues.length) {
   out.push("| --- | --- |");
   for (const i of issues) out.push(`| \`${i.route}\` | ${i.msg.replace(/\|/g, "\\|")} |`);
 } else {
-  out.push("**PASS**, every indexable route has a unique title (<60 chars), description, and wheel-specific OG image.");
+  out.push(
+    "**PASS**, every indexable route has a unique title (<60 chars), description, and wheel-specific OG image; no query strings in canonical, og:url, internal links, sitemaps, or llms.txt.",
+  );
 }
 
 const outPath = path.join(root, "docs", "META_AUDIT.md");

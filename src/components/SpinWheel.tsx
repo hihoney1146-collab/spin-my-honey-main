@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -33,9 +33,9 @@ import { toast } from "sonner";
 import { gtagEvent } from "@/lib/analytics";
 import { cryptoRandom } from "@/lib/cryptoRandom";
 import {
-  applyShareParamsToUrl,
   buildWheelShareUrl,
   parseWheelShareParams,
+  stripShareEntryParamsFromUrl,
 } from "@/lib/wheelShareUrl";
 import { useStreamerMode } from "@/lib/useStreamerMode";
 import { StreamerControls } from "@/components/StreamerControls";
@@ -248,7 +248,7 @@ export type SpinWheelProps = {
   className?: string;
   /** Enable verifiable /result/<id> proof link after a spin. */
   resultProofSlug?: string;
-  /** Sync entries to URL + show Copy link (default true). */
+  /** Show Copy link control (default true). Does not write share params into the address bar. */
   shareEnabled?: boolean;
   /** Show streamer mode toggle (default true). */
   streamerToggle?: boolean;
@@ -504,29 +504,11 @@ export const SpinWheel = ({
     entriesRef.current = entries;
   }, [entries, usePreset]);
 
-  const syncShareUrl = useCallback(() => {
-    if (!shareEnabled || typeof window === "undefined") return;
-    const labels = entries.filter((e) => e.active).map((e) => e.text);
-    applyShareParamsToUrl(location.pathname, {
-      entries: labels,
-      duration: spinDurationSeconds,
-      stream: streamerMode,
-      streamBg: streamerMode ? streamBg : undefined,
-    });
-  }, [
-    shareEnabled,
-    entries,
-    spinDurationSeconds,
-    streamerMode,
-    streamBg,
-    location.pathname,
-  ]);
-
+  // Inbound ?e= / ?d= hydrate React state on mount; then strip those params from the bar.
   useEffect(() => {
     if (!shareEnabled) return;
-    const timer = window.setTimeout(syncShareUrl, 400);
-    return () => window.clearTimeout(timer);
-  }, [shareEnabled, syncShareUrl]);
+    stripShareEntryParamsFromUrl();
+  }, [shareEnabled]);
 
   const copyShareLink = async () => {
     const labels = entries.filter((e) => e.active).map((e) => e.text);

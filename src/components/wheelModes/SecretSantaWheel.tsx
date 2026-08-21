@@ -1,12 +1,12 @@
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
 import { Gift, Link2, Copy } from "lucide-react";
 import { toast } from "sonner";
 import { SITE_ORIGIN } from "@/lib/schema";
+import { SpinWheel } from "@/components/SpinWheel";
 
 function parseNames(raw: string): string[] {
   return raw
@@ -61,10 +61,10 @@ function encodeRevealToken(giver: string, receiver: string): string {
     .replace(/=+$/, "");
 }
 
+const DEFAULT_NAMES = "Alex\nJordan\nSam\nTaylor\nCasey\nMorgan";
+
 export function SecretSantaWheel() {
-  const [namesText, setNamesText] = useState(
-    "Alex\nJordan\nSam\nTaylor\nCasey\nMorgan",
-  );
+  const [namesText, setNamesText] = useState(DEFAULT_NAMES);
   const [exclusionText, setExclusionText] = useState("");
   const [assignments, setAssignments] = useState<Map<string, string> | null>(
     null,
@@ -74,6 +74,11 @@ export function SecretSantaWheel() {
     () => parseExclusions(exclusionText),
     [exclusionText],
   );
+
+  const participantLabels = useMemo(() => {
+    const unique = [...new Set(parseNames(namesText))];
+    return unique.length >= 2 ? unique : parseNames(DEFAULT_NAMES);
+  }, [namesText]);
 
   const generate = () => {
     const names = parseNames(namesText);
@@ -107,6 +112,11 @@ export function SecretSantaWheel() {
           <Gift className="h-5 w-5" />
           <span>Secret Santa assignment mode</span>
         </div>
+        <p className="text-sm text-muted-foreground">
+          Participants below feed both the spin wheel and assignment mode. Spin
+          for a quick random pick, or generate full gift-exchange pairings with
+          optional exclusions and private reveal links.
+        </p>
         <div className="grid gap-4 md:grid-cols-2">
           <div className="space-y-2">
             <Label htmlFor="santa-names">Participants (one per line)</Label>
@@ -130,11 +140,20 @@ export function SecretSantaWheel() {
             />
           </div>
         </div>
+        <p className="text-sm text-muted-foreground">
+          On the wheel now ({participantLabels.length})
+        </p>
         <Button onClick={generate} size="lg">
           <Gift className="mr-2 h-4 w-4" />
           Generate assignments
         </Button>
       </Card>
+
+      <SpinWheel
+        key={participantLabels.join("|")}
+        presetOptionLabels={participantLabels}
+        entriesListDefaultExpanded
+      />
 
       {assignments ? (
         <Card className="p-5 md:p-6">

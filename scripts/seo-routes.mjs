@@ -453,6 +453,9 @@ Disallow: /*?*utm_medium=
 Disallow: /*?*utm_campaign=
 Disallow: /*?*fbclid=
 Disallow: /*?*gclid=
+Disallow: /*?*e=
+Disallow: /*?*d=
+Disallow: /*?*stream=
 
 # Primary for GSC (extensionless urlset; most reliable behind Cloudflare)
 Sitemap: ${SITE}/sitemap

@@ -94,13 +94,18 @@ export function parseWheelShareParams(
   };
 }
 
-export function applyShareParamsToUrl(
-  pathname: string,
-  state: WheelShareState,
-): void {
+/**
+ * After hydrating from an inbound ?e= / ?d= link, strip those params from the
+ * address bar without a reload. Leaves deliberate streamer params (?stream=, ?bg=)
+ * and other non-share params (e.g. ?reveal=) intact.
+ */
+export function stripShareEntryParamsFromUrl(): void {
   if (typeof window === "undefined") return;
-  const url = buildWheelShareUrl(pathname, state);
-  if (!url) return;
-  const next = `${url}${window.location.hash}`;
+  const url = new URL(window.location.href);
+  if (!url.searchParams.has("e") && !url.searchParams.has("d")) return;
+  url.searchParams.delete("e");
+  url.searchParams.delete("d");
+  const qs = url.searchParams.toString();
+  const next = `${url.pathname}${qs ? `?${qs}` : ""}${url.hash}`;
   window.history.replaceState(null, "", next);
 }

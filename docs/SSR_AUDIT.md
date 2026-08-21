@@ -40,7 +40,7 @@ Generated 2026-08-20 from built `dist/` HTML, the exact bytes served to a no-JS 
 | `/random-name-picker-wheel` | 496 | PASS |
 | `/random-number-wheel` | 453 | PASS |
 | `/random-student-picker` | 460 | PASS |
-| `/secret-santa-wheel-generator` | 447 | PASS |
+| `/secret-santa-wheel-generator` | 453 | PASS |
 | `/self-care-wheel` | 417 | PASS |
 | `/should-i-text-him-wheel` | 424 | PASS |
 | `/spin-wheel-fairness-study` | 1111 | PASS |

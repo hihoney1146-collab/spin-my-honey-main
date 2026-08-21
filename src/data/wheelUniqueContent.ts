@@ -1627,7 +1627,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "secret-santa-wheel-generator": {
     directAnswer:
-      "The Secret Santa Wheel Generator runs holiday gift exchanges with assignment mode, spouse exclusions, and shareable per-person reveal links so gifters learn their match privately. Organizers paste coworker or family names, set who cannot draw whom, spin assignments, and send each participant a unique URL. No more paper slips, and nobody sees the full pairing sheet early.",
+      "The Secret Santa Wheel Generator spins a wheel from your participant list for a quick random draw, and also runs full gift-exchange assignment mode with spouse exclusions and shareable per-person reveal links. Organizers paste coworker or family names once, spin or generate pairings, and send each participant a unique URL when using assignment mode.",
     title: "Secret Santa Wheel, Assignments and Exclusions",
     metaDescription:
       "Run office or family Secret Santa with assignment mode, couple exclusions, and private reveal links so each gifter sees only their match.",

@@ -16,6 +16,9 @@ export function useStreamerMode() {
     setSearchParams(
       (prev) => {
         const next = new URLSearchParams(prev);
+        // Never combine streamer mode with auto share entry params.
+        next.delete("e");
+        next.delete("d");
         if (enabled) {
           next.set("stream", "1");
           if (!next.get("bg")) {
@@ -36,6 +39,8 @@ export function useStreamerMode() {
     setSearchParams(
       (prev) => {
         const next = new URLSearchParams(prev);
+        next.delete("e");
+        next.delete("d");
         next.set("stream", "1");
         next.set("bg", streamBgToUrlParam(normalized));
         return next;
