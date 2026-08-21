@@ -34,8 +34,8 @@ async function main() {
   console.log(`Key location: ${KEY_LOCATION}`);
 
   if (process.env.DRY_RUN === "1") {
-    console.log("DRY_RUN=1, not sending. First 5 URLs:");
-    console.log(urlList.slice(0, 5).join("\n"));
+    console.log("DRY_RUN=1, not sending. Payload:");
+    console.log(JSON.stringify(payload, null, 2));
     return;
   }
 
