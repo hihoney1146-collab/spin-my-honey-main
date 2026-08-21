@@ -649,43 +649,43 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "random-number-wheel": {
     directAnswer:
-      "The Random Number Wheel picks integers inside a min-max range you define, with an optional no-repeat toggle so lottery-style draws never duplicate until the pool empties. Replace dice during board games, assign bingo balls, or generate math warm-up digits for classrooms. Each spin highlights one number on the wheel face for groups on a projector or stream overlay.",
+      "The Random Number Wheel picks integers inside a min-max range you define, with an optional no-repeat toggle so lottery-style draws never duplicate until the pool empties. Ranges of 30 numbers or fewer also show on the visual wheel; larger ranges show a bold numeric result after you pick. Use it for board-game substitutes, bingo-style calls, or classroom math warm-ups.",
     title: "Random Number Wheel, Range and No-Repeat",
     metaDescription:
-      "Set your min-max range, toggle no-repeat picks, and spin visible digits for bingo, board games, or classroom math drills.",
+      "Set min and max, toggle no-repeat, and pick a random integer. Ranges ≤30 also appear on the wheel; larger ranges show a bold number.",
     useCases: [
       {
         heading: "Bingo caller replacement",
-        body: "Enable no-repeat mode for numbers 1–75 so every call stays unique until the card fills.",
+        body: "Enable no-repeat mode for numbers 1–75 so every call stays unique until the card fills (large ranges use the numeric result display).",
       },
       {
         heading: "Tabletop RPG dice substitute",
-        body: "Load 1–20 slices for d20 rolls during D&D sessions when physical dice roll under the couch.",
+        body: "Set 1–20 for d20 rolls during D&D sessions when physical dice roll under the couch; that range fits on the visual wheel.",
       },
       {
         heading: "Statistics sampling demos",
-        body: "Professors spin repeated samples so students see distribution patterns live.",
+        body: "Professors pick repeated samples so students see distribution patterns live.",
       },
       {
-        heading: "Prize wheel number draws",
-        body: "Carnivals map slices to ticket numbers and spin on stage for transparent winner announcements.",
+        heading: "Prize number draws",
+        body: "Events map ticket numbers to a range and pick on stage for transparent winner announcements.",
       },
     ],
     faqs: [
       {
         question: "How do I set min and max values?",
         answer:
-          "Edit wheel entries or use bulk paste to create every integer in your range, then spin within those bounds.",
+          "Use the Minimum and Maximum fields above the picker. Ranges of 30 or fewer also load those integers onto the visual wheel.",
       },
       {
         question: "What does no-repeat mode do?",
         answer:
-          "After a number wins, it leaves the active pool until you reset or re-enable it, preventing duplicate picks in one session.",
+          "After a number wins, it leaves the active pool until you reset, preventing duplicate picks in one session.",
       },
       {
-        question: "Can I pick decimals?",
+        question: "When do I see a spinning wheel vs a big number?",
         answer:
-          "Slices accept text, type 1.5 or 2.75 if your game needs fractional values.",
+          "If your range has 30 values or fewer, picks also appear on the visual wheel. Larger ranges show the result as a large number so the UI stays readable.",
       },
       {
         question: "Is this cryptographically secure for high-stakes lotteries?",
@@ -698,63 +698,62 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       { slug: "winner-picker-wheel", anchor: "Raffle winner name wheel" },
       { slug: "abcd-spin-wheel", anchor: "Letter answer ABCD wheel" },
       { slug: "alphabet-spinner-wheel", anchor: "A-Z letter spinner" },
-      { slug: "random-day-picker-wheel", anchor: "Day-of-week number picker" },
+      { slug: "yes-or-no-wheel", anchor: "Weighted yes or no wheel" },
     ],
   },
 
   "team-generator-wheel": {
     directAnswer:
-      "The Team Generator Wheel assigns players to squads with balanced output, ideal for PE class teams, office icebreakers, and gaming lobby drafts. Enter team labels, spin once per person, and watch names distribute across groups without manual counting. Coaches shuffle mixed-skill sides, managers randomize workshop tables, and Discord admins draft squads without best-friend stacking.",
+      "The Team Generator Wheel spins from your participant list for a quick random pick, and also splits that same roster into balanced teams with round-robin assignment. Paste PE, workshop, or gaming names once, spin or generate squads, and skip captains arguing over who picks first.",
     title: "Team Generator Wheel, Balanced Group Splits",
     metaDescription:
-      "Split PE classes, office workshops, or gaming lobbies into balanced teams, spin once per player and skip the captains argument.",
+      "Split PE classes, office workshops, or gaming lobbies into balanced teams from one name list, spin for a quick pick or generate squads.",
     useCases: [
       {
         heading: "PE class scrimmages",
-        body: "Gym teachers spin Team A through Team D as students line up, ensuring mixed skill levels each period.",
+        body: "Gym teachers paste the roster, choose four teams, and generate balanced groups each period.",
       },
       {
         heading: "Corporate retreat tables",
-        body: "HR pastes attendee names, spins into table groups, and breaks silos before brainstorming sessions.",
+        body: "HR pastes attendee names, generates table groups, and breaks silos before brainstorming sessions.",
       },
       {
         heading: "Discord squad nights",
-        body: "Admins spin eight players into two Valorant stacks so rank grinders cannot stack every ace on one side.",
+        body: "Admins paste eight players and generate two stacks so rank grinders cannot stack every ace on one side.",
       },
       {
         heading: "Science fair judging pairs",
-        body: "Teachers pair judges randomly so no student knows who evaluates their board beforehand.",
+        body: "Teachers generate random judge pairs so no student knows who evaluates their board beforehand.",
       },
     ],
     faqs: [
       {
+        question: "How does the spin wheel work with team generation?",
+        answer:
+          "The same participant list fills the wheel for a simple random spin and feeds Generate teams for a balanced multi-team split.",
+      },
+      {
         question: "How many teams can I create?",
         answer:
-          "Add as many team slices as you need, Team A through Team H or color names, all with equal spin odds.",
+          "Set the team count (2–20, up to your roster size). Names distribute round-robin so sizes stay within one person.",
       },
       {
         question: "Does it balance skill levels automatically?",
         answer:
-          "Random assignment spreads players evenly over many spins; for strict balance, shuffle star players manually first.",
+          "Random assignment spreads players evenly over many runs; for strict skill balance, order star players manually first.",
       },
       {
-        question: "What if a team fills up?",
+        question: "Can I reuse the same roster weekly?",
         answer:
-          "Remove that team slice once it hits capacity and continue spinning for remaining players.",
-      },
-      {
-        question: "Can I reuse the same wheel weekly?",
-        answer:
-          "Bookmark the page; your team labels persist in browser storage between sessions.",
+          "Paste the same list each time, or keep the tab open. Team labels are the generated groups, not fixed browser storage for this tool.",
       },
     ],
     relatedWheels: [
       { slug: "random-student-picker", anchor: "Pick students for teams" },
       { slug: "random-name-picker-wheel", anchor: "Name picker for captains" },
-      { slug: "nfl-team-picker-wheel", anchor: "NFL franchise draft wheel" },
+      { slug: "classroom-spinner", anchor: "Classroom spinner hub" },
       { slug: "winner-picker-wheel", anchor: "Tournament winner draw" },
-      { slug: "exercise-picker-wheel", anchor: "PE exercise randomizer" },
-      { slug: "family-game-night-picker-wheel", anchor: "Family team game picker" },
+      { slug: "secret-santa-wheel-generator", anchor: "Holiday gift assignments" },
     ],
   },
 
@@ -2345,31 +2344,31 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "classroom-spinner": {
     directAnswer:
-      "The Classroom Spinner is a teacher hub that combines random student selection, balanced team creation, and a fullscreen countdown timer in one projector-ready page. Call on learners fairly with remove-after-pick mode, split the roster into groups for lab days, and run think-pair-share timers without juggling three separate apps, built for US K–12 classrooms and subs who need obvious controls on day one.",
+      "The Classroom Spinner is a teacher hub with three tabs: random student selection (spin wheel with remove-after-pick), balanced team creation from the same roster style, and a fullscreen countdown timer. Call on learners fairly, split groups for lab days, and run think-pair-share timers without juggling three separate apps, built for US K–12 classrooms and subs who need obvious controls on day one.",
     title: "Classroom Spinner, Teacher Wheel Hub",
     metaDescription:
-      "One page for teachers: random student selector, team maker, and countdown timer with fullscreen classroom mode for smartboards.",
+      "Teacher hub with three tabs: student spinner, team maker, and countdown timer, plus fullscreen mode for smartboards.",
     h1: "Classroom Spinner, Teacher Wheel Hub",
     useCases: [
       {
         heading: "Cold-calling in middle school ELA",
-        body: "Teachers paste period-two rosters, enable remove-after-pick, and spin so every reader shares analysis before anyone repeats.",
+        body: "Teachers paste period-two rosters on the Student picker tab, enable remove-after-pick, and spin so every reader shares analysis before anyone repeats.",
       },
       {
         heading: "PE squads on field day",
-        body: "Coaches switch to the team tab, paste 28 names, choose four teams, and send balanced groups to stations in under a minute.",
+        body: "Coaches switch to the Teams tab, paste 28 names, choose four teams, and send balanced groups to stations in under a minute.",
       },
       {
         heading: "Think-pair-share timing",
-        body: "Set a three-minute timer tab before discussions, fullscreen the hub, and students see the countdown beside the spinner.",
+        body: "Open the Timer tab, set three minutes, fullscreen the hub, and students see the countdown.",
       },
       {
         heading: "Substitute teacher plans",
-        body: "Session history shows who was already called, so guest teachers continue fair participation without a paper roster.",
+        body: "Session history on the student picker shows who was already called, so guest teachers continue fair participation without a paper roster.",
       },
       {
         heading: "ESL small-group rotations",
-        body: "Lead teachers spin for table leaders, generate teams of four, and run five-minute speaking drills with the built-in timer.",
+        body: "Lead teachers spin for table leaders on the student tab, generate teams of four on the Teams tab, and run five-minute speaking drills with the timer.",
       },
     ],
     faqs: [
@@ -2381,12 +2380,12 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "How does fullscreen classroom mode work?",
         answer:
-          "Tap fullscreen to expand controls and the wheel for smartboards. Tap-to-spin buttons stay large enough for back-row visibility.",
+          "Tap fullscreen to expand the hub for smartboards. The Student picker and Teams tabs include a spin wheel; the Timer tab is a countdown only.",
       },
       {
         question: "Can I see who was already picked?",
         answer:
-          "Yes. Session history logs each selected student during the period so you can balance participation before the bell.",
+          "Yes. Session history on the Student picker tab logs each selected student during the period so you can balance participation before the bell.",
       },
       {
         question: "Is student data stored online?",

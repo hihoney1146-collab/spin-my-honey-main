@@ -1088,7 +1088,7 @@ function wheelOgImagePath(slug) {
 /** Real tool behavior described in SSR — must match shipped UI only (sync with src/data/wheelModeFeatures.ts). */
 const WHEEL_MODE_FEATURES = {
   "team-generator-wheel":
-    "Paste participant names and choose how many teams you need. The generator shuffles the roster and distributes names in round-robin order so squad sizes stay balanced within one person, ideal for PE classes, office icebreakers, and gaming squads.",
+    "Paste participant names once to drive both the spin wheel (quick random pick) and balanced team generation. Choose how many teams you need; the generator shuffles and distributes names round-robin so squad sizes stay within one person.",
   "secret-santa-wheel-generator":
     "Paste participants once to drive both the spin wheel (quick random draw) and full Secret Santa assignment mode with optional exclusion pairs. Each participant can get a private reveal link so they see only their match.",
   "random-number-wheel":
@@ -1104,7 +1104,7 @@ const WHEEL_MODE_FEATURES = {
   "raffle-wheel":
     "Choose ticket-number mode, entrant-name mode, or prize-label mode (classic prize-wheel slices). Draw multiple winners without replacement and copy a timestamped proof link after your live draw.",
   "classroom-spinner":
-    "Teacher hub with student picker (remove-after-pick + history), balanced team generator, and a countdown timer, all in one fullscreen smartboard layout.",
+    "Teacher hub with three tabs: student picker (remove-after-pick + history + spin wheel), balanced team generator (same roster pattern + spin wheel), and a countdown timer, all in one fullscreen smartboard layout.",
   "random-name-picker-wheel":
     "Name picker with remove-after-pick, session history, proof link, and streamer-mode controls for live overlays.",
   "abcd-spin-wheel":

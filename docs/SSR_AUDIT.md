@@ -21,7 +21,7 @@ Generated 2026-08-21 from built `dist/` HTML, the exact bytes served to a no-JS 
 | `/case-study-community-event-using-spin-wheels` | 469 | PASS |
 | `/case-study-school-using-spin-wheels` | 483 | PASS |
 | `/chinese-zodiac-wheel` | 445 | PASS |
-| `/classroom-spinner` | 461 | PASS |
+| `/classroom-spinner` | 497 | PASS |
 | `/coin-flip-wheel` | 480 | PASS |
 | `/comparison-online-vs-physical-spin-wheels` | 567 | PASS |
 | `/comparison-spin-wheel-vs-random-number-generator` | 573 | PASS |
@@ -38,13 +38,13 @@ Generated 2026-08-21 from built `dist/` HTML, the exact bytes served to a no-JS 
 | `/privacy-policy` | 647 | PASS |
 | `/raffle-wheel` | 551 | PASS |
 | `/random-name-picker-wheel` | 496 | PASS |
-| `/random-number-wheel` | 453 | PASS |
+| `/random-number-wheel` | 495 | PASS |
 | `/random-student-picker` | 460 | PASS |
 | `/secret-santa-wheel-generator` | 453 | PASS |
 | `/self-care-wheel` | 417 | PASS |
 | `/should-i-text-him-wheel` | 424 | PASS |
-| `/spin-wheel-fairness-study` | 1111 | PASS |
-| `/team-generator-wheel` | 454 | PASS |
+| `/spin-wheel-fairness-study` | 1106 | PASS |
+| `/team-generator-wheel` | 467 | PASS |
 | `/team/ceo` | 493 | PASS |
 | `/team/co-founder` | 505 | PASS |
 | `/team/content` | 488 | PASS |

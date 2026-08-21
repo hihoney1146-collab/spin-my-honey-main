@@ -2,7 +2,7 @@
 
 > Free browser spin wheels for fair random picks: names, numbers, teams, giveaways, classrooms, and decisions.
 
-Last updated: 2026-08-20
+Last updated: 2026-08-21
 
 ## Identity
 - Canonical site: https://onlinespinwheel.fun/
@@ -71,12 +71,12 @@ https://onlinespinwheel.fun/pokemon-randomizer-wheel, Pokemon Randomizer Wheel: 
 https://onlinespinwheel.fun/raffle-wheel, Raffle Wheel: Run prize-wheel style giveaways or ticket raffles: labeled prizes, ticket numbers, multi-winner draws, and a shareable proof link for streams and school events.
 
 ## Teacher hub combining random student selection balanced teams and a classroom timer. (1)
-https://onlinespinwheel.fun/classroom-spinner, Classroom Spinner: One page for teachers: random student selector, team maker, and countdown timer with fullscreen classroom mode for smartboards.
+https://onlinespinwheel.fun/classroom-spinner, Classroom Spinner: Teacher hub with three tabs: student spinner, team maker, and countdown timer, plus fullscreen mode for smartboards.
 
 ## Utilities & Tools (4)
 https://onlinespinwheel.fun/random-name-picker-wheel, Random Name Picker Wheel: Paste names, spin a fair Wheel of Names, remove winners after each pick, add optional weights, and keep session history for class or stream giveaways.
-https://onlinespinwheel.fun/random-number-wheel, Random Number Wheel: Set your min-max range, toggle no-repeat picks, and spin visible digits for bingo, board games, or classroom math drills.
-https://onlinespinwheel.fun/team-generator-wheel, Team Generator Wheel: Split PE classes, office workshops, or gaming lobbies into balanced teams, spin once per player and skip the captains argument.
+https://onlinespinwheel.fun/random-number-wheel, Random Number Wheel: Set min and max, toggle no-repeat, and pick a random integer. Ranges ≤30 also appear on the wheel; larger ranges show a bold number.
+https://onlinespinwheel.fun/team-generator-wheel, Team Generator Wheel: Split PE classes, office workshops, or gaming lobbies into balanced teams from one name list, spin for a quick pick or generate squads.
 https://onlinespinwheel.fun/winner-picker-wheel, Winner Picker Wheel: Paste commenter @handles, remove duplicate entries, spin live, and screen-record proof for Instagram or TikTok giveaway winners.
 
 ## Zodiac & Fortune (2)

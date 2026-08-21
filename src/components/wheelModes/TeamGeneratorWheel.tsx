@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Users, Shuffle } from "lucide-react";
 import { toast } from "sonner";
+import { SpinWheel } from "@/components/SpinWheel";
 
 function parseNames(raw: string): string[] {
   return raw
@@ -23,12 +24,18 @@ function buildBalancedTeams(names: string[], teamCount: number): string[][] {
   return teams.filter((t) => t.length > 0);
 }
 
+const DEFAULT_NAMES =
+  "Alex\nJordan\nSam\nTaylor\nCasey\nMorgan\nRiley\nQuinn";
+
 export function TeamGeneratorWheel() {
-  const [namesText, setNamesText] = useState(
-    "Alex\nJordan\nSam\nTaylor\nCasey\nMorgan\nRiley\nQuinn",
-  );
+  const [namesText, setNamesText] = useState(DEFAULT_NAMES);
   const [teamCount, setTeamCount] = useState(2);
   const [teams, setTeams] = useState<string[][] | null>(null);
+
+  const participantLabels = useMemo(() => {
+    const unique = [...new Set(parseNames(namesText))];
+    return unique.length >= 2 ? unique : parseNames(DEFAULT_NAMES);
+  }, [namesText]);
 
   const generate = () => {
     const names = parseNames(namesText);
@@ -48,6 +55,10 @@ export function TeamGeneratorWheel() {
           <Users className="h-5 w-5" />
           <span>Balanced team generator</span>
         </div>
+        <p className="text-sm text-muted-foreground">
+          Participants below feed both the spin wheel and team generation. Spin
+          for a quick random pick, or generate balanced squads with the button.
+        </p>
         <div className="grid gap-4 md:grid-cols-[1fr_140px]">
           <div className="space-y-2">
             <Label htmlFor="team-names">Participant names (one per line)</Label>
@@ -75,7 +86,16 @@ export function TeamGeneratorWheel() {
             </Button>
           </div>
         </div>
+        <p className="text-sm text-muted-foreground">
+          On the wheel now ({participantLabels.length})
+        </p>
       </Card>
+
+      <SpinWheel
+        key={participantLabels.join("|")}
+        presetOptionLabels={participantLabels}
+        entriesListDefaultExpanded
+      />
 
       {teams ? (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
