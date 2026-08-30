@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { SpinWheel } from "@/components/SpinWheel";
 import { MessageCircle } from "lucide-react";
+import { useControlledWheelLabels } from "@/lib/useControlledWheelLabels";
 
 type ShouldITextHimWheelProps = {
   presetOptionLabels?: string[];
@@ -51,6 +52,7 @@ export function ShouldITextHimWheel({
   }, [cooldownUntil]);
 
   const labels = useMemo(() => POOLS[context], [context]);
+  const wheelSync = useControlledWheelLabels(labels);
 
   const remainingSec = Math.max(0, Math.ceil((cooldownUntil - now) / 1000));
   const cooling = remainingSec > 0;
@@ -99,8 +101,9 @@ export function ShouldITextHimWheel({
       </Card>
 
       <SpinWheel
-        key={labels.join("|")}
-        presetOptionLabels={labels}
+        entryLabels={wheelSync.entryLabels}
+        onEntryLabelsChange={wheelSync.onEntryLabelsChange}
+        hideBulkPaste
         entriesListDefaultExpanded
         onWinnerSelected={() => setCooldownUntil(Date.now() + 60_000)}
         className={cooling ? "pointer-events-none opacity-60" : undefined}

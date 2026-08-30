@@ -7,10 +7,18 @@ import { Textarea } from "@/components/ui/textarea";
 import { SpinWheel } from "@/components/SpinWheel";
 import { ResultProofActions } from "@/components/ResultProofActions";
 import { Trophy } from "lucide-react";
+import {
+  applyDuplicatePolicy,
+  duplicateNotice,
+  labelsToMultiline,
+  parseEntryLines,
+} from "@/lib/wheelEntryLabels";
 
 type WinnerPickerWheelProps = {
   presetOptionLabels?: string[];
 };
+
+const DEFAULT_HANDLES = ["@alex", "@jordan", "@sam", "@taylor", "@casey", "@morgan"];
 
 function normalizeHandle(raw: string): string {
   const t = raw.trim();
@@ -18,37 +26,27 @@ function normalizeHandle(raw: string): string {
   return t.startsWith("@") ? t : `@${t.replace(/^@+/, "")}`;
 }
 
-function dedupeHandles(lines: string[]): string[] {
-  const seen = new Set<string>();
-  const out: string[] = [];
-  for (const line of lines) {
-    const n = normalizeHandle(line);
-    if (!n) continue;
-    const key = n.toLowerCase();
-    if (seen.has(key)) continue;
-    seen.add(key);
-    out.push(n);
-  }
-  return out;
-}
-
 export function WinnerPickerWheel({
-  presetOptionLabels,
+  presetOptionLabels: _presetOptionLabels,
 }: WinnerPickerWheelProps) {
   const [winnerCount, setWinnerCount] = useState(1);
   const [winners, setWinners] = useState<string[]>([]);
   const [entryCountAtDraw, setEntryCountAtDraw] = useState(0);
   const [paste, setPaste] = useState("");
 
-  const labels = useMemo(() => {
-    const pasted = dedupeHandles(paste.split(/[\n,]+/));
-    if (pasted.length >= 2) return pasted;
-    return (
-      presetOptionLabels?.length
-        ? dedupeHandles(presetOptionLabels)
-        : ["@alex", "@jordan", "@sam", "@taylor", "@casey", "@morgan"]
-    );
-  }, [paste, presetOptionLabels]);
+  const parsedPaste = useMemo(
+    () => applyDuplicatePolicy(parseEntryLines(paste), "dedupe", normalizeHandle),
+    [paste],
+  );
+
+  const entryLabels = useMemo(() => {
+    if (paste.trim()) return parsedPaste.labels;
+    return DEFAULT_HANDLES;
+  }, [paste, parsedPaste.labels]);
+
+  const duplicateMessage = paste.trim()
+    ? duplicateNotice("dedupe", parsedPaste.removedCount, 0)
+    : null;
 
   const handleWinner = (name: string, ctx?: { entryCount: number }) => {
     if (ctx?.entryCount) setEntryCountAtDraw(ctx.entryCount);
@@ -62,6 +60,11 @@ export function WinnerPickerWheel({
   const resetDraw = () => {
     setWinners([]);
     setEntryCountAtDraw(0);
+  };
+
+  const handleLabelsChange = (labels: string[]) => {
+    setPaste(labelsToMultiline(labels));
+    resetDraw();
   };
 
   return (
@@ -84,8 +87,8 @@ export function WinnerPickerWheel({
             placeholder="@alex&#10;@jordan&#10;@sam"
           />
           <p className="text-xs text-muted-foreground">
-            {labels.length} unique entrants on the wheel
-            {paste.trim() ? " after @handle dedupe" : ""}
+            {entryLabels.length} unique entrants on the wheel
+            {duplicateMessage ? ` — ${duplicateMessage}` : paste.trim() ? " after @handle dedupe" : ""}
           </p>
         </div>
         <div className="flex flex-wrap items-end gap-4">
@@ -125,15 +128,16 @@ export function WinnerPickerWheel({
         {winners.length >= winnerCount && winners.length > 0 ? (
           <ResultProofActions
             winners={winners.slice(0, winnerCount)}
-            entryCount={entryCountAtDraw || labels.length}
+            entryCount={entryCountAtDraw || entryLabels.length}
             sourceSlug="winner-picker-wheel"
           />
         ) : null}
       </Card>
 
       <SpinWheel
-        key={labels.join("|")}
-        presetOptionLabels={labels}
+        entryLabels={entryLabels}
+        onEntryLabelsChange={handleLabelsChange}
+        hideBulkPaste
         autoRemoveWinner={winnerCount > 1}
         onWinnerSelected={handleWinner}
         resultProofSlug="winner-picker-wheel"

@@ -7,6 +7,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { SpinWheel } from "@/components/SpinWheel";
 import { ResultProofActions } from "@/components/ResultProofActions";
 import { Gift, Ticket, Trophy, Users } from "lucide-react";
+import {
+  applyDuplicatePolicy,
+  duplicateNotice,
+  labelsToMultiline,
+  parseEntryLines,
+} from "@/lib/wheelEntryLabels";
 
 type RaffleWheelProps = {
   presetOptionLabels?: string[];
@@ -25,6 +31,8 @@ const DEFAULT_PRIZES = [
   "10% Off",
 ];
 
+const DEFAULT_NAMES = ["Alex", "Jordan", "Sam", "Taylor", "Casey", "Morgan", "Riley", "Quinn"];
+
 function padTicket(n: number, width: number): string {
   return `#${String(n).padStart(width, "0")}`;
 }
@@ -34,40 +42,51 @@ function generateTicketRange(count: number): string[] {
   return Array.from({ length: count }, (_, i) => padTicket(i + 1, width));
 }
 
-function parseLines(raw: string): string[] {
-  return raw
-    .split(/[\n,]+/)
-    .map((s) => s.trim())
-    .filter(Boolean);
-}
-
 export function RaffleWheel({ presetOptionLabels }: RaffleWheelProps) {
   const [mode, setMode] = useState<DrawMode>("tickets");
   const [ticketCount, setTicketCount] = useState(20);
   const [ticketPaste, setTicketPaste] = useState("");
+  const [namePaste, setNamePaste] = useState(
+    presetOptionLabels?.length ? presetOptionLabels.join("\n") : DEFAULT_NAMES.join("\n"),
+  );
   const [prizePaste, setPrizePaste] = useState(DEFAULT_PRIZES.join("\n"));
   const [winnerCount, setWinnerCount] = useState(1);
   const [winners, setWinners] = useState<string[]>([]);
   const [entryCountAtDraw, setEntryCountAtDraw] = useState(0);
 
-  const ticketLabels = useMemo(() => {
-    const pasted = parseLines(ticketPaste);
-    if (pasted.length > 0) return pasted;
-    return generateTicketRange(Math.min(Math.max(2, ticketCount), 400));
+  const ticketParsed = useMemo(() => {
+    const pasted = parseEntryLines(ticketPaste);
+    if (pasted.length > 0) {
+      return applyDuplicatePolicy(pasted, "dedupe");
+    }
+    return { labels: generateTicketRange(Math.min(Math.max(2, ticketCount), 400)), removedCount: 0, duplicateCount: 0 };
   }, [ticketPaste, ticketCount]);
 
-  const nameLabels =
-    presetOptionLabels?.length
-      ? presetOptionLabels
-      : ["Alex", "Jordan", "Sam", "Taylor", "Casey", "Morgan", "Riley", "Quinn"];
+  const nameParsed = useMemo(
+    () => applyDuplicatePolicy(parseEntryLines(namePaste), "dedupe"),
+    [namePaste],
+  );
 
   const prizeLabels = useMemo(() => {
-    const pasted = parseLines(prizePaste);
+    const pasted = parseEntryLines(prizePaste);
     return pasted.length >= 2 ? pasted : DEFAULT_PRIZES;
   }, [prizePaste]);
 
-  const activeLabels =
-    mode === "tickets" ? ticketLabels : mode === "prizes" ? prizeLabels : nameLabels;
+  const entryLabels =
+    mode === "tickets"
+      ? ticketParsed.labels
+      : mode === "prizes"
+        ? prizeLabels
+        : nameParsed.labels.length >= 2
+          ? nameParsed.labels
+          : DEFAULT_NAMES;
+
+  const duplicateMessage =
+    mode === "tickets" && ticketPaste.trim()
+      ? duplicateNotice("dedupe", ticketParsed.removedCount, 0)
+      : mode === "names"
+        ? duplicateNotice("dedupe", nameParsed.removedCount, 0)
+        : null;
 
   const handleWinner = (name: string, ctx?: { entryCount: number }) => {
     if (ctx?.entryCount) setEntryCountAtDraw(ctx.entryCount);
@@ -85,6 +104,13 @@ export function RaffleWheel({ presetOptionLabels }: RaffleWheelProps) {
 
   const setModeAndReset = (next: DrawMode) => {
     setMode(next);
+    resetDraw();
+  };
+
+  const handleLabelsChange = (labels: string[]) => {
+    if (mode === "tickets") setTicketPaste(labelsToMultiline(labels));
+    else if (mode === "names") setNamePaste(labelsToMultiline(labels));
+    else setPrizePaste(labelsToMultiline(labels));
     resetDraw();
   };
 
@@ -171,7 +197,26 @@ export function RaffleWheel({ presetOptionLabels }: RaffleWheelProps) {
                 rows={3}
                 placeholder="#001, #002, #003…"
               />
+              {duplicateMessage ? (
+                <p className="text-xs text-muted-foreground">{duplicateMessage}</p>
+              ) : null}
             </div>
+          </div>
+        ) : null}
+
+        {mode === "names" ? (
+          <div className="space-y-2">
+            <Label htmlFor="raffle-names">Entrant names (one per line)</Label>
+            <Textarea
+              id="raffle-names"
+              value={namePaste}
+              onChange={(e) => setNamePaste(e.target.value)}
+              rows={5}
+              placeholder="Alex&#10;Jordan&#10;Sam"
+            />
+            {duplicateMessage ? (
+              <p className="text-xs text-muted-foreground">{duplicateMessage}</p>
+            ) : null}
           </div>
         ) : null}
 
@@ -191,6 +236,10 @@ export function RaffleWheel({ presetOptionLabels }: RaffleWheelProps) {
           </div>
         ) : null}
 
+        <p className="text-xs text-muted-foreground">
+          {entryLabels.length} entrant{entryLabels.length === 1 ? "" : "s"} on the wheel
+        </p>
+
         {winners.length > 0 ? (
           <div className="text-sm border-t border-border pt-3">
             <p className="font-medium flex items-center gap-2 mb-1">
@@ -209,15 +258,16 @@ export function RaffleWheel({ presetOptionLabels }: RaffleWheelProps) {
         {winners.length >= winnerCount && winners.length > 0 ? (
           <ResultProofActions
             winners={winners.slice(0, winnerCount)}
-            entryCount={entryCountAtDraw || activeLabels.length}
+            entryCount={entryCountAtDraw || entryLabels.length}
             sourceSlug="raffle-wheel"
           />
         ) : null}
       </Card>
 
       <SpinWheel
-        key={activeLabels.join("|") + winnerCount + mode}
-        presetOptionLabels={activeLabels}
+        entryLabels={entryLabels}
+        onEntryLabelsChange={handleLabelsChange}
+        hideBulkPaste
         autoRemoveWinner={winnerCount > 1}
         onWinnerSelected={handleWinner}
         resultProofSlug="raffle-wheel"

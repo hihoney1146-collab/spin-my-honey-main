@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { SpinWheel } from "@/components/SpinWheel";
 import { Shirt } from "lucide-react";
+import { useControlledWheelLabels } from "@/lib/useControlledWheelLabels";
 
 type OutfitPickerWheelProps = {
   presetOptionLabels?: string[];
@@ -63,6 +64,7 @@ export function OutfitPickerWheel({
   const [weather, setWeather] = useState<Weather>("any");
 
   const labels = useMemo(() => filterOutfits(occasion, weather), [occasion, weather]);
+  const wheelSync = useControlledWheelLabels(labels);
 
   return (
     <div className="space-y-4">
@@ -118,8 +120,9 @@ export function OutfitPickerWheel({
         </ul>
       </Card>
       <SpinWheel
-        key={labels.join("|")}
-        presetOptionLabels={labels}
+        entryLabels={wheelSync.entryLabels}
+        onEntryLabelsChange={wheelSync.onEntryLabelsChange}
+        hideBulkPaste
         entriesListDefaultExpanded
       />
     </div>

@@ -5,6 +5,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { SpinWheel } from "@/components/SpinWheel";
 import { Clapperboard } from "lucide-react";
+import { labelsToMultiline } from "@/lib/wheelEntryLabels";
+import { useControlledWheelLabels } from "@/lib/useControlledWheelLabels";
 
 type MoviePickerWheelProps = {
   presetOptionLabels?: string[];
@@ -61,7 +63,7 @@ export function MoviePickerWheel({
   const [useList, setUseList] = useState(false);
   const [listPaste, setListPaste] = useState("");
 
-  const labels = useMemo(() => {
+  const computedLabels = useMemo(() => {
     if (useList) {
       const pasted = listPaste
         .split(/\n/)
@@ -73,6 +75,13 @@ export function MoviePickerWheel({
     }
     return filterMovies(mood, length);
   }, [mood, length, useList, listPaste]);
+
+  const wheelSync = useControlledWheelLabels(computedLabels);
+
+  const handleLabelsChange = (labels: string[]) => {
+    setUseList(true);
+    setListPaste(labelsToMultiline(labels));
+  };
 
   return (
     <div className="space-y-4">
@@ -148,17 +157,18 @@ export function MoviePickerWheel({
           </div>
         ) : null}
         <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
-          On the wheel now ({labels.length})
+          On the wheel now ({wheelSync.entryLabels.length})
         </p>
         <ul className="text-sm text-foreground grid sm:grid-cols-2 gap-1">
-          {labels.map((label) => (
+          {wheelSync.entryLabels.map((label) => (
             <li key={label}>{label}</li>
           ))}
         </ul>
       </Card>
       <SpinWheel
-        key={labels.join("|") + String(useList)}
-        presetOptionLabels={labels}
+        entryLabels={wheelSync.entryLabels}
+        onEntryLabelsChange={handleLabelsChange}
+        hideBulkPaste
         entriesListDefaultExpanded
       />
     </div>

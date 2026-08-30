@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { SpinWheel } from "@/components/SpinWheel";
 import { Sparkles } from "lucide-react";
+import { useControlledWheelLabels } from "@/lib/useControlledWheelLabels";
 
 type ChineseZodiacWheelProps = {
   presetOptionLabels?: string[];
@@ -43,6 +44,7 @@ export function ChineseZodiacWheel({
     if (!highlight) return labels;
     return [highlight, ...labels.filter((l) => l !== highlight)];
   }, [highlight, labels]);
+  const wheelSync = useControlledWheelLabels(orderedLabels);
 
   const lookup = () => {
     const year = Number(yearInput);
@@ -89,7 +91,11 @@ export function ChineseZodiacWheel({
         ) : null}
       </Card>
 
-      <SpinWheel key={orderedLabels.join("|")} presetOptionLabels={orderedLabels} />
+      <SpinWheel
+        entryLabels={wheelSync.entryLabels}
+        onEntryLabelsChange={wheelSync.onEntryLabelsChange}
+        hideBulkPaste
+      />
     </div>
   );
 }

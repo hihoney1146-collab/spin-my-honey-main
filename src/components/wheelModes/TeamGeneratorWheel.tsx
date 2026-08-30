@@ -7,13 +7,14 @@ import { Label } from "@/components/ui/label";
 import { Users, Shuffle } from "lucide-react";
 import { toast } from "sonner";
 import { SpinWheel } from "@/components/SpinWheel";
+import {
+  duplicateNotice,
+  labelsToMultiline,
+  parseEntryLines,
+} from "@/lib/wheelEntryLabels";
 
-function parseNames(raw: string): string[] {
-  return raw
-    .split(/[\n,]+/)
-    .map((s) => s.trim())
-    .filter(Boolean);
-}
+const DEFAULT_NAMES =
+  "Alex\nJordan\nSam\nTaylor\nCasey\nMorgan\nRiley\nQuinn";
 
 function buildBalancedTeams(names: string[], teamCount: number): string[][] {
   const shuffled = [...names].sort(() => crypto.getRandomValues(new Uint32Array(1))[0] - 2 ** 31);
@@ -24,21 +25,31 @@ function buildBalancedTeams(names: string[], teamCount: number): string[][] {
   return teams.filter((t) => t.length > 0);
 }
 
-const DEFAULT_NAMES =
-  "Alex\nJordan\nSam\nTaylor\nCasey\nMorgan\nRiley\nQuinn";
-
 export function TeamGeneratorWheel() {
   const [namesText, setNamesText] = useState(DEFAULT_NAMES);
   const [teamCount, setTeamCount] = useState(2);
   const [teams, setTeams] = useState<string[][] | null>(null);
 
-  const participantLabels = useMemo(() => {
-    const unique = [...new Set(parseNames(namesText))];
-    return unique.length >= 2 ? unique : parseNames(DEFAULT_NAMES);
-  }, [namesText]);
+  const parsedNames = useMemo(() => parseEntryLines(namesText), [namesText]);
+  const duplicateCount = useMemo(() => {
+    const seen = new Set<string>();
+    let dupes = 0;
+    for (const name of parsedNames) {
+      const key = name.toLowerCase();
+      if (seen.has(key)) dupes++;
+      else seen.add(key);
+    }
+    return dupes;
+  }, [parsedNames]);
+
+  const entryLabels = useMemo(() => {
+    return parsedNames.length >= 2 ? parsedNames : parseEntryLines(DEFAULT_NAMES);
+  }, [parsedNames]);
+
+  const duplicateMessage = duplicateNotice("warn", 0, duplicateCount);
 
   const generate = () => {
-    const names = parseNames(namesText);
+    const names = parsedNames;
     if (names.length < 2) {
       toast.error("Add at least two names to split into teams.");
       return;
@@ -46,6 +57,11 @@ export function TeamGeneratorWheel() {
     const count = Math.min(Math.max(2, teamCount), names.length);
     setTeams(buildBalancedTeams(names, count));
     toast.success(`Created ${count} balanced teams.`);
+  };
+
+  const handleLabelsChange = (labels: string[]) => {
+    setNamesText(labelsToMultiline(labels));
+    setTeams(null);
   };
 
   return (
@@ -65,10 +81,16 @@ export function TeamGeneratorWheel() {
             <Textarea
               id="team-names"
               value={namesText}
-              onChange={(e) => setNamesText(e.target.value)}
+              onChange={(e) => {
+                setNamesText(e.target.value);
+                setTeams(null);
+              }}
               rows={8}
               placeholder="Paste roster, one name per line"
             />
+            {duplicateMessage ? (
+              <p className="text-xs text-muted-foreground">{duplicateMessage}</p>
+            ) : null}
           </div>
           <div className="space-y-2">
             <Label htmlFor="team-count">Number of teams</Label>
@@ -87,13 +109,14 @@ export function TeamGeneratorWheel() {
           </div>
         </div>
         <p className="text-sm text-muted-foreground">
-          On the wheel now ({participantLabels.length})
+          On the wheel now ({entryLabels.length})
         </p>
       </Card>
 
       <SpinWheel
-        key={participantLabels.join("|")}
-        presetOptionLabels={participantLabels}
+        entryLabels={entryLabels}
+        onEntryLabelsChange={handleLabelsChange}
+        hideBulkPaste
         entriesListDefaultExpanded
       />
 
@@ -105,8 +128,8 @@ export function TeamGeneratorWheel() {
                 Team {i + 1} ({team.length})
               </h3>
               <ul className="space-y-1 text-sm text-muted-foreground">
-                {team.map((name) => (
-                  <li key={name}>{name}</li>
+                {team.map((name, j) => (
+                  <li key={`${name}-${j}`}>{name}</li>
                 ))}
               </ul>
             </Card>

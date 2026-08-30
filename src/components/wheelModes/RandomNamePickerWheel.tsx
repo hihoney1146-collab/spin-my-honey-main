@@ -3,9 +3,13 @@ import { Card } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
 import { SpinWheel } from "@/components/SpinWheel";
 import { History, Users } from "lucide-react";
+import {
+  duplicateNotice,
+  labelsToMultiline,
+  parseEntryLines,
+} from "@/lib/wheelEntryLabels";
 
 type RandomNamePickerWheelProps = {
   presetOptionLabels?: string[];
@@ -54,21 +58,45 @@ export function RandomNamePickerWheel({
   const [useWeights, setUseWeights] = useState(false);
   const [history, setHistory] = useState<string[]>([]);
   const [rows, setRows] = useState<WeightedName[]>(initialRows);
-  const [draft, setDraft] = useState(() =>
-    toWeightedLines(initialRows, false)
-  );
+  const [draft, setDraft] = useState(() => toWeightedLines(initialRows, false));
 
-  const labels = useMemo(() => {
-    if (!useWeights) return rows.map((r) => r.name);
-    return expandWeighted(rows);
-  }, [rows, useWeights]);
-
-  const applyDraft = () => {
-    const parsed = parseWeightedLines(draft);
-    if (parsed.length >= 2) {
-      setRows(parsed);
-      setDraft(toWeightedLines(parsed, useWeights));
+  const parsedDraft = useMemo(() => parseWeightedLines(draft), [draft]);
+  const duplicateCount = useMemo(() => {
+    const seen = new Set<string>();
+    let dupes = 0;
+    for (const row of parsedDraft) {
+      const key = row.name.toLowerCase();
+      if (seen.has(key)) dupes++;
+      else seen.add(key);
     }
+    return dupes;
+  }, [parsedDraft]);
+
+  const entryLabels = useMemo(() => {
+    const activeRows = parsedDraft.length >= 2 ? parsedDraft : rows;
+    if (!useWeights) return activeRows.map((r) => r.name);
+    return expandWeighted(activeRows);
+  }, [parsedDraft, rows, useWeights]);
+
+  const duplicateMessage = !useWeights
+    ? duplicateNotice("warn", 0, duplicateCount)
+    : null;
+
+  const handleDraftChange = (value: string) => {
+    setDraft(value);
+    const parsed = parseWeightedLines(value);
+    if (parsed.length >= 2) setRows(parsed);
+  };
+
+  const handleLabelsChange = (labels: string[]) => {
+    if (useWeights) {
+      const collapsed = labels.map((name) => ({ name, weight: 1 }));
+      setRows(collapsed);
+      setDraft(toWeightedLines(collapsed, true));
+      return;
+    }
+    setRows(labels.map((name) => ({ name, weight: 1 })));
+    setDraft(labelsToMultiline(labels));
   };
 
   const handleWinner = (name: string) => {
@@ -126,7 +154,7 @@ export function RandomNamePickerWheel({
         <Textarea
           id="name-list"
           value={draft}
-          onChange={(e) => setDraft(e.target.value)}
+          onChange={(e) => handleDraftChange(e.target.value)}
           rows={6}
           className="font-mono text-sm"
           placeholder={
@@ -146,9 +174,9 @@ export function RandomNamePickerWheel({
             chance until you remove winners.
           </p>
         )}
-        <Button type="button" size="sm" onClick={applyDraft}>
-          Update wheel from list
-        </Button>
+        {duplicateMessage ? (
+          <p className="text-xs text-muted-foreground">{duplicateMessage}</p>
+        ) : null}
         {useWeights && rows.some((r) => r.weight > 1) ? (
           <ul className="text-xs text-muted-foreground space-y-1">
             {rows.map((r) => (
@@ -161,8 +189,9 @@ export function RandomNamePickerWheel({
       </Card>
 
       <SpinWheel
-        key={`${labels.join("|")}-${useWeights ? "w" : "e"}`}
-        presetOptionLabels={labels}
+        entryLabels={entryLabels}
+        onEntryLabelsChange={handleLabelsChange}
+        hideBulkPaste
         autoRemoveWinner={false}
         onWinnerSelected={handleWinner}
         resultProofSlug="random-name-picker-wheel"
@@ -177,14 +206,13 @@ export function RandomNamePickerWheel({
               <History className="h-4 w-4 text-primary" />
               Session history
             </h3>
-            <Button
+            <button
               type="button"
-              variant="ghost"
-              size="sm"
+              className="text-sm text-primary hover:underline"
               onClick={() => setHistory([])}
             >
               Clear history
-            </Button>
+            </button>
           </div>
           <ol className="space-y-1 text-sm text-muted-foreground">
             {history.map((name, i) => (

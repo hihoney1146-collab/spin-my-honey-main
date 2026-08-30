@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { SpinWheel } from "@/components/SpinWheel";
 import { Heart } from "lucide-react";
+import { useControlledWheelLabels } from "@/lib/useControlledWheelLabels";
 
 type SelfCareWheelProps = {
   presetOptionLabels?: string[];
@@ -48,6 +49,7 @@ type FilterKey = keyof typeof DATASET;
 export function SelfCareWheel({ presetOptionLabels: _presetOptionLabels }: SelfCareWheelProps) {
   const [filter, setFilter] = useState<FilterKey>("5-min");
   const labels = useMemo(() => DATASET[filter], [filter]);
+  const wheelSync = useControlledWheelLabels(labels);
 
   return (
     <div className="space-y-4">
@@ -85,8 +87,9 @@ export function SelfCareWheel({ presetOptionLabels: _presetOptionLabels }: SelfC
         </ul>
       </Card>
       <SpinWheel
-        key={labels.join("|")}
-        presetOptionLabels={labels}
+        entryLabels={wheelSync.entryLabels}
+        onEntryLabelsChange={wheelSync.onEntryLabelsChange}
+        hideBulkPaste
         entriesListDefaultExpanded
       />
     </div>

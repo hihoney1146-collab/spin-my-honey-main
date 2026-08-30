@@ -5,6 +5,7 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { SpinWheel } from "@/components/SpinWheel";
 import { Maximize2, Minimize2, History, ListChecks } from "lucide-react";
+import { useControlledWheelLabels } from "@/lib/useControlledWheelLabels";
 
 type AbcdSpinWheelProps = {
   presetOptionLabels?: string[];
@@ -15,6 +16,7 @@ const ABCD = ["A", "B", "C", "D"];
 export function AbcdSpinWheel({ presetOptionLabels }: AbcdSpinWheelProps) {
   const labels =
     presetOptionLabels?.length === 4 ? presetOptionLabels : ABCD;
+  const wheelSync = useControlledWheelLabels(labels);
   const [removeAfterPick, setRemoveAfterPick] = useState(false);
   const [history, setHistory] = useState<string[]>([]);
   const [fullscreen, setFullscreen] = useState(false);
@@ -64,8 +66,9 @@ export function AbcdSpinWheel({ presetOptionLabels }: AbcdSpinWheelProps) {
       </Card>
 
       <SpinWheel
-        key={labels.join("")}
-        presetOptionLabels={labels}
+        entryLabels={wheelSync.entryLabels}
+        onEntryLabelsChange={wheelSync.onEntryLabelsChange}
+        hideBulkPaste
         autoRemoveWinner={removeAfterPick}
         onWinnerSelected={(name) => setHistory((h) => [name, ...h])}
         spinButtonLabel={fullscreen ? "TAP TO SPIN" : undefined}

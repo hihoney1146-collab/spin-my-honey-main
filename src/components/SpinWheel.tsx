@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { useTheme } from "next-themes";
 import { useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -257,7 +257,40 @@ export type SpinWheelProps = {
   compactEmbed?: boolean;
   /** Start the desktop entries list expanded (filter wheels that rebuild the pool). */
   entriesListDefaultExpanded?: boolean;
+  /** Controlled entry labels — keeps Manage Entries in sync with a parent mode card. */
+  entryLabels?: string[];
+  /** Called when entries change inside Manage Entries (edit, remove, shuffle, etc.). */
+  onEntryLabelsChange?: (labels: string[]) => void;
+  /** Hide bulk-add when the mode card owns roster paste. */
+  hideBulkPaste?: boolean;
 };
+
+function labelsFromEntries(entries: WheelEntry[]): string[] {
+  return entries.filter((entry) => entry.active).map((entry) => entry.text);
+}
+
+function mergeEntriesFromLabels(
+  prev: WheelEntry[],
+  labels: string[],
+): WheelEntry[] {
+  const prevByText = new Map<string, WheelEntry>();
+  for (const entry of prev) {
+    if (!prevByText.has(entry.text)) prevByText.set(entry.text, entry);
+  }
+
+  return labels.map((text, i) => {
+    const existing = prevByText.get(text);
+    if (existing) {
+      return { ...existing, active: true };
+    }
+    return {
+      id: `sync-${i}-${Math.random().toString(36).slice(2, 9)}`,
+      text,
+      color: defaultColors[i % defaultColors.length],
+      active: true,
+    };
+  });
+}
 
 function entriesFromLabels(labels: string[]): WheelEntry[] {
   return labels.map((text, i) => ({
@@ -279,7 +312,15 @@ export const SpinWheel = ({
   streamerToggle = true,
   compactEmbed = false,
   entriesListDefaultExpanded = false,
+  entryLabels,
+  onEntryLabelsChange,
+  hideBulkPaste = false,
 }: SpinWheelProps = {}) => {
+  const isControlled =
+    entryLabels !== undefined && onEntryLabelsChange !== undefined;
+  const onEntryLabelsChangeRef = useRef(onEntryLabelsChange);
+  onEntryLabelsChangeRef.current = onEntryLabelsChange;
+
   const { resolvedTheme } = useTheme();
   const location = useLocation();
   const bulkPlaceholder = getWheelBulkPlaceholder(location.pathname);
@@ -296,7 +337,9 @@ export const SpinWheel = ({
     return () => mq.removeEventListener("change", sync);
   }, []);
   const usePreset =
-    Array.isArray(presetOptionLabels) && presetOptionLabels.length > 0;
+    isControlled ||
+    (Array.isArray(entryLabels) && entryLabels.length > 0) ||
+    (Array.isArray(presetOptionLabels) && presetOptionLabels.length > 0);
 
   const shareFromUrl = shareEnabled ? parseWheelShareParams(location.search) : null;
   const streamerMode =
@@ -305,6 +348,9 @@ export const SpinWheel = ({
   const [entries, setEntries] = useState<WheelEntry[]>(() => {
     if (shareFromUrl?.entries?.length) {
       return entriesFromLabels(shareFromUrl.entries);
+    }
+    if (Array.isArray(entryLabels) && entryLabels.length > 0) {
+      return entriesFromLabels(entryLabels);
     }
     if (
       Array.isArray(presetOptionLabels) &&
@@ -338,6 +384,40 @@ export const SpinWheel = ({
   });
 
   const [bulkPasteText, setBulkPasteText] = useState("");
+  const emitLabelChange = useCallback(
+    (next: WheelEntry[]) => {
+      if (isControlled && onEntryLabelsChangeRef.current) {
+        onEntryLabelsChangeRef.current(labelsFromEntries(next));
+      }
+    },
+    [isControlled],
+  );
+
+  const commitEntries = useCallback(
+    (updater: WheelEntry[] | ((prev: WheelEntry[]) => WheelEntry[])) => {
+      setEntries((prev) => {
+        const next = typeof updater === "function" ? updater(prev) : updater;
+        emitLabelChange(next);
+        return next;
+      });
+    },
+    [emitLabelChange],
+  );
+
+  useEffect(() => {
+    if (!isControlled || !entryLabels) return;
+    setEntries((prev) => {
+      const current = labelsFromEntries(prev);
+      if (
+        current.length === entryLabels.length &&
+        current.every((text, index) => text === entryLabels[index])
+      ) {
+        return prev;
+      }
+      return mergeEntriesFromLabels(prev, entryLabels);
+    });
+  }, [entryLabels, isControlled]);
+
   const [entriesPageIndex, setEntriesPageIndex] = useState(0);
   /** Large screens: entries list starts collapsed so the panel does not overlap page content */
   const [desktopEntriesListExpanded, setDesktopEntriesListExpanded] = useState(
@@ -470,7 +550,7 @@ export const SpinWheel = ({
     onWinnerSelectedRef.current?.(winner, { entryCount: lastSpinEntryCount });
     if (autoRemoveWinner && entries.length > 2) {
       const timer = window.setTimeout(() => {
-        setEntries((prev) => prev.filter((entry) => entry.id !== winnerId));
+        commitEntries((prev) => prev.filter((entry) => entry.id !== winnerId));
         setShowWinnerDialog(false);
         setWinner(null);
         setWinnerId("");
@@ -895,7 +975,18 @@ export const SpinWheel = ({
       toast.message(`Only the first ${MAX_BULK_LINES} lines were added.`);
     }
 
-    setEntries((prev) => {
+    if (isControlled) {
+      const current = labelsFromEntries(entries);
+      commitEntries(
+        mergeEntriesFromLabels(entries, [...current, ...lines]),
+      );
+      setBulkPasteText("");
+      playSoundEffect("click");
+      toast.success(`Added ${lines.length} entr${lines.length === 1 ? "y" : "ies"}.`);
+      return;
+    }
+
+    commitEntries((prev) => {
       let colorIdx = prev.length;
       const additions: WheelEntry[] = lines.map((text, i) => ({
         id: `${Date.now()}-${i}-${Math.random().toString(36).slice(2, 9)}`,
@@ -924,7 +1015,7 @@ export const SpinWheel = ({
 
   const removeEntry = (id: string) => {
     if (entries.length > 2) {
-      setEntries(entries.filter((entry) => entry.id !== id));
+      commitEntries(entries.filter((entry) => entry.id !== id));
       playSoundEffect("click");
       toast.success("Entry removed!");
     } else {
@@ -934,8 +1025,8 @@ export const SpinWheel = ({
 
   const updateEntry = (id: string, text: string) => {
     const capped = text.slice(0, MAX_ENTRY_TEXT_LEN);
-    setEntries(
-      entries.map((entry) => (entry.id === id ? { ...entry, text: capped } : entry))
+    commitEntries(
+      entries.map((entry) => (entry.id === id ? { ...entry, text: capped } : entry)),
     );
   };
 
@@ -956,39 +1047,43 @@ export const SpinWheel = ({
   };
 
   const toggleEntry = (id: string) => {
-    setEntries(
+    commitEntries(
       entries.map((entry) =>
-        entry.id === id ? { ...entry, active: !entry.active } : entry
-      )
+        entry.id === id ? { ...entry, active: !entry.active } : entry,
+      ),
     );
     playSoundEffect("click");
   };
 
   const shuffleEntries = () => {
     const shuffled = [...entries].sort(() => Math.random() - 0.5);
-    setEntries(shuffled);
+    commitEntries(shuffled);
     playSoundEffect("click");
     toast.success("Entries shuffled!");
   };
 
   const sortEntries = () => {
     const sorted = [...entries].sort((a, b) => a.text.localeCompare(b.text));
-    setEntries(sorted);
+    commitEntries(sorted);
     playSoundEffect("click");
     toast.success("Entries sorted alphabetically!");
   };
 
   const resetEntries = () => {
-    const reset = [
-      { id: "1", text: "Jahangir", color: defaultColors[0], active: true },
-      { id: "2", text: "Mudabber", color: defaultColors[1], active: true },
-      { id: "3", text: "Adam", color: defaultColors[2], active: true },
-      { id: "4", text: "Jacob", color: defaultColors[3], active: true },
-      { id: "5", text: "Abdal", color: defaultColors[4], active: true },
-      { id: "6", text: "Gabriel", color: defaultColors[5], active: true },
-      { id: "7", text: "Hanna", color: defaultColors[6], active: true },
-    ];
-    setEntries(reset);
+    if (isControlled && entryLabels?.length) {
+      commitEntries(entriesFromLabels(entryLabels));
+    } else {
+      const reset = [
+        { id: "1", text: "Jahangir", color: defaultColors[0], active: true },
+        { id: "2", text: "Mudabber", color: defaultColors[1], active: true },
+        { id: "3", text: "Adam", color: defaultColors[2], active: true },
+        { id: "4", text: "Jacob", color: defaultColors[3], active: true },
+        { id: "5", text: "Abdal", color: defaultColors[4], active: true },
+        { id: "6", text: "Gabriel", color: defaultColors[5], active: true },
+        { id: "7", text: "Hanna", color: defaultColors[6], active: true },
+      ];
+      commitEntries(reset);
+    }
     setWinner(null);
     setWinnerId("");
     setWinnerColor("");
@@ -1012,7 +1107,7 @@ export const SpinWheel = ({
     ) {
       return;
     }
-    setEntries([]);
+    commitEntries([]);
     setWinner(null);
     setWinnerId("");
     setWinnerColor("");
@@ -1027,7 +1122,7 @@ export const SpinWheel = ({
 
   const removeWinner = () => {
     if (winnerId && entries.length > 2) {
-      setEntries(entries.filter((entry) => entry.id !== winnerId));
+      commitEntries(entries.filter((entry) => entry.id !== winnerId));
       playSoundEffect("click");
       toast.success(`${winner} removed from the wheel!`);
       setShowWinnerDialog(false);
@@ -1426,13 +1521,16 @@ export const SpinWheel = ({
               </Badge>
             </div>
             <p className="text-[11px] text-muted-foreground ml-3.5 font-medium">
-              Paste entries below or edit them in the list
+              {hideBulkPaste
+                ? "Edit entries in the list below"
+                : "Paste entries below or edit them in the list"}
             </p>
           </div>
 
           <Separator className="mb-3 lg:mb-4 flex-shrink-0" />
 
           {/* Bulk paste, one entry per line */}
+          {!hideBulkPaste ? (
           <div className="mb-3 lg:mb-4 relative z-10 flex-shrink-0">
             <label className="text-[10px] lg:text-[11px] font-bold text-foreground/80 mb-1.5 lg:mb-2 flex items-center gap-1.5 uppercase tracking-wide">
               <div className="w-1 h-1 rounded-full bg-primary" />
@@ -1462,6 +1560,7 @@ export const SpinWheel = ({
               Add all lines to wheel
             </Button>
           </div>
+          ) : null}
 
           {/* Action Buttons */}
           <div className="mb-3 lg:mb-4 relative z-10 flex-shrink-0">

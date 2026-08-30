@@ -7,12 +7,14 @@ import { Gift, Link2, Copy } from "lucide-react";
 import { toast } from "sonner";
 import { SITE_ORIGIN } from "@/lib/schema";
 import { SpinWheel } from "@/components/SpinWheel";
+import {
+  duplicateNotice,
+  labelsToMultiline,
+  parseEntryLines,
+} from "@/lib/wheelEntryLabels";
 
 function parseNames(raw: string): string[] {
-  return raw
-    .split(/[\n,]+/)
-    .map((s) => s.trim())
-    .filter(Boolean);
+  return parseEntryLines(raw);
 }
 
 function parseExclusions(raw: string): Set<string> {
@@ -75,13 +77,26 @@ export function SecretSantaWheel() {
     [exclusionText],
   );
 
-  const participantLabels = useMemo(() => {
-    const unique = [...new Set(parseNames(namesText))];
-    return unique.length >= 2 ? unique : parseNames(DEFAULT_NAMES);
-  }, [namesText]);
+  const parsedNames = useMemo(() => parseNames(namesText), [namesText]);
+  const duplicateCount = useMemo(() => {
+    const seen = new Set<string>();
+    let dupes = 0;
+    for (const name of parsedNames) {
+      const key = name.toLowerCase();
+      if (seen.has(key)) dupes++;
+      else seen.add(key);
+    }
+    return dupes;
+  }, [parsedNames]);
+
+  const entryLabels = useMemo(() => {
+    return parsedNames.length >= 2 ? parsedNames : parseNames(DEFAULT_NAMES);
+  }, [parsedNames]);
+
+  const duplicateMessage = duplicateNotice("warn", 0, duplicateCount);
 
   const generate = () => {
-    const names = parseNames(namesText);
+    const names = parsedNames;
     const unique = [...new Set(names)];
     if (unique.length < 2) {
       toast.error("Add at least two unique names.");
@@ -105,6 +120,11 @@ export function SecretSantaWheel() {
     toast.success(`Reveal link copied for ${giver}.`);
   };
 
+  const handleLabelsChange = (labels: string[]) => {
+    setNamesText(labelsToMultiline(labels));
+    setAssignments(null);
+  };
+
   return (
     <div className="space-y-6">
       <Card className="p-5 md:p-6 space-y-4">
@@ -126,6 +146,9 @@ export function SecretSantaWheel() {
               onChange={(e) => setNamesText(e.target.value)}
               rows={6}
             />
+            {duplicateMessage ? (
+              <p className="text-xs text-muted-foreground">{duplicateMessage}</p>
+            ) : null}
           </div>
           <div className="space-y-2">
             <Label htmlFor="santa-exclusions">
@@ -141,7 +164,7 @@ export function SecretSantaWheel() {
           </div>
         </div>
         <p className="text-sm text-muted-foreground">
-          On the wheel now ({participantLabels.length})
+          On the wheel now ({entryLabels.length})
         </p>
         <Button onClick={generate} size="lg">
           <Gift className="mr-2 h-4 w-4" />
@@ -150,8 +173,9 @@ export function SecretSantaWheel() {
       </Card>
 
       <SpinWheel
-        key={participantLabels.join("|")}
-        presetOptionLabels={participantLabels}
+        entryLabels={entryLabels}
+        onEntryLabelsChange={handleLabelsChange}
+        hideBulkPaste
         entriesListDefaultExpanded
       />
 

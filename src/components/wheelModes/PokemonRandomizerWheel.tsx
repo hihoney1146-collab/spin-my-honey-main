@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { SpinWheel } from "@/components/SpinWheel";
 import { Gamepad2 } from "lucide-react";
+import { useControlledWheelLabels } from "@/lib/useControlledWheelLabels";
 
 type PokemonRandomizerWheelProps = {
   presetOptionLabels?: string[];
@@ -51,6 +52,7 @@ export function PokemonRandomizerWheel({
 }: PokemonRandomizerWheelProps) {
   const [pool, setPool] = useState<PoolKey>("starters");
   const labels = useMemo(() => POOLS[pool], [pool]);
+  const wheelSync = useControlledWheelLabels(labels);
 
   return (
     <div className="space-y-4">
@@ -92,8 +94,9 @@ export function PokemonRandomizerWheel({
         </ul>
       </Card>
       <SpinWheel
-        key={labels.join("|")}
-        presetOptionLabels={labels}
+        entryLabels={wheelSync.entryLabels}
+        onEntryLabelsChange={wheelSync.onEntryLabelsChange}
+        hideBulkPaste
         entriesListDefaultExpanded
       />
     </div>

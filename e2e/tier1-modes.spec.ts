@@ -7,7 +7,6 @@ test.describe("Tier 1 mode differentiators", () => {
     await page.locator('label[for="name-weights"]').click();
     await expect(page.locator("#name-weights")).toBeChecked();
     await page.locator("#name-list").fill("Alex:3\nJordan\nSam:2");
-    await page.getByRole("button", { name: /Update wheel from list/i }).click();
     await expect(page.getByText("Alex: weight 3")).toBeVisible();
   });
 

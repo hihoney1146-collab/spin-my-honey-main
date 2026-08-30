@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { SpinWheel } from "@/components/SpinWheel";
 import { Maximize2, Minimize2, Type } from "lucide-react";
+import { useControlledWheelLabels } from "@/lib/useControlledWheelLabels";
 
 const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
@@ -24,6 +25,7 @@ export function AlphabetSpinnerWheel({
         : ALPHABET;
     return base.filter((letter) => !excluded.has(letter.toUpperCase()));
   }, [presetOptionLabels, excluded]);
+  const wheelSync = useControlledWheelLabels(activeLetters);
 
   const toggleLetter = (letter: string) => {
     setExcluded((prev) => {
@@ -103,8 +105,9 @@ export function AlphabetSpinnerWheel({
 
       {activeLetters.length >= 2 ? (
         <SpinWheel
-          key={activeLetters.join("")}
-          presetOptionLabels={activeLetters}
+          entryLabels={wheelSync.entryLabels}
+          onEntryLabelsChange={wheelSync.onEntryLabelsChange}
+          hideBulkPaste
           spinButtonLabel={fullscreen ? "TAP TO SPIN" : undefined}
         />
       ) : (

@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { SpinWheel } from "@/components/SpinWheel";
 import { Star } from "lucide-react";
+import { useControlledWheelLabels } from "@/lib/useControlledWheelLabels";
 
 type ZodiacSignWheelProps = {
   presetOptionLabels?: string[];
@@ -63,6 +64,7 @@ export function ZodiacSignWheel({
     if (!highlight) return SIGN_NAMES;
     return [highlight, ...SIGN_NAMES.filter((l) => l !== highlight)];
   }, [highlight]);
+  const wheelSync = useControlledWheelLabels(labels);
 
   const lookup = () => {
     const m = Number(month);
@@ -138,8 +140,9 @@ export function ZodiacSignWheel({
         </ul>
       </Card>
       <SpinWheel
-        key={labels.join("|")}
-        presetOptionLabels={labels}
+        entryLabels={wheelSync.entryLabels}
+        onEntryLabelsChange={wheelSync.onEntryLabelsChange}
+        hideBulkPaste
         entriesListDefaultExpanded
       />
     </div>

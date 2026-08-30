@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { SpinWheel } from "@/components/SpinWheel";
 import { Heart } from "lucide-react";
+import { useControlledWheelLabels } from "@/lib/useControlledWheelLabels";
 
 type DateNightWheelProps = {
   presetOptionLabels?: string[];
@@ -64,6 +65,7 @@ export function DateNightWheel({
     () => filterPlans(location, budget),
     [location, budget],
   );
+  const wheelSync = useControlledWheelLabels(labels);
 
   return (
     <div className="space-y-4">
@@ -126,8 +128,9 @@ export function DateNightWheel({
         </ul>
       </Card>
       <SpinWheel
-        key={labels.join("|")}
-        presetOptionLabels={labels}
+        entryLabels={wheelSync.entryLabels}
+        onEntryLabelsChange={wheelSync.onEntryLabelsChange}
+        hideBulkPaste
         entriesListDefaultExpanded
       />
     </div>

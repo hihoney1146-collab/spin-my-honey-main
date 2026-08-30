@@ -6,6 +6,7 @@ import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { SpinWheel } from "@/components/SpinWheel";
 import { Scale } from "lucide-react";
+import { useControlledWheelLabels } from "@/lib/useControlledWheelLabels";
 
 type YesOrNoWheelProps = {
   presetOptionLabels?: string[];
@@ -50,6 +51,7 @@ export function YesOrNoWheel({
     () => expandWeighted(yes, no, maybe),
     [yes, no, maybe],
   );
+  const wheelSync = useControlledWheelLabels(labels);
 
   const handleWinner = (name: string) => {
     setResults((prev) => {
@@ -159,8 +161,9 @@ export function YesOrNoWheel({
         ) : null}
       </Card>
       <SpinWheel
-        key={labels.join("|")}
-        presetOptionLabels={labels}
+        entryLabels={wheelSync.entryLabels}
+        onEntryLabelsChange={wheelSync.onEntryLabelsChange}
+        hideBulkPaste
         onWinnerSelected={handleWinner}
         entriesListDefaultExpanded
       />
