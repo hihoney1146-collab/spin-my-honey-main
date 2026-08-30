@@ -46,6 +46,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { getWheelBulkPlaceholder } from "@/data/wheelBulkPlaceholders";
 
 interface WheelEntry {
   id: string;
@@ -281,6 +282,7 @@ export const SpinWheel = ({
 }: SpinWheelProps = {}) => {
   const { resolvedTheme } = useTheme();
   const location = useLocation();
+  const bulkPlaceholder = getWheelBulkPlaceholder(location.pathname);
   const { streamerMode: streamFromUrl, setStreamerMode: setStreamParam, streamBg, setStreamBg } =
     useStreamerMode();
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
@@ -1437,13 +1439,13 @@ export const SpinWheel = ({
               Bulk add entries
             </label>
             <p className="text-[10px] text-muted-foreground mb-2 leading-snug">
-              Paste a list, one option per line (from Notes, Excel, etc.). Longer names are trimmed to{" "}
-              {MAX_ENTRY_TEXT_LEN} characters. Up to {MAX_BULK_LINES} lines at once.
+              {bulkPlaceholder.hint} Longer names are trimmed to {MAX_ENTRY_TEXT_LEN} characters. Up
+              to {MAX_BULK_LINES} lines at once.
             </p>
             <Textarea
               value={bulkPasteText}
               onChange={(e) => setBulkPasteText(e.target.value)}
-              placeholder={"Alice\nBob\nCharlie\nDana\nSam\nJordan"}
+              placeholder={bulkPlaceholder.sample}
               rows={5}
               className="min-h-[120px] lg:min-h-[160px] text-xs lg:text-sm border-2 border-border focus-visible:border-primary bg-background/80 backdrop-blur-sm resize-y font-medium leading-relaxed placeholder:text-muted-foreground/70"
               aria-label="Paste multiple wheel entries, one per line"
