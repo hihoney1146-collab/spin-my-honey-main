@@ -5,7 +5,7 @@ export const WHEEL_MODE_FEATURES: Record<string, string> = {
   "secret-santa-wheel-generator":
     "Paste participants once to drive both the spin wheel (quick random draw) and full Secret Santa assignment mode with optional exclusion pairs. Each participant can get a private reveal link so they see only their match.",
   "random-number-wheel":
-    "Set a minimum and maximum, toggle no-repeat mode to avoid duplicate draws, and pick a random integer in range. Small ranges also display on the visual wheel; large ranges show a bold numeric result.",
+    "Set minimum and maximum; the wheel reloads those integers instantly when the range has 30 values or fewer. Toggle no-repeat to share one used pool between the quick-pick button and the spin wheel—drawn numbers leave both until reset. Wider ranges skip the wheel graphic and show a bold numeric result.",
   "random-student-picker":
     "Built for US classrooms: enable remove-after-pick so called-on students drop from the pool, review session history for subs, and switch to fullscreen classroom mode with large tap-to-spin controls for projectors.",
   "winner-picker-wheel":

@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,67 +7,82 @@ import { Switch } from "@/components/ui/switch";
 import { SpinWheel } from "@/components/SpinWheel";
 import { Hash, RotateCcw } from "lucide-react";
 import { toast } from "sonner";
+import { useControlledWheelLabels } from "@/lib/useControlledWheelLabels";
 
 type RandomNumberWheelProps = {
   presetOptionLabels?: string[];
 };
 
-function randomInt(min: number, max: number): number {
-  const range = max - min + 1;
+function pickRandomLabel(labels: string[]): string | null {
+  if (labels.length === 0) return null;
   const buf = new Uint32Array(1);
   crypto.getRandomValues(buf);
-  return min + (buf[0] % range);
+  return labels[buf[0] % labels.length] ?? null;
 }
 
-export function RandomNumberWheel({ presetOptionLabels }: RandomNumberWheelProps) {
+export function RandomNumberWheel(_props: RandomNumberWheelProps) {
   const [min, setMin] = useState(1);
   const [max, setMax] = useState(100);
   const [noRepeat, setNoRepeat] = useState(false);
   const [used, setUsed] = useState<Set<number>>(() => new Set());
   const [result, setResult] = useState<number | null>(null);
-  const [wheelLabels, setWheelLabels] = useState<string[] | undefined>(
-    undefined,
-  );
 
-  const rangeSize = max - min + 1;
-  const useWheelVisual = rangeSize > 0 && rangeSize <= 30;
+  const lo = Math.min(min, max);
+  const hi = Math.max(min, max);
+  const size = hi - lo + 1;
 
-  const spinNumber = () => {
-    const lo = Math.min(min, max);
-    const hi = Math.max(min, max);
-    const size = hi - lo + 1;
+  useEffect(() => {
+    setUsed(new Set());
+    setResult(null);
+  }, [lo, hi]);
 
+  const rangeLabels = useMemo(() => {
+    if (size < 1) return [];
+    return Array.from({ length: size }, (_, i) => String(lo + i));
+  }, [lo, hi, size]);
+
+  const poolLabels = useMemo(() => {
+    if (!noRepeat) return rangeLabels;
+    return rangeLabels.filter((label) => !used.has(Number(label)));
+  }, [rangeLabels, noRepeat, used]);
+
+  const wheelSync = useControlledWheelLabels(poolLabels);
+  const poolCount = wheelSync.entryLabels.length;
+  const useWheelVisual = size > 0 && size <= 30 && poolCount >= 2;
+
+  const pickRandom = useCallback(() => {
     if (size < 1) {
       toast.error("Max must be greater than or equal to min.");
       return;
     }
 
-    if (noRepeat && used.size >= size) {
-      toast.info("All numbers in range used, reset to draw again.");
+    const labels = wheelSync.entryLabels;
+    if (labels.length === 0) {
+      toast.info("All numbers in range used — reset to draw again.");
       return;
     }
 
-    let pick: number;
-    do {
-      pick = randomInt(lo, hi);
-    } while (noRepeat && used.has(pick));
+    const pickedLabel = pickRandomLabel(labels);
+    if (!pickedLabel) return;
 
+    const pick = Number(pickedLabel);
     if (noRepeat) {
       setUsed((prev) => new Set(prev).add(pick));
     }
     setResult(pick);
+  }, [size, wheelSync.entryLabels, noRepeat]);
 
-    if (useWheelVisual) {
-      const labels = Array.from({ length: size }, (_, i) => String(lo + i));
-      setWheelLabels(labels);
-    }
-  };
-
-  const wheelPreset = useMemo(() => {
-    if (wheelLabels) return wheelLabels;
-    if (presetOptionLabels?.length) return presetOptionLabels;
-    return ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
-  }, [wheelLabels, presetOptionLabels]);
+  const handleWinnerSelected = useCallback(
+    (name: string) => {
+      const pick = Number(name);
+      if (!Number.isFinite(pick)) return;
+      setResult(pick);
+      if (noRepeat) {
+        setUsed((prev) => new Set(prev).add(pick));
+      }
+    },
+    [noRepeat],
+  );
 
   return (
     <div className="space-y-6">
@@ -106,8 +121,18 @@ export function RandomNumberWheel({ presetOptionLabels }: RandomNumberWheelProps
             </Label>
           </div>
         </div>
+        <p className="text-sm text-muted-foreground">
+          {useWheelVisual
+            ? `On the wheel now (${poolCount})`
+            : size > 30
+              ? `${size} numbers in range — use Pick random number (wheel hidden for ranges over 30).`
+              : size >= 2
+                ? `On the wheel now (${poolCount})`
+                : "Set a valid min–max range with at least two integers."}
+          {noRepeat && used.size > 0 ? ` · ${used.size} already drawn` : ""}
+        </p>
         <div className="flex flex-wrap gap-3">
-          <Button onClick={spinNumber} size="lg">
+          <Button onClick={pickRandom} size="lg">
             Pick random number
           </Button>
           {noRepeat && used.size > 0 ? (
@@ -132,10 +157,13 @@ export function RandomNumberWheel({ presetOptionLabels }: RandomNumberWheelProps
       </Card>
 
       {useWheelVisual ? (
-        <SpinWheel key={wheelPreset.join(",")} presetOptionLabels={wheelPreset} />
-      ) : (
-        <SpinWheel presetOptionLabels={wheelPreset} />
-      )}
+        <SpinWheel
+          entryLabels={wheelSync.entryLabels}
+          onEntryLabelsChange={wheelSync.onEntryLabelsChange}
+          hideBulkPaste={wheelSync.hideBulkPaste}
+          onWinnerSelected={handleWinnerSelected}
+        />
+      ) : null}
     </div>
   );
 }

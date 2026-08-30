@@ -649,10 +649,10 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "random-number-wheel": {
     directAnswer:
-      "The Random Number Wheel picks integers inside a min-max range you define, with an optional no-repeat toggle so lottery-style draws never duplicate until the pool empties. Ranges of 30 numbers or fewer also show on the visual wheel; larger ranges show a bold numeric result after you pick. Use it for board-game substitutes, bingo-style calls, or classroom math warm-ups.",
+      "The Random Number Wheel picks integers inside a min–max range you set. Changing minimum or maximum reloads the visual wheel immediately for ranges of 30 or fewer. Optional no-repeat mode keeps one shared used pool for both the Pick random number button and the spin wheel—drawn integers leave both until you reset or the pool empties. Larger ranges skip the wheel graphic and show a bold numeric result. Use it for board-game substitutes, bingo-style calls, or classroom math warm-ups.",
     title: "Random Number Wheel, Range and No-Repeat",
     metaDescription:
-      "Set min and max, toggle no-repeat, and pick a random integer. Ranges ≤30 also appear on the wheel; larger ranges show a bold number.",
+      "Set min and max—the wheel reloads instantly for ranges ≤30. No-repeat shares one pool between the quick-pick button and the spin wheel.",
     useCases: [
       {
         heading: "Bingo caller replacement",
@@ -675,17 +675,17 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "How do I set min and max values?",
         answer:
-          "Use the Minimum and Maximum fields above the picker. Ranges of 30 or fewer also load those integers onto the visual wheel.",
+          "Use the Minimum and Maximum fields in the mode card. For ranges of 30 or fewer, those integers load onto the visual wheel and Manage Entries list as soon as you change either field—no extra button needed.",
       },
       {
         question: "What does no-repeat mode do?",
         answer:
-          "After a number wins, it leaves the active pool until you reset, preventing duplicate picks in one session.",
+          "Drawn numbers leave one shared pool used by both Pick random number and the spin wheel until you tap Reset used or change the range. That prevents duplicate picks in one session.",
       },
       {
         question: "When do I see a spinning wheel vs a big number?",
         answer:
-          "If your range has 30 values or fewer, picks also appear on the visual wheel. Larger ranges show the result as a large number so the UI stays readable.",
+          "Ranges of 30 values or fewer show every integer on the visual wheel; both the button and the wheel draw from that same list. Larger ranges hide the wheel graphic and show the result as a large number so the UI stays readable.",
       },
       {
         question: "Is this cryptographically secure for high-stakes lotteries?",

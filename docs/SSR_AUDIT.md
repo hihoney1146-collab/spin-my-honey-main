@@ -38,7 +38,7 @@ Generated 2026-08-30 from built `dist/` HTML, the exact bytes served to a no-JS 
 | `/privacy-policy` | 647 | PASS |
 | `/raffle-wheel` | 551 | PASS |
 | `/random-name-picker-wheel` | 506 | PASS |
-| `/random-number-wheel` | 494 | PASS |
+| `/random-number-wheel` | 573 | PASS |
 | `/random-student-picker` | 460 | PASS |
 | `/secret-santa-wheel-generator` | 453 | PASS |
 | `/self-care-wheel` | 417 | PASS |

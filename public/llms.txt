@@ -75,7 +75,7 @@ https://onlinespinwheel.fun/classroom-spinner, Classroom Spinner: Teacher hub wi
 
 ## Utilities & Tools (4)
 https://onlinespinwheel.fun/random-name-picker-wheel, Random Name Picker Wheel: Paste names, spin a fair Wheel of Names, remove winners after each pick, add optional weights, and keep session history for class or stream giveaways.
-https://onlinespinwheel.fun/random-number-wheel, Random Number Wheel: Set min and max, toggle no-repeat, and pick a random integer. Ranges ≤30 also appear on the wheel; larger ranges show a bold number.
+https://onlinespinwheel.fun/random-number-wheel, Random Number Wheel: Set min and max—the wheel reloads instantly for ranges ≤30. No-repeat shares one pool between the quick-pick button and the spin wheel.
 https://onlinespinwheel.fun/team-generator-wheel, Team Generator Wheel: Split PE classes, office workshops, or gaming lobbies into balanced teams from one name list, spin for a quick pick or generate squads.
 https://onlinespinwheel.fun/winner-picker-wheel, Winner Picker Wheel: Paste commenter @handles, remove duplicate entries, spin live, and screen-record proof for Instagram or TikTok giveaway winners.
 

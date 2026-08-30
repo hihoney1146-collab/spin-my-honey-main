@@ -76,3 +76,34 @@ test.describe("Duplicate entry policies", () => {
     await expect(page.getByText("2 entrants on the wheel")).toBeVisible();
   });
 });
+
+test.describe("Random number wheel unified pool", () => {
+  test("min/max change updates wheel entries immediately", async ({ page }) => {
+    await page.goto("/random-number-wheel", { waitUntil: "domcontentloaded" });
+    await page.locator("#num-max").fill("5");
+    await expect(page.getByText("On the wheel now (5)")).toBeVisible();
+    const inputs = await openEntriesPanel(page);
+    await expect(inputs).toHaveCount(5);
+    await expect(inputs.nth(0)).toHaveValue("1");
+    await expect(inputs.nth(4)).toHaveValue("5");
+  });
+
+  test("panel edit updates mode card counter", async ({ page }) => {
+    await page.goto("/random-number-wheel", { waitUntil: "domcontentloaded" });
+    await page.locator("#num-max").fill("4");
+    const inputs = await openEntriesPanel(page);
+    await inputs.nth(3).fill("99");
+    await expect(page.getByText("On the wheel now (4)")).toBeVisible();
+    await expect(inputs.nth(3)).toHaveValue("99");
+  });
+
+  test("no-repeat shrinks shared pool for button pick", async ({ page }) => {
+    await page.goto("/random-number-wheel", { waitUntil: "domcontentloaded" });
+    await page.locator("#num-max").fill("3");
+    await page.locator("#no-repeat").click();
+    await page.getByRole("button", { name: /Pick random number/i }).click();
+    await expect(page.getByText("On the wheel now (2)")).toBeVisible();
+    const inputs = await openEntriesPanel(page);
+    await expect(inputs).toHaveCount(2);
+  });
+});
