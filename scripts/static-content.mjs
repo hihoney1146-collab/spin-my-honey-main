@@ -714,7 +714,7 @@ function comparisonTraditionalContent() {
 </tbody>
 </table></section>
 <section><h2>Names in a hat</h2><p>Drawing from a hat is familiar but slow: you write every slip, folding can bias which is grabbed, and slips get lost. A spin wheel accepts a pasted list instantly, can't be "felt for," and reuses the same entries next time. Our <a href="/random-name-picker-wheel">random name picker</a> recreates the tradition digitally.</p></section>
-<section><h2>Dice and coins</h2><p>Dice and coins are great for a handful of outcomes but don't scale, you can't map 30 students to a coin. A wheel handles any number of custom options and shows the result clearly. For simple binaries, the <a href="/yes-or-no-wheel">yes or no wheel</a> and <a href="/coin-flip-wheel">coin flip wheel</a> keep the ritual while adding visibility.</p></section>
+<section><h2>Dice and coins</h2><p>Dice and coins are great for a handful of outcomes but don't scale, you can't map 30 students to a coin. A wheel handles any number of custom options and shows the result clearly. For simple binaries, the <a href="/yes-or-no-wheel">yes or no wheel</a> adds weighted slices, while our <a href="/coin-flip-wheel">online coin flip</a> is a true heads-or-tails toss with streak tracking.</p></section>
 <section><h2>Comparison at a glance</h2><ul>
 <li><strong>Speed:</strong> wheel is instant; physical methods take setup time.</li>
 <li><strong>Scale:</strong> wheel handles many custom entries; dice/coins do not.</li>
@@ -725,7 +725,7 @@ function comparisonTraditionalContent() {
 <section><h2>A quick decision guide</h2><p>Choose the method that fits the moment. If you are teaching a lesson about probability with tangible objects, dice and coins are perfect teaching aids. If you are settling a debate over dinner with a friend, a coin flip is charming. But if you need to pick fairly from a long list, prove the process to an audience, or repeat draws quickly without materials, the online wheel is the clear winner.</p></section>
 <section><h2>When tradition still wins</h2><p>Physical methods shine when no screen is available or when the tactile ritual is part of the fun. For everything else, classrooms, giveaways, and remote teams, a spin wheel is faster, fairer to verify, and endlessly reusable.</p></section>
 <section><h2>Related tools</h2><ul>
-<li><a href="/coin-flip-wheel">Coin flip wheel</a></li>
+<li><a href="/coin-flip-wheel">Online coin flip</a></li>
 <li><a href="/random-name-picker-wheel">Random name picker wheel</a></li>
 <li><a href="/team-generator-wheel">Team generator wheel</a></li>
 <li><a href="/random-name-picker-wheel">Random name picker wheel</a></li>
@@ -1098,7 +1098,7 @@ const WHEEL_MODE_FEATURES = {
   "winner-picker-wheel":
     "Draw multiple giveaway winners from a pasted comment list, dedupe @handles, and copy a shareable proof link with timestamp you can post to Instagram or TikTok Stories after a live spin recording.",
   "coin-flip-wheel":
-    "Every flip updates a running heads-versus-tails tally and streak counter so tiebreakers, kickoff calls, and stream overlays show transparent stats on screen.",
+    "Flip a digital coin with CSS 3D animation (result decided before the flip), custom Side A/B labels, running streak and tally tracked by side index, and multi-flip batches up to 50 with an ordered sequence for probability demos.",
   "alphabet-spinner-wheel":
     "Spin A through Z with an exclude-letters panel, uncheck glyphs already used in phonics drills, Scattergories, or spelling bees so only fresh letters remain on the wheel, plus projector fullscreen for smartboards.",
   "raffle-wheel":

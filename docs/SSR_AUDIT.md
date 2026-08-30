@@ -22,10 +22,10 @@ Generated 2026-08-30 from built `dist/` HTML, the exact bytes served to a no-JS 
 | `/case-study-school-using-spin-wheels` | 483 | PASS |
 | `/chinese-zodiac-wheel` | 445 | PASS |
 | `/classroom-spinner` | 497 | PASS |
-| `/coin-flip-wheel` | 480 | PASS |
+| `/coin-flip-wheel` | 541 | PASS |
 | `/comparison-online-vs-physical-spin-wheels` | 567 | PASS |
 | `/comparison-spin-wheel-vs-random-number-generator` | 573 | PASS |
-| `/comparison-spin-wheel-vs-traditional-methods` | 545 | PASS |
+| `/comparison-spin-wheel-vs-traditional-methods` | 551 | PASS |
 | `/contact-us` | 521 | PASS |
 | `/cookie-policy` | 394 | PASS (legal) |
 | `/date-night-wheel` | 532 | PASS |
@@ -38,7 +38,7 @@ Generated 2026-08-30 from built `dist/` HTML, the exact bytes served to a no-JS 
 | `/privacy-policy` | 647 | PASS |
 | `/raffle-wheel` | 551 | PASS |
 | `/random-name-picker-wheel` | 506 | PASS |
-| `/random-number-wheel` | 495 | PASS |
+| `/random-number-wheel` | 494 | PASS |
 | `/random-student-picker` | 460 | PASS |
 | `/secret-santa-wheel-generator` | 453 | PASS |
 | `/self-care-wheel` | 417 | PASS |
@@ -53,5 +53,5 @@ Generated 2026-08-30 from built `dist/` HTML, the exact bytes served to a no-JS 
 | `/tutorial-adding-images-to-spin-wheels` | 577 | PASS |
 | `/wheel-of-names-alternative` | 595 | PASS |
 | `/winner-picker-wheel` | 493 | PASS |
-| `/yes-or-no-wheel` | 643 | PASS |
+| `/yes-or-no-wheel` | 642 | PASS |
 | `/zodiac-sign-wheel` | 916 | PASS |

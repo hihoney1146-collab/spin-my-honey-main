@@ -75,7 +75,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       },
     ],
     relatedWheels: [
-      { slug: "coin-flip-wheel", anchor: "Heads-or-tails coin flip wheel" },
+      { slug: "coin-flip-wheel", anchor: "Heads-or-tails coin flip" },
       { slug: "should-i-text-him-wheel", anchor: "Should I text him spinner" },
       { slug: "dinner-picker-wheel", anchor: "Tonight's dinner picker" },
       { slug: "date-night-wheel", anchor: "Couples date night wheel" },
@@ -328,61 +328,61 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "coin-flip-wheel": {
     directAnswer:
-      "The Coin Flip Wheel simulates heads-or-tails decisions with a visible spin, a running streak counter, and a heads-versus-tails tally for game nights. Call your side, spin, and read the slice under the pointer, no pocket change required. Coaches pick kickoffs, siblings split chores, and streamers display tallies on screen during tiebreakers.",
-    title: "Coin Flip Wheel, Streak Counter Built In",
+      "The Coin Flip Wheel is a digital heads-or-tails coin toss with a 3D flip animation, running streak counter, and per-side session tally. Rename both faces (Team Blue / Team Gold, Yes / No), flip once or run a multi-flip batch for probability demos, and read the result in text as well as on the coin. Outcomes use cryptographically secure randomness before the animation plays.",
+    title: "Coin Flip Wheel — Heads or Tails Online",
     metaDescription:
-      "Need a fair 50/50 call right now? Spin heads or tails, watch your streak counter climb, and settle the tie on the spot.",
+      "Need a fair 50/50 call? Flip a digital coin with streak tracking, custom side labels, and multi-flip mode for classroom probability demos.",
     useCases: [
       {
         heading: "Board game first-player picks",
-        body: "Families spin instead of arguing over who rolled highest, with the tally showing whether heads has dominated the night.",
+        body: "Families flip instead of arguing over who rolled highest, with the tally showing whether one side has dominated the night.",
       },
       {
         heading: "Pickup sports kickoffs",
-        body: "Captains call heads or tails before each spin; streak stats become bragging rights at the park.",
+        body: "Captains call a side before each flip; streak stats become bragging rights at the park.",
       },
       {
         heading: "Lunch duty rotation",
-        body: "Office teams map heads to buy coffee and tails to grab napkins, spinning daily until tallies even out.",
+        body: "Office teams map custom labels to chores and flip daily until tallies even out.",
       },
       {
-        heading: "Stream overlay tiebreakers",
-        body: "Creators display the live heads-tails count so viewers see every call during tournament brackets.",
+        heading: "Classroom probability labs",
+        body: "Teachers run 20- or 50-flip batches, read the ordered sequence aloud, and compare totals to the expected 50/50 split.",
       },
     ],
     faqs: [
       {
         question: "Where do I see the streak counter?",
         answer:
-          "After each spin the wheel updates consecutive same-side results and the overall heads-versus-tails tally beside the canvas.",
+          "After each flip the page updates consecutive same-side results and the overall tally for both labeled faces in the stats card above the coin.",
       },
       {
-        question: "Can I rename slices beyond Heads and Tails?",
+        question: "Can I rename the two sides?",
         answer:
-          "Yes, swap labels to Team Blue and Team Gold or Yes and No while keeping the same streak tracking.",
+          "Yes. Edit Side A and Side B labels (Team Blue and Team Gold, Yes and No, etc.). Streaks and tallies track by side index, not by the word Heads or Tails.",
       },
       {
-        question: "Is a long heads streak rigged?",
+        question: "Is a long streak rigged?",
         answer:
-          "No. Streaks happen naturally in fair randomness; the counter only displays history, it does not balance future spins.",
+          "No. Streaks happen naturally in fair randomness; the counter only displays history, it does not balance future flips.",
       },
       {
-        question: "Does it support best-two-of-three?",
+        question: "How does multi-flip mode work?",
         answer:
-          "Spin three times quickly and compare tallies; many groups reset the counter between match series.",
+          "Set a count up to 50 and flip that many times in one run. You get an ordered sequence plus per-side totals, useful for stats lessons.",
       },
       {
         question: "Will it work offline?",
         answer:
-          "Once the page loads, spins run locally in your browser without needing a live connection.",
+          "Once the page loads, flips run locally in your browser without needing a live connection.",
       },
     ],
     relatedWheels: [
       { slug: "yes-or-no-wheel", anchor: "Yes-no-maybe decision wheel" },
-      { slug: "random-number-wheel", anchor: "Number range spinner" },
+      { slug: "random-number-wheel", anchor: "Number range picker" },
       { slug: "winner-picker-wheel", anchor: "Giveaway winner picker" },
       { slug: "abcd-spin-wheel", anchor: "ABCD quiz guess wheel" },
-      { slug: "nfl-team-picker-wheel", anchor: "NFL team coin-flip style pick" },
+      { slug: "random-student-picker", anchor: "Classroom student picker" },
     ],
   },
 
@@ -694,7 +694,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       },
     ],
     relatedWheels: [
-      { slug: "coin-flip-wheel", anchor: "Binary coin flip wheel" },
+      { slug: "coin-flip-wheel", anchor: "Binary coin flip" },
       { slug: "winner-picker-wheel", anchor: "Raffle winner name wheel" },
       { slug: "abcd-spin-wheel", anchor: "Letter answer ABCD wheel" },
       { slug: "alphabet-spinner-wheel", anchor: "A-Z letter spinner" },
