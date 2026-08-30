@@ -29,10 +29,13 @@ import {
   BLOG_INDEX_PATH,
   WHEEL_HUB_PATH,
   comparisonLinks,
+  originalContentLinks,
+  teamAuthorFooterLinks,
   tutorialLinks,
   caseStudyLinks,
   getFeaturedWheelLinks,
 } from "@/lib/siteInternalLinks";
+import { SITE_SOCIAL_LINKS } from "@/lib/teamLinks";
 import { openCookieSettings } from "@/lib/cookieConsentEvents";
 import { useEffect } from "react";
 import { contrastForeground } from "@/lib/contrastColor";
@@ -74,27 +77,44 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
     { to: "/disclaimer", label: "Disclaimer", icon: FileText },
   ];
 
-  const socialLinks = [
-    {
-      href: "https://www.pinterest.com/onlinespinwheel/",
-      label: "Pinterest",
-      icon: Pin,
-    },
-    {
-      href: "https://www.instagram.com/onlinespinwheel/",
-      label: "Instagram",
-      icon: Instagram,
-    },
-    {
-      href: "https://x.com/onlinespinwheel",
-      label: "X",
-      icon: Twitter,
-    },
-    {
-      href: "https://www.youtube.com/@OnlineSpinWheel",
-      label: "YouTube",
-      icon: Youtube,
-    },
+  const socialIconByLabel: Record<
+    (typeof SITE_SOCIAL_LINKS)[number]["label"],
+    typeof Pin
+  > = {
+    Pinterest: Pin,
+    Instagram: Instagram,
+    X: Twitter,
+    YouTube: Youtube,
+  };
+
+  const socialLinks = SITE_SOCIAL_LINKS.map((link) => ({
+    ...link,
+    icon: socialIconByLabel[link.label],
+  }));
+
+  const footerLinkClass =
+    "text-sm text-muted-foreground hover:text-primary transition-all duration-200 inline-flex items-center gap-2 group";
+
+  const footerLinks = [
+    { to: "/", label: "Home" },
+    { to: WHEEL_HUB_PATH, label: "All Spin Wheels" },
+    { to: "/about-us", label: "About Us" },
+    { to: BLOG_INDEX_PATH, label: "Blog" },
+    { to: "/contact-us", label: "Contact" },
+  ];
+
+  const legalLinks = [
+    { to: "/privacy-policy", label: "Privacy Policy" },
+    { to: "/cookie-policy", label: "Cookie Policy" },
+    { to: "/terms-and-conditions", label: "Terms & Conditions" },
+    { to: "/disclaimer", label: "Disclaimer" },
+  ];
+
+  const resourceLinks = [
+    ...originalContentLinks,
+    ...tutorialLinks,
+    ...comparisonLinks,
+    ...caseStudyLinks,
   ];
 
   if (streamerMode) {
@@ -304,8 +324,8 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Main Footer Content */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-8 py-8 sm:py-12 md:py-16">
-            {/* Brand Section */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-8 py-8 sm:py-12 md:py-16">
+            {/* Column 1: Brand + contact */}
             <div className="sm:col-span-2 lg:col-span-1">
               <Link to="/" className="inline-flex items-center gap-2 mb-4 group">
                 <div className="will-change-transform motion-safe:animate-spin motion-safe:[animation-duration:12s] motion-safe:[animation-timing-function:linear]">
@@ -362,105 +382,11 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                   })}
                 </div>
               </div>
-            </div>
-
-            {/* Quick Links */}
-            <div>
-              <h3 className="font-semibold text-base mb-4 text-foreground">
-                Quick Links
-              </h3>
-              <ul className="space-y-3">
-                {[
-                  { to: "/", label: "Home" },
-                  { to: WHEEL_HUB_PATH, label: "All Spin Wheels" },
-                  { to: "/about-us", label: "About Us" },
-                  { to: BLOG_INDEX_PATH, label: "Blog" },
-                  { to: "/contact-us", label: "Contact" },
-                ].map((link) => (
-                  <li key={link.to}>
-                    <Link
-                      to={link.to}
-                      className="text-sm text-muted-foreground hover:text-primary transition-all duration-200 inline-flex items-center gap-2 group"
-                    >
-                      <span className="w-0 group-hover:w-4 h-px bg-primary transition-all duration-300" />
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Resources, tutorials, comparisons, case studies */}
-            <div>
-              <h3 className="font-semibold text-base mb-4 text-foreground">
-                Resources
-              </h3>
-              <ul className="space-y-3">
-                {[...tutorialLinks, ...comparisonLinks, ...caseStudyLinks].map(
-                  (link) => (
-                    <li key={link.to}>
-                      <Link
-                        to={link.to}
-                        className="text-sm text-muted-foreground hover:text-primary transition-all duration-200 inline-flex items-center gap-2 group"
-                      >
-                        <span className="w-0 group-hover:w-4 h-px bg-primary transition-all duration-300" />
-                        {link.label}
-                      </Link>
-                    </li>
-                  ),
-                )}
-              </ul>
-
-              <h3 className="font-semibold text-base mb-3 mt-6 text-foreground">
-                Popular Wheels
-              </h3>
-              <ul className="space-y-3">
-                {getFeaturedWheelLinks().map((link) => (
-                  <li key={link.to}>
-                    <Link
-                      to={link.to}
-                      className="text-sm text-muted-foreground hover:text-primary transition-all duration-200 inline-flex items-center gap-2 group"
-                    >
-                      <span className="w-0 group-hover:w-4 h-px bg-primary transition-all duration-300" />
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Legal Links */}
-            <div>
-              <h3 className="font-semibold text-base mb-4 text-foreground">
-                Legal
-              </h3>
-              <ul className="space-y-3">
-                {[
-                  { to: "/privacy-policy", label: "Privacy Policy" },
-                  { to: "/cookie-policy", label: "Cookie Policy" },
-                  { to: "/terms-and-conditions", label: "Terms & Conditions" },
-                  { to: "/disclaimer", label: "Disclaimer" },
-                ].map((link) => (
-                  <li key={link.to}>
-                    <Link
-                      to={link.to}
-                      className="text-sm text-muted-foreground hover:text-primary transition-all duration-200 inline-flex items-center gap-2 group"
-                    >
-                      <span className="w-0 group-hover:w-4 h-px bg-primary transition-all duration-300" />
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Contact Section */}
-            <div>
-              <h3 className="font-semibold text-base mb-4 flex items-center gap-2">
-                <Mail className="h-4 w-4 text-primary" />
-                Get in Touch
-              </h3>
-              <div className="space-y-4">
+              <div className="mt-6">
+                <h3 className="font-semibold text-base mb-3 flex items-center gap-2 text-foreground">
+                  <Mail className="h-4 w-4 text-primary" />
+                  Get in Touch
+                </h3>
                 <div className="p-4 bg-primary/5 rounded-lg border border-primary/20 hover:border-primary/40 transition-all duration-300 group">
                   <p className="text-xs text-muted-foreground mb-2">
                     Email us at:
@@ -473,10 +399,97 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                     <span className="break-all">{CONTACT_EMAIL}</span>
                   </a>
                 </div>
-                <p className="text-xs text-muted-foreground italic">
+                <p className="text-xs text-muted-foreground italic mt-3">
                   We typically respond within 24-48 hours
                 </p>
               </div>
+            </div>
+
+            {/* Column 2: Quick Links + Team */}
+            <div>
+              <h3 className="font-semibold text-base mb-4 text-foreground">
+                Quick Links
+              </h3>
+              <ul className="space-y-3">
+                {footerLinks.map((link) => (
+                  <li key={link.to}>
+                    <Link to={link.to} className={footerLinkClass}>
+                      <span className="w-0 group-hover:w-4 h-px bg-primary transition-all duration-300" />
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <h3 className="font-semibold text-base mb-3 mt-6 text-foreground">
+                Team
+              </h3>
+              <ul className="space-y-3">
+                {teamAuthorFooterLinks.map((link) => (
+                  <li key={link.to}>
+                    <Link to={link.to} className={footerLinkClass}>
+                      <span className="w-0 group-hover:w-4 h-px bg-primary transition-all duration-300" />
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Column 3: Popular Wheels */}
+            <div>
+              <h3 className="font-semibold text-base mb-4 text-foreground">
+                Popular Wheels
+              </h3>
+              <ul className="space-y-3">
+                {getFeaturedWheelLinks().map((link) => (
+                  <li key={link.to}>
+                    <Link to={link.to} className={footerLinkClass}>
+                      <span className="w-0 group-hover:w-4 h-px bg-primary transition-all duration-300" />
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Column 4: Resources */}
+            <div>
+              <h3 className="font-semibold text-base mb-4 text-foreground">
+                Resources
+              </h3>
+              <ul className="space-y-3">
+                {resourceLinks.map((link) => (
+                  <li key={link.to}>
+                    <Link to={link.to} className={footerLinkClass}>
+                      <span className="w-0 group-hover:w-4 h-px bg-primary transition-all duration-300" />
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Column 5: Legal */}
+            <div>
+              <h3 className="font-semibold text-base mb-4 text-foreground">
+                Legal
+              </h3>
+              <ul className="space-y-3">
+                {legalLinks.map((link) => (
+                  <li key={link.to}>
+                    <Link to={link.to} className={footerLinkClass}>
+                      <span className="w-0 group-hover:w-4 h-px bg-primary transition-all duration-300" />
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+                <li>
+                  <a href="/sitemap.xml" className={footerLinkClass}>
+                    <span className="w-0 group-hover:w-4 h-px bg-primary transition-all duration-300" />
+                    Sitemap
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
 

@@ -43,7 +43,7 @@ Generated 2026-08-30 from built `dist/` HTML, the exact bytes served to a no-JS 
 | `/secret-santa-wheel-generator` | 453 | PASS |
 | `/self-care-wheel` | 417 | PASS |
 | `/should-i-text-him-wheel` | 424 | PASS |
-| `/spin-wheel-fairness-study` | 1106 | PASS |
+| `/spin-wheel-fairness-study` | 1111 | PASS |
 | `/team-generator-wheel` | 467 | PASS |
 | `/team/ceo` | 493 | PASS |
 | `/team/co-founder` | 505 | PASS |

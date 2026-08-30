@@ -1,6 +1,7 @@
 import { getAllBlogPosts } from "@/data/blogPosts";
 import { getWheelPageBySlug } from "@/lib/wheelPages";
 import { isWheelIndexableSlug } from "@/data/wheelIndexPolicy";
+import { ARMGHANA_AUTHOR, RAJA_AUTHOR, ZOHA_AUTHOR } from "@/lib/teamAuthors";
 
 export type SiteLinkItem = {
   to: string;
@@ -27,6 +28,23 @@ export const toolLinks: SiteLinkItem[] = [
 ];
 
 export const guideLinks: SiteLinkItem[] = [];
+
+export const originalContentLinks: SiteLinkItem[] = [
+  {
+    to: "/spin-wheel-fairness-study",
+    label: "Fairness study (100k spins)",
+  },
+  {
+    to: "/how-randomness-works",
+    label: "How randomness works",
+  },
+];
+
+export const teamAuthorFooterLinks: SiteLinkItem[] = [
+  { to: ARMGHANA_AUTHOR.path, label: ARMGHANA_AUTHOR.name },
+  { to: ZOHA_AUTHOR.path, label: ZOHA_AUTHOR.name },
+  { to: RAJA_AUTHOR.path, label: RAJA_AUTHOR.name },
+];
 
 export const tutorialLinks: SiteLinkItem[] = [
   {
