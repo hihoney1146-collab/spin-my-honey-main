@@ -328,48 +328,48 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "coin-flip-wheel": {
     directAnswer:
-      "The Coin Flip Wheel is a digital heads-or-tails coin toss with a 3D flip animation, running streak counter, and per-side session tally. Rename both faces (Team Blue / Team Gold, Yes / No), flip once or run a multi-flip batch for probability demos, and read the result in text as well as on the coin. Outcomes use cryptographically secure randomness before the animation plays.",
+      "The Coin Flip Wheel is a digital heads-or-tails toss with CSS 3D animation, optional face presets or local-only custom images, a captioned question field, weighted odds slider, streak counter, multi-flip batches, downloadable result PNGs (text only), and shareable proof links. Outcomes use crypto.getRandomValues before the flip animation plays; uploaded face images never leave your browser.",
     title: "Coin Flip Wheel — Heads or Tails Online",
     metaDescription:
-      "Need a fair 50/50 call? Flip a digital coin with streak tracking, custom side labels, and multi-flip mode for classroom probability demos.",
+      "Flip a digital coin with custom labels, local face images, weighted odds, streak tracking, result cards, and proof links — all in your browser.",
     useCases: [
       {
         heading: "Board game first-player picks",
-        body: "Families flip instead of arguing over who rolled highest, with the tally showing whether one side has dominated the night.",
+        body: "Add a short question, flip once, and share the result card or proof link so everyone sees the same outcome.",
       },
       {
         heading: "Pickup sports kickoffs",
-        body: "Captains call a side before each flip; streak stats become bragging rights at the park.",
+        body: "Rename sides Team A and Team B, use blue/gold presets, and track streak stats across the match.",
       },
       {
-        heading: "Lunch duty rotation",
-        body: "Office teams map custom labels to chores and flip daily until tallies even out.",
+        heading: "Couples debate tiebreakers",
+        body: "Type the question above the coin, flip, and download a text-only PNG without uploading photos to any server.",
       },
       {
         heading: "Classroom probability labs",
-        body: "Teachers run 20- or 50-flip batches, read the ordered sequence aloud, and compare totals to the expected 50/50 split.",
+        body: "Shift the weight slider to 70/30, run multi-flip batches, and compare empirical totals to the displayed odds.",
       },
     ],
     faqs: [
       {
-        question: "Where do I see the streak counter?",
+        question: "Can I upload photos for each coin face?",
         answer:
-          "After each flip the page updates consecutive same-side results and the overall tally for both labeled faces in the stats card above the coin.",
+          "Yes, optionally. Images are read locally in your browser (PNG, JPEG, or WebP under 5 MB), downscaled on-device, and never uploaded or stored on our servers.",
       },
       {
-        question: "Can I rename the two sides?",
+        question: "How does weighted flip work?",
         answer:
-          "Yes. Edit Side A and Side B labels (Team Blue and Team Gold, Yes and No, etc.). Streaks and tallies track by side index, not by the word Heads or Tails.",
+          "Move the slider to set Side A win percentage; the label always shows the exact odds (e.g. 70% Heads / 30% Tails). Randomness still uses crypto.getRandomValues.",
       },
       {
-        question: "Is a long streak rigged?",
+        question: "What is on the downloadable result image?",
         answer:
-          "No. Streaks happen naturally in fair randomness; the counter only displays history, it does not balance future flips.",
+          "Question, both labels, winner, UTC timestamp, odds if weighted, and the site URL. Custom uploaded face images are not included in exports or proof links.",
       },
       {
-        question: "How does multi-flip mode work?",
+        question: "What does the proof link contain?",
         answer:
-          "Set a count up to 50 and flip that many times in one run. You get an ordered sequence plus per-side totals, useful for stats lessons.",
+          "Question, both labels, winner, UTC time, crypto RNG method, and odds if weighted — encoded in the URL with no server lookup. Proof pages are noindex.",
       },
       {
         question: "Will it work offline?",

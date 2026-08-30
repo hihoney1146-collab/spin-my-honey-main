@@ -5,12 +5,18 @@ export type ResultProofPayload = {
   w: string[];
   /** UTC timestamp (ms) */
   t: number;
-  /** Active entry count at spin time */
+  /** Active entry count at spin time (coin flip: 2 sides) */
   n: number;
   /** Source wheel slug */
   s: string;
   /** Randomness method */
   m: typeof RESULT_METHOD;
+  /** Coin flip: optional question */
+  q?: string;
+  /** Coin flip: both side labels */
+  l?: [string, string];
+  /** Coin flip: side 0 win probability percent (integer) */
+  p0?: number;
 };
 
 function toBase64Url(json: string): string {

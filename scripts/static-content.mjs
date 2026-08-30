@@ -1098,7 +1098,7 @@ const WHEEL_MODE_FEATURES = {
   "winner-picker-wheel":
     "Draw multiple giveaway winners from a pasted comment list, dedupe @handles, and copy a shareable proof link with timestamp you can post to Instagram or TikTok Stories after a live spin recording.",
   "coin-flip-wheel":
-    "Flip a digital coin with CSS 3D animation (result decided before the flip), custom Side A/B labels, running streak and tally tracked by side index, and multi-flip batches up to 50 with an ordered sequence for probability demos.",
+    "Flip a digital coin with CSS 3D animation, face presets or local-only custom images (never uploaded), optional question caption, weighted odds slider, streak/tally by side index, multi-flip batches, text-only result PNG download, and shareable proof links.",
   "alphabet-spinner-wheel":
     "Spin A through Z with an exclude-letters panel, uncheck glyphs already used in phonics drills, Scattergories, or spelling bees so only fresh letters remain on the wheel, plus projector fullscreen for smartboards.",
   "raffle-wheel":

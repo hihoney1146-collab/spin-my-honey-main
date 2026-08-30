@@ -14,13 +14,18 @@ const ResultPage = () => {
   const { id } = useParams<{ id: string }>();
   const proof = id ? decodeResultId(id) : null;
   const canonical = `${SITE_ORIGIN}/result/${id ?? ""}`;
+  const isCoinFlip = Boolean(proof?.l && proof.s === "coin-flip-wheel");
 
   const title = proof
-    ? `Verified spin result, ${proof.w.join(", ")} | Online Spin Wheel`
+    ? isCoinFlip
+      ? `Verified coin flip, ${proof.w.join(", ")} | Online Spin Wheel`
+      : `Verified spin result, ${proof.w.join(", ")} | Online Spin Wheel`
     : "Spin result verification | Online Spin Wheel";
 
   const description = proof
-    ? `${proof.w.length} winner(s) from ${proof.n} entries. Drawn ${formatUtc(proof.t)} using ${RESULT_METHOD}.`
+    ? isCoinFlip
+      ? `Coin flip winner: ${proof.w.join(", ")}. Drawn ${formatUtc(proof.t)} using ${RESULT_METHOD}.`
+      : `${proof.w.length} winner(s) from ${proof.n} entries. Drawn ${formatUtc(proof.t)} using ${RESULT_METHOD}.`
     : "This proof link is invalid or expired.";
 
   return (
@@ -56,15 +61,37 @@ const ResultPage = () => {
             <div className="flex items-center gap-2 text-primary mb-4">
               <ShieldCheck className="h-6 w-6" />
               <p className="text-sm font-semibold uppercase tracking-wide">
-                Verified spin result
+                {isCoinFlip ? "Verified coin flip" : "Verified spin result"}
               </p>
             </div>
-            <h1 className="text-2xl md:text-3xl font-bold mb-6">Spin proof record</h1>
+            <h1 className="text-2xl md:text-3xl font-bold mb-6">
+              {isCoinFlip ? "Coin flip proof record" : "Spin proof record"}
+            </h1>
 
             <Card className="p-6 md:p-8 space-y-5 border-primary/25 bg-primary/5">
               <dl className="space-y-4 m-0">
+                {proof.q ? (
+                  <div>
+                    <dt className="text-sm font-medium text-muted-foreground">Question</dt>
+                    <dd className="text-lg font-semibold mt-1">{proof.q}</dd>
+                  </div>
+                ) : null}
+                {proof.l ? (
+                  <>
+                    <div>
+                      <dt className="text-sm font-medium text-muted-foreground">Side A</dt>
+                      <dd className="text-lg font-semibold mt-1">{proof.l[0]}</dd>
+                    </div>
+                    <div>
+                      <dt className="text-sm font-medium text-muted-foreground">Side B</dt>
+                      <dd className="text-lg font-semibold mt-1">{proof.l[1]}</dd>
+                    </div>
+                  </>
+                ) : null}
                 <div>
-                  <dt className="text-sm font-medium text-muted-foreground">Winner(s)</dt>
+                  <dt className="text-sm font-medium text-muted-foreground">
+                    {isCoinFlip ? "Winner" : "Winner(s)"}
+                  </dt>
                   <dd className="text-xl font-bold mt-1">
                     {proof.w.map((name) => (
                       <div key={name}>{name}</div>
@@ -72,9 +99,20 @@ const ResultPage = () => {
                   </dd>
                 </div>
                 <div>
-                  <dt className="text-sm font-medium text-muted-foreground">Entries in pool</dt>
+                  <dt className="text-sm font-medium text-muted-foreground">
+                    {isCoinFlip ? "Sides" : "Entries in pool"}
+                  </dt>
                   <dd className="text-lg font-semibold mt-1">{proof.n}</dd>
                 </div>
+                {proof.p0 !== undefined && proof.p0 !== 50 ? (
+                  <div>
+                    <dt className="text-sm font-medium text-muted-foreground">Odds used</dt>
+                    <dd className="text-lg font-semibold mt-1">
+                      {proof.p0}% {proof.l?.[0] ?? "Side A"} / {100 - proof.p0}%{" "}
+                      {proof.l?.[1] ?? "Side B"}
+                    </dd>
+                  </div>
+                ) : null}
                 <div>
                   <dt className="text-sm font-medium text-muted-foreground">Drawn (UTC)</dt>
                   <dd className="text-lg font-semibold mt-1">{formatUtc(proof.t)}</dd>
@@ -112,7 +150,9 @@ const ResultPage = () => {
             <div className="mt-8 flex flex-wrap gap-3">
               {proof.s && proof.s !== "legacy" ? (
                 <Button asChild variant="default">
-                  <Link to={`/${proof.s}`}>Open wheel</Link>
+                  <Link to={`/${proof.s}`}>
+                    {isCoinFlip ? "Open coin flip" : "Open wheel"}
+                  </Link>
                 </Button>
               ) : null}
               <Button asChild variant="outline">
