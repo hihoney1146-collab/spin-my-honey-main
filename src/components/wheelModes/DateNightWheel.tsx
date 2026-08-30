@@ -116,13 +116,14 @@ export function DateNightWheel({
         </div>
         <p className="text-sm text-muted-foreground">
           Both filters rebuild the plan list from a tagged dataset (
-          {labels.length} plans match).
+          {wheelSync.entryLabels.length} plans match). Custom edits stick until you
+          switch filters — then the new chip&apos;s list replaces them.
         </p>
         <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
-          On the wheel now ({labels.length})
+          On the wheel now ({wheelSync.entryLabels.length})
         </p>
         <ul className="text-sm text-foreground grid sm:grid-cols-2 gap-1">
-          {labels.map((label) => (
+          {wheelSync.entryLabels.map((label) => (
             <li key={label}>{label}</li>
           ))}
         </ul>

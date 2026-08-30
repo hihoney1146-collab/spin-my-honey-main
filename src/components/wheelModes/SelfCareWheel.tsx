@@ -77,11 +77,15 @@ export function SelfCareWheel({ presetOptionLabels: _presetOptionLabels }: SelfC
             </Button>
           ))}
         </div>
+        <p className="text-xs text-muted-foreground">
+          Custom list edits stick until you switch filters — then the new chip&apos;s
+          list replaces them.
+        </p>
         <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
-          On the wheel now ({labels.length})
+          On the wheel now ({wheelSync.entryLabels.length})
         </p>
         <ul className="text-sm text-foreground grid sm:grid-cols-2 gap-1">
-          {labels.map((label) => (
+          {wheelSync.entryLabels.map((label) => (
             <li key={label}>{label}</li>
           ))}
         </ul>

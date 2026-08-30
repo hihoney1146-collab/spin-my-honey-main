@@ -111,10 +111,11 @@ export function OutfitPickerWheel({
         </div>
         <p className="text-sm text-muted-foreground">
           Both toggles rebuild the wheel from a tagged outfit dataset (
-          {labels.length} looks match).
+          {wheelSync.entryLabels.length} looks match). Custom edits stick until you
+          switch filters — then the new combination replaces them.
         </p>
         <ul className="text-sm text-foreground grid sm:grid-cols-2 gap-1">
-          {labels.map((label) => (
+          {wheelSync.entryLabels.map((label) => (
             <li key={label}>{label}</li>
           ))}
         </ul>

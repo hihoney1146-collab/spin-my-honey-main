@@ -156,6 +156,10 @@ export function MoviePickerWheel({
             />
           </div>
         ) : null}
+        <p className="text-xs text-muted-foreground">
+          Custom list edits stick until you switch mood or length — then the new
+          filter&apos;s list replaces them.
+        </p>
         <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
           On the wheel now ({wheelSync.entryLabels.length})
         </p>

@@ -107,3 +107,193 @@ test.describe("Random number wheel unified pool", () => {
     await expect(inputs).toHaveCount(2);
   });
 });
+
+async function expectOnWheelCount(
+  page: import("@playwright/test").Page,
+  count: number,
+) {
+  await expect(page.getByText(`On the wheel now (${count})`)).toBeVisible();
+}
+
+test.describe("Filter/chip wheel ↔ Manage Entries sync", () => {
+  test("self-care: chip rebuilds pool and panel", async ({ page }) => {
+    await page.goto("/self-care-wheel", { waitUntil: "domcontentloaded" });
+    await expect(page.getByRole("button", { name: "5 minutes" })).toBeVisible({
+      timeout: 30_000,
+    });
+    await page.getByRole("button", { name: "Movement" }).click();
+    await expectOnWheelCount(page, 6);
+    const inputs = await openEntriesPanel(page);
+    await expect(inputs).toHaveCount(6);
+    await expect(inputs.nth(0)).toHaveValue("Ten-minute walk");
+  });
+
+  test("self-care: panel edit updates wheel preview list", async ({ page }) => {
+    await page.goto("/self-care-wheel", { waitUntil: "domcontentloaded" });
+    await page.getByRole("button", { name: "Movement" }).click();
+    const inputs = await openEntriesPanel(page);
+    await inputs.nth(0).fill("Custom stretch break");
+    await expect(inputs.nth(0)).toHaveValue("Custom stretch break");
+    await expect(page.getByText("Custom stretch break")).toBeVisible();
+    await expectOnWheelCount(page, 6);
+  });
+
+  test("self-care: chip switch replaces manual edits", async ({ page }) => {
+    await page.goto("/self-care-wheel", { waitUntil: "domcontentloaded" });
+    await page.getByRole("button", { name: "Movement" }).click();
+    const inputs = await openEntriesPanel(page);
+    await inputs.nth(0).fill("Custom stretch break");
+    await page.getByRole("button", { name: "No spend" }).click();
+    await expect(inputs.nth(0)).toHaveValue("Free walk around the block");
+    await expect(page.getByText("Custom stretch break")).toHaveCount(0);
+  });
+
+  test("dinner-picker: chip rebuilds pool and panel", async ({ page }) => {
+    await page.goto("/dinner-picker-wheel", { waitUntil: "domcontentloaded" });
+    await expect(page.getByText("Italian pasta")).toBeVisible({ timeout: 30_000 });
+    await page.getByRole("button", { name: "Leftovers" }).click();
+    await expectOnWheelCount(page, 6);
+    const inputs = await openEntriesPanel(page);
+    await expect(inputs.nth(0)).toHaveValue("Remix leftovers into a bowl");
+    await expect(page.getByText("Fried rice with leftovers")).toBeVisible();
+  });
+
+  test("dinner-picker: panel edit updates wheel preview list", async ({ page }) => {
+    await page.goto("/dinner-picker-wheel", { waitUntil: "domcontentloaded" });
+    await page.getByRole("button", { name: "Leftovers" }).click();
+    const inputs = await openEntriesPanel(page);
+    await inputs.nth(0).fill("My leftover stew");
+    await expect(page.getByText("My leftover stew")).toBeVisible();
+    await expectOnWheelCount(page, 6);
+  });
+
+  test("dinner-picker: chip switch replaces manual edits", async ({ page }) => {
+    await page.goto("/dinner-picker-wheel", { waitUntil: "domcontentloaded" });
+    await page.getByRole("button", { name: "Leftovers" }).click();
+    const inputs = await openEntriesPanel(page);
+    await inputs.nth(0).fill("My leftover stew");
+    await page.getByRole("button", { name: "Cuisine" }).click();
+    await expect(inputs.nth(0)).toHaveValue("Italian pasta");
+    await expect(page.getByText("My leftover stew")).toHaveCount(0);
+  });
+
+  test("outfit-picker: filters rebuild pool and panel", async ({ page }) => {
+    await page.goto("/outfit-picker-wheel", { waitUntil: "domcontentloaded" });
+    await expect(page.getByRole("button", { name: "Work" })).toBeVisible({
+      timeout: 30_000,
+    });
+    await page.getByRole("button", { name: "Work" }).click();
+    await page.getByRole("button", { name: "Rain" }).click();
+    const inputs = await openEntriesPanel(page);
+    await expect(inputs.first()).toBeVisible();
+    expect(await inputs.count()).toBeGreaterThanOrEqual(2);
+    await expect(page.getByText("Waterproof shell + jeans")).toBeVisible();
+  });
+
+  test("outfit-picker: panel edit updates preview list", async ({ page }) => {
+    await page.goto("/outfit-picker-wheel", { waitUntil: "domcontentloaded" });
+    await page.getByRole("button", { name: "Work" }).click();
+    await page.getByRole("button", { name: "Rain" }).click();
+    const inputs = await openEntriesPanel(page);
+    await inputs.nth(0).fill("Custom rain look");
+    await expect(page.getByText("Custom rain look")).toBeVisible();
+  });
+
+  test("outfit-picker: filter switch replaces manual edits", async ({ page }) => {
+    await page.goto("/outfit-picker-wheel", { waitUntil: "domcontentloaded" });
+    await page.getByRole("button", { name: "Work" }).click();
+    await page.getByRole("button", { name: "Rain" }).click();
+    const inputs = await openEntriesPanel(page);
+    await inputs.nth(0).fill("Custom rain look");
+    await page.getByRole("button", { name: "Casual" }).click();
+    await expect(page.getByText("Custom rain look")).toHaveCount(0);
+    await expect(inputs.first()).not.toHaveValue("Custom rain look");
+  });
+
+  test("movie-picker: mood chip rebuilds pool and panel", async ({ page }) => {
+    await page.goto("/movie-picker-wheel", { waitUntil: "domcontentloaded" });
+    await expect(page.getByText("Feel-good comedy")).toBeVisible({ timeout: 30_000 });
+    await page.getByRole("button", { name: "Horror / thriller" }).click();
+    const inputs = await openEntriesPanel(page);
+    await expect(inputs.nth(0)).toHaveValue("Classic horror");
+    await expect(page.getByText("Classic horror")).toBeVisible();
+  });
+
+  test("movie-picker: panel edit updates wheel preview list", async ({ page }) => {
+    await page.goto("/movie-picker-wheel", { waitUntil: "domcontentloaded" });
+    await page.getByRole("button", { name: "Horror / thriller" }).click();
+    const inputs = await openEntriesPanel(page);
+    await inputs.nth(0).fill("My scary pick");
+    await expect(inputs.nth(0)).toHaveValue("My scary pick");
+    await expect(page.locator("li").filter({ hasText: "My scary pick" })).toBeVisible();
+  });
+
+  test("movie-picker: mood chip replaces manual edits", async ({ page }) => {
+    await page.goto("/movie-picker-wheel", { waitUntil: "domcontentloaded" });
+    await page.getByRole("button", { name: "Horror / thriller" }).click();
+    const inputs = await openEntriesPanel(page);
+    await inputs.nth(0).fill("My scary pick");
+    await page.getByRole("button", { name: "Cozy" }).click();
+    await expect(page.getByText("My scary pick")).toHaveCount(0);
+    await expect(inputs.nth(0)).toHaveValue("Feel-good comedy");
+  });
+
+  test("date-night: filters rebuild pool and panel", async ({ page }) => {
+    await page.goto("/date-night-wheel", { waitUntil: "domcontentloaded" });
+    await expect(page.getByText("Cook together")).toBeVisible({ timeout: 30_000 });
+    await page.getByRole("button", { name: "At home" }).click();
+    await page.getByRole("button", { name: "Treat night" }).click();
+    await expect(page.getByText("Spa-style night in")).toBeVisible();
+    const inputs = await openEntriesPanel(page);
+    await expect(inputs.nth(0)).toHaveValue("Spa-style night in");
+  });
+
+  test("date-night: panel edit updates wheel preview list", async ({ page }) => {
+    await page.goto("/date-night-wheel", { waitUntil: "domcontentloaded" });
+    await page.getByRole("button", { name: "At home" }).click();
+    await page.getByRole("button", { name: "Treat night" }).click();
+    const inputs = await openEntriesPanel(page);
+    await inputs.nth(0).fill("Custom treat night");
+    await expect(page.getByText("Custom treat night")).toBeVisible();
+  });
+
+  test("date-night: filter switch replaces manual edits", async ({ page }) => {
+    await page.goto("/date-night-wheel", { waitUntil: "domcontentloaded" });
+    await page.getByRole("button", { name: "At home" }).click();
+    await page.getByRole("button", { name: "Treat night" }).click();
+    const inputs = await openEntriesPanel(page);
+    await inputs.nth(0).fill("Custom treat night");
+    await page.getByRole("button", { name: "Go out" }).click();
+    await expect(page.getByText("Custom treat night")).toHaveCount(0);
+    await expect(inputs.first()).not.toHaveValue("Custom treat night");
+  });
+
+  test("pokemon-randomizer: chip rebuilds pool and panel", async ({ page }) => {
+    await page.goto("/pokemon-randomizer-wheel", { waitUntil: "domcontentloaded" });
+    await expect(page.getByRole("button", { name: "Nuzlocke-style" })).toBeVisible({
+      timeout: 30_000,
+    });
+    await page.getByRole("button", { name: "Nuzlocke-style" }).click();
+    await expectOnWheelCount(page, 6);
+    const inputs = await openEntriesPanel(page);
+    await expect(inputs.nth(0)).toHaveValue("First encounter only");
+  });
+
+  test("pokemon-randomizer: panel edit updates wheel preview list", async ({ page }) => {
+    await page.goto("/pokemon-randomizer-wheel", { waitUntil: "domcontentloaded" });
+    await page.getByRole("button", { name: "Nuzlocke-style" }).click();
+    const inputs = await openEntriesPanel(page);
+    await inputs.nth(0).fill("Hardcore nuzlocke");
+    await expect(page.getByText("Hardcore nuzlocke")).toBeVisible();
+  });
+
+  test("pokemon-randomizer: chip switch replaces manual edits", async ({ page }) => {
+    await page.goto("/pokemon-randomizer-wheel", { waitUntil: "domcontentloaded" });
+    await page.getByRole("button", { name: "Nuzlocke-style" }).click();
+    const inputs = await openEntriesPanel(page);
+    await inputs.nth(0).fill("Hardcore nuzlocke");
+    await page.getByRole("button", { name: "Starters" }).click();
+    await expect(inputs.nth(0)).toHaveValue("Grass starter run");
+    await expect(page.getByText("Hardcore nuzlocke")).toHaveCount(0);
+  });
+});
