@@ -13,7 +13,7 @@ export const WHEEL_MODE_FEATURES: Record<string, string> = {
   "coin-flip-wheel":
     "Every flip updates a running heads-versus-tails tally and streak counter so tiebreakers, kickoff calls, and stream overlays show transparent stats on screen.",
   "alphabet-spinner-wheel":
-    "Spin A through Z with an exclude-letters panel, uncheck glyphs already used in phonics drills, Scattergories, or spelling bees so only fresh letters remain on the wheel.",
+    "Spin A through Z with an exclude-letters panel, uncheck glyphs already used in phonics drills, Scattergories, or spelling bees so only fresh letters remain on the wheel, plus projector fullscreen for smartboards.",
   "raffle-wheel":
     "Choose ticket-number mode, entrant-name mode, or prize-label mode (classic prize-wheel slices). Draw multiple winners without replacement and copy a timestamped proof link after your live draw.",
   "classroom-spinner":

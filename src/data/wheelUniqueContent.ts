@@ -287,7 +287,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       },
       {
         heading: "Rainy weekend backups",
-        body: "Indoor slices like escape rooms and cooking classes rotate in automatically when weather apps show storms.",
+        body: "Switch Where to At home and Budget to Budget so indoor plans like escape rooms and cooking classes stay on the wheel without a separate weather app.",
       },
     ],
     faqs: [
@@ -973,7 +973,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Is it smartboard friendly?",
         answer:
-          "Fullscreen classroom mode displays large slices readable from the back row.",
+          "Use Projector fullscreen to expand the wheel with a large tap-to-spin button so back-row students can read slices clearly.",
       },
     ],
     relatedWheels: [

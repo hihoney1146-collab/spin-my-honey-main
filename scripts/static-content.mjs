@@ -1100,13 +1100,13 @@ const WHEEL_MODE_FEATURES = {
   "coin-flip-wheel":
     "Every flip updates a running heads-versus-tails tally and streak counter so tiebreakers, kickoff calls, and stream overlays show transparent stats on screen.",
   "alphabet-spinner-wheel":
-    "Spin A through Z with an exclude-letters panel, uncheck glyphs already used in phonics drills, Scattergories, or spelling bees so only fresh letters remain on the wheel.",
+    "Spin A through Z with an exclude-letters panel, uncheck glyphs already used in phonics drills, Scattergories, or spelling bees so only fresh letters remain on the wheel, plus projector fullscreen for smartboards.",
   "raffle-wheel":
     "Choose ticket-number mode, entrant-name mode, or prize-label mode (classic prize-wheel slices). Draw multiple winners without replacement and copy a timestamped proof link after your live draw.",
   "classroom-spinner":
     "Teacher hub with three tabs: student picker (remove-after-pick + history + spin wheel), balanced team generator (same roster pattern + spin wheel), and a countdown timer, all in one fullscreen smartboard layout.",
   "random-name-picker-wheel":
-    "Name picker with remove-after-pick, session history, proof link, and streamer-mode controls for live overlays.",
+    "Name picker (Wheel of Names / digital hat draw) with remove-after-pick, session history, optional Name:weight entries that multiply slices, proof link, and streamer-mode controls.",
   "abcd-spin-wheel":
     "Locks the wheel to A–D for multiple-choice call-outs, optional remove-after-pick, projector fullscreen, and a session list of answers already called.",
   "should-i-text-him-wheel":
@@ -1118,7 +1118,7 @@ const WHEEL_MODE_FEATURES = {
   "pokemon-randomizer-wheel":
     "Challenge-pool filters (starters, types, nuzlocke-style rules, generation vibe) rebuild the wheel from rule labels rather than a static character list.",
   "outfit-picker-wheel":
-    "Occasion and weather filters (work, casual, date, rain, heat) swap curated outfit datasets onto the wheel.",
+    "Separate occasion (work / casual / date) and weather (any / rain / heat) toggles filter a tagged outfit dataset onto the wheel.",
   "yes-or-no-wheel":
     "Editable Yes / No / Maybe weights rebuild slice sizes (and shown percentages), plus an optional Best of 3 run that reports the majority.",
   "dinner-picker-wheel":

@@ -1,6 +1,6 @@
 # SSR Content Audit
 
-Generated 2026-08-21 from built `dist/` HTML, the exact bytes served to a no-JS crawler (equivalent to `curl` against production).
+Generated 2026-08-30 from built `dist/` HTML, the exact bytes served to a no-JS crawler (equivalent to `curl` against production).
 
 - Routes audited: **47**
 - Threshold: **400** crawler-visible words
@@ -12,7 +12,7 @@ Generated 2026-08-21 from built `dist/` HTML, the exact bytes served to a no-JS 
 | `/abcd-spin-wheel` | 451 | PASS |
 | `/about-us` | 618 | PASS |
 | `/all-spin-wheels` | 418 | PASS |
-| `/alphabet-spinner-wheel` | 420 | PASS |
+| `/alphabet-spinner-wheel` | 433 | PASS |
 | `/blog` | 579 | PASS |
 | `/blog/best-icebreaker-games-office-meetings` | 1966 | PASS |
 | `/blog/best-spin-wheel-games-for-students` | 1932 | PASS |
@@ -28,22 +28,22 @@ Generated 2026-08-21 from built `dist/` HTML, the exact bytes served to a no-JS 
 | `/comparison-spin-wheel-vs-traditional-methods` | 545 | PASS |
 | `/contact-us` | 521 | PASS |
 | `/cookie-policy` | 394 | PASS (legal) |
-| `/date-night-wheel` | 521 | PASS |
+| `/date-night-wheel` | 532 | PASS |
 | `/dinner-picker-wheel` | 501 | PASS |
 | `/disclaimer` | 406 | PASS |
 | `/how-randomness-works` | 519 | PASS |
 | `/movie-picker-wheel` | 523 | PASS |
-| `/outfit-picker-wheel` | 400 | PASS |
+| `/outfit-picker-wheel` | 407 | PASS |
 | `/pokemon-randomizer-wheel` | 419 | PASS |
 | `/privacy-policy` | 647 | PASS |
 | `/raffle-wheel` | 551 | PASS |
-| `/random-name-picker-wheel` | 496 | PASS |
+| `/random-name-picker-wheel` | 506 | PASS |
 | `/random-number-wheel` | 495 | PASS |
 | `/random-student-picker` | 460 | PASS |
 | `/secret-santa-wheel-generator` | 453 | PASS |
 | `/self-care-wheel` | 417 | PASS |
 | `/should-i-text-him-wheel` | 424 | PASS |
-| `/spin-wheel-fairness-study` | 1106 | PASS |
+| `/spin-wheel-fairness-study` | 1111 | PASS |
 | `/team-generator-wheel` | 467 | PASS |
 | `/team/ceo` | 493 | PASS |
 | `/team/co-founder` | 505 | PASS |

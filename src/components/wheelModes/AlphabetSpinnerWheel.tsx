@@ -1,8 +1,9 @@
 import { useMemo, useState } from "react";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { SpinWheel } from "@/components/SpinWheel";
-import { Type } from "lucide-react";
+import { Maximize2, Minimize2, Type } from "lucide-react";
 
 const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
@@ -14,6 +15,7 @@ export function AlphabetSpinnerWheel({
   presetOptionLabels,
 }: AlphabetSpinnerWheelProps) {
   const [excluded, setExcluded] = useState<Set<string>>(() => new Set());
+  const [fullscreen, setFullscreen] = useState(false);
 
   const activeLetters = useMemo(() => {
     const base =
@@ -34,11 +36,36 @@ export function AlphabetSpinnerWheel({
   };
 
   return (
-    <div className="space-y-4">
+    <div
+      className={
+        fullscreen
+          ? "fixed inset-0 z-50 bg-background p-4 overflow-auto"
+          : "space-y-4"
+      }
+    >
       <Card className="p-4 md:p-5">
-        <div className="flex items-center gap-2 text-primary font-semibold mb-3">
-          <Type className="h-5 w-5" />
-          <span>Exclude letters</span>
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-3">
+          <div className="flex items-center gap-2 text-primary font-semibold">
+            <Type className="h-5 w-5" />
+            <span>Exclude letters</span>
+          </div>
+          <Button
+            variant={fullscreen ? "default" : "outline"}
+            size="sm"
+            onClick={() => setFullscreen((f) => !f)}
+          >
+            {fullscreen ? (
+              <>
+                <Minimize2 className="mr-2 h-4 w-4" />
+                Exit projector
+              </>
+            ) : (
+              <>
+                <Maximize2 className="mr-2 h-4 w-4" />
+                Projector fullscreen
+              </>
+            )}
+          </Button>
         </div>
         <p className="text-sm text-muted-foreground mb-4">
           Uncheck letters already used in your game so the spinner only lands on
@@ -57,7 +84,11 @@ export function AlphabetSpinnerWheel({
                   onCheckedChange={() => toggleLetter(letter)}
                   id={`letter-${letter}`}
                 />
-                <span className={isActive ? "font-medium" : "text-muted-foreground line-through"}>
+                <span
+                  className={
+                    isActive ? "font-medium" : "text-muted-foreground line-through"
+                  }
+                >
                   {letter}
                 </span>
               </label>
@@ -74,6 +105,7 @@ export function AlphabetSpinnerWheel({
         <SpinWheel
           key={activeLetters.join("")}
           presetOptionLabels={activeLetters}
+          spinButtonLabel={fullscreen ? "TAP TO SPIN" : undefined}
         />
       ) : (
         <Card className="p-6 text-center text-muted-foreground">
