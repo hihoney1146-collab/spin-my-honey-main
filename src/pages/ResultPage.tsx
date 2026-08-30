@@ -88,9 +88,21 @@ const ResultPage = () => {
                     </div>
                   </>
                 ) : null}
+                {proof.tc && proof.cl ? (
+                  <>
+                    <div>
+                      <dt className="text-sm font-medium text-muted-foreground">Toss caller</dt>
+                      <dd className="text-lg font-semibold mt-1">{proof.tc}</dd>
+                    </div>
+                    <div>
+                      <dt className="text-sm font-medium text-muted-foreground">Call</dt>
+                      <dd className="text-lg font-semibold mt-1">{proof.cl}</dd>
+                    </div>
+                  </>
+                ) : null}
                 <div>
                   <dt className="text-sm font-medium text-muted-foreground">
-                    {isCoinFlip ? "Winner" : "Winner(s)"}
+                    {proof.tw ? "Toss winner" : isCoinFlip ? "Winner" : "Winner(s)"}
                   </dt>
                   <dd className="text-xl font-bold mt-1">
                     {proof.w.map((name) => (

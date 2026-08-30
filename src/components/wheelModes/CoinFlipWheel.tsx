@@ -4,13 +4,25 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
-import { Coins, Download, RotateCcw } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
 import {
-  computeFlipRotation,
+  Coins,
+  Copy,
+  Download,
+  ImagePlus,
+  Play,
+  RotateCcw,
+  Trash2,
+  Volume2,
+  VolumeX,
+} from "lucide-react";
+import {
+  computeEdgePhysics,
+  computeFlipPhysics,
   formatOddsText,
   normalizedSideRotation,
-  pickCoinSide,
-  pickCoinSides,
+  pickFlipOutcome,
+  resolveTossWinner,
   type CoinSideIndex,
 } from "@/lib/coinFlip";
 import { cryptoRandom } from "@/lib/cryptoRandom";
@@ -24,6 +36,14 @@ import {
   revokeCoinFaceUrl,
 } from "@/lib/coinFaceImage";
 import { downloadCoinFlipResultPng } from "@/lib/coinFlipResultExport";
+import {
+  playCoinBatchSound,
+  playCoinLandSound,
+  playCoinTossSound,
+  readCoinFlipSoundMuted,
+  warmUpCoinFlipAudio,
+  writeCoinFlipSoundMuted,
+} from "@/lib/coinFlipSound";
 import { CoinFlipProofActions } from "./CoinFlipProofActions";
 import { toast } from "sonner";
 
@@ -31,10 +51,13 @@ type CoinFlipWheelProps = {
   presetOptionLabels?: string[];
 };
 
-const FLIP_MS = 1800;
 const MULTI_FLIP_MS = 900;
 const MAX_MULTI = 50;
 const MAX_QUESTION = 120;
+const WOBBLE_MS = 320;
+
+const PRIMARY_FLIP_BTN =
+  "text-sm sm:text-base lg:text-lg font-bold px-6 sm:px-8 lg:px-10 py-3 sm:py-4 h-auto bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-primary-foreground w-full max-w-md shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none rounded-xl border-t border-white/20 relative overflow-hidden group touch-manipulation tracking-wide";
 
 type FlipSnapshot = {
   sideIndex: CoinSideIndex;
@@ -42,6 +65,17 @@ type FlipSnapshot = {
   question: string;
   labels: [string, string];
   side0Percent: number;
+  tossWinner?: string;
+  tossCaller?: string;
+  tossCall?: string;
+};
+
+type JournalEntry = {
+  timestampMs: number;
+  question: string;
+  labels: [string, string];
+  winner: string;
+  tossWinner?: string;
 };
 
 function defaultLabels(preset?: string[]): [string, string] {
@@ -102,12 +136,75 @@ function CoinFaceContent({
   );
 }
 
+function CoinFaceUpload({
+  side,
+  imageUrl,
+  onUpload,
+  onClear,
+}: {
+  side: CoinSideIndex;
+  imageUrl: string | null;
+  onUpload: (file: File) => void;
+  onClear: () => void;
+}) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const sideName = side === 0 ? "A" : "B";
+
+  return (
+    <div className="space-y-2 rounded-md border border-dashed border-input p-3">
+      <p className="text-sm font-medium">Side {sideName} face image</p>
+      {imageUrl ? (
+        <div className="flex items-center gap-3">
+          <img
+            src={imageUrl}
+            alt={`Side ${sideName} preview`}
+            className="h-14 w-14 rounded-full object-cover border"
+          />
+          <Button type="button" variant="ghost" size="sm" onClick={onClear}>
+            Remove image
+          </Button>
+        </div>
+      ) : (
+        <>
+          <input
+            ref={inputRef}
+            id={`coin-face-${side}`}
+            type="file"
+            accept="image/png,image/jpeg,image/webp"
+            className="sr-only"
+            data-testid={`coin-face-input-${side}`}
+            onChange={(e) => {
+              const file = e.target.files?.[0];
+              if (file) onUpload(file);
+              e.target.value = "";
+            }}
+          />
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            className="w-full sm:w-auto"
+            onClick={() => inputRef.current?.click()}
+            data-testid={`coin-face-upload-${side}`}
+          >
+            <ImagePlus className="mr-2 h-4 w-4" />
+            Use your own image
+          </Button>
+          <p className="text-xs text-muted-foreground">
+            PNG, JPEG, or WebP under 5 MB — stays on your device only.
+          </p>
+        </>
+      )}
+    </div>
+  );
+}
+
 export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
   const prefersReducedMotion = usePrefersReducedMotion();
-  const coinRef = useRef<HTMLDivElement>(null);
   const rotationRef = useRef(0);
   const lastSideIndexRef = useRef<CoinSideIndex | null>(null);
   const streakRef = useRef(0);
+  const userInteractedRef = useRef(false);
 
   const [presetId, setPresetId] = useState<CoinFacePresetId>("classic");
   const [sideLabels, setSideLabels] = useState<[string, string]>(() =>
@@ -131,14 +228,22 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
   const [flipping, setFlipping] = useState(false);
   const [rotationDeg, setRotationDeg] = useState(0);
   const [tiltDeg, setTiltDeg] = useState(0);
-  const [flipDurationMs, setFlipDurationMs] = useState(FLIP_MS);
+  const [edgeZDeg, setEdgeZDeg] = useState(0);
+  const [onEdge, setOnEdge] = useState(false);
+  const [flipDurationMs, setFlipDurationMs] = useState(1800);
   const [announcement, setAnnouncement] = useState("");
+  const [soundMuted, setSoundMuted] = useState(() => readCoinFlipSoundMuted());
+  const [tossMode, setTossMode] = useState(false);
+  const [tossCaller, setTossCaller] = useState<CoinSideIndex>(0);
+  const [tossCall, setTossCall] = useState<CoinSideIndex>(0);
+  const [journal, setJournal] = useState<JournalEntry[]>([]);
+  const [lastTossWinner, setLastTossWinner] = useState<string | null>(null);
 
   const preset = getCoinFacePreset(presetId);
   const total = counts[0] + counts[1];
-  const animMs = prefersReducedMotion ? 0 : FLIP_MS;
   const oddsText = formatOddsText(side0Weight, sideLabels[0], sideLabels[1]);
   const trimmedQuestion = question.trim().slice(0, MAX_QUESTION);
+  const flipDisabled = flipping;
 
   useEffect(() => {
     return () => {
@@ -147,14 +252,36 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
     };
   }, [faceImages]);
 
+  const markInteraction = useCallback(() => {
+    userInteractedRef.current = true;
+    warmUpCoinFlipAudio();
+  }, []);
+
+  const maybePlaySound = useCallback(
+    (play: () => void) => {
+      if (soundMuted || !userInteractedRef.current) return;
+      play();
+    },
+    [soundMuted],
+  );
+
+  const toggleSound = () => {
+    markInteraction();
+    setSoundMuted((prev) => {
+      const next = !prev;
+      writeCoinFlipSoundMuted(next);
+      return next;
+    });
+  };
+
   const applyPreset = (id: CoinFacePresetId) => {
     setPresetId(id);
     const next = getCoinFacePreset(id);
     setSideLabels([next.sides[0].label, next.sides[1].label]);
   };
 
-  const handleFaceUpload = async (side: CoinSideIndex, file: File | null) => {
-    if (!file) return;
+  const handleFaceUpload = async (side: CoinSideIndex, file: File) => {
+    markInteraction();
     try {
       const processed = await processCoinFaceFile(file);
       setFaceImages((prev) => {
@@ -163,6 +290,7 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
         next[side] = processed.objectUrl;
         return next;
       });
+      toast.success(`Side ${side === 0 ? "A" : "B"} image loaded.`);
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Could not load image.");
     }
@@ -177,9 +305,48 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
     });
   };
 
+  const runWobble = async (wobbleDeg: number) => {
+    if (prefersReducedMotion) return;
+    setTiltDeg(wobbleDeg);
+    await new Promise<void>((r) => window.setTimeout(r, WOBBLE_MS / 2));
+    setTiltDeg(-wobbleDeg * 0.45);
+    await new Promise<void>((r) => window.setTimeout(r, WOBBLE_MS / 2));
+    setTiltDeg(0);
+  };
+
+  const animateEdge = useCallback(async () => {
+    const physics = computeEdgePhysics();
+    setOnEdge(false);
+    setFlipDurationMs(physics.durationMs);
+
+    if (prefersReducedMotion) {
+      setOnEdge(true);
+      setEdgeZDeg(physics.edgeZDeg);
+      setTiltDeg(90);
+      return;
+    }
+
+    setTiltDeg(8 + Math.round(cryptoRandom() * 6));
+    await new Promise<void>((r) =>
+      window.setTimeout(r, physics.durationMs * 0.55),
+    );
+    setOnEdge(true);
+    setEdgeZDeg(physics.edgeZDeg);
+    setTiltDeg(90);
+    await new Promise<void>((r) =>
+      window.setTimeout(r, physics.durationMs * 0.45),
+    );
+    await runWobble(physics.wobbleDeg);
+  }, [prefersReducedMotion]);
+
   const animateToSide = useCallback(
-    async (sideIndex: CoinSideIndex, durationMs: number) => {
-      if (prefersReducedMotion || durationMs === 0) {
+    async (sideIndex: CoinSideIndex, durationMs?: number) => {
+      setOnEdge(false);
+      const physics = computeFlipPhysics(rotationRef.current, sideIndex);
+      const ms = durationMs ?? (prefersReducedMotion ? 0 : physics.durationMs);
+      setFlipDurationMs(ms);
+
+      if (prefersReducedMotion || ms === 0) {
         const snap = normalizedSideRotation(sideIndex);
         rotationRef.current = snap;
         setRotationDeg(snap);
@@ -187,20 +354,27 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
         return;
       }
 
-      setTiltDeg(8 + Math.round(cryptoRandom() * 6));
-      const target = computeFlipRotation(rotationRef.current, sideIndex);
-      rotationRef.current = target;
-      setRotationDeg(target);
+      setTiltDeg(physics.tiltDeg);
+      rotationRef.current = physics.targetDeg;
+      setRotationDeg(physics.targetDeg);
       await new Promise<void>((resolve) => {
-        window.setTimeout(resolve, durationMs + 60);
+        window.setTimeout(resolve, ms + 40);
       });
+      await runWobble(physics.wobbleDeg);
       setTiltDeg(0);
     },
     [prefersReducedMotion],
   );
 
+  const addJournalEntry = useCallback((entry: JournalEntry) => {
+    setJournal((prev) => [...prev, entry]);
+  }, []);
+
   const recordFlip = useCallback(
-    (sideIndex: CoinSideIndex, snapshot?: Omit<FlipSnapshot, "sideIndex">) => {
+    (
+      sideIndex: CoinSideIndex,
+      snapshot?: Omit<FlipSnapshot, "sideIndex">,
+    ) => {
       setCounts((prev) => {
         const next: [number, number] = [...prev];
         next[sideIndex] += 1;
@@ -213,62 +387,141 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
       setStreak(newStreak);
       setLastSideIndex(sideIndex);
       setLastResult(sideIndex);
+
       const label = sideLabels[sideIndex];
-      setAnnouncement(`Result: ${label}`);
-      if (snapshot) {
-        setLastSnapshot({ sideIndex, ...snapshot });
+      const tossWinner =
+        snapshot?.tossWinner ??
+        (tossMode
+          ? resolveTossWinner(tossCaller, tossCall, sideIndex, sideLabels)
+          : undefined);
+
+      if (tossMode && tossWinner) {
+        setLastTossWinner(tossWinner);
+        setAnnouncement(`${tossWinner} wins the toss`);
+      } else {
+        setLastTossWinner(null);
+        setAnnouncement(`Result: ${label}`);
       }
+
+      if (snapshot) {
+        setLastSnapshot({ sideIndex, ...snapshot, tossWinner });
+      }
+
+      addJournalEntry({
+        timestampMs: snapshot?.timestampMs ?? Date.now(),
+        question: snapshot?.question ?? trimmedQuestion,
+        labels: snapshot?.labels ?? sideLabels,
+        winner: label,
+        tossWinner: tossWinner ?? undefined,
+      });
     },
-    [sideLabels],
+    [
+      addJournalEntry,
+      sideLabels,
+      tossCall,
+      tossCaller,
+      tossMode,
+      trimmedQuestion,
+    ],
   );
 
   const flipOnce = useCallback(async () => {
     if (flipping) return;
+    markInteraction();
     setFlipping(true);
-    setFlipDurationMs(FLIP_MS);
     setSequence([]);
-    const sideIndex = pickCoinSide(side0Weight);
+    setLastTossWinner(null);
+
+    const outcome = pickFlipOutcome(side0Weight);
     const timestampMs = Date.now();
-    await animateToSide(sideIndex, animMs);
+
+    if (outcome.kind === "edge") {
+      maybePlaySound(() => playCoinTossSound());
+      await animateEdge();
+      maybePlaySound(() => playCoinLandSound());
+      setLastResult(null);
+      setLastSnapshot(null);
+      setAnnouncement("It landed on its edge!");
+      setFlipping(false);
+      return;
+    }
+
+    const sideIndex = outcome.sideIndex;
+    maybePlaySound(() => playCoinTossSound());
+    await animateToSide(sideIndex);
+    maybePlaySound(() => playCoinLandSound());
+
+    const tossWinner = tossMode
+      ? resolveTossWinner(tossCaller, tossCall, sideIndex, sideLabels)
+      : undefined;
+
     recordFlip(sideIndex, {
       timestampMs,
       question: trimmedQuestion,
       labels: [...sideLabels] as [string, string],
       side0Percent: side0Weight,
+      tossWinner,
+      tossCaller: tossMode ? sideLabels[tossCaller] : undefined,
+      tossCall: tossMode ? sideLabels[tossCall] : undefined,
     });
     setFlipping(false);
   }, [
+    animateEdge,
     animateToSide,
-    animMs,
     flipping,
+    markInteraction,
+    maybePlaySound,
     recordFlip,
     side0Weight,
     sideLabels,
+    tossCall,
+    tossCaller,
+    tossMode,
     trimmedQuestion,
   ]);
 
   const flipMultiple = useCallback(async () => {
     if (flipping) return;
+    markInteraction();
     const n = Math.min(Math.max(1, multiCount), MAX_MULTI);
     setFlipping(true);
     setFlipDurationMs(MULTI_FLIP_MS);
     setSequence([]);
     setLastSnapshot(null);
-    const outcomes = pickCoinSides(n, side0Weight);
-    const batchDuration = prefersReducedMotion ? 0 : MULTI_FLIP_MS;
+    setLastTossWinner(null);
+    setOnEdge(false);
 
-    for (let i = 0; i < outcomes.length; i++) {
-      const sideIndex = outcomes[i];
+    maybePlaySound(() => playCoinBatchSound());
+
+    const batchDuration = prefersReducedMotion ? 0 : MULTI_FLIP_MS;
+    const outcomes: CoinSideIndex[] = [];
+
+    for (let i = 0; i < n; i++) {
+      const outcome = pickFlipOutcome(side0Weight);
+      if (outcome.kind === "edge") {
+        await animateEdge();
+        setOnEdge(false);
+        setTiltDeg(0);
+        setAnnouncement("Edge landing — not counted in batch.");
+        continue;
+      }
+      outcomes.push(outcome.sideIndex);
+    }
+
+    for (const sideIndex of outcomes) {
       await animateToSide(sideIndex, batchDuration);
       recordFlip(sideIndex);
       setSequence((prev) => [...prev, sideIndex]);
     }
 
-    setFlipDurationMs(FLIP_MS);
+    setFlipDurationMs(1800);
     setFlipping(false);
   }, [
+    animateEdge,
     animateToSide,
     flipping,
+    markInteraction,
+    maybePlaySound,
     multiCount,
     prefersReducedMotion,
     recordFlip,
@@ -283,8 +536,34 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
     setLastSideIndex(null);
     setLastResult(null);
     setLastSnapshot(null);
+    setLastTossWinner(null);
     setSequence([]);
+    setOnEdge(false);
     setAnnouncement("");
+  };
+
+  const clearJournal = () => {
+    setJournal([]);
+    toast.success("Session journal cleared.");
+  };
+
+  const copyJournal = async () => {
+    if (journal.length === 0) return;
+    const lines = journal.map((e) => {
+      const time = new Date(e.timestampMs)
+        .toISOString()
+        .replace("T", " ")
+        .replace(/\.\d{3}Z$/, " UTC");
+      const q = e.question ? `"${e.question}" — ` : "";
+      const toss = e.tossWinner ? ` (toss: ${e.tossWinner})` : "";
+      return `${time}: ${q}${e.labels[0]} vs ${e.labels[1]} → ${e.winner}${toss}`;
+    });
+    try {
+      await navigator.clipboard.writeText(lines.join("\n"));
+      toast.success("Journal copied.");
+    } catch {
+      toast.error("Could not copy journal.");
+    }
   };
 
   const exportResult = async () => {
@@ -293,7 +572,9 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
       await downloadCoinFlipResultPng({
         question: lastSnapshot.question || undefined,
         labels: lastSnapshot.labels,
-        winner: lastSnapshot.labels[lastSnapshot.sideIndex],
+        winner: lastSnapshot.tossWinner
+          ? `${lastSnapshot.tossWinner} (toss)`
+          : lastSnapshot.labels[lastSnapshot.sideIndex],
         timestampMs: lastSnapshot.timestampMs,
         oddsText:
           lastSnapshot.side0Percent !== 50
@@ -309,6 +590,38 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
       toast.error("Could not export result image.");
     }
   };
+
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.code !== "Space" && e.key !== " ") return;
+      const target = e.target as HTMLElement | null;
+      if (
+        target &&
+        (target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          target.tagName === "SELECT" ||
+          target.isContentEditable)
+      ) {
+        return;
+      }
+      e.preventDefault();
+      if (!flipDisabled) void flipOnce();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [flipDisabled, flipOnce]);
+
+  const coinTransform = onEdge
+    ? `rotateX(90deg) rotateZ(${edgeZDeg}deg)`
+    : `rotateX(${tiltDeg}deg) rotateY(${rotationDeg}deg)`;
+
+  const resultDisplay = onEdge
+    ? "It landed on its edge!"
+    : lastTossWinner
+      ? `${lastTossWinner} wins the toss!`
+      : lastResult !== null
+        ? `${trimmedQuestion ? `${trimmedQuestion} — ` : ""}${sideLabels[lastResult]}`
+        : "Tap the coin or flip button to start";
 
   return (
     <div className="space-y-4">
@@ -349,52 +662,30 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
 
         <div className="grid gap-4 sm:grid-cols-2">
           {([0, 1] as const).map((side) => (
-            <div key={side} className="space-y-2">
-              <Label htmlFor={`coin-side-${side}`}>
-                Side {side === 0 ? "A" : "B"} label
-              </Label>
-              <Input
-                id={`coin-side-${side}`}
-                value={sideLabels[side]}
-                onChange={(e) =>
-                  setSideLabels((prev) => {
-                    const next: [string, string] = [...prev];
-                    next[side] = e.target.value;
-                    return next;
-                  })
-                }
-                data-testid={`coin-label-${side}`}
-              />
-              <div className="flex flex-wrap gap-2 items-center">
-                <Label
-                  htmlFor={`coin-face-${side}`}
-                  className="text-xs text-muted-foreground cursor-pointer"
-                >
-                  Optional face image (local only)
+            <div key={side} className="space-y-3">
+              <div className="space-y-2">
+                <Label htmlFor={`coin-side-${side}`}>
+                  Side {side === 0 ? "A" : "B"} label
                 </Label>
                 <Input
-                  id={`coin-face-${side}`}
-                  type="file"
-                  accept="image/png,image/jpeg,image/webp"
-                  className="text-xs"
-                  data-testid={`coin-face-input-${side}`}
-                  onChange={(e) => {
-                    const file = e.target.files?.[0] ?? null;
-                    void handleFaceUpload(side, file);
-                    e.target.value = "";
-                  }}
+                  id={`coin-side-${side}`}
+                  value={sideLabels[side]}
+                  onChange={(e) =>
+                    setSideLabels((prev) => {
+                      const next: [string, string] = [...prev];
+                      next[side] = e.target.value;
+                      return next;
+                    })
+                  }
+                  data-testid={`coin-label-${side}`}
                 />
-                {faceImages[side] ? (
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => clearFaceImage(side)}
-                  >
-                    Remove image
-                  </Button>
-                ) : null}
               </div>
+              <CoinFaceUpload
+                side={side}
+                imageUrl={faceImages[side]}
+                onUpload={(file) => void handleFaceUpload(side, file)}
+                onClear={() => clearFaceImage(side)}
+              />
             </div>
           ))}
         </div>
@@ -418,15 +709,58 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
           />
         </div>
 
+        <div className="rounded-md border p-4 space-y-3">
+          <div className="flex items-center justify-between gap-3">
+            <div>
+              <p className="font-medium">Match toss mode</p>
+              <p className="text-xs text-muted-foreground">
+                One team calls before the flip — cricket, football, or kickoff.
+              </p>
+            </div>
+            <Switch
+              id="toss-mode"
+              checked={tossMode}
+              onCheckedChange={setTossMode}
+              data-testid="toss-mode"
+            />
+          </div>
+          {tossMode ? (
+            <div className="grid gap-3 sm:grid-cols-2">
+              <div className="space-y-2">
+                <Label htmlFor="toss-caller">Who calls the toss?</Label>
+                <select
+                  id="toss-caller"
+                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                  value={tossCaller}
+                  onChange={(e) =>
+                    setTossCaller(Number(e.target.value) as CoinSideIndex)
+                  }
+                  data-testid="toss-caller"
+                >
+                  <option value={0}>{sideLabels[0] || "Side A"}</option>
+                  <option value={1}>{sideLabels[1] || "Side B"}</option>
+                </select>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="toss-call">They call</Label>
+                <select
+                  id="toss-call"
+                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                  value={tossCall}
+                  onChange={(e) =>
+                    setTossCall(Number(e.target.value) as CoinSideIndex)
+                  }
+                  data-testid="toss-call"
+                >
+                  <option value={0}>{sideLabels[0] || "Side A"}</option>
+                  <option value={1}>{sideLabels[1] || "Side B"}</option>
+                </select>
+              </div>
+            </div>
+          ) : null}
+        </div>
+
         <div className="flex flex-wrap gap-3 items-end">
-          <Button
-            onClick={() => void flipOnce()}
-            disabled={flipping}
-            size="lg"
-            data-testid="flip-once"
-          >
-            Flip coin
-          </Button>
           <div className="flex flex-wrap items-end gap-2">
             <div className="space-y-2">
               <Label htmlFor="multi-count">Multi-flip count</Label>
@@ -436,9 +770,7 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
                 min={1}
                 max={MAX_MULTI}
                 value={multiCount}
-                onChange={(e) =>
-                  setMultiCount(Number(e.target.value) || 1)
-                }
+                onChange={(e) => setMultiCount(Number(e.target.value) || 1)}
                 className="w-24"
                 data-testid="multi-count"
               />
@@ -446,7 +778,7 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
             <Button
               variant="secondary"
               onClick={() => void flipMultiple()}
-              disabled={flipping}
+              disabled={flipDisabled}
               data-testid="flip-multi"
             >
               Flip {Math.min(Math.max(1, multiCount), MAX_MULTI)} times
@@ -479,9 +811,7 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
             <p className="text-2xl font-bold text-primary">{streak}</p>
             <p className="text-xs text-muted-foreground uppercase tracking-wide">
               Streak
-              {lastSideIndex !== null
-                ? ` (${sideLabels[lastSideIndex]})`
-                : ""}
+              {lastSideIndex !== null ? ` (${sideLabels[lastSideIndex]})` : ""}
             </p>
           </div>
         </div>
@@ -494,7 +824,7 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
 
       <Card className="p-6 md:p-8">
         <div
-          className="flex flex-col items-center gap-6"
+          className="flex flex-col items-center gap-5"
           style={{ perspective: "1000px" }}
         >
           {trimmedQuestion ? (
@@ -506,73 +836,197 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
             </p>
           ) : null}
 
-          <div
-            ref={coinRef}
-            role="img"
+          <button
+            type="button"
+            onClick={() => void flipOnce()}
+            onPointerDown={markInteraction}
+            disabled={flipDisabled}
             aria-label={
-              lastResult !== null
-                ? `Coin showing ${sideLabels[lastResult]}`
-                : "Coin ready to flip"
+              onEdge
+                ? "Coin landed on edge — flip again"
+                : lastResult !== null
+                  ? `Coin showing ${sideLabels[lastResult]}. Flip again.`
+                  : "Flip the coin"
             }
             data-testid="coin"
-            className="relative h-40 w-40 md:h-48 md:w-48"
-            style={{
-              transformStyle: "preserve-3d",
-              transform: `rotateX(${tiltDeg}deg) rotateY(${rotationDeg}deg)`,
-              transition: prefersReducedMotion
-                ? "none"
-                : `transform ${flipDurationMs}ms cubic-bezier(0.17, 0.67, 0.35, 0.96)`,
-            }}
+            className="relative h-40 w-40 md:h-48 md:w-48 rounded-full cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 disabled:cursor-not-allowed disabled:opacity-70 touch-manipulation"
+            style={{ perspective: "1000px" }}
           >
             <div
-              className="absolute inset-0"
+              className="relative h-full w-full"
               style={{
-                backfaceVisibility: "hidden",
-                transform: "translateZ(6px)",
+                transformStyle: "preserve-3d",
+                transform: coinTransform,
+                transition: prefersReducedMotion
+                  ? "none"
+                  : `transform ${flipDurationMs}ms cubic-bezier(0.17, 0.67, 0.35, 0.96)`,
               }}
             >
-              <CoinFaceContent
-                label={sideLabels[0]}
-                imageUrl={faceImages[0]}
-                presetClass={preset.sides[0].className}
-                glyph={preset.sides[0].glyph}
-              />
+              <div
+                className="absolute inset-0"
+                style={{
+                  backfaceVisibility: "hidden",
+                  transform: "translateZ(6px)",
+                }}
+              >
+                <CoinFaceContent
+                  label={sideLabels[0]}
+                  imageUrl={faceImages[0]}
+                  presetClass={preset.sides[0].className}
+                  glyph={preset.sides[0].glyph}
+                />
+              </div>
+              <div
+                className="absolute inset-0"
+                style={{
+                  backfaceVisibility: "hidden",
+                  transform: "rotateY(180deg) translateZ(6px)",
+                }}
+              >
+                <CoinFaceContent
+                  label={sideLabels[1]}
+                  imageUrl={faceImages[1]}
+                  presetClass={preset.sides[1].className}
+                  glyph={preset.sides[1].glyph}
+                />
+              </div>
+              {onEdge ? (
+                <div
+                  className="absolute inset-y-4 left-1/2 w-2 -translate-x-1/2 rounded-full bg-amber-600 shadow-md border border-amber-800"
+                  aria-hidden
+                />
+              ) : null}
             </div>
-            <div
-              className="absolute inset-0"
-              style={{
-                backfaceVisibility: "hidden",
-                transform: "rotateY(180deg) translateZ(6px)",
-              }}
-            >
-              <CoinFaceContent
-                label={sideLabels[1]}
-                imageUrl={faceImages[1]}
-                presetClass={preset.sides[1].className}
-                glyph={preset.sides[1].glyph}
-              />
-            </div>
-          </div>
+          </button>
 
           <p
-            className="text-2xl md:text-3xl font-bold text-primary text-center min-h-[2.5rem]"
+            className="text-2xl md:text-3xl font-bold text-primary text-center min-h-[2.5rem] max-w-lg"
             aria-live="polite"
             data-testid="coin-result"
           >
-            {lastResult !== null ? (
-              <>
-                {trimmedQuestion ? `${trimmedQuestion} — ` : ""}
-                {sideLabels[lastResult]}
-              </>
-            ) : (
-              "Tap flip to start"
-            )}
+            {resultDisplay}
           </p>
           <span className="sr-only" aria-live="polite">
             {announcement}
           </span>
+
+          {onEdge ? (
+            <Button
+              onClick={() => void flipOnce()}
+              disabled={flipDisabled}
+              size="lg"
+              data-testid="flip-again-edge"
+            >
+              Flip again
+            </Button>
+          ) : (
+            <div className="flex flex-col items-center gap-2 w-full max-w-md">
+              <Button
+                onClick={() => void flipOnce()}
+                onPointerDown={markInteraction}
+                disabled={flipDisabled}
+                size="lg"
+                className={PRIMARY_FLIP_BTN}
+                data-testid="flip-once"
+              >
+                {flipping ? (
+                  <>
+                    <div className="animate-spin mr-2.5 h-4 w-4 sm:h-5 sm:w-5 border-[3px] border-white/30 border-t-white rounded-full relative z-10" />
+                    <span className="relative z-10">Flipping…</span>
+                  </>
+                ) : (
+                  <>
+                    <Play className="mr-2.5 h-4 w-4 sm:h-5 sm:w-5 fill-current relative z-10" />
+                    <span className="relative z-10">FLIP THE COIN</span>
+                  </>
+                )}
+              </Button>
+              <div className="flex flex-wrap items-center justify-center gap-3 w-full">
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={toggleSound}
+                  aria-pressed={!soundMuted}
+                  data-testid="coin-sound-toggle"
+                >
+                  {soundMuted ? (
+                    <>
+                      <VolumeX className="mr-2 h-4 w-4" />
+                      Sound off
+                    </>
+                  ) : (
+                    <>
+                      <Volume2 className="mr-2 h-4 w-4" />
+                      Sound on
+                    </>
+                  )}
+                </Button>
+                <p className="text-xs text-muted-foreground">
+                  Press{" "}
+                  <kbd className="rounded border px-1.5 py-0.5 font-mono text-[11px]">
+                    Space
+                  </kbd>{" "}
+                  to flip
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </Card>
+
+      {journal.length > 0 ? (
+        <Card className="p-4 md:p-5 space-y-3" data-testid="coin-journal">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <h3 className="font-bold text-lg">
+              Session journal ({journal.length} decision
+              {journal.length !== 1 ? "s" : ""})
+            </h3>
+            <div className="flex gap-2">
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={() => void copyJournal()}
+              >
+                <Copy className="mr-2 h-4 w-4" />
+                Copy
+              </Button>
+              <Button type="button" variant="ghost" size="sm" onClick={clearJournal}>
+                <Trash2 className="mr-2 h-4 w-4" />
+                Clear
+              </Button>
+            </div>
+          </div>
+          <ul className="space-y-2 text-sm max-h-48 overflow-y-auto">
+            {journal.map((entry, i) => (
+              <li
+                key={`${entry.timestampMs}-${i}`}
+                className="border-b pb-2 last:border-0"
+              >
+                <span className="text-muted-foreground">
+                  {new Date(entry.timestampMs)
+                    .toISOString()
+                    .replace("T", " ")
+                    .slice(11, 19)}{" "}
+                  UTC
+                </span>
+                {" — "}
+                {entry.question ? (
+                  <span className="italic">{entry.question}: </span>
+                ) : null}
+                <span className="font-medium">{entry.winner}</span>
+                {entry.tossWinner ? (
+                  <span className="text-primary">
+                    {" "}
+                    ({entry.tossWinner} wins toss)
+                  </span>
+                ) : null}
+              </li>
+            ))}
+          </ul>
+        </Card>
+      ) : null}
 
       {lastSnapshot ? (
         <Card className="p-4 md:p-5 space-y-4" data-testid="coin-result-card">
@@ -595,8 +1049,21 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
                 {lastSnapshot.labels[1]}
               </dd>
             </div>
+            {lastSnapshot.tossWinner ? (
+              <div className="sm:col-span-2">
+                <dt className="text-muted-foreground">Toss winner</dt>
+                <dd
+                  className="text-xl font-bold text-primary"
+                  data-testid="result-card-toss-winner"
+                >
+                  {lastSnapshot.tossWinner}
+                </dd>
+              </div>
+            ) : null}
             <div className="sm:col-span-2">
-              <dt className="text-muted-foreground">Winner</dt>
+              <dt className="text-muted-foreground">
+                {lastSnapshot.tossWinner ? "Landed on" : "Winner"}
+              </dt>
               <dd className="text-xl font-bold text-primary" data-testid="result-card-winner">
                 {lastSnapshot.labels[lastSnapshot.sideIndex]}
               </dd>
@@ -635,7 +1102,10 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
             </Button>
             <CoinFlipProofActions
               payload={{
-                w: [lastSnapshot.labels[lastSnapshot.sideIndex]],
+                w: [
+                  lastSnapshot.tossWinner ??
+                    lastSnapshot.labels[lastSnapshot.sideIndex],
+                ],
                 n: 2,
                 s: "coin-flip-wheel",
                 t: lastSnapshot.timestampMs,
@@ -645,6 +1115,9 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
                   lastSnapshot.side0Percent !== 50
                     ? Math.round(lastSnapshot.side0Percent)
                     : undefined,
+                tc: lastSnapshot.tossCaller,
+                cl: lastSnapshot.tossCall,
+                tw: lastSnapshot.tossWinner,
               }}
             />
           </div>

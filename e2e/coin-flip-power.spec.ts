@@ -23,7 +23,7 @@ test.describe("Coin flip power features", () => {
     await page.getByTestId("coin-question").fill("Who goes first?");
 
     await page.getByTestId("flip-once").click();
-    await expect(page.getByTestId("flip-once")).toBeEnabled({ timeout: 10_000 });
+    await expect(page.getByTestId("flip-once")).toBeEnabled({ timeout: 15_000 });
     await expect(page.getByTestId("coin-result-card")).toBeVisible();
 
     await expect(page.getByTestId("result-card-question")).toHaveText(
@@ -60,10 +60,11 @@ test.describe("Coin flip power features", () => {
       uploads.push(req.url());
     });
 
+    await expect(page.getByTestId("coin-face-upload-0")).toBeVisible();
     const pngPath = path.join(process.cwd(), "public", "logo.png");
     await page.getByTestId("coin-face-input-0").setInputFiles(pngPath);
     await page.getByTestId("flip-once").click();
-    await expect(page.getByTestId("flip-once")).toBeEnabled({ timeout: 10_000 });
+    await expect(page.getByTestId("flip-once")).toBeEnabled({ timeout: 15_000 });
 
     expect(uploads).toHaveLength(0);
   });

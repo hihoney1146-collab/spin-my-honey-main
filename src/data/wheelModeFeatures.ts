@@ -11,7 +11,7 @@ export const WHEEL_MODE_FEATURES: Record<string, string> = {
   "winner-picker-wheel":
     "Draw multiple giveaway winners from a pasted comment list, dedupe @handles, and copy a shareable proof link with timestamp you can post to Instagram or TikTok Stories after a live spin recording.",
   "coin-flip-wheel":
-    "Flip a digital coin with CSS 3D animation, face presets or local-only custom images (never uploaded), optional question caption, weighted odds slider, streak/tally by side index, multi-flip batches, text-only result PNG download, and shareable proof links.",
+    "Flip a 3D coin by tapping it or pressing FLIP THE COIN (Spacebar works too). Upload local face images per side, enable match toss mode for cricket/football kickoffs, track a session journal, toggle Web Audio sound (off by default), weighted odds, streak/tally stats, multi-flip batches, rare ~1-in-6,000 edge landings, text-only result PNG download, and shareable proof links.",
   "alphabet-spinner-wheel":
     "Spin A through Z with an exclude-letters panel, uncheck glyphs already used in phonics drills, Scattergories, or spelling bees so only fresh letters remain on the wheel, plus projector fullscreen for smartboards.",
   "raffle-wheel":

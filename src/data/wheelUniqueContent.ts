@@ -328,10 +328,10 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "coin-flip-wheel": {
     directAnswer:
-      "The Coin Flip Wheel is a digital heads-or-tails toss with CSS 3D animation, optional face presets or local-only custom images, a captioned question field, weighted odds slider, streak counter, multi-flip batches, downloadable result PNGs (text only), and shareable proof links. Outcomes use crypto.getRandomValues before the flip animation plays; uploaded face images never leave your browser.",
+      "The Coin Flip Wheel is a digital heads-or-tails toss with CSS 3D animation, variable flip physics, and a rare edge landing (about 1 in 6,000). Tap the coin or press FLIP THE COIN; upload local face images per side; use match toss mode for cricket or football kickoffs; track a session journal; toggle Web Audio sound (off by default); and share proof links. Outcomes are chosen with crypto.getRandomValues before the animation plays—physics and sound never change the result.",
     title: "Coin Flip Wheel — Heads or Tails Online",
     metaDescription:
-      "Flip a digital coin with custom labels, local face images, weighted odds, streak tracking, result cards, and proof links — all in your browser.",
+      "Flip a 3D coin online: tap to flip, match toss mode, edge landings, local face images, session journal, optional sound, weighted odds, and proof links.",
     useCases: [
       {
         heading: "Board game first-player picks",
@@ -354,12 +354,42 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Can I upload photos for each coin face?",
         answer:
-          "Yes, optionally. Images are read locally in your browser (PNG, JPEG, or WebP under 5 MB), downscaled on-device, and never uploaded or stored on our servers.",
+          "Yes. Each side has a Use your own image button in the controls card. Images stay on your device (PNG, JPEG, or WebP under 5 MB), are downscaled locally, and never upload to our servers.",
+      },
+      {
+        question: "How do I flip the coin?",
+        answer:
+          "Tap the coin, click FLIP THE COIN below it, or press Space when no input is focused. All three paths use the same fair draw.",
+      },
+      {
+        question: "What is match toss mode?",
+        answer:
+          "Enable Match toss mode to name both sides, pick who calls, and choose heads or tails before the flip. The page announces who wins the toss—ideal for cricket, football, or playground kickoffs—and includes toss details in proof links.",
+      },
+      {
+        question: "Can the coin land on its edge?",
+        answer:
+          "Rarely—about 1 in 6,000 flips, matching real-world physics. An edge result shows the coin standing upright, offers Flip again, and does not count toward either side's tally or weighted odds.",
+      },
+      {
+        question: "How does randomness work on this page?",
+        answer:
+          "Each flip draws from crypto.getRandomValues before the animation starts. Weighted odds only change the side probabilities among heads and tails—edge landings are separate. Animation length and spin count are visual only. Read more at /how-randomness-works and our /spin-wheel-fairness-study.",
       },
       {
         question: "How does weighted flip work?",
         answer:
-          "Move the slider to set Side A win percentage; the label always shows the exact odds (e.g. 70% Heads / 30% Tails). Randomness still uses crypto.getRandomValues.",
+          "Move the slider to set Side A win percentage; the label always shows the exact odds (e.g. 70% Heads / 30% Tails). Randomness still uses crypto.getRandomValues and edge landings stay at ~1 in 6,000.",
+      },
+      {
+        question: "Does the coin make sound?",
+        answer:
+          "Optional Web Audio toss and landing sounds are generated in-browser—no large downloads. Sound defaults off for classrooms and offices; use the Sound off/on toggle next to the flip button after your first click.",
+      },
+      {
+        question: "What is the session journal?",
+        answer:
+          "An in-memory list of this tab's flips: question, both labels, winner, toss winner if applicable, and time. Copy it as plain text or clear it anytime. Nothing is saved to disk or uploaded—refresh clears it.",
       },
       {
         question: "What is on the downloadable result image?",
@@ -369,12 +399,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "What does the proof link contain?",
         answer:
-          "Question, both labels, winner, UTC time, crypto RNG method, and odds if weighted — encoded in the URL with no server lookup. Proof pages are noindex.",
-      },
-      {
-        question: "Will it work offline?",
-        answer:
-          "Once the page loads, flips run locally in your browser without needing a live connection.",
+          "Question, both labels, winner, toss caller/call/winner when match toss mode was used, UTC time, crypto RNG method, and odds if weighted—encoded in the URL with no server lookup. Proof pages are noindex.",
       },
     ],
     relatedWheels: [

@@ -17,6 +17,12 @@ export type ResultProofPayload = {
   l?: [string, string];
   /** Coin flip: side 0 win probability percent (integer) */
   p0?: number;
+  /** Coin toss mode: calling team/player label */
+  tc?: string;
+  /** Coin toss mode: side label they called */
+  cl?: string;
+  /** Coin toss mode: toss winner label */
+  tw?: string;
 };
 
 function toBase64Url(json: string): string {
