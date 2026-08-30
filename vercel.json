@@ -12,10 +12,10 @@
     { "source": "/contact", "destination": "/contact-us", "permanent": true },
     { "source": "/privacy", "destination": "/privacy-policy", "permanent": true },
 
-    { "source": "/author/armghana-zeeshan", "destination": "/team/ceo", "permanent": true },
-    { "source": "/author/zoha-zeeshan", "destination": "/team/co-founder", "permanent": true },
-    { "source": "/author/raja-jahangir", "destination": "/team/content", "permanent": true },
-    { "source": "/author/abdal-khalid", "destination": "/team/social", "permanent": true },
+    { "source": "/team/ceo", "destination": "/author/armghana-zeeshan", "permanent": true },
+    { "source": "/team/co-founder", "destination": "/author/zoha-zeeshan", "permanent": true },
+    { "source": "/team/content", "destination": "/author/raja-jahangir", "permanent": true },
+    { "source": "/team/social", "destination": "/author/abdal-khalid", "permanent": true },
 
     { "source": "/exercise-spin-wheel", "destination": "/exercise-picker-wheel", "permanent": true },
     { "source": "/date-night-idea-wheel", "destination": "/date-night-wheel", "permanent": true },

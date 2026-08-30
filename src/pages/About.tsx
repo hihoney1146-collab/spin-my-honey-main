@@ -84,7 +84,7 @@ const About = () => {
           <div className="space-y-6 text-muted-foreground leading-relaxed">
             <div>
               <h3 className="text-lg font-semibold text-foreground mb-2">
-                <Link to="/team/ceo" className="text-primary underline underline-offset-2">
+                <Link to="/author/armghana-zeeshan" className="text-primary underline underline-offset-2">
                   Armghana Zeeshan
                 </Link>
                 , CEO
@@ -96,7 +96,7 @@ const About = () => {
             </div>
             <div>
               <h3 className="text-lg font-semibold text-foreground mb-2">
-                <Link to="/team/co-founder" className="text-primary underline underline-offset-2">
+                <Link to="/author/zoha-zeeshan" className="text-primary underline underline-offset-2">
                   Zoha Zeeshan
                 </Link>
                 , Co-Founder
@@ -109,7 +109,7 @@ const About = () => {
             </div>
             <div>
               <h3 className="text-lg font-semibold text-foreground mb-2">
-                <Link to="/team/content" className="text-primary underline underline-offset-2">
+                <Link to="/author/raja-jahangir" className="text-primary underline underline-offset-2">
                   Raja Jahangir
                 </Link>
                 , Content &amp; SEO Lead
@@ -121,7 +121,7 @@ const About = () => {
             </div>
             <div>
               <h3 className="text-lg font-semibold text-foreground mb-2">
-                <Link to="/team/social" className="text-primary underline underline-offset-2">
+                <Link to="/author/abdal-khalid" className="text-primary underline underline-offset-2">
                   Abdal Khalid
                 </Link>
                 , Social Media Expert

@@ -31,10 +31,10 @@ export const REDIRECT_PATHS = new Set([
   "/zodiac-wheel-planets",
   "/wheel-of-fortune-zodiac",
   "/egyptian-zodiac-wheel",
-  "/author/armghana-zeeshan",
-  "/author/zoha-zeeshan",
-  "/author/raja-jahangir",
-  "/author/abdal-khalid",
+  "/team/ceo",
+  "/team/co-founder",
+  "/team/content",
+  "/team/social",
   ...Object.keys(WHEEL_MERGE_REDIRECTS).map((s) => `/${s}`),
 ]);
 
@@ -55,10 +55,10 @@ export const REDIRECT_MAP = {
   "/zodiac-wheel-planets": "/zodiac-sign-wheel",
   "/wheel-of-fortune-zodiac": "/zodiac-sign-wheel",
   "/egyptian-zodiac-wheel": "/zodiac-sign-wheel",
-  "/author/armghana-zeeshan": "/team/ceo",
-  "/author/zoha-zeeshan": "/team/co-founder",
-  "/author/raja-jahangir": "/team/content",
-  "/author/abdal-khalid": "/team/social",
+  "/team/ceo": "/author/armghana-zeeshan",
+  "/team/co-founder": "/author/zoha-zeeshan",
+  "/team/content": "/author/raja-jahangir",
+  "/team/social": "/author/abdal-khalid",
   ...Object.fromEntries(
     Object.entries(WHEEL_MERGE_REDIRECTS).map(([from, to]) => [
       `/${from}`,

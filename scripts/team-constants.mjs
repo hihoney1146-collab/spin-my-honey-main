@@ -6,7 +6,7 @@ export const ORG_ID = `${SITE}/#organization`;
 export const WEBSITE_ID = `${SITE}/#website`;
 export const CONTACT_EMAIL = "onlinespinwheel@gmail.com";
 
-/** Role-based paths, no personal names in URLs. */
+/** Canonical author profile paths (/author/<name-slug>). */
 export const TEAM_AUTHORS = {
   armghana: {
     slug: "ceo",
@@ -14,9 +14,9 @@ export const TEAM_AUTHORS = {
     name: "Armghana Zeeshan",
     jobTitle: "CEO, Online Spin Wheel",
     shortRole: "CEO",
-    path: "/team/ceo",
-    url: `${SITE}/team/ceo`,
-    personId: `${SITE}/team/ceo#person`,
+    path: "/author/armghana-zeeshan",
+    url: `${SITE}/author/armghana-zeeshan`,
+    personId: `${SITE}/author/armghana-zeeshan#person`,
     linkedIn: "https://www.linkedin.com/in/armghana-zeeshan-bb157924a/",
   },
   zoha: {
@@ -25,9 +25,9 @@ export const TEAM_AUTHORS = {
     name: "Zoha Zeeshan",
     jobTitle: "Co-Founder, Online Spin Wheel",
     shortRole: "Co-Founder",
-    path: "/team/co-founder",
-    url: `${SITE}/team/co-founder`,
-    personId: `${SITE}/team/co-founder#person`,
+    path: "/author/zoha-zeeshan",
+    url: `${SITE}/author/zoha-zeeshan`,
+    personId: `${SITE}/author/zoha-zeeshan#person`,
     linkedIn: "https://www.linkedin.com/in/zoha-zeeshan-7b9957352/",
   },
   raja: {
@@ -36,9 +36,9 @@ export const TEAM_AUTHORS = {
     name: "Raja Jahangir",
     jobTitle: "Content & SEO Lead, Online Spin Wheel",
     shortRole: "Content & SEO Lead",
-    path: "/team/content",
-    url: `${SITE}/team/content`,
-    personId: `${SITE}/team/content#person`,
+    path: "/author/raja-jahangir",
+    url: `${SITE}/author/raja-jahangir`,
+    personId: `${SITE}/author/raja-jahangir#person`,
     linkedIn: "https://www.linkedin.com/in/raja-jahangir",
     image: `${SITE}/raja-jahangir.jpg`,
     locality: "Islamabad",
@@ -51,19 +51,23 @@ export const TEAM_AUTHORS = {
     name: "Abdal Khalid",
     jobTitle: "Social Media Expert, Online Spin Wheel",
     shortRole: "Social Media Expert",
-    path: "/team/social",
-    url: `${SITE}/team/social`,
-    personId: `${SITE}/team/social#person`,
+    path: "/author/abdal-khalid",
+    url: `${SITE}/author/abdal-khalid`,
+    personId: `${SITE}/author/abdal-khalid#person`,
     linkedIn: "https://www.linkedin.com/in/abdal-khalid",
   },
 };
 
-export const AUTHOR_LEGACY_REDIRECTS = [
-  { from: `/author/${TEAM_AUTHORS.armghana.legacySlug}`, to: TEAM_AUTHORS.armghana.path },
-  { from: `/author/${TEAM_AUTHORS.zoha.legacySlug}`, to: TEAM_AUTHORS.zoha.path },
-  { from: `/author/${TEAM_AUTHORS.raja.legacySlug}`, to: TEAM_AUTHORS.raja.path },
-  { from: `/author/${TEAM_AUTHORS.abdal.legacySlug}`, to: TEAM_AUTHORS.abdal.path },
+/** Old role-based /team/* paths → canonical /author/* (301). */
+export const TEAM_LEGACY_REDIRECTS = [
+  { from: `/team/${TEAM_AUTHORS.armghana.slug}`, to: TEAM_AUTHORS.armghana.path },
+  { from: `/team/${TEAM_AUTHORS.zoha.slug}`, to: TEAM_AUTHORS.zoha.path },
+  { from: `/team/${TEAM_AUTHORS.raja.slug}`, to: TEAM_AUTHORS.raja.path },
+  { from: `/team/${TEAM_AUTHORS.abdal.slug}`, to: TEAM_AUTHORS.abdal.path },
 ];
+
+/** @deprecated Use TEAM_LEGACY_REDIRECTS */
+export const AUTHOR_LEGACY_REDIRECTS = TEAM_LEGACY_REDIRECTS;
 
 export function organizationJsonLd() {
   return {

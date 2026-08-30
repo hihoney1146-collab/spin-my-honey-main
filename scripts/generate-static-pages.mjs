@@ -239,7 +239,7 @@ function buildGenericSeoContent(route, wheels, blogRoutes) {
   });
 }
 
-const PERSON_ID = `${SITE}/team/content#person`;
+const PERSON_ID = `${SITE}/author/raja-jahangir#person`;
 const WEBSITE_ID = `${SITE}/#website`;
 
 function siteIdentityJsonLd() {

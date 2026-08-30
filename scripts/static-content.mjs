@@ -178,10 +178,10 @@ function exploreNav() {
     [
       "Team",
       [
-        ["/team/ceo", "CEO"],
-        ["/team/co-founder", "Co-Founder"],
-        ["/team/content", "Content & SEO Lead"],
-        ["/team/social", "Social Media Expert"],
+        ["/author/armghana-zeeshan", "Armghana Zeeshan (CEO)"],
+        ["/author/zoha-zeeshan", "Zoha Zeeshan (Co-Founder)"],
+        ["/author/raja-jahangir", "Raja Jahangir (Content & SEO)"],
+        ["/author/abdal-khalid", "Abdal Khalid (Social Media)"],
       ],
     ],
     [
@@ -1342,10 +1342,10 @@ ${exploreNav()}`);
 const FIXED = {
   "/about-us": () => aboutContent(),
   "/contact-us": () => contactContent(),
-  "/team/content": () => authorContent(),
-  "/team/ceo": () => authorArmghanaContent(),
-  "/team/co-founder": () => authorZohaContent(),
-  "/team/social": () => authorAbdalContent(),
+  "/author/raja-jahangir": () => authorContent(),
+  "/author/armghana-zeeshan": () => authorArmghanaContent(),
+  "/author/zoha-zeeshan": () => authorZohaContent(),
+  "/author/abdal-khalid": () => authorAbdalContent(),
   "/privacy-policy": () => privacyContent(),
   "/cookie-policy": () => cookieContent(),
   "/terms-and-conditions": () => termsContent(),
