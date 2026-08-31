@@ -38,8 +38,10 @@ import {
 import { downloadCoinFlipResultPng } from "@/lib/coinFlipResultExport";
 import {
   playCoinBatchSound,
+  playCoinEdgeLandSound,
+  playCoinFlickSound,
   playCoinLandSound,
-  playCoinTossSound,
+  playCoinSpinSound,
   readCoinFlipSoundMuted,
   warmUpCoinFlipAudio,
   writeCoinFlipSoundMuted,
@@ -100,30 +102,57 @@ function usePrefersReducedMotion(): boolean {
 }
 
 function CoinFaceContent({
+  side,
   label,
   imageUrl,
   presetClass,
   glyph,
 }: {
+  side: CoinSideIndex;
   label: string;
   imageUrl: string | null;
   presetClass: string;
   glyph?: string;
 }) {
-  return (
-    <>
-      {imageUrl ? (
+  if (imageUrl) {
+    return (
+      <div
+        className="relative h-full w-full overflow-hidden rounded-full border-4 border-amber-500/80 shadow-lg"
+        data-testid={`coin-face-${side}`}
+      >
         <img
           src={imageUrl}
           alt=""
-          className="absolute inset-0 h-full w-full rounded-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover object-center"
           draggable={false}
+          data-testid={`coin-face-image-${side}`}
         />
-      ) : null}
-      <div
-        className={`absolute inset-0 flex flex-col items-center justify-center rounded-full border-4 border-amber-500/80 px-3 text-center shadow-lg ${presetClass} ${imageUrl ? "bg-black/20" : ""}`}
-      >
-        {glyph && !imageUrl ? (
+        <div
+          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-black/50"
+          aria-hidden
+        />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center px-2 pb-2 pt-6 bg-gradient-to-t from-black/70 via-black/45 to-transparent">
+          <span
+            className="relative z-10 max-w-full truncate text-center text-sm md:text-base font-bold text-white"
+            style={{
+              textShadow:
+                "0 1px 2px rgba(0,0,0,0.95), 0 0 8px rgba(0,0,0,0.65), 0 2px 4px rgba(0,0,0,0.85)",
+            }}
+          >
+            {label}
+          </span>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className={`relative h-full w-full overflow-hidden rounded-full border-4 border-amber-500/80 shadow-lg ${presetClass}`}
+      data-testid={`coin-face-${side}`}
+    >
+      <div className="absolute inset-0 flex flex-col items-center justify-center px-3 text-center">
+        {glyph ? (
           <span className="text-4xl md:text-5xl leading-none mb-1" aria-hidden>
             {glyph}
           </span>
@@ -132,7 +161,7 @@ function CoinFaceContent({
           {label}
         </span>
       </div>
-    </>
+    </div>
   );
 }
 
@@ -160,7 +189,13 @@ function CoinFaceUpload({
             alt={`Side ${sideName} preview`}
             className="h-14 w-14 rounded-full object-cover border"
           />
-          <Button type="button" variant="ghost" size="sm" onClick={onClear}>
+          <Button
+            type="button"
+            variant="ghost"
+            size="sm"
+            onClick={onClear}
+            data-testid={`coin-face-remove-${side}`}
+          >
             Remove image
           </Button>
         </div>
@@ -436,9 +471,14 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
     const timestampMs = Date.now();
 
     if (outcome.kind === "edge") {
-      maybePlaySound(() => playCoinTossSound());
+      const edgePhysics = computeEdgePhysics();
+      const edgeMs = prefersReducedMotion ? 0 : edgePhysics.durationMs;
+      maybePlaySound(() => {
+        playCoinFlickSound();
+        playCoinSpinSound(edgeMs);
+      });
       await animateEdge();
-      maybePlaySound(() => playCoinLandSound());
+      maybePlaySound(() => playCoinEdgeLandSound());
       setLastResult(null);
       setLastSnapshot(null);
       setAnnouncement("It landed on its edge!");
@@ -447,7 +487,12 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
     }
 
     const sideIndex = outcome.sideIndex;
-    maybePlaySound(() => playCoinTossSound());
+    const flipPhysics = computeFlipPhysics(rotationRef.current, sideIndex);
+    const flipMs = prefersReducedMotion ? 0 : flipPhysics.durationMs;
+    maybePlaySound(() => {
+      playCoinFlickSound();
+      playCoinSpinSound(flipMs);
+    });
     await animateToSide(sideIndex);
     maybePlaySound(() => playCoinLandSound());
 
@@ -471,6 +516,7 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
     flipping,
     markInteraction,
     maybePlaySound,
+    prefersReducedMotion,
     recordFlip,
     side0Weight,
     sideLabels,
@@ -870,6 +916,7 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
                 }}
               >
                 <CoinFaceContent
+                  side={0}
                   label={sideLabels[0]}
                   imageUrl={faceImages[0]}
                   presetClass={preset.sides[0].className}
@@ -884,6 +931,7 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
                 }}
               >
                 <CoinFaceContent
+                  side={1}
                   label={sideLabels[1]}
                   imageUrl={faceImages[1]}
                   presetClass={preset.sides[1].className}

@@ -164,6 +164,105 @@ test.describe("Coin flip advanced features", () => {
     expect(uploads).toHaveLength(0);
   });
 
+  test("uploaded face images render on the coin — not only in upload preview", async ({
+    page,
+  }) => {
+    const pngPath = path.join(process.cwd(), "public", "logo.png");
+
+    await page.getByTestId("coin-face-input-0").setInputFiles(pngPath);
+    await expect(page.getByTestId("coin-face-remove-0")).toBeVisible({ timeout: 10_000 });
+    const coinFaceA = page.getByTestId("coin").getByTestId("coin-face-image-0");
+    await expect(coinFaceA).toBeVisible();
+    await expect(coinFaceA).toHaveAttribute("src", /^blob:/);
+
+    await page.getByTestId("coin-face-input-1").setInputFiles(pngPath);
+    await expect(page.getByTestId("coin-face-remove-1")).toBeVisible({ timeout: 10_000 });
+    const coinFaceB = page.getByTestId("coin").getByTestId("coin-face-image-1");
+    await expect(coinFaceB).toBeVisible();
+    await expect(coinFaceB).toHaveAttribute("src", /^blob:/);
+
+    await page.getByTestId("flip-once").click();
+    await waitForFlipIdle(page);
+    await expect(page.getByTestId("coin").getByTestId("coin-face-image-0")).toBeVisible();
+    await expect(page.getByTestId("coin").getByTestId("coin-face-image-1")).toBeVisible();
+
+    await page.getByTestId("coin-face-remove-0").click();
+    await expect(page.getByTestId("coin").getByTestId("coin-face-image-0")).toHaveCount(0);
+    await expect(page.getByTestId("coin").getByTestId("coin-face-0")).toBeVisible();
+    await expect(page.getByTestId("coin").getByTestId("coin-face-image-1")).toBeVisible();
+  });
+
+  test("mixed face state: image on one side, preset on the other", async ({ page }) => {
+    const pngPath = path.join(process.cwd(), "public", "logo.png");
+    await page.getByTestId("coin-face-input-0").setInputFiles(pngPath);
+    await expect(page.getByTestId("coin-face-remove-0")).toBeVisible({ timeout: 10_000 });
+
+    await expect(page.getByTestId("coin").getByTestId("coin-face-image-0")).toBeVisible();
+    await expect(page.getByTestId("coin").getByTestId("coin-face-image-1")).toHaveCount(0);
+    await expect(page.getByTestId("coin").getByTestId("coin-face-1")).toBeVisible();
+  });
+
+  test("face images are excluded from proof links", async ({ page }) => {
+    const pngPath = path.join(process.cwd(), "public", "logo.png");
+    await page.getByTestId("coin-face-input-0").setInputFiles(pngPath);
+    await page.getByTestId("flip-once").click();
+    await waitForFlipIdle(page);
+    await expect(page.getByTestId("coin-result-card")).toBeVisible();
+
+    await page.getByTestId("coin-proof-link").click();
+    const proofUrl = await page.getByTestId("coin-proof-url").textContent();
+    expect(proofUrl).toBeTruthy();
+    expect(proofUrl).not.toMatch(/blob:/);
+
+    await page.goto(proofUrl!.trim(), { waitUntil: "domcontentloaded" });
+    const html = await page.content();
+    expect(html).not.toMatch(/blob:/);
+  });
+
+  test("AudioContext initializes only after user interaction", async ({ page }) => {
+    await page.addInitScript(() => {
+      (window as unknown as { __coinAudioContextCount: number }).__coinAudioContextCount =
+        0;
+      const Orig =
+        window.AudioContext ||
+        (window as unknown as { webkitAudioContext: typeof AudioContext })
+          .webkitAudioContext;
+      if (!Orig) return;
+      const Patched = function (
+        this: AudioContext,
+        ...args: ConstructorParameters<typeof AudioContext>
+      ) {
+        (window as unknown as { __coinAudioContextCount: number }).__coinAudioContextCount +=
+          1;
+        return new Orig(...args);
+      };
+      Patched.prototype = Orig.prototype;
+      window.AudioContext = Patched as typeof AudioContext;
+    });
+
+    await page.reload({ waitUntil: "domcontentloaded" });
+    await dismissCookies(page);
+    await expect(page.getByText("Coin flip controls", { exact: true })).toBeVisible({
+      timeout: 30_000,
+    });
+
+    const before = await page.evaluate(
+      () =>
+        (window as unknown as { __coinAudioContextCount?: number })
+          .__coinAudioContextCount ?? 0,
+    );
+    expect(before).toBe(0);
+
+    await page.getByTestId("coin-sound-toggle").click();
+
+    const after = await page.evaluate(
+      () =>
+        (window as unknown as { __coinAudioContextCount?: number })
+          .__coinAudioContextCount ?? 0,
+    );
+    expect(after).toBeGreaterThanOrEqual(1);
+  });
+
   test("sound toggle defaults off and can enable", async ({ page }) => {
     await expect(page.getByTestId("coin-sound-toggle")).toContainText("Sound off");
     await page.getByTestId("coin-sound-toggle").click();
