@@ -15,7 +15,8 @@
     { "source": "/team/ceo", "destination": "/author/armghana-zeeshan", "permanent": true },
     { "source": "/team/co-founder", "destination": "/author/zoha-zeeshan", "permanent": true },
     { "source": "/team/content", "destination": "/author/raja-jahangir", "permanent": true },
-    { "source": "/team/social", "destination": "/author/abdal-khalid", "permanent": true },
+    { "source": "/team/marketing", "destination": "/author/faisal-zahir", "permanent": true },
+    { "source": "/team/social", "destination": "/about-us", "permanent": true },
 
     { "source": "/exercise-spin-wheel", "destination": "/exercise-picker-wheel", "permanent": true },
     { "source": "/date-night-idea-wheel", "destination": "/date-night-wheel", "permanent": true },

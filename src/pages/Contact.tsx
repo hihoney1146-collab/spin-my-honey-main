@@ -113,7 +113,7 @@ const Contact = () => {
               name: "Raja Jahangir",
               url: RAJA_AUTHOR.url,
               email: CONTACT_EMAIL,
-              jobTitle: "Content & SEO Lead, Online Spin Wheel",
+              jobTitle: "SEO/AEO/AIO/GEO/SXO Strategist, Online Spin Wheel",
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Islamabad",

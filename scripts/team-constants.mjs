@@ -34,27 +34,27 @@ export const TEAM_AUTHORS = {
     slug: "content",
     legacySlug: "raja-jahangir",
     name: "Raja Jahangir",
-    jobTitle: "Content & SEO Lead, Online Spin Wheel",
-    shortRole: "Content & SEO Lead",
+    jobTitle: "SEO/AEO/AIO/GEO/SXO Strategist, Online Spin Wheel",
+    shortRole: "SEO/AEO/AIO/GEO/SXO Strategist",
     path: "/author/raja-jahangir",
     url: `${SITE}/author/raja-jahangir`,
     personId: `${SITE}/author/raja-jahangir#person`,
-    linkedIn: "https://www.linkedin.com/in/raja-jahangir",
+    linkedIn: "https://www.linkedin.com/in/raja-jahangir-7317253b3",
     image: `${SITE}/raja-jahangir.jpg`,
     locality: "Islamabad",
     country: "Pakistan",
     countryCode: "PK",
   },
-  abdal: {
-    slug: "social",
-    legacySlug: "abdal-khalid",
-    name: "Abdal Khalid",
-    jobTitle: "Social Media Expert, Online Spin Wheel",
-    shortRole: "Social Media Expert",
-    path: "/author/abdal-khalid",
-    url: `${SITE}/author/abdal-khalid`,
-    personId: `${SITE}/author/abdal-khalid#person`,
-    linkedIn: "https://www.linkedin.com/in/abdal-khalid",
+  faisal: {
+    slug: "marketing",
+    legacySlug: "faisal-zahir",
+    name: "Faisal Zahir",
+    jobTitle: "Digital Marketing | Performance Marketing | Meta Ads, Online Spin Wheel",
+    shortRole: "Digital Marketing",
+    path: "/author/faisal-zahir",
+    url: `${SITE}/author/faisal-zahir`,
+    personId: `${SITE}/author/faisal-zahir#person`,
+    linkedIn: "https://www.linkedin.com/in/faisal-zahir/",
   },
 };
 
@@ -63,7 +63,7 @@ export const TEAM_LEGACY_REDIRECTS = [
   { from: `/team/${TEAM_AUTHORS.armghana.slug}`, to: TEAM_AUTHORS.armghana.path },
   { from: `/team/${TEAM_AUTHORS.zoha.slug}`, to: TEAM_AUTHORS.zoha.path },
   { from: `/team/${TEAM_AUTHORS.raja.slug}`, to: TEAM_AUTHORS.raja.path },
-  { from: `/team/${TEAM_AUTHORS.abdal.slug}`, to: TEAM_AUTHORS.abdal.path },
+  { from: `/team/${TEAM_AUTHORS.faisal.slug}`, to: TEAM_AUTHORS.faisal.path },
 ];
 
 /** @deprecated Use TEAM_LEGACY_REDIRECTS */
@@ -121,6 +121,6 @@ export function siteIdentityJsonLd() {
     personJsonLd(TEAM_AUTHORS.armghana),
     personJsonLd(TEAM_AUTHORS.zoha),
     personJsonLd(TEAM_AUTHORS.raja),
-    personJsonLd(TEAM_AUTHORS.abdal),
+    personJsonLd(TEAM_AUTHORS.faisal),
   ];
 }

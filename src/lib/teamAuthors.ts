@@ -31,33 +31,33 @@ export const RAJA_AUTHOR = {
   slug: "content",
   legacySlug: "raja-jahangir",
   name: "Raja Jahangir",
-  jobTitle: "Content & SEO Lead, Online Spin Wheel",
-  shortRole: "Content & SEO Lead",
+  jobTitle: "SEO/AEO/AIO/GEO/SXO Strategist, Online Spin Wheel",
+  shortRole: "SEO/AEO/AIO/GEO/SXO Strategist",
   path: "/author/raja-jahangir",
   url: `${SITE_ORIGIN}/author/raja-jahangir`,
-  linkedIn: "https://www.linkedin.com/in/raja-jahangir",
+  linkedIn: "https://www.linkedin.com/in/raja-jahangir-7317253b3",
   image: `${SITE_ORIGIN}/raja-jahangir.jpg`,
   locality: "Islamabad",
   country: "Pakistan",
   countryCode: "PK",
 } as const;
 
-export const ABDAL_AUTHOR = {
-  slug: "social",
-  legacySlug: "abdal-khalid",
-  name: "Abdal Khalid",
-  jobTitle: "Social Media Expert, Online Spin Wheel",
-  shortRole: "Social Media Expert",
-  path: "/author/abdal-khalid",
-  url: `${SITE_ORIGIN}/author/abdal-khalid`,
-  linkedIn: "https://www.linkedin.com/in/abdal-khalid",
+export const FAISAL_AUTHOR = {
+  slug: "marketing",
+  legacySlug: "faisal-zahir",
+  name: "Faisal Zahir",
+  jobTitle: "Digital Marketing | Performance Marketing | Meta Ads, Online Spin Wheel",
+  shortRole: "Digital Marketing",
+  path: "/author/faisal-zahir",
+  url: `${SITE_ORIGIN}/author/faisal-zahir`,
+  linkedIn: "https://www.linkedin.com/in/faisal-zahir/",
 } as const;
 
 export const TEAM_AUTHOR_PAGES = [
   ARMGHANA_AUTHOR,
   ZOHA_AUTHOR,
   RAJA_AUTHOR,
-  ABDAL_AUTHOR,
+  FAISAL_AUTHOR,
 ] as const;
 
 /** Old role-based /team/* paths → canonical /author/* (301). */
@@ -65,7 +65,7 @@ export const TEAM_LEGACY_REDIRECTS = [
   { from: `/team/${ARMGHANA_AUTHOR.slug}`, to: ARMGHANA_AUTHOR.path },
   { from: `/team/${ZOHA_AUTHOR.slug}`, to: ZOHA_AUTHOR.path },
   { from: `/team/${RAJA_AUTHOR.slug}`, to: RAJA_AUTHOR.path },
-  { from: `/team/${ABDAL_AUTHOR.slug}`, to: ABDAL_AUTHOR.path },
+  { from: `/team/${FAISAL_AUTHOR.slug}`, to: FAISAL_AUTHOR.path },
 ] as const;
 
 /** @deprecated Use TEAM_LEGACY_REDIRECTS */
@@ -78,7 +78,7 @@ export function personId(url: string) {
 export const ARMGHANA_PERSON_ID = personId(ARMGHANA_AUTHOR.url);
 export const ZOHA_PERSON_ID = personId(ZOHA_AUTHOR.url);
 export const RAJA_PERSON_ID = personId(RAJA_AUTHOR.url);
-export const ABDAL_PERSON_ID = personId(ABDAL_AUTHOR.url);
+export const FAISAL_PERSON_ID = personId(FAISAL_AUTHOR.url);
 
 /** @deprecated Use RAJA_PERSON_ID, kept for article author references. */
 export const PERSON_ID = RAJA_PERSON_ID;

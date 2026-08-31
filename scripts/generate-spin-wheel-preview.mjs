@@ -6,14 +6,14 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const out = path.join(__dirname, "..", "public", "spin-wheel-preview.svg");
 
 /** Matches SpinWheel default sample mapping after remaps:
- *  Mudabber→orange, Jacob→green, Abdal→light green
+ *  Mudabber→orange, Jacob→green, Casey→light green
  */
 const slices = [
   { name: "Jahangir", c0: "#e74c3c", c1: "#b41909" },
   { name: "Mudabber", c0: "#e67e22", c1: "#b34b00" },
   { name: "Adam", c0: "#f39c12", c1: "#c06900" },
   { name: "Jacob", c0: "#2ecc71", c1: "#00993e" },
-  { name: "Abdal", c0: "#1abc9c", c1: "#008969" },
+  { name: "Casey", c0: "#1abc9c", c1: "#008969" },
   { name: "Gabriel", c0: "#3498db", c1: "#0165a8" },
   { name: "Hanna", c0: "#9b59b6", c1: "#682683" },
 ];

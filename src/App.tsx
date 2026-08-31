@@ -10,7 +10,7 @@ import { lazy, Suspense } from "react";
 import Index from "./pages/Index";
 import BlogPost from "./pages/BlogPost";
 import AuthorRajaJahangir from "./pages/AuthorRajaJahangir";
-import AuthorAbdalKhalid from "./pages/AuthorAbdalKhalid";
+import AuthorFaisalZahir from "./pages/AuthorFaisalZahir";
 import AuthorArmghanaZeeshan from "./pages/AuthorArmghanaZeeshan";
 import AuthorZohaZeeshan from "./pages/AuthorZohaZeeshan";
 // Lazy load non-critical pages for better initial load performance
@@ -265,11 +265,12 @@ const App = () => (
               <Route path="/author/raja-jahangir" element={<AuthorRajaJahangir />} />
               <Route path="/author/armghana-zeeshan" element={<AuthorArmghanaZeeshan />} />
               <Route path="/author/zoha-zeeshan" element={<AuthorZohaZeeshan />} />
-              <Route path="/author/abdal-khalid" element={<AuthorAbdalKhalid />} />
+              <Route path="/author/faisal-zahir" element={<AuthorFaisalZahir />} />
               <Route path="/team/content" element={<Navigate to="/author/raja-jahangir" replace />} />
               <Route path="/team/ceo" element={<Navigate to="/author/armghana-zeeshan" replace />} />
               <Route path="/team/co-founder" element={<Navigate to="/author/zoha-zeeshan" replace />} />
-              <Route path="/team/social" element={<Navigate to="/author/abdal-khalid" replace />} />
+              <Route path="/team/marketing" element={<Navigate to="/author/faisal-zahir" replace />} />
+              <Route path="/team/social" element={<Navigate to="/about-us" replace />} />
               {/* Consolidated doorway pages → canonical targets (edge 301s live in vercel.json) */}
               <Route
                 path="/exercise-spin-wheel"

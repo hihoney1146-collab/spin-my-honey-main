@@ -32,6 +32,7 @@ const SOURCE_FILES = [
   "src/pages/AuthorRajaJahangir.tsx",
   "src/pages/AuthorArmghanaZeeshan.tsx",
   "src/pages/AuthorZohaZeeshan.tsx",
+  "src/pages/AuthorFaisalZahir.tsx",
   "src/pages/Privacy.tsx",
   "src/pages/Terms.tsx",
   "src/pages/Disclaimer.tsx",

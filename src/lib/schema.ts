@@ -1,8 +1,8 @@
 import {
-  ABDAL_AUTHOR,
-  ABDAL_PERSON_ID,
   ARMGHANA_AUTHOR,
   ARMGHANA_PERSON_ID,
+  FAISAL_AUTHOR,
+  FAISAL_PERSON_ID,
   ORGANIZATION_ID,
   RAJA_AUTHOR,
   RAJA_PERSON_ID,
@@ -24,7 +24,7 @@ export {
   ORGANIZATION_ID,
   ARMGHANA_AUTHOR,
   ZOHA_AUTHOR,
-  ABDAL_AUTHOR,
+  FAISAL_AUTHOR,
 } from "./teamAuthors";
 
 export function organizationJsonLd() {
@@ -73,12 +73,13 @@ export function personJsonLd(author: AuthorProfile, personId: string) {
   }
   if (author === RAJA_AUTHOR) {
     node.description =
-      "Raja Jahangir leads content, SEO, and quality review for Online Spin Wheel, a free browser-based random picker built by a small dedicated team.";
+      "Raja Jahangir is SEO/AEO/AIO/GEO/SXO Strategist for Online Spin Wheel, a free browser-based random picker built by a small dedicated team.";
     node.knowsAbout = [
-      "Content Strategy",
       "Search Engine Optimization",
+      "Answer Engine Optimization",
+      "Generative Engine Optimization",
+      "Search Experience Optimization",
       "Random Selection",
-      "Cryptographic Randomness",
       "Spin Wheel Tools",
       "Educational Technology",
     ];
@@ -107,7 +108,7 @@ export function siteIdentityJsonLd() {
     personJsonLd(ARMGHANA_AUTHOR, ARMGHANA_PERSON_ID),
     personJsonLd(ZOHA_AUTHOR, ZOHA_PERSON_ID),
     personJsonLd(RAJA_AUTHOR, RAJA_PERSON_ID),
-    personJsonLd(ABDAL_AUTHOR, ABDAL_PERSON_ID),
+    personJsonLd(FAISAL_AUTHOR, FAISAL_PERSON_ID),
   ];
 }
 

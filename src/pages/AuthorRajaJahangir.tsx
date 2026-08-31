@@ -11,16 +11,16 @@ const AuthorRajaJahangir = () => {
   return (
     <AuthorProfilePage
       canonical={RAJA_AUTHOR.url}
-      title="Raja Jahangir, Content & SEO Lead, Online Spin Wheel"
-      metaDescription="Raja Jahangir leads content, SEO, and quality review for Online Spin Wheel. Learn how the team tests every wheel for fair, uniform random results."
-      ogDescription="Meet Raja Jahangir, Content & SEO Lead at Online Spin Wheel, content, SEO, and 10,000-spin fairness checks."
+      title="Raja Jahangir, SEO/AEO/AIO/GEO/SXO Strategist, Online Spin Wheel"
+      metaDescription="Raja Jahangir is SEO/AEO/AIO/GEO/SXO Strategist for Online Spin Wheel. Learn how the team tests every wheel for fair, uniform random results."
+      ogDescription="Meet Raja Jahangir, SEO/AEO/AIO/GEO/SXO Strategist at Online Spin Wheel, content quality, discovery strategy, and 10,000-spin fairness checks."
       name={RAJA_AUTHOR.name}
-      roleLabel="Content & SEO"
+      roleLabel="SEO & Discovery"
       jobTitle={RAJA_AUTHOR.jobTitle}
       location={location}
       image={{
         src: jahangirSeo,
-        alt: "Raja Jahangir, Content & SEO Lead at Online Spin Wheel",
+        alt: "Raja Jahangir, SEO/AEO/AIO/GEO/SXO Strategist at Online Spin Wheel",
       }}
       linkedIn={TEAM_LINKEDIN.rajaJahangir}
       ogImage={RAJA_AUTHOR.image}
@@ -47,7 +47,7 @@ const AuthorRajaJahangir = () => {
       }
     >
       <p>
-        I&apos;m Raja Jahangir, Content &amp; SEO Lead at{" "}
+        I&apos;m Raja Jahangir, SEO/AEO/AIO/GEO/SXO Strategist at{" "}
         <Link to="/" className="font-medium text-primary underline underline-offset-2 hover:opacity-90">
           {ORG_NAME}
         </Link>

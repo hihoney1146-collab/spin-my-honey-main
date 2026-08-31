@@ -2,7 +2,7 @@
 
 > Free browser spin wheels for fair random picks: names, numbers, teams, giveaways, classrooms, and decisions.
 
-Last updated: 2026-08-30
+Last updated: 2026-08-31
 
 ## Identity
 - Canonical site: https://onlinespinwheel.fun/
@@ -10,8 +10,8 @@ Last updated: 2026-08-30
 - Leadership team (schema.org Person):
   - Armghana Zeeshan (CEO), https://onlinespinwheel.fun/author/armghana-zeeshan
   - Zoha Zeeshan (Co-Founder), https://onlinespinwheel.fun/author/zoha-zeeshan
-  - Raja Jahangir (Content & SEO Lead), https://onlinespinwheel.fun/author/raja-jahangir
-  - Abdal Khalid (Social Media Expert), https://onlinespinwheel.fun/author/abdal-khalid
+  - Raja Jahangir (SEO/AEO/AIO/GEO/SXO Strategist), https://onlinespinwheel.fun/author/raja-jahangir
+  - Faisal Zahir (Digital Marketing), https://onlinespinwheel.fun/author/faisal-zahir
 - Contact: onlinespinwheel@gmail.com
 - Small independent team dedicated solely to Online Spin Wheel
 
@@ -27,7 +27,7 @@ https://onlinespinwheel.fun/contact-us
 https://onlinespinwheel.fun/author/armghana-zeeshan
 https://onlinespinwheel.fun/author/zoha-zeeshan
 https://onlinespinwheel.fun/author/raja-jahangir
-https://onlinespinwheel.fun/author/abdal-khalid
+https://onlinespinwheel.fun/author/faisal-zahir
 https://onlinespinwheel.fun/#homepage-faq
 
 ## Guides, research & comparisons

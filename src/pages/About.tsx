@@ -12,13 +12,13 @@ const About = () => {
         <title>About Us - Online Spin Wheel</title>
         <meta
           name="description"
-          content="Online Spin Wheel is built by a small dedicated team: Armghana Zeeshan (CEO), Zoha Zeeshan (Co-Founder), Raja Jahangir (Content & SEO Lead), and Abdal Khalid (Social Media Expert). Learn how we test every wheel across 10,000 spins."
+          content="Online Spin Wheel is built by a small dedicated team: Armghana Zeeshan (CEO), Zoha Zeeshan (Co-Founder), Raja Jahangir (SEO/AEO/AIO/GEO/SXO Strategist), and Faisal Zahir (Digital Marketing). Learn how we test every wheel across 10,000 spins."
         />
         <link rel="canonical" href="https://onlinespinwheel.fun/about-us" />
         <meta property="og:title" content="About Us - Online Spin Wheel" />
         <meta
           property="og:description"
-          content="Online Spin Wheel is built by a small dedicated team: Armghana Zeeshan (CEO), Zoha Zeeshan (Co-Founder), Raja Jahangir (Content & SEO Lead), and Abdal Khalid (Social Media Expert)."
+          content="Online Spin Wheel is built by a small dedicated team: Armghana Zeeshan (CEO), Zoha Zeeshan (Co-Founder), Raja Jahangir (SEO/AEO/AIO/GEO/SXO Strategist), and Faisal Zahir (Digital Marketing)."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://onlinespinwheel.fun/about-us" />
@@ -112,24 +112,25 @@ const About = () => {
                 <Link to="/author/raja-jahangir" className="text-primary underline underline-offset-2">
                   Raja Jahangir
                 </Link>
-                , Content &amp; SEO Lead
+                , SEO/AEO/AIO/GEO/SXO Strategist
               </h3>
               <p className="text-base md:text-lg">
-                Owns content, SEO, and quality review: wheel copy, guides, blog posts, structured
-                data, and the pre-launch testing checklist every page must pass.
+                Owns search and discovery strategy across SEO, AEO, AIO, GEO, and SXO: wheel copy,
+                guides, blog posts, structured data, and the pre-launch testing checklist every page
+                must pass.
               </p>
             </div>
             <div>
               <h3 className="text-lg font-semibold text-foreground mb-2">
-                <Link to="/author/abdal-khalid" className="text-primary underline underline-offset-2">
-                  Abdal Khalid
+                <Link to="/author/faisal-zahir" className="text-primary underline underline-offset-2">
+                  Faisal Zahir
                 </Link>
-                , Social Media Expert
+                , Digital Marketing
               </h3>
               <p className="text-base md:text-lg">
-                Manages brand social channels and community engagement: sharing wheel tips, highlighting
-                new tools, and connecting with teachers, streamers, and creators on Instagram, X, YouTube,
-                and Pinterest.
+                Handles digital and performance marketing, including Meta Ads, so teachers, giveaway
+                hosts, and streamers discover free spin wheels that match what each page actually
+                offers.
               </p>
             </div>
           </div>

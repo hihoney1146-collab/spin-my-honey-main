@@ -8,7 +8,7 @@ export const spinWheelTeamBuildingActivities: BlogPost = {
     "Run fair team building with a spin wheel: role assignment, standup rotation, breakout groups, and offsite games. Free tools, no signup.",
   excerpt:
     "Managers who need a fair pick in front of a room can use a spin wheel instead of volunteering or manager-chosen names. This guide covers team building activities that start with a live spin: standup rotation, project roles, breakout groups, and offsite games, plus the exact Online Spin Wheel tools to open.",
-  author: "Raja Jahangir (Content & SEO Lead, Online Spin Wheel)",
+  author: "Raja Jahangir (SEO/AEO/AIO/GEO/SXO Strategist, Online Spin Wheel)",
   updated: "2026-08-15",
   published: "2026-08-15",
   indexed: true,

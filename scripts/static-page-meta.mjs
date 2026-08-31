@@ -166,9 +166,9 @@ export const fixedRouteMeta = [
   },
   {
     path: "/author/raja-jahangir",
-    title: "Raja Jahangir | Content & SEO Lead | Online Spin Wheel",
+    title: "Raja Jahangir | SEO/AEO/AIO/GEO/SXO Strategist | Online Spin Wheel",
     description:
-      "Raja Jahangir leads content, SEO, and quality review for Online Spin Wheel. How the team tests every wheel for fair, uniform random results.",
+      "Raja Jahangir is SEO/AEO/AIO/GEO/SXO Strategist for Online Spin Wheel. How the team tests every wheel for fair, uniform random results.",
     ogType: "profile",
   },
   {
@@ -186,10 +186,10 @@ export const fixedRouteMeta = [
     ogType: "profile",
   },
   {
-    path: "/author/abdal-khalid",
-    title: "Abdal Khalid | Social Media | Online Spin Wheel",
+    path: "/author/faisal-zahir",
+    title: "Faisal Zahir | Digital Marketing | Online Spin Wheel",
     description:
-      "Abdal Khalid, Social Media at Online Spin Wheel. Brand social channels, community engagement, and sharing wheel tips with teachers and creators.",
+      "Faisal Zahir handles digital and performance marketing for Online Spin Wheel, connecting teachers, giveaway hosts, and streamers with free fair spin wheels.",
     ogType: "profile",
   },
   {

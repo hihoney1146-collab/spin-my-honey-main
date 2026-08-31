@@ -8,7 +8,7 @@ export const classroomSpinnerBeyondNamePicking: BlogPost = {
     "Expand classroom spinner use past calling on students: centers, sub plans, ABCD review, and jobs. Free tools for US K-12, no student accounts.",
   excerpt:
     "Once students trust a fair name spin, the same classroom spinner can run centers, substitute plans, and unit review. This expansion guide assumes you already know volunteer calling and adds routines that change the labels, not the hardware.",
-  author: "Raja Jahangir (Content & SEO Lead, Online Spin Wheel)",
+  author: "Raja Jahangir (SEO/AEO/AIO/GEO/SXO Strategist, Online Spin Wheel)",
   updated: "2026-08-15",
   published: "2026-08-15",
   indexed: true,

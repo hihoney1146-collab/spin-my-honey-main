@@ -180,8 +180,8 @@ function exploreNav() {
       [
         ["/author/armghana-zeeshan", "Armghana Zeeshan (CEO)"],
         ["/author/zoha-zeeshan", "Zoha Zeeshan (Co-Founder)"],
-        ["/author/raja-jahangir", "Raja Jahangir (Content & SEO)"],
-        ["/author/abdal-khalid", "Abdal Khalid (Social Media)"],
+        ["/author/raja-jahangir", "Raja Jahangir (SEO & Discovery)"],
+        ["/author/faisal-zahir", "Faisal Zahir (Digital Marketing)"],
       ],
     ],
     [
@@ -280,7 +280,7 @@ ${exploreNav()}`);
 /* --------------------------------------------------------------- About ----- */
 
 function aboutContent() {
-  const { armghana, zoha, raja, abdal } = TEAM_AUTHORS;
+  const { armghana, zoha, raja, faisal } = TEAM_AUTHORS;
   return mainWrap(`<h1>About Online Spin Wheel</h1>
 <p>${ORG_NAME} is built and maintained by a small independent team dedicated solely to this product. We are not a multi-property agency, we focus on one job: free, fast, trustworthy spin wheels for classrooms, giveaways, streamers, and everyday decisions.</p>
 <p>The site started because too many online spinners were slow, buried in ads, or vague about whether their results were genuinely random. In early 2026 we launched a straightforward, cleanly designed way to make random choices, pick contest winners, and gamify classrooms without logins or bloated interfaces.</p>
@@ -290,8 +290,8 @@ function aboutContent() {
   <ul>
     <li><strong><a href="${armghana.path}">${esc(armghana.name)}</a>, CEO.</strong> Sets product direction and business priorities: which wheels ship, how we keep the core tool free, and how we communicate about fairness and privacy.</li>
     <li><strong><a href="${zoha.path}">${esc(zoha.name)}</a>, Co-Founder.</strong> Shapes company direction and user experience: responsive layouts, specialty wheel roadmaps, and product focus for real hosts and teachers.</li>
-    <li><strong><a href="${raja.path}">${esc(raja.name)}</a>, Content &amp; SEO Lead.</strong> Owns content, SEO, and quality review: wheel copy, guides, blog posts, and the pre-launch testing checklist every page must pass.</li>
-    <li><strong><a href="${abdal.path}">${esc(abdal.name)}</a>, Social Media Expert.</strong> Manages brand social channels, community engagement, and how we share wheel tips with teachers, streamers, and creators.</li>
+    <li><strong><a href="${raja.path}">${esc(raja.name)}</a>, ${esc(raja.shortRole)}.</strong> Owns search and discovery strategy across SEO, AEO, AIO, GEO, and SXO: wheel copy, guides, blog posts, and the pre-launch testing checklist every page must pass.</li>
+    <li><strong><a href="${faisal.path}">${esc(faisal.name)}</a>, ${esc(faisal.shortRole)}.</strong> Handles digital and performance marketing, including Meta Ads, so teachers, giveaway hosts, and streamers discover free spin wheels that match what each page offers.</li>
   </ul>
 </section>
 
@@ -446,41 +446,41 @@ function authorZohaContent() {
 ${exploreNav()}`);
 }
 
-function authorAbdalContent() {
-  const a = TEAM_AUTHORS.abdal;
-  return mainWrap(`<h1>${esc(a.name)}, Social Media Expert, ${ORG_NAME}</h1>
-<p>I'm ${esc(a.name)}, Social Media Expert at <a href="/">${ORG_NAME}</a>. I work with <a href="${TEAM_AUTHORS.armghana.path}">${esc(TEAM_AUTHORS.armghana.name)}</a>, <a href="${TEAM_AUTHORS.zoha.path}">${esc(TEAM_AUTHORS.zoha.name)}</a>, and <a href="${TEAM_AUTHORS.raja.path}">${esc(TEAM_AUTHORS.raja.name)}</a> on a small team dedicated solely to this product, helping teachers, streamers, and everyday users discover free spin wheels that are fast, fair, and honest about how they pick.</p>
-<p>My role is to grow and serve the community around Online Spin Wheel on the channels where hosts and educators already spend time. That means sharing practical wheel tips, highlighting new specialty wheels, and responding to questions about giveaways, classroom games, and fair random picks, always pointing people to the live tool and our guides rather than hype.</p>
-<p>Social content follows the same standards as the rest of the site. I do not overpromise what the wheels do, I link to our <a href="/how-randomness-works">how randomness works</a> page when fairness comes up, and I coordinate with ${esc(TEAM_AUTHORS.raja.name)} on published copy so posts match what the product actually ships.</p>
+function authorFaisalContent() {
+  const a = TEAM_AUTHORS.faisal;
+  return mainWrap(`<h1>${esc(a.name)}, Digital Marketing | Performance Marketing | Meta Ads, ${ORG_NAME}</h1>
+<p>I'm ${esc(a.name)}, Digital Marketing | Performance Marketing | Meta Ads at <a href="/">${ORG_NAME}</a>. I work with <a href="${TEAM_AUTHORS.armghana.path}">${esc(TEAM_AUTHORS.armghana.name)}</a>, <a href="${TEAM_AUTHORS.zoha.path}">${esc(TEAM_AUTHORS.zoha.name)}</a>, and <a href="${TEAM_AUTHORS.raja.path}">${esc(TEAM_AUTHORS.raja.name)}</a> on a small team dedicated solely to this product. My job is to help the right people find our free spin wheels: teachers running classroom picks, hosts running giveaways, and streamers who need a fair on-screen randomizer without logins or installs.</p>
+<p>Performance marketing here means matching intent to the live tool. Someone searching for a classroom spinner should land on the student picker or name picker wheel, not a generic homepage pitch. Someone planning an Instagram giveaway should see the winner picker and proof-link flow the product actually ships. I build Meta Ads and other paid paths that respect that match, and I measure whether traffic stays because the page delivers what the ad promised.</p>
+<p>Marketing claims follow the same bar as the rest of the site. I do not advertise features the wheels lack, and when fairness or privacy comes up I link to our <a href="/how-randomness-works">how randomness works</a> page and guides on the <a href="/blog">blog</a>. I coordinate with ${esc(TEAM_AUTHORS.raja.name)} so ad copy aligns with reviewed page text, and with product on which specialty wheels are ready to promote after testing.</p>
 
 <section>
   <h2>What I focus on</h2>
   <ul>
-    <li>Brand social channels: Instagram, X, YouTube, and Pinterest for Online Spin Wheel.</li>
-    <li>Community engagement: answering questions from teachers, streamers, and small businesses using the wheels.</li>
-    <li>Sharing useful content: wheel tips, new specialty pages, and links to guides on the <a href="/blog">blog</a>.</li>
-    <li>Coordinating launches with the team so social posts align with tested wheels and accurate copy.</li>
-    <li>Listening for feedback that should reach product and content, new wheel ideas, accessibility requests, or confusing instructions.</li>
+    <li>Performance marketing that sends the right audience to the right specialty wheel or guide.</li>
+    <li>Meta Ads campaigns that highlight free tools for classrooms, giveaways, and live streams.</li>
+    <li>Landing paths that match what the page actually offers, no inflated claims about randomness or features.</li>
+    <li>Coordinating launch timing with content and product so ads go live when pages are tested and accurate.</li>
+    <li>Listening for audience feedback from ad traffic that should reach product and content teams.</li>
   </ul>
 </section>
 
 <section>
-  <h2>How social fits the team</h2>
-  <p>${esc(TEAM_AUTHORS.armghana.name)} sets product direction; ${esc(TEAM_AUTHORS.zoha.name)} shapes user experience and roadmap priorities; ${esc(TEAM_AUTHORS.raja.name)} owns content, SEO, and the 10,000-spin testing checklist. My job is to carry that same honesty and clarity onto social platforms, no fake urgency, no misleading claims about randomness, and always a path back to the free tool on <a href="/">onlinespinwheel.fun</a>.</p>
-  <p>When we publish a new specialty wheel or a guide like the <a href="/spin-wheel-fairness-study">fairness study</a>, I help make sure the community hears about it in a way that matches what is actually on the page. That keeps trust high for classrooms running live picks and creators running giveaways.</p>
+  <h2>How marketing fits the team</h2>
+  <p>${esc(TEAM_AUTHORS.armghana.name)} sets product direction; ${esc(TEAM_AUTHORS.zoha.name)} shapes user experience and roadmap priorities; ${esc(TEAM_AUTHORS.raja.name)} owns search, discovery, and the 10,000-spin testing checklist. My job is to carry that same honesty into paid and organic reach, no fake urgency, no misleading claims, and always a path back to the free tool on <a href="/">onlinespinwheel.fun</a>.</p>
+  <p>When we publish a new specialty wheel or a guide like the <a href="/spin-wheel-fairness-study">fairness study</a>, I help make sure the audiences who need it, teachers, streamers, small businesses, hear about it in a way that matches what is on the page. Brand profiles on <a href="https://www.instagram.com/onlinespinwheel/" rel="noopener noreferrer">Instagram</a>, <a href="https://x.com/onlinespinwheel" rel="noopener noreferrer">X</a>, <a href="https://www.youtube.com/@OnlineSpinWheel" rel="noopener noreferrer">YouTube</a>, and <a href="https://www.pinterest.com/onlinespinwheel/" rel="noopener noreferrer">Pinterest</a> share practical tips alongside paid campaigns.</p>
 </section>
 
 <section>
   <h2>Connect</h2>
-  <p>Find Online Spin Wheel on <a href="https://www.instagram.com/onlinespinwheel/" rel="noopener noreferrer">Instagram</a>, <a href="https://x.com/onlinespinwheel" rel="noopener noreferrer">X</a>, <a href="https://www.youtube.com/@OnlineSpinWheel" rel="noopener noreferrer">YouTube</a>, and <a href="https://www.pinterest.com/onlinespinwheel/" rel="noopener noreferrer">Pinterest</a>. Ideas for posts, collaborations, or community features? Email <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a> or connect on <a href="${a.linkedIn}" rel="noopener noreferrer author">LinkedIn</a>. Read the full team story on <a href="/about-us">About us</a>.</p>
+  <p>Questions about partnerships, campaigns, or audience ideas? Email <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a> or connect on <a href="${a.linkedIn}" rel="noopener noreferrer author">LinkedIn</a>. Read the full team story on <a href="/about-us">About us</a> and learn how ${esc(TEAM_AUTHORS.raja.name)} tests every wheel before launch on the <a href="${TEAM_AUTHORS.raja.path}">discovery team page</a>.</p>
 </section>
 ${exploreNav()}`);
 }
 
 function authorContent() {
   const a = TEAM_AUTHORS.raja;
-  return mainWrap(`<h1>${esc(a.name)}, Content &amp; SEO Lead, ${ORG_NAME}</h1>
-<p>I'm ${esc(a.name)}, Content &amp; SEO Lead at <a href="/">${ORG_NAME}</a>. I work with <a href="${TEAM_AUTHORS.armghana.path}">${esc(TEAM_AUTHORS.armghana.name)}</a> and <a href="${TEAM_AUTHORS.zoha.path}">${esc(TEAM_AUTHORS.zoha.name)}</a> on a small team dedicated solely to this product, free spin wheels that are fast, honest, and privacy-respecting for teachers, creators, and small businesses worldwide.</p>
+  return mainWrap(`<h1>${esc(a.name)}, ${esc(a.shortRole)}, ${ORG_NAME}</h1>
+<p>I'm ${esc(a.name)}, ${esc(a.shortRole)} at <a href="/">${ORG_NAME}</a>. I work with <a href="${TEAM_AUTHORS.armghana.path}">${esc(TEAM_AUTHORS.armghana.name)}</a> and <a href="${TEAM_AUTHORS.zoha.path}">${esc(TEAM_AUTHORS.zoha.name)}</a> on a small team dedicated solely to this product, free spin wheels that are fast, honest, and privacy-respecting for teachers, creators, and small businesses worldwide.</p>
 <p>I own the words on the site: specialty wheel copy, comparison guides, blog posts, and the SEO structure that helps people find the right tool. Before a page ships, I check that it answers a real use case, links to the live wheel, and does not overpromise what the software does.</p>
 <p>Fairness is measured, not assumed. Before any wheel goes live, I run automated checks across 10,000 spins to confirm each equal-sized segment wins at the same rate. Randomness comes from the browser's secure generator, not a simple predictable formula, and entries you type stay on your device. I document that mechanism on the <a href="/how-randomness-works">how randomness works</a> page and in our <a href="/spin-wheel-fairness-study">fairness study</a>.</p>
 <p>When I update a tool page or guide, I refresh its visible last-updated date. Editorial corrections and bug reports go to <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>, include the page URL and what you expected versus what happened.</p>
@@ -1164,7 +1164,7 @@ function wheelContent(wheel, wheels) {
   const parts = [];
   parts.push(`<h1>${esc(wheel.h1 || keyword)}</h1>`);
   parts.push(
-    `<p>Reviewed by <a href="${TEAM_AUTHORS.raja.path}" rel="author">${esc(TEAM_AUTHORS.raja.name)}</a>, Content &amp; SEO Lead at ${ORG_NAME}. Last updated: <time datetime="${esc(
+    `<p>Reviewed by <a href="${TEAM_AUTHORS.raja.path}" rel="author">${esc(TEAM_AUTHORS.raja.name)}</a>, ${esc(TEAM_AUTHORS.raja.shortRole)} at ${ORG_NAME}. Last updated: <time datetime="${esc(
       lastUpdated,
     )}">${esc(fmtDate(lastUpdated))}</time>.</p>`,
   );
@@ -1345,7 +1345,7 @@ const FIXED = {
   "/author/raja-jahangir": () => authorContent(),
   "/author/armghana-zeeshan": () => authorArmghanaContent(),
   "/author/zoha-zeeshan": () => authorZohaContent(),
-  "/author/abdal-khalid": () => authorAbdalContent(),
+  "/author/faisal-zahir": () => authorFaisalContent(),
   "/privacy-policy": () => privacyContent(),
   "/cookie-policy": () => cookieContent(),
   "/terms-and-conditions": () => termsContent(),

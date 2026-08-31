@@ -1,7 +1,7 @@
 import { getAllBlogPosts } from "@/data/blogPosts";
 import { getWheelPageBySlug } from "@/lib/wheelPages";
 import { isWheelIndexableSlug } from "@/data/wheelIndexPolicy";
-import { ARMGHANA_AUTHOR, RAJA_AUTHOR, ZOHA_AUTHOR } from "@/lib/teamAuthors";
+import { ARMGHANA_AUTHOR, RAJA_AUTHOR, ZOHA_AUTHOR, FAISAL_AUTHOR } from "@/lib/teamAuthors";
 
 export type SiteLinkItem = {
   to: string;
@@ -44,6 +44,7 @@ export const teamAuthorFooterLinks: SiteLinkItem[] = [
   { to: ARMGHANA_AUTHOR.path, label: ARMGHANA_AUTHOR.name },
   { to: ZOHA_AUTHOR.path, label: ZOHA_AUTHOR.name },
   { to: RAJA_AUTHOR.path, label: RAJA_AUTHOR.name },
+  { to: FAISAL_AUTHOR.path, label: FAISAL_AUTHOR.name },
 ];
 
 export const tutorialLinks: SiteLinkItem[] = [

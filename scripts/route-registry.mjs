@@ -58,7 +58,8 @@ export const REDIRECT_MAP = {
   "/team/ceo": "/author/armghana-zeeshan",
   "/team/co-founder": "/author/zoha-zeeshan",
   "/team/content": "/author/raja-jahangir",
-  "/team/social": "/author/abdal-khalid",
+  "/team/marketing": "/author/faisal-zahir",
+  "/team/social": "/about-us",
   ...Object.fromEntries(
     Object.entries(WHEEL_MERGE_REDIRECTS).map(([from, to]) => [
       `/${from}`,
