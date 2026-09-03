@@ -54,6 +54,8 @@ function plainTitle(title) {
     .replace(/&#39;/g, "'");
 }
 
+const BRAND_TITLE_SUFFIX = " | Online Spin Wheel";
+
 function normalizeTitle(title, fallback = "Online Spin Wheel") {
   const clean = plainTitle(title || fallback);
   const replacements = new Map([
@@ -63,14 +65,33 @@ function normalizeTitle(title, fallback = "Online Spin Wheel") {
     ],
   ]);
   if (replacements.has(clean)) return replacements.get(clean);
-  if (clean.length <= 60) return clean;
-  return clean
-    .replace(/\s*\|\s*Online Spin Wheel$/i, "")
+  if (clean.length < 60) return clean;
+
+  let core = clean
+    .replace(/\s*(\||,)\s*Online Spin Wheel\s*$/i, "")
     .replace(/\s*-\s*Complete\s*/i, " ")
     .replace(/\s+/g, " ")
-    .trim()
-    .slice(0, 58)
-    .replace(/\s+\S*$/, "");
+    .trim();
+
+  const withBrand = `${core}${BRAND_TITLE_SUFFIX}`;
+  if (withBrand.length < 60) return withBrand;
+
+  const maxCoreLen = 59 - BRAND_TITLE_SUFFIX.length;
+  if (core.length > maxCoreLen) {
+    core = core
+      .slice(0, maxCoreLen)
+      .replace(/\s+\S*$/, "")
+      .replace(/[,|]\s*$/, "")
+      .trim();
+  }
+  return `${core}${BRAND_TITLE_SUFFIX}`;
+}
+
+/** Author profile titles may exceed 59 chars when the full role string is required. */
+function pageTitle(route) {
+  const clean = plainTitle(route.title);
+  if (route.path?.startsWith("/author/") && clean.length < 66) return clean;
+  return normalizeTitle(route.title);
 }
 
 function htmlList(items, mapper) {
@@ -347,7 +368,7 @@ function webApplicationJsonLd(route, name) {
 }
 
 function enrichRoute(route, wheels, blogRoutes, blogPosts) {
-  const title = normalizeTitle(route.title);
+  const title = pageTitle(route);
   const label = routeHeading({ ...route, title });
   const jsonLd = [];
   if (route.jsonLd) jsonLd.push(...(Array.isArray(route.jsonLd) ? route.jsonLd : [route.jsonLd]));

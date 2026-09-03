@@ -11,7 +11,7 @@ const AuthorRajaJahangir = () => {
   return (
     <AuthorProfilePage
       canonical={RAJA_AUTHOR.url}
-      title="Raja Jahangir, SEO/AEO/AIO/GEO/SXO Strategist, Online Spin Wheel"
+      title="Raja Jahangir, SEO/AEO/AIO/GEO/SXO Strategist | Online Spin Wheel"
       metaDescription="Raja Jahangir is SEO/AEO/AIO/GEO/SXO Strategist for Online Spin Wheel. Learn how the team tests every wheel for fair, uniform random results."
       ogDescription="Meet Raja Jahangir, SEO/AEO/AIO/GEO/SXO Strategist at Online Spin Wheel, content quality, discovery strategy, and 10,000-spin fairness checks."
       name={RAJA_AUTHOR.name}

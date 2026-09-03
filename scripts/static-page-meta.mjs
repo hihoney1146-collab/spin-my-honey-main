@@ -166,28 +166,28 @@ export const fixedRouteMeta = [
   },
   {
     path: "/author/raja-jahangir",
-    title: "Raja Jahangir | SEO/AEO/AIO/GEO/SXO Strategist | Online Spin Wheel",
+    title: "Raja Jahangir, SEO/AEO/AIO/GEO/SXO Strategist | Online Spin Wheel",
     description:
       "Raja Jahangir is SEO/AEO/AIO/GEO/SXO Strategist for Online Spin Wheel. How the team tests every wheel for fair, uniform random results.",
     ogType: "profile",
   },
   {
     path: "/author/armghana-zeeshan",
-    title: "Armghana Zeeshan | CEO | Online Spin Wheel",
+    title: "Armghana Zeeshan, CEO | Online Spin Wheel",
     description:
       "Armghana Zeeshan, CEO of Online Spin Wheel. Product direction, business priorities, and the standards behind every free fair spin wheel.",
     ogType: "profile",
   },
   {
     path: "/author/zoha-zeeshan",
-    title: "Zoha Zeeshan | Co-Founder | Online Spin Wheel",
+    title: "Zoha Zeeshan, Co-Founder | Online Spin Wheel",
     description:
       "Zoha Zeeshan, Co-Founder of Online Spin Wheel. Company direction, user experience, and roadmap for free fair random pickers.",
     ogType: "profile",
   },
   {
     path: "/author/faisal-zahir",
-    title: "Faisal Zahir | Digital Marketing | Online Spin Wheel",
+    title: "Faisal Zahir, Digital Marketing | Online Spin Wheel",
     description:
       "Faisal Zahir handles digital and performance marketing for Online Spin Wheel, connecting teachers, giveaway hosts, and streamers with free fair spin wheels.",
     ogType: "profile",

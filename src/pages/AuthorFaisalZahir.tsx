@@ -13,7 +13,7 @@ import { AuthorProfilePage } from "@/components/AuthorProfilePage";
 const AuthorFaisalZahir = () => (
   <AuthorProfilePage
     canonical={FAISAL_AUTHOR.url}
-    title="Faisal Zahir, Digital Marketing | Performance Marketing | Meta Ads, Online Spin Wheel"
+    title="Faisal Zahir, Digital Marketing | Online Spin Wheel"
     metaDescription="Faisal Zahir handles digital and performance marketing for Online Spin Wheel, connecting teachers, giveaway hosts, and streamers with free fair spin wheels."
     ogDescription="Meet Faisal Zahir, Digital Marketing at Online Spin Wheel, reaching teachers, creators, and hosts through performance marketing and Meta Ads."
     name={FAISAL_AUTHOR.name}

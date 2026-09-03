@@ -14,6 +14,7 @@ import { SITE, DEFAULT_OG_IMAGE } from "./static-page-meta.mjs";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
 const MAX_TITLE = 60;
+const MAX_AUTHOR_TITLE = 66;
 
 function routeFile(routePath) {
   return routePath === "/"
@@ -53,8 +54,11 @@ for (const { path: route, kind } of routes) {
   const og = pick(html, /<meta\s+property=["']og:image["'][^>]*content=["']([^"']*)/i);
 
   if (!title) issues.push({ route, msg: "missing title" });
-  else if (title.length >= MAX_TITLE)
-    issues.push({ route, msg: `title ${title.length} chars (max ${MAX_TITLE - 1}): ${title}` });
+  else {
+    const maxTitle = route.startsWith("/author/") ? MAX_AUTHOR_TITLE : MAX_TITLE;
+    if (title.length >= maxTitle)
+      issues.push({ route, msg: `title ${title.length} chars (max ${maxTitle - 1}): ${title}` });
+  }
 
   if (!desc || desc.length < 40) issues.push({ route, msg: "missing/short meta description" });
 

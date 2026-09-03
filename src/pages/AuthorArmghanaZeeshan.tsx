@@ -7,7 +7,7 @@ import { AuthorProfilePage } from "@/components/AuthorProfilePage";
 const AuthorArmghanaZeeshan = () => (
   <AuthorProfilePage
     canonical={ARMGHANA_AUTHOR.url}
-    title="Armghana Zeeshan, CEO, Online Spin Wheel"
+    title="Armghana Zeeshan, CEO | Online Spin Wheel"
     metaDescription="Armghana Zeeshan is CEO of Online Spin Wheel. She sets product direction, business priorities, and the standards that keep every free spin wheel fast, fair, and trustworthy."
     ogDescription="Meet Armghana Zeeshan, CEO of Online Spin Wheel, leading product direction for a small team dedicated solely to fair random pickers."
     name={ARMGHANA_AUTHOR.name}
