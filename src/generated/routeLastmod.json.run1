@@ -1,283 +1,279 @@
 {
   "routes": {
     "/": {
-      "hash": "21c3c79cb48150d5",
-      "lastmod": "2026-09-03"
+      "hash": "c802a1d0260aa5ac",
+      "lastmod": "2026-08-31"
     },
     "/all-spin-wheels": {
-      "hash": "16b5551f8008f43b",
-      "lastmod": "2026-09-03"
+      "hash": "3afa8300f006e3df",
+      "lastmod": "2026-08-31"
     },
     "/blog": {
-      "hash": "16be69c9cd8ffa50",
-      "lastmod": "2026-09-03"
+      "hash": "00e985f46419af9b",
+      "lastmod": "2026-08-31"
     },
     "/about-us": {
-      "hash": "f7c6e8bc83570317",
-      "lastmod": "2026-09-03"
+      "hash": "50d57a3499318dda",
+      "lastmod": "2026-08-31"
     },
     "/author/raja-jahangir": {
-      "hash": "55360e5ac6b8678a",
-      "lastmod": "2026-09-03"
+      "hash": "d81afcf19ec272b1",
+      "lastmod": "2026-08-31"
     },
     "/author/armghana-zeeshan": {
-      "hash": "77e690725c11dc1f",
-      "lastmod": "2026-09-03"
+      "hash": "4a3fcc8d0d014da5",
+      "lastmod": "2026-08-31"
     },
     "/author/zoha-zeeshan": {
-      "hash": "b6ccaaa27ae674f2",
-      "lastmod": "2026-09-03"
+      "hash": "02b3da65bb4be3cb",
+      "lastmod": "2026-08-31"
     },
     "/author/faisal-zahir": {
-      "hash": "41d1f5689d17a9c5",
-      "lastmod": "2026-09-03"
+      "hash": "3c4c46ae30ab9408",
+      "lastmod": "2026-08-31"
     },
     "/contact-us": {
-      "hash": "760f660bc90b8e04",
-      "lastmod": "2026-09-03"
+      "hash": "9629670bb9248756",
+      "lastmod": "2026-08-31"
     },
     "/privacy-policy": {
-      "hash": "1c5c0c93c7ace37e",
-      "lastmod": "2026-09-03"
+      "hash": "68165706fd1a50e1",
+      "lastmod": "2026-08-31"
     },
     "/terms-and-conditions": {
-      "hash": "c00c46ab4cc3aca0",
-      "lastmod": "2026-09-03"
+      "hash": "6b403b0f33ee6b38",
+      "lastmod": "2026-08-31"
     },
     "/cookie-policy": {
-      "hash": "66a33a8020ca254e",
-      "lastmod": "2026-09-03"
+      "hash": "a4a5b9bb1aee412d",
+      "lastmod": "2026-08-31"
     },
     "/disclaimer": {
-      "hash": "7d0f892f13e10d6d",
-      "lastmod": "2026-09-03"
+      "hash": "01504f971f13c1ba",
+      "lastmod": "2026-08-31"
     },
     "/how-randomness-works": {
-      "hash": "80c295f3dfb1d610",
-      "lastmod": "2026-09-03"
+      "hash": "ca52b006ab568777",
+      "lastmod": "2026-08-31"
     },
     "/tutorial-adding-images-to-spin-wheels": {
-      "hash": "2234ea184e9699f4",
-      "lastmod": "2026-09-03"
+      "hash": "6dda644860fb8837",
+      "lastmod": "2026-08-31"
     },
     "/case-study-school-using-spin-wheels": {
-      "hash": "e888bfe77337aadb",
-      "lastmod": "2026-09-03"
+      "hash": "82ac056a489ea747",
+      "lastmod": "2026-08-31"
     },
     "/case-study-community-event-using-spin-wheels": {
-      "hash": "dd1445f9c91ec7c9",
-      "lastmod": "2026-09-03"
+      "hash": "1feeac9346aa0a58",
+      "lastmod": "2026-08-31"
     },
     "/comparison-spin-wheel-vs-random-number-generator": {
-      "hash": "9510338f00135a4e",
-      "lastmod": "2026-09-03"
+      "hash": "fd3978786fab7d01",
+      "lastmod": "2026-08-31"
     },
     "/comparison-spin-wheel-vs-traditional-methods": {
-      "hash": "cea73b5397ef6cb6",
-      "lastmod": "2026-09-03"
+      "hash": "cb1846cd316ed1a9",
+      "lastmod": "2026-08-31"
     },
     "/comparison-online-vs-physical-spin-wheels": {
-      "hash": "1ee287f754dcf651",
-      "lastmod": "2026-09-03"
+      "hash": "bd0bafaf0ae7a0d7",
+      "lastmod": "2026-08-31"
     },
     "/wheel-of-names-alternative": {
-      "hash": "3c53c62ca1966edc",
-      "lastmod": "2026-09-03"
+      "hash": "f09a2daa50de8e46",
+      "lastmod": "2026-08-31"
     },
     "/spin-wheel-fairness-study": {
-      "hash": "e686ad45228b7738",
-      "lastmod": "2026-09-03"
+      "hash": "a3e88a203f4b6cca",
+      "lastmod": "2026-08-31"
     },
     "/blog/best-icebreaker-games-office-meetings": {
-      "hash": "b5548f9eefba2414",
-      "lastmod": "2026-09-03"
+      "hash": "7a862fb9b528e991",
+      "lastmod": "2026-08-31"
     },
     "/blog/best-spin-wheel-games-for-students": {
-      "hash": "74839005311b40ed",
-      "lastmod": "2026-09-03"
+      "hash": "f302b4819570a7c1",
+      "lastmod": "2026-08-31"
     },
     "/blog/spin-wheel-team-building-activities": {
-      "hash": "7698c83fd452c0df",
-      "lastmod": "2026-09-03"
+      "hash": "aa67e39d9749213a",
+      "lastmod": "2026-08-31"
     },
     "/blog/classroom-spinner-beyond-name-picking": {
-      "hash": "c59db6bd8edcd519",
-      "lastmod": "2026-09-03"
-    },
-    "/blog/fair-raffle-without-paper-tickets": {
-      "hash": "a8496651608213d8",
-      "lastmod": "2026-09-03"
+      "hash": "5a0a9f344232589d",
+      "lastmod": "2026-08-31"
     },
     "/yes-or-no-wheel": {
-      "hash": "2026b6846e55a26f",
+      "hash": "03dd179ecb73eae3",
       "lastmod": "2026-09-03"
     },
     "/dinner-picker-wheel": {
-      "hash": "4ce012abf6029ac7",
+      "hash": "f0fdb9b21afda7ac",
       "lastmod": "2026-09-03"
     },
     "/movie-picker-wheel": {
-      "hash": "ac2832effde10a1d",
+      "hash": "23b6b8692f26ed84",
       "lastmod": "2026-09-03"
     },
     "/should-i-text-him-wheel": {
-      "hash": "257943f85ff0502a",
+      "hash": "07119f69292baa6a",
       "lastmod": "2026-09-03"
     },
     "/outfit-picker-wheel": {
-      "hash": "26a82a16a94a9d68",
+      "hash": "69ee59c09d12c435",
       "lastmod": "2026-09-03"
     },
     "/date-night-wheel": {
-      "hash": "e8991721a0e18b37",
+      "hash": "19696af69d7d250c",
       "lastmod": "2026-09-03"
     },
     "/coin-flip-wheel": {
-      "hash": "c1a34147c23cc5f2",
+      "hash": "83e1e55c0f51c4e1",
       "lastmod": "2026-09-03"
     },
     "/exercise-picker-wheel": {
-      "hash": "ba353be5edc566f0",
+      "hash": "74ad7ee70ad3c19b",
       "lastmod": "2026-09-03"
     },
     "/zodiac-sign-wheel": {
-      "hash": "a7c673478290be50",
+      "hash": "83a371c154ad5e3a",
       "lastmod": "2026-09-03"
     },
     "/daily-horoscope-wheel": {
-      "hash": "ed64bf54ee442021",
+      "hash": "426347c7f18b0710",
       "lastmod": "2026-09-03"
     },
     "/chinese-zodiac-wheel": {
-      "hash": "b7c152a8093c71d5",
+      "hash": "54a5b97d36ff4dc7",
       "lastmod": "2026-09-03"
     },
     "/random-name-picker-wheel": {
-      "hash": "dd61b8ff9e8392d9",
+      "hash": "0b9e858f650d8f06",
       "lastmod": "2026-09-03"
     },
     "/random-number-wheel": {
-      "hash": "b00b5f803f9b9d62",
+      "hash": "621bb523aceca8ef",
       "lastmod": "2026-09-03"
     },
     "/team-generator-wheel": {
-      "hash": "1d5988871cf047ca",
+      "hash": "a1f9e4583b0e502b",
       "lastmod": "2026-09-03"
     },
     "/winner-picker-wheel": {
-      "hash": "3e5c68a21e13b702",
+      "hash": "6dc8e78fd0191f1e",
       "lastmod": "2026-09-03"
     },
     "/pick-out-of-a-hat-generator": {
-      "hash": "aa10333bff7101a7",
+      "hash": "ae96618e90ab42d2",
       "lastmod": "2026-09-03"
     },
     "/nfl-team-picker-wheel": {
-      "hash": "7bcaefe7ca345bac",
+      "hash": "67ef7dddc97acf64",
       "lastmod": "2026-09-03"
     },
     "/alphabet-spinner-wheel": {
-      "hash": "83139ce2aa1bb088",
+      "hash": "bbd921cba26ac1f0",
       "lastmod": "2026-09-03"
     },
     "/random-word-generator-wheel": {
-      "hash": "3e3329c2c0e77a3c",
+      "hash": "759ea37857cee53f",
       "lastmod": "2026-09-03"
     },
     "/random-country-wheel": {
-      "hash": "b11d4f939ba006d2",
+      "hash": "bb833a890855522d",
       "lastmod": "2026-09-03"
     },
     "/random-animal-picker-wheel": {
-      "hash": "06129fb1b4782a21",
+      "hash": "55853e16ad18cf4e",
       "lastmod": "2026-09-03"
     },
     "/random-day-picker-wheel": {
-      "hash": "636b143c4aef1970",
+      "hash": "3d2ba02bb3a99c41",
       "lastmod": "2026-09-03"
     },
     "/random-student-picker": {
-      "hash": "05a3028af4f0ea17",
+      "hash": "13cc6bf6fb386026",
       "lastmod": "2026-09-03"
     },
     "/what-to-draw-wheel": {
-      "hash": "4567fb188bb621e4",
+      "hash": "02cae15e06a08e98",
       "lastmod": "2026-09-03"
     },
     "/abcd-spin-wheel": {
-      "hash": "74df9c1df67a7883",
+      "hash": "08332651513256ce",
       "lastmod": "2026-09-03"
     },
     "/twister-spinner-online": {
-      "hash": "b6c847eaef80c4bc",
+      "hash": "51069088148ab5ad",
       "lastmod": "2026-09-03"
     },
     "/fast-food-wheel": {
-      "hash": "5a5e3a509aa1384c",
+      "hash": "d28727c4ecf6c661",
       "lastmod": "2026-09-03"
     },
     "/random-color-wheel": {
-      "hash": "144c47b1c3993898",
+      "hash": "da0f630b0c83bcb3",
       "lastmod": "2026-09-03"
     },
     "/self-care-wheel": {
-      "hash": "33231a2e3c644726",
+      "hash": "f61df796c75bd607",
       "lastmod": "2026-09-03"
     },
     "/pokemon-randomizer-wheel": {
-      "hash": "9bd8446f877e7422",
+      "hash": "fe21d36924a5007e",
       "lastmod": "2026-09-03"
     },
     "/secret-santa-wheel-generator": {
-      "hash": "a0521a22a8a97266",
+      "hash": "9f9d8d697cd52df6",
       "lastmod": "2026-09-03"
     },
     "/horror-movie-picker-wheel": {
-      "hash": "29fc6aa58ea9bd89",
+      "hash": "aa8bf3cc6cbd8373",
       "lastmod": "2026-09-03"
     },
     "/family-game-night-picker-wheel": {
-      "hash": "6b7f371f6c380b67",
+      "hash": "c9ebdeae2ba9e655",
       "lastmod": "2026-09-03"
     },
     "/bedtime-story-picker-wheel": {
-      "hash": "9df6efe9f6ba6c6e",
+      "hash": "3a0702fc21515688",
       "lastmod": "2026-09-03"
     },
     "/instagram-wheel-picker": {
-      "hash": "667ee92601f84b4b",
+      "hash": "8c621f7a9a83db3b",
       "lastmod": "2026-09-03"
     },
     "/fortnite-drop-location-wheel": {
-      "hash": "81825ceecf11fe3d",
+      "hash": "c974fdd062b92baa",
       "lastmod": "2026-09-03"
     },
     "/roblox-game-picker-wheel": {
-      "hash": "29e4ed1f9ba14853",
+      "hash": "98c1ad66a2bf5e4d",
       "lastmod": "2026-09-03"
     },
     "/truth-or-dare-spinner-online": {
-      "hash": "0835c1e9ec9d78da",
+      "hash": "108ce10552ab5c3f",
       "lastmod": "2026-09-03"
     },
     "/random-travel-destination-wheel": {
-      "hash": "9fb1ba5709dd78b7",
+      "hash": "9e23dfaddf361c1d",
       "lastmod": "2026-09-03"
     },
     "/random-hobby-generator-wheel": {
-      "hash": "1b1831da0187ca48",
+      "hash": "5c5631b10ad91776",
       "lastmod": "2026-09-03"
     },
     "/raffle-wheel": {
-      "hash": "9c847165e6a70fc5",
+      "hash": "4e1c91b9f3bbd3a9",
       "lastmod": "2026-09-03"
     },
     "/prize-wheel": {
-      "hash": "eb1555cf23a54d9b",
+      "hash": "f97a5e5943117d2d",
       "lastmod": "2026-09-03"
     },
     "/classroom-spinner": {
-      "hash": "5d3215ac2e4d15e7",
+      "hash": "bf39151c399b99ac",
       "lastmod": "2026-09-03"
     }
   }

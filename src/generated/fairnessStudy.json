@@ -19,240 +19,240 @@
     {
       "segmentCount": 2,
       "totalSpins": 10000,
-      "chiSquare": 2.0736,
+      "chiSquare": 0.49,
       "degreesOfFreedom": 1,
       "critical05": 3.841,
       "uniformPass": true,
-      "maxDeviationPct": 1.44,
+      "maxDeviationPct": 0.7,
       "distribution": [
         {
           "segmentIndex": 0,
-          "observed": 5072,
+          "observed": 5035,
           "expected": 5000,
-          "deviationPct": 1.44
+          "deviationPct": 0.7
         },
         {
           "segmentIndex": 1,
-          "observed": 4928,
+          "observed": 4965,
           "expected": 5000,
-          "deviationPct": -1.44
+          "deviationPct": -0.7
         }
       ]
     },
     {
       "segmentCount": 3,
       "totalSpins": 10000,
-      "chiSquare": 0.2198,
+      "chiSquare": 2.5928,
       "degreesOfFreedom": 2,
       "critical05": 5.991,
       "uniformPass": true,
-      "maxDeviationPct": 0.61,
+      "maxDeviationPct": 2.18,
       "distribution": [
         {
           "segmentIndex": 0,
-          "observed": 3313,
+          "observed": 3278,
           "expected": 3333.33,
-          "deviationPct": -0.61
+          "deviationPct": -1.66
         },
         {
           "segmentIndex": 1,
-          "observed": 3351,
+          "observed": 3316,
           "expected": 3333.33,
-          "deviationPct": 0.53
+          "deviationPct": -0.52
         },
         {
           "segmentIndex": 2,
-          "observed": 3336,
+          "observed": 3406,
           "expected": 3333.33,
-          "deviationPct": 0.08
+          "deviationPct": 2.18
         }
       ]
     },
     {
       "segmentCount": 4,
       "totalSpins": 10000,
-      "chiSquare": 6.3008,
+      "chiSquare": 1.3104,
       "degreesOfFreedom": 3,
       "critical05": 7.815,
       "uniformPass": true,
-      "maxDeviationPct": 3.84,
+      "maxDeviationPct": 1.56,
       "distribution": [
         {
           "segmentIndex": 0,
-          "observed": 2484,
+          "observed": 2485,
           "expected": 2500,
-          "deviationPct": -0.64
+          "deviationPct": -0.6
         },
         {
           "segmentIndex": 1,
-          "observed": 2554,
+          "observed": 2533,
           "expected": 2500,
-          "deviationPct": 2.16
+          "deviationPct": 1.32
         },
         {
           "segmentIndex": 2,
-          "observed": 2404,
+          "observed": 2461,
           "expected": 2500,
-          "deviationPct": -3.84
+          "deviationPct": -1.56
         },
         {
           "segmentIndex": 3,
-          "observed": 2558,
+          "observed": 2521,
           "expected": 2500,
-          "deviationPct": 2.32
+          "deviationPct": 0.84
         }
       ]
     },
     {
       "segmentCount": 6,
       "totalSpins": 10000,
-      "chiSquare": 6.5672,
+      "chiSquare": 3.3896,
       "degreesOfFreedom": 5,
       "critical05": 11.07,
       "uniformPass": true,
-      "maxDeviationPct": 3.88,
+      "maxDeviationPct": 3.62,
       "distribution": [
         {
           "segmentIndex": 0,
-          "observed": 1723,
+          "observed": 1649,
           "expected": 1666.67,
-          "deviationPct": 3.38
+          "deviationPct": -1.06
         },
         {
           "segmentIndex": 1,
-          "observed": 1662,
+          "observed": 1640,
           "expected": 1666.67,
-          "deviationPct": -0.28
+          "deviationPct": -1.6
         },
         {
           "segmentIndex": 2,
-          "observed": 1707,
+          "observed": 1637,
           "expected": 1666.67,
-          "deviationPct": 2.42
+          "deviationPct": -1.78
         },
         {
           "segmentIndex": 3,
-          "observed": 1681,
+          "observed": 1727,
           "expected": 1666.67,
-          "deviationPct": 0.86
+          "deviationPct": 3.62
         },
         {
           "segmentIndex": 4,
-          "observed": 1625,
+          "observed": 1671,
           "expected": 1666.67,
-          "deviationPct": -2.5
+          "deviationPct": 0.26
         },
         {
           "segmentIndex": 5,
-          "observed": 1602,
+          "observed": 1676,
           "expected": 1666.67,
-          "deviationPct": -3.88
+          "deviationPct": 0.56
         }
       ]
     },
     {
       "segmentCount": 8,
       "totalSpins": 10000,
-      "chiSquare": 13.7248,
+      "chiSquare": 8.2752,
       "degreesOfFreedom": 7,
       "critical05": 14.067,
       "uniformPass": true,
-      "maxDeviationPct": 7.92,
+      "maxDeviationPct": 4.64,
       "distribution": [
         {
           "segmentIndex": 0,
-          "observed": 1326,
+          "observed": 1278,
           "expected": 1250,
-          "deviationPct": 6.08
+          "deviationPct": 2.24
         },
         {
           "segmentIndex": 1,
-          "observed": 1270,
+          "observed": 1263,
           "expected": 1250,
-          "deviationPct": 1.6
+          "deviationPct": 1.04
         },
         {
           "segmentIndex": 2,
-          "observed": 1259,
+          "observed": 1308,
           "expected": 1250,
-          "deviationPct": 0.72
+          "deviationPct": 4.64
         },
         {
           "segmentIndex": 3,
-          "observed": 1151,
+          "observed": 1211,
           "expected": 1250,
-          "deviationPct": -7.92
+          "deviationPct": -3.12
         },
         {
           "segmentIndex": 4,
-          "observed": 1230,
+          "observed": 1208,
           "expected": 1250,
-          "deviationPct": -1.6
+          "deviationPct": -3.36
         },
         {
           "segmentIndex": 5,
-          "observed": 1275,
+          "observed": 1272,
           "expected": 1250,
-          "deviationPct": 2
+          "deviationPct": 1.76
         },
         {
           "segmentIndex": 6,
-          "observed": 1247,
+          "observed": 1203,
           "expected": 1250,
-          "deviationPct": -0.24
+          "deviationPct": -3.76
         },
         {
           "segmentIndex": 7,
-          "observed": 1242,
+          "observed": 1257,
           "expected": 1250,
-          "deviationPct": -0.64
+          "deviationPct": 0.56
         }
       ]
     },
     {
       "segmentCount": 10,
       "totalSpins": 10000,
-      "chiSquare": 10.278,
+      "chiSquare": 12.476,
       "degreesOfFreedom": 9,
       "critical05": 16.919,
       "uniformPass": true,
-      "maxDeviationPct": 5.3,
+      "maxDeviationPct": 5.8,
       "distribution": [
         {
           "segmentIndex": 0,
-          "observed": 983,
+          "observed": 1052,
           "expected": 1000,
-          "deviationPct": -1.7
+          "deviationPct": 5.2
         },
         {
           "segmentIndex": 1,
-          "observed": 1053,
-          "expected": 1000,
-          "deviationPct": 5.3
-        },
-        {
-          "segmentIndex": 2,
           "observed": 982,
           "expected": 1000,
           "deviationPct": -1.8
         },
         {
-          "segmentIndex": 3,
-          "observed": 998,
+          "segmentIndex": 2,
+          "observed": 1003,
           "expected": 1000,
-          "deviationPct": -0.2
+          "deviationPct": 0.3
+        },
+        {
+          "segmentIndex": 3,
+          "observed": 947,
+          "expected": 1000,
+          "deviationPct": -5.3
         },
         {
           "segmentIndex": 4,
-          "observed": 1027,
+          "observed": 1011,
           "expected": 1000,
-          "deviationPct": 2.7
+          "deviationPct": 1.1
         },
         {
           "segmentIndex": 5,
-          "observed": 957,
+          "observed": 966,
           "expected": 1000,
-          "deviationPct": -4.3
+          "deviationPct": -3.4
         },
         {
           "segmentIndex": 6,
@@ -262,193 +262,193 @@
         },
         {
           "segmentIndex": 7,
-          "observed": 975,
+          "observed": 1023,
           "expected": 1000,
-          "deviationPct": -2.5
+          "deviationPct": 2.3
         },
         {
           "segmentIndex": 8,
-          "observed": 1042,
+          "observed": 1058,
           "expected": 1000,
-          "deviationPct": 4.2
+          "deviationPct": 5.8
         },
         {
           "segmentIndex": 9,
-          "observed": 1021,
+          "observed": 996,
           "expected": 1000,
-          "deviationPct": 2.1
+          "deviationPct": -0.4
         }
       ]
     },
     {
       "segmentCount": 12,
       "totalSpins": 10000,
-      "chiSquare": 5.3096,
+      "chiSquare": 10.3976,
       "degreesOfFreedom": 11,
       "critical05": 19.675,
       "uniformPass": true,
-      "maxDeviationPct": 4.28,
+      "maxDeviationPct": 5.96,
       "distribution": [
         {
           "segmentIndex": 0,
-          "observed": 839,
+          "observed": 840,
           "expected": 833.33,
-          "deviationPct": 0.68
+          "deviationPct": 0.8
         },
         {
           "segmentIndex": 1,
-          "observed": 815,
+          "observed": 880,
           "expected": 833.33,
-          "deviationPct": -2.2
+          "deviationPct": 5.6
         },
         {
           "segmentIndex": 2,
-          "observed": 810,
+          "observed": 805,
           "expected": 833.33,
-          "deviationPct": -2.8
+          "deviationPct": -3.4
         },
         {
           "segmentIndex": 3,
+          "observed": 840,
+          "expected": 833.33,
+          "deviationPct": 0.8
+        },
+        {
+          "segmentIndex": 4,
+          "observed": 795,
+          "expected": 833.33,
+          "deviationPct": -4.6
+        },
+        {
+          "segmentIndex": 5,
+          "observed": 797,
+          "expected": 833.33,
+          "deviationPct": -4.36
+        },
+        {
+          "segmentIndex": 6,
           "observed": 823,
           "expected": 833.33,
           "deviationPct": -1.24
         },
         {
-          "segmentIndex": 4,
-          "observed": 869,
-          "expected": 833.33,
-          "deviationPct": 4.28
-        },
-        {
-          "segmentIndex": 5,
-          "observed": 834,
-          "expected": 833.33,
-          "deviationPct": 0.08
-        },
-        {
-          "segmentIndex": 6,
-          "observed": 811,
-          "expected": 833.33,
-          "deviationPct": -2.68
-        },
-        {
           "segmentIndex": 7,
-          "observed": 824,
+          "observed": 883,
           "expected": 833.33,
-          "deviationPct": -1.12
+          "deviationPct": 5.96
         },
         {
           "segmentIndex": 8,
-          "observed": 824,
+          "observed": 845,
           "expected": 833.33,
-          "deviationPct": -1.12
+          "deviationPct": 1.4
         },
         {
           "segmentIndex": 9,
-          "observed": 864,
+          "observed": 832,
           "expected": 833.33,
-          "deviationPct": 3.68
+          "deviationPct": -0.16
         },
         {
           "segmentIndex": 10,
-          "observed": 856,
+          "observed": 836,
           "expected": 833.33,
-          "deviationPct": 2.72
+          "deviationPct": 0.32
         },
         {
           "segmentIndex": 11,
-          "observed": 831,
+          "observed": 824,
           "expected": 833.33,
-          "deviationPct": -0.28
+          "deviationPct": -1.12
         }
       ]
     },
     {
       "segmentCount": 16,
       "totalSpins": 10000,
-      "chiSquare": 14.3456,
+      "chiSquare": 21.68,
       "degreesOfFreedom": 15,
       "critical05": 25,
       "uniformPass": true,
-      "maxDeviationPct": 8.16,
+      "maxDeviationPct": 7.68,
       "distribution": [
         {
           "segmentIndex": 0,
-          "observed": 603,
+          "observed": 591,
           "expected": 625,
-          "deviationPct": -3.52
+          "deviationPct": -5.44
         },
         {
           "segmentIndex": 1,
-          "observed": 596,
+          "observed": 623,
           "expected": 625,
-          "deviationPct": -4.64
+          "deviationPct": -0.32
         },
         {
           "segmentIndex": 2,
-          "observed": 608,
+          "observed": 659,
           "expected": 625,
-          "deviationPct": -2.72
+          "deviationPct": 5.44
         },
         {
           "segmentIndex": 3,
-          "observed": 611,
+          "observed": 629,
           "expected": 625,
-          "deviationPct": -2.24
+          "deviationPct": 0.64
         },
         {
           "segmentIndex": 4,
-          "observed": 645,
+          "observed": 648,
           "expected": 625,
-          "deviationPct": 3.2
+          "deviationPct": 3.68
         },
         {
           "segmentIndex": 5,
-          "observed": 631,
+          "observed": 590,
           "expected": 625,
-          "deviationPct": 0.96
+          "deviationPct": -5.6
         },
         {
           "segmentIndex": 6,
-          "observed": 611,
+          "observed": 605,
           "expected": 625,
-          "deviationPct": -2.24
+          "deviationPct": -3.2
         },
         {
           "segmentIndex": 7,
-          "observed": 634,
+          "observed": 626,
           "expected": 625,
-          "deviationPct": 1.44
+          "deviationPct": 0.16
         },
         {
           "segmentIndex": 8,
-          "observed": 620,
+          "observed": 577,
           "expected": 625,
-          "deviationPct": -0.8
+          "deviationPct": -7.68
         },
         {
           "segmentIndex": 9,
-          "observed": 587,
+          "observed": 600,
           "expected": 625,
-          "deviationPct": -6.08
+          "deviationPct": -4
         },
         {
           "segmentIndex": 10,
-          "observed": 631,
+          "observed": 650,
           "expected": 625,
-          "deviationPct": 0.96
+          "deviationPct": 4
         },
         {
           "segmentIndex": 11,
-          "observed": 676,
+          "observed": 659,
           "expected": 625,
-          "deviationPct": 8.16
+          "deviationPct": 5.44
         },
         {
           "segmentIndex": 12,
-          "observed": 639,
+          "observed": 593,
           "expected": 625,
-          "deviationPct": 2.24
+          "deviationPct": -5.12
         },
         {
           "segmentIndex": 13,
@@ -458,373 +458,373 @@
         },
         {
           "segmentIndex": 14,
-          "observed": 609,
+          "observed": 619,
           "expected": 625,
-          "deviationPct": -2.56
+          "deviationPct": -0.96
         },
         {
           "segmentIndex": 15,
-          "observed": 631,
+          "observed": 663,
           "expected": 625,
-          "deviationPct": 0.96
+          "deviationPct": 6.08
         }
       ]
     },
     {
       "segmentCount": 20,
       "totalSpins": 10000,
-      "chiSquare": 18.972,
+      "chiSquare": 12.164,
       "degreesOfFreedom": 19,
       "critical05": 30.144,
       "uniformPass": true,
-      "maxDeviationPct": 9,
+      "maxDeviationPct": 7.2,
       "distribution": [
         {
           "segmentIndex": 0,
-          "observed": 517,
+          "observed": 509,
           "expected": 500,
-          "deviationPct": 3.4
+          "deviationPct": 1.8
         },
         {
           "segmentIndex": 1,
-          "observed": 513,
+          "observed": 479,
           "expected": 500,
-          "deviationPct": 2.6
+          "deviationPct": -4.2
         },
         {
           "segmentIndex": 2,
-          "observed": 492,
+          "observed": 480,
           "expected": 500,
-          "deviationPct": -1.6
+          "deviationPct": -4
         },
         {
           "segmentIndex": 3,
-          "observed": 487,
+          "observed": 488,
           "expected": 500,
-          "deviationPct": -2.6
+          "deviationPct": -2.4
         },
         {
           "segmentIndex": 4,
-          "observed": 493,
+          "observed": 521,
           "expected": 500,
-          "deviationPct": -1.4
+          "deviationPct": 4.2
         },
         {
           "segmentIndex": 5,
-          "observed": 506,
+          "observed": 484,
           "expected": 500,
-          "deviationPct": 1.2
+          "deviationPct": -3.2
         },
         {
           "segmentIndex": 6,
-          "observed": 520,
+          "observed": 491,
           "expected": 500,
-          "deviationPct": 4
+          "deviationPct": -1.8
         },
         {
           "segmentIndex": 7,
-          "observed": 475,
+          "observed": 512,
           "expected": 500,
-          "deviationPct": -5
+          "deviationPct": 2.4
         },
         {
           "segmentIndex": 8,
-          "observed": 524,
-          "expected": 500,
-          "deviationPct": 4.8
-        },
-        {
-          "segmentIndex": 9,
-          "observed": 502,
-          "expected": 500,
-          "deviationPct": 0.4
-        },
-        {
-          "segmentIndex": 10,
-          "observed": 455,
-          "expected": 500,
-          "deviationPct": -9
-        },
-        {
-          "segmentIndex": 11,
           "observed": 519,
           "expected": 500,
           "deviationPct": 3.8
         },
         {
-          "segmentIndex": 12,
-          "observed": 493,
+          "segmentIndex": 9,
+          "observed": 507,
           "expected": 500,
-          "deviationPct": -1.4
+          "deviationPct": 1.4
         },
         {
-          "segmentIndex": 13,
-          "observed": 500,
-          "expected": 500,
-          "deviationPct": 0
-        },
-        {
-          "segmentIndex": 14,
-          "observed": 518,
-          "expected": 500,
-          "deviationPct": 3.6
-        },
-        {
-          "segmentIndex": 15,
-          "observed": 470,
-          "expected": 500,
-          "deviationPct": -6
-        },
-        {
-          "segmentIndex": 16,
-          "observed": 490,
-          "expected": 500,
-          "deviationPct": -2
-        },
-        {
-          "segmentIndex": 17,
-          "observed": 539,
-          "expected": 500,
-          "deviationPct": 7.8
-        },
-        {
-          "segmentIndex": 18,
+          "segmentIndex": 10,
           "observed": 464,
           "expected": 500,
           "deviationPct": -7.2
         },
         {
-          "segmentIndex": 19,
+          "segmentIndex": 11,
+          "observed": 496,
+          "expected": 500,
+          "deviationPct": -0.8
+        },
+        {
+          "segmentIndex": 12,
+          "observed": 502,
+          "expected": 500,
+          "deviationPct": 0.4
+        },
+        {
+          "segmentIndex": 13,
+          "observed": 530,
+          "expected": 500,
+          "deviationPct": 6
+        },
+        {
+          "segmentIndex": 14,
           "observed": 523,
           "expected": 500,
           "deviationPct": 4.6
+        },
+        {
+          "segmentIndex": 15,
+          "observed": 489,
+          "expected": 500,
+          "deviationPct": -2.2
+        },
+        {
+          "segmentIndex": 16,
+          "observed": 513,
+          "expected": 500,
+          "deviationPct": 2.6
+        },
+        {
+          "segmentIndex": 17,
+          "observed": 494,
+          "expected": 500,
+          "deviationPct": -1.2
+        },
+        {
+          "segmentIndex": 18,
+          "observed": 517,
+          "expected": 500,
+          "deviationPct": 3.4
+        },
+        {
+          "segmentIndex": 19,
+          "observed": 482,
+          "expected": 500,
+          "deviationPct": -3.6
         }
       ]
     },
     {
       "segmentCount": 36,
       "totalSpins": 10000,
-      "chiSquare": 29.852,
+      "chiSquare": 35.2448,
       "degreesOfFreedom": 35,
       "critical05": 49.998,
       "uniformPass": true,
-      "maxDeviationPct": 14.12,
+      "maxDeviationPct": 13.04,
       "distribution": [
         {
           "segmentIndex": 0,
-          "observed": 276,
+          "observed": 274,
           "expected": 277.78,
-          "deviationPct": -0.64
+          "deviationPct": -1.36
         },
         {
           "segmentIndex": 1,
-          "observed": 279,
+          "observed": 265,
           "expected": 277.78,
-          "deviationPct": 0.44
+          "deviationPct": -4.6
         },
         {
           "segmentIndex": 2,
-          "observed": 261,
-          "expected": 277.78,
-          "deviationPct": -6.04
-        },
-        {
-          "segmentIndex": 3,
-          "observed": 292,
-          "expected": 277.78,
-          "deviationPct": 5.12
-        },
-        {
-          "segmentIndex": 4,
-          "observed": 294,
-          "expected": 277.78,
-          "deviationPct": 5.84
-        },
-        {
-          "segmentIndex": 5,
-          "observed": 273,
-          "expected": 277.78,
-          "deviationPct": -1.72
-        },
-        {
-          "segmentIndex": 6,
           "observed": 247,
           "expected": 277.78,
           "deviationPct": -11.08
         },
         {
-          "segmentIndex": 7,
-          "observed": 249,
+          "segmentIndex": 3,
+          "observed": 282,
           "expected": 277.78,
-          "deviationPct": -10.36
+          "deviationPct": 1.52
         },
         {
-          "segmentIndex": 8,
-          "observed": 274,
+          "segmentIndex": 4,
+          "observed": 300,
           "expected": 277.78,
-          "deviationPct": -1.36
+          "deviationPct": 8
         },
         {
-          "segmentIndex": 9,
+          "segmentIndex": 5,
+          "observed": 314,
+          "expected": 277.78,
+          "deviationPct": 13.04
+        },
+        {
+          "segmentIndex": 6,
           "observed": 262,
           "expected": 277.78,
           "deviationPct": -5.68
         },
         {
-          "segmentIndex": 10,
-          "observed": 267,
-          "expected": 277.78,
-          "deviationPct": -3.88
-        },
-        {
-          "segmentIndex": 11,
-          "observed": 275,
-          "expected": 277.78,
-          "deviationPct": -1
-        },
-        {
-          "segmentIndex": 12,
-          "observed": 299,
-          "expected": 277.78,
-          "deviationPct": 7.64
-        },
-        {
-          "segmentIndex": 13,
-          "observed": 291,
-          "expected": 277.78,
-          "deviationPct": 4.76
-        },
-        {
-          "segmentIndex": 14,
+          "segmentIndex": 7,
           "observed": 274,
           "expected": 277.78,
           "deviationPct": -1.36
         },
         {
-          "segmentIndex": 15,
-          "observed": 275,
+          "segmentIndex": 8,
+          "observed": 262,
           "expected": 277.78,
-          "deviationPct": -1
+          "deviationPct": -5.68
         },
         {
-          "segmentIndex": 16,
-          "observed": 280,
+          "segmentIndex": 9,
+          "observed": 305,
           "expected": 277.78,
-          "deviationPct": 0.8
+          "deviationPct": 9.8
         },
         {
-          "segmentIndex": 17,
-          "observed": 278,
+          "segmentIndex": 10,
+          "observed": 297,
           "expected": 277.78,
-          "deviationPct": 0.08
+          "deviationPct": 6.92
         },
         {
-          "segmentIndex": 18,
-          "observed": 296,
+          "segmentIndex": 11,
+          "observed": 279,
           "expected": 277.78,
-          "deviationPct": 6.56
+          "deviationPct": 0.44
         },
         {
-          "segmentIndex": 19,
+          "segmentIndex": 12,
           "observed": 261,
           "expected": 277.78,
           "deviationPct": -6.04
         },
         {
-          "segmentIndex": 20,
-          "observed": 298,
-          "expected": 277.78,
-          "deviationPct": 7.28
-        },
-        {
-          "segmentIndex": 21,
-          "observed": 275,
-          "expected": 277.78,
-          "deviationPct": -1
-        },
-        {
-          "segmentIndex": 22,
-          "observed": 317,
-          "expected": 277.78,
-          "deviationPct": 14.12
-        },
-        {
-          "segmentIndex": 23,
-          "observed": 267,
-          "expected": 277.78,
-          "deviationPct": -3.88
-        },
-        {
-          "segmentIndex": 24,
-          "observed": 273,
-          "expected": 277.78,
-          "deviationPct": -1.72
-        },
-        {
-          "segmentIndex": 25,
-          "observed": 278,
-          "expected": 277.78,
-          "deviationPct": 0.08
-        },
-        {
-          "segmentIndex": 26,
-          "observed": 252,
-          "expected": 277.78,
-          "deviationPct": -9.28
-        },
-        {
-          "segmentIndex": 27,
+          "segmentIndex": 13,
           "observed": 292,
           "expected": 277.78,
           "deviationPct": 5.12
         },
         {
-          "segmentIndex": 28,
-          "observed": 268,
+          "segmentIndex": 14,
+          "observed": 301,
           "expected": 277.78,
-          "deviationPct": -3.52
+          "deviationPct": 8.36
         },
         {
-          "segmentIndex": 29,
-          "observed": 299,
+          "segmentIndex": 15,
+          "observed": 263,
           "expected": 277.78,
-          "deviationPct": 7.64
+          "deviationPct": -5.32
         },
         {
-          "segmentIndex": 30,
+          "segmentIndex": 16,
+          "observed": 269,
+          "expected": 277.78,
+          "deviationPct": -3.16
+        },
+        {
+          "segmentIndex": 17,
+          "observed": 269,
+          "expected": 277.78,
+          "deviationPct": -3.16
+        },
+        {
+          "segmentIndex": 18,
           "observed": 284,
           "expected": 277.78,
           "deviationPct": 2.24
         },
         {
-          "segmentIndex": 31,
+          "segmentIndex": 19,
+          "observed": 264,
+          "expected": 277.78,
+          "deviationPct": -4.96
+        },
+        {
+          "segmentIndex": 20,
+          "observed": 288,
+          "expected": 277.78,
+          "deviationPct": 3.68
+        },
+        {
+          "segmentIndex": 21,
+          "observed": 282,
+          "expected": 277.78,
+          "deviationPct": 1.52
+        },
+        {
+          "segmentIndex": 22,
+          "observed": 307,
+          "expected": 277.78,
+          "deviationPct": 10.52
+        },
+        {
+          "segmentIndex": 23,
+          "observed": 262,
+          "expected": 277.78,
+          "deviationPct": -5.68
+        },
+        {
+          "segmentIndex": 24,
+          "observed": 279,
+          "expected": 277.78,
+          "deviationPct": 0.44
+        },
+        {
+          "segmentIndex": 25,
           "observed": 287,
           "expected": 277.78,
           "deviationPct": 3.32
         },
         {
-          "segmentIndex": 32,
-          "observed": 280,
+          "segmentIndex": 26,
+          "observed": 294,
           "expected": 277.78,
-          "deviationPct": 0.8
+          "deviationPct": 5.84
+        },
+        {
+          "segmentIndex": 27,
+          "observed": 276,
+          "expected": 277.78,
+          "deviationPct": -0.64
+        },
+        {
+          "segmentIndex": 28,
+          "observed": 275,
+          "expected": 277.78,
+          "deviationPct": -1
+        },
+        {
+          "segmentIndex": 29,
+          "observed": 284,
+          "expected": 277.78,
+          "deviationPct": 2.24
+        },
+        {
+          "segmentIndex": 30,
+          "observed": 246,
+          "expected": 277.78,
+          "deviationPct": -11.44
+        },
+        {
+          "segmentIndex": 31,
+          "observed": 268,
+          "expected": 277.78,
+          "deviationPct": -3.52
+        },
+        {
+          "segmentIndex": 32,
+          "observed": 265,
+          "expected": 277.78,
+          "deviationPct": -4.6
         },
         {
           "segmentIndex": 33,
-          "observed": 272,
+          "observed": 258,
           "expected": 277.78,
-          "deviationPct": -2.08
+          "deviationPct": -7.12
         },
         {
           "segmentIndex": 34,
-          "observed": 292,
+          "observed": 294,
           "expected": 277.78,
-          "deviationPct": 5.12
+          "deviationPct": 5.84
         },
         {
           "segmentIndex": 35,
-          "observed": 263,
+          "observed": 271,
           "expected": 277.78,
-          "deviationPct": -5.32
+          "deviationPct": -2.44
         }
       ]
     }

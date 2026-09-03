@@ -36,16 +36,50 @@ const jobs = [
     slug: "virtual-secret-santa-online",
     src: "How to Organize a Virtual Secret Santa Online.png",
   },
+  {
+    slug: "classroom-spinner-beyond-name-picking",
+    src: "Classroom_Spinner_Beyond_Name_Picking.png",
+  },
+  {
+    slug: "fair-raffle-without-paper-tickets",
+    src: "Raffle_Wheel.png",
+  },
 ];
+
+const onlyArg = process.argv.find((a) => a.startsWith("--only="));
+const onlySlugs = onlyArg
+  ? onlyArg
+      .slice("--only=".length)
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean)
+  : null;
+const activeJobs = onlySlugs?.length
+  ? jobs.filter((j) => onlySlugs.includes(j.slug))
+  : jobs;
+
+if (onlySlugs?.length && activeJobs.length !== onlySlugs.length) {
+  const known = new Set(jobs.map((j) => j.slug));
+  const missing = onlySlugs.filter((s) => !known.has(s));
+  console.error(`❌ Unknown slug(s) for --only: ${missing.join(", ")}`);
+  process.exit(1);
+}
 
 fs.mkdirSync(outDir, { recursive: true });
 
-for (const { slug, src } of jobs) {
+for (const { slug, src } of activeJobs) {
   const inputPath = path.join(assetsDir, src);
   if (!fs.existsSync(inputPath)) {
     console.error(`❌ Missing source: ${src}`);
     process.exit(1);
   }
+
+  const srcBytes = fs.statSync(inputPath).size;
+  const srcKb = (srcBytes / 1024).toFixed(1);
+  const srcMeta = await sharp(inputPath).metadata();
+  console.log(
+    `\n📷 ${slug}\n   source: ${src} (${srcKb} KB, ${srcMeta.width ?? "?"}×${srcMeta.height ?? "?"})`,
+  );
 
   const base = sharp(inputPath).rotate();
   const resized = base.resize({
@@ -70,7 +104,11 @@ for (const { slug, src } of jobs) {
 
   const wKb = (fs.statSync(webpPath).size / 1024).toFixed(1);
   const jKb = (fs.statSync(jpgPath).size / 1024).toFixed(1);
-  console.log(`✅ ${slug}  →  webp ${wKb} KB, jpg ${jKb} KB`);
+  const outMeta = await sharp(jpgPath).metadata();
+  const savedPct = ((1 - fs.statSync(jpgPath).size / srcBytes) * 100).toFixed(0);
+  console.log(
+    `   output: webp ${wKb} KB, jpg ${jKb} KB (${outMeta.width ?? "?"}×${outMeta.height ?? "?"}, −${savedPct}% vs source)`,
+  );
 }
 
 console.log(`\n✅ Wrote optimized assets → ${path.relative(root, outDir)}`);
