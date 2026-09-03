@@ -15,9 +15,4 @@ Disallow: /*?*e=
 Disallow: /*?*d=
 Disallow: /*?*stream=
 
-# Primary for GSC (extensionless urlset; most reliable behind Cloudflare)
-Sitemap: https://onlinespinwheel.fun/sitemap
-# Same urlset with .xml extension (prefer /sitemap if GSC reports Couldn't fetch)
 Sitemap: https://onlinespinwheel.fun/sitemap.xml
-# Plain-text URL list fallback
-Sitemap: https://onlinespinwheel.fun/sitemap.txt

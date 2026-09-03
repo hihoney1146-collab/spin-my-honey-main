@@ -33,15 +33,17 @@
     { "source": "/fast-food-wheel", "destination": "/dinner-picker-wheel", "permanent": true },
     { "source": "/horror-movie-picker-wheel", "destination": "/movie-picker-wheel", "permanent": true },
     { "source": "/daily-horoscope-wheel", "destination": "/zodiac-sign-wheel", "permanent": true },
-    { "source": "/pick-out-of-a-hat-generator", "destination": "/random-name-picker-wheel", "permanent": true }
+    { "source": "/pick-out-of-a-hat-generator", "destination": "/random-name-picker-wheel", "permanent": true },
+
+    { "source": "/sitemap", "destination": "/sitemap.xml", "permanent": true },
+    { "source": "/sitemap.txt", "destination": "/sitemap.xml", "permanent": true },
+    { "source": "/sitemap-index.xml", "destination": "/sitemap.xml", "permanent": true }
   ],
   "rewrites": [
     { "source": "/ads.txt", "destination": "/api/ads" },
     { "source": "/robots.txt", "destination": "/api/robots" },
     { "source": "/llms.txt", "destination": "/api/llms" },
-    { "source": "/sitemap", "destination": "/api/sitemap" },
     { "source": "/sitemap.xml", "destination": "/api/sitemap" },
-    { "source": "/sitemap.txt", "destination": "/api/sitemap?format=txt" },
     {
       "source": "/((?!api/|(?:sitemap|pages-sitemap|wheels-sitemap|blog-sitemap|images-sitemap)(?:\\.xml)?$|.*\\.(?:xml|txt|png|jpe?g|webp|svg|gif|ico|pdf|csv|json|js|css|map|woff2?)$).*)",
       "destination": "/index.html"
@@ -49,24 +51,11 @@
   ],
   "headers": [
     {
-      "source": "/(sitemap|sitemap\\.xml|pages-sitemap|pages-sitemap\\.xml|blog-sitemap|blog-sitemap\\.xml|wheels-sitemap|wheels-sitemap\\.xml|images-sitemap|images-sitemap\\.xml|sitemap-index\\.xml)",
+      "source": "/(sitemap\\.xml|pages-sitemap|pages-sitemap\\.xml|blog-sitemap|blog-sitemap\\.xml|wheels-sitemap|wheels-sitemap\\.xml|images-sitemap|images-sitemap\\.xml)",
       "headers": [
         {
           "key": "Content-Type",
           "value": "application/xml; charset=utf-8"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=3600, s-maxage=86400, must-revalidate"
-        }
-      ]
-    },
-    {
-      "source": "/sitemap.txt",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/plain; charset=utf-8"
         },
         {
           "key": "Cache-Control",
@@ -217,7 +206,7 @@
       ]
     },
     {
-      "source": "/((?!api(?:/|$)|embed(?:/|$)|ads\\.txt$|robots\\.txt$|llms\\.txt$|sitemap(?:\\.xml|\\.txt)?$|.*sitemap(?:\\.xml)?$).*)",
+      "source": "/((?!api(?:/|$)|embed(?:/|$)|ads\\.txt$|robots\\.txt$|llms\\.txt$|sitemap\\.xml$|.*sitemap(?:\\.xml)?$).*)",
       "headers": [
         {
           "key": "Strict-Transport-Security",

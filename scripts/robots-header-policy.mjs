@@ -9,9 +9,7 @@ export const ROOT_CRAWLER_PATHS = [
   "/ads.txt",
   "/robots.txt",
   "/llms.txt",
-  "/sitemap",
   "/sitemap.xml",
-  "/sitemap.txt",
   "/pages-sitemap",
   "/pages-sitemap.xml",
   "/wheels-sitemap",
@@ -20,7 +18,6 @@ export const ROOT_CRAWLER_PATHS = [
   "/blog-sitemap.xml",
   "/images-sitemap",
   "/images-sitemap.xml",
-  "/sitemap-index.xml",
 ];
 
 /** Leftover guide URLs — noindex via meta + optional header. */

@@ -108,7 +108,6 @@ for (const { path: route, kind } of routes) {
 
 for (const rel of [
   "public/sitemap.xml",
-  "public/sitemap",
   "public/pages-sitemap.xml",
   "public/wheels-sitemap.xml",
   "public/blog-sitemap.xml",

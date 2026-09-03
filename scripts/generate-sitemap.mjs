@@ -27,8 +27,8 @@ const childNames = CHILD_SITEMAPS.map((c) => c.filename).join(", ");
 const totalUrls = pageCount + blogCount + wheelCount;
 const blogs = collectBlogSlugs(root).length;
 
-console.log(`✅ sitemap (+ .xml/.txt) + sitemap-index.xml + ${childNames}`);
-console.log(`   also extensionless: /sitemap, /pages-sitemap, /wheels-sitemap, /blog-sitemap, /images-sitemap`);
+console.log(`✅ sitemap.xml + ${childNames}`);
+console.log(`   extensionless child twins: /pages-sitemap, /wheels-sitemap, /blog-sitemap, /images-sitemap`);
 console.log(`   api/sitemap-payload.js embedded for /api/sitemap`);
 console.log(
   `   URLs: ${totalUrls} (${pageCount} pages, ${blogs} blog, ${wheelCount} wheels) + images-sitemap`,

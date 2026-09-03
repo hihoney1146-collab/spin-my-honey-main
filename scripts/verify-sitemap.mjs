@@ -1,13 +1,11 @@
 #!/usr/bin/env node
 /**
- * Post-deploy: validate root + child sitemaps (GSC compatibility).
+ * Post-deploy: validate canonical sitemap + child partitions (GSC compatibility).
  */
 const SITE = process.env.SITE_ORIGIN || "https://onlinespinwheel.fun";
 
 const SITEMAPS = [
-  { path: "/sitemap", kind: "urlset", minLocs: 35 },
   { path: "/sitemap.xml", kind: "urlset", minLocs: 35 },
-  { path: "/sitemap.txt", kind: "text", minLocs: 35 },
   { path: "/pages-sitemap", kind: "urlset", minLocs: 10 },
   { path: "/pages-sitemap.xml", kind: "urlset", minLocs: 10 },
   { path: "/wheels-sitemap", kind: "urlset", minLocs: 15 },
@@ -18,6 +16,12 @@ const SITEMAPS = [
   { path: "/images-sitemap.xml", kind: "image", minLocs: 1 },
 ];
 
+const LEGACY_REDIRECTS = [
+  { path: "/sitemap", target: "/sitemap.xml" },
+  { path: "/sitemap.txt", target: "/sitemap.xml" },
+  { path: "/sitemap-index.xml", target: "/sitemap.xml" },
+];
+
 const ROBOTS_CHECKS = [
   { pattern: /Disallow:\s*\/\s*$/m, failIf: true, label: "blanket Disallow /" },
   { pattern: /User-agent:\s*GPTBot[\s\S]*?Disallow:\s*\//i, failIf: true, label: "GPTBot blocked" },
@@ -26,7 +30,7 @@ const ROBOTS_CHECKS = [
 
 let failed = 0;
 
-console.log("=== Sitemaps ===\n");
+console.log("=== Canonical sitemap ===\n");
 
 for (const { path, kind, minLocs } of SITEMAPS) {
   const url = `${SITE}${path}`;
@@ -46,38 +50,8 @@ for (const { path, kind, minLocs } of SITEMAPS) {
       continue;
     }
 
-    if (kind === "text") {
-      if (!ct.includes("text/plain")) {
-        console.error(`FAIL ${path}: Content-Type "${ct}" (expected text/plain)`);
-        failed++;
-        continue;
-      }
-
-      const urls = body
-        .split(/\r?\n/)
-        .map((line) => line.trim())
-        .filter(Boolean);
-      const badLine = urls.find((line) => !line.startsWith(`${SITE}/`));
-
-      if (badLine) {
-        console.error(`FAIL ${path}: non-canonical URL line "${badLine}"`);
-        failed++;
-        continue;
-      }
-      if (urls.length < minLocs) {
-        console.error(`FAIL ${path}: expected at least ${minLocs} entries, got ${urls.length}`);
-        failed++;
-        continue;
-      }
-
-      console.log(`OK  ${url}`);
-      console.log(`    Content-Type: ${ct.split(";")[0]}`);
-      console.log(`    Entries: ${urls.length}`);
-      continue;
-    }
-
     if (!ct.includes("xml")) {
-      console.error(`FAIL ${path}: Content-Type "${ct}" (expected XML)`);
+      console.error(`FAIL ${path}: Content-Type "${ct}" (expected application/xml)`);
       failed++;
       continue;
     }
@@ -88,28 +62,18 @@ for (const { path, kind, minLocs } of SITEMAPS) {
       continue;
     }
 
-    if (kind === "index" && !body.includes("<sitemapindex")) {
-      console.error(`FAIL ${path}: expected sitemap index`);
-      failed++;
-      continue;
-    }
     if ((kind === "urlset" || kind === "image") && !body.includes("<urlset")) {
       console.error(`FAIL ${path}: expected urlset`);
       failed++;
       continue;
     }
 
-    // CSP on crawler endpoints makes GSC flaky, warn loudly
     const csp = res.headers.get("content-security-policy");
     if (csp) {
       console.warn(`WARN ${path}: has Content-Security-Policy (prefer none on sitemaps)`);
     }
 
-    const locs =
-      kind === "index"
-        ? (body.match(/<sitemap>/g) || []).length
-        : (body.match(/<loc>/g) || []).length;
-
+    const locs = (body.match(/<loc>/g) || []).length;
     if (locs < minLocs) {
       console.error(`FAIL ${path}: expected at least ${minLocs} entries, got ${locs}`);
       failed++;
@@ -119,6 +83,29 @@ for (const { path, kind, minLocs } of SITEMAPS) {
     console.log(`OK  ${url}`);
     console.log(`    Content-Type: ${ct.split(";")[0]}`);
     console.log(`    Entries: ${locs}`);
+  } catch (err) {
+    console.error(`FAIL ${path}: ${err.message}`);
+    failed++;
+  }
+}
+
+console.log("\n=== Legacy sitemap redirects ===\n");
+
+for (const { path, target } of LEGACY_REDIRECTS) {
+  try {
+    const res = await fetch(`${SITE}${path}`, { redirect: "manual" });
+    const location = res.headers.get("location") || "";
+    if (res.status !== 301 && res.status !== 308) {
+      console.error(`FAIL ${path}: expected 301/308, got ${res.status}`);
+      failed++;
+      continue;
+    }
+    if (!location.includes(target)) {
+      console.error(`FAIL ${path}: Location "${location}" (expected *${target}*)`);
+      failed++;
+      continue;
+    }
+    console.log(`OK  ${path} -> ${location}`);
   } catch (err) {
     console.error(`FAIL ${path}: ${err.message}`);
     failed++;
@@ -142,18 +129,19 @@ try {
         failed++;
       }
     }
-    if (!body.includes("Sitemap:")) {
-      console.error("FAIL robots.txt: missing Sitemap directive");
+    const sitemapLines = body.match(/^Sitemap:\s*.+$/gim) || [];
+    if (sitemapLines.length !== 1) {
+      console.error(`FAIL robots.txt: expected exactly 1 Sitemap line, got ${sitemapLines.length}`);
       robotsOk = false;
       failed++;
-    }
-    if (!body.includes(`${SITE}/sitemap`)) {
-      console.error("FAIL robots.txt: missing extensionless /sitemap");
+    } else if (!sitemapLines[0].includes(`${SITE}/sitemap.xml`)) {
+      console.error(`FAIL robots.txt: Sitemap line must be ${SITE}/sitemap.xml`);
       robotsOk = false;
       failed++;
     }
     if (robotsOk) {
       console.log(`OK  ${SITE}/robots.txt`);
+      console.log(`    ${sitemapLines[0]?.trim()}`);
     }
   }
 } catch (err) {
@@ -162,12 +150,10 @@ try {
 }
 
 console.log("\n=== GSC checklist ===\n");
-console.log(`1. PRIMARY submit in GSC: ${SITE}/sitemap  (extensionless full urlset)`);
-console.log(`2. Fallback: ${SITE}/sitemap.txt  (URL list, often succeeds when XML fails)`);
-console.log(`3. Remove failed *.xml child rows in GSC (Couldn't fetch behind Cloudflare)`);
-console.log("4. Optional children: /pages-sitemap /wheels-sitemap /blog-sitemap /images-sitemap");
-console.log("5. Purge Cloudflare cache after deploy, wait, resubmit /sitemap only");
-console.log("6. Bing Webmaster: same /sitemap URL, then npm run indexnow\n");
+console.log(`1. Submit in GSC: ${SITE}/sitemap.xml`);
+console.log("2. Remove legacy /sitemap, /sitemap.txt, /sitemap-index.xml rows from GSC");
+console.log("3. Purge Cloudflare cache for /sitemap.xml, /robots.txt, /ads.txt after deploy");
+console.log("4. Bing Webmaster: same /sitemap.xml URL, then npm run indexnow\n");
 
 if (failed > 0) {
   console.error(`${failed} check(s) failed.`);

@@ -1144,7 +1144,7 @@ function wheelGettingStartedSection(wheel) {
   )} fullscreen on a smartboard or TV so everyone sees the same spin without crowding one phone.</p></section>`;
 }
 
-function wheelContent(wheel, wheels) {
+function wheelContent(wheel, wheels, { forHash = false } = {}) {
   const unique = getWheelUniqueContent(wheel.slug);
   const keyword = wheelLabel(wheel);
   const kwLower = String(keyword).toLowerCase();
@@ -1154,7 +1154,9 @@ function wheelContent(wheel, wheels) {
     : Array.isArray(wheel.faqs)
       ? wheel.faqs
       : [];
-  const lastUpdated = routeLastmod(`/${wheel.slug}`) || wheel.lastUpdated || WHEEL_CONTENT_LAST_UPDATED;
+  const lastUpdated = forHash
+    ? wheel.lastUpdated || WHEEL_CONTENT_LAST_UPDATED
+    : routeLastmod(`/${wheel.slug}`) || wheel.lastUpdated || WHEEL_CONTENT_LAST_UPDATED;
   const directAnswer =
     unique?.directAnswer ||
     wheel.introduction ||
@@ -1371,11 +1373,11 @@ const FIXED = {
  * @param {{ wheels: any[]; blogPosts: any[] }} ctx
  * @returns {string | null}
  */
-export function renderRouteContent(route, { wheels = [], blogPosts = [] } = {}) {
+export function renderRouteContent(route, { wheels = [], blogPosts = [] } = {}, options = {}) {
   const routePath = route.path;
 
   // Specialty wheel page (route carries the wheel record).
-  if (route.wheel) return wheelContent(route.wheel, wheels);
+  if (route.wheel) return wheelContent(route.wheel, wheels, options);
 
   if (routePath === "/") return homeContent(wheels);
   if (routePath === "/all-spin-wheels") return allSpinWheelsContent(wheels);

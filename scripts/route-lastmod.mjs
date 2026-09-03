@@ -57,7 +57,7 @@ export function updateRouteLastmodRegistry(rootDir = root) {
   const next = { routes: {} };
 
   for (const route of routes) {
-    const html = renderRouteContent(route, ctx) || "";
+    const html = renderRouteContent(route, ctx, { forHash: true }) || "";
     const hash = hashContent(html);
     const old = prev.routes[route.path];
     const lastmod =
