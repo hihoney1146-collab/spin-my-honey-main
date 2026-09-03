@@ -118,6 +118,15 @@ function loadEnrichment() {
 
 const ENRICH = loadEnrichment();
 
+/** One-line hub blurb under category headings on /all-spin-wheels. */
+function categoryHubBlurb(category) {
+  const data = ENRICH.categoryData[category];
+  if (!data) return "";
+  if (data.whyPrefix) return data.whyPrefix;
+  const first = data.useCases?.[0];
+  return first ? `${first}.` : "";
+}
+
 function esc(s) {
   return String(s ?? "")
     .replace(/&/g, "&amp;")
@@ -1331,8 +1340,10 @@ function allSpinWheelsContent(wheels) {
               `    <li><a href="/${esc(w.slug)}">${esc(wheelLabel(w))}</a></li>`,
           )
           .join("\n");
+        const blurb = categoryHubBlurb(category);
+        const blurbHtml = blurb ? `\n  <p>${esc(blurb)}</p>` : "";
         return `<section>
-  <h2>${esc(category)} (${items.length})</h2>
+  <h2>${esc(category)} (${items.length})</h2>${blurbHtml}
   <ul>
 ${lis}
   </ul>
@@ -1355,8 +1366,9 @@ ${sectionsFor(extras)}</section>`
   <li><a href="/random-name-picker-wheel">Random name picker</a>, remove-after-pick, history, optional weights</li>
   <li><a href="/wheel-of-names-alternative">Feature comparison</a>, compare free picker tools</li>
 </ul></section>
-<h2>Indexed tools (${indexed.length})</h2>
-${sectionsFor(indexed)}
+<section><h2>Indexed tools (${indexed.length})</h2>
+<p>These ${indexed.length} tools are indexed in search. Each has distinct controls or modes, not just a relabeled default list.</p>
+${sectionsFor(indexed)}</section>
 ${extraBlock}
 ${exploreNav()}`);
 }

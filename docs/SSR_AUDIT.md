@@ -4,14 +4,14 @@ Generated 2026-09-03 from built `dist/` HTML, the exact bytes served to a no-JS 
 
 - Routes audited: **48**
 - Threshold: **400** crawler-visible words
-- Below threshold: **1**, Missing HTML: **0**
+- Below threshold: **0**, Missing HTML: **0**
 
 | route | ssr_words | status |
 | --- | ---: | --- |
 | `/` | 891 | PASS |
 | `/abcd-spin-wheel` | 450 | PASS |
 | `/about-us` | 640 | PASS |
-| `/all-spin-wheels` | 393 | BELOW 400 |
+| `/all-spin-wheels` | 565 | PASS |
 | `/alphabet-spinner-wheel` | 442 | PASS |
 | `/author/armghana-zeeshan` | 504 | PASS |
 | `/author/faisal-zahir` | 558 | PASS |
@@ -48,7 +48,7 @@ Generated 2026-09-03 from built `dist/` HTML, the exact bytes served to a no-JS 
 | `/secret-santa-wheel-generator` | 452 | PASS |
 | `/self-care-wheel` | 416 | PASS |
 | `/should-i-text-him-wheel` | 423 | PASS |
-| `/spin-wheel-fairness-study` | 1117 | PASS |
+| `/spin-wheel-fairness-study` | 1122 | PASS |
 | `/team-generator-wheel` | 466 | PASS |
 | `/terms-and-conditions` | 559 | PASS |
 | `/tutorial-adding-images-to-spin-wheels` | 588 | PASS |
