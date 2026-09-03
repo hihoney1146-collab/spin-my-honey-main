@@ -1,6 +1,6 @@
 # SSR Content Audit
 
-Generated 2026-08-31 from built `dist/` HTML, the exact bytes served to a no-JS crawler (equivalent to `curl` against production).
+Generated 2026-09-03 from built `dist/` HTML, the exact bytes served to a no-JS crawler (equivalent to `curl` against production).
 
 - Routes audited: **47**
 - Threshold: **400** crawler-visible words

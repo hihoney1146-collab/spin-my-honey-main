@@ -119,15 +119,20 @@
         {
           "key": "Cache-Control",
           "value": "no-cache, no-store, must-revalidate"
-        },
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex"
         }
       ]
     },
     {
-      "source": "/embed/:slug*",
+      "source": "/result/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        }
+      ]
+    },
+    {
+      "source": "/embed/(.*)",
       "headers": [
         {
           "key": "Strict-Transport-Security",
@@ -148,6 +153,10 @@
         {
           "key": "Content-Security-Policy",
           "value": "upgrade-insecure-requests; frame-ancestors *"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
         }
       ]
     },
@@ -173,6 +182,37 @@
         {
           "key": "Content-Security-Policy",
           "value": "upgrade-insecure-requests; frame-ancestors *"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/(exercise-picker-wheel|nfl-team-picker-wheel|random-word-generator-wheel|random-country-wheel|random-animal-picker-wheel|random-day-picker-wheel|what-to-draw-wheel|twister-spinner-online|random-color-wheel|family-game-night-picker-wheel|bedtime-story-picker-wheel|fortnite-drop-location-wheel|roblox-game-picker-wheel|truth-or-dare-spinner-online|random-travel-destination-wheel|random-hobby-generator-wheel)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        }
+      ]
+    },
+    {
+      "source": "/(how-to-use-spin-wheels-in-classrooms|how-to-create-fair-giveaways-with-spin-wheels|how-to-use-spin-wheels-for-team-building|how-to-organize-events-with-random-selection|how-to-make-decisions-faster-with-spin-wheels|tutorial-creating-your-first-spin-wheel|tutorial-customizing-spin-wheel-colors|tutorial-managing-spin-wheel-entries|tutorial-advanced-spin-wheel-features|case-study-corporate-event-using-spin-wheels)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        }
+      ]
+    },
+    {
+      "source": "/blog/(random-name-picker-fair-fun-easy|fun-ways-decide-where-to-eat-couples|virtual-secret-santa-online)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
         }
       ]
     },

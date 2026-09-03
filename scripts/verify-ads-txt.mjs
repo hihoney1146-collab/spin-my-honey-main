@@ -23,6 +23,12 @@ for (const url of urls) {
       failed++;
       continue;
     }
+    const robots = res.headers.get("x-robots-tag") ?? "";
+    if (/noindex/i.test(robots)) {
+      console.error(`FAIL ${url}: X-Robots-Tag contains noindex (${robots})`);
+      failed++;
+      continue;
+    }
     console.log(`OK  ${url}`);
   } catch (err) {
     console.error(`FAIL ${url}: ${err.message}`);
