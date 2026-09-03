@@ -21,13 +21,16 @@ function routeFile(routePath) {
     : path.join(dist, routePath, "index.html");
 }
 
-function extractSeoText(html) {
+function extractSeoMain(html) {
   let main =
     html.match(/<main[^>]*data-static-seo[^>]*>([\s\S]*?)<\/main>/i)?.[1] ||
     html.match(/<body[^>]*>([\s\S]*?)<\/body>/i)?.[1] ||
     "";
-  // Drop site-wide footer nav duplicated on every page.
-  main = main.replace(/<nav[^>]*aria-label=["']Explore more["'][\s\S]*?<\/nav>/i, "");
+  return main.replace(/<nav[^>]*aria-label=["']Explore more["'][\s\S]*?<\/nav>/i, "");
+}
+
+function extractSeoText(html) {
+  let main = extractSeoMain(html);
   return main
     .replace(/<script[\s\S]*?<\/script>/gi, " ")
     .replace(/<style[\s\S]*?<\/style>/gi, " ")
@@ -39,6 +42,37 @@ function extractSeoText(html) {
     .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(Number(n)))
     .replace(/\s+/g, " ")
     .trim();
+}
+
+/** Flag duplicate long text inside individual <p> blocks (e.g. category blurbs). */
+function findDuplicateParagraphs(mainHtml) {
+  const duplicates = [];
+  /** @type {Map<string, { raw: string; count: number }>} */
+  const counts = new Map();
+  const re = /<p[^>]*>([\s\S]*?)<\/p>/gi;
+  let match;
+  while ((match = re.exec(mainHtml)) !== null) {
+    const raw = match[1]
+      .replace(/<[^>]+>/g, " ")
+      .replace(/&nbsp;/gi, " ")
+      .replace(/&amp;/gi, "&")
+      .replace(/&lt;/gi, "<")
+      .replace(/&gt;/gi, ">")
+      .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(Number(n)))
+      .replace(/\s+/g, " ")
+      .trim();
+    const norm = normalize(raw);
+    const wc = norm.split(/\s+/).filter(Boolean).length;
+    if (wc < MIN_WORDS) continue;
+    if (/^reviewed by raja jahangir/i.test(norm)) continue;
+    const entry = counts.get(norm) || { raw, count: 0 };
+    entry.count += 1;
+    counts.set(norm, entry);
+  }
+  for (const { raw, count } of counts.values()) {
+    if (count >= 2) duplicates.push({ sentence: raw, count });
+  }
+  return duplicates;
 }
 
 function splitSentences(text) {
@@ -65,7 +99,9 @@ const intraDuplicates = [];
 for (const route of routes) {
   const file = routeFile(route);
   if (!fs.existsSync(file)) continue;
-  const text = extractSeoText(fs.readFileSync(file, "utf8"));
+  const html = fs.readFileSync(file, "utf8");
+  const mainHtml = extractSeoMain(html);
+  const text = extractSeoText(html);
   const seenOnRoute = new Set();
   /** @type {Map<string, { raw: string; count: number }>} */
   const perRouteCounts = new Map();
@@ -90,6 +126,10 @@ for (const route of routes) {
     if (count >= 2) {
       intraDuplicates.push({ route, sentence: raw, count });
     }
+  }
+
+  for (const dup of findDuplicateParagraphs(mainHtml)) {
+    intraDuplicates.push({ route, sentence: dup.sentence, count: dup.count });
   }
 }
 

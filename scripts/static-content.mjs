@@ -1323,7 +1323,7 @@ function allSpinWheelsContent(wheels) {
   const indexed = wheels.filter((w) => isWheelIndexableSlug(w.slug));
   const extras = wheels.filter((w) => w.slug && NOINDEX_WHEEL_SET.has(w.slug));
 
-  function sectionsFor(list) {
+  function sectionsFor(list, blurbSeen) {
     const byCat = new Map();
     for (const w of list) {
       const c = (w.category || "Other").trim();
@@ -1341,7 +1341,9 @@ function allSpinWheelsContent(wheels) {
           )
           .join("\n");
         const blurb = categoryHubBlurb(category);
-        const blurbHtml = blurb ? `\n  <p>${esc(blurb)}</p>` : "";
+        const showBlurb = blurb && !blurbSeen.has(category);
+        if (showBlurb) blurbSeen.add(category);
+        const blurbHtml = showBlurb ? `\n  <p>${esc(blurb)}</p>` : "";
         return `<section>
   <h2>${esc(category)} (${items.length})</h2>${blurbHtml}
   <ul>
@@ -1352,10 +1354,14 @@ ${lis}
       .join("\n");
   }
 
+  const blurbSeen = new Set();
+  const indexedSections = sectionsFor(indexed, blurbSeen);
+  const extrasSections = extras.length ? sectionsFor(extras, blurbSeen) : "";
+
   const extraBlock = extras.length
     ? `<section><h2>More tools, live but not in search (${extras.length})</h2>
-<p>These URLs still work for bookmarks. They stay out of search because they are the same spinner with a different starter list, not a distinct utility.</p>
-${sectionsFor(extras)}</section>`
+<p>These URLs still work for bookmarks. They stay out of search because they are the same spinner with a different starter list, not a distinct utility. Categories that also appear above reuse the same one-line description once on this page.</p>
+${extrasSections}</section>`
     : "";
 
   return mainWrap(`<h1>All Spin Wheels, Free Specialty Wheel Directory</h1>
@@ -1367,8 +1373,8 @@ ${sectionsFor(extras)}</section>`
   <li><a href="/wheel-of-names-alternative">Feature comparison</a>, compare free picker tools</li>
 </ul></section>
 <section><h2>Indexed tools (${indexed.length})</h2>
-<p>These ${indexed.length} tools are indexed in search. Each has distinct controls or modes, not just a relabeled default list.</p>
-${sectionsFor(indexed)}</section>
+<p>These ${indexed.length} tools are indexed in search. Each has distinct controls or modes, not just a relabeled default list. Use the category notes below to see why each group exists.</p>
+${indexedSections}</section>
 ${extraBlock}
 ${exploreNav()}`);
 }

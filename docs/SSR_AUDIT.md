@@ -11,7 +11,7 @@ Generated 2026-09-03 from built `dist/` HTML, the exact bytes served to a no-JS 
 | `/` | 891 | PASS |
 | `/abcd-spin-wheel` | 450 | PASS |
 | `/about-us` | 640 | PASS |
-| `/all-spin-wheels` | 565 | PASS |
+| `/all-spin-wheels` | 557 | PASS |
 | `/alphabet-spinner-wheel` | 442 | PASS |
 | `/author/armghana-zeeshan` | 504 | PASS |
 | `/author/faisal-zahir` | 558 | PASS |
