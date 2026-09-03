@@ -120,6 +120,22 @@ const records = (parsed.data || [])
   })
   .filter(Boolean);
 
+const MAX_CATEGORY_LEN = 40;
+for (const rec of records) {
+  const cat = (rec.category || "").trim();
+  if (cat.length > MAX_CATEGORY_LEN) {
+    console.error(
+      `❌ Category too long for /${rec.slug}: ${cat.length} chars (max ${MAX_CATEGORY_LEN}). ` +
+        `Likely a CSV column shift — quote Title/H1 fields that contain commas.`,
+    );
+    process.exit(1);
+  }
+  if (!cat) {
+    console.error(`❌ Missing category for /${rec.slug}`);
+    process.exit(1);
+  }
+}
+
 const outDir = path.join(root, "src", "generated");
 fs.mkdirSync(outDir, { recursive: true });
 const outFile = path.join(outDir, "wheelPages.json");

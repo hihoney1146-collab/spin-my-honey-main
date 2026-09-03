@@ -53,12 +53,14 @@ https://onlinespinwheel.fun/outfit-picker-wheel, Outfit Picker Wheel: Set occasi
 https://onlinespinwheel.fun/should-i-text-him-wheel, Should I Text Him Wheel: Pick a texting context to swap outcomes, spin once, then wait out the cooldown before another roll so overthinking slows down.
 https://onlinespinwheel.fun/yes-or-no-wheel, Yes or No Wheel: Weighing a simple yes-or-no call? Spin for Yes, No, or Maybe in seconds and move on without another group chat debate.
 
-## Education & Learning (3)
+## Education & Learning (4)
 https://onlinespinwheel.fun/alphabet-spinner-wheel, Alphabet Spinner Wheel: Spin an A to Z alphabet wheel for phonics, word games, and letter-of-the-day picks. Exclude used letters and call the random letter on a smartboard.
 https://onlinespinwheel.fun/abcd-spin-wheel, ABCD Spin Wheel: Lock A-D for quiz call-outs, remove letters after each pick, and use projector fullscreen so the whole class can see the spin.
+https://onlinespinwheel.fun/classroom-spinner, Classroom Spinner: Teacher hub with three tabs: student spinner, team maker, and countdown timer, plus fullscreen mode for smartboards.
 https://onlinespinwheel.fun/random-student-picker, Random Student Picker: Paste your class roster, spin in fullscreen mode, auto-remove picked students, and review session history so every kid gets a turn.
 
-## Events & Parties (1)
+## Events & Parties (2)
+https://onlinespinwheel.fun/raffle-wheel, Raffle Wheel: Run prize-wheel style giveaways or ticket raffles: labeled prizes, ticket numbers, multi-winner draws, and a shareable proof link for streams and school events.
 https://onlinespinwheel.fun/secret-santa-wheel-generator, Secret Santa Wheel Generator: Run office or family Secret Santa with assignment mode, couple exclusions, and private reveal links so each gifter sees only their match.
 
 ## Food & Lifestyle (1)
@@ -66,12 +68,6 @@ https://onlinespinwheel.fun/self-care-wheel, Self Care Wheel: Filter self-care p
 
 ## Games & Fun (1)
 https://onlinespinwheel.fun/pokemon-randomizer-wheel, Pokemon Randomizer Wheel: Filter starter, type, nuzlocke-style, or generation-vibe challenge rules, then spin a fair constraint for your next run or stream.
-
-## Host fair multi-winner raffle draws with ticket-number mode or pasted entrant names. Spin live and copy a proof link for your audience. (1)
-https://onlinespinwheel.fun/raffle-wheel, Raffle Wheel: Run prize-wheel style giveaways or ticket raffles: labeled prizes, ticket numbers, multi-winner draws, and a shareable proof link for streams and school events.
-
-## Teacher hub combining random student selection balanced teams and a classroom timer. (1)
-https://onlinespinwheel.fun/classroom-spinner, Classroom Spinner: Teacher hub with three tabs: student spinner, team maker, and countdown timer, plus fullscreen mode for smartboards.
 
 ## Utilities & Tools (4)
 https://onlinespinwheel.fun/random-name-picker-wheel, Random Name Picker Wheel: Paste names, spin a fair Wheel of Names, remove winners after each pick, add optional weights, and keep session history for class or stream giveaways.
