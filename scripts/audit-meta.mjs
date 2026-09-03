@@ -64,12 +64,17 @@ for (const { path: route, kind } of routes) {
     expectedOg = wheelOgImageUrl(slug, SITE);
   } else if (route === "/spin-wheel-fairness-study") {
     expectedOg = `${SITE}/og/spin-wheel-fairness-study.png`;
+  } else if (kind === "blog" && route.startsWith("/blog/")) {
+    const blogSlug = route.slice("/blog/".length);
+    expectedOg = `${SITE}/blog-featured/${blogSlug}.jpg`;
   }
 
   if (!og) issues.push({ route, msg: "missing og:image" });
   else if (kind === "wheel" && og !== expectedOg)
     issues.push({ route, msg: `og:image mismatch: ${og} (expected ${expectedOg})` });
   else if (route === "/spin-wheel-fairness-study" && og !== expectedOg)
+    issues.push({ route, msg: `og:image mismatch: ${og} (expected ${expectedOg})` });
+  else if (kind === "blog" && og !== expectedOg)
     issues.push({ route, msg: `og:image mismatch: ${og} (expected ${expectedOg})` });
 
   if (title) {

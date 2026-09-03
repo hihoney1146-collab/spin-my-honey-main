@@ -15,7 +15,7 @@ const AuthorRajaJahangir = () => {
       metaDescription="Raja Jahangir is SEO/AEO/AIO/GEO/SXO Strategist for Online Spin Wheel. Learn how the team tests every wheel for fair, uniform random results."
       ogDescription="Meet Raja Jahangir, SEO/AEO/AIO/GEO/SXO Strategist at Online Spin Wheel, content quality, discovery strategy, and 10,000-spin fairness checks."
       name={RAJA_AUTHOR.name}
-      roleLabel="SEO & Discovery"
+      roleLabel={RAJA_AUTHOR.shortRole}
       jobTitle={RAJA_AUTHOR.jobTitle}
       location={location}
       image={{

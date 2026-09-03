@@ -49,10 +49,10 @@ function formatBlogDate(isoDate: string): string {
 
 function paragraphWithOptionalLinkedIn(para: string) {
   const i = para.indexOf(RAJA_LINKEDIN_PHRASE);
-  if (i === -1) return para;
+  if (i === -1) return paragraphWithInternalPaths(para);
   return (
     <>
-      {para.slice(0, i)}
+      {paragraphWithInternalPaths(para.slice(0, i))}
       <a
         href={RAJA_LINKEDIN_URL}
         target="_blank"
@@ -61,9 +61,30 @@ function paragraphWithOptionalLinkedIn(para: string) {
       >
         {RAJA_LINKEDIN_PHRASE}
       </a>
-      {para.slice(i + RAJA_LINKEDIN_PHRASE.length)}
+      {paragraphWithInternalPaths(para.slice(i + RAJA_LINKEDIN_PHRASE.length))}
     </>
   );
+}
+
+/** Turn `/path` tokens into internal links (blog copy only). */
+function paragraphWithInternalPaths(para: string) {
+  const parts = para.split(/(\/[a-z0-9]+(?:-[a-z0-9]+)*(?:\/[a-z0-9]+(?:-[a-z0-9]+)*)*)/g);
+  if (parts.length === 1) return para;
+  return parts.map((part, idx) => {
+    if (part.startsWith("/") && part.length > 1) {
+      const label = part.replace(/^\//, "").replace(/-/g, " ");
+      return (
+        <Link
+          key={idx}
+          to={part}
+          className="font-medium text-primary underline underline-offset-2 hover:opacity-90"
+        >
+          {label}
+        </Link>
+      );
+    }
+    return part;
+  });
 }
 
 function renderListItem(text: string) {
@@ -120,6 +141,12 @@ const BLOG_RELATED_WHEELS: Record<string, string[]> = {
     "secret-santa-wheel-generator",
     "random-name-picker-wheel",
     "winner-picker-wheel",
+    "team-generator-wheel",
+  ],
+  "fair-raffle-without-paper-tickets": [
+    "raffle-wheel",
+    "winner-picker-wheel",
+    "random-name-picker-wheel",
     "team-generator-wheel",
   ],
 };

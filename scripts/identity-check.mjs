@@ -2,11 +2,14 @@
 /**
  * Fail the build if banned solo-operator / agency-disclaimer phrases appear
  * in prerendered HTML, llms.txt, or key source content files.
+ * Also fails when author job titles drift from team-constants.mjs.
  */
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { collectIndexableRoutes } from "./route-registry.mjs";
+import { TEAM_AUTHORS } from "./team-constants.mjs";
+import { collectBlogPostsFull } from "./blog-data-sources.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
@@ -21,6 +24,11 @@ const BANNED = [
   /\banswer the emails\b/i,
   /\bone-person project\b/i,
   /\bauroxa\b/i,
+];
+
+const RAJA_BANNED_TITLES = [
+  /\bSEO\s*&\s*Discovery\b/i,
+  /\bSEO and Discovery\b/i,
 ];
 
 const SOURCE_FILES = [
@@ -38,7 +46,9 @@ const SOURCE_FILES = [
   "src/pages/Disclaimer.tsx",
   "src/pages/CookiePolicy.tsx",
   "src/pages/Contact.tsx",
+  "src/pages/BlogPost.tsx",
   "src/lib/schema.ts",
+  "src/lib/teamAuthors.ts",
 ];
 
 function routeFile(routePath) {
@@ -57,17 +67,45 @@ function scan(label, text) {
   }
 }
 
+function scanRajaTitle(label, text) {
+  for (const re of RAJA_BANNED_TITLES) {
+    if (re.test(text)) {
+      hits.push({
+        label,
+        pattern: `non-canonical Raja title (${re.source})`,
+      });
+    }
+  }
+}
+
 for (const rel of SOURCE_FILES) {
   const file = path.join(root, rel);
   if (!fs.existsSync(file)) continue;
-  scan(rel, fs.readFileSync(file, "utf8"));
+  const text = fs.readFileSync(file, "utf8");
+  scan(rel, text);
+  scanRajaTitle(rel, text);
+}
+
+const canonicalRole = TEAM_AUTHORS.raja.shortRole;
+const canonicalJob = TEAM_AUTHORS.raja.jobTitle;
+for (const post of collectBlogPostsFull(root).filter((p) => p.indexed !== false)) {
+  const author = String(post.author || "");
+  if (!author.includes("Raja Jahangir")) continue;
+  if (!author.includes(canonicalRole) && !author.includes(canonicalJob)) {
+    hits.push({
+      label: `blog/${post.slug} author field`,
+      pattern: `expected Raja title containing "${canonicalRole}"`,
+    });
+  }
 }
 
 if (fs.existsSync(dist)) {
   for (const { path: route } of collectIndexableRoutes(root)) {
     const file = routeFile(route);
     if (!fs.existsSync(file)) continue;
-    scan(`dist${route === "/" ? "/index.html" : `${route}/index.html`}`, fs.readFileSync(file, "utf8"));
+    const text = fs.readFileSync(file, "utf8");
+    scan(`dist${route === "/" ? "/index.html" : `${route}/index.html`}`, text);
+    scanRajaTitle(`dist${route === "/" ? "/index.html" : `${route}/index.html`}`, text);
   }
 }
 

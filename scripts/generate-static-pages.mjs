@@ -353,8 +353,16 @@ function enrichRoute(route, wheels, blogRoutes, blogPosts) {
   if (route.jsonLd) jsonLd.push(...(Array.isArray(route.jsonLd) ? route.jsonLd : [route.jsonLd]));
 
   let ogImage;
+  let ogImageAlt = `${label}, preview`;
   if (route.path === "/spin-wheel-fairness-study") {
     ogImage = `${SITE}/og/spin-wheel-fairness-study.png`;
+  } else if (route.path.startsWith("/blog/") && route.path !== "/blog") {
+    const slug = route.path.slice("/blog/".length);
+    const post = blogPosts.find((p) => p.slug === slug);
+    if (post && post.indexed !== false) {
+      ogImage = `${SITE}/blog-featured/${slug}.jpg`;
+      ogImageAlt = title.split("|")[0].trim();
+    }
   }
 
   let seoContent;
@@ -377,7 +385,7 @@ function enrichRoute(route, wheels, blogRoutes, blogPosts) {
       buildGenericSeoContent({ ...route, title }, wheels, blogRoutes);
   }
 
-  return { ...route, title, jsonLd, seoContent, ogImage, ogImageAlt: `${label}, preview` };
+  return { ...route, title, jsonLd, seoContent, ogImage, ogImageAlt };
 }
 
 function escapeRegex(s) {

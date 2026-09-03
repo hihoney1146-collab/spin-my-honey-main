@@ -4,6 +4,12 @@ import jpgIcebreaker from "@/assets/blog-featured/best-icebreaker-games-office-m
 import webpIcebreaker from "@/assets/blog-featured/best-icebreaker-games-office-meetings.webp";
 import jpgStudents from "@/assets/blog-featured/best-spin-wheel-games-for-students.jpg";
 import webpStudents from "@/assets/blog-featured/best-spin-wheel-games-for-students.webp";
+import jpgTeamBuilding from "@/assets/blog-featured/spin-wheel-team-building-activities.jpg";
+import webpTeamBuilding from "@/assets/blog-featured/spin-wheel-team-building-activities.webp";
+import jpgClassroom from "@/assets/blog-featured/classroom-spinner-beyond-name-picking.jpg";
+import webpClassroom from "@/assets/blog-featured/classroom-spinner-beyond-name-picking.webp";
+import jpgRaffle from "@/assets/blog-featured/fair-raffle-without-paper-tickets.jpg";
+import webpRaffle from "@/assets/blog-featured/fair-raffle-without-paper-tickets.webp";
 import jpgCouples from "@/assets/blog-featured/fun-ways-decide-where-to-eat-couples.jpg";
 import webpCouples from "@/assets/blog-featured/fun-ways-decide-where-to-eat-couples.webp";
 import jpgSecretSanta from "@/assets/blog-featured/virtual-secret-santa-online.jpg";
@@ -17,6 +23,9 @@ const bySlug: Record<
   "random-name-picker-fair-fun-easy": { jpg: jpgRandomName, webp: webpRandomName },
   "best-icebreaker-games-office-meetings": { jpg: jpgIcebreaker, webp: webpIcebreaker },
   "best-spin-wheel-games-for-students": { jpg: jpgStudents, webp: webpStudents },
+  "spin-wheel-team-building-activities": { jpg: jpgTeamBuilding, webp: webpTeamBuilding },
+  "classroom-spinner-beyond-name-picking": { jpg: jpgClassroom, webp: webpClassroom },
+  "fair-raffle-without-paper-tickets": { jpg: jpgRaffle, webp: webpRaffle },
   "fun-ways-decide-where-to-eat-couples": { jpg: jpgCouples, webp: webpCouples },
   "virtual-secret-santa-online": { jpg: jpgSecretSanta, webp: webpSecretSanta },
 };

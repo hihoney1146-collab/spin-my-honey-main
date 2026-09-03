@@ -2,8 +2,7 @@ import type { BlogPost } from "../blogTypes";
 
 export const bestIcebreakerGamesOfficeMeetings: BlogPost = {
   slug: "best-icebreaker-games-office-meetings",
-  title:
-    "Spin the Wheel Icebreaker Games for Meetings (5-Minute Prompts) | Online Spin Wheel",
+  title: "Spin Wheel Icebreakers for Meetings | Online Spin Wheel",
   metaDescription:
     "Spin the wheel icebreaker games for Zoom and hybrid US teams: 8 wheel-first prompts, a 5-minute run sheet, and free tools.",
   excerpt:

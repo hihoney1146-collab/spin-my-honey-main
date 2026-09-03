@@ -157,6 +157,7 @@ function exploreNav() {
         ["/blog/best-icebreaker-games-office-meetings", "Icebreaker games for meetings"],
         ["/blog/spin-wheel-team-building-activities", "Team-building spin wheel activities"],
         ["/blog/classroom-spinner-beyond-name-picking", "Classroom spinner beyond names"],
+        ["/blog/fair-raffle-without-paper-tickets", "Fair raffle without paper tickets"],
         ["/about-us", "About us"],
         ["/contact-us", "Contact us"],
       ],
@@ -180,7 +181,7 @@ function exploreNav() {
       [
         ["/author/armghana-zeeshan", "Armghana Zeeshan (CEO)"],
         ["/author/zoha-zeeshan", "Zoha Zeeshan (Co-Founder)"],
-        ["/author/raja-jahangir", "Raja Jahangir (SEO & Discovery)"],
+        ["/author/raja-jahangir", `Raja Jahangir (${TEAM_AUTHORS.raja.shortRole})`],
         ["/author/faisal-zahir", "Faisal Zahir (Digital Marketing)"],
       ],
     ],
@@ -951,16 +952,37 @@ ${exploreNav()}`);
 
 /* ------------------------------------------------------------ Blog post ---- */
 
+function isNumberedBlogHeading(heading) {
+  return /^\d+\.\s/.test(String(heading || ""));
+}
+
+function paragraphHtml(p) {
+  const parts = String(p).split(
+    /(\/[a-z0-9]+(?:-[a-z0-9]+)*(?:\/[a-z0-9]+(?:-[a-z0-9]+)*)*)/g,
+  );
+  return parts
+    .map((part) => {
+      if (part.startsWith("/")) {
+        const label = esc(part.slice(1).replace(/-/g, " "));
+        return `<a href="${esc(part)}">${label}</a>`;
+      }
+      return esc(part);
+    })
+    .join("");
+}
+
 function blogPostContent(post) {
   const shortTitle = String(post.title || "").split("|")[0].trim();
   const blocks = Array.isArray(post.blocks) ? post.blocks : [];
   const blockHtml = blocks
     .map((b) => {
       const heading = b.heading
-        ? `  <h2>${esc(b.heading)}</h2>\n`
+        ? isNumberedBlogHeading(b.heading)
+          ? `  <h2>${esc(b.heading)}</h2>\n`
+          : `  <h3>${esc(b.heading)}</h3>\n`
         : "";
       const paras = (Array.isArray(b.paragraphs) ? b.paragraphs : [])
-        .map((p) => `  <p>${esc(p)}</p>`)
+        .map((p) => `  <p>${paragraphHtml(p)}</p>`)
         .join("\n");
       const list =
         Array.isArray(b.list) && b.list.length
@@ -1100,7 +1122,7 @@ const WHEEL_MODE_FEATURES = {
   "coin-flip-wheel":
     "Flip a 3D coin by tapping it or pressing FLIP THE COIN (Spacebar works too). Upload local face images per side, enable match toss mode for cricket/football kickoffs, track a session journal, toggle Web Audio sound (off by default), weighted odds, streak/tally stats, multi-flip batches, rare ~1-in-6,000 edge landings, text-only result PNG download, and shareable proof links.",
   "alphabet-spinner-wheel":
-    "Spin A through Z with an exclude-letters panel, uncheck glyphs already used in phonics drills, Scattergories, or spelling bees so only fresh letters remain on the wheel, plus projector fullscreen for smartboards.",
+    "Spin an A to Z alphabet letter wheel with an exclude-letters panel: uncheck glyphs already used in phonics drills, Scattergories, or spelling bees so only fresh letters remain, plus projector fullscreen for smartboards.",
   "raffle-wheel":
     "Choose ticket-number mode, entrant-name mode, or prize-label mode (classic prize-wheel slices). Draw multiple winners without replacement and copy a timestamped proof link after your live draw.",
   "classroom-spinner":

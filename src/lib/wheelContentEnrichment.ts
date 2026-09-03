@@ -642,7 +642,7 @@ const BLOG_WHEEL_MAP: Record<string, string[]> = {
     "best-spin-wheel-games-for-students",
   ],
   "team-generator-wheel": ["best-icebreaker-games-office-meetings"],
-  "winner-picker-wheel": ["random-name-picker-fair-fun-easy"],
+  "winner-picker-wheel": ["random-name-picker-fair-fun-easy", "fair-raffle-without-paper-tickets"],
   "dinner-picker-wheel": ["fun-ways-decide-where-to-eat-couples"],
   "fast-food-wheel": ["fun-ways-decide-where-to-eat-couples"],
   "date-night-wheel": ["fun-ways-decide-where-to-eat-couples"],
@@ -661,6 +661,7 @@ const BLOG_WHEEL_MAP: Record<string, string[]> = {
   "exercise-picker-wheel": ["best-icebreaker-games-office-meetings"],
   "instagram-wheel-picker": ["random-name-picker-fair-fun-easy"],
   "pick-out-of-a-hat-generator": ["random-name-picker-fair-fun-easy"],
+  "raffle-wheel": ["fair-raffle-without-paper-tickets"],
 };
 
 /**

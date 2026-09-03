@@ -2,8 +2,7 @@ import type { BlogPost } from "../blogTypes";
 
 export const bestSpinWheelGamesForStudents: BlogPost = {
   slug: "best-spin-wheel-games-for-students",
-  title:
-    "Spin the Wheel Games for Students: 12 Classroom Activities (US Teachers) | Online Spin Wheel",
+  title: "12 Classroom Spin Wheel Games (K-12) | Online Spin Wheel",
   metaDescription:
     "12 spin the wheel games for students US K-12 teachers use daily. Free classroom spinner ideas, printable cards, and wheel links.",
   excerpt:
@@ -34,7 +33,7 @@ export const bestSpinWheelGamesForStudents: BlogPost = {
       paragraphs: [
         "Open the classroom spinner on the device connected to your projector or interactive board. Paste your class roster, vocabulary list, or custom labels into the text box; the wheel redraws automatically. For a distraction-free view, use fullscreen so browser tabs and the taskbar disappear behind the spin.",
         "Turn on remove-after-pick when you are drawing multiple volunteers in one round. After each spin, the selected slice drops off so the same student cannot be chosen twice before everyone has had a turn. Session history logs each result in order, which helps if a parent or administrator asks how groups were formed.",
-        "Bookmark the tools you use weekly: the random student picker for participation, the alphabet spinner for phonics, and the ABCD review wheel for multiple-choice-style drills. Keep the random number wheel handy for math warm-ups and the prize wheel for positive-reinforcement Fridays.",
+        "Bookmark the tools you use weekly: the random student picker for participation, the alphabet spinner for phonics, and the ABCD review wheel for multiple-choice-style drills. Keep the random number wheel handy for math warm-ups and the raffle wheel for labeled reward spins on positive-reinforcement Fridays.",
       ],
       images: [
         {
@@ -63,7 +62,7 @@ export const bestSpinWheelGamesForStudents: BlogPost = {
       heading: "Vocabulary Lightning Round",
       paragraphs: [
         "Best for grades 2 through 8. Load weekly vocabulary words on the alphabet spinner, or list the words directly on the classroom spinner.",
-        "The student who was last picked spins. They define the word, use it in a sentence, or sketch it on a mini whiteboard. Peers give a quick thumbs up or down. After three correct rounds, that student can spin the prize wheel for a small reward such as a homework pass or chair swap.",
+        "The student who was last picked spins. They define the word, use it in a sentence, or sketch it on a mini whiteboard. Peers give a quick thumbs up or down. After three correct rounds, that student can spin the raffle wheel in prize-label mode for a small reward such as a homework pass or chair swap.",
       ],
       images: [
         {
@@ -112,7 +111,7 @@ export const bestSpinWheelGamesForStudents: BlogPost = {
     {
       heading: "Friday Prize Spin",
       paragraphs: [
-        "Best for grades K through 12. Load low-cost rewards on the prize wheel: extra recess minutes, a sticker, partner-work choice, or a positive note home.",
+        "Best for grades K through 12. Load low-cost rewards on the raffle wheel (prize-label mode): extra recess minutes, a sticker, partner-work choice, or a positive note home.",
         "Students who met weekly goals each spin once. Remove-after-pick keeps one reward per student. Show session history on the board so results feel transparent. Keep prizes academic and inclusive, and skip food rewards if your district restricts them.",
       ],
     },
@@ -147,8 +146,8 @@ export const bestSpinWheelGamesForStudents: BlogPost = {
     {
       heading: "4. Wheels to bookmark for the school year",
       paragraphs: [
-        "Keep these tools one click away on your teacher laptop: the random student picker for fair participation, the classroom spinner for custom lists and jobs, the alphabet spinner for phonics and spelling, the ABCD wheel for unit review, the random number wheel for math drills, and the prize wheel for positive reinforcement. Together they cover most spin-the-wheel classroom games without paid apps or student accounts.",
-        "If your district blocks new bookmarks, save one classroom spinner link and change the labels between periods. Data stays in your browser session, so reopening the same page after lunch usually keeps your list on Chromebooks and Windows devices used in US schools.",
+        "Keep these tools one click away on your teacher laptop: the random student picker for fair participation, the classroom spinner for custom lists and jobs, the alphabet spinner for phonics and spelling, the ABCD wheel for unit review, the random number wheel for math drills, and the raffle wheel for reward spins. Together they cover most spin-the-wheel classroom games without paid apps or student accounts.",
+        "If your district blocks new bookmarks, save one classroom spinner link and change the labels between periods. Pasted lists stay in the current browser tab for that session; copy your roster to a doc if you need the same names after lunch or on another device.",
       ],
     },
     {
@@ -178,7 +177,7 @@ export const bestSpinWheelGamesForStudents: BlogPost = {
     },
     {
       q: "Do I need an account to use classroom spinner games?",
-      a: "No account is required. Open any wheel in your browser, paste your list, and spin. Lists typically persist in local browser storage on the same device.",
+      a: "No account is required. Open any wheel in your browser, paste your list, and spin. Entries are not uploaded to our servers; on classroom and specialty wheels they stay in the current tab until you refresh or close the page.",
     },
     {
       q: "How does remove-after-pick keep games fair?",
@@ -190,7 +189,7 @@ export const bestSpinWheelGamesForStudents: BlogPost = {
     },
     {
       q: "Which wheel should I use for picking students versus vocabulary words?",
-      a: "Use the random student picker for names and participation. Use the classroom spinner or alphabet spinner for words, jobs, and custom labels. Use the random number wheel for math ranges and the prize wheel for reward spins.",
+      a: "Use the random student picker for names and participation. Use the classroom spinner or alphabet spinner for words, jobs, and custom labels. Use the random number wheel for math ranges and the raffle wheel (prize-label mode) for reward spins.",
     },
     {
       q: "Are these games appropriate for middle and high school?",

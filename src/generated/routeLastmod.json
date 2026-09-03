@@ -1,108 +1,112 @@
 {
   "routes": {
     "/": {
-      "hash": "c802a1d0260aa5ac",
-      "lastmod": "2026-08-31"
+      "hash": "21c3c79cb48150d5",
+      "lastmod": "2026-09-03"
     },
     "/all-spin-wheels": {
-      "hash": "3afa8300f006e3df",
-      "lastmod": "2026-08-31"
+      "hash": "5687b274ffb17bac",
+      "lastmod": "2026-09-03"
     },
     "/blog": {
-      "hash": "00e985f46419af9b",
-      "lastmod": "2026-08-31"
+      "hash": "16be69c9cd8ffa50",
+      "lastmod": "2026-09-03"
     },
     "/about-us": {
-      "hash": "50d57a3499318dda",
-      "lastmod": "2026-08-31"
+      "hash": "f7c6e8bc83570317",
+      "lastmod": "2026-09-03"
     },
     "/author/raja-jahangir": {
-      "hash": "d81afcf19ec272b1",
-      "lastmod": "2026-08-31"
+      "hash": "55360e5ac6b8678a",
+      "lastmod": "2026-09-03"
     },
     "/author/armghana-zeeshan": {
-      "hash": "4a3fcc8d0d014da5",
-      "lastmod": "2026-08-31"
+      "hash": "77e690725c11dc1f",
+      "lastmod": "2026-09-03"
     },
     "/author/zoha-zeeshan": {
-      "hash": "02b3da65bb4be3cb",
-      "lastmod": "2026-08-31"
+      "hash": "b6ccaaa27ae674f2",
+      "lastmod": "2026-09-03"
     },
     "/author/faisal-zahir": {
-      "hash": "3c4c46ae30ab9408",
-      "lastmod": "2026-08-31"
+      "hash": "41d1f5689d17a9c5",
+      "lastmod": "2026-09-03"
     },
     "/contact-us": {
-      "hash": "9629670bb9248756",
-      "lastmod": "2026-08-31"
+      "hash": "760f660bc90b8e04",
+      "lastmod": "2026-09-03"
     },
     "/privacy-policy": {
-      "hash": "68165706fd1a50e1",
-      "lastmod": "2026-08-31"
+      "hash": "1c5c0c93c7ace37e",
+      "lastmod": "2026-09-03"
     },
     "/terms-and-conditions": {
-      "hash": "6b403b0f33ee6b38",
-      "lastmod": "2026-08-31"
+      "hash": "c00c46ab4cc3aca0",
+      "lastmod": "2026-09-03"
     },
     "/cookie-policy": {
-      "hash": "a4a5b9bb1aee412d",
-      "lastmod": "2026-08-31"
+      "hash": "66a33a8020ca254e",
+      "lastmod": "2026-09-03"
     },
     "/disclaimer": {
-      "hash": "01504f971f13c1ba",
-      "lastmod": "2026-08-31"
+      "hash": "7d0f892f13e10d6d",
+      "lastmod": "2026-09-03"
     },
     "/how-randomness-works": {
-      "hash": "ca52b006ab568777",
-      "lastmod": "2026-08-31"
+      "hash": "80c295f3dfb1d610",
+      "lastmod": "2026-09-03"
     },
     "/tutorial-adding-images-to-spin-wheels": {
-      "hash": "6dda644860fb8837",
-      "lastmod": "2026-08-31"
+      "hash": "2234ea184e9699f4",
+      "lastmod": "2026-09-03"
     },
     "/case-study-school-using-spin-wheels": {
-      "hash": "82ac056a489ea747",
-      "lastmod": "2026-08-31"
+      "hash": "e888bfe77337aadb",
+      "lastmod": "2026-09-03"
     },
     "/case-study-community-event-using-spin-wheels": {
-      "hash": "1feeac9346aa0a58",
-      "lastmod": "2026-08-31"
+      "hash": "dd1445f9c91ec7c9",
+      "lastmod": "2026-09-03"
     },
     "/comparison-spin-wheel-vs-random-number-generator": {
-      "hash": "fd3978786fab7d01",
-      "lastmod": "2026-08-31"
+      "hash": "9510338f00135a4e",
+      "lastmod": "2026-09-03"
     },
     "/comparison-spin-wheel-vs-traditional-methods": {
-      "hash": "cb1846cd316ed1a9",
-      "lastmod": "2026-08-31"
+      "hash": "cea73b5397ef6cb6",
+      "lastmod": "2026-09-03"
     },
     "/comparison-online-vs-physical-spin-wheels": {
-      "hash": "bd0bafaf0ae7a0d7",
-      "lastmod": "2026-08-31"
+      "hash": "1ee287f754dcf651",
+      "lastmod": "2026-09-03"
     },
     "/wheel-of-names-alternative": {
-      "hash": "f09a2daa50de8e46",
-      "lastmod": "2026-08-31"
+      "hash": "3c53c62ca1966edc",
+      "lastmod": "2026-09-03"
     },
     "/spin-wheel-fairness-study": {
-      "hash": "a3e88a203f4b6cca",
-      "lastmod": "2026-08-31"
+      "hash": "f745692e4736592f",
+      "lastmod": "2026-09-03"
     },
     "/blog/best-icebreaker-games-office-meetings": {
-      "hash": "7a862fb9b528e991",
-      "lastmod": "2026-08-31"
+      "hash": "b5548f9eefba2414",
+      "lastmod": "2026-09-03"
     },
     "/blog/best-spin-wheel-games-for-students": {
-      "hash": "f302b4819570a7c1",
-      "lastmod": "2026-08-31"
+      "hash": "74839005311b40ed",
+      "lastmod": "2026-09-03"
     },
     "/blog/spin-wheel-team-building-activities": {
-      "hash": "aa67e39d9749213a",
-      "lastmod": "2026-08-31"
+      "hash": "7698c83fd452c0df",
+      "lastmod": "2026-09-03"
     },
     "/blog/classroom-spinner-beyond-name-picking": {
-      "hash": "5a0a9f344232589d",
-      "lastmod": "2026-08-31"
+      "hash": "c59db6bd8edcd519",
+      "lastmod": "2026-09-03"
+    },
+    "/blog/fair-raffle-without-paper-tickets": {
+      "hash": "a8496651608213d8",
+      "lastmod": "2026-09-03"
     },
     "/yes-or-no-wheel": {
       "hash": "2026b6846e55a26f",
@@ -173,7 +177,7 @@
       "lastmod": "2026-09-03"
     },
     "/alphabet-spinner-wheel": {
-      "hash": "d9337ff1dadd6c5d",
+      "hash": "83139ce2aa1bb088",
       "lastmod": "2026-09-03"
     },
     "/random-word-generator-wheel": {

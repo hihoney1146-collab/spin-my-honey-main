@@ -13,7 +13,7 @@ export const WHEEL_MODE_FEATURES: Record<string, string> = {
   "coin-flip-wheel":
     "Flip a 3D coin by tapping it or pressing FLIP THE COIN (Spacebar works too). Upload local face images per side, enable match toss mode for cricket/football kickoffs, track a session journal, toggle Web Audio sound (off by default), weighted odds, streak/tally stats, multi-flip batches, rare ~1-in-6,000 edge landings, text-only result PNG download, and shareable proof links.",
   "alphabet-spinner-wheel":
-    "Spin A through Z with an exclude-letters panel, uncheck glyphs already used in phonics drills, Scattergories, or spelling bees so only fresh letters remain on the wheel, plus projector fullscreen for smartboards.",
+    "Spin an A to Z alphabet letter wheel with an exclude-letters panel: uncheck glyphs already used in phonics drills, Scattergories, or spelling bees so only fresh letters remain, plus projector fullscreen for smartboards.",
   "raffle-wheel":
     "Choose ticket-number mode, entrant-name mode, or prize-label mode (classic prize-wheel slices). Draw multiple winners without replacement and copy a timestamped proof link after your live draw.",
   "classroom-spinner":

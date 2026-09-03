@@ -3,6 +3,7 @@ import { bestSpinWheelGamesForStudents } from "./blogContent/best-spin-wheel-gam
 import { bestIcebreakerGamesOfficeMeetings } from "./blogContent/best-icebreaker-games-office-meetings";
 import { spinWheelTeamBuildingActivities } from "./blogContent/spin-wheel-team-building-activities";
 import { classroomSpinnerBeyondNamePicking } from "./blogContent/classroom-spinner-beyond-name-picking";
+import { fairRaffleWithoutPaperTickets } from "./blogContent/fair-raffle-without-paper-tickets";
 import {
   randomNamePickerDraft,
   couplesDinnerDraft,
@@ -17,6 +18,7 @@ export const blogPosts: BlogPost[] = [
   bestSpinWheelGamesForStudents,
   spinWheelTeamBuildingActivities,
   classroomSpinnerBeyondNamePicking,
+  fairRaffleWithoutPaperTickets,
   couplesDinnerDraft,
   virtualSecretSantaDraft,
 ];

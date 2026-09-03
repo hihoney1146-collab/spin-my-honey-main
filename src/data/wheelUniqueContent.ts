@@ -956,11 +956,11 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "alphabet-spinner-wheel": {
     directAnswer:
-      "The Alphabet Spinner Wheel, also titled Letter Spinner, Random Alphabet Wheel (A–Z), picks one letter for phonics drills, Scattergories rounds, and spelling bees. Use the exclude-letters option to drop already-used consonants so rounds stay fresh. Kindergarten teachers project it on smartboards, ESL tutors randomize vocabulary starts, and party hosts spin before naming categories.",
-    title: "Letter Spinner, Random Alphabet Wheel (A-Z)",
-    h1: "Letter Spinner, Random Alphabet Wheel (A-Z)",
+      "The A to Z alphabet wheel (also called a random letter spinner or alphabet letter spin wheel) picks one letter for phonics drills, Scattergories rounds, and spelling bees. Exclude letters already used so the next spin only shows remaining consonants and vowels. Kindergarten teachers project it on smartboards, ESL tutors randomize vocabulary starts, and party hosts spin before naming categories.",
+    title: "A to Z Alphabet Wheel, Random Letter Spinner",
+    h1: "A to Z Alphabet Wheel, Random Letter Spinner",
     metaDescription:
-      "Teaching phonics or playing word games? Spin A through Z, exclude letters already used, and call out whatever consonant or vowel lands.",
+      "Spin an A to Z alphabet wheel for phonics, word games, and letter-of-the-day picks. Exclude used letters and call the random letter on a smartboard.",
     useCases: [
       {
         heading: "Kindergarten letter-of-the-day",

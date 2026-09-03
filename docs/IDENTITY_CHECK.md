@@ -1,6 +1,6 @@
 # Team Identity Phrase Check
 
-Scanned 15 source files + built dist HTML.
+Scanned 17 source files + built dist HTML.
 
 - Banned phrase hits: **0**
 
