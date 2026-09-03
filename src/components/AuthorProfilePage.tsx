@@ -13,7 +13,6 @@ type AuthorProfilePageProps = {
   metaDescription: string;
   ogDescription: string;
   name: string;
-  roleLabel: string;
   jobTitle: string;
   personId: string;
   location?: string;
@@ -33,7 +32,6 @@ export function AuthorProfilePage({
   metaDescription,
   ogDescription,
   name,
-  roleLabel,
   jobTitle,
   personId,
   location,
@@ -106,9 +104,6 @@ export function AuthorProfilePage({
             </div>
           )}
           <div>
-            <p className="text-sm font-semibold text-primary uppercase tracking-wide mb-1">
-              {roleLabel}
-            </p>
             <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-2">{name}</h1>
             <p className="text-lg text-muted-foreground">{jobTitle}</p>
             {location ? (

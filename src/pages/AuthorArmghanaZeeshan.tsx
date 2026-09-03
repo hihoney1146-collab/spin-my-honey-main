@@ -11,7 +11,6 @@ const AuthorArmghanaZeeshan = () => (
     metaDescription="Armghana Zeeshan is CEO of Online Spin Wheel. She sets product direction, business priorities, and the standards that keep every free spin wheel fast, fair, and trustworthy."
     ogDescription="Meet Armghana Zeeshan, CEO of Online Spin Wheel, leading product direction for a small team dedicated solely to fair random pickers."
     name={ARMGHANA_AUTHOR.name}
-    roleLabel="Leadership"
     jobTitle={ARMGHANA_AUTHOR.jobTitle}
     personId={ARMGHANA_PERSON_ID}
     initials="AZ"

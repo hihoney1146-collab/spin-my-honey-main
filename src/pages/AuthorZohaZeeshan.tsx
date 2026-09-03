@@ -11,7 +11,6 @@ const AuthorZohaZeeshan = () => (
     metaDescription="Zoha Zeeshan is Co-Founder of Online Spin Wheel. She helps shape company direction, user experience priorities, and the roadmap for free fair random pickers."
     ogDescription="Meet Zoha Zeeshan, Co-Founder of Online Spin Wheel: helping build a small team dedicated to fast, honest spin wheels."
     name={ZOHA_AUTHOR.name}
-    roleLabel="Leadership"
     jobTitle={ZOHA_AUTHOR.jobTitle}
     personId={ZOHA_PERSON_ID}
     initials="ZZ"

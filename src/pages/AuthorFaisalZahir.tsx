@@ -17,7 +17,6 @@ const AuthorFaisalZahir = () => (
     metaDescription="Faisal Zahir handles digital and performance marketing for Online Spin Wheel, connecting teachers, giveaway hosts, and streamers with free fair spin wheels."
     ogDescription="Meet Faisal Zahir, Digital Marketing at Online Spin Wheel, reaching teachers, creators, and hosts through performance marketing and Meta Ads."
     name={FAISAL_AUTHOR.name}
-    roleLabel="Marketing"
     jobTitle={FAISAL_AUTHOR.jobTitle}
     personId={FAISAL_PERSON_ID}
     initials="FZ"
