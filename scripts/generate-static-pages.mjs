@@ -16,7 +16,7 @@ import {
   collectBlogPostsFull,
 } from "./blog-data-sources.mjs";
 import { renderRouteContent } from "./static-content.mjs";
-import { siteIdentityJsonLd as teamSiteIdentity, ORG_ID } from "./team-constants.mjs";
+import { siteIdentityJsonLd as teamSiteIdentity, ORG_ID, TEAM_AUTHORS, profilePageJsonLd, personJsonLd } from "./team-constants.mjs";
 import {
   getWheelUniqueContent,
   wheelOgImageUrl,
@@ -380,6 +380,18 @@ function enrichRoute(route, wheels, blogRoutes, blogPosts) {
       buildWheelSeoContent(route, wheels);
   } else {
     jsonLd.push(breadcrumbJsonLd(route, label));
+    const author = Object.values(TEAM_AUTHORS).find((a) => a.path === route.path);
+    if (author) {
+      jsonLd.push(
+        profilePageJsonLd({
+          title: label,
+          description: route.description,
+          url: canonicalUrl(route.path),
+          personId: author.personId,
+        }),
+      );
+      jsonLd.push(personJsonLd(author));
+    }
     seoContent =
       renderRouteContent(route, { wheels, blogPosts }) ||
       buildGenericSeoContent({ ...route, title }, wheels, blogRoutes);

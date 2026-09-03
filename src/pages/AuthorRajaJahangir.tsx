@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import jahangirSeo from "@/assets/Jahangir-SEO.jpeg";
-import { RAJA_AUTHOR, ARMGHANA_AUTHOR, ZOHA_AUTHOR } from "@/lib/teamAuthors";
+import { RAJA_AUTHOR, ARMGHANA_AUTHOR, ZOHA_AUTHOR, RAJA_PERSON_ID } from "@/lib/teamAuthors";
 import { TEAM_LINKEDIN, SITE_SOCIAL_LINKS } from "@/lib/teamLinks";
 import { ORG_NAME, CONTACT_EMAIL } from "@/lib/schema";
 import { AuthorProfilePage } from "@/components/AuthorProfilePage";
@@ -17,6 +17,7 @@ const AuthorRajaJahangir = () => {
       name={RAJA_AUTHOR.name}
       roleLabel={RAJA_AUTHOR.shortRole}
       jobTitle={RAJA_AUTHOR.jobTitle}
+      personId={RAJA_PERSON_ID}
       location={location}
       image={{
         src: jahangirSeo,

@@ -106,6 +106,20 @@ export function personJsonLd(author) {
   return node;
 }
 
+/** Author profile route — ProfilePage with mainEntity Person (existing @id). */
+export function profilePageJsonLd(opts) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "@id": `${opts.url}#profilepage`,
+    name: opts.title,
+    description: opts.description,
+    url: opts.url,
+    isPartOf: { "@id": WEBSITE_ID },
+    mainEntity: { "@id": opts.personId },
+  };
+}
+
 export function siteIdentityJsonLd() {
   return [
     {

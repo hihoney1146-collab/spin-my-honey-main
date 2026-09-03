@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ZOHA_AUTHOR, ARMGHANA_AUTHOR, RAJA_AUTHOR } from "@/lib/teamAuthors";
+import { ZOHA_AUTHOR, ARMGHANA_AUTHOR, RAJA_AUTHOR, ZOHA_PERSON_ID } from "@/lib/teamAuthors";
 import { TEAM_LINKEDIN } from "@/lib/teamLinks";
 import { ORG_NAME, CONTACT_EMAIL } from "@/lib/schema";
 import { AuthorProfilePage } from "@/components/AuthorProfilePage";
@@ -13,6 +13,7 @@ const AuthorZohaZeeshan = () => (
     name={ZOHA_AUTHOR.name}
     roleLabel="Leadership"
     jobTitle={ZOHA_AUTHOR.jobTitle}
+    personId={ZOHA_PERSON_ID}
     initials="ZZ"
     linkedIn={TEAM_LINKEDIN.zohaZeeshan}
     extraSections={

@@ -87,6 +87,25 @@ export function personJsonLd(author: AuthorProfile, personId: string) {
   return node;
 }
 
+/** Author profile route — ProfilePage with mainEntity Person (existing @id). */
+export function profilePageJsonLd(opts: {
+  title: string;
+  description: string;
+  url: string;
+  personId: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "@id": `${opts.url}#profilepage`,
+    name: opts.title,
+    description: opts.description,
+    url: opts.url,
+    isPartOf: { "@id": WEBSITE_ID },
+    mainEntity: { "@id": opts.personId },
+  };
+}
+
 /** Sitewide WebSite entity, published by the Online Spin Wheel organization. */
 export function websiteJsonLd() {
   return {

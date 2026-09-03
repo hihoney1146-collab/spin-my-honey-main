@@ -4,6 +4,7 @@ import {
   ARMGHANA_AUTHOR,
   ZOHA_AUTHOR,
   RAJA_AUTHOR,
+  FAISAL_PERSON_ID,
 } from "@/lib/teamAuthors";
 import { TEAM_LINKEDIN, SITE_SOCIAL_LINKS } from "@/lib/teamLinks";
 import { ORG_NAME, CONTACT_EMAIL } from "@/lib/schema";
@@ -18,6 +19,7 @@ const AuthorFaisalZahir = () => (
     name={FAISAL_AUTHOR.name}
     roleLabel="Marketing"
     jobTitle={FAISAL_AUTHOR.jobTitle}
+    personId={FAISAL_PERSON_ID}
     initials="FZ"
     linkedIn={TEAM_LINKEDIN.faisalZahir}
     showBrandSocial

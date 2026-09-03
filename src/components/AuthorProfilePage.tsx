@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, ExternalLink, MapPin } from "lucide-react";
 import { OptimizedImage } from "@/components/OptimizedImage";
 import type { ReactNode } from "react";
-import { ORG_NAME, siteIdentityJsonLd } from "@/lib/schema";
+import { ORG_NAME, siteIdentityJsonLd, profilePageJsonLd } from "@/lib/schema";
 
 type AuthorProfilePageProps = {
   canonical: string;
@@ -15,6 +15,7 @@ type AuthorProfilePageProps = {
   name: string;
   roleLabel: string;
   jobTitle: string;
+  personId: string;
   location?: string;
   image?: { src: string; alt: string };
   initials?: string;
@@ -34,6 +35,7 @@ export function AuthorProfilePage({
   name,
   roleLabel,
   jobTitle,
+  personId,
   location,
   image,
   initials,
@@ -60,6 +62,16 @@ export function AuthorProfilePage({
             {JSON.stringify(node)}
           </script>
         ))}
+        <script type="application/ld+json">
+          {JSON.stringify(
+            profilePageJsonLd({
+              title,
+              description: metaDescription,
+              url: canonical,
+              personId,
+            }),
+          )}
+        </script>
       </Helmet>
 
       <article className="container mx-auto px-4 py-8 md:py-12 max-w-3xl">
