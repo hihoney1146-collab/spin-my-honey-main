@@ -284,7 +284,7 @@ const BlogPost = () => {
 
         {featuredSrc ? (
           <div className="mb-10 overflow-hidden rounded-xl border border-border/60 bg-muted/20 shadow-sm">
-            <div className="aspect-[16/9] w-full bg-muted/40">
+            <div className="aspect-[40/21] w-full bg-muted/40">
               <OptimizedImage
                 src={featuredSrc}
                 webpSrc={featuredWebp}

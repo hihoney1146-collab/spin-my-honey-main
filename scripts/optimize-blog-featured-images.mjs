@@ -14,6 +14,9 @@ const root = path.resolve(__dirname, "..");
 const assetsDir = path.join(root, "src", "assets");
 const outDir = path.join(assetsDir, "blog-featured");
 
+const FEATURED_WIDTH = 1200;
+const FEATURED_HEIGHT = 630;
+
 /** Source filename in src/assets → output basename (no extension) */
 const jobs = [
   {
@@ -83,10 +86,10 @@ for (const { slug, src } of activeJobs) {
 
   const base = sharp(inputPath).rotate();
   const resized = base.resize({
-    width: 1200,
-    height: 675,
-    fit: "inside",
-    withoutEnlargement: true,
+    width: FEATURED_WIDTH,
+    height: FEATURED_HEIGHT,
+    fit: "cover",
+    position: "centre",
   });
 
   const webpPath = path.join(outDir, `${slug}.webp`);
