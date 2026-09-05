@@ -100,14 +100,7 @@ function featuredWheelSceneSvg({ title, subtitle, accent, slices }) {
 }
 
 /** Posts that use programmatic art instead of optimize-blog-featured-images PNGs. */
-const RICH_FEATURED = {
-  "spin-wheel-team-building-activities": {
-    title: "Team building spin wheel",
-    subtitle: "Standup rotation · project roles · breakout groups",
-    accent: "#f6ad55",
-    slices: ["Standup", "Roles", "Groups", "Vote", "Draw", "Teams"],
-  },
-};
+const RICH_FEATURED = {};
 
 const ACCENTS = ["#48bb78", "#63b3ed", "#f6ad55", "#fc8181", "#b794f4"];
 

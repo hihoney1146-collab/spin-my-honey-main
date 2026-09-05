@@ -45,7 +45,11 @@ const jobs = [
   },
   {
     slug: "fair-raffle-without-paper-tickets",
-    src: "Raffle_Wheel.png",
+    src: "raffle_wheel2.png",
+  },
+  {
+    slug: "spin-wheel-team-building-activities",
+    src: "team_building.jfif",
   },
 ];
 
