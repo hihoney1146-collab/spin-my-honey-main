@@ -47,9 +47,48 @@
       "destination": "/index.html"
     }
   ],
+  "routes": [
+    {
+      "src": "/sitemap\\.xml",
+      "transforms": [
+        {
+          "type": "response.headers",
+          "op": "delete",
+          "target": { "key": "Content-Disposition" }
+        }
+      ]
+    },
+    {
+      "src": "/ads\\.txt",
+      "transforms": [
+        {
+          "type": "response.headers",
+          "op": "delete",
+          "target": { "key": "Content-Disposition" }
+        }
+      ]
+    }
+  ],
   "headers": [
     {
-      "source": "/(sitemap\\.xml|pages-sitemap|pages-sitemap\\.xml|blog-sitemap|blog-sitemap\\.xml|wheels-sitemap|wheels-sitemap\\.xml|images-sitemap|images-sitemap\\.xml)",
+      "source": "/sitemap.xml",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/xml; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, s-maxage=86400, must-revalidate"
+        },
+        {
+          "key": "Content-Disposition",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "source": "/(pages-sitemap|pages-sitemap\\.xml|blog-sitemap|blog-sitemap\\.xml|wheels-sitemap|wheels-sitemap\\.xml|images-sitemap|images-sitemap\\.xml)",
       "headers": [
         {
           "key": "Content-Type",
@@ -106,6 +145,10 @@
         {
           "key": "Cache-Control",
           "value": "no-cache, no-store, must-revalidate"
+        },
+        {
+          "key": "Content-Disposition",
+          "value": ""
         }
       ]
     },
