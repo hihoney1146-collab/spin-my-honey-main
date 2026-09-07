@@ -40,10 +40,8 @@
     { "source": "/sitemap-index.xml", "destination": "/sitemap.xml", "permanent": true }
   ],
   "rewrites": [
-    { "source": "/ads.txt", "destination": "/api/ads" },
     { "source": "/robots.txt", "destination": "/api/robots" },
     { "source": "/llms.txt", "destination": "/api/llms" },
-    { "source": "/sitemap.xml", "destination": "/api/sitemap" },
     {
       "source": "/((?!api/|(?:sitemap|pages-sitemap|wheels-sitemap|blog-sitemap|images-sitemap)(?:\\.xml)?$|.*\\.(?:xml|txt|png|jpe?g|webp|svg|gif|ico|pdf|csv|json|js|css|map|woff2?)$).*)",
       "destination": "/index.html"

@@ -18,7 +18,7 @@ import {
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
 const vercelPath = path.join(root, "vercel.json");
-const adsApiPath = path.join(root, "api", "ads.js");
+const adsTxtPath = path.join(root, "public", "ads.txt");
 const outPath = path.join(root, "docs", "X_ROBOTS_AUDIT.md");
 
 const args = new Set(process.argv.slice(2));
@@ -82,11 +82,17 @@ function auditVercelConfig() {
   }
 }
 
-function auditAdsApi() {
-  if (!fs.existsSync(adsApiPath)) return;
-  const src = fs.readFileSync(adsApiPath, "utf8");
-  if (/X-Robots-Tag.*noindex/i.test(src)) {
-    issues.push("api/ads.js sets X-Robots-Tag: noindex — AdSense crawlers must not see this");
+function auditAdsTxt() {
+  if (!fs.existsSync(adsTxtPath)) {
+    issues.push("public/ads.txt missing — AdSense crawlers need a static ads.txt");
+    return;
+  }
+  const body = fs.readFileSync(adsTxtPath, "utf8");
+  if (!body.includes("pub-2823129698767735")) {
+    issues.push("public/ads.txt missing expected AdSense publisher line");
+  }
+  if (/^\uFEFF/.test(body) || /^\s+[^\s]/.test(body)) {
+    issues.push("public/ads.txt has BOM or leading whitespace");
   }
 }
 
@@ -172,7 +178,7 @@ async function auditLiveHeaders() {
 }
 
 auditVercelConfig();
-auditAdsApi();
+auditAdsTxt();
 auditDistMeta();
 await auditLiveHeaders();
 
