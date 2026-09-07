@@ -4,6 +4,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Prevent theme + static SEO shell flash before React mounts -->
+  <script>
+    (function () {
+      try {
+        var theme = localStorage.getItem("onlinespinwheel-theme");
+        if (theme !== "light") document.documentElement.classList.add("dark");
+      } catch (e) {
+        document.documentElement.classList.add("dark");
+      }
+    })();
+  </script>
+  <style>
+    html {
+      background: hsl(240 10% 10%);
+      color-scheme: dark;
+    }
+    html:not(.dark) {
+      background: hsl(0 0% 100%);
+      color-scheme: light;
+    }
+    #root:not([data-app-ready]) [data-static-seo="true"] {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="google-adsense-account" content="ca-pub-2823129698767735" />
 

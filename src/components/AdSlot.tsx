@@ -50,33 +50,29 @@ export function AdSlot({
     }
   }, [ready, adSlot]);
 
+  if (ready && adSlot) {
+    return (
+      <div className={`min-h-[280px] w-full ${className}`} aria-label={label}>
+        <p className="text-[10px] uppercase tracking-wide text-muted-foreground mb-1 text-center pt-2">
+          {label}
+        </p>
+        <ins
+          ref={ref}
+          className="adsbygoogle block min-h-[250px]"
+          style={{ display: "block", minHeight: 250 }}
+          data-ad-client={ADSENSE_CLIENT}
+          data-ad-slot={adSlot}
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+        />
+      </div>
+    );
+  }
+
   return (
     <div
-      className={`min-h-[280px] w-full rounded-lg border border-dashed border-border/80 bg-muted/20 ${className}`}
-      aria-label={label}
-    >
-      {ready && adSlot ? (
-        <>
-          <p className="text-[10px] uppercase tracking-wide text-muted-foreground mb-1 text-center pt-2">
-            {label}
-          </p>
-          <ins
-            ref={ref}
-            className="adsbygoogle block min-h-[250px]"
-            style={{ display: "block", minHeight: 250 }}
-            data-ad-client={ADSENSE_CLIENT}
-            data-ad-slot={adSlot}
-            data-ad-format="auto"
-            data-full-width-responsive="true"
-          />
-        </>
-      ) : (
-        <div className="flex min-h-[280px] items-center justify-center px-4 text-center text-xs text-muted-foreground">
-          {ready
-            ? `${label} (enabled after AdSense approval)`
-            : `${label}, reserved slot`}
-        </div>
-      )}
-    </div>
+      className={`min-h-[280px] w-full ${className}`}
+      aria-hidden="true"
+    />
   );
 }

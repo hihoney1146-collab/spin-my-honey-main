@@ -392,10 +392,10 @@ const Index = () => {
         <section
           id="home-ad-mid"
           className="w-full px-4 sm:px-6 lg:px-8 py-6 sm:py-8"
-          aria-label="Advertisement"
+          aria-hidden="true"
         >
           <div className="max-w-3xl mx-auto">
-            <AdSlot label="Advertisement" />
+            <AdSlot />
           </div>
         </section>
 

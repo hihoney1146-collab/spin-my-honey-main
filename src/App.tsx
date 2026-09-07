@@ -47,9 +47,7 @@ const Terms = lazy(() => import("./pages/Terms"));
 const Disclaimer = lazy(() => import("./pages/Disclaimer"));
 const AllSpinWheelsPage = lazy(() => import("./pages/AllSpinWheelsPage"));
 const BlogIndex = lazy(() => import("./pages/BlogIndex"));
-const WheelProgrammaticPage = lazy(
-  () => import("./pages/WheelProgrammaticPage")
-);
+import WheelProgrammaticPage from "./pages/WheelProgrammaticPage";
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Embed = lazy(() => import("./pages/Embed"));
 const ResultPage = lazy(() => import("./pages/ResultPage"));
@@ -337,14 +335,7 @@ const App = () => (
                   </Suspense>
                 }
               />
-              <Route
-                path="/:slug"
-                element={
-                  <Suspense fallback={<PageLoadingFallback />}>
-                    <WheelProgrammaticPage />
-                  </Suspense>
-                }
-              />
+              <Route path="/:slug" element={<WheelProgrammaticPage />} />
             </Route>
             <Route
               path="/embed/:slug"
