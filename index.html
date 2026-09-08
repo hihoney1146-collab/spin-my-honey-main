@@ -24,6 +24,10 @@
       background: hsl(0 0% 100%);
       color-scheme: light;
     }
+    /* Hide pre-rendered SEO shell until React commits (see App useLayoutEffect). */
+    #root:not([data-app-ready]) {
+      visibility: hidden;
+    }
     #root:not([data-app-ready]) [data-static-seo="true"] {
       position: absolute;
       width: 1px;

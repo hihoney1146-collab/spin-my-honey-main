@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { LayoutWrapper } from "@/components/LayoutWrapper";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ScrollToTop } from "@/components/ScrollToTop";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useLayoutEffect } from "react";
 import Index from "./pages/Index";
 import BlogPost from "./pages/BlogPost";
 import AuthorRajaJahangir from "./pages/AuthorRajaJahangir";
@@ -57,7 +57,12 @@ import { PageLoadingFallback } from "./components/PageLoadingFallback";
 
 const queryClient = new QueryClient();
 
-const App = () => (
+const App = () => {
+  useLayoutEffect(() => {
+    document.getElementById("root")?.setAttribute("data-app-ready", "true");
+  }, []);
+
+  return (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider
       attribute="class"
@@ -366,6 +371,7 @@ const App = () => (
       </TooltipProvider>
     </ThemeProvider>
   </QueryClientProvider>
-);
+  );
+};
 
 export default App;

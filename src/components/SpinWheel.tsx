@@ -741,18 +741,21 @@ export const SpinWheel = ({
 
     const curEntries = entriesRef.current;
     const curImages = loadedImagesRef.current;
+    const isDark =
+      resolvedTheme === "dark" ||
+      (resolvedTheme !== "light" &&
+        document.documentElement.classList.contains("dark"));
 
     const activeEntries = curEntries.filter((e) => e.active);
     if (activeEntries.length === 0) {
       ctx.beginPath();
       ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
-      ctx.fillStyle = resolvedTheme === "dark" ? "#1e293b" : "#f8fafc";
+      ctx.fillStyle = isDark ? "#1e293b" : "#f8fafc";
       ctx.fill();
       ctx.lineWidth = 1.5;
-      ctx.strokeStyle = resolvedTheme === "dark" ? "#475569" : "#94a3b8";
+      ctx.strokeStyle = isDark ? "#475569" : "#94a3b8";
       ctx.stroke();
 
-      const isDark = resolvedTheme === "dark";
       // Centered watermark only (no separate hint copy)
       ctx.save();
       ctx.translate(centerX, centerY);
@@ -853,9 +856,15 @@ export const SpinWheel = ({
       ctx.strokeStyle = "rgba(255, 255, 255, 0.35)";
       ctx.stroke();
 
-      // Text, auto-scaled
+      // Text, auto-scaled — flip upright on left/bottom half (matches spin-wheel-preview.svg)
       ctx.save();
-      ctx.rotate(startAngle + sliceAngle / 2);
+      let labelAngle = startAngle + sliceAngle / 2;
+      let labelRadius = radius * 0.62;
+      if (labelAngle > Math.PI / 2 && labelAngle < (3 * Math.PI) / 2) {
+        labelAngle += Math.PI;
+        labelRadius = -labelRadius;
+      }
+      ctx.rotate(labelAngle);
       const maxTextWidth = radius * 0.52;
       const minFont = 8;
       let fontSize = segmentFontPx;
@@ -878,7 +887,7 @@ export const SpinWheel = ({
       ctx.shadowOffsetX = 1;
       ctx.shadowOffsetY = 1;
       ctx.fillStyle = "#ffffff";
-      ctx.fillText(label, radius * 0.62, 0);
+      ctx.fillText(label, labelRadius, 0);
       ctx.restore();
     });
 
@@ -890,7 +899,7 @@ export const SpinWheel = ({
     ctx.stroke();
 
     // Center hub, drop shadow only in dark mode (light mode: no glow under wheel)
-    const hubUseShadow = resolvedTheme === "dark";
+    const hubUseShadow = isDark;
     ctx.shadowColor = hubUseShadow ? "rgba(0,0,0,0.2)" : "transparent";
     ctx.shadowBlur = hubUseShadow ? 10 : 0;
     ctx.beginPath();

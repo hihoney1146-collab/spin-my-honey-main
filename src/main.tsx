@@ -4,4 +4,3 @@ import "./index.css";
 
 const rootEl = document.getElementById("root")!;
 createRoot(rootEl).render(<App />);
-rootEl.setAttribute("data-app-ready", "true");
