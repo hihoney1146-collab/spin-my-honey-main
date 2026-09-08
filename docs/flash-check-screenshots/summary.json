@@ -1,0 +1,360 @@
+{
+  "url": "http://127.0.0.1:4173/",
+  "reloads": 8,
+  "anyFlash": true,
+  "labelCheck": {
+    "ok": false,
+    "samples": {
+      "left": 15,
+      "bottom": 0,
+      "right": 0,
+      "top": 0
+    }
+  },
+  "results": [
+    {
+      "reload": 1,
+      "earlyBadFrames": 58,
+      "earlySample": [
+        {
+          "t": 558,
+          "seoVis": true,
+          "imgVis": false,
+          "navVis": false,
+          "manage": false,
+          "canvasVis": false,
+          "ready": false
+        },
+        {
+          "t": 566,
+          "seoVis": true,
+          "imgVis": false,
+          "navVis": false,
+          "manage": false,
+          "canvasVis": false,
+          "ready": false
+        },
+        {
+          "t": 571,
+          "seoVis": true,
+          "imgVis": false,
+          "navVis": false,
+          "manage": false,
+          "canvasVis": false,
+          "ready": false
+        }
+      ],
+      "final": {
+        "nav": true,
+        "manage": true,
+        "canvas": true,
+        "staleAliceBob": [],
+        "defaultNames": [],
+        "seoVisible": false,
+        "previewVisible": true
+      },
+      "shot": "docs\\flash-check-screenshots\\reload-1-final.png"
+    },
+    {
+      "reload": 2,
+      "earlyBadFrames": 45,
+      "earlySample": [
+        {
+          "t": 486,
+          "seoVis": true,
+          "imgVis": true,
+          "navVis": false,
+          "manage": false,
+          "canvasVis": false,
+          "ready": false
+        },
+        {
+          "t": 488,
+          "seoVis": true,
+          "imgVis": true,
+          "navVis": false,
+          "manage": false,
+          "canvasVis": false,
+          "ready": false
+        },
+        {
+          "t": 492,
+          "seoVis": true,
+          "imgVis": true,
+          "navVis": false,
+          "manage": false,
+          "canvasVis": false,
+          "ready": false
+        }
+      ],
+      "final": {
+        "nav": true,
+        "manage": true,
+        "canvas": true,
+        "staleAliceBob": [],
+        "defaultNames": [],
+        "seoVisible": false,
+        "previewVisible": true
+      },
+      "shot": "docs\\flash-check-screenshots\\reload-2-final.png"
+    },
+    {
+      "reload": 3,
+      "earlyBadFrames": 24,
+      "earlySample": [
+        {
+          "t": 580,
+          "seoVis": true,
+          "imgVis": true,
+          "navVis": false,
+          "manage": false,
+          "canvasVis": false,
+          "ready": false
+        },
+        {
+          "t": 582,
+          "seoVis": true,
+          "imgVis": true,
+          "navVis": false,
+          "manage": false,
+          "canvasVis": false,
+          "ready": false
+        },
+        {
+          "t": 595,
+          "seoVis": true,
+          "imgVis": true,
+          "navVis": false,
+          "manage": false,
+          "canvasVis": false,
+          "ready": false
+        }
+      ],
+      "final": {
+        "nav": true,
+        "manage": true,
+        "canvas": true,
+        "staleAliceBob": [],
+        "defaultNames": [],
+        "seoVisible": false,
+        "previewVisible": true
+      },
+      "shot": "docs\\flash-check-screenshots\\reload-3-final.png"
+    },
+    {
+      "reload": 4,
+      "earlyBadFrames": 49,
+      "earlySample": [
+        {
+          "t": 607,
+          "seoVis": true,
+          "imgVis": true,
+          "navVis": false,
+          "manage": false,
+          "canvasVis": false,
+          "ready": false
+        },
+        {
+          "t": 608,
+          "seoVis": true,
+          "imgVis": true,
+          "navVis": false,
+          "manage": false,
+          "canvasVis": false,
+          "ready": false
+        },
+        {
+          "t": 610,
+          "seoVis": true,
+          "imgVis": true,
+          "navVis": false,
+          "manage": false,
+          "canvasVis": false,
+          "ready": false
+        }
+      ],
+      "final": {
+        "nav": true,
+        "manage": true,
+        "canvas": true,
+        "staleAliceBob": [],
+        "defaultNames": [],
+        "seoVisible": false,
+        "previewVisible": true
+      },
+      "shot": "docs\\flash-check-screenshots\\reload-4-final.png"
+    },
+    {
+      "reload": 5,
+      "earlyBadFrames": 76,
+      "earlySample": [
+        {
+          "t": 578,
+          "seoVis": true,
+          "imgVis": true,
+          "navVis": false,
+          "manage": false,
+          "canvasVis": false,
+          "ready": false
+        },
+        {
+          "t": 581,
+          "seoVis": true,
+          "imgVis": true,
+          "navVis": false,
+          "manage": false,
+          "canvasVis": false,
+          "ready": false
+        },
+        {
+          "t": 584,
+          "seoVis": true,
+          "imgVis": true,
+          "navVis": false,
+          "manage": false,
+          "canvasVis": false,
+          "ready": false
+        }
+      ],
+      "final": {
+        "nav": true,
+        "manage": true,
+        "canvas": true,
+        "staleAliceBob": [],
+        "defaultNames": [],
+        "seoVisible": false,
+        "previewVisible": true
+      },
+      "shot": "docs\\flash-check-screenshots\\reload-5-final.png"
+    },
+    {
+      "reload": 6,
+      "earlyBadFrames": 57,
+      "earlySample": [
+        {
+          "t": 485,
+          "seoVis": true,
+          "imgVis": true,
+          "navVis": false,
+          "manage": false,
+          "canvasVis": false,
+          "ready": false
+        },
+        {
+          "t": 500,
+          "seoVis": true,
+          "imgVis": true,
+          "navVis": false,
+          "manage": false,
+          "canvasVis": false,
+          "ready": false
+        },
+        {
+          "t": 509,
+          "seoVis": true,
+          "imgVis": true,
+          "navVis": false,
+          "manage": false,
+          "canvasVis": false,
+          "ready": false
+        }
+      ],
+      "final": {
+        "nav": true,
+        "manage": true,
+        "canvas": true,
+        "staleAliceBob": [],
+        "defaultNames": [],
+        "seoVisible": false,
+        "previewVisible": true
+      },
+      "shot": "docs\\flash-check-screenshots\\reload-6-final.png"
+    },
+    {
+      "reload": 7,
+      "earlyBadFrames": 78,
+      "earlySample": [
+        {
+          "t": 598,
+          "seoVis": true,
+          "imgVis": true,
+          "navVis": false,
+          "manage": false,
+          "canvasVis": false,
+          "ready": false
+        },
+        {
+          "t": 598,
+          "seoVis": true,
+          "imgVis": true,
+          "navVis": false,
+          "manage": false,
+          "canvasVis": false,
+          "ready": false
+        },
+        {
+          "t": 605,
+          "seoVis": true,
+          "imgVis": true,
+          "navVis": false,
+          "manage": false,
+          "canvasVis": false,
+          "ready": false
+        }
+      ],
+      "final": {
+        "nav": true,
+        "manage": true,
+        "canvas": true,
+        "staleAliceBob": [],
+        "defaultNames": [],
+        "seoVisible": false,
+        "previewVisible": true
+      },
+      "shot": "docs\\flash-check-screenshots\\reload-7-final.png"
+    },
+    {
+      "reload": 8,
+      "earlyBadFrames": 42,
+      "earlySample": [
+        {
+          "t": 669,
+          "seoVis": true,
+          "imgVis": true,
+          "navVis": false,
+          "manage": false,
+          "canvasVis": false,
+          "ready": false
+        },
+        {
+          "t": 684,
+          "seoVis": true,
+          "imgVis": true,
+          "navVis": false,
+          "manage": false,
+          "canvasVis": false,
+          "ready": false
+        },
+        {
+          "t": 688,
+          "seoVis": true,
+          "imgVis": true,
+          "navVis": false,
+          "manage": false,
+          "canvasVis": false,
+          "ready": false
+        }
+      ],
+      "final": {
+        "nav": true,
+        "manage": true,
+        "canvas": true,
+        "staleAliceBob": [],
+        "defaultNames": [],
+        "seoVisible": false,
+        "previewVisible": true
+      },
+      "shot": "docs\\flash-check-screenshots\\reload-8-final.png"
+    }
+  ]
+}
