@@ -13,6 +13,7 @@ import {
   hasBlogFeaturedImage,
 } from "@/lib/blogFeaturedImages";
 import { BlogFeaturedImage } from "@/components/BlogFeaturedImage";
+import { FaqAccordion } from "@/components/FaqAccordion";
 import {
   SITE_ORIGIN,
   RAJA_AUTHOR,
@@ -492,16 +493,11 @@ const BlogPost = () => {
                 ? `${faqSectionNumber}. Frequently Asked Questions`
                 : "Frequently Asked Questions"}
             </h2>
-            <dl className="m-0 space-y-8">
-              {post.faqs.map((faq, idx) => (
-                <div key={idx}>
-                  <dt className="mb-2 text-lg font-bold leading-snug text-foreground">
-                    {faq.q}
-                  </dt>
-                  <dd className={`${pBody} m-0 text-muted-foreground`}>{faq.a}</dd>
-                </div>
-              ))}
-            </dl>
+            <FaqAccordion
+              items={post.faqs}
+              triggerClassName="text-lg font-bold text-foreground"
+              answerClassName={`${pBody} m-0`}
+            />
           </section>
         ) : null}
 

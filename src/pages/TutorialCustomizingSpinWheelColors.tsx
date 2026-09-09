@@ -3,6 +3,76 @@ import { Helmet } from "react-helmet";
 import { Palette, CheckCircle2, Sparkles, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { NoindexFollow } from "@/components/NoindexFollow";
+import { FaqAccordion } from "@/components/FaqAccordion";
+
+const COLOR_WHEEL_FAQS = [
+  {
+    question: "What is spin the wheel 8 colors?",
+    answer:
+      "Online Spin Wheel is an online tool with a wheel split into eight color segments; spin to randomly select one for inspiration or use.",
+  },
+  {
+    question: "What is the spin the wheel feature?",
+    answer:
+      "The Spin the Wheel feature is a fun tool. It lets users pick from 8 beautiful colors for their projects.",
+  },
+  {
+    question: "How do I use the spin the wheel feature?",
+    answer:
+      "To use it, just go to the color wheel and spin it. You'll get a random color to use in your design.",
+  },
+  {
+    question: "Can I customize the color wheel?",
+    answer:
+      "Yes, you can make the color wheel your own. Create custom palettes and personalize it for your design needs.",
+  },
+  {
+    question: "What are the benefits of using the spin the wheel feature?",
+    answer:
+      "It's interactive and fun, making it easy to find the right color. It also saves time and effort.",
+  },
+  {
+    question: "Are the colors provided by the spin the wheel feature of high quality?",
+    answer:
+      "Yes, our colors are accurate and vibrant. They will make your designs pop. We use top-notch color technology.",
+  },
+  {
+    question: "Is spin the wheel colors online free?",
+    answer: "Yes, fully free with no limits on spins or devices.",
+  },
+  {
+    question: "How does color randomization work?",
+    answer:
+      "A fair algorithm assigns equal odds to each of the eight colors, with visual physics for realism.",
+  },
+  {
+    question: "Can I customize spin the wheel 8 colors?",
+    answer: "Edit colors, add HEX labels, or tweak segments before spinning.",
+  },
+  {
+    question: "Is there a spin the wheel colors 100 option?",
+    answer:
+      "Yes, expand to 100 shades or use our aesthetic color spin wheel for themed picks.",
+  },
+  {
+    question: "Does it work as a color wheel picker online?",
+    answer: "Absolutely, outputs ready-to-use codes like HEX and RGB after each spin.",
+  },
+  {
+    question: "What's an aesthetic color spin wheel?",
+    answer:
+      "A styled version with trendy palettes, great for design or gaming aesthetics.",
+  },
+  {
+    question: "Can I use spin the wheel 8 colors app on mobile?",
+    answer: "Yes, responsive design ensures smooth spins on any screen.",
+  },
+  {
+    question: "Is the Spin the Wheel feature user-friendly?",
+    answer:
+      "Yes, it's designed to be easy to use. We've added interactive features to make it simple and customizable.",
+  },
+] as const;
 
 const TutorialCustomizingSpinWheelColors = () => {
   return (
@@ -290,106 +360,11 @@ const TutorialCustomizingSpinWheelColors = () => {
             Frequently Asked Questions
           </h2>
 
-          <div className="space-y-4">
-            <Card className="p-5 border-2 border-border/50">
-              <h3 className="text-lg font-bold mb-2">What is spin the wheel 8 colors?</h3>
-              <p className="text-muted-foreground">
-                Online Spin Wheel is an online tool with a wheel split into eight color segments; spin to randomly select one for
-                inspiration or use.
-              </p>
-            </Card>
-
-            <Card className="p-5 border-2 border-border/50">
-              <h3 className="text-lg font-bold mb-2">What is the spin the wheel feature?</h3>
-              <p className="text-muted-foreground">
-                The Spin the Wheel feature is a fun tool. It lets users pick from 8 beautiful colors for their projects.
-              </p>
-            </Card>
-
-            <Card className="p-5 border-2 border-border/50">
-              <h3 className="text-lg font-bold mb-2">How do I use the spin the wheel feature?</h3>
-              <p className="text-muted-foreground">
-                To use it, just go to the color wheel and spin it. You'll get a random color to use in your design.
-              </p>
-            </Card>
-
-            <Card className="p-5 border-2 border-border/50">
-              <h3 className="text-lg font-bold mb-2">Can I customize the color wheel?</h3>
-              <p className="text-muted-foreground">
-                Yes, you can make the color wheel your own. Create custom palettes and personalize it for your design needs.
-              </p>
-            </Card>
-
-            <Card className="p-5 border-2 border-border/50">
-              <h3 className="text-lg font-bold mb-2">What are the benefits of using the spin the wheel feature?</h3>
-              <p className="text-muted-foreground">
-                It's interactive and fun, making it easy to find the right color. It also saves time and effort.
-              </p>
-            </Card>
-
-            <Card className="p-5 border-2 border-border/50">
-              <h3 className="text-lg font-bold mb-2">Are the colors provided by the spin the wheel feature of high quality?</h3>
-              <p className="text-muted-foreground">
-                Yes, our colors are accurate and vibrant. They will make your designs pop. We use top-notch color technology.
-              </p>
-            </Card>
-
-            <Card className="p-5 border-2 border-border/50">
-              <h3 className="text-lg font-bold mb-2">Is spin the wheel colors online free?</h3>
-              <p className="text-muted-foreground">
-                Yes, fully free with no limits on spins or devices.
-              </p>
-            </Card>
-
-            <Card className="p-5 border-2 border-border/50">
-              <h3 className="text-lg font-bold mb-2">How does color randomization work?</h3>
-              <p className="text-muted-foreground">
-                A fair algorithm assigns equal odds to each of the eight colors, with visual physics for realism.
-              </p>
-            </Card>
-
-            <Card className="p-5 border-2 border-border/50">
-              <h3 className="text-lg font-bold mb-2">Can I customize spin the wheel 8 colors?</h3>
-              <p className="text-muted-foreground">
-                Edit colors, add HEX labels, or tweak segments before spinning.
-              </p>
-            </Card>
-
-            <Card className="p-5 border-2 border-border/50">
-              <h3 className="text-lg font-bold mb-2">Is there a spin the wheel colors 100 option?</h3>
-              <p className="text-muted-foreground">
-                Yes, expand to 100 shades or use our aesthetic color spin wheel for themed picks.
-              </p>
-            </Card>
-
-            <Card className="p-5 border-2 border-border/50">
-              <h3 className="text-lg font-bold mb-2">Does it work as a color wheel picker online?</h3>
-              <p className="text-muted-foreground">
-                Absolutely, outputs ready-to-use codes like HEX and RGB after each spin.
-              </p>
-            </Card>
-
-            <Card className="p-5 border-2 border-border/50">
-              <h3 className="text-lg font-bold mb-2">What's an aesthetic color spin wheel?</h3>
-              <p className="text-muted-foreground">
-                A styled version with trendy palettes, great for design or gaming aesthetics.
-              </p>
-            </Card>
-
-            <Card className="p-5 border-2 border-border/50">
-              <h3 className="text-lg font-bold mb-2">Can I use spin the wheel 8 colors app on mobile?</h3>
-              <p className="text-muted-foreground">
-                Yes, responsive design ensures smooth spins on any screen.
-              </p>
-            </Card>
-
-            <Card className="p-5 border-2 border-border/50">
-              <h3 className="text-lg font-bold mb-2">Is the Spin the Wheel feature user-friendly?</h3>
-              <p className="text-muted-foreground">
-                Yes, it's designed to be easy to use. We've added interactive features to make it simple and customizable.
-              </p>
-            </Card>
-          </div>
+          <FaqAccordion
+            items={COLOR_WHEEL_FAQS}
+            itemClassName="rounded-lg border border-border/50 px-4"
+            triggerClassName="text-lg font-bold"
+          />
 
           <div className="bg-primary/5 rounded-lg p-6 mt-6">
             <p className="text-lg font-semibold text-foreground mb-2">

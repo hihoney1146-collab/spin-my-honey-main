@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet";
 import { Link, useParams } from "react-router-dom";
 import { Card } from "@/components/ui/card";
+import { FaqAccordion } from "@/components/FaqAccordion";
 import { WheelBySlug } from "@/components/wheelModes/WheelBySlug";
 import { getRouteLastmod } from "@/lib/routeLastmod";
 import { getWheelPageBySlug, getRelatedWheelLinks } from "@/lib/wheelPages";
@@ -405,39 +406,15 @@ const WheelProgrammaticPage = () => {
           ))}
 
           {displayFaqs.length > 0 ? (
-            <Card
-              className="p-6 md:p-8"
-              id="faq"
-              itemScope
-              itemType="https://schema.org/FAQPage"
-            >
+            <Card className="p-6 md:p-8" id="faq">
               <h2 className="text-xl md:text-2xl font-bold mb-6">
                 Frequently Asked Questions
               </h2>
-              <div className="space-y-6">
-                {displayFaqs.map((item, i) => (
-                  <div
-                    key={i}
-                    className="border-b border-border/60 pb-6 last:border-0 last:pb-0"
-                    itemScope
-                    itemProp="mainEntity"
-                    itemType="https://schema.org/Question"
-                  >
-                    <h3 className="font-semibold text-foreground mb-2" itemProp="name">
-                      {item.question}
-                    </h3>
-                    <div
-                      itemScope
-                      itemProp="acceptedAnswer"
-                      itemType="https://schema.org/Answer"
-                    >
-                      <p className="text-muted-foreground leading-relaxed whitespace-pre-line" itemProp="text">
-                        {item.answer}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <FaqAccordion
+                items={displayFaqs}
+                includeSchema
+                preserveAnswerWhitespace
+              />
             </Card>
           ) : null}
 

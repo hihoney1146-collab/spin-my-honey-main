@@ -1,4 +1,5 @@
 import { Card } from "@/components/ui/card";
+import { FaqAccordion } from "@/components/FaqAccordion";
 import { Helmet } from "react-helmet";
 import { GitCompare, CheckCircle2, MinusCircle } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -270,40 +271,9 @@ const WheelOfNamesAlternative = () => {
           </ul>
         </Card>
 
-        <Card
-          className="p-6 md:p-8"
-          id="faq"
-          itemScope
-          itemType="https://schema.org/FAQPage"
-        >
+        <Card className="p-6 md:p-8" id="faq">
           <h2 className="text-xl font-bold mb-6">Frequently asked questions</h2>
-          <div className="space-y-6">
-            {FAQS.map((f) => (
-              <div
-                key={f.q}
-                className="border-b border-border/60 pb-6 last:border-0"
-                itemScope
-                itemProp="mainEntity"
-                itemType="https://schema.org/Question"
-              >
-                <h3 className="font-semibold mb-2" itemProp="name">
-                  {f.q}
-                </h3>
-                <div
-                  itemScope
-                  itemProp="acceptedAnswer"
-                  itemType="https://schema.org/Answer"
-                >
-                  <p
-                    className="text-muted-foreground leading-relaxed"
-                    itemProp="text"
-                  >
-                    {f.a}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <FaqAccordion items={FAQS} includeSchema />
         </Card>
       </article>
     </>

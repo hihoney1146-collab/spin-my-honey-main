@@ -25,6 +25,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { FaqAccordion } from "@/components/FaqAccordion";
 
 const SpinWheelFree = () => {
   return (
@@ -425,46 +426,40 @@ const SpinWheelFree = () => {
                 </h2>
               </div>
 
-              <div className="grid gap-4">
-                {[
+              <FaqAccordion
+                items={[
                   {
                     q: "Is your spin wheel really free to use?",
-                    a: "Yes, onlinespinwheel.fun is completely free to use for as many spins and lists as you need. You do not need to create an account or download anything to access the spin wheel online free."
+                    a: "Yes, onlinespinwheel.fun is completely free to use for as many spins and lists as you need. You do not need to create an account or download anything to access the spin wheel online free.",
                   },
                   {
                     q: "Do I need to install an app to use the wheel?",
-                    a: "No, our free wheel spinner works directly in your browser. This means it runs on Windows, macOS, Android, and iOS without any installation, which is convenient for classrooms, offices, and events."
+                    a: "No, our free wheel spinner works directly in your browser. This means it runs on Windows, macOS, Android, and iOS without any installation, which is convenient for classrooms, offices, and events.",
                   },
                   {
                     q: "Can I use the spin wheel to pick random winners for giveaways?",
-                    a: "Yes, you can use the random wheel picker to draw winners from a list of names, emails, or usernames. Many people display the wheel on a live stream or during a meeting so everyone can see the result clearly."
+                    a: "Yes, you can use the random wheel picker to draw winners from a list of names, emails, or usernames. Many people display the wheel on a live stream or during a meeting so everyone can see the result clearly.",
                   },
                   {
                     q: "How many names can I add to the wheel?",
-                    a: "You can add many entries, but for the best readability it is wise to keep the list to a reasonable number of segments. If you have a very large list, consider running several rounds or grouping entries."
+                    a: "You can add many entries, but for the best readability it is wise to keep the list to a reasonable number of segments. If you have a very large list, consider running several rounds or grouping entries.",
                   },
                   {
                     q: "Does onlinespinwheel.fun store my data?",
-                    a: "Entries you type into the spin wheel free tool run in your browser session. They are intended for immediate use while you are on the page and are not meant to be stored as user profiles."
+                    a: "Entries you type into the spin wheel free tool run in your browser session. They are intended for immediate use while you are on the page and are not meant to be stored as user profiles.",
                   },
                   {
                     q: "Can I use the spin wheel for school, work, and personal events?",
-                    a: "Yes, the same online decision wheel can be used in classrooms, remote teams, events, and casual gatherings. As long as your use follows local rules and platform guidelines, it is a flexible solution for many situations."
+                    a: "Yes, the same online decision wheel can be used in classrooms, remote teams, events, and casual gatherings. As long as your use follows local rules and platform guidelines, it is a flexible solution for many situations.",
                   },
                   {
                     q: "What makes your tool different from other spin wheels?",
-                    a: "Our focus is on a clean interface, fast performance, and honest communication from a small, visible team that works directly with web development and SEO every day. You get a spin wheel free that is simple enough for first-time users and reliable enough for regular use."
-                  }
-                ].map((faq, idx) => (
-                  <Card key={idx} className="p-6 bg-white dark:bg-slate-800 hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 rounded-2xl group">
-                    <h3 className="font-semibold mb-2 text-foreground text-lg flex items-start gap-3">
-                      <span className="text-primary mt-1 group-hover:scale-110 transition-transform">❖</span>
-                      {faq.q}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed ml-7">{faq.a}</p>
-                  </Card>
-                ))}
-              </div>
+                    a: "Our focus is on a clean interface, fast performance, and honest communication from a small, visible team that works directly with web development and SEO every day. You get a spin wheel free that is simple enough for first-time users and reliable enough for regular use.",
+                  },
+                ]}
+                itemClassName="rounded-2xl border border-slate-200 px-4 dark:border-slate-700"
+                triggerClassName="text-lg font-semibold text-foreground"
+              />
             </section>
 
             <section className="relative mt-16">

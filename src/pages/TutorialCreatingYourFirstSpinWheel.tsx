@@ -11,6 +11,45 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { NoindexFollow } from "@/components/NoindexFollow";
+import { FaqAccordion } from "@/components/FaqAccordion";
+
+const FIRST_SPIN_WHEEL_FAQS = [
+  {
+    question: "Is your spin wheel really free to use?",
+    answer:
+      "Yes, Online Spin Wheel is completely free to use for as many spins and lists as you need. You do not need to create an account or download anything to access the spin wheel online free.",
+  },
+  {
+    question: "Do I need to install an app to use the wheel?",
+    answer:
+      "No, our free wheel spinner works directly in your browser. This means it runs on Windows, macOS, Android, and iOS without any installation, which is convenient for classrooms, offices, and events.",
+  },
+  {
+    question: "Can I use the spin wheel to pick random winners for giveaways?",
+    answer:
+      "Yes, you can use the random wheel picker to draw winners from a list of names, emails, or usernames. Many people display the wheel on a live stream or during a meeting so everyone can see the result clearly.",
+  },
+  {
+    question: "How many names can I add to the wheel?",
+    answer:
+      "You can add many entries, but for the best readability it is wise to keep the list to a reasonable number of segments. If you have a very large list, consider running several rounds or grouping entries.",
+  },
+  {
+    question: "Does Online Spin Wheel store my data?",
+    answer:
+      "Entries you type into the spin wheel free tool run in your browser session. They are intended for immediate use while you are on the page and are not meant to be stored as user profiles.",
+  },
+  {
+    question: "Can I use the spin wheel for school, work, and personal events?",
+    answer:
+      "Yes, the same online decision wheel can be used in classrooms, remote teams, events, and casual gatherings. As long as your use follows local rules and platform guidelines, it is a flexible solution for many situations.",
+  },
+  {
+    question: "What makes your tool different from other spin wheels?",
+    answer:
+      "Our focus is on a clean interface, fast performance, and honest communication from a small, visible team that works directly with web development and SEO every day. You get a spin wheel free that is simple enough for first-time users and reliable enough for regular use.",
+  },
+] as const;
 
 const TutorialCreatingYourFirstSpinWheel = () => {
   return (
@@ -349,64 +388,11 @@ const TutorialCreatingYourFirstSpinWheel = () => {
             Frequently Asked Questions
           </h2>
 
-          <div className="space-y-4">
-            <Card className="p-5 border-2 border-border/50">
-              <h3 className="text-lg font-bold mb-2">Is your spin wheel really free to use?</h3>
-              <p className="text-muted-foreground">
-                Yes, Online Spin Wheel is completely free to use for as many spins and lists as you need. You do not need to
-                create an account or download anything to access the spin wheel online free.
-              </p>
-            </Card>
-
-            <Card className="p-5 border-2 border-border/50">
-              <h3 className="text-lg font-bold mb-2">Do I need to install an app to use the wheel?</h3>
-              <p className="text-muted-foreground">
-                No, our free wheel spinner works directly in your browser. This means it runs on Windows, macOS, Android, and
-                iOS without any installation, which is convenient for classrooms, offices, and events.
-              </p>
-            </Card>
-
-            <Card className="p-5 border-2 border-border/50">
-              <h3 className="text-lg font-bold mb-2">Can I use the spin wheel to pick random winners for giveaways?</h3>
-              <p className="text-muted-foreground">
-                Yes, you can use the random wheel picker to draw winners from a list of names, emails, or usernames. Many
-                people display the wheel on a live stream or during a meeting so everyone can see the result clearly.
-              </p>
-            </Card>
-
-            <Card className="p-5 border-2 border-border/50">
-              <h3 className="text-lg font-bold mb-2">How many names can I add to the wheel?</h3>
-              <p className="text-muted-foreground">
-                You can add many entries, but for the best readability it is wise to keep the list to a reasonable number of
-                segments. If you have a very large list, consider running several rounds or grouping entries.
-              </p>
-            </Card>
-
-            <Card className="p-5 border-2 border-border/50">
-              <h3 className="text-lg font-bold mb-2">Does Online Spin Wheel store my data?</h3>
-              <p className="text-muted-foreground">
-                Entries you type into the spin wheel free tool run in your browser session. They are intended for immediate use
-                while you are on the page and are not meant to be stored as user profiles.
-              </p>
-            </Card>
-
-            <Card className="p-5 border-2 border-border/50">
-              <h3 className="text-lg font-bold mb-2">Can I use the spin wheel for school, work, and personal events?</h3>
-              <p className="text-muted-foreground">
-                Yes, the same online decision wheel can be used in classrooms, remote teams, events, and casual gatherings.
-                As long as your use follows local rules and platform guidelines, it is a flexible solution for many situations.
-              </p>
-            </Card>
-
-            <Card className="p-5 border-2 border-border/50">
-              <h3 className="text-lg font-bold mb-2">What makes your tool different from other spin wheels?</h3>
-              <p className="text-muted-foreground">
-                Our focus is on a clean interface, fast performance, and honest communication from a small, visible team that
-                works directly with web development and SEO every day. You get a spin wheel free that is simple enough for
-                first-time users and reliable enough for regular use.
-              </p>
-            </Card>
-          </div>
+          <FaqAccordion
+            items={FIRST_SPIN_WHEEL_FAQS}
+            itemClassName="rounded-lg border border-border/50 px-4"
+            triggerClassName="text-lg font-bold"
+          />
         </Card>
       </article>
     </>

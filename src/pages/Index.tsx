@@ -1,6 +1,7 @@
 import { SpinWheel } from "@/components/SpinWheel";
 import { WheelDirectory } from "@/components/WheelDirectory";
 import { AdSlot } from "@/components/AdSlot";
+import { FaqAccordion } from "@/components/FaqAccordion";
 import { Card } from "@/components/ui/card";
 import {
   ListPlus,
@@ -508,40 +509,18 @@ const Index = () => {
         <section
           id="homepage-faq"
           className="w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-14"
-          itemScope
-          itemType="https://schema.org/FAQPage"
         >
           <div className="max-w-3xl mx-auto">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight mb-6 sm:mb-8 text-center">
               Frequently asked questions
             </h2>
-            <div className="space-y-4">
-              {HOME_FAQS.map((faq) => (
-                <Card
-                  key={faq.question}
-                  className="p-5 sm:p-6 border-2 border-border/50"
-                  itemScope
-                  itemProp="mainEntity"
-                  itemType="https://schema.org/Question"
-                >
-                  <h3 className="text-base sm:text-lg font-bold mb-2" itemProp="name">
-                    {faq.question}
-                  </h3>
-                  <div
-                    itemScope
-                    itemProp="acceptedAnswer"
-                    itemType="https://schema.org/Answer"
-                  >
-                    <p
-                      className="text-sm sm:text-base text-muted-foreground leading-relaxed"
-                      itemProp="text"
-                    >
-                      {faq.answer}
-                    </p>
-                  </div>
-                </Card>
-              ))}
-            </div>
+            <FaqAccordion
+              items={HOME_FAQS}
+              includeSchema
+              itemClassName="mb-3 rounded-lg border border-border/50 px-4 sm:px-5 last:mb-0 data-[state=open]:border-primary/30"
+              triggerClassName="text-base sm:text-lg font-bold"
+              answerClassName="text-sm sm:text-base pb-1"
+            />
           </div>
         </section>
           </>

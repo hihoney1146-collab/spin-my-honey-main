@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { NoindexFollow } from "@/components/NoindexFollow";
+import { FaqAccordion } from "@/components/FaqAccordion";
 
 const HowToCreateFairGiveawaysWithSpinWheels = () => {
   return (
@@ -462,66 +463,60 @@ const HowToCreateFairGiveawaysWithSpinWheels = () => {
                 </h2>
               </div>
 
-              <div className="grid gap-4">
-                {[
+              <FaqAccordion
+                items={[
                   {
                     q: "Is a spin wheel random winner picker fair?",
-                    a: "A well-implemented wheel that uses secure random functions and treats each entry equally is as fair as any mathematical random draw. Combined with visible spins and result history, it offers strong transparency."
+                    a: "A well-implemented wheel that uses secure random functions and treats each entry equally is as fair as any mathematical random draw. Combined with visible spins and result history, it offers strong transparency.",
                   },
                   {
                     q: "Is there a free spin wheel winner picker I can use online?",
-                    a: "Yes, many tools offer free, browser-based wheels that work on desktop and mobile without requiring installation or login for basic sessions. These are perfect for small events and quick draws."
+                    a: "Yes, many tools offer free, browser-based wheels that work on desktop and mobile without requiring installation or login for basic sessions. These are perfect for small events and quick draws.",
                   },
                   {
                     q: "Can I pick multiple winners with a spin wheel?",
-                    a: "Most advanced wheels let you choose multiple winners by automatically removing each winner after a spin or providing a dedicated multi-winner mode. This prevents repeat selections and saves time."
+                    a: "Most advanced wheels let you choose multiple winners by automatically removing each winner after a spin or providing a dedicated multi-winner mode. This prevents repeat selections and saves time.",
                   },
                   {
                     q: "Can I use a spin wheel winner picker on my phone?",
-                    a: "Modern tools are mobile-responsive and run inside the browser on smartphones and tablets, making them ideal for live events, classrooms, and in-person meetups where a laptop is not always available."
+                    a: "Modern tools are mobile-responsive and run inside the browser on smartphones and tablets, making them ideal for live events, classrooms, and in-person meetups where a laptop is not always available.",
                   },
                   {
                     q: "What is a spin wheel for winner?",
-                    a: "An online spinner that randomly picks a winner from your list with a fun visual wheel animation."
+                    a: "An online spinner that randomly picks a winner from your list with a fun visual wheel animation.",
                   },
                   {
                     q: "Is spin wheel winner online free?",
-                    a: "Yes, our tool is completely free with no limits or hidden fees."
+                    a: "Yes, our tool is completely free with no limits or hidden fees.",
                   },
                   {
                     q: "How does spin wheel random winner ensure fairness?",
-                    a: "Uses secure random algorithms; every entry has equal chance, verifiable via history."
+                    a: "Uses secure random algorithms; every entry has equal chance, verifiable via history.",
                   },
                   {
                     q: "Can I use spin wheel for winner app on mobile?",
-                    a: "Fully responsive, works great on phones, tablets, or desktops."
+                    a: "Fully responsive, works great on phones, tablets, or desktops.",
                   },
                   {
                     q: "What's a good spin wheel giveaway winner setup?",
-                    a: "Enter participant names/emails, spin live, record for proof, ideal for Instagram or streams."
+                    a: "Enter participant names/emails, spin live, record for proof, ideal for Instagram or streams.",
                   },
                   {
                     q: "How to choose multiple winners with spin wheel choose winner?",
-                    a: "Spin repeatedly, removing past picks, or use multi-mode if available."
+                    a: "Spin repeatedly, removing past picks, or use multi-mode if available.",
                   },
                   {
                     q: "Is wheel of names the same as spin wheel for winner?",
-                    a: "Yes, often used interchangeably for random name picking in events."
+                    a: "Yes, often used interchangeably for random name picking in events.",
                   },
                   {
                     q: "Can I embed spin wheel pick winner on my site?",
-                    a: "Yes, easy iframe or WordPress integration for contests."
-                  }
-                ].map((faq, idx) => (
-                  <Card key={idx} className="p-6 bg-white dark:bg-slate-800 hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 rounded-2xl group">
-                    <h3 className="font-semibold mb-2 text-foreground text-lg flex items-start gap-3">
-                      <span className="text-primary mt-1 group-hover:scale-110 transition-transform">❖</span>
-                      {faq.q}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed ml-7">{faq.a}</p>
-                  </Card>
-                ))}
-              </div>
+                    a: "Yes, easy iframe or WordPress integration for contests.",
+                  },
+                ]}
+                itemClassName="rounded-2xl border border-slate-200 px-4 dark:border-slate-700"
+                triggerClassName="text-lg font-semibold text-foreground"
+              />
             </section>
 
             <section className="relative mt-16">

@@ -3,6 +3,30 @@ import { Helmet } from "react-helmet";
 import { Settings, CheckCircle2, Sparkles, ArrowRight, Trophy, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { NoindexFollow } from "@/components/NoindexFollow";
+import { FaqAccordion } from "@/components/FaqAccordion";
+
+const ADVANCED_SPIN_WHEEL_FAQS = [
+  {
+    question: "Is a spin wheel random winner picker fair?",
+    answer:
+      "A well-implemented wheel that uses secure random functions and treats each entry equally is as fair as any mathematical random draw. Combined with visible spins and result history, it offers strong transparency.",
+  },
+  {
+    question: "Is there a free spin wheel winner picker I can use online?",
+    answer:
+      "Yes, many tools offer free, browser-based wheels that work on desktop and mobile without requiring installation or login for basic sessions. These are perfect for small events and quick draws.",
+  },
+  {
+    question: "Can I pick multiple winners with a spin wheel?",
+    answer:
+      "Most advanced wheels let you choose multiple winners by automatically removing each winner after a spin or providing a dedicated multi-winner mode. This prevents repeat selections and saves time.",
+  },
+  {
+    question: "Can I use a spin wheel winner picker on my phone?",
+    answer:
+      "Modern tools are mobile-responsive and run inside the browser on smartphones and tablets, making them ideal for live events, classrooms, and in-person meetups where a laptop is not always available.",
+  },
+] as const;
 
 const TutorialAdvancedSpinWheelFeatures = () => {
   return (
@@ -382,39 +406,11 @@ const TutorialAdvancedSpinWheelFeatures = () => {
             Frequently Asked Questions
           </h2>
 
-          <div className="space-y-4">
-            <Card className="p-5 border-2 border-border/50">
-              <h3 className="text-lg font-bold mb-2">Is a spin wheel random winner picker fair?</h3>
-              <p className="text-muted-foreground">
-                A well-implemented wheel that uses secure random functions and treats each entry equally is as fair as any
-                mathematical random draw. Combined with visible spins and result history, it offers strong transparency.
-              </p>
-            </Card>
-
-            <Card className="p-5 border-2 border-border/50">
-              <h3 className="text-lg font-bold mb-2">Is there a free spin wheel winner picker I can use online?</h3>
-              <p className="text-muted-foreground">
-                Yes, many tools offer free, browser-based wheels that work on desktop and mobile without requiring installation
-                or login for basic sessions. These are perfect for small events and quick draws.
-              </p>
-            </Card>
-
-            <Card className="p-5 border-2 border-border/50">
-              <h3 className="text-lg font-bold mb-2">Can I pick multiple winners with a spin wheel?</h3>
-              <p className="text-muted-foreground">
-                Most advanced wheels let you choose multiple winners by automatically removing each winner after a spin or
-                providing a dedicated multi-winner mode. This prevents repeat selections and saves time.
-              </p>
-            </Card>
-
-            <Card className="p-5 border-2 border-border/50">
-              <h3 className="text-lg font-bold mb-2">Can I use a spin wheel winner picker on my phone?</h3>
-              <p className="text-muted-foreground">
-                Modern tools are mobile-responsive and run inside the browser on smartphones and tablets, making them ideal
-                for live events, classrooms, and in-person meetups where a laptop is not always available.
-              </p>
-            </Card>
-          </div>
+          <FaqAccordion
+            items={ADVANCED_SPIN_WHEEL_FAQS}
+            itemClassName="rounded-lg border border-border/50 px-4"
+            triggerClassName="text-lg font-bold"
+          />
         </Card>
       </article>
     </>
