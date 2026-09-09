@@ -37,7 +37,6 @@ import {
 } from "@/lib/coinFaceImage";
 import { downloadCoinFlipResultPng } from "@/lib/coinFlipResultExport";
 import {
-  playCoinBatchSound,
   playCoinEdgeLandSound,
   playCoinFlickSound,
   playCoinLandSound,
@@ -537,15 +536,18 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
     setLastTossWinner(null);
     setOnEdge(false);
 
-    maybePlaySound(() => playCoinBatchSound());
-
     const batchDuration = prefersReducedMotion ? 0 : MULTI_FLIP_MS;
     const outcomes: CoinSideIndex[] = [];
 
     for (let i = 0; i < n; i++) {
       const outcome = pickFlipOutcome(side0Weight);
       if (outcome.kind === "edge") {
+        maybePlaySound(() => {
+          playCoinFlickSound();
+          playCoinSpinSound(batchDuration || 900);
+        });
         await animateEdge();
+        maybePlaySound(() => playCoinEdgeLandSound());
         setOnEdge(false);
         setTiltDeg(0);
         setAnnouncement("Edge landing — not counted in batch.");
@@ -555,7 +557,12 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
     }
 
     for (const sideIndex of outcomes) {
+      maybePlaySound(() => {
+        playCoinFlickSound();
+        playCoinSpinSound(batchDuration);
+      });
       await animateToSide(sideIndex, batchDuration);
+      maybePlaySound(() => playCoinLandSound());
       recordFlip(sideIndex);
       setSequence((prev) => [...prev, sideIndex]);
     }
