@@ -19,6 +19,20 @@ let loadPromise: Promise<void> | null = null;
 
 let activeSpinStop: (() => void) | null = null;
 let activeSpinTimeout: ReturnType<typeof setTimeout> | null = null;
+let lifecycleRegistered = false;
+
+function registerCoinFlipLifecycleCleanup(): void {
+  if (lifecycleRegistered || typeof window === "undefined") return;
+  lifecycleRegistered = true;
+  const onPageExit = () => {
+    stopCoinSpinSound();
+    if (audioCtx && audioCtx.state !== "closed") {
+      void audioCtx.suspend();
+    }
+  };
+  window.addEventListener("pagehide", onPageExit);
+  window.addEventListener("beforeunload", onPageExit);
+}
 
 export function readCoinFlipSoundMuted(): boolean {
   try {
@@ -44,6 +58,7 @@ export function getCoinFlipAudioContext(): AudioContext | null {
     const Ctor = window.AudioContext || window.webkitAudioContext;
     if (!Ctor) return null;
     audioCtx = new Ctor();
+    registerCoinFlipLifecycleCleanup();
   }
   return audioCtx;
 }

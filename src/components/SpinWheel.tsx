@@ -47,6 +47,14 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { getWheelBulkPlaceholder } from "@/data/wheelBulkPlaceholders";
+import {
+  playSpinWheelClickSound,
+  playSpinWheelSliderSound,
+  playSpinWheelTick,
+  playSpinWheelWinSound,
+  stopAllSpinWheelSounds,
+  warmUpSpinWheelAudio,
+} from "@/lib/spinWheelSound";
 
 interface WheelEntry {
   id: string;
@@ -120,122 +128,6 @@ function syncCanvasPhysicalSize(canvas: HTMLCanvasElement): number {
   }
   return px / WHEEL_LOGICAL_PX;
 }
-
-// Pre-generate tick buffer once per AudioContext (zero-latency playback)
-let tickBuffer: AudioBuffer | null = null;
-const ensureTickBuffer = (ctx: AudioContext) => {
-  if (tickBuffer && tickBuffer.sampleRate === ctx.sampleRate) return tickBuffer;
-  const len = Math.floor(ctx.sampleRate * 0.012); // 12ms, crisp click
-  const buf = ctx.createBuffer(1, len, ctx.sampleRate);
-  const d = buf.getChannelData(0);
-  for (let i = 0; i < len; i++) {
-    const t = i / ctx.sampleRate;
-    // Sharp attack sine burst at 3200Hz + harmonic, fast decay
-    const env = Math.exp(-t * 500);
-    d[i] = env * (Math.sin(2 * Math.PI * 3200 * t) * 0.6 +
-                  Math.sin(2 * Math.PI * 1200 * t) * 0.4);
-  }
-  tickBuffer = buf;
-  return buf;
-};
-
-const playTick = (ctx: AudioContext, volume: number = 0.5) => {
-  const buf = ensureTickBuffer(ctx);
-  const src = ctx.createBufferSource();
-  src.buffer = buf;
-  const gain = ctx.createGain();
-  gain.gain.value = Math.min(1, Math.max(0.1, volume));
-  src.connect(gain);
-  gain.connect(ctx.destination);
-  src.start(0);
-};
-
-const createSliderSound = (ctx: AudioContext, value: number) => {
-  const now = ctx.currentTime;
-  const normalized =
-    (value - MIN_SPIN_DURATION_SECONDS) /
-    (MAX_SPIN_DURATION_SECONDS - MIN_SPIN_DURATION_SECONDS);
-  const startFreq = 420 + normalized * 320;
-  const endFreq = startFreq + 95;
-
-  const osc = ctx.createOscillator();
-  const gain = ctx.createGain();
-  const filter = ctx.createBiquadFilter();
-
-  osc.type = "sine";
-  osc.frequency.setValueAtTime(startFreq, now);
-  osc.frequency.exponentialRampToValueAtTime(endFreq, now + 0.11);
-
-  filter.type = "lowpass";
-  filter.frequency.setValueAtTime(1900, now);
-  filter.Q.value = 0.7;
-
-  gain.gain.setValueAtTime(0.0001, now);
-  gain.gain.linearRampToValueAtTime(0.09, now + 0.018);
-  gain.gain.exponentialRampToValueAtTime(0.001, now + 0.13);
-
-  osc.connect(filter);
-  filter.connect(gain);
-  gain.connect(ctx.destination);
-
-  osc.start(now);
-  osc.stop(now + 0.14);
-};
-
-const createWinSound = (ctx: AudioContext) => {
-  const now = ctx.currentTime;
-  // Celebratory ascending fanfare, two layers for richness
-  const melody = [523.25, 659.25, 783.99, 1046.50];
-  melody.forEach((freq, i) => {
-    ["triangle", "sine"].forEach((type) => {
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = type as OscillatorType;
-      osc.frequency.value = freq;
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      const t = now + i * 0.08;
-      gain.gain.setValueAtTime(0, t);
-      gain.gain.linearRampToValueAtTime(type === "triangle" ? 0.18 : 0.1, t + 0.04);
-      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.6);
-      osc.start(t);
-      osc.stop(t + 0.6);
-    });
-  });
-  // Final shimmer chord
-  [1318.5, 1568, 2093].forEach((freq) => {
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.type = "sine";
-    osc.frequency.value = freq;
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-    const t = now + 0.35;
-    gain.gain.setValueAtTime(0, t);
-    gain.gain.linearRampToValueAtTime(0.12, t + 0.06);
-    gain.gain.exponentialRampToValueAtTime(0.001, t + 1.2);
-    osc.start(t);
-    osc.stop(t + 1.2);
-  });
-};
-
-const createClickSound = (ctx: AudioContext) => {
-  const osc = ctx.createOscillator();
-  const gain = ctx.createGain();
-
-  osc.type = "sine";
-  osc.frequency.value = 800;
-
-  osc.connect(gain);
-  gain.connect(ctx.destination);
-
-  const now = ctx.currentTime;
-  gain.gain.setValueAtTime(0.1, now);
-  gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
-
-  osc.start(now);
-  osc.stop(now + 0.1);
-};
 
 export type SpinWheelProps = {
   /** When set, seeds wheel slices from CSV/programmatic pages and skips global localStorage load/save. */
@@ -453,36 +345,23 @@ export const SpinWheel = ({
   const lastSliderTickRef = useRef(0);
   const lastSliderValueRef = useRef(spinDurationSeconds);
 
-  const audioContextRef = useRef<AudioContext | null>(null);
-  const audioWarmedRef = useRef(false);
   const isSpinningRef = useRef(false);
+  const spinAbortRef = useRef(false);
+  const spinTimeoutsRef = useRef<number[]>([]);
 
-  const getAudioCtx = (): AudioContext | null => {
-    if (!audioContextRef.current) {
-      const Ctor = window.AudioContext || window.webkitAudioContext;
-      if (Ctor) audioContextRef.current = new Ctor();
-    }
-    const ctx = audioContextRef.current;
-    if (ctx && ctx.state === "suspended") ctx.resume();
-    return ctx;
+  const warmUpAudio = () => {
+    warmUpSpinWheelAudio();
   };
 
-  // Pre-warm audio pipeline on first interaction so first spin has zero cold start
-  const warmUpAudio = () => {
-    if (audioWarmedRef.current) return;
-    audioWarmedRef.current = true;
-    const ctx = getAudioCtx();
-    if (ctx) {
-      ensureTickBuffer(ctx);
-      // Play a silent gain node to fully activate the audio graph
-      const g = ctx.createGain();
-      g.gain.value = 0;
-      g.connect(ctx.destination);
-      const o = ctx.createOscillator();
-      o.connect(g);
-      o.start();
-      o.stop(ctx.currentTime + 0.01);
-    }
+  const clearSpinTimeouts = () => {
+    spinTimeoutsRef.current.forEach((id) => window.clearTimeout(id));
+    spinTimeoutsRef.current = [];
+  };
+
+  const scheduleSpinTimeout = (fn: () => void, delayMs: number) => {
+    const id = window.setTimeout(fn, delayMs);
+    spinTimeoutsRef.current.push(id);
+    return id;
   };
 
   const triggerHaptic = (style: "light" | "medium" | "heavy" = "light") => {
@@ -496,36 +375,18 @@ export const SpinWheel = ({
     }
   };
 
-  // Zero-latency tick: Web Audio pre-buffered, no throttle
-  const playTickSound = (volume: number = 0.5) => {
-    const ctx = getAudioCtx();
-    if (ctx) playTick(ctx, volume);
-    triggerHaptic("light");
-  };
-
-  const playWinSound = () => {
-    const ctx = getAudioCtx();
-    if (ctx) createWinSound(ctx);
-    triggerHaptic("heavy");
-  };
-
-  const playClickSound = () => {
-    const ctx = getAudioCtx();
-    if (ctx) createClickSound(ctx);
-    triggerHaptic("medium");
-  };
-
-  const playSliderSound = (value: number) => {
-    const ctx = getAudioCtx();
-    if (ctx) createSliderSound(ctx, value);
-    triggerHaptic("light");
-  };
-
   const playSoundEffect = (type: "tick" | "win" | "click", volume?: number) => {
     try {
-      if (type === "tick") playTickSound(volume ?? 0.5);
-      else if (type === "win") playWinSound();
-      else if (type === "click") playClickSound();
+      if (type === "tick") {
+        playSpinWheelTick(volume ?? 0.5);
+        triggerHaptic("light");
+      } else if (type === "win") {
+        playSpinWheelWinSound();
+        triggerHaptic("heavy");
+      } else if (type === "click") {
+        playSpinWheelClickSound();
+        triggerHaptic("medium");
+      }
     } catch {
       /* audio optional */
     }
@@ -542,8 +403,28 @@ export const SpinWheel = ({
     if (now - lastSliderTickRef.current < 35) return;
     lastSliderTickRef.current = now;
 
-    playSliderSound(nextDuration);
+    playSpinWheelSliderSound(
+      nextDuration,
+      MIN_SPIN_DURATION_SECONDS,
+      MAX_SPIN_DURATION_SECONDS,
+    );
+    triggerHaptic("light");
   };
+
+  useEffect(() => {
+    spinAbortRef.current = false;
+    stopAllSpinWheelSounds();
+    return () => {
+      spinAbortRef.current = true;
+      isSpinningRef.current = false;
+      if (spinAnimationRef.current !== null) {
+        cancelAnimationFrame(spinAnimationRef.current);
+        spinAnimationRef.current = null;
+      }
+      clearSpinTimeouts();
+      stopAllSpinWheelSounds(true);
+    };
+  }, []);
 
   useEffect(() => {
     if (!winner || !winnerId) return;
@@ -1148,6 +1029,9 @@ export const SpinWheel = ({
     if (isSpinningRef.current || activeEntries.length < 2) return;
 
     warmUpAudio();
+    spinAbortRef.current = false;
+    stopAllSpinWheelSounds();
+    clearSpinTimeouts();
 
     // Stop continuous spin
     if (continuousSpinRef.current !== null) {
@@ -1194,6 +1078,7 @@ export const SpinWheel = ({
     const ease = (t: number): number => 1 - Math.pow(1 - t, 3.5);
 
     const animate = (now: number) => {
+      if (spinAbortRef.current) return;
       const elapsed = now - startTime;
       const progress = Math.min(elapsed / duration, 1);
       const easedProgress = ease(progress);
@@ -1241,7 +1126,8 @@ export const SpinWheel = ({
         setIsSpinning(false);
         spinAnimationRef.current = null;
 
-        setTimeout(() => {
+        scheduleSpinTimeout(() => {
+          if (spinAbortRef.current) return;
           playSoundEffect("win");
           setShowWinnerDialog(true);
 
@@ -1266,7 +1152,7 @@ export const SpinWheel = ({
             });
 
             // Center burst
-            setTimeout(() => {
+            scheduleSpinTimeout(() => {
               confetti({
                 particleCount: 150,
                 spread: 100,
