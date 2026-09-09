@@ -39,13 +39,16 @@ export function getBlogFeaturedImageWebpSrc(slug: string): string | undefined {
   return bySlug[slug]?.webp;
 }
 
-/** Absolute URL for Open Graph / Twitter Card / JSON-LD (JPEG). */
+/** Absolute URL for Open Graph / Twitter Card / JSON-LD (canonical public JPEG). */
 export function getBlogFeaturedImageAbsoluteUrl(
   slug: string,
   siteOrigin: string,
 ): string | undefined {
-  const src = getBlogFeaturedImageSrc(slug);
-  if (!src) return undefined;
-  if (src.startsWith("http")) return src;
-  return `${siteOrigin}${src.startsWith("/") ? src : `/${src}`}`;
+  if (!bySlug[slug]) return undefined;
+  return `${siteOrigin}/blog-featured/${slug}.jpg`;
+}
+
+/** True when this slug has a featured image in the shared map. */
+export function hasBlogFeaturedImage(slug: string): boolean {
+  return slug in bySlug;
 }

@@ -9,11 +9,10 @@ import { getWheelPageBySlug } from "@/lib/wheelPages";
 import { isWheelIndexableSlug } from "@/data/wheelIndexPolicy";
 import { buildBlogTableOfContents } from "@/lib/blogToc";
 import {
-  getBlogFeaturedImageSrc,
-  getBlogFeaturedImageWebpSrc,
   getBlogFeaturedImageAbsoluteUrl,
+  hasBlogFeaturedImage,
 } from "@/lib/blogFeaturedImages";
-import { OptimizedImage } from "@/components/OptimizedImage";
+import { BlogFeaturedImage } from "@/components/BlogFeaturedImage";
 import {
   SITE_ORIGIN,
   RAJA_AUTHOR,
@@ -188,8 +187,6 @@ const BlogPost = () => {
 
   const canonical = `${SITE_ORIGIN}${BLOG_INDEX_PATH}/${post.slug}`;
   const metaTitle = post.title.split("|")[0].trim();
-  const featuredSrc = getBlogFeaturedImageSrc(post.slug);
-  const featuredWebp = getBlogFeaturedImageWebpSrc(post.slug);
   const featuredAbsolute = getBlogFeaturedImageAbsoluteUrl(post.slug, SITE_ORIGIN);
   const authorParsed = post.author.match(/^(.+?)\s*\(([^)]+)\)\s*$/);
   const authorDisplayName = authorParsed?.[1]?.trim() ?? post.author;
@@ -282,18 +279,15 @@ const BlogPost = () => {
           </p>
         </header>
 
-        {featuredSrc ? (
+        {hasBlogFeaturedImage(post.slug) ? (
           <div className="mb-10 overflow-hidden rounded-xl border border-border/60 bg-muted/20 shadow-sm">
-            <div className="aspect-[40/21] w-full bg-muted/40">
-              <OptimizedImage
-                src={featuredSrc}
-                webpSrc={featuredWebp}
-                alt={metaTitle}
-                className="h-full w-full object-cover"
-                loading="eager"
-                fetchPriority="high"
-              />
-            </div>
+            <BlogFeaturedImage
+              slug={post.slug}
+              alt={metaTitle}
+              className="bg-muted/40"
+              loading="eager"
+              fetchPriority="high"
+            />
           </div>
         ) : null}
 
