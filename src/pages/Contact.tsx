@@ -3,82 +3,112 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Building2, Clock, Mail, MapPin, MessageSquare, Send } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import {
+  Building2,
+  CheckCircle2,
+  Clock,
+  Loader2,
+  Mail,
+  MapPin,
+  MessageSquare,
+  Send,
+} from "lucide-react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { CONTACT_EMAIL } from "@/lib/schema";
 import { RAJA_AUTHOR } from "@/lib/teamAuthors";
 import { useState } from "react";
-import { toast } from "sonner";
-import { z } from "zod";
 
 const SITE_ORIGIN = "https://onlinespinwheel.fun";
+const WEB3FORMS_ACCESS_KEY = "8d63b09d-3b24-4cf3-bce7-cf3595326c83";
+const DEFAULT_SUBJECT = "New message from Online Spin Wheel contact form";
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-const contactSchema = z.object({
-  name: z
-    .string()
-    .trim()
-    .min(1, { message: "Name is required" })
-    .max(100, { message: "Name must be less than 100 characters" }),
-  email: z
-    .string()
-    .trim()
-    .email({ message: "Please enter a valid email address" })
-    .max(255, { message: "Email must be less than 255 characters" }),
-  message: z
-    .string()
-    .trim()
-    .min(10, { message: "Message must be at least 10 characters" })
-    .max(1000, { message: "Message must be less than 1000 characters" }),
-});
+const emptyForm = {
+  name: "",
+  email: "",
+  subject: "",
+  message: "",
+  botcheck: "",
+};
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState(emptyForm);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (status !== "idle") {
+      setStatus("idle");
+      setErrorMessage("");
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const name = formData.name.trim();
+    const email = formData.email.trim();
+    const subject = formData.subject.trim() || DEFAULT_SUBJECT;
+    const message = formData.message.trim();
+
+    if (!name || !email || !message) {
+      setStatus("error");
+      setErrorMessage("Please fill in your name, email, and message.");
+      return;
+    }
+
+    if (!EMAIL_PATTERN.test(email)) {
+      setStatus("error");
+      setErrorMessage("Please enter a valid email address so we can reply.");
+      return;
+    }
+
     setIsSubmitting(true);
+    setStatus("idle");
+    setErrorMessage("");
 
     try {
-      const validated = contactSchema.parse(formData);
-
-      // Using Web3Forms for unlimited free email sending
-      const formDataToSend = new FormData();
-      formDataToSend.append(
-        "access_key",
-        "30f8123a-facc-4a22-85ac-60d581a98949"
-      ); // Get your key from web3forms.com
-      formDataToSend.append("subject", `Contact from ${validated.name}`);
-      formDataToSend.append("name", validated.name);
-      formDataToSend.append("email", validated.email);
-      formDataToSend.append("message", validated.message);
-      formDataToSend.append("to", CONTACT_EMAIL);
-
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        body: formDataToSend,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          name,
+          email,
+          subject,
+          message,
+          botcheck: formData.botcheck,
+        }),
       });
 
       const result = await response.json();
 
-      if (result.success) {
-        toast.success("Message sent successfully! We'll get back to you soon.");
-        setFormData({ name: "", email: "", message: "" });
+      if (response.ok && result.success) {
+        setFormData(emptyForm);
+        setStatus("success");
       } else {
-        throw new Error("Failed to send message");
+        setStatus("error");
+        setErrorMessage(
+          typeof result.message === "string" && result.message
+            ? result.message
+            : "We couldn't send your message. Please try again, or email us directly."
+        );
       }
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        const firstError = error.errors[0];
-        toast.error(firstError.message);
-      } else {
-        toast.error("Failed to send message. Please try again.");
-      }
+    } catch {
+      setStatus("error");
+      setErrorMessage(
+        "We couldn't send your message. Please check your connection and try again, or email us directly."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -138,20 +168,46 @@ const Contact = () => {
         <div className="grid md:grid-cols-2 gap-8">
           <Card className="p-8">
             <h2 className="text-2xl font-semibold mb-6">Send Us a Message</h2>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+              {status === "success" && (
+                <Alert className="border-primary/30 bg-primary/5">
+                  <CheckCircle2 className="h-4 w-4 text-primary" />
+                  <AlertTitle>Message sent</AlertTitle>
+                  <AlertDescription>
+                    Thanks — we'll get back to you within 24–48 hours.
+                  </AlertDescription>
+                </Alert>
+              )}
+
+              {status === "error" && (
+                <Alert variant="destructive">
+                  <AlertTitle>Couldn't send your message</AlertTitle>
+                  <AlertDescription>
+                    {errorMessage} You can also email us at{" "}
+                    <a
+                      href={`mailto:${CONTACT_EMAIL}`}
+                      className="font-semibold underline underline-offset-2"
+                    >
+                      {CONTACT_EMAIL}
+                    </a>
+                    .
+                  </AlertDescription>
+                </Alert>
+              )}
+
               <div>
                 <Label htmlFor="name">Name *</Label>
                 <Input
                   id="name"
+                  name="name"
                   type="text"
                   aria-label="Your name"
                   value={formData.name}
-                  onChange={(e) =>
-                    setFormData({ ...formData, name: e.target.value })
-                  }
+                  onChange={handleChange}
                   placeholder="Your name"
                   required
                   maxLength={100}
+                  disabled={isSubmitting}
                 />
               </div>
 
@@ -159,15 +215,30 @@ const Contact = () => {
                 <Label htmlFor="email">Email *</Label>
                 <Input
                   id="email"
+                  name="email"
                   type="email"
                   aria-label="Your email address"
                   value={formData.email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
+                  onChange={handleChange}
                   placeholder="your.email@example.com"
                   required
                   maxLength={255}
+                  disabled={isSubmitting}
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="subject">Subject</Label>
+                <Input
+                  id="subject"
+                  name="subject"
+                  type="text"
+                  aria-label="Message subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  placeholder="What's this about? (optional)"
+                  maxLength={150}
+                  disabled={isSubmitting}
                 />
               </div>
 
@@ -175,20 +246,32 @@ const Contact = () => {
                 <Label htmlFor="message">Message *</Label>
                 <Textarea
                   id="message"
+                  name="message"
                   aria-label="Your message"
                   value={formData.message}
-                  onChange={(e) =>
-                    setFormData({ ...formData, message: e.target.value })
-                  }
+                  onChange={handleChange}
                   placeholder="Tell us what's on your mind..."
                   rows={6}
                   required
                   maxLength={1000}
+                  disabled={isSubmitting}
                 />
                 <p className="text-xs text-muted-foreground mt-1">
                   {formData.message.length}/1000 characters
                 </p>
               </div>
+
+              <input
+                type="text"
+                name="botcheck"
+                value={formData.botcheck}
+                onChange={handleChange}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="hidden"
+                style={{ display: "none" }}
+              />
 
               <Button
                 type="submit"
@@ -196,7 +279,11 @@ const Contact = () => {
                 size="lg"
                 disabled={isSubmitting}
               >
-                <Send className="mr-2 h-4 w-4" />
+                {isSubmitting ? (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  <Send className="mr-2 h-4 w-4" />
+                )}
                 {isSubmitting ? "Sending..." : "Send Message"}
               </Button>
             </form>
