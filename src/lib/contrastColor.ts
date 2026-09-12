@@ -46,3 +46,14 @@ export function contrastForeground(bgHex: string): "#000000" | "#FFFFFF" {
   const onWhite = contrastRatio("#FFFFFF", bgHex);
   return onWhite >= onBlack ? "#FFFFFF" : "#000000";
 }
+
+const WCAG_AA_NORMAL = 4.5;
+
+/**
+ * Keep an accent color when it already meets WCAG AA on the surface;
+ * otherwise fall back to black or white.
+ */
+export function readableOnSurface(accentHex: string, surfaceHex: string): string {
+  if (contrastRatio(accentHex, surfaceHex) >= WCAG_AA_NORMAL) return accentHex;
+  return contrastForeground(surfaceHex);
+}

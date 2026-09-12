@@ -47,6 +47,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { getWheelBulkPlaceholder } from "@/data/wheelBulkPlaceholders";
+import { contrastForeground, readableOnSurface } from "@/lib/contrastColor";
 import {
   playSpinWheelClickSound,
   playSpinWheelSliderSound,
@@ -763,11 +764,15 @@ export const SpinWheel = ({
       }
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
-      ctx.shadowColor = "rgba(0, 0, 0, 0.6)";
+      const labelColor = contrastForeground(sliceColor);
+      ctx.shadowColor =
+        labelColor === "#FFFFFF"
+          ? "rgba(0, 0, 0, 0.55)"
+          : "rgba(255, 255, 255, 0.75)";
       ctx.shadowBlur = 3;
       ctx.shadowOffsetX = 1;
       ctx.shadowOffsetY = 1;
-      ctx.fillStyle = "#ffffff";
+      ctx.fillStyle = labelColor;
       ctx.fillText(label, labelRadius, 0);
       ctx.restore();
     });
@@ -1175,6 +1180,18 @@ export const SpinWheel = ({
     entriesPageIndex * ENTRIES_PAGE_SIZE,
     entriesPageIndex * ENTRIES_PAGE_SIZE + ENTRIES_PAGE_SIZE,
   );
+  const isDarkSurface =
+    resolvedTheme === "dark" ||
+    (resolvedTheme !== "light" &&
+      typeof document !== "undefined" &&
+      document.documentElement.classList.contains("dark"));
+  const cardSurfaceHex = isDarkSurface ? "#23232A" : "#ffffff";
+  const winnerTextOnColor = winnerColor
+    ? contrastForeground(winnerColor)
+    : "#FFFFFF";
+  const winnerTextOnCard = winnerColor
+    ? readableOnSurface(winnerColor, cardSurfaceHex)
+    : undefined;
 
   return (
     <>
@@ -1306,7 +1323,7 @@ export const SpinWheel = ({
               <div
                 className="mb-3 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-[11px] font-black uppercase tracking-wide shadow-sm"
                 style={{
-                  color: winnerColor,
+                  color: winnerTextOnCard,
                   borderColor: `${winnerColor}66`,
                   backgroundColor: `${winnerColor}16`,
                 }}
@@ -1320,7 +1337,7 @@ export const SpinWheel = ({
                 <div
                   className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-xl border sm:flex"
                   style={{
-                    color: winnerColor,
+                    color: winnerTextOnCard,
                     borderColor: `${winnerColor}55`,
                     backgroundColor: `${winnerColor}14`,
                   }}
@@ -1332,7 +1349,7 @@ export const SpinWheel = ({
                   <p
                     className="text-2xl font-black leading-tight tracking-normal sm:text-3xl lg:text-4xl"
                     style={{
-                      color: winnerColor,
+                      color: winnerTextOnCard,
                       textShadow: `0 0 22px ${winnerColor}33`,
                     }}
                   >
@@ -1341,7 +1358,7 @@ export const SpinWheel = ({
                   <div className="mt-2 flex items-center justify-center gap-2 text-xs font-semibold text-muted-foreground sm:text-sm">
                     <Trophy
                       className="h-4 w-4"
-                      style={{ color: winnerColor }}
+                      style={{ color: winnerTextOnCard }}
                       aria-hidden="true"
                     />
                     <span>Final pick</span>
@@ -1351,7 +1368,7 @@ export const SpinWheel = ({
                 <div
                   className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-xl border sm:flex"
                   style={{
-                    color: winnerColor,
+                    color: winnerTextOnCard,
                     borderColor: `${winnerColor}55`,
                     backgroundColor: `${winnerColor}14`,
                   }}
@@ -1834,7 +1851,10 @@ export const SpinWheel = ({
                 className="px-6 py-4 lg:px-8 lg:py-6 rounded-xl shadow-2xl border-4 border-white transform hover:scale-105 transition-transform"
                 style={{ backgroundColor: winnerColor }}
               >
-                <p className="text-2xl lg:text-3xl font-bold text-white text-center drop-shadow-lg">
+                <p
+                  className="text-2xl lg:text-3xl font-bold text-center drop-shadow-lg"
+                  style={{ color: winnerTextOnColor }}
+                >
                   {winner}
                 </p>
               </div>
