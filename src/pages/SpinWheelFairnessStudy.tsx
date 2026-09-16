@@ -126,6 +126,11 @@ const SpinWheelFairnessStudy = () => {
               This study does not cover weighted slices, removed entries mid-session, or human
               timing, only equal segments and cryptographic landing angles.
             </p>
+            <p>
+              This simulation evaluates the random-selection and landing-angle model used by the
+              wheel; it does not measure physical-wheel effects such as friction or pointer
+              mechanics.
+            </p>
           </div>
         </section>
 

@@ -914,6 +914,7 @@ ${exploreNav()}`);
 <p>For each segment count k, we simulated ${study.spinsPerConfig.toLocaleString()} independent spins. Each spin drew a landing angle with the same secure browser randomness used in production, then mapped the angle to a slice index using the same equal-arc formula as the live wheel (pointer on the right).</p>
 <p>Expected count per slice is n/k. We computed Pearson's chi-square statistic χ² = Σ(O−E)²/E with k−1 degrees of freedom and compared to the α = 0.05 critical value. Configurations with χ² ≤ critical value are consistent with a uniform distribution.</p>
 <p>This study does not cover weighted slices, removed entries mid-session, or human timing, only equal segments and cryptographic landing angles.</p>
+<p>This simulation evaluates the random-selection and landing-angle model used by the wheel; it does not measure physical-wheel effects such as friction or pointer mechanics.</p>
 </section>
 ${detailSections}
 <section><h2>Related</h2><ul>
