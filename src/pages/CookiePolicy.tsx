@@ -136,11 +136,10 @@ const CookiePolicy = () => {
                   </tr>
                   <tr className="align-top">
                     <td className="p-3 font-semibold text-foreground">
-                      Targeting &amp; Advertising
+                      Targeting &amp; advertising (only if advertising is enabled)
                     </td>
                     <td className="p-3">
-                      Used to deliver ads and measure campaigns via Google AdSense and
-                      related Google advertising technologies.
+                      Google AdSense/DoubleClick DART for ads and measurement.
                     </td>
                     <td className="p-3">
                       Google DoubleClick DART, Ad IDs based on browsing habits.
@@ -168,7 +167,7 @@ const CookiePolicy = () => {
               Google Consent Mode
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Google Analytics and the AdSense script load with Consent Mode defaults
+              Analytics, and AdSense where enabled, load with Consent Mode defaults
               set to denied until you choose Accept or Decline. Personalized ads and
               ad-related storage apply only after Accept. Your choice updates consent signals for ad_storage,
               analytics_storage, and related flags. Our banner is a custom implementation,
@@ -182,16 +181,16 @@ const CookiePolicy = () => {
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
               To keep Online Spin Wheel free, Google Analytics may run after page load with
-              consent-aware settings. Google AdSense is included in the page with Consent Mode;
-              it may set cookies or serve ads according to your cookie choice. Both may measure
-              traffic and understand how the site is used.
+              consent-aware settings. If advertising is enabled, Google AdSense is included in
+              the page with Consent Mode; it may set cookies or serve ads according to your
+              cookie choice. Both may measure traffic and understand how the site is used.
             </p>
             <ul className="space-y-3 text-muted-foreground ml-1">
               <li className="flex items-start gap-2">
                 <span className="text-primary mt-1.5 flex-shrink-0">●</span>
                 <span>
-                  <strong className="text-foreground">Google Ads:</strong> Google uses
-                  the DART cookie to serve personalized ads. You can learn how Google
+                  <strong className="text-foreground">Google Ads:</strong> If advertising
+                  is enabled, Google uses the DART cookie to serve personalized ads. You can learn how Google
                   uses this data and opt out by visiting the{" "}
                   <a
                     href="https://policies.google.com/technologies/ads"

@@ -70,7 +70,9 @@ const Terms = () => {
             </h2>
             <p className="text-muted-foreground leading-relaxed">
               Our Service is provided 100% free of charge. To maintain this free
-              access, the site is ad-supported. By using the site, you acknowledge
+              access, Online Spin Wheel has integrated Google AdSense. Ads are not live
+              yet and may appear after Google approves the account and we enable serving.
+              By using the site, you acknowledge
               and agree that we may display third-party advertisements (such as
               Google AdSense) and analytics providers. Your
               interaction with these ads is subject to our{" "}

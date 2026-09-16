@@ -82,12 +82,13 @@ const Disclaimer = () => {
               Advertising and Ad-Network Disclaimer
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              To keep our tool 100% free for all users worldwide, Online Spin Wheel is
-              an ad-supported platform.
+              To keep our tool 100% free for all users worldwide, Online Spin Wheel has
+              integrated Google AdSense. If and when Google approves the account and we
+              turn ads on, third-party ads may appear on the site.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              We partner with third-party advertising networks, including Google
-              Google AdSense, to display advertisements
+              If advertising is enabled, we partner with third-party advertising networks,
+              including Google AdSense, to display advertisements
               on our site. Please note:
             </p>
             <ul className="space-y-3 text-muted-foreground ml-1">

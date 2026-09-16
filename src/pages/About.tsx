@@ -218,7 +218,7 @@ const About = () => {
                 <li className="flex items-start gap-2">
                   <span className="text-primary mt-1">•</span>
                   <span>
-                    Standard analytics and ad measurement to keep the tool free (see our{" "}
+                    Standard analytics, and ad measurement if advertising is enabled, to keep the tool free (see our{" "}
                     <Link to="/privacy-policy" className="text-primary underline underline-offset-2">
                       Privacy Policy
                     </Link>

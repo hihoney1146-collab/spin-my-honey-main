@@ -63,8 +63,8 @@ const Privacy = () => {
               Because Online Spin Wheel is designed to work directly in your
               browser, the actual inputs (names, numbers, prizes) you type into
               the wheel remain on your local device and are not collected by our
-              servers. However, to keep our site running and to serve relevant
-              advertisements, we collect the following data:
+              servers. However, to keep the site running, and to support advertising if
+              and when it is enabled, we collect the following data:
             </p>
             <ul className="space-y-3 text-muted-foreground ml-1">
               <li className="flex items-start gap-2">
@@ -130,8 +130,7 @@ const Privacy = () => {
                   <strong className="text-foreground">
                     Targeting/Advertising Cookies:
                   </strong>{" "}
-                  Used to deliver advertisements more relevant to you and your
-                  interests.
+                  which apply only if advertising is enabled, to deliver more relevant ads.
                 </span>
               </li>
             </ul>
@@ -208,22 +207,28 @@ const Privacy = () => {
               Google Analytics, Consent Mode, and Google AdSense
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              To keep our tool free, we use Google services that may set cookies or
-              use similar technologies:
+              We use Google Analytics for aggregated traffic insight. Online Spin Wheel
+              has integrated Google AdSense. Advertisements will be displayed once our
+              AdSense account is approved and ad serving is enabled. When ads are served,
+              Google and its advertising partners may use cookies or similar technologies
+              for advertising, measurement, fraud prevention and, where permitted,
+              personalization.
             </p>
             <ul className="space-y-3 text-muted-foreground ml-1 mb-4">
               <li className="flex items-start gap-2">
                 <span className="text-primary mt-1.5 flex-shrink-0">●</span>
                 <span>
-                  <strong className="text-foreground">Google Analytics:</strong> helps
-                  us understand aggregated traffic and usage.
+                  <strong className="text-foreground">Google Analytics:</strong> We
+                  use Google Analytics for aggregated traffic insight.
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary mt-1.5 flex-shrink-0">●</span>
                 <span>
-                  <strong className="text-foreground">Google AdSense:</strong> may
-                  show ads and use cookies for ad delivery and measurement.
+                  <strong className="text-foreground">Google AdSense:</strong>{" "}
+                  Online Spin Wheel has integrated Google AdSense. Advertisements will
+                  be displayed once our AdSense account is approved and ad serving is
+                  enabled.
                 </span>
               </li>
               <li className="flex items-start gap-2">
@@ -248,16 +253,15 @@ const Privacy = () => {
               <li className="flex items-start gap-2">
                 <span className="text-primary mt-1.5 flex-shrink-0">●</span>
                 <span>
-                  Google, as a third-party vendor, uses cookies to serve ads on our
-                  site.
+                  If advertising is enabled, Google, as a third-party vendor, uses
+                  cookies to serve ads on our site.
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary mt-1.5 flex-shrink-0">●</span>
                 <span>
-                  Google&apos;s use of the DART cookie enables it and its partners to
-                  serve ads to our users based on their visit to our site and other
-                  sites on the Internet.
+                  If advertising is enabled, Google&apos;s DoubleClick DART cookie may
+                  serve ads based on your visits.
                 </span>
               </li>
               <li className="flex items-start gap-2">
