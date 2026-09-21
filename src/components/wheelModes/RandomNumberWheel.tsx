@@ -22,7 +22,7 @@ function pickRandomLabel(labels: string[]): string | null {
 
 export function RandomNumberWheel(_props: RandomNumberWheelProps) {
   const [min, setMin] = useState(1);
-  const [max, setMax] = useState(100);
+  const [max, setMax] = useState(10);
   const [noRepeat, setNoRepeat] = useState(false);
   const [used, setUsed] = useState<Set<number>>(() => new Set());
   const [result, setResult] = useState<number | null>(null);

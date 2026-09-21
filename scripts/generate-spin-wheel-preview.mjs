@@ -11,11 +11,11 @@ const out = path.join(__dirname, "..", "public", "spin-wheel-preview.svg");
 const slices = [
   { name: "Jahangir", c0: "#e74c3c", c1: "#b41909" },
   { name: "Mudabber", c0: "#e67e22", c1: "#b34b00" },
-  { name: "Adam", c0: "#f39c12", c1: "#c06900" },
+  { name: "Faisal", c0: "#f39c12", c1: "#c06900" },
   { name: "Jacob", c0: "#2ecc71", c1: "#00993e" },
   { name: "Casey", c0: "#1abc9c", c1: "#008969" },
-  { name: "Gabriel", c0: "#3498db", c1: "#0165a8" },
-  { name: "Hanna", c0: "#9b59b6", c1: "#682683" },
+  { name: "Sila", c0: "#3498db", c1: "#0165a8" },
+  { name: "Huda", c0: "#9b59b6", c1: "#682683" },
 ];
 
 const CX = 320;

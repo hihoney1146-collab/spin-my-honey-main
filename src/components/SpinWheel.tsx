@@ -95,8 +95,14 @@ const MAX_SPIN_DURATION_SECONDS = 60;
 const WHEEL_LOGICAL_PX = 480;
 const MAX_CANVAS_DPR = 3;
 
-const formatSpinDuration = (seconds: number) =>
-  seconds >= 60 ? "1 min" : `${seconds}s`;
+const formatSpinDuration = (seconds: number) => {
+  if (seconds >= 60) {
+    const minutes = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return secs > 0 ? `${minutes}:${String(secs).padStart(2, "0")}` : `${minutes} min`;
+  }
+  return `${seconds}s`;
+};
 
 const readSavedSpinDurationSeconds = () => {
   if (typeof window === "undefined") return DEFAULT_SPIN_DURATION_SECONDS;
@@ -128,6 +134,114 @@ function syncCanvasPhysicalSize(canvas: HTMLCanvasElement): number {
     canvas.height = px;
   }
   return px / WHEEL_LOGICAL_PX;
+}
+
+const MIN_LABEL_FONT_COMPACT = 12;
+const MIN_LABEL_FONT_DEFAULT = 14;
+
+type SliceLabelLayout = {
+  lines: string[];
+  fontSize: number;
+};
+
+function measureLabelWidth(ctx: CanvasRenderingContext2D, text: string) {
+  return ctx.measureText(text).width;
+}
+
+function truncateLabelWithEllipsis(
+  ctx: CanvasRenderingContext2D,
+  text: string,
+  maxWidth: number,
+) {
+  if (measureLabelWidth(ctx, text) <= maxWidth) return text;
+  let label = text;
+  while (label.length > 1 && measureLabelWidth(ctx, `${label}…`) > maxWidth) {
+    label = label.slice(0, -1);
+  }
+  return `${label}…`;
+}
+
+function wrapLabelTwoLines(
+  ctx: CanvasRenderingContext2D,
+  text: string,
+  maxWidth: number,
+): string[] | null {
+  const words = text.trim().split(/\s+/);
+  if (words.length < 2) return null;
+  let best: string[] | null = null;
+  for (let i = 1; i < words.length; i++) {
+    const line1 = words.slice(0, i).join(" ");
+    const line2 = words.slice(i).join(" ");
+    if (
+      measureLabelWidth(ctx, line1) <= maxWidth &&
+      measureLabelWidth(ctx, line2) <= maxWidth
+    ) {
+      best = [line1, line2];
+    }
+  }
+  return best;
+}
+
+function layoutSliceLabel(
+  ctx: CanvasRenderingContext2D,
+  text: string,
+  maxWidth: number,
+  maxFontSize: number,
+  minFontSize: number,
+  entryCount: number,
+): SliceLabelLayout {
+  let fontSize = maxFontSize;
+  ctx.font = `bold ${fontSize}px 'Inter', sans-serif`;
+
+  while (fontSize > minFontSize && measureLabelWidth(ctx, text) > maxWidth) {
+    fontSize -= 1;
+    ctx.font = `bold ${fontSize}px 'Inter', sans-serif`;
+  }
+
+  if (measureLabelWidth(ctx, text) <= maxWidth) {
+    return { lines: [text], fontSize };
+  }
+
+  fontSize = minFontSize;
+  ctx.font = `bold ${fontSize}px 'Inter', sans-serif`;
+
+  if (entryCount <= 12) {
+    const wrapped = wrapLabelTwoLines(ctx, text, maxWidth);
+    if (wrapped) {
+      return { lines: wrapped, fontSize };
+    }
+  }
+
+  return {
+    lines: [truncateLabelWithEllipsis(ctx, text, maxWidth)],
+    fontSize,
+  };
+}
+
+function drawSliceLabelText(
+  ctx: CanvasRenderingContext2D,
+  labelRadius: number,
+  layout: SliceLabelLayout,
+) {
+  const { lines, fontSize } = layout;
+  ctx.font = `bold ${fontSize}px 'Inter', sans-serif`;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.lineJoin = "round";
+  ctx.lineWidth = Math.max(2, fontSize * 0.14);
+  ctx.strokeStyle = "rgba(0, 0, 0, 0.75)";
+  ctx.shadowColor = "transparent";
+  ctx.shadowBlur = 0;
+
+  const lineHeight = fontSize * 1.12;
+  const yOffsets = lines.length === 2 ? [-lineHeight / 2, lineHeight / 2] : [0];
+
+  lines.forEach((line, index) => {
+    const y = yOffsets[index] ?? 0;
+    ctx.strokeText(line, labelRadius, y);
+    ctx.fillText(line, labelRadius, y);
+  });
 }
 
 export type SpinWheelProps = {
@@ -268,11 +382,11 @@ export const SpinWheel = ({
     return [
       { id: "1", text: "Jahangir", color: defaultColors[0], active: true },
       { id: "2", text: "Mudabber", color: defaultColors[1], active: true },
-      { id: "3", text: "Adam", color: defaultColors[2], active: true },
+      { id: "3", text: "Faisal", color: defaultColors[2], active: true },
       { id: "4", text: "Jacob", color: defaultColors[3], active: true },
       { id: "5", text: "Casey", color: defaultColors[4], active: true },
-      { id: "6", text: "Gabriel", color: defaultColors[5], active: true },
-      { id: "7", text: "Hanna", color: defaultColors[6], active: true },
+      { id: "6", text: "Sila", color: defaultColors[5], active: true },
+      { id: "7", text: "Huda", color: defaultColors[6], active: true },
     ];
   });
 
@@ -608,6 +722,11 @@ export const SpinWheel = ({
 
     const scale = syncCanvasPhysicalSize(canvas);
     if (scale <= 0) return;
+    const cssW = canvas.getBoundingClientRect().width;
+    const minLabelFont =
+      cssW > 0 && cssW < WHEEL_LOGICAL_PX
+        ? MIN_LABEL_FONT_COMPACT
+        : MIN_LABEL_FONT_DEFAULT;
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.scale(scale, scale);
@@ -661,7 +780,7 @@ export const SpinWheel = ({
     );
     const segmentFontPx = Math.min(
       Math.round(radius * 0.12),
-      Math.max(12, maxFontForSlice),
+      Math.max(minLabelFont, maxFontForSlice),
     );
     const spinFontPx = Math.round(segmentFontPx * 0.55);
     const sliceAngle = (2 * Math.PI) / entryCount;
@@ -748,32 +867,15 @@ export const SpinWheel = ({
       }
       ctx.rotate(labelAngle);
       const maxTextWidth = radius * 0.52;
-      const minFont = 8;
-      let fontSize = segmentFontPx;
-      ctx.font = `bold ${fontSize}px 'Inter', sans-serif`;
-      while (ctx.measureText(entry.text).width > maxTextWidth && fontSize > minFont) {
-        fontSize -= 1;
-        ctx.font = `bold ${fontSize}px 'Inter', sans-serif`;
-      }
-      let label = entry.text;
-      if (ctx.measureText(label).width > maxTextWidth) {
-        while (ctx.measureText(label + "…").width > maxTextWidth && label.length > 1) {
-          label = label.slice(0, -1);
-        }
-        label += "…";
-      }
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-      const labelColor = contrastForeground(sliceColor);
-      ctx.shadowColor =
-        labelColor === "#FFFFFF"
-          ? "rgba(0, 0, 0, 0.55)"
-          : "rgba(255, 255, 255, 0.75)";
-      ctx.shadowBlur = 3;
-      ctx.shadowOffsetX = 1;
-      ctx.shadowOffsetY = 1;
-      ctx.fillStyle = labelColor;
-      ctx.fillText(label, labelRadius, 0);
+      const labelLayout = layoutSliceLabel(
+        ctx,
+        entry.text,
+        maxTextWidth,
+        segmentFontPx,
+        minLabelFont,
+        entryCount,
+      );
+      drawSliceLabelText(ctx, labelRadius, labelLayout);
       ctx.restore();
     });
 
@@ -971,11 +1073,11 @@ export const SpinWheel = ({
       const reset = [
         { id: "1", text: "Jahangir", color: defaultColors[0], active: true },
         { id: "2", text: "Mudabber", color: defaultColors[1], active: true },
-        { id: "3", text: "Adam", color: defaultColors[2], active: true },
+        { id: "3", text: "Faisal", color: defaultColors[2], active: true },
         { id: "4", text: "Jacob", color: defaultColors[3], active: true },
         { id: "5", text: "Casey", color: defaultColors[4], active: true },
-        { id: "6", text: "Gabriel", color: defaultColors[5], active: true },
-        { id: "7", text: "Hanna", color: defaultColors[6], active: true },
+        { id: "6", text: "Sila", color: defaultColors[5], active: true },
+        { id: "7", text: "Huda", color: defaultColors[6], active: true },
       ];
       commitEntries(reset);
     }
@@ -1526,22 +1628,22 @@ export const SpinWheel = ({
 
           {/* Spin timer */}
           <div className="mb-3 lg:mb-4 relative z-10 flex-shrink-0">
-            <div className="mb-1.5 lg:mb-2 flex items-center justify-between gap-2">
-              <label
-                htmlFor="spin-duration-slider"
-                className="flex items-center gap-1.5 text-[10px] lg:text-[11px] font-bold text-foreground/80 uppercase tracking-wide"
-              >
-                <div className="w-1 h-1 rounded-full bg-primary" />
-                Spin timer
-              </label>
-              <Badge
-                variant="secondary"
-                className="text-[10px] font-bold px-2 py-0.5 bg-primary text-primary-foreground border-0"
+            <label
+              htmlFor="spin-duration-slider"
+              className="mb-1.5 lg:mb-2 flex items-center gap-1.5 text-[10px] lg:text-[11px] font-bold text-foreground/80 uppercase tracking-wide"
+            >
+              <div className="w-1 h-1 rounded-full bg-primary" />
+              Spin timer
+            </label>
+            <div className="rounded-xl border-2 border-border bg-background/80 px-3 py-2.5 shadow-sm">
+              <p
+                className="mb-2 text-center text-xl font-bold tabular-nums text-primary"
+                aria-live="polite"
+                aria-atomic="true"
+                data-testid="spin-duration-value"
               >
                 {formatSpinDuration(spinDurationSeconds)}
-              </Badge>
-            </div>
-            <div className="rounded-xl border-2 border-border bg-background/80 px-3 py-2.5 shadow-sm">
+              </p>
               <div className="flex items-center gap-3">
                 <Clock3
                   className="h-4 w-4 shrink-0 text-muted-foreground"
@@ -1558,6 +1660,7 @@ export const SpinWheel = ({
                   onTouchStart={warmUpAudio}
                   onKeyDown={warmUpAudio}
                   onValueChange={handleSpinDurationChange}
+                  aria-valuetext={formatSpinDuration(spinDurationSeconds)}
                   aria-label="Wheel spin timer in seconds"
                   className="flex-1 py-2"
                 />

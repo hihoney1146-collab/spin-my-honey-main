@@ -1,8 +1,8 @@
 {
   "routes": {
     "/": {
-      "hash": "21c3c79cb48150d5",
-      "lastmod": "2026-09-03"
+      "hash": "8713e1c8164d85a5",
+      "lastmod": "2026-09-21"
     },
     "/all-spin-wheels": {
       "hash": "16b5551f8008f43b",
@@ -13,8 +13,8 @@
       "lastmod": "2026-09-03"
     },
     "/about-us": {
-      "hash": "f7c6e8bc83570317",
-      "lastmod": "2026-09-03"
+      "hash": "64acacc7953f3626",
+      "lastmod": "2026-09-21"
     },
     "/author/raja-jahangir": {
       "hash": "55360e5ac6b8678a",
@@ -37,20 +37,20 @@
       "lastmod": "2026-09-03"
     },
     "/privacy-policy": {
-      "hash": "1c5c0c93c7ace37e",
-      "lastmod": "2026-09-03"
+      "hash": "7ca6130879877a61",
+      "lastmod": "2026-09-21"
     },
     "/terms-and-conditions": {
-      "hash": "c00c46ab4cc3aca0",
-      "lastmod": "2026-09-03"
+      "hash": "6805da191dedd44c",
+      "lastmod": "2026-09-21"
     },
     "/cookie-policy": {
-      "hash": "66a33a8020ca254e",
-      "lastmod": "2026-09-03"
+      "hash": "dbc654bfb6c8a2a8",
+      "lastmod": "2026-09-21"
     },
     "/disclaimer": {
-      "hash": "7d0f892f13e10d6d",
-      "lastmod": "2026-09-03"
+      "hash": "ba3277f691b2b4a3",
+      "lastmod": "2026-09-21"
     },
     "/how-randomness-works": {
       "hash": "80c295f3dfb1d610",
@@ -85,8 +85,8 @@
       "lastmod": "2026-09-03"
     },
     "/spin-wheel-fairness-study": {
-      "hash": "92bb0b4bee77d6eb",
-      "lastmod": "2026-09-09"
+      "hash": "78a427ffbcfae0f3",
+      "lastmod": "2026-09-21"
     },
     "/blog/best-icebreaker-games-office-meetings": {
       "hash": "b5548f9eefba2414",

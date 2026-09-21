@@ -354,38 +354,23 @@ const Index = () => {
             <h2 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight mb-6 sm:mb-8 text-center">
               How to spin the wheel
                 </h2>
-            <div className="grid gap-6 lg:grid-cols-2 items-center">
-              <ol className="space-y-4 sm:space-y-5">
-                {HOW_TO_STEPS.map((step, i) => (
-                  <li key={step.title} className="flex gap-3 items-start">
-                    <div className="flex-shrink-0 w-9 h-9 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
-                      <step.icon className="h-5 w-5 text-primary" aria-hidden="true" />
-                    </div>
-                    <div>
-                      <h3 className="text-base sm:text-lg font-semibold mb-1">
-                        {i + 1}. {step.title}
-                      </h3>
-                      <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                        {step.text}
-                      </p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-              <figure className="m-0">
-                <img
-                  src="/spin-wheel-preview.svg?v=3"
-                  width={640}
-                  height={640}
-                  loading="lazy"
-                  alt="The Online Spin Wheel showing seven colored name segments, a white SPIN hub, and a red pointer on the right"
-                  className="w-full max-w-sm mx-auto h-auto rounded-2xl border-2 border-border/50 shadow-lg"
-                />
-                <figcaption className="mt-2 text-center text-xs text-muted-foreground">
-                  The wheel with its default sample names, tap it to spin.
-                </figcaption>
-              </figure>
+            <ol className="max-w-3xl mx-auto space-y-4 sm:space-y-5">
+              {HOW_TO_STEPS.map((step, i) => (
+                <li key={step.title} className="flex gap-3 items-start">
+                  <div className="flex-shrink-0 w-9 h-9 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+                    <step.icon className="h-5 w-5 text-primary" aria-hidden="true" />
                   </div>
+                  <div>
+                    <h3 className="text-base sm:text-lg font-semibold mb-1">
+                      {i + 1}. {step.title}
+                    </h3>
+                    <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                      {step.text}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
           </div>
         </section>
 

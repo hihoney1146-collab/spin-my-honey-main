@@ -10,9 +10,8 @@ type AdSlotProps = {
 };
 
 /**
- * Reserved ad region with fixed min-height to limit CLS before/after AdSense fill.
- * Do not pass a live adSlot until AdSense approval.
- * Place well below primary CTAs (e.g. Spin) to avoid accidental clicks.
+ * Renders an AdSense unit when consent is accepted and a slot ID is configured.
+ * Returns null (zero height) until both are present — no empty placeholder gap.
  */
 export function AdSlot({
   adSlot,
@@ -50,29 +49,24 @@ export function AdSlot({
     }
   }, [ready, adSlot]);
 
-  if (ready && adSlot) {
-    return (
-      <div className={`min-h-[280px] w-full ${className}`} aria-label={label}>
-        <p className="text-[10px] uppercase tracking-wide text-muted-foreground mb-1 text-center pt-2">
-          {label}
-        </p>
-        <ins
-          ref={ref}
-          className="adsbygoogle block min-h-[250px]"
-          style={{ display: "block", minHeight: 250 }}
-          data-ad-client={ADSENSE_CLIENT}
-          data-ad-slot={adSlot}
-          data-ad-format="auto"
-          data-full-width-responsive="true"
-        />
-      </div>
-    );
+  if (!ready || !adSlot) {
+    return null;
   }
 
   return (
-    <div
-      className={`min-h-[280px] w-full ${className}`}
-      aria-hidden="true"
-    />
+    <div className={`min-h-[280px] w-full ${className}`} aria-label={label}>
+      <p className="text-[10px] uppercase tracking-wide text-muted-foreground mb-1 text-center pt-2">
+        {label}
+      </p>
+      <ins
+        ref={ref}
+        className="adsbygoogle block min-h-[250px]"
+        style={{ display: "block", minHeight: 250 }}
+        data-ad-client={ADSENSE_CLIENT}
+        data-ad-slot={adSlot}
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      />
+    </div>
   );
 }

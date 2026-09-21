@@ -22,7 +22,6 @@ const readState = `
     return false;
   }
   const seo = document.querySelector('[data-static-seo="true"]');
-  const preview = document.querySelector('img[src*="spin-wheel-preview"]');
   const nav = !!document.querySelector("header nav");
   const manage = !!Array.from(document.querySelectorAll("h2")).find((e) =>
     e.textContent?.includes("Manage Entries"),
@@ -39,14 +38,13 @@ const readState = `
     streamer: !!document.querySelector('[role="switch"]'),
     ready: document.getElementById("root")?.getAttribute("data-app-ready") === "true",
     seoVisible: hitTestVisible(seo),
-    previewVisible: hitTestVisible(preview),
     canvasVisible: hitTestVisible(canvas),
     canvasWithoutNav: hitTestVisible(canvas) && !nav,
     wheelWrongNames: names.filter((n) =>
       ["Alice", "Bob", "Charlie", "Dana", "Sam", "Jordan"].includes(n),
     ),
     defaultNames: names.filter((n) =>
-      ["Jahangir", "Mudabber", "Adam", "Jacob", "Casey", "Gabriel", "Hanna"].includes(n),
+      ["Jahangir", "Mudabber", "Faisal", "Jacob", "Casey", "Sila", "Huda"].includes(n),
     ),
   };
 })()
@@ -74,7 +72,6 @@ for (let r = 1; r <= reloads; r++) {
     const s = await page.evaluate(readState);
     const bad =
       s.seoVisible ||
-      s.previewVisible ||
       s.canvasWithoutNav ||
       (s.canvasVisible && !s.nav) ||
       s.wheelWrongNames.length > 0;

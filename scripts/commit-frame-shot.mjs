@@ -16,7 +16,6 @@ requestAnimationFrame(() => {
       seoVis: seo ? seo.checkVisibility?.() : false,
       nav: !!document.querySelector("header nav"),
       canvas: !!document.querySelector("canvas"),
-      imgPreview: !!document.querySelector('img[src*="spin-wheel-preview"]'),
     };
   });
 });

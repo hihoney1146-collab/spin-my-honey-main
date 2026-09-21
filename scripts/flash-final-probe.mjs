@@ -64,7 +64,7 @@ const labels = await page.evaluate(() => {
   if (!canvas) return { ok: false };
   const ctx = canvas.getContext("2d");
   const w = canvas.width, h = canvas.height, cx = w/2, cy = h/2;
-  const names = ["Jahangir", "Mudabber", "Adam", "Jacob", "Casey", "Gabriel", "Hanna"];
+  const names = ["Jahangir", "Mudabber", "Faisal", "Jacob", "Casey", "Sila", "Huda"];
   // scan for white text pixels in outer ring
   const regions = {};
   for (let y = 0; y < h; y += 2) {

@@ -18,8 +18,6 @@ const EARLY_PROBE = `
     const ready = root?.getAttribute("data-app-ready") === "true";
     const seo = document.querySelector('[data-static-seo="true"]');
     const seoVis = seo ? seo.checkVisibility?.() ?? false : false;
-    const img = document.querySelector('img[src*="spin-wheel-preview"]');
-    const imgVis = img ? img.checkVisibility?.() ?? false : false;
     const nav = document.querySelector("header nav");
     const navVis = nav ? nav.checkVisibility?.() ?? false : false;
     const manage = Array.from(document.querySelectorAll("h2")).some((el) =>
@@ -27,11 +25,11 @@ const EARLY_PROBE = `
     );
     const canvas = document.querySelector("canvas");
     const canvasVis = canvas ? canvas.checkVisibility?.() ?? false : false;
-    const bad = seoVis || imgVis || (canvasVis && !navVis);
+    const bad = seoVis || (canvasVis && !navVis);
     if (bad) {
       window.__earlyFrames.push({
         t: Math.round(performance.now()),
-        seoVis, imgVis, navVis, manage, canvasVis, ready,
+        seoVis, navVis, manage, canvasVis, ready,
       });
     }
   };
@@ -111,14 +109,10 @@ async function oneReload(page, i, cdp) {
       canvas: !!document.querySelector("canvas"),
       staleAliceBob: stale,
       defaultNames: buttons.filter((t) =>
-        ["Jahangir", "Mudabber", "Adam"].includes(t),
+        ["Jahangir", "Mudabber", "Faisal"].includes(t),
       ),
       seoVisible: (() => {
         const el = document.querySelector('[data-static-seo="true"]');
-        return el ? el.checkVisibility?.() ?? false : false;
-      })(),
-      previewVisible: (() => {
-        const el = document.querySelector('img[src*="spin-wheel-preview"]');
         return el ? el.checkVisibility?.() ?? false : false;
       })(),
     };
@@ -156,7 +150,6 @@ async function main() {
     (r) =>
       r.earlyBadFrames > 0 ||
       r.final.seoVisible ||
-      r.final.previewVisible ||
       r.final.staleAliceBob.length > 0,
   );
 

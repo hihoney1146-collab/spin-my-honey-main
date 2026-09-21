@@ -14,9 +14,6 @@ const PROBE = `
     const seo = document.querySelector('[data-static-seo="true"]');
     const sr = seo ? seo.getBoundingClientRect() : { width: 0, height: 0 };
     const seoVis = sr.width > 2 && sr.height > 2;
-    const img = document.querySelector('img[src*="spin-wheel-preview"]');
-    const ir = img ? img.getBoundingClientRect() : { width: 0, height: 0 };
-    const imgVis = ir.width > 2;
     const nav = document.querySelector("header nav");
     const nr = nav ? nav.getBoundingClientRect() : { width: 0 };
     const navVis = nr.width > 50;
@@ -29,14 +26,12 @@ const PROBE = `
       document.getElementById("root")?.getAttribute("data-app-ready") === "true";
     const bad =
       seoVis ||
-      imgVis ||
       (canvasVis && !navVis) ||
       (canvasVis && !manage);
     if (bad) {
       window.__flashProbe.frames.push({
         t: Math.round(performance.now()),
         seoVis,
-        imgVis,
         navVis,
         manage,
         canvasVis,
@@ -59,7 +54,7 @@ async function snapshot(page) {
       ["Alice", "Bob", "Charlie", "Dana", "Sam", "Jordan"].includes(t),
     );
     const defaultNames = entryButtons.filter((t) =>
-      ["Jahangir", "Mudabber", "Adam", "Jacob", "Casey", "Gabriel", "Hanna"].includes(t),
+      ["Jahangir", "Mudabber", "Faisal", "Jacob", "Casey", "Sila", "Huda"].includes(t),
     );
     return {
       flashes: window.__flashProbe?.frames ?? [],
@@ -76,12 +71,6 @@ async function snapshot(page) {
           if (!el) return false;
           const r = el.getBoundingClientRect();
           return r.width > 2 && r.height > 2;
-        })(),
-        previewVisible: (() => {
-          const el = document.querySelector('img[src*="spin-wheel-preview"]');
-          if (!el) return false;
-          const r = el.getBoundingClientRect();
-          return r.width > 2;
         })(),
         appReady:
           document.getElementById("root")?.getAttribute("data-app-ready") === "true",
@@ -173,7 +162,7 @@ async function main() {
   await browser.close();
 
   const anyFlash = results.some(
-    (r) => r.flashes.length > 0 || r.earlyFlashCount > 0 || r.final.seoVisible || r.final.previewVisible,
+    (r) => r.flashes.length > 0 || r.earlyFlashCount > 0 || r.final.seoVisible,
   );
   const summary = { url, reloads, anyFlash, results, labelCheck };
   console.log(JSON.stringify(summary, null, 2));

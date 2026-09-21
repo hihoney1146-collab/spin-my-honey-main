@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Slider } from "@/components/ui/slider";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { RandomStudentPickerWheel } from "./RandomStudentPickerWheel";
 import { TeamGeneratorWheel } from "./TeamGeneratorWheel";
@@ -48,10 +48,16 @@ export function ClassroomSpinnerWheel({
     return () => window.clearInterval(id);
   }, [timerRunning, remaining]);
 
+  const formatCountdown = (minutes: number, seconds: number) =>
+    `${minutes}:${String(seconds).padStart(2, "0")}`;
+
   const display =
     remaining !== null
-      ? `${Math.floor(remaining / 60000)}:${String(Math.floor((remaining % 60000) / 1000)).padStart(2, "0")}`
-      : `${timerMinutes}:${String(timerSeconds).padStart(2, "0")}`;
+      ? formatCountdown(
+          Math.floor(remaining / 60000),
+          Math.floor((remaining % 60000) / 1000),
+        )
+      : formatCountdown(timerMinutes, timerSeconds);
 
   const shellClass = fullscreen
     ? "fixed inset-0 z-50 bg-background p-4 overflow-auto"
@@ -104,38 +110,63 @@ export function ClassroomSpinnerWheel({
               <Timer className="h-5 w-5" />
               <span>Classroom countdown</span>
             </div>
-            <div className="flex flex-wrap gap-4 items-end">
+            <p
+              className="text-5xl md:text-6xl font-bold text-center text-primary tabular-nums py-4"
+              aria-live="polite"
+              aria-atomic="true"
+              data-testid="classroom-timer-display"
+            >
+              {display}
+            </p>
+            <div className="space-y-5">
               <div className="space-y-2">
-                <Label htmlFor="tm-min">Minutes</Label>
-                <Input
-                  id="tm-min"
-                  type="number"
+                <div className="flex items-center justify-between gap-2">
+                  <Label htmlFor="tm-min-slider">Minutes</Label>
+                  <span
+                    className="text-sm font-bold tabular-nums text-primary"
+                    aria-hidden="true"
+                  >
+                    {timerMinutes}
+                  </span>
+                </div>
+                <Slider
+                  id="tm-min-slider"
                   min={0}
                   max={59}
-                  value={timerMinutes}
-                  onChange={(e) => setTimerMinutes(Number(e.target.value) || 0)}
-                  className="w-24"
+                  step={1}
+                  value={[timerMinutes]}
+                  disabled={timerRunning}
+                  onValueChange={(value) => setTimerMinutes(value[0] ?? 0)}
+                  aria-valuetext={`${timerMinutes} minutes`}
+                  aria-label="Timer minutes"
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="tm-sec">Seconds</Label>
-                <Input
-                  id="tm-sec"
-                  type="number"
+                <div className="flex items-center justify-between gap-2">
+                  <Label htmlFor="tm-sec-slider">Seconds</Label>
+                  <span
+                    className="text-sm font-bold tabular-nums text-primary"
+                    aria-hidden="true"
+                  >
+                    {timerSeconds}
+                  </span>
+                </div>
+                <Slider
+                  id="tm-sec-slider"
                   min={0}
                   max={59}
-                  value={timerSeconds}
-                  onChange={(e) => setTimerSeconds(Number(e.target.value) || 0)}
-                  className="w-24"
+                  step={1}
+                  value={[timerSeconds]}
+                  disabled={timerRunning}
+                  onValueChange={(value) => setTimerSeconds(value[0] ?? 0)}
+                  aria-valuetext={`${timerSeconds} seconds`}
+                  aria-label="Timer seconds"
                 />
               </div>
             </div>
-            <p className="text-5xl md:text-6xl font-bold text-center text-primary tabular-nums py-6">
-              {display}
-            </p>
             <div className="flex flex-wrap gap-2 justify-center">
               {!timerRunning ? (
-                <Button onClick={startTimer} size="lg">
+                <Button onClick={startTimer} size="lg" disabled={totalMs <= 0}>
                   Start timer
                 </Button>
               ) : (

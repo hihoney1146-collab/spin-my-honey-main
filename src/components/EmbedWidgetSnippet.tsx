@@ -23,8 +23,8 @@ export function EmbedWidgetSnippet({ slug, wheelTitle }: EmbedWidgetSnippetProps
   style="border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"
 ></iframe>
 <p style="text-align:center;margin-top:10px;font-size:14px;">
-  <a href="${toolUrl}?utm_source=embed&amp;utm_medium=widget&amp;utm_campaign=backlink"
-     target="_blank" rel="noopener noreferrer">${wheelTitle}, Online Spin Wheel</a>
+  <a href="${SITE_ORIGIN}/"
+     target="_blank" rel="nofollow noopener">Online Spin Wheel</a>
 </p>`;
 
   const [copied, setCopied] = useState(false);
@@ -44,11 +44,15 @@ export function EmbedWidgetSnippet({ slug, wheelTitle }: EmbedWidgetSnippetProps
     <div className="rounded-xl border border-border bg-muted/30 p-5 md:p-6 space-y-3">
       <h3 className="text-lg font-bold">Embed this wheel</h3>
       <p className="text-sm text-muted-foreground">
-        Paste this iframe on your site. The attribution link below points back to{" "}
-        <a href={toolUrl} className="text-primary underline underline-offset-2 hover:opacity-90">
-          {toolUrl.replace("https://", "")}
-        </a>{" "}
-        (followed link for SEO).
+        Paste this iframe on your site. The attribution link below credits{" "}
+        <a
+          href={`${SITE_ORIGIN}/`}
+          className="text-primary underline underline-offset-2 hover:opacity-90"
+          rel="nofollow noopener"
+        >
+          Online Spin Wheel
+        </a>
+        .
       </p>
       <pre
         tabIndex={0}
