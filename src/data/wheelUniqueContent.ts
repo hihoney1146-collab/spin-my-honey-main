@@ -323,6 +323,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       { slug: "self-care-wheel", anchor: "Couples self-care wheel" },
       { slug: "random-travel-destination-wheel", anchor: "Dream trip destination wheel" },
       { slug: "yes-or-no-wheel", anchor: "Go-out-or-stay-in wheel" },
+      { slug: "outfit-picker-wheel", anchor: "What to wear on date night" },
     ],
   },
 
@@ -779,6 +780,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       { slug: "classroom-spinner", anchor: "Classroom spinner hub" },
       { slug: "winner-picker-wheel", anchor: "Tournament winner draw" },
       { slug: "secret-santa-wheel-generator", anchor: "Holiday gift assignments" },
+      { slug: "pokemon-randomizer-wheel", anchor: "Challenge run for game nights" },
     ],
   },
 

@@ -148,9 +148,9 @@ export const fixedRouteMeta = [
   },
   {
     path: "/all-spin-wheels",
-    title: "All specialty spin wheels | Online Spin Wheel",
+    title: "All 21 Free Specialty Spin Wheels | Online Spin Wheel",
     description:
-      "Browse 21 indexed specialty spin wheels — raffles, classrooms, weighted yes/no, dinner and movie filters — plus bookmark-only extras in a separate list.",
+      "Browse 21 free specialty spin wheels: raffles, classrooms, weighted yes/no, dinner and movie filters, and more. Extra bookmark-only tools sit in a separate list.",
   },
   {
     path: "/blog",
@@ -231,9 +231,9 @@ export const fixedRouteMeta = [
   },
   {
     path: "/tutorial-adding-images-to-spin-wheels",
-    title: "Tutorial: Adding Images to Spin Wheels | Online Spin Wheel",
+    title: "How to Add Images to a Spin Wheel | Online Spin Wheel",
     description:
-      "Learn how to add images to spin wheel entries for classrooms, events, and branded giveaways.",
+      "Learn how to add images to your spin wheel entries. Discover best practices for image selection, file formats, sizing, and creating visually engaging wheels.",
   },
   {
     path: "/case-study-school-using-spin-wheels",
@@ -267,9 +267,9 @@ export const fixedRouteMeta = [
   },
   {
     path: "/wheel-of-names-alternative",
-    title: "Online Spin Wheel, Feature Comparison",
+    title: "Wheel of Names Alternative, No Account | Online Spin Wheel",
     description:
-      "Compare Online Spin Wheel with other free pickers: no account, browser-only entries, 21 indexed specialty tools with real controls, raffle proof links, and a classroom hub.",
+      "Wheel of Names alternative: compare Online Spin Wheel with other free pickers. No account, browser-only entries, 21 specialty wheels and raffle proof links.",
     jsonLd: [
       {
         "@context": "https://schema.org",

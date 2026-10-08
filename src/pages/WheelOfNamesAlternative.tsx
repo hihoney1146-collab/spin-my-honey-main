@@ -101,7 +101,7 @@ const TABLE_ROWS: Row[] = [
 
 const WheelOfNamesAlternative = () => {
   const canonical = `${SITE_ORIGIN}/wheel-of-names-alternative`;
-  const title = "Online Spin Wheel, Feature Comparison";
+  const title = "Wheel of Names Alternative, No Account | Online Spin Wheel";
 
   return (
     <>
@@ -109,7 +109,7 @@ const WheelOfNamesAlternative = () => {
         <title>{title}</title>
         <meta
           name="description"
-          content="Compare Online Spin Wheel with other free pickers: no account, browser-only entries, 21 indexed specialty tools with real controls, raffle proof links, classroom hub."
+          content="Wheel of Names alternative: compare Online Spin Wheel with other free pickers. No account, browser-only entries, 21 specialty wheels and raffle proof links."
         />
         <link rel="canonical" href={canonical} />
         <script type="application/ld+json">

@@ -37,13 +37,13 @@ const AllSpinWheelsPage = () => {
   return (
     <>
       <Helmet>
-        <title>All specialty spin wheels | Online Spin Wheel</title>
+        <title>{`All ${INDEXED_WHEEL_COUNT_PHASE_C} Free Specialty Spin Wheels | Online Spin Wheel`}</title>
         <meta
           name="description"
-          content={`Browse ${INDEXED_WHEEL_COUNT_PHASE_C} indexed specialty spin wheels — raffles, classrooms, weighted yes/no, dinner and movie filters, and more. Extra bookmark-only tools sit in a separate list.`}
+          content={`Browse ${INDEXED_WHEEL_COUNT_PHASE_C} free specialty spin wheels: raffles, classrooms, weighted yes/no, dinner and movie filters, and more. Extra bookmark-only tools sit in a separate list.`}
         />
         <link rel="canonical" href={`${SITE_ORIGIN}/all-spin-wheels`} />
-        <meta property="og:title" content="All specialty spin wheels | Online Spin Wheel" />
+        <meta property="og:title" content={`All ${INDEXED_WHEEL_COUNT_PHASE_C} Free Specialty Spin Wheels | Online Spin Wheel`} />
         <meta
           property="og:description"
           content={`Browse ${INDEXED_WHEEL_COUNT_PHASE_C} indexed specialty wheels plus bookmark-only extras.`}

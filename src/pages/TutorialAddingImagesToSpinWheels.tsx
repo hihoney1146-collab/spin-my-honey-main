@@ -8,10 +8,7 @@ const TutorialAddingImagesToSpinWheels = () => {
   return (
     <>
       <Helmet>
-        <title>
-          How to Add Images to Spin Wheels - Complete Tutorial | Online Spin
-          Wheel
-        </title>
+        <title>How to Add Images to a Spin Wheel | Online Spin Wheel</title>
         <meta
           name="description"
           content="Learn how to add images to your spin wheel entries. Discover best practices for image selection, file formats, sizing, and creating visually engaging wheels."
