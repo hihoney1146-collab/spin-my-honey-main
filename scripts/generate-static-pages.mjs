@@ -610,4 +610,18 @@ for (const route of routes) {
   console.log(`✅ ${route.path}/index.html`);
 }
 
+// Unknown URLs are served this file with a real 404 status by Vercel (see vercel.json: no catch-all rewrite).
+let notFoundHtml = template;
+notFoundHtml = replaceFirst(notFoundHtml, /<title>[\s\S]*?<\/title>/i, "<title>Page not found | Online Spin Wheel</title>");
+notFoundHtml = setMetaByName(
+  notFoundHtml,
+  "description",
+  "This page does not exist. Browse the free spin wheels on Online Spin Wheel.",
+);
+notFoundHtml = setRobots(notFoundHtml, "noindex, follow");
+notFoundHtml = notFoundHtml.replace(/<link\s+rel="canonical"[^>]*>\s*/i, "");
+notFoundHtml = stripJsonLdScripts(notFoundHtml);
+fs.writeFileSync(path.join(distPath, "404.html"), notFoundHtml);
+console.log("✅ /404.html (noindex, served with HTTP 404 for unknown URLs)");
+
 console.log(`\n✨ Generated ${routes.length} route HTML files.`);

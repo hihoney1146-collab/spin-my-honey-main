@@ -34,16 +34,16 @@
     { "source": "/horror-movie-picker-wheel", "destination": "/movie-picker-wheel", "permanent": true },
     { "source": "/daily-horoscope-wheel", "destination": "/zodiac-sign-wheel", "permanent": true },
     { "source": "/pick-out-of-a-hat-generator", "destination": "/random-name-picker-wheel", "permanent": true },
+    { "source": "/spin-wheel-free", "destination": "/all-spin-wheels", "permanent": true },
+    { "source": "/spin-wheel-picker", "destination": "/all-spin-wheels", "permanent": true },
 
     { "source": "/sitemap", "destination": "/sitemap.xml", "permanent": true },
     { "source": "/sitemap.txt", "destination": "/sitemap.xml", "permanent": true },
     { "source": "/sitemap-index.xml", "destination": "/sitemap.xml", "permanent": true }
   ],
   "rewrites": [
-    {
-      "source": "/((?!api/|(?:sitemap|pages-sitemap|wheels-sitemap|blog-sitemap|images-sitemap)(?:\\.xml)?$|.*\\.(?:xml|txt|png|jpe?g|webp|svg|gif|ico|pdf|csv|json|js|css|map|woff2?)$).*)",
-      "destination": "/index.html"
-    }
+    { "source": "/embed/:slug*", "destination": "/index.html" },
+    { "source": "/result/:id+", "destination": "/index.html" }
   ],
   "routes": [
     {
