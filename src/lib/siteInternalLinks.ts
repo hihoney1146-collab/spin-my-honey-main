@@ -57,11 +57,11 @@ export const tutorialLinks: SiteLinkItem[] = [
 export const caseStudyLinks: SiteLinkItem[] = [
   {
     to: "/case-study-school-using-spin-wheels",
-    label: "School case study",
+    label: "Example: school scenario",
   },
   {
     to: "/case-study-community-event-using-spin-wheels",
-    label: "Community event case study",
+    label: "Example: community event scenario",
   },
 ];
 

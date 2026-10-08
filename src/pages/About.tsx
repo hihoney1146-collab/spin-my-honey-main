@@ -12,13 +12,13 @@ const About = () => {
         <title>About Us - Online Spin Wheel</title>
         <meta
           name="description"
-          content="Online Spin Wheel is built by a small dedicated team: Armghana Zeeshan (CEO), Zoha Zeeshan (Co-Founder), Raja Jahangir (SEO/AEO/AIO/GEO/SXO Strategist), and Faisal Zahir (Digital Marketing). Learn how we test every wheel across 10,000 spins."
+          content="Online Spin Wheel is built by a small dedicated team: Armghana Zeeshan (CEO), Zoha Zeeshan (Co-Founder), Raja Jahangir (SEO Specialist), and Faisal Zahir (Digital Marketing). Learn how we test every wheel across 10,000 spins."
         />
         <link rel="canonical" href="https://onlinespinwheel.fun/about-us" />
         <meta property="og:title" content="About Us - Online Spin Wheel" />
         <meta
           property="og:description"
-          content="Online Spin Wheel is built by a small dedicated team: Armghana Zeeshan (CEO), Zoha Zeeshan (Co-Founder), Raja Jahangir (SEO/AEO/AIO/GEO/SXO Strategist), and Faisal Zahir (Digital Marketing)."
+          content="Online Spin Wheel is built by a small dedicated team: Armghana Zeeshan (CEO), Zoha Zeeshan (Co-Founder), Raja Jahangir (SEO Specialist), and Faisal Zahir (Digital Marketing)."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://onlinespinwheel.fun/about-us" />
@@ -112,7 +112,7 @@ const About = () => {
                 <Link to="/author/raja-jahangir" className="text-primary underline underline-offset-2">
                   Raja Jahangir
                 </Link>
-                , SEO/AEO/AIO/GEO/SXO Strategist
+                , SEO Specialist
               </h3>
               <p className="text-base md:text-lg">
                 Owns search and discovery strategy across SEO, AEO, AIO, GEO, and SXO: wheel copy,

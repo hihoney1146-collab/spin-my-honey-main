@@ -73,7 +73,7 @@ export function personJsonLd(author: AuthorProfile, personId: string) {
   }
   if (author === RAJA_AUTHOR) {
     node.description =
-      "Raja Jahangir is SEO/AEO/AIO/GEO/SXO Strategist for Online Spin Wheel, a free browser-based random picker built by a small dedicated team.";
+      "Raja Jahangir is the SEO Specialist for Online Spin Wheel, a free browser-based random picker built by a small dedicated team.";
     node.knowsAbout = [
       "Search Engine Optimization",
       "Answer Engine Optimization",

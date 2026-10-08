@@ -13,7 +13,7 @@ import {
   Twitter,
   Pin,
 } from "lucide-react";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo-small.png";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,

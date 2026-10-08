@@ -181,8 +181,8 @@ function exploreNav() {
         ["/comparison-spin-wheel-vs-random-number-generator", "Wheel vs random number generator"],
         ["/comparison-spin-wheel-vs-traditional-methods", "Wheel vs traditional methods"],
         ["/comparison-online-vs-physical-spin-wheels", "Online vs physical wheels"],
-        ["/case-study-school-using-spin-wheels", "School case study"],
-        ["/case-study-community-event-using-spin-wheels", "Community event case study"],
+        ["/case-study-school-using-spin-wheels", "Example: school scenario"],
+        ["/case-study-community-event-using-spin-wheels", "Example: community event scenario"],
       ],
     ],
     [
@@ -632,48 +632,59 @@ ${exploreNav()}`);
 }
 
 function caseStudySchoolContent() {
-  return mainWrap(`<h1>Case Study: A School Using Spin Wheels</h1>
-<p>This case study looks at how a school adopted digital spin wheels for fair student selection and classroom engagement, and the practical results teachers reported.</p>
-<section><h2>The challenge</h2><p>Teachers wanted to call on students evenly, avoid the perception of favoritism, and keep energy high during routine tasks like reading aloud, answering questions, and forming groups. Paper slips were slow and easy to lose, and always calling on the same eager students left others disengaged.</p></section>
-<section><h2>The approach</h2><p>Staff displayed a <a href="/random-student-picker">random student picker</a> on the classroom smartboard. Each class list was entered once and reused daily. For group work, teachers used the <a href="/team-generator-wheel">team generator wheel</a> to split students into balanced teams in seconds.</p></section>
-<section><h2>What changed</h2><ul>
-<li>Participation rose because every student knew their name could come up next.</li>
-<li>Complaints about fairness dropped, since selection was visibly random.</li>
-<li>Transitions were faster, forming groups took seconds instead of minutes.</li>
-<li>Routine tasks felt like a game, improving focus and mood.</li>
+  return mainWrap(`<h1>Example Scenario: Fair Student Selection with a Spin Wheel</h1>
+<p>How a teacher could keep participation even and routines quick.</p>
+<p><strong>About this page:</strong> This is an example scenario for teachers, written to show how the tool can be used in a classroom. It is not a report about a real school, teacher or classroom, and it contains no survey results or statistics.</p>
+<section><h2>The situation</h2><p>Imagine a teacher with a class of about 25 students. A few confident students answer most questions, quieter students rarely volunteer, and some students feel the same names always get called. Calling on students alphabetically, drawing popsicle sticks or keeping a tally sheet can all work, but they take time and can still feel predictable.</p></section>
+<section><h2>Setting it up</h2><ol>
+<li>Open the <a href="/random-student-picker">random student picker</a> and paste the class list once, one name per line.</li>
+<li>Show the wheel on the classroom screen so everyone can see the full list of names.</li>
+<li>Explain the rule before the first spin: the wheel decides, and the result stands unless there is a mistake, such as a student who is absent.</li>
+<li>Use it for the same routine tasks every day, such as answering questions, reading aloud and presentation order, so students learn to trust it.</li>
+<li>For group work, use the <a href="/team-generator-wheel">team generator wheel</a> to split the class into teams.</li>
+</ol></section>
+<section><h2>Ways to adapt it</h2><ul>
+<li>Deactivate a name after that student answers, so everyone gets a turn during a longer lesson.</li>
+<li>Keep separate wheels for different activities, for example reading groups, review questions and helper roles.</li>
+<li>Add small pictures next to names for younger students (see the <a href="/tutorial-adding-images-to-spin-wheels">image tutorial</a>).</li>
+<li>Keep labels short so names are readable from the back of the room.</li>
 </ul></section>
-<section><h2>How the rollout worked</h2><p>Adoption was gradual and low-risk. One teacher tried the picker for a single class period, shared the results with colleagues, and within a few weeks it became a shared routine across grade levels. Because the tool runs in any browser with no installation, accounts, or student data collection, IT approval was straightforward and there was nothing to maintain. Teachers bookmarked the wheels they used most and kept class lists ready to paste in each morning.</p></section>
-<section><h2>Measuring the impact</h2><p>Staff noticed the difference in ordinary, day-to-day moments rather than in a formal study. Quieter students spoke up more often because selection was clearly out of the teacher's hands. Group formation, which used to spark negotiation, became neutral and quick. And the novelty of a spinning wheel added a small burst of energy to review sessions, spelling practice, and presentation ordering.</p></section>
-<section><h2>Tips for teachers</h2><p>Save class lists for reuse, remove a student after they are selected if you want everyone to get a turn, and keep labels short so names are readable from the back of the room. Explain the rules before spinning so students trust the process. For younger classes, add small images to each name to support pre-readers, and consider a separate wheel of tasks or topics to pair with the name wheel.</p></section>
+<section><h2>How to tell whether it is working</h2><p>Pick one simple measure and compare before and after. For example, count how many different students answer in one lesson, or note how long it takes to form groups. Treat the result as data about your own classroom, not as a promise of what any wheel will do.</p></section>
+<section><h2>Things to keep in mind</h2><p>A random pick is fair, but it is not always the right pick. Use your judgment for students who need accommodations or who are not ready to answer on the spot. Randomness also means the same name can occasionally come up twice in a row, which is why deactivating names after they are chosen helps. Keep a backup, such as paper slips, in case the screen or internet fails.</p></section>
+<section><h2>Try it in your classroom</h2><p>Start with one routine, such as picking who answers the next question, and add more uses once students are comfortable with it.</p></section>
 <section><h2>Related tools</h2><ul>
 <li><a href="/random-student-picker">Random student picker</a></li>
+<li><a href="/classroom-spinner">Classroom spinner</a></li>
 <li><a href="/alphabet-spinner-wheel">Alphabet spinner wheel</a></li>
 <li><a href="/abcd-spin-wheel">ABCD classroom quiz wheel</a></li>
 <li><a href="/team-generator-wheel">Team generator wheel</a></li>
-</ul></section>
+</ul>
+<p>Another example: <a href="/case-study-community-event-using-spin-wheels">community event prize draws</a>.</p></section>
 ${exploreNav()}`);
 }
 
 function caseStudyCommunityContent() {
-  return mainWrap(`<h1>Case Study: A Community Event Using Spin Wheels</h1>
-<p>This case study describes how organizers of a community event used spin wheels for transparent raffles and fair participant selection, building trust with attendees.</p>
-<section><h2>The challenge</h2><p>The event ran several prize draws and needed a way to pick winners that everyone could see was fair. Drawing names from a box raised questions, and manual selection risked accusations of bias among a large, engaged crowd.</p></section>
-<section><h2>The approach</h2><p>Organizers projected a <a href="/winner-picker-wheel">winner picker wheel</a> on the main screen. Ticket numbers or names were pasted in, and the wheel was spun live so the audience watched the result in real time. For repeat draws, winners were removed so no one won twice.</p></section>
-<section><h2>What changed</h2><ul>
-<li>Trust improved because draws happened openly on a big screen.</li>
-<li>Winners were selected in seconds, keeping the event moving.</li>
-<li>Recordings of each spin provided a clear, shareable record.</li>
-<li>Volunteers needed no special training to run the draws.</li>
-</ul></section>
-<section><h2>Setting it up on the day</h2><p>Preparation was minimal. Organizers opened the wheel on a laptop connected to the venue projector, pasted in the ticket numbers or attendee names, and did a quick practice spin before doors opened. Because the tool is free and browser-based, there was no software to install and no risk of a licensing surprise mid-event. A volunteer could take over the draws with sixty seconds of instruction.</p></section>
-<section><h2>Handling multiple prize tiers</h2><p>For events with several prizes, organizers ran the wheel once per tier, removing each winner before the next spin so no one could win twice. When they wanted a grand-prize finale, they kept that draw for last and let the crowd count down the spin together. This kept the pacing lively and made the biggest moment feel earned and transparent.</p></section>
-<section><h2>Tips for organizers</h2><p>Announce the rules before each draw, show the full wheel on screen, and keep a simple list of winners for your records. Test the wheel and your projector beforehand, keep entries readable by using short labels, and have a backup device on hand. If you plan to post proof afterward, record the screen during each spin so the fairness of the process is easy to share.</p></section>
+  return mainWrap(`<h1>Example Scenario: Transparent Prize Draws at a Community Event</h1>
+<p>How organizers could make winner selection visible and fair.</p>
+<p><strong>About this page:</strong> This example scenario is written for event organizers, to show how the tool can be used at a live draw. It is not a report about a real event, and it contains no survey results, statistics or testimonials.</p>
+<section><h2>The situation</h2><p>Imagine a volunteer-run community festival with several prize draws: a children's colouring contest, a baking competition and a raffle. The organizers want everyone in the crowd to be able to see that winners are chosen fairly. Drawing names from a box happens out of sight, and picking winners by hand can lead to accusations of bias.</p></section>
+<section><h2>Setting it up</h2><ol>
+<li>List the draws and prepare the entries for each one, using ticket numbers or names.</li>
+<li>Open the <a href="/winner-picker-wheel">winner picker wheel</a> on a laptop connected to the venue screen or projector, paste in the entries and do a practice spin before the event starts.</li>
+<li>Announce the rules before each draw: the full wheel is shown on screen, there is one spin per prize, and the result stands.</li>
+<li>Run each draw live so the audience watches the result in real time, and remove the winner before the next prize so nobody wins twice.</li>
+<li>If you want to share proof afterwards, record the screen during each spin.</li>
+</ol></section>
+<section><h2>Handling several prize tiers</h2><p>For events with several prizes, run the wheel once per tier and remove each winner before the next spin. Keep the grand prize for last and let the crowd count down the spin together. This keeps the pacing lively and makes the biggest moment feel transparent. For a ticket-based draw, the <a href="/raffle-wheel">raffle wheel</a> works the same way.</p></section>
+<section><h2>How to tell whether it is working</h2><p>Decide in advance what you will track and compare it with your previous event: for example, how many people stay for the draw, how many questions about fairness you receive, or how long each draw takes. Treat the result as data about your own event, not as a promise of what any wheel will do.</p></section>
+<section><h2>Things to keep in mind</h2><p>Rules for raffles and contests differ by place, so check any local requirements before you run a draw. Use ticket numbers instead of full names on a public screen when privacy matters. Test the wheel and the projector beforehand, keep labels short so they are readable from a distance, and have a backup device ready.</p></section>
+<section><h2>Try it for your event</h2><p>Start with one contest or giveaway and run the draw live on a screen where everyone can see it.</p></section>
 <section><h2>Related tools</h2><ul>
 <li><a href="/winner-picker-wheel">Winner picker wheel</a></li>
+<li><a href="/raffle-wheel">Raffle wheel</a></li>
 <li><a href="/random-name-picker-wheel">Random name picker wheel</a></li>
-<li><a href="/random-name-picker-wheel">Pick out of a hat generator</a></li>
-<li><a href="/winner-picker-wheel">Instagram / giveaway picker</a></li>
-</ul></section>
+</ul>
+<p>Another example: <a href="/case-study-school-using-spin-wheels">fair student selection in a classroom</a>.</p></section>
 ${exploreNav()}`);
 }
 

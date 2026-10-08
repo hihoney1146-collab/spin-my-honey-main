@@ -166,9 +166,9 @@ export const fixedRouteMeta = [
   },
   {
     path: "/author/raja-jahangir",
-    title: "Raja Jahangir, SEO/AEO/AIO/GEO/SXO Strategist | Online Spin Wheel",
+    title: "Raja Jahangir, SEO Specialist | Online Spin Wheel",
     description:
-      "Raja Jahangir is SEO/AEO/AIO/GEO/SXO Strategist for Online Spin Wheel. How the team tests every wheel for fair, uniform random results.",
+      "Raja Jahangir is the SEO Specialist for Online Spin Wheel. How the team tests every wheel for fair, uniform random results.",
     ogType: "profile",
   },
   {
@@ -237,15 +237,15 @@ export const fixedRouteMeta = [
   },
   {
     path: "/case-study-school-using-spin-wheels",
-    title: "Case Study: School Using Spin Wheels | Online Spin Wheel",
+    title: "Fair Student Selection Example Scenario | Online Spin Wheel",
     description:
-      "How a school used digital spin wheels for fair student selection and classroom engagement.",
+      "An example scenario showing how a teacher could use a spin wheel for fair student selection, group forming and classroom routines, with setup steps and tips.",
   },
   {
     path: "/case-study-community-event-using-spin-wheels",
-    title: "Case Study: Community Event Spin Wheels | Online Spin Wheel",
+    title: "Community Event Prize Draw Example | Online Spin Wheel",
     description:
-      "How a community event used spin wheels for fair raffles and participant selection.",
+      "An example scenario showing how organizers could run transparent prize draws and raffles at a community event with a spin wheel, with setup steps and tips.",
   },
   {
     path: "/comparison-spin-wheel-vs-random-number-generator",

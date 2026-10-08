@@ -24,3 +24,9 @@ dist-ssr
 *.sw?
 .vercel
 .env*
+
+# Private SEO working files (this repo is public)
+docs/SEO_AUDIT_*.md
+docs/SEO_BASELINE_*.md
+docs/SEO_EXPERIMENTS.md
+.claude/skills/onlinespinwheel-seo/

@@ -21,6 +21,20 @@ if (!fs.existsSync(logoSrc)) {
 fs.mkdirSync(publicDir, { recursive: true });
 fs.copyFileSync(logoSrc, logoDest);
 
+// Properly sized icons so browsers do not download the full logo as a favicon
+const iconTargets = [
+  ["favicon-32x32.png", 32],
+  ["favicon.ico", 48],
+  ["apple-touch-icon.png", 180],
+  ["icon-192.png", 192],
+];
+for (const [name, size] of iconTargets) {
+  await sharp(logoSrc)
+    .resize(size, size, { fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } })
+    .png({ compressionLevel: 9 })
+    .toFile(path.join(publicDir, name));
+}
+
 const rajaSrc = path.join(root, "src", "assets", "Jahangir-SEO.jpeg");
 const rajaDest = path.join(publicDir, "raja-jahangir.jpg");
 if (fs.existsSync(rajaSrc)) {

@@ -7,7 +7,7 @@ export const fairRaffleWithoutPaperTickets: BlogPost = {
     "Run a fair school or PTA raffle without paper tickets: numbered draws, multi-winner picks, proof links, and a pre-draw checklist for US organizers.",
   excerpt:
     "This guide is for raffle and prize draws at fundraisers, PTA nights, and small-business events, not classroom participation games or office icebreakers. You will see how to run a ticket-number or name draw in the browser, remove duplicate entries, draw several winners without replacement, and share a proof link when someone questions the result.",
-  author: "Raja Jahangir (SEO/AEO/AIO/GEO/SXO Strategist, Online Spin Wheel)",
+  author: "Raja Jahangir (SEO Specialist, Online Spin Wheel)",
   updated: "2026-09-03",
   published: "2026-09-03",
   indexed: true,
