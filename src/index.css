@@ -202,6 +202,36 @@ All colors MUST be HSL.
   }
 
   /* Professional animations */
+  @keyframes cookie-banner-in {
+    from {
+      opacity: 0;
+      transform: translateY(100px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes cookie-banner-out {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(100px);
+    }
+  }
+
+  .cookie-banner-in {
+    animation: cookie-banner-in 0.5s ease-out both;
+  }
+
+  .cookie-banner-out {
+    animation: cookie-banner-out 0.5s ease-out both;
+  }
+
   @keyframes fade-in {
     from {
       opacity: 0;

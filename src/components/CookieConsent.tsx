@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { X, Cookie } from "lucide-react";
 import { Link } from "react-router-dom";
-import { AnimatePresence, motion } from "framer-motion";
 import {
   readCookieConsent,
   writeCookieConsent,
@@ -23,6 +22,8 @@ export const CookieConsent = () => {
   const titleId = useId();
   const dialogRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [isLeaving, setIsLeaving] = useState(false);
+  const wasVisible = useRef(false);
   const [storedChoice, setStoredChoice] = useState<CookieConsentValue | null>(
     null,
   );
@@ -59,6 +60,19 @@ export const CookieConsent = () => {
   }, []);
 
   useEffect(() => {
+    if (isVisible) {
+      wasVisible.current = true;
+      setIsLeaving(false);
+      return;
+    }
+    if (!wasVisible.current) return;
+    wasVisible.current = false;
+    setIsLeaving(true);
+    const timer = setTimeout(() => setIsLeaving(false), 500);
+    return () => clearTimeout(timer);
+  }, [isVisible]);
+
+  useEffect(() => {
     if (!isVisible) return;
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -68,15 +82,13 @@ export const CookieConsent = () => {
     };
   }, [isVisible]);
 
+  if (!isVisible && !isLeaving) return null;
+
   return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.div
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 100, opacity: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="fixed inset-0 z-50 flex items-end justify-center p-4 md:p-6 pointer-events-none"
+        <div
+          className={`fixed inset-0 z-50 flex items-end justify-center p-4 md:p-6 pointer-events-none ${
+            isVisible ? "cookie-banner-in" : "cookie-banner-out"
+          }`}
           role="presentation"
         >
           <Card
@@ -167,8 +179,6 @@ export const CookieConsent = () => {
               </button>
             ) : null}
           </Card>
-        </motion.div>
-      )}
-    </AnimatePresence>
+        </div>
   );
 };
