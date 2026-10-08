@@ -18,6 +18,7 @@ import {
   ORG_NAME,
   ORG_ID,
   CONTACT_EMAIL,
+  SITE_SOCIAL_PROFILES,
 } from "./team-constants.mjs";
 import { isWheelIndexableSlug } from "./wheel-index-policy.mjs";
 
@@ -501,10 +502,11 @@ export function buildLlmsTxt(root = getProjectRoot()) {
     `  - ${TEAM_AUTHORS.raja.name} (${TEAM_AUTHORS.raja.shortRole}), ${SITE}${TEAM_AUTHORS.raja.path}`,
     `  - ${TEAM_AUTHORS.faisal.name} (${TEAM_AUTHORS.faisal.shortRole}), ${SITE}${TEAM_AUTHORS.faisal.path}`,
     `- Contact: ${CONTACT_EMAIL}`,
+    `- Official profiles: ${SITE_SOCIAL_PROFILES.join(", ")}`,
     `- Small independent team dedicated solely to Online Spin Wheel`,
     "",
     "## What this site is",
-    "Interactive WebApplication tools using cryptographic randomness (crypto.getRandomValues). No login required for core spinning. The indexed set is 21 specialty wheels with real controls plus the homepage spinner; leftover clone URLs stay live with noindex.",
+    "Interactive WebApplication tools using cryptographic randomness (crypto.getRandomValues). No login required for core spinning. The indexed set is 21 specialty wheels with real controls plus the homepage spinner; other tool URLs stay available but are kept out of search.",
     "",
     "## Primary entry points",
     `${SITE}/`,

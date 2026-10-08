@@ -9,6 +9,7 @@ import {
   ZOHA_AUTHOR,
   ZOHA_PERSON_ID,
 } from "./teamAuthors";
+import { SITE_SOCIAL_LINKS } from "./teamLinks";
 
 export const SITE_ORIGIN = "https://onlinespinwheel.fun";
 export const ORG_NAME = "Online Spin Wheel";
@@ -36,6 +37,7 @@ export function organizationJsonLd() {
     url: SITE_ORIGIN,
     logo: `${SITE_ORIGIN}/logo.png`,
     email: CONTACT_EMAIL,
+    sameAs: SITE_SOCIAL_LINKS.map((link) => link.href),
     founder: [
       { "@id": ARMGHANA_PERSON_ID },
       { "@id": ZOHA_PERSON_ID },

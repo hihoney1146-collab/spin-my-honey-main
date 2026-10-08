@@ -3,6 +3,14 @@
 export const SITE = "https://onlinespinwheel.fun";
 export const ORG_NAME = "Online Spin Wheel";
 export const ORG_ID = `${SITE}/#organization`;
+
+/** Verified brand profiles; keep in sync with SITE_SOCIAL_LINKS in src/lib/teamLinks.ts. */
+export const SITE_SOCIAL_PROFILES = [
+  "https://www.pinterest.com/onlinespinwheel/",
+  "https://www.instagram.com/onlinespinwheel/",
+  "https://x.com/onlinespinwheel",
+  "https://www.youtube.com/@OnlineSpinWheel",
+];
 export const WEBSITE_ID = `${SITE}/#website`;
 export const CONTACT_EMAIL = "onlinespinwheel@gmail.com";
 
@@ -78,6 +86,7 @@ export function organizationJsonLd() {
     url: SITE,
     logo: `${SITE}/logo.png`,
     email: CONTACT_EMAIL,
+    sameAs: SITE_SOCIAL_PROFILES,
     founder: [
       { "@id": TEAM_AUTHORS.armghana.personId },
       { "@id": TEAM_AUTHORS.zoha.personId },
