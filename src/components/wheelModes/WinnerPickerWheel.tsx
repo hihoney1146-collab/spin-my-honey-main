@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -33,6 +33,10 @@ export function WinnerPickerWheel({
   const [winners, setWinners] = useState<string[]>([]);
   const [entryCountAtDraw, setEntryCountAtDraw] = useState(0);
   const [paste, setPaste] = useState("");
+  // Set right after a winner is recorded, consumed by the very next labels-change event.
+  // Lets handleLabelsChange tell "SpinWheel auto-removed the entry we just won" (keep the
+  // in-progress draw) apart from a real edit to the roster (reset the draw).
+  const lastWinnerRef = useRef<string | null>(null);
 
   const parsedPaste = useMemo(
     () => applyDuplicatePolicy(parseEntryLines(paste), "dedupe", normalizeHandle),
@@ -55,16 +59,30 @@ export function WinnerPickerWheel({
       const next = [...prev, name];
       return next.slice(0, winnerCount);
     });
+    lastWinnerRef.current = name;
   };
 
   const resetDraw = () => {
     setWinners([]);
     setEntryCountAtDraw(0);
+    lastWinnerRef.current = null;
   };
 
   const handleLabelsChange = (labels: string[]) => {
+    // With more than one winner requested, SpinWheel removes the picked entry on its own a
+    // moment after each spin and reports the shorter list here. That is expected progress,
+    // not a roster edit, so do not clear the winners collected so far when it happens.
+    const justAutoRemovedTheWinner =
+      lastWinnerRef.current !== null &&
+      entryLabels.length - labels.length === 1 &&
+      entryLabels.includes(lastWinnerRef.current) &&
+      !labels.includes(lastWinnerRef.current);
     setPaste(labelsToMultiline(labels));
-    resetDraw();
+    if (justAutoRemovedTheWinner) {
+      lastWinnerRef.current = null;
+    } else {
+      resetDraw();
+    }
   };
 
   return (
@@ -88,7 +106,7 @@ export function WinnerPickerWheel({
           />
           <p className="text-xs text-muted-foreground">
             {entryLabels.length} unique entrants on the wheel
-            {duplicateMessage ? ` — ${duplicateMessage}` : paste.trim() ? " after @handle dedupe" : ""}
+            {duplicateMessage ? `. ${duplicateMessage}` : paste.trim() ? " after @handle dedupe" : ""}
           </p>
         </div>
         <div className="flex flex-wrap items-end gap-4">

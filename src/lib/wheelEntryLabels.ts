@@ -70,7 +70,7 @@ export function duplicateNotice(
     return `${removedCount} duplicate entr${removedCount === 1 ? "y" : "ies"} removed.`;
   }
   if (policy === "warn" && duplicateCount > 0) {
-    return `${duplicateCount} duplicate name${duplicateCount === 1 ? "" : "s"} found — they will each get their own slice.`;
+    return `${duplicateCount} duplicate name${duplicateCount === 1 ? "" : "s"} found. They will each get their own slice.`;
   }
   return null;
 }

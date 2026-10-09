@@ -58,7 +58,7 @@ export function RandomNumberWheel(_props: RandomNumberWheelProps) {
 
     const labels = wheelSync.entryLabels;
     if (labels.length === 0) {
-      toast.info("All numbers in range used — reset to draw again.");
+      toast.info("All numbers in range used. Reset to draw again.");
       return;
     }
 
@@ -125,10 +125,10 @@ export function RandomNumberWheel(_props: RandomNumberWheelProps) {
           {useWheelVisual
             ? `On the wheel now (${poolCount})`
             : size > 30
-              ? `${size} numbers in range — use Pick random number (wheel hidden for ranges over 30).`
+              ? `${size} numbers in range. Use Pick random number (wheel hidden for ranges over 30).`
               : size >= 2
                 ? `On the wheel now (${poolCount})`
-                : "Set a valid min–max range with at least two integers."}
+                : "Set a valid min to max range with at least two integers."}
           {noRepeat && used.size > 0 ? ` · ${used.size} already drawn` : ""}
         </p>
         <div className="flex flex-wrap gap-3">

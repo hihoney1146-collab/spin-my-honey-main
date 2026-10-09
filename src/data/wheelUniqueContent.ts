@@ -994,33 +994,68 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "random-number-wheel": {
     directAnswer:
-      "The Random Number Wheel picks integers inside a min–max range you set. Changing minimum or maximum reloads the visual wheel immediately for ranges of 30 or fewer. Optional no-repeat mode keeps one shared used pool for both the Pick random number button and the spin wheel—drawn integers leave both until you reset or the pool empties. Larger ranges skip the wheel graphic and show a bold numeric result. Use it for board-game substitutes, bingo-style calls, or classroom math warm-ups.",
+      "The Random Number Wheel picks a whole number from a minimum to a maximum you set, using a wheel graphic for ranges of 30 numbers or fewer and a plain numeric result for larger ranges. Optional no-repeat mode keeps one shared pool of unused numbers for both the Pick random number button and the spin wheel, so a number drawn either way will not come up again until you reset it or change the range. Use it for board-game substitutes, bingo-style calls, or classroom math warm-ups.",
     title: "Random Number Wheel, Range and No-Repeat",
     metaDescription:
-      "Set min and max—the wheel reloads instantly for ranges ≤30. No-repeat shares one pool between the quick-pick button and the spin wheel.",
+      "Set minimum and maximum and the wheel reloads instantly for ranges of 30 or fewer. No-repeat mode shares one pool between the quick-pick button and the spin wheel.",
     useCases: [
       {
         heading: "Bingo caller replacement",
-        body: "Enable no-repeat mode for numbers 1–75 so every call stays unique until the card fills (large ranges use the numeric result display).",
+        body: "Set the range to 1 to 75 and turn on no-repeat mode so every call stays unique until the card fills. Seventy five numbers is above the 30-number wheel limit, so calls appear as a plain numeric result rather than a spin.",
       },
       {
         heading: "Tabletop RPG dice substitute",
-        body: "Set 1–20 for d20 rolls during D&D sessions when physical dice roll under the couch; that range fits on the visual wheel.",
+        body: "Set 1 to 20 for a d20 roll when physical dice roll under the couch mid-session. That range fits on the visual wheel, so the group still gets the suspense of watching it spin.",
       },
       {
         heading: "Statistics sampling demos",
-        body: "Professors pick repeated samples so students see distribution patterns live.",
+        body: "Set a small range such as 1 to 10, turn on no-repeat, and draw the full pool in front of a class. Once the pool empties, Pick random number shows a message instead of a result, which is itself a clean way to demonstrate sampling without replacement.",
       },
       {
-        heading: "Prize number draws",
-        body: "Events map ticket numbers to a range and pick on stage for transparent winner announcements.",
+        heading: "Prize ticket draws on stage",
+        body: "Map the range to the lowest and highest ticket numbers sold, then spin on stage so the audience sees the same pointer and wheel every raffle ticket holder can watch.",
+      },
+      {
+        heading: "Quick number ranges without typing them out",
+        body: "Unlike a plain name wheel, nobody has to paste a list of numbers. Typing two fields, minimum and maximum, builds the whole entry list automatically, including negative ranges such as negative 10 to 10 for a thermometer-reading game.",
+      },
+    ],
+    howToSteps: [
+      "Enter a Minimum and a Maximum in the mode card. Both accept negative numbers, and if Maximum is smaller than Minimum, the tool swaps them automatically rather than showing an error.",
+      "For a range of 30 numbers or fewer, every integer loads onto the visual wheel and the Manage Entries list immediately, with no extra button to press.",
+      "For a range larger than 30 numbers, the wheel graphic is hidden and the page shows how many numbers are in range; press Pick random number for a plain numeric result instead of a spin.",
+      "Turn on No repeat if you want each number to come up once. Drawn numbers leave a shared pool used by both the button and the wheel, and the page shows a running count of how many have already been drawn.",
+      "Press Pick random number for an instant pick, or spin the wheel (when it is shown) for the same draw with a visual spin first.",
+      "Press Reset used to clear the no-repeat pool and draw the full range again, or change Minimum or Maximum, which clears the pool automatically.",
+    ],
+    supplementalSections: [
+      {
+        heading: "Minimum and Maximum can be entered in either order",
+        body: "Typing a larger number in Minimum than in Maximum does not produce an error. The tool always uses the smaller of the two values as the low end of the range and the larger as the high end, so entering Minimum 10 and Maximum 1 still produces the same 1 to 10 range as entering them the usual way around.",
+      },
+      {
+        heading: "When the wheel graphic appears and disappears",
+        body: "The wheel only shows when the range is 30 numbers or fewer and at least 2 numbers are still available to draw. That second condition matters with no-repeat mode on: narrowing a small range down to its last undrawn number removes the wheel graphic, since a wheel needs at least two slices to mean anything, but Pick random number keeps working and still returns that last number correctly.",
+      },
+      {
+        heading: "What happens if Minimum and Maximum are the same number",
+        body: "Setting both fields to the same value, such as Minimum 5 and Maximum 5, defines a range of exactly one number. The status line reads \"Set a valid min to max range with at least two integers\" because the wheel needs at least two slices to display, but Pick random number still works in this case and simply returns that one number every time you press it.",
+      },
+      {
+        heading: "How the no-repeat pool interacts with range changes",
+        body: "The no-repeat pool and the currently shown result both reset automatically the moment you change Minimum or Maximum, even by one. There is no need to press Reset used after changing the range; it only matters if you want to redraw the same range from a fresh pool without changing the numbers.",
       },
     ],
     faqs: [
       {
         question: "How do I set min and max values?",
         answer:
-          "Use the Minimum and Maximum fields in the mode card. For ranges of 30 or fewer, those integers load onto the visual wheel and Manage Entries list as soon as you change either field—no extra button needed.",
+          "Use the Minimum and Maximum fields in the mode card. For ranges of 30 or fewer, those integers load onto the visual wheel and Manage Entries list as soon as you change either field, with no extra button needed.",
+      },
+      {
+        question: "What if I type a larger number in Minimum than in Maximum?",
+        answer:
+          "The tool swaps them automatically and uses the smaller value as the low end of the range, so you do not need to retype the fields in a particular order.",
       },
       {
         question: "What does no-repeat mode do?",
@@ -1028,9 +1063,24 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
           "Drawn numbers leave one shared pool used by both Pick random number and the spin wheel until you tap Reset used or change the range. That prevents duplicate picks in one session.",
       },
       {
-        question: "When do I see a spinning wheel vs a big number?",
+        question: "When do I see a spinning wheel instead of a big number?",
         answer:
-          "Ranges of 30 values or fewer show every integer on the visual wheel; both the button and the wheel draw from that same list. Larger ranges hide the wheel graphic and show the result as a large number so the UI stays readable.",
+          "Ranges of 30 numbers or fewer, with at least 2 numbers still available to draw, show every integer on the visual wheel. Larger ranges, and a no-repeat pool narrowed down to its last number, show the result as a plain number instead.",
+      },
+      {
+        question: "Can Minimum and Maximum be negative?",
+        answer:
+          "Yes. A range such as negative 10 to 10 works the same as any positive range; the pool simply includes the negative integers too.",
+      },
+      {
+        question: "What happens when no-repeat mode runs out of numbers?",
+        answer:
+          "Pick random number shows a message telling you every number in range has been used and to reset to draw again, rather than repeating a number or showing an error.",
+      },
+      {
+        question: "Do I need to press Reset used after changing the range?",
+        answer:
+          "No. Changing Minimum or Maximum clears the no-repeat pool and the shown result automatically. Reset used is only for redrawing the same range again without changing it.",
       },
       {
         question: "Is this cryptographically secure for high-stakes lotteries?",
@@ -1049,26 +1099,56 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "team-generator-wheel": {
     directAnswer:
-      "The Team Generator Wheel spins from your participant list for a quick random pick, and also splits that same roster into balanced teams with round-robin assignment. Paste PE, workshop, or gaming names once, spin or generate squads, and skip captains arguing over who picks first.",
+      "The Team Generator Wheel spins from your participant list for a quick random pick, and also splits that same roster into balanced teams with an unbiased shuffle and round-robin dealing, so team sizes never differ by more than one person. Paste PE, workshop, or gaming names once, spin or generate squads, and skip captains arguing over who picks first.",
     title: "Team Generator Wheel, Balanced Group Splits",
     metaDescription:
       "Split PE classes, office workshops, or gaming lobbies into balanced teams from one name list, spin for a quick pick or generate squads.",
     useCases: [
       {
         heading: "PE class scrimmages",
-        body: "Gym teachers paste the roster, choose four teams, and generate balanced groups each period.",
+        body: "Gym teachers paste the roster, choose four teams, and generate balanced groups each period. With 24 students and 4 teams, every team gets exactly 6 players, since 24 divides evenly.",
       },
       {
         heading: "Corporate retreat tables",
-        body: "HR pastes attendee names, generates table groups, and breaks silos before brainstorming sessions.",
+        body: "HR pastes attendee names, generates table groups, and breaks silos before brainstorming sessions. Running Generate teams again on the same list reshuffles everyone from scratch, so a second session does not repeat the first session's groupings.",
       },
       {
         heading: "Discord squad nights",
-        body: "Admins paste eight players and generate two stacks so rank grinders cannot stack every ace on one side.",
+        body: "Admins paste eight players and generate two stacks so rank grinders cannot stack every ace on one side. If two players share the same in-game handle, keep them as separate lines; the tool treats each line as its own participant and will not merge matching names into one slot.",
       },
       {
         heading: "Science fair judging pairs",
-        body: "Teachers generate random judge pairs so no student knows who evaluates their board beforehand.",
+        body: "Teachers generate random judge pairs so no student knows who evaluates their board beforehand. Judges with uneven pairs (an odd roster split into pairs) see one team of three rather than a half pair, since round-robin dealing never leaves a team short by more than one person.",
+      },
+      {
+        heading: "A roster bigger than the field's visible maximum",
+        body: "The Number of teams field's spinner arrows stop at 20, but typing a larger number directly still works for a big roster; the real ceiling is always your participant count, not the number shown next to the spinner.",
+      },
+    ],
+    howToSteps: [
+      "Paste the roster into Participant names, one person per line. Duplicate names are not merged here, each line is its own team slot, so give two people the same label only if you want them treated as separate participants with that label.",
+      "Set Number of teams. Typing 1, 0, or a negative number still produces 2 teams, since the tool never generates fewer than 2. Requesting more teams than you have participants is capped at one team per participant.",
+      "Press Generate teams. The roster is shuffled with the same unbiased draw used elsewhere on the site, then dealt round-robin so team sizes differ by at most one person.",
+      "Read the team cards: with n participants split into k teams, the remainder of n divided by k tells you how many teams get one extra person, the rest split evenly.",
+      "Need just one random pick instead of full teams? Spin the wheel shown above the Generate button; it draws from the same roster without creating any teams.",
+      "Edit the roster, either in the Participant names box or the wheel's own entry list, and press Generate teams again. Any previously generated teams clear automatically the moment you change a name.",
+    ],
+    supplementalSections: [
+      {
+        heading: "Exactly how team sizes are decided",
+        body: "After the shuffle, names are dealt one at a time into each team in turn, so with n participants and k teams, n divided by k teams get one extra person and the rest get the even share. Testing the underlying split function directly confirms the exact counts: 8 participants into 2 teams gives 4 and 4, and 7 participants into 3 teams gives 3, 2 and 2, never a team left with zero or a team stacked unfairly larger than the rest.",
+      },
+      {
+        heading: "The 20-team number is a soft limit on the field, not a hard cap",
+        body: "The Number of teams input's up and down arrows stop at 20, which fits ordinary classroom and office rosters, but typing a bigger number directly is not blocked by that field. The only real ceiling the tool enforces is one team per participant, so a 40-person roster can still be split into more than 20 teams if you type the number in rather than clicking the arrows.",
+      },
+      {
+        heading: "Duplicate names are kept separate, unlike some other tools on this site",
+        body: "Team Generator does not merge repeated names the way the Secret Santa assignment mode does. If \"Sam\" appears twice in your roster, both lines are shuffled and dealt as two separate participants, which may or may not place them on the same team. Use distinct labels, such as a last initial, if it matters which team each Sam ends up on.",
+      },
+      {
+        heading: "Reshuffling does not remember earlier results",
+        body: "Each press of Generate teams runs an independent shuffle of the full roster; it does not avoid repeating a pairing from an earlier run or try to balance who played with whom over multiple sessions. For a series that should mix people up across weeks, keep a simple note of past groupings yourself if that matters for your group.",
       },
     ],
     faqs: [
@@ -1080,17 +1160,37 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "How many teams can I create?",
         answer:
-          "Set the team count (2–20, up to your roster size). Names distribute round-robin so sizes stay within one person.",
+          "At least 2 and at most one team per participant. The field's spinner arrows stop at 20, but typing a larger number works for bigger rosters; the real limit is always your participant count.",
+      },
+      {
+        question: "What happens if I type 1 or 0 for the number of teams?",
+        answer:
+          "The tool still creates 2 teams. It never generates fewer than 2, regardless of what number you type.",
       },
       {
         question: "Does it balance skill levels automatically?",
         answer:
-          "Random assignment spreads players evenly over many runs; for strict skill balance, order star players manually first.",
+          "No. Random assignment spreads players evenly over many runs by chance, not by skill; for strict skill balance, order star players manually across teams yourself before generating.",
+      },
+      {
+        question: "Are duplicate names merged into one team slot?",
+        answer:
+          "No. Each line in the roster is treated as its own participant, even if the text matches another line exactly, so a repeated name can land on either team independently.",
+      },
+      {
+        question: "Does the team split stay fair if the roster does not divide evenly?",
+        answer:
+          "Yes. Teams differ by at most one person. With 7 participants split into 3 teams, for example, one team gets 3 and the other two get 2 each, never a team of 1 or a team left empty.",
       },
       {
         question: "Can I reuse the same roster weekly?",
         answer:
-          "Paste the same list each time, or keep the tab open. Team labels are the generated groups, not fixed browser storage for this tool.",
+          "Paste the same list each time, or keep the tab open. Each Generate teams press reshuffles from scratch and does not remember or avoid earlier weeks' groupings.",
+      },
+      {
+        question: "Can I still just spin for one random pick instead of full teams?",
+        answer:
+          "Yes. The spin wheel above the Generate button uses the same roster and gives a single random result without creating any teams.",
       },
     ],
     relatedWheels: [
@@ -1105,59 +1205,104 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "winner-picker-wheel": {
     directAnswer:
-      "The Winner Picker Wheel draws giveaway champions from pasted Instagram or TikTok comment lists with duplicate-entry cleanup and screen-record proof you can post to Stories. Paste @handles, dedupe repeat tags, spin live, and archive the video for US sweepstakes disclosure basics, official rules, free entry, no purchase necessary, not legal advice. Brands gain transparent winner moments followers trust.",
+      "The Winner Picker Wheel draws one or more giveaway winners from a pasted list of Instagram or TikTok handles, cleaning up duplicates and formatting automatically, then spins once per winner and auto-removes each pick so prize tiers never repeat a name. Paste @handles, set how many winners you need, spin on camera, and use the proof and share controls to back up your announcement. This covers the random draw only; US sweepstakes still need written official rules and are not something this page provides legal advice on.",
     title: "Winner Picker Wheel, IG and TikTok Draws",
     metaDescription:
       "Paste commenter @handles, remove duplicate entries, spin live, and screen-record proof for Instagram or TikTok giveaway winners.",
     useCases: [
       {
         heading: "Instagram comment giveaways",
-        body: "Export eligible @usernames, paste them in, spin on camera, and post the recording to your Story.",
+        body: "Export eligible usernames, paste them in with or without the @ sign, spin on camera, and post the recording to your Story. Typing a name without an @ still works, the tool adds one automatically.",
       },
       {
         heading: "TikTok live prize drops",
-        body: "Hosts spin between songs so chat sees the exact moment a handle wins merch.",
+        body: "Hosts spin between songs so chat sees the exact moment a handle wins merch. Set Winners to draw to 1 for a single quick pick between songs, no need to wait for a removal animation.",
       },
       {
         heading: "Multi-tier prize rounds",
-        body: "Spin for grand prize, remove the winner, respin for runner-up slots without duplicate names.",
+        body: "Set Winners to draw to the number of prizes, such as 3 for grand prize plus two runner-ups, and spin repeatedly. Each picked name is removed automatically after about a second, so later spins only draw from people who have not already won, down to the last two remaining entrants.",
       },
       {
         heading: "Local business raffles",
-        body: "Coffee shops paste receipt numbers or emails, spin at closing time, and email the clip to participants.",
+        body: "Coffee shops paste receipt numbers or emails, spin at closing time, and email the clip to participants. Commas also separate entries, so a comma-separated export works without reformatting into one name per line first.",
+      },
+      {
+        heading: "A single clean pick with no setup",
+        body: "Leave the paste box empty and the wheel still works, loaded with six example handles so you can test the spin, timing, and proof link before pasting your real entrant list.",
+      },
+    ],
+    howToSteps: [
+      "Paste your entrant list into the box, one handle per line or separated by commas. Leave it blank to try the tool first; six example handles load automatically until you paste your own.",
+      "Each entry is formatted to start with exactly one @ sign, even if you typed it without one or with several. Duplicate handles are detected without case sensitivity and removed, and the page shows how many were removed.",
+      "Set Winners to draw. For more than one winner, each spin removes the picked name automatically; for exactly one winner, no removal happens since the draw finishes after a single spin.",
+      "Spin the wheel. If Winners to draw is more than 1, keep spinning. Each new unique name is added to the Winners list until it reaches the number you asked for.",
+      "The proof and share controls appear once the Winners list is complete. Use Reset draw at any point to clear the current winners and spin again from the full list.",
+      "Screen record the spins as your own evidence for followers; the proof link is a timestamped record of the draw, not a replacement for that recording or for written contest rules.",
+    ],
+    supplementalSections: [
+      {
+        heading: "How @handle cleanup works",
+        body: "Typing a name with no @ sign, one @ sign, or several in a row all normalize to exactly one leading @. Duplicate detection then compares handles without case sensitivity, so \"@Alex\" and \"@alex\" count as the same entrant; whichever spelling appears first in your pasted list is the one that stays on the wheel, and the later copy is dropped silently from the count shown under the box.",
+      },
+      {
+        heading: "Why remove-after-pick stops at two remaining entries",
+        body: "When Winners to draw is more than 1, a picked name is removed from the wheel about 1.2 seconds after the spin stops, but removal pauses once only two entrants remain. That is the same rule the Random Name Picker Wheel uses: the wheel never empties itself down to one or zero names, so the final two entrants stay available even if the draw technically still needs more unique winners.",
+      },
+      {
+        heading: "Asking for more winners than you have entrants",
+        body: "Because removal stops at two remaining names, a draw that asks for more unique winners than there are entrants on the list can never finish. For example, setting Winners to draw to 5 with only 3 unique handles pasted means the Winners list can reach at most 3 names; the proof and share controls, which only appear once the list reaches the number requested, will never show up. Keep Winners to draw at or below your entrant count.",
+      },
+      {
+        heading: "The Winners to draw field has the same soft limit as other tools here",
+        body: "Its spinner arrows stop at 20, matching the Team Generator Wheel and Random Number Wheel fields, but typing a bigger number directly is not blocked by the field itself. The number that actually matters is your entrant count, for the reason above, not the 20 shown next to the arrows.",
       },
     ],
     faqs: [
       {
         question: "How do I handle duplicate entries?",
         answer:
-          "Search your pasted list for repeated @handles and delete extras before spinning so each person appears once.",
+          "You do not need to. Duplicate @handles are detected without case sensitivity and removed automatically as soon as you paste the list, and the page shows how many were removed.",
       },
       {
         question: "What proof should I save for followers?",
         answer:
-          "Screen-record the full spin, note the date, and share the clip or a hosted link in your winner announcement post.",
+          "Screen record the full spin, note the date, and share the clip or a hosted link in your winner announcement post. The built-in proof link is a timestamped record of the draw, not a substitute for that recording.",
       },
       {
         question: "Does this satisfy US contest disclosure rules?",
         answer:
-          "You still need written official rules covering eligibility, odds, and NO PURCHASE NECESSARY, consult counsel for regulated promos; this wheel only randomizes picks.",
+          "No. You still need written official rules covering eligibility, odds and \"no purchase necessary\" wording, and should consult counsel for a regulated promotion; this page only randomizes the pick.",
       },
       {
         question: "Can I pick multiple winners in one session?",
         answer:
-          "Spin, remove the winner, and repeat until every prize tier has a unique name.",
+          "Yes. Set Winners to draw to the number you need and keep spinning. Each unique name is removed from the wheel after its pick, down to the last two entrants, and added to the Winners list until it is full.",
+      },
+      {
+        question: "What happens if I ask for more winners than I have entrants?",
+        answer:
+          "The draw cannot complete. Removal stops once two entrants remain, so the Winners list can never reach a target higher than your entrant count, and the proof controls only appear once that target is met.",
+      },
+      {
+        question: "Can Winners to draw go above the 20 shown on the field?",
+        answer:
+          "Yes, typing a larger number directly still works. The field's arrows stop at 20, but the real limit on how many winners you can draw is your entrant count, not that number.",
+      },
+      {
+        question: "What happens if I clear the paste box?",
+        answer:
+          "The wheel falls back to six example handles rather than showing an empty wheel, so you always have something to test a spin with.",
       },
       {
         question: "Does it pull comments automatically from Instagram?",
         answer:
-          "No API import, you paste the eligible list you exported or copied from the platform.",
+          "No API import. You paste the eligible list you exported or copied from the platform yourself.",
       },
     ],
     relatedWheels: [
-      { slug: "instagram-wheel-picker", anchor: "Instagram-focused giveaway wheel" },
       { slug: "random-name-picker-wheel", anchor: "General Wheel of Names" },
       { slug: "secret-santa-wheel-generator", anchor: "Holiday name assignment" },
+      { slug: "raffle-wheel", anchor: "Multi-winner prize draw" },
       { slug: "coin-flip-wheel", anchor: "Coin-flip tiebreaker" },
       { slug: "random-number-wheel", anchor: "Numbered ticket draw" },
     ],
