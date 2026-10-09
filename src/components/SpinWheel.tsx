@@ -387,13 +387,16 @@ export const SpinWheel = ({
     [isControlled],
   );
 
+  // Compute the next list outside the state updater: calling the parent's setState from inside an
+  // updater (the old approach) runs during render and caused "Maximum update depth exceeded" loops
+  // when entry names were edited on controlled wheels.
   const commitEntries = useCallback(
     (updater: WheelEntry[] | ((prev: WheelEntry[]) => WheelEntry[])) => {
-      setEntries((prev) => {
-        const next = typeof updater === "function" ? updater(prev) : updater;
-        emitLabelChange(next);
-        return next;
-      });
+      const prev = entriesRef.current;
+      const next = typeof updater === "function" ? updater(prev) : updater;
+      entriesRef.current = next;
+      setEntries(next);
+      emitLabelChange(next);
     },
     [emitLabelChange],
   );

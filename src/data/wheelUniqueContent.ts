@@ -258,16 +258,41 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
     metaDescription:
       "Pick a texting context to swap outcomes, spin once, then wait out the cooldown before another roll so overthinking slows down.",
     useCases: [
-      { heading: "Post-first-date anxiety", body: "Casual context offers short hello vs wait-until-tomorrow outcomes instead of a midnight novel." },
-      { heading: "Mixed signals nights", body: "Mixed signals chips favor clarifying questions, waiting, or deleting the draft." },
-      { heading: "High emotion spirals", body: "High emotion pools lean toward not texting tonight and journaling first, then the cooldown locks re-spins." },
-      { heading: "Friend interventions", body: "Pass the phone, choose a context together, and honor one spin plus the cooldown." },
+      { heading: "Post-first-date anxiety", body: "Pick Casual. Its six outcomes mix light contact (send a short hello, react to their story first, ask one low-stakes question) with holding back (wait until tomorrow, draft it but do not send, leave it for now). Half the wheel says go and half says wait, so the spin works as a nudge to stop circling rather than as a verdict." },
+      { heading: "Mixed signals nights", body: "Mixed signals loads: send a clarifying question, wait for them to reply first, call instead of texting, delete the draft, text a friend for a sanity check, and sleep on it. Only two of the six involve contacting them (a clarifying question or a call); the rest slow things down or bring in a second opinion." },
+      { heading: "High emotion spirals", body: "None of the six High emotion outcomes tells you to send a message: do not text tonight, delete the draft, journal first then decide, wait 24 hours, mute the thread temporarily, or talk in person later. That is deliberate. Strong feelings are the worst moment to hit send, and the one-minute cooldown makes rapid re-spinning harder." },
+      { heading: "Friend interventions", body: "Pass the phone, pick the context together, and agree to honour one spin plus the cooldown. Agreeing the rule before the spin matters more than the result itself." },
+      { heading: "Drafting before you spin", body: "Write the message in your notes app first, then spin. If the wheel says wait or delete the draft, you still have the wording ready for tomorrow and you have not sent anything you might regret." },
+    ],
+    howToSteps: [
+      "Choose the context that matches how you feel: Casual, Mixed signals or High emotion. Each one loads its own six outcomes onto the wheel, listed under \"On the wheel now\".",
+      "Read the six outcomes before you spin and decide that you will take the result seriously for a few minutes. If you already know you will ignore any answer you do not like, it is better not to spin.",
+      "Press SPIN THE WHEEL. The spin timer is 7 seconds by default and can be set from 3 seconds to 1 minute. The slice under the pointer when the wheel stops is your outcome.",
+      "Wait out the cooldown. After a spin the wheel dims and a counter reads \"Cooldown: Ns before the next spin\", counting down from 60 seconds. It is a speed bump against re-rolling until you get the answer you wanted, not a hard lock: reloading the page resets it.",
+      "Do the one thing the result says, or nothing at all. If you want different wording, edit the entries list under the wheel; your edits stay until you pick a different context.",
+    ],
+    supplementalSections: [
+      {
+        heading: "What is on each wheel",
+        body: "Casual: send a short hello, wait until tomorrow, react to their story first, draft it but do not send yet, ask one low-stakes question, leave it for now. Mixed signals: send a clarifying question, wait for them to reply first, call instead of texting, delete the draft, text a friend for a sanity check, sleep on it. High emotion: do not text tonight, delete the draft, journal first then decide, wait 24 hours, mute the thread temporarily, talk in person later. Each wheel has six equal slices, so every outcome has a 1 in 6 chance, about 16.7%. Delete the draft appears in both Mixed signals and High emotion.",
+      },
+      {
+        heading: "How each spin is decided",
+        body: "When you press the button, the wheel chooses a random total rotation using your browser's cryptographic random number generator (crypto.getRandomValues, with Math.random only as a fallback in browsers that lack it). The animation plays that rotation out, and the slice at the pointer is the result. The spin timer only changes how long the spin takes, and earlier results never influence the next one. Our How Randomness Works page explains the method in more depth.",
+      },
+      {
+        heading: "What this wheel is for, and what it is not",
+        body: "It interrupts rumination: it gives you a small, low-stakes reason to stop re-reading a thread and do something else. It is not relationship advice and it cannot tell you how the other person feels. If the situation involves pressure, threats, stalking or you feel unsafe, do not use a wheel; talk to someone you trust or a local support service.",
+      },
     ],
     faqs: [
-      { question: "What do the context chips change?", answer: "Each chip loads a different curated outcome set (casual, mixed signals, or high emotion) onto the wheel before you spin." },
-      { question: "What is the cooldown?", answer: "After a spin, the wheel locks for about 60 seconds so impulsive re-rolls are harder when feelings are loud." },
+      { question: "What do the context chips change?", answer: "Each chip loads a different curated set of six outcomes (Casual, Mixed signals, or High emotion) onto the wheel before you spin. The outcomes for each chip are listed under \"On the wheel now\"." },
+      { question: "What is the cooldown?", answer: "After a spin, the wheel dims and a 60-second countdown runs before you can spin again, so impulsive re-rolls are harder when feelings are loud. It is a speed bump rather than a hard lock, and reloading the page resets it." },
+      { question: "Does the wheel ever tell me to send a message?", answer: "Sometimes, depending on the context. Casual includes three outcomes that involve messaging them, Mixed signals includes two (a clarifying question or a call), and High emotion includes none that involve sending a message; its only contact outcome is talking in person later." },
+      { question: "Is every outcome equally likely?", answer: "Yes. Each context has six equal slices, so every outcome has a 1 in 6 chance on each spin, and earlier spins never change the odds." },
       { question: "Is this relationship advice?", answer: "No. It is a playful randomizer that interrupts rumination. Trust your boundaries and context." },
-      { question: "Can I rename slices?", answer: "Yes. Edit labels after a context loads if you need Should I text her or call instead." },
+      { question: "Can I use it for someone other than him?", answer: "Yes. The outcomes are not gendered, so the wheel works for any person you are deciding whether to text." },
+      { question: "Can I rename slices?", answer: "Yes. Edit labels in the entries list after a context loads if you want different wording. Your edits stay until you choose another context." },
     ],
     relatedWheels: [
       { slug: "yes-or-no-wheel", anchor: "Binary yes-or-no wheel" },
@@ -286,16 +311,40 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
     metaDescription:
       "Set occasion and weather filters to rebuild outfit slices, then spin a matching look for work, casual days, or dates.",
     useCases: [
-      { heading: "Rainy commute mornings", body: "Pick Work plus Rain to keep waterproof shells and boots in the pool." },
-      { heading: "Hot weekend plans", body: "Casual plus Heat favors linen, shorts, and breathable layers." },
-      { heading: "Date night packing", body: "Date occasion with Any weather spins statement tops and dress-plus-jacket combos." },
-      { heading: "Capsule closet days", body: "Filters shrink options so a small wardrobe still feels intentional." },
+      { heading: "Rainy commute mornings", body: "Pick Work and Rain. Eight looks stay on the wheel, including Waterproof shell + jeans and Trench + boots, along with the work outfits that are tagged for any weather. Spin once and the question of what to wear is settled before the umbrella hunt starts." },
+      { heading: "Hot weekend plans", body: "Casual and Heat leaves 12 looks, from Tee + jeans and Linen shirt + shorts to Tank + wide pants. The pool drops anything tagged only for rain, so you are not offered a trench coat on a hot day." },
+      { heading: "Date night packing", body: "Date with Any weather shows 13 looks, from Nice jeans + statement top to Simple dress + jacket. If you already know the forecast, narrow it: Date and Rain keeps 9 looks, Date and Heat keeps 11." },
+      { heading: "Capsule closet days", body: "Replace the preset names with your own clothes in the entries list under the wheel. Your edits stay until you change a filter, so a small wardrobe can still produce a different combination each morning." },
+      { heading: "Mornings you are short on time", body: "Set a rule before you spin: you wear what the wheel picks unless it is clearly unsuitable for the day, and you may re-spin once. The point is to remove ten minutes of deliberating, not to find the perfect outfit." },
+    ],
+    howToSteps: [
+      "Choose an occasion: Work, Casual or Date. Casual is selected when the page opens.",
+      "Choose the weather: Any weather (the default), Rain or Heat. The wheel rebuilds immediately, and the page shows how many looks match, for example 14 for Casual with Any weather.",
+      "Read the list under the filters. The labels are generic ideas such as Blazer + trousers or Hoodie + joggers, so match each one to something you own.",
+      "Optional: edit the names in the entries list to your real clothes. Your edits stay until you change a filter, which rebuilds the wheel from the dataset again.",
+      "Press SPIN THE WHEEL. The spin timer is 7 seconds by default and can be set from 3 seconds to 1 minute. The slice under the pointer when the wheel stops is today's look.",
+    ],
+    supplementalSections: [
+      {
+        heading: "How the filters work",
+        body: "The wheel is built from a list of 22 outfit ideas, each tagged with the occasions and weather it suits. Rain and Heat keep the looks tagged for that weather and also the looks tagged for any weather, so Rain means \"works when it rains\", not \"only rain gear\". Any weather applies no weather filter at all, so every look tagged for the occasion appears, including rain-only and heat-only ones. Looks per combination, Any weather / Rain / Heat: Work 8 / 8 / 6, Casual 14 / 8 / 12, Date 13 / 9 / 11. One look can belong to several occasions, which is why the three Any weather counts (8, 14 and 13) add up to more than 22.",
+      },
+      {
+        heading: "How each spin is decided",
+        body: "When you press the button, the wheel chooses a random total rotation using your browser's cryptographic random number generator (crypto.getRandomValues, with Math.random only as a fallback in browsers that lack it). The animation plays that rotation out, and the slice at the pointer is the result. Every look on the wheel has the same size slice, so the same chance, and earlier spins never influence the next one. Our How Randomness Works page explains the method in more depth.",
+      },
+      {
+        heading: "What this wheel cannot do",
+        body: "It does not know your wardrobe, the temperature in degrees, your office dress code or what suits you. Treat the result as a prompt to stop deliberating and swap anything that does not fit the day. The list is a fixed set of everyday ideas, not a personal style recommendation.",
+      },
     ],
     faqs: [
-      { question: "How do occasion and weather work together?", answer: "Both toggles filter one structured dataset. Only outfits tagged for that occasion and weather (or any-weather) stay on the wheel." },
-      { question: "Does the wheel know my wardrobe?", answer: "No inventory tracking. You interpret each label with whatever hangs in your closet." },
+      { question: "How do occasion and weather work together?", answer: "Both choices filter one list of 22 outfit ideas. Only looks tagged for that occasion, and for that weather or for any weather, stay on the wheel. The page shows how many looks match." },
+      { question: "Does Rain show only rain outfits?", answer: "No. Rain keeps rain-tagged looks and also looks tagged for any weather, so Work with Rain has 8 looks. Pick Any weather to see everything tagged for the occasion." },
+      { question: "How many outfits are there?", answer: "The list has 22 outfit ideas in total. Each filter combination leaves between 6 and 14 of them on the wheel, depending on the occasion and weather you choose." },
+      { question: "Does the wheel know my wardrobe?", answer: "No inventory tracking. You interpret each label with whatever hangs in your closet, or replace the names with your own clothes." },
       { question: "What occasions are available?", answer: "Work, Casual, and Date. Pair any of them with Any weather, Rain, or Heat." },
-      { question: "Can I edit the resulting list?", answer: "Yes. After filters load slices, edit names on the wheel if you want personal outfits." },
+      { question: "Can I edit the resulting list?", answer: "Yes. After a filter loads its looks, edit the names in the entries list under the wheel if you want personal outfits. Changing a filter rebuilds the list and replaces your edits." },
     ],
     relatedWheels: [
       { slug: "date-night-wheel", anchor: "Date night outfit pairing" },
@@ -632,14 +681,38 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
     metaDescription:
       "Enter a birth year to highlight the matching Chinese zodiac animal, then spin the twelve-animal wheel for class, parties, or trivia.",
     useCases: [
-      { heading: "Lunar New Year classroom units", body: "Students look up their birth year, then present customs for the highlighted animal." },
-      { heading: "Restaurant promotion nights", body: "Owners look up the year of the table host and feature a zodiac-themed dish special." },
-      { heading: "Family reunion games", body: "Relatives enter birth years and spin conversation starters about each person's animal." },
-      { heading: "Museum scavenger hunts", body: "Visitors calculate their animal, then find one artifact related to that creature in the gallery." },
+      { heading: "Lunar New Year classroom units", body: "Students type their birth year, press Show animal, and see their animal pinned first on the wheel. Each student can then present customs or traits linked to that animal. Remind classmates born in January or February that the animal changes at the Lunar New Year, so they should check the date for their birth year." },
+      { heading: "Restaurant promotion nights", body: "Owners look up the year of the table host and feature a zodiac-themed dish special. Spinning the twelve-animal wheel with the whole table gives everyone a quick, shared moment before ordering." },
+      { heading: "Family reunion games", body: "Relatives enter birth years and the page shows lines such as \"Year 1958 → Dog\". Spin the wheel afterwards to pick whose animal everyone talks about next." },
+      { heading: "Museum scavenger hunts", body: "Visitors work out their animal, then find one artifact related to that creature in the gallery. The wheel gives groups a random animal to hunt for when nobody wants to go first." },
+      { heading: "Checking one year quickly", body: "You do not need to spin to use the lookup. Type any year from 1900 to 2100 and press Show animal: 1994 gives Dog, 2000 gives Dragon and 2026 gives Horse." },
+    ],
+    howToSteps: [
+      "Type a four-digit year between 1900 and 2100 into the Birth year box.",
+      "Press Show animal. The line under the box reads, for example, \"Year 1994 → Dog\", and that animal moves to the first slice of the wheel.",
+      "If you only want a random animal, skip the lookup and spin the twelve-animal wheel as it is.",
+      "Press SPIN THE WHEEL. The spin timer is 7 seconds by default and can be set from 3 seconds to 1 minute. The animal under the pointer when the wheel stops is the result.",
+      "For anyone born in January or February, check the Lunar New Year date for that year. The animal changes at the Lunar New Year, not on 1 January, and this page counts calendar years only.",
+    ],
+    supplementalSections: [
+      {
+        heading: "How the year lookup works",
+        body: "The twelve animals repeat in a fixed cycle: Rat, Ox, Tiger, Rabbit, Dragon, Snake, Horse, Goat, Monkey, Rooster, Dog and Pig. The tool counts from 1900, a Rat year, and uses the remainder after dividing the years since 1900 by twelve. That is why 1900 gives Rat, 1994 gives Dog, 2000 gives Dragon and 2026 gives Horse. The real boundary is the Lunar New Year, which falls between about 21 January and 20 February, so someone born before it in their birth year belongs to the previous year's animal. If the year is outside 1900 to 2100, or is not a number, nothing is highlighted.",
+      },
+      {
+        heading: "Does pinning an animal change the odds?",
+        body: "No. Pressing Show animal only moves that animal to the first slice so it is easy to find. All twelve slices are the same size, so each animal has a 1 in 12 chance, about 8.3%, on every spin. The animation is the selection: the wheel picks a random total rotation with your browser's cryptographic random number generator (crypto.getRandomValues, with Math.random only as a fallback) and the animal at the pointer is the result.",
+      },
+      {
+        heading: "What this wheel does not do",
+        body: "It does not look up Lunar New Year dates, give personality readings or check compatibility, and it is meant for games, classes and curiosity rather than for predictions. Traditions vary between cultures and regions. The Goat in this list is called the Sheep or the Ram in some places.",
+      },
     ],
     faqs: [
-      { question: "How does the birth-year calculator work?", answer: "Enter a year between 1900 and 2100 and tap Show animal. The tool maps the year onto the twelve-animal cycle and pins that animal first on the wheel." },
-      { question: "Is the year mapping exact for lunar New Year?", answer: "It uses a Gregorian approximation. Births in late January or early February can fall in the prior animal depending on the lunar New Year date that year." },
+      { question: "How does the birth-year calculator work?", answer: "Enter a year between 1900 and 2100 and tap Show animal. The tool maps the year onto the twelve-animal cycle and pins that animal first on the wheel. For example, 1994 shows Dog and 2000 shows Dragon." },
+      { question: "Is the year mapping exact for lunar New Year?", answer: "No, it uses calendar years. The animal really changes at the Lunar New Year, which falls between about 21 January and 20 February, so births in January or February can belong to the previous year's animal." },
+      { question: "What happens if I type a year outside 1900 to 2100?", answer: "Nothing is highlighted, and any animal you looked up earlier is cleared. The lookup only works for years from 1900 to 2100." },
+      { question: "Does my animal have a better chance on the wheel?", answer: "No. Show animal only moves your animal to the first slice. All twelve animals have the same 1 in 12 chance on every spin." },
       { question: "Which animals are included?", answer: "Rat, Ox, Tiger, Rabbit, Dragon, Snake, Horse, Goat, Monkey, Rooster, Dog, and Pig." },
       { question: "How is this different from Western zodiac?", answer: "Chinese astrology uses a twelve-year animal cycle, not monthly sun signs. Use the Western zodiac wheel for month-and-day signs." },
     ],
@@ -1043,36 +1116,72 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
     useCases: [
       {
         heading: "Kindergarten letter-of-the-day",
-        body: "Teachers spin, exclude prior letters, and build crafts around whichever glyph remains.",
+        body: "Spin, then uncheck the letter once the class has covered it, so the next spin only offers letters you have not done yet. Build the craft or phonics activity around whichever letter comes up. The page does not remember unchecked letters after a reload, so keep a list of the letters you have already done.",
       },
       {
         heading: "Scattergories starter",
-        body: "Hosts spin one letter; every answer that round must begin with that character.",
+        body: "Hosts spin one letter, and every answer that round must begin with it. Classic Scattergories letter dice leave out hard letters such as Q, U, V, X, Y and Z, so uncheck those six first. That leaves 20 letters, each with a 5% chance.",
       },
       {
         heading: "Spelling bee warm-ups",
-        body: "Coaches spin vowels only by excluding all consonants temporarily for pronunciation drills.",
+        body: "To drill vowels, uncheck every consonant so only A, E, I, O and U remain, each with a 20% chance. It takes a few clicks, so set it up before the session starts, then spin once per word.",
       },
       {
         heading: "Password game nights",
-        body: "Teams spin letters to seed codenames before the guessing round begins.",
+        body: "Teams spin letters to seed codenames before the guessing round begins. Spin once per team so every team starts from a different letter.",
+      },
+      {
+        heading: "ESL vocabulary starts",
+        body: "Tutors spin a letter and ask the learner to say three words that begin with it. Uncheck letters the learner finds especially hard, or add them back later as confidence grows.",
+      },
+    ],
+    howToSteps: [
+      "Open the page. The wheel starts with all 26 letters, and the line under the checkboxes reads \"26 letters active on the wheel\".",
+      "Uncheck any letter you want to leave out. The wheel rebuilds at once and the count updates. Every letter that stays has the same chance.",
+      "Keep at least two letters checked. With fewer than two, the wheel is replaced by a message asking you to enable at least two letters.",
+      "Optional: press Projector fullscreen for a classroom screen. The spin button becomes a large TAP TO SPIN control, and Exit projector returns to the normal page.",
+      "Press SPIN THE WHEEL. The spin timer is 7 seconds by default and can be set from 3 seconds to 1 minute. The letter under the pointer when the wheel stops is the result.",
+      "If a letter should not come up again, uncheck it before the next spin. Letters are not removed automatically after a spin.",
+    ],
+    supplementalSections: [
+      {
+        heading: "How the odds work",
+        body: "Every active letter has a slice of the same size, so its chance is 1 divided by the number of active letters. With all 26 letters that is about 3.8% each. With 20 letters it is 5% each, with 5 vowels 20% each, and with only two letters left it is a plain 50/50. Unchecking a letter never favours any other letter: the remaining letters simply share the odds equally.",
+      },
+      {
+        heading: "How each spin is decided",
+        body: "When you press the button, the wheel chooses a random total rotation using your browser's cryptographic random number generator (crypto.getRandomValues, with Math.random only as a fallback in browsers that lack it). The animation plays that rotation out, and the letter at the pointer is the result. The spin timer only changes how long the spin takes, and earlier letters never influence the next one. Our How Randomness Works page explains the method in more depth.",
+      },
+      {
+        heading: "What this wheel does not do",
+        body: "It does not remember which letters you used, check spelling or supply word lists. It gives you a random letter and leaves the game to you. For multiple-choice call-outs use the ABCD Spin Wheel, and for random words use the random word wheel.",
       },
     ],
     faqs: [
       {
         question: "How does exclude-letters work?",
         answer:
-          "Deactivate or delete any letter after it is picked so the next spin only considers remaining characters in the alphabet.",
+          "Uncheck a letter and it leaves the wheel immediately, so the next spin only considers the letters that are still checked. The line under the checkboxes shows how many letters are active.",
+      },
+      {
+        question: "Are all letters equally likely?",
+        answer:
+          "Yes. Each active letter has a slice of the same size, so each has the same chance, about 3.8% with all 26 letters and higher as you uncheck more.",
+      },
+      {
+        question: "Why does the wheel disappear?",
+        answer:
+          "The wheel needs at least two letters. If you uncheck all but one, it is replaced by a message asking you to enable at least two letters. Check another letter and the wheel returns.",
+      },
+      {
+        question: "Does it remember my unchecked letters?",
+        answer:
+          "Not after a reload. The unchecked letters live only on the page you have open, so keep your own list if a game runs across several sessions.",
       },
       {
         question: "Can I spin lowercase letters?",
         answer:
-          "Edit slice text to a, b, c if young readers need lowercase practice.",
-      },
-      {
-        question: "Does it include digraphs?",
-        answer:
-          "Default slices are single A–Z letters; add TH or CH manually for advanced phonics.",
+          "Yes. Under the wheel, press Expand on the Entries List, then change the text of any entry, for example from A to a, if young readers need lowercase practice. Checking or unchecking letters rebuilds the wheel from the capital letters again.",
       },
       {
         question: "Is it smartboard friendly?",
