@@ -684,26 +684,56 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "zodiac-sign-wheel": {
     directAnswer:
-      "The Zodiac Sign Wheel randomly highlights one of twelve Western star signs, Aries through Pisces, for party games, astrology study, or social posts. Spin during sleepovers to assign faux readings, let classroom groups research whichever sign lands, or screenshot results for Instagram stories. Each sign occupies an equal slice, so every spin gives every constellation the same chance.",
+      "The Zodiac Sign Wheel randomly highlights one of twelve Western star signs, Aries through Pisces, for party games, astrology study, or social posts, and it can also look up the tropical sign for any month and day you type in. Spin during sleepovers to assign faux readings, let classroom groups research whichever sign lands, or type a birthday to pin that sign first on the wheel before spinning for something else. Each sign occupies an equal slice, so every spin gives every constellation the same chance regardless of which one is highlighted.",
     title: "Zodiac Sign Wheel, Random Star Sign Draw",
     metaDescription:
       "Hosting an astrology-themed hangout? Spin Aries through Pisces at random and build games, readings, or posts around whichever sign appears.",
     useCases: [
       {
         heading: "Sleepover personality games",
-        body: "Guests spin, then act out stereotypes of the assigned sign while others guess which one landed.",
+        body: "Guests spin, then act out stereotypes of the assigned sign while others guess which one landed. Typing a guest's real birthday first, pressing Show sign, and spinning afterward turns the same wheel into a quick who-am-I round before the acting starts.",
       },
       {
         heading: "Content prompt calendars",
-        body: "Creators spin weekly to decide which sign gets a dedicated TikTok or Reel that week.",
+        body: "Creators spin weekly to decide which sign gets a dedicated TikTok or Reel that week. Since highlighting a sign only reorders the list and never changes its odds, a creator cannot rig the week's topic by entering a birthday first; the spin stays an honest 1 in 12 draw either way.",
       },
       {
         heading: "Classroom research prompts",
-        body: "Students spin a sign and present one historical figure or myth tied to that constellation.",
+        body: "Students spin a sign and present one historical figure or myth tied to that constellation, or a teacher types a student's birthday to pin their real sign first and spin for a classmate's sign as a comparison.",
       },
       {
         heading: "Compatibility icebreakers",
-        body: "Pairs spin two signs, one each, and compare popular compatibility charts for laughs, not life decisions.",
+        body: "Pairs spin two signs, one each, and compare popular compatibility charts for laughs, not life decisions. Looking up both birthdays first with Show sign is faster than spinning twice if the point is the comparison rather than the randomness.",
+      },
+      {
+        heading: "Checking a birthday without spinning at all",
+        body: "The month and day lookup works on its own. Type a birthday and press Show sign to see the tropical sign immediately; spinning the wheel afterward is optional if all you needed was the lookup.",
+      },
+    ],
+    howToSteps: [
+      "To spin for a random sign, press SPIN THE WHEEL directly. All twelve signs load as equal slices as soon as the page opens, so no setup is required.",
+      "To look up a specific birthday instead, enter the month (1 to 12) and day (1 to 31) in the Birth date card, then press Show sign.",
+      "The matching tropical sign is named on the page and moved to the first position in the \"On the wheel now\" list and on the wheel itself. This only reorders the list; it does not resize any slice or change the odds.",
+      "If the month or day you typed is outside 1 to 12 or 1 to 31, or if you clear the fields, no sign is highlighted and the list returns to its default order.",
+      "Deactivate or remove a sign from the entries list under the wheel if you want a game to cover only unused signs on later spins.",
+      "Scroll down for the zodiac dates table, the ruling-planet table, and the party-game dare list absorbed from this page's earlier companion pages, useful reference while you play.",
+    ],
+    supplementalSections: [
+      {
+        heading: "How the birth date lookup works",
+        body: "Each sign is stored as a start and end month and day (for example Leo runs July 23 to August 22). Typing a month and day checks it against all twelve ranges and highlights the one that matches, the same boundary dates shown in the Zodiac Sign Dates table further down this page. Tracing the lookup directly: July 27 matches Leo, March 20 matches Pisces, and March 21, one day later, matches Aries, so the Pisces-to-Aries boundary falls exactly where the dates table says it does.",
+      },
+      {
+        heading: "What happens with a date that is not real",
+        body: "The lookup checks that the month is 1 to 12 and the day is 1 to 31, but it does not check whether that day actually exists in that month. Typing February 30 is accepted by the form and still returns a sign (Pisces, the same as February 19 to March 20), because the check only compares the numbers you typed against each sign's start and end day, not against a real calendar. Enter a genuine birthday for a meaningful result.",
+      },
+      {
+        heading: "Highlighting a sign never changes its odds",
+        body: "Show sign only moves the matching sign to the front of the list; the wheel still has twelve equal slices, so every sign keeps the same 1 in 12 chance on the next spin whether it was highlighted or not. This is the same rule the Chinese Zodiac Wheel's birth-year lookup follows, and it applies even if you look up several birthdays in a row before spinning.",
+      },
+      {
+        heading: "Leap years and the day 29 edge case",
+        body: "The lookup only reads the month and day you type, never the year, so it treats February 29 the same in every year, leap or not. February 29 falls after the Pisces start date of February 19, so it correctly returns Pisces regardless of whether that February actually has 29 days.",
       },
     ],
     faqs: [
@@ -715,7 +745,22 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Does the wheel know my birth date?",
         answer:
-          "Enter month and day, then Show sign. The matching tropical sign is highlighted and pinned first on the wheel. This is not a natal chart.",
+          "Only if you type it in. Enter month and day, then Show sign, and the matching tropical sign is named on the page and pinned first on the wheel. This is not a natal chart and nothing you type is saved or sent anywhere.",
+      },
+      {
+        question: "Does entering my birthday give my sign better odds on the spin?",
+        answer:
+          "No. Show sign only reorders the list so your sign appears first; the wheel keeps twelve equal slices, so every sign still has the same 1 in 12 chance on the next spin.",
+      },
+      {
+        question: "What if I enter a date that does not exist, like February 30?",
+        answer:
+          "The form accepts any day from 1 to 31 for any month without checking the real length of that month, so an impossible date like February 30 still returns a sign (Pisces) instead of an error. Use a real birthday for a meaningful result.",
+      },
+      {
+        question: "Where exactly is the cutoff between two signs, like Pisces and Aries?",
+        answer:
+          "March 20 is the last day of Pisces and March 21 is the first day of Aries in this tool, matching the Zodiac Sign Dates table further down the page. Every sign boundary on the wheel follows that same table.",
       },
       {
         question: "Can I remove signs already used in a game?",
@@ -730,15 +775,15 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Is Chinese zodiac included?",
         answer:
-          "This wheel focuses on Western signs; use the Chinese Zodiac Wheel for Rat-through-Pig animals.",
+          "This wheel focuses on Western signs; use the Chinese Zodiac Wheel for Rat-through-Pig animals, looked up by birth year instead of month and day.",
       },
     ],
     relatedWheels: [
       { slug: "chinese-zodiac-wheel", anchor: "Chinese zodiac animal wheel" },
       { slug: "date-night-wheel", anchor: "Astrology date night ideas" },
-      { slug: "truth-or-dare-spinner-online", anchor: "Party truth or dare spinner" },
-      { slug: "random-color-wheel", anchor: "Lucky color of the day" },
-      { slug: "random-day-picker-wheel", anchor: "Lucky day picker" },
+      { slug: "self-care-wheel", anchor: "Daily wellness spinner" },
+      { slug: "yes-or-no-wheel", anchor: "Quick yes-no decision wheel" },
+      { slug: "random-name-picker-wheel", anchor: "Name picker for party games" },
     ],
   },
 
