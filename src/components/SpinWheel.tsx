@@ -365,20 +365,7 @@ export const SpinWheel = ({
     ) {
       return entriesFromLabels(presetOptionLabels);
     }
-    // Load from localStorage or use defaults
-    const saved = localStorage.getItem("spinWheelEntries");
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        // Ensure all entries have active property
-        return (parsed as WheelEntry[]).map((entry) => ({
-          ...entry,
-          active: entry.active !== undefined ? entry.active : true,
-        }));
-      } catch (e) {
-        console.error("Failed to parse saved entries:", e);
-      }
-    }
+    // Defaults for server render and the first client render; saved entries load after mount.
     return [
       { id: "1", text: "Jahangir", color: defaultColors[0], active: true },
       { id: "2", text: "Mudabber", color: defaultColors[1], active: true },
@@ -443,9 +430,35 @@ export const SpinWheel = ({
   const [spinDurationSeconds, setSpinDurationSeconds] = useState(() =>
     shareFromUrl?.duration != null
       ? shareFromUrl.duration
-      : readSavedSpinDurationSeconds(),
+      : DEFAULT_SPIN_DURATION_SECONDS,
   );
   const [lastSpinEntryCount, setLastSpinEntryCount] = useState(0);
+  const [storageReady, setStorageReady] = useState(false);
+
+  // Restore saved entries/duration in the browser only (keeps server HTML and first client render identical).
+  useEffect(() => {
+    if (!usePreset && !shareFromUrl?.entries?.length) {
+      try {
+        const saved = localStorage.getItem("spinWheelEntries");
+        if (saved) {
+          const parsed = JSON.parse(saved) as WheelEntry[];
+          setEntries(
+            parsed.map((entry) => ({
+              ...entry,
+              active: entry.active !== undefined ? entry.active : true,
+            })),
+          );
+        }
+      } catch (e) {
+        console.error("Failed to parse saved entries:", e);
+      }
+    }
+    if (shareFromUrl?.duration == null) {
+      setSpinDurationSeconds(readSavedSpinDurationSeconds());
+    }
+    setStorageReady(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pointerRef = useRef<HTMLDivElement>(null);
   const [loadedImages, setLoadedImages] = useState<
@@ -557,11 +570,12 @@ export const SpinWheel = ({
   }, [winner, winnerId, autoRemoveWinner, entries.length, lastSpinEntryCount]);
 
   useEffect(() => {
+    if (!storageReady) return;
     localStorage.setItem(
       SPIN_DURATION_STORAGE_KEY,
       String(spinDurationSeconds),
     );
-  }, [spinDurationSeconds]);
+  }, [spinDurationSeconds, storageReady]);
 
   const incrementSpinCounter = () => {
     fetch("/api/spin-counter", {
@@ -576,11 +590,11 @@ export const SpinWheel = ({
 
   // Save entries to localStorage whenever they change (skip preset/programmatic wheels)
   useEffect(() => {
-    if (!usePreset) {
+    if (!usePreset && storageReady) {
       localStorage.setItem("spinWheelEntries", JSON.stringify(entries));
     }
     entriesRef.current = entries;
-  }, [entries, usePreset]);
+  }, [entries, usePreset, storageReady]);
 
   // Inbound ?e= / ?d= hydrate React state on mount; then strip those params from the bar.
   useEffect(() => {

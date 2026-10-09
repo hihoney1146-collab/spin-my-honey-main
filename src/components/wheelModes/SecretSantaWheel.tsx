@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -216,8 +216,10 @@ export function SecretSantaWheel() {
 }
 
 function SecretSantaRevealBanner() {
-  const params = new URLSearchParams(window.location.search);
-  const token = params.get("reveal");
+  const [token, setToken] = useState<string | null>(null);
+  useEffect(() => {
+    setToken(new URLSearchParams(window.location.search).get("reveal"));
+  }, []);
   if (!token) return null;
 
   try {

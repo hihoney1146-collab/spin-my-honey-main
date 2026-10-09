@@ -4,7 +4,7 @@
 
 import fs from "fs";
 import path from "path";
-import { fileURLToPath } from "url";
+import { fileURLToPath, pathToFileURL } from "url";
 import {
   fixedRouteMeta,
   canonicalUrl,
@@ -580,6 +580,33 @@ if (!fs.existsSync(indexPath)) {
 }
 
 const template = fs.readFileSync(indexPath, "utf-8");
+
+// ---- Static site generation: render the real React app for each route (single source of truth) ----
+process.env.NODE_ENV = process.env.NODE_ENV || "production";
+const ssrEntryPath = path.join(root, "dist-server", "entry-server.js");
+const ssgDisabled = process.env.SSG_DISABLE === "1";
+let ssrRender = null;
+if (!ssgDisabled && fs.existsSync(ssrEntryPath)) {
+  ({ render: ssrRender } = await import(pathToFileURL(ssrEntryPath).href));
+}
+if (ssrRender) console.log("SSG: rendering pages from the React app (dist-server/entry-server.js)");
+else console.warn("WARN: SSG disabled or dist-server missing; falling back to the legacy static shell.");
+/** Routes that stay client-redirect stubs or dynamic shells: keep the legacy HTML. */
+const SSG_SKIP = new Set([
+  ...LEGACY_NOINDEX_PAGE_PATHS,
+  "/result",
+]);
+function injectApp(html, appHtml) {
+  return html.replace(/<div id="root"><\/div>/i, () => `<div id="root" data-ssr="true">${appHtml}</div>`);
+}
+async function buildPageHtml(route) {
+  if (!ssrRender || SSG_SKIP.has(route.path)) return applyRouteHead(template, route);
+  const appHtml = await ssrRender(route.path);
+  if (!/<h1[\s>]/i.test(appHtml)) {
+    throw new Error(`SSG: no <h1> rendered for ${route.path} (would hurt SEO)`);
+  }
+  return injectApp(applyRouteHead(template, { ...route, seoContent: undefined }), appHtml);
+}
 const wheels = loadWheelPages();
 const blogRoutes = collectBlogRouteMeta(root, { canonicalUrl, SITE });
 const blogPosts = collectBlogPostsFull(root);
@@ -594,7 +621,12 @@ console.log("🚀 Generating static HTML pages with route-specific metadata...\n
 
 for (const route of routes) {
   if (route.path === "/") {
-    const homeHtml = applyRouteHead(template, route);
+    // spa.html = clean app shell (no server-rendered content) for client-only routes (/embed/*, /result/*)
+    fs.writeFileSync(
+      path.join(distPath, "spa.html"),
+      applyRouteHead(template, { ...route, seoContent: undefined }),
+    );
+    const homeHtml = await buildPageHtml(route);
     fs.writeFileSync(indexPath, homeHtml);
     console.log("✅ / (index.html) updated with home metadata");
     continue;
@@ -605,7 +637,7 @@ for (const route of routes) {
     fs.mkdirSync(routePath, { recursive: true });
   }
 
-  const pageHtml = applyRouteHead(template, route);
+  const pageHtml = await buildPageHtml(route);
   fs.writeFileSync(path.join(routePath, "index.html"), pageHtml);
   console.log(`✅ ${route.path}/index.html`);
 }

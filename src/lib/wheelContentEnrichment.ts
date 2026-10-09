@@ -640,8 +640,16 @@ const BLOG_WHEEL_MAP: Record<string, string[]> = {
   "random-student-picker": [
     "random-name-picker-fair-fun-easy",
     "best-spin-wheel-games-for-students",
+    "classroom-spinner-beyond-name-picking",
   ],
-  "team-generator-wheel": ["best-icebreaker-games-office-meetings"],
+  "classroom-spinner": [
+    "best-spin-wheel-games-for-students",
+    "classroom-spinner-beyond-name-picking",
+  ],
+  "team-generator-wheel": [
+    "best-icebreaker-games-office-meetings",
+    "spin-wheel-team-building-activities",
+  ],
   "winner-picker-wheel": ["random-name-picker-fair-fun-easy", "fair-raffle-without-paper-tickets"],
   "dinner-picker-wheel": ["fun-ways-decide-where-to-eat-couples"],
   "fast-food-wheel": ["fun-ways-decide-where-to-eat-couples"],

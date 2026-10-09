@@ -1,73 +1,34 @@
-# Welcome to your Lovable project
+# Online Spin Wheel
 
-## Project info
+Source code for [onlinespinwheel.fun](https://onlinespinwheel.fun): free online spin wheels (name picker, yes/no, raffle, Secret Santa and more) that run in the browser.
 
-**URL**: https://lovable.dev/projects/0c916c5d-0497-4045-a026-878ae9399398
+## Stack
 
-## How can I edit this code?
+- Vite, React 18, TypeScript, React Router
+- Tailwind CSS and shadcn/ui components
+- Static site generation: every public route is rendered to HTML at build time (`src/entry-server.tsx`, `scripts/generate-static-pages.mjs`) and hydrated in the browser
+- Hosting: Vercel (static output plus one serverless function, `api/spin-counter.js`)
 
-There are several ways of editing your application.
+## Local development
 
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/0c916c5d-0497-4045-a026-878ae9399398) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+Requires Node.js 18 or newer and npm.
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+npm install
+npm run dev        # dev server on http://localhost:8080
 ```
 
-**Edit a file directly in GitHub**
+## Production build
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```sh
+npm run build:prod # client bundle, server bundle, then static HTML for every route into dist/
+npm run audit:all  # SEO and content audits against dist/
+npm run test:unit  # unit tests
+```
 
-**Use GitHub Codespaces**
+`npm run build` runs the full pipeline used for deployment (it also regenerates the sitemap, OG images and other generated assets first).
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Notes
 
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/0c916c5d-0497-4045-a026-878ae9399398) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+- Page titles, descriptions and structured data per route come from `scripts/seo-routes.mjs` and `scripts/static-page-meta.mjs`.
+- Code that runs during rendering must not touch `window`, `document` or `localStorage` directly; read browser-only state inside `useEffect` so the server HTML and the first client render stay identical.

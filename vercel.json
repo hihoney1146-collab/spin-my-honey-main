@@ -42,8 +42,8 @@
     { "source": "/sitemap-index.xml", "destination": "/sitemap.xml", "permanent": true }
   ],
   "rewrites": [
-    { "source": "/embed/:slug*", "destination": "/index.html" },
-    { "source": "/result/:id+", "destination": "/index.html" }
+    { "source": "/embed/:slug*", "destination": "/spa.html" },
+    { "source": "/result/:id+", "destination": "/spa.html" }
   ],
   "routes": [
     {

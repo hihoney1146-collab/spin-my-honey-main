@@ -24,6 +24,8 @@ function routeFile(routePath) {
 function extractSeoMain(html) {
   let main =
     html.match(/<main[^>]*data-static-seo[^>]*>([\s\S]*?)<\/main>/i)?.[1] ||
+    // Server-rendered React pages: scan only the page's own <main> (shared header/footer are site chrome).
+    html.match(/<main[^>]*id=["']main-content["'][^>]*>([\s\S]*?)<\/main>/i)?.[1] ||
     html.match(/<body[^>]*>([\s\S]*?)<\/body>/i)?.[1] ||
     "";
   return main.replace(/<nav[^>]*aria-label=["']Explore more["'][\s\S]*?<\/nav>/i, "");

@@ -22,6 +22,8 @@ const LEGAL_ROUTES = new Set([
   "/cookie-policy",
   "/terms-and-conditions",
   "/disclaimer",
+  // Contact form page: crawler HTML now equals what visitors see, so no padding to reach the threshold.
+  "/contact-us",
 ]);
 
 function routeFile(route) {
