@@ -103,9 +103,15 @@ const SpinWheelFairnessStudy = () => {
           <Button asChild className="mt-4 gap-2" variant="secondary">
             <a href={studyData.csvUrl} download>
               <Download className="h-4 w-4" />
-              Download CSV ({studyData.totalSpins.toLocaleString()} spin rows)
+              Download CSV ({studyData.summaries.reduce((n, s) => n + s.distribution.length, 0)} rows, aggregated from {studyData.totalSpins.toLocaleString()} spins)
             </a>
           </Button>
+          <p className="text-xs text-muted-foreground mt-2">
+            The CSV has one row per slice per segment-count configuration (
+            {studyData.summaries.reduce((n, s) => n + s.distribution.length, 0)} rows total), each
+            with the observed count out of {studyData.spinsPerConfig.toLocaleString()} spins for
+            that configuration. It is not a row-by-row log of all {studyData.totalSpins.toLocaleString()} individual spins.
+          </p>
         </Card>
 
         <section className="mb-10">
