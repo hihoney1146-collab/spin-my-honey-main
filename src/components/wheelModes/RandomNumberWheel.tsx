@@ -8,6 +8,7 @@ import { SpinWheel } from "@/components/SpinWheel";
 import { Hash, RotateCcw } from "lucide-react";
 import { toast } from "sonner";
 import { useControlledWheelLabels } from "@/lib/useControlledWheelLabels";
+import { randomInt } from "@/lib/secureShuffle";
 
 type RandomNumberWheelProps = {
   presetOptionLabels?: string[];
@@ -15,9 +16,8 @@ type RandomNumberWheelProps = {
 
 function pickRandomLabel(labels: string[]): string | null {
   if (labels.length === 0) return null;
-  const buf = new Uint32Array(1);
-  crypto.getRandomValues(buf);
-  return labels[buf[0] % labels.length] ?? null;
+  // Rejection sampling: `value % length` would favour the first few labels very slightly.
+  return labels[randomInt(labels.length)] ?? null;
 }
 
 export function RandomNumberWheel(_props: RandomNumberWheelProps) {

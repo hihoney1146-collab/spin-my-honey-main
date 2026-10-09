@@ -32,6 +32,7 @@ import confetti from "canvas-confetti";
 import { toast } from "sonner";
 import { gtagEvent } from "@/lib/analytics";
 import { cryptoRandom } from "@/lib/cryptoRandom";
+import { shuffle } from "@/lib/secureShuffle";
 import {
   buildWheelShareUrl,
   parseWheelShareParams,
@@ -615,6 +616,20 @@ export const SpinWheel = ({
     stripShareEntryParamsFromUrl();
   }, [shareEnabled]);
 
+  // Wheels whose list is owned by a parent (name picker, team generator, filters...) would otherwise
+  // replace shared entries with their own defaults. Hand the shared names to the parent once, after the
+  // parent's own mount effects have run (hence the zero-delay timer).
+  useEffect(() => {
+    if (!isControlled) return;
+    const sharedLabels = shareFromUrl?.entries;
+    if (!sharedLabels?.length) return;
+    const id = window.setTimeout(() => {
+      onEntryLabelsChangeRef.current?.(sharedLabels);
+    }, 0);
+    return () => window.clearTimeout(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const copyShareLink = async () => {
     const labels = entries.filter((e) => e.active).map((e) => e.text);
     const url = buildWheelShareUrl(location.pathname, {
@@ -624,10 +639,19 @@ export const SpinWheel = ({
       streamBg: streamerMode ? streamBg : undefined,
     });
     if (!url) {
-      toast.error("Add at least one entry before copying a link.");
+      toast.error(
+        labels.filter((l) => l.trim()).length === 0
+          ? "Add at least one entry before copying a link."
+          : "This wheel has too many or too long entries to fit in a link.",
+      );
       return;
     }
-    await navigator.clipboard.writeText(url);
+    try {
+      await navigator.clipboard.writeText(url);
+    } catch {
+      toast.error("Could not copy automatically. Your browser blocked clipboard access.");
+      return;
+    }
     toast.success("Wheel link copied, bookmark or send to your class.");
     gtagEvent("wheel_share_link_copied", { event_category: "engagement" });
   };
@@ -1080,7 +1104,7 @@ export const SpinWheel = ({
   };
 
   const shuffleEntries = () => {
-    const shuffled = [...entries].sort(() => Math.random() - 0.5);
+    const shuffled = shuffle(entries);
     commitEntries(shuffled);
     playSoundEffect("click");
     toast.success("Entries shuffled!");

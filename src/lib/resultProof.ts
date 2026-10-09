@@ -1,3 +1,5 @@
+import { base64UrlToUtf8, utf8ToBase64Url } from "./base64Url";
+
 export const RESULT_METHOD = "crypto-rng" as const;
 
 export type ResultProofPayload = {
@@ -25,19 +27,9 @@ export type ResultProofPayload = {
   tw?: string;
 };
 
-function toBase64Url(json: string): string {
-  return btoa(json)
-    .replace(/\+/g, "-")
-    .replace(/\//g, "_")
-    .replace(/=+$/, "");
-}
-
-function fromBase64Url(token: string): string {
-  const padded = token.replace(/-/g, "+").replace(/_/g, "/");
-  const pad =
-    padded.length % 4 === 0 ? padded : padded + "=".repeat(4 - (padded.length % 4));
-  return atob(pad);
-}
+// Unicode-safe: winners and labels in any script must survive the round trip.
+const toBase64Url = utf8ToBase64Url;
+const fromBase64Url = base64UrlToUtf8;
 
 export function encodeResultId(payload: ResultProofPayload): string {
   return toBase64Url(JSON.stringify(payload));

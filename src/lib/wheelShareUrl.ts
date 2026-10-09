@@ -2,6 +2,7 @@ const MAX_SHARE_ENTRIES = 120;
 const MAX_ENCODED_LEN = 1800;
 
 import { parseStreamBgParam, streamBgToUrlParam } from "./streamerMode";
+import { base64UrlToUtf8, utf8ToBase64Url } from "./base64Url";
 
 export type WheelShareState = {
   entries: string[];
@@ -10,19 +11,9 @@ export type WheelShareState = {
   streamBg?: string;
 };
 
-function toBase64Url(text: string): string {
-  return btoa(text)
-    .replace(/\+/g, "-")
-    .replace(/\//g, "_")
-    .replace(/=+$/, "");
-}
-
-function fromBase64Url(token: string): string {
-  const padded = token.replace(/-/g, "+").replace(/_/g, "/");
-  const pad =
-    padded.length % 4 === 0 ? padded : padded + "=".repeat(4 - (padded.length % 4));
-  return atob(pad);
-}
+// Unicode-safe: names in any script (Urdu, Arabic, Chinese, emoji) must survive the round trip.
+const toBase64Url = utf8ToBase64Url;
+const fromBase64Url = base64UrlToUtf8;
 
 /** Encode wheel labels into a compact share token (pipe-separated, base64url). */
 export function encodeWheelEntries(entries: string[]): string | null {

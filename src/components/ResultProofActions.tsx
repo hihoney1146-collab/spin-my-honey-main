@@ -36,8 +36,12 @@ export function ResultProofActions({
 
   const copyAgain = async () => {
     if (!proofUrl) return;
-    await navigator.clipboard.writeText(proofUrl);
-    toast.success("Proof link copied.");
+    try {
+      await navigator.clipboard.writeText(proofUrl);
+      toast.success("Proof link copied.");
+    } catch {
+      toast.error("Could not copy automatically. Select the link and copy it by hand.");
+    }
   };
 
   if (winners.length === 0) return null;

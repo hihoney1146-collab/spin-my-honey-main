@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Users, Shuffle } from "lucide-react";
 import { toast } from "sonner";
 import { SpinWheel } from "@/components/SpinWheel";
+import { balancedTeams } from "@/lib/secureShuffle";
 import {
   duplicateNotice,
   labelsToMultiline,
@@ -17,12 +18,8 @@ const DEFAULT_NAMES =
   "Alex\nJordan\nSam\nTaylor\nCasey\nMorgan\nRiley\nQuinn";
 
 function buildBalancedTeams(names: string[], teamCount: number): string[][] {
-  const shuffled = [...names].sort(() => crypto.getRandomValues(new Uint32Array(1))[0] - 2 ** 31);
-  const teams: string[][] = Array.from({ length: teamCount }, () => []);
-  shuffled.forEach((name, i) => {
-    teams[i % teamCount].push(name);
-  });
-  return teams.filter((t) => t.length > 0);
+  // Fisher-Yates shuffle, then deal round-robin so team sizes differ by at most one.
+  return balancedTeams(names, Math.min(Math.max(1, teamCount), names.length));
 }
 
 export function TeamGeneratorWheel() {

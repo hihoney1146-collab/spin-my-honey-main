@@ -154,9 +154,10 @@ const ResultPage = () => {
             </Card>
 
             <p className="text-sm text-muted-foreground mt-6 leading-relaxed">
-              This page is a read-only record encoded in the link itself, no account or database
-              lookup. Hosts share it on Instagram, TikTok, or email so entrants can verify the draw
-              was fair.
+              This page is a read-only record encoded in the link itself, with no account or database
+              lookup. Hosts share it on Instagram, TikTok or email as a note of what was drawn and
+              when. Anyone can build a link like this, so it is a record, not proof that the draw was
+              fair. Ask the host to show the entry list and the draw itself.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
