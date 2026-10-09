@@ -38,6 +38,7 @@ const MOVIES: MovieItem[] = [
   { label: "Classic horror", mood: ["horror"], length: ["any"] },
   { label: "Psychological thriller", mood: ["horror"], length: ["any"] },
   { label: "Found-footage scare", mood: ["horror"], length: ["any", "short"] },
+  { label: "Short horror anthology", mood: ["horror"], length: ["short"] },
   { label: "Creature feature", mood: ["horror"], length: ["any"] },
   { label: "Horror comedy", mood: ["horror"], length: ["any"] },
   { label: "Slow-burn dread", mood: ["horror"], length: ["any"] },

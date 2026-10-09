@@ -134,46 +134,80 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
     useCases: [
       {
         heading: "Weeknight family meals",
-        body: "Parents paste six kid-approved dinners onto the wheel Sunday night, then spin each evening so nobody argues about repeating spaghetti again.",
+        body: "Open the entries list (it is expanded by default on this page), replace the preset names with six dinners the whole family accepts, and spin each evening. Your edits stay until you switch to a different filter chip, so keep the list you like before you explore the others.",
       },
       {
         heading: "Roommate cooking rotation",
-        body: "Assign each slice to a roommate's signature dish; whoever's meal lands cooks while the others set the table.",
+        body: "Type each roommate's signature dish as a slice; whoever's meal lands cooks while the others set the table. Agree before the first spin whether a dish can repeat two nights in a row.",
       },
       {
         heading: "Meal-prep variety",
-        body: "Batch cooks spin among protein bowls, sheet-pan veggies, and soup bases so Sunday prep covers four distinct flavors.",
+        body: "Pick the Cook at home chip for six ready-made ideas such as Sheet-pan veggies and protein or One-pot pasta. Spin four times on Sunday and write down the four results so prep covers four distinct dinners.",
       },
       {
         heading: "Dietary reset weeks",
-        body: "Health-focused households load only Mediterranean, vegetarian, or low-sodium options, making randomness align with nutrition goals.",
+        body: "Replace the preset names with only the meals that fit your plan, such as Mediterranean, vegetarian or low-sodium options, so the randomness stays inside your nutrition goals.",
+      },
+      {
+        heading: "Using up what is in the fridge",
+        body: "The Leftovers chip loads six ideas, from Fried rice with leftovers to Clean-out-fridge omelet. Spin when you would otherwise order delivery, and cook whichever slice comes up.",
+      },
+    ],
+    howToSteps: [
+      "Choose a filter chip: Cuisine (the default), Leftovers, Delivery, Cook at home, or Fast-casual / chains. Each chip loads its own list of meal ideas onto the wheel.",
+      "Read \"On the wheel now\" under the chips to see the exact list and how many options it holds.",
+      "Optional: edit the names in the entries list under the wheel, for example to the six dinners your household actually eats. Your edits stay until you switch to another chip, which loads that chip's list again.",
+      "Press SPIN THE WHEEL. The spin timer is 7 seconds by default and can be set from 3 seconds to 1 minute. The slice under the pointer when the wheel stops is tonight's dinner.",
+      "Agree on a rule before you spin, such as one re-spin allowed or none. Then cook, order or heat up whatever the wheel picked.",
+    ],
+    supplementalSections: [
+      {
+        heading: "What is on each wheel",
+        body: "Cuisine has 8 options: Italian pasta, Mexican tacos, Thai curry, Japanese bowls, Indian dal and rice, Mediterranean mezze, Chinese stir-fry and American comfort food. Leftovers, Delivery, Cook at home and Fast-casual / chains each have 6. That means each Cuisine option has a 1 in 8 chance (12.5%) and every option on the other four wheels has a 1 in 6 chance (about 16.7%) on every spin.",
+      },
+      {
+        heading: "How to make the odds your own",
+        body: "Every slice is the same size, so the way to favour a meal is to list it more than once. Typing the same dinner on two of six slices gives it a 2 in 6 chance, about 33%. To cut a meal out, press Remove beside its name in the entries list, or press Deactivate to keep it in the list without putting it on the wheel. Keep the list short: with more than about a dozen slices the labels get hard to read on a phone.",
+      },
+      {
+        heading: "How each spin is decided",
+        body: "When you press the button, the wheel chooses a random total rotation using your browser's cryptographic random number generator (crypto.getRandomValues, with Math.random only as a fallback in browsers that lack it). The animation plays that rotation out, and the slice at the pointer is the result. The spin timer only changes how long the spin takes, and earlier results never influence the next one. Our How Randomness Works page explains the method in more depth.",
+      },
+      {
+        heading: "What this wheel does not do",
+        body: "It does not know allergies, dietary needs, what is in your fridge or what anyone dislikes. The preset ideas are generic, so remove anything that is unsafe or unsuitable for your household before you spin.",
       },
     ],
     faqs: [
       {
         question: "What do the dinner filter chips change?",
         answer:
-          "Cuisine, leftovers, delivery, cook-at-home, and fast-casual/chains each load a different meal list onto the wheel. The default Cuisine chip owns the pool as soon as the page opens.",
+          "Cuisine, Leftovers, Delivery, Cook at home, and Fast-casual / chains each load a different meal list onto the wheel: 8 options for Cuisine and 6 for each of the others. Cuisine is selected when the page opens.",
       },
       {
         question: "Where did the fast-food wheel go?",
         answer:
-          "It redirects here. Use the Fast-casual / chains chip for burger, pizza, chicken sandwich, taco, and similar chain-style picks.",
+          "It redirects here. Use the Fast-casual / chains chip for burger, pizza, chicken sandwich, taco, sandwich shop and coffee-plus-bakery picks.",
       },
       {
         question: "What if someone hates the result?",
         answer:
-          "Agree on a one-respin rule before spinning, or remove disliked options permanently so the wheel only shows meals everyone accepts.",
+          "Agree on a one-respin rule before spinning, or remove disliked options so the wheel only shows meals everyone accepts. Edits to the entries list stay until you switch chips.",
+      },
+      {
+        question: "Are all options equally likely?",
+        answer:
+          "Yes. Every slice is the same size, so each option has the same chance. With the Cuisine chip that is 1 in 8, and with the other chips 1 in 6. To favour a meal, list it on more than one slice.",
       },
       {
         question: "How many dinner options fit?",
         answer:
-          "There is no practical cap for home use. Paste a dozen weekly meals and the wheel resizes slices automatically.",
+          "The page has no fixed limit, but the entries list shows 10 names per page, and the wheel gets hard to read with more than about a dozen slices. A weekly list of 6 to 8 meals works well.",
       },
       {
         question: "Does it work for lunch planning too?",
         answer:
-          "Swap the labels to sandwiches, leftovers, or cafeteria choices and use the same wheel at noon.",
+          "Yes. Edit the entries to sandwiches, leftovers or cafeteria choices and use the same wheel at noon.",
       },
     ],
     relatedWheels: [
@@ -195,26 +229,60 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
     useCases: [
       {
         heading: "Friday family movie night",
-        body: "Kids add three animated picks, parents add two dramas, and the wheel decides which disc or stream opens first.",
+        body: "Choose Cozy, which leaves 9 gentle options such as Family adventure, Gentle animation and Feel-good comedy. Or press Paste my watchlist, let everyone add a title, and let the wheel decide which one opens first.",
       },
       {
         heading: "Genre roulette dates",
-        body: "Couples who never agree on horror versus comedy load both genres, spin once, and dress the couch accordingly.",
+        body: "Couples who never agree on horror versus comedy can start from Any mood, which puts all 20 genre and format ideas on the wheel, including horror ones. Agree before spinning that the result stands, then dress the couch accordingly.",
       },
       {
         heading: "Film club rotations",
-        body: "Book clubs spin among member-nominated titles so nobody hosts twice in a row unless the wheel says so.",
+        body: "Paste the member-nominated titles, one per line, and spin so nobody hosts twice in a row unless the wheel says so. Remove each title once it has been watched.",
+      },
+      {
+        heading: "Short on time",
+        body: "Pick Short to keep only options that fit a quick evening: Animated pick, Stand-up special, Under 100 minutes, Two short episodes instead and similar. Combined with Cozy, that leaves 4 options.",
       },
       {
         heading: "Content creator challenges",
-        body: "Reviewers spin a random genre each week, forcing fresh takes outside their comfort-watch list.",
+        body: "Reviewers spin a random genre each week, forcing fresh takes outside their comfort-watch list. Note the genre first, then pick a title that fits it.",
+      },
+    ],
+    howToSteps: [
+      "Choose a mood: Any mood, Cozy, or Horror / thriller. Any mood shows every option on the list, including the horror ones.",
+      "Choose a length: Any length or Short. The wheel rebuilds immediately, and \"On the wheel now\" shows the exact options and how many there are.",
+      "Or switch to your own list: press Paste my watchlist and type or paste at least two titles, one per line. Those titles become the slices. If you have fewer than two, the wheel shows two reminder slices instead.",
+      "Press SPIN THE WHEEL. The spin timer is 7 seconds by default and can be set from 3 seconds to 1 minute. The slice under the pointer when the wheel stops is tonight's pick.",
+      "The wheel only chooses; it does not stream anything. Open your streaming app or library and play the title or a film that fits the genre.",
+    ],
+    supplementalSections: [
+      {
+        heading: "How many options each filter leaves",
+        body: "The wheel is built from a list of 20 genre and format ideas, each tagged with a mood and a length. Counts for mood and length: Any mood and Any length 20, Any mood and Short 7, Cozy and Any length 9, Cozy and Short 4, Horror / thriller and Any length 7, Horror / thriller and Short 2. Any mood means no mood filter, so horror ideas appear in that pool. Pick Cozy if you want to be sure no horror comes up.",
+      },
+      {
+        heading: "How to weight a favourite",
+        body: "Every slice is the same size, so the way to favour a title or genre is to list it more than once in your watchlist. Typing the same title on two of eight slices gives it a 2 in 8 chance, 25%, instead of 1 in 8, 12.5%. Removing a title takes it out of the draw entirely.",
+      },
+      {
+        heading: "How each spin is decided",
+        body: "When you press the button, the wheel chooses a random total rotation using your browser's cryptographic random number generator (crypto.getRandomValues, with Math.random only as a fallback in browsers that lack it). The animation plays that rotation out, and the slice at the pointer is the result. The spin timer only changes how long the spin takes, and earlier results never influence the next one. Our How Randomness Works page explains the method in more depth.",
+      },
+      {
+        heading: "What this wheel does not do",
+        body: "It does not know your streaming catalogue, ratings or age guidance. The preset slices are broad genre and format ideas, not specific films, so check suitability for children yourself before you press play.",
       },
     ],
     faqs: [
       {
         question: "How do mood and length filters work?",
         answer:
-          "Mood (any, cozy, horror) and length (any, short) rebuild the wheel from a tagged title-style dataset. Horror / thriller is the old horror-movie page dataset. The default Any mood + Any length pool is on the wheel immediately.",
+          "Mood (Any, Cozy, Horror / thriller) and length (Any, Short) rebuild the wheel from a list of 20 tagged genre and format ideas. Any mood and Any length shows all 20, and the page shows how many options are on the wheel.",
+      },
+      {
+        question: "Does Any mood include horror?",
+        answer:
+          "Yes. Any mood is the same as no mood filter, so horror ideas can appear. Choose Cozy to keep them off the wheel.",
       },
       {
         question: "Can I paste Netflix titles directly?",
@@ -229,17 +297,17 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "What if we land on something we already saw?",
         answer:
-          "Remove watched titles after each spin or keep a fresh list of unwatched options only.",
+          "Remove watched titles from your watchlist after each spin, or keep a list of unwatched options only.",
       },
       {
-        question: "Is double-spinting fair for picky groups?",
+        question: "Is re-spinning fair for picky groups?",
         answer:
           "Set a house rule: one spin counts unless everyone agrees to respin. That keeps the tool decisive instead of endless.",
       },
       {
         question: "Can I weight favorites?",
         answer:
-          "Duplicate a beloved genre on multiple slices to increase its odds without excluding other choices entirely.",
+          "Yes. Write a title or genre on more than one slice to increase its odds without excluding the other choices.",
       },
     ],
     relatedWheels: [
@@ -365,36 +433,61 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
     useCases: [
       {
         heading: "New relationship icebreakers",
-        body: "Early daters load low-pressure activities, mini golf, coffee walk, to avoid expensive dinners every Friday.",
+        body: "Early daters can pick Budget to keep expensive dinners off the wheel. That leaves 14 low-cost ideas such as Coffee date, Walk and dessert, Library date and Free park picnic, so the first few dates stay low-pressure.",
       },
       {
         heading: "Anniversary surprises",
-        body: "Partners secretly add dream experiences; the wheel reveals one on the morning of the big day.",
+        body: "One partner can switch to Treat night, which leaves 5 bigger ideas: Nice dinner reservation, Spa-style night in, Concert or show, Dessert tasting flight and Cooking class kit. Spin together, then book the one that lands.",
       },
       {
         heading: "Budget-conscious months",
-        body: "Only free or under-twenty-dollar slices stay active while saving for a bigger trip later.",
+        body: "Choose Budget and keep Where on Anywhere to spin only the 14 low-cost plans. Combine it with At home for 8 ideas or Go out for 7.",
       },
       {
         heading: "Rainy weekend backups",
-        body: "Switch Where to At home and Budget to Budget so indoor plans like escape rooms and cooking classes stay on the wheel without a separate weather app.",
+        body: "Switch Where to At home and Budget to Any budget for 10 indoor ideas such as Board game night, Puzzle night, Living-room picnic and Cooking class kit, without checking a weather app.",
+      },
+      {
+        heading: "Planning in turns",
+        body: "Take turns being the person who picks the filters, and let the other person press SPIN THE WHEEL. Neither partner carries all of the planning, and the result belongs to both of you.",
+      },
+    ],
+    howToSteps: [
+      "Choose where: Anywhere (the default), At home, or Go out.",
+      "Choose a budget: Any budget (the default), Budget, or Treat night. The wheel rebuilds immediately, and the page shows how many plans match, for example 14 for Anywhere with Budget.",
+      "Read the list under the filters and delete or edit any plan that does not suit you in the entries list under the wheel. Your edits stay until you change a filter.",
+      "Press SPIN THE WHEEL. The spin timer is 7 seconds by default and can be set from 3 seconds to 1 minute. The slice under the pointer when the wheel stops is your plan.",
+      "Agree before you spin whether the result is final, then do it. The wheel only picks an idea; you still book any tickets or tables yourself.",
+    ],
+    supplementalSections: [
+      {
+        heading: "How many plans each filter leaves",
+        body: "The wheel is built from 23 date ideas, each tagged with where it happens and its budget. Plans per combination, Any budget / Budget / Treat night: Anywhere 23 / 14 / 5, At home 10 / 8 / 2, Go out 14 / 7 / 3. Some plans fit more than one place, such as Free park picnic, which is tagged for both at home and going out.",
+      },
+      {
+        heading: "How each spin is decided",
+        body: "When you press the button, the wheel chooses a random total rotation using your browser's cryptographic random number generator (crypto.getRandomValues, with Math.random only as a fallback in browsers that lack it). The animation plays that rotation out, and the slice at the pointer is the result. Every plan has an equal chance, so with the full list of 23 each plan has about a 4.3% chance, and with At home and Treat night each of the 2 plans has 50%. Earlier spins never influence the next one. Our How Randomness Works page explains the method in more depth.",
+      },
+      {
+        heading: "What this wheel does not do",
+        body: "It does not know your location, opening hours, budget amounts or accessibility needs. The budget tags are rough categories, not prices, so check costs before you commit. Skip any idea that does not suit one of you.",
       },
     ],
     faqs: [
       {
         question: "How do the Where and Budget filters work?",
         answer:
-          "They independently filter a tagged plan dataset. At home plus Budget shows low-cost indoor plans; Go out plus Treat night shows pricier outings. Both default to Anywhere / Any budget so the full pool is on the wheel immediately.",
+          "They independently filter a list of 23 tagged date ideas. At home plus Budget shows 8 low-cost indoor plans; Go out plus Treat night shows 3 bigger outings. Both default to Anywhere / Any budget so all 23 plans are on the wheel when the page opens.",
       },
       {
         question: "Can we mix at-home and going-out ideas?",
         answer:
-          "Leave Where on Anywhere, or switch between At home and Go out. Budget stays separate so a cheap night out is not mixed with a treat-night reservation unless you choose Any budget.",
+          "Yes. Leave Where on Anywhere to keep both. Budget is a separate filter, so a cheap night out is only mixed with a treat-night reservation if you choose Any budget.",
       },
       {
         question: "What if one partner hates the result?",
         answer:
-          "Set a one-time veto before spinning or remove disliked options permanently from the shared list.",
+          "Set a one-time veto before spinning or remove disliked options from the list. Edits to the list stay until you change a filter.",
       },
       {
         question: "Does it book reservations?",
@@ -402,9 +495,14 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
           "It only picks the activity, you still call the restaurant or buy tickets after the spin.",
       },
       {
+        question: "Is every plan equally likely?",
+        answer:
+          "Yes. Every slice is the same size, so each plan on the wheel has the same chance, and earlier spins never change the odds.",
+      },
+      {
         question: "Can long-distance couples use it?",
         answer:
-          "Spin the same wheel on a video call and do parallel activities like simultaneous cooking or synced movie streams.",
+          "Spin the same wheel on a video call and do parallel activities like simultaneous cooking or synced movie streams. Pick the Anywhere and Budget filters, then edit the list so every plan can be done from two different cities.",
       },
     ],
     relatedWheels: [
@@ -439,6 +537,32 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         heading: "Classroom probability labs",
         body: "Shift the weight slider to 70/30, run multi-flip batches, and compare empirical totals to the displayed odds.",
+      },
+    ],
+    howToSteps: [
+      "Optional: type a question of up to 120 characters, such as \"Who goes first?\". It appears above the coin and is saved with the result.",
+      "Optional: choose a Face preset (Classic gold with Heads and Tails, Blue / Gold, Check / Cross with Yes and No, or the thumbs-up and thumbs-down set) or type your own text for Side A and Side B. You can also add your own image to either side; images stay on your device.",
+      "Optional: move the Weighted odds slider to change Side A's chance anywhere from 1% to 99%. The label next to it always shows the exact odds, for example 70% Heads / 30% Tails.",
+      "Flip: tap the coin, press FLIP THE COIN, or press Space when no text box is selected. The result appears under the coin, and the tally and streak counters update.",
+      "For a match toss, switch on Match toss mode, choose which side calls and which side they call, then flip. The caller wins the toss if the coin lands on the side they called; otherwise the other side wins.",
+      "For many flips at once, set Multi-flip count between 1 and 50 and press the Flip N times button, where N is your count. The page lists the sequence and the totals for each side. Reset stats clears the counters.",
+    ],
+    supplementalSections: [
+      {
+        heading: "What a fair coin looks like over a few flips",
+        body: "On a fair 50/50 setting, 10 flips give exactly 5 of each side only 24.6% of the time, and 4 to 6 of one side 65.6% of the time, so uneven short runs are normal. Streaks are common too: in 20 flips there is a 45.8% chance of at least one run of 5 or more identical results, and in 50 flips there is a 54.4% chance of a run of 6 or more. A streak on its own is not evidence that the coin is biased.",
+      },
+      {
+        heading: "What weighted odds do",
+        body: "The slider sets the chance of Side A on every flip, and Side B gets the rest. At 70/30, Side A wins on average 7 flips in 10, but a short run can still look off: Side A wins 7 or more of 10 flips only about 65% of the time, and 5 or fewer about 15% of the time. Weighted flips are useful for demonstrations and games with handicaps, not for fair decisions between people.",
+      },
+      {
+        heading: "Edge landings",
+        body: "About 1 flip in 6,000 (roughly 0.017%) lands on its edge, and the coin stands upright with a Flip again button. In 50 flips the chance of seeing at least one edge is about 0.8%. Edge results do not count toward either side's tally, are not affected by the weighted odds, and are skipped in a multi-flip batch.",
+      },
+      {
+        heading: "How each flip is decided",
+        body: "Before the animation starts, the page draws the result with your browser's cryptographic random number generator (crypto.getRandomValues, with Math.random only as a fallback in browsers that lack it): first whether the coin lands on its edge, then which side. The spinning and the sound are visual only and cannot change a result that has already been drawn. Our How Randomness Works page and the spin wheel fairness study explain the method in more depth.",
       },
     ],
     faqs: [
