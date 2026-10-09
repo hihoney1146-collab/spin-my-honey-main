@@ -71,16 +71,8 @@ export const comparisonLinks: SiteLinkItem[] = [
     label: "Feature comparison",
   },
   {
-    to: "/comparison-spin-wheel-vs-random-number-generator",
-    label: "Wheel vs random number generator",
-  },
-  {
     to: "/comparison-spin-wheel-vs-traditional-methods",
-    label: "Wheel vs traditional methods",
-  },
-  {
-    to: "/comparison-online-vs-physical-spin-wheels",
-    label: "Online vs physical wheels",
+    label: "Wheel vs hat draw vs number generator",
   },
 ];
 

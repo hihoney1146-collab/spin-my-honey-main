@@ -248,22 +248,10 @@ export const fixedRouteMeta = [
       "An example scenario showing how organizers could run transparent prize draws and raffles at a community event with a spin wheel, with setup steps and tips.",
   },
   {
-    path: "/comparison-spin-wheel-vs-random-number-generator",
-    title: "Spin Wheel vs Random Number Generator | Online Spin Wheel",
-    description:
-      "Compare spin wheels and random number generators for fairness, engagement, and audience visibility.",
-  },
-  {
     path: "/comparison-spin-wheel-vs-traditional-methods",
-    title: "Spin Wheel vs Traditional Methods | Online Spin Wheel",
+    title: "Wheel vs Hat Draw vs Number Generator | Online Spin Wheel",
     description:
-      "Spin wheels vs hats, dice, and paper draws, pros, cons, and when to use each.",
-  },
-  {
-    path: "/comparison-online-vs-physical-spin-wheels",
-    title: "Online vs Physical Spin Wheels | Online Spin Wheel",
-    description:
-      "Online spin wheels vs physical wheels: portability, fairness, customization, and cost.",
+      "When to use a spin wheel, a hat draw or a random number generator: how each one picks, a worked 30-name example, and the limits of each method.",
   },
   {
     path: "/wheel-of-names-alternative",

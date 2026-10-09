@@ -27,14 +27,8 @@ const CaseStudySchoolUsingSpinWheels = lazy(
 const CaseStudyCommunityEventUsingSpinWheels = lazy(
   () => import("./pages/CaseStudyCommunityEventUsingSpinWheels")
 );
-const ComparisonSpinWheelVsRandomNumberGenerator = lazy(
-  () => import("./pages/ComparisonSpinWheelVsRandomNumberGenerator")
-);
 const ComparisonSpinWheelVsTraditionalMethods = lazy(
   () => import("./pages/ComparisonSpinWheelVsTraditionalMethods")
-);
-const ComparisonOnlineVsPhysicalSpinWheels = lazy(
-  () => import("./pages/ComparisonOnlineVsPhysicalSpinWheels")
 );
 const WheelOfNamesAlternative = lazy(
   () => import("./pages/WheelOfNamesAlternative")
@@ -186,26 +180,10 @@ export const AppTree = ({ Router, routerProps = {} }: AppRouterProps) => {
                 }
               />
               <Route
-                path="/comparison-spin-wheel-vs-random-number-generator"
-                element={
-                  <Suspense fallback={<PageLoadingFallback />}>
-                    <ComparisonSpinWheelVsRandomNumberGenerator />
-                  </Suspense>
-                }
-              />
-              <Route
                 path="/comparison-spin-wheel-vs-traditional-methods"
                 element={
                   <Suspense fallback={<PageLoadingFallback />}>
                     <ComparisonSpinWheelVsTraditionalMethods />
-                  </Suspense>
-                }
-              />
-              <Route
-                path="/comparison-online-vs-physical-spin-wheels"
-                element={
-                  <Suspense fallback={<PageLoadingFallback />}>
-                    <ComparisonOnlineVsPhysicalSpinWheels />
                   </Suspense>
                 }
               />

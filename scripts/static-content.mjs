@@ -178,9 +178,7 @@ function exploreNav() {
         ["/spin-wheel-fairness-study", "Fairness study"],
         ["/tutorial-adding-images-to-spin-wheels", "Add images to wheels"],
         ["/wheel-of-names-alternative", "Feature comparison"],
-        ["/comparison-spin-wheel-vs-random-number-generator", "Wheel vs random number generator"],
-        ["/comparison-spin-wheel-vs-traditional-methods", "Wheel vs traditional methods"],
-        ["/comparison-online-vs-physical-spin-wheels", "Online vs physical wheels"],
+        ["/comparison-spin-wheel-vs-traditional-methods", "Wheel vs hat draw vs number generator"],
         ["/case-study-school-using-spin-wheels", "Example: school scenario"],
         ["/case-study-community-event-using-spin-wheels", "Example: community event scenario"],
       ],
@@ -1408,11 +1406,8 @@ const FIXED = {
   "/case-study-school-using-spin-wheels": () => caseStudySchoolContent(),
   "/case-study-community-event-using-spin-wheels": () =>
     caseStudyCommunityContent(),
-  "/comparison-spin-wheel-vs-random-number-generator": () =>
-    comparisonRngContent(),
   "/comparison-spin-wheel-vs-traditional-methods": () =>
     comparisonTraditionalContent(),
-  "/comparison-online-vs-physical-spin-wheels": () => comparisonPhysicalContent(),
   "/wheel-of-names-alternative": () => wheelOfNamesAlternativeContent(),
   "/spin-wheel-fairness-study": () => fairnessStudyContent(),
 };

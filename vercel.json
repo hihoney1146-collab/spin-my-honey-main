@@ -36,6 +36,8 @@
     { "source": "/pick-out-of-a-hat-generator", "destination": "/random-name-picker-wheel", "permanent": true },
     { "source": "/spin-wheel-free", "destination": "/all-spin-wheels", "permanent": true },
     { "source": "/spin-wheel-picker", "destination": "/all-spin-wheels", "permanent": true },
+    { "source": "/comparison-online-vs-physical-spin-wheels", "destination": "/comparison-spin-wheel-vs-traditional-methods", "statusCode": 301 },
+    { "source": "/comparison-spin-wheel-vs-random-number-generator", "destination": "/comparison-spin-wheel-vs-traditional-methods", "statusCode": 301 },
 
     { "source": "/sitemap", "destination": "/sitemap.xml", "permanent": true },
     { "source": "/sitemap.txt", "destination": "/sitemap.xml", "permanent": true },

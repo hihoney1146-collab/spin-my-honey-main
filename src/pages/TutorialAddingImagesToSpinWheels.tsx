@@ -506,10 +506,10 @@ const TutorialAddingImagesToSpinWheels = () => {
                 Blog guides →
               </Link>
               <Link
-                to="/comparison-online-vs-physical-spin-wheels"
+                to="/comparison-spin-wheel-vs-traditional-methods"
                 className="block text-sm font-semibold text-primary hover:underline"
               >
-                Online vs physical wheels →
+                Wheel vs hat draw vs number generator →
               </Link>
               <Link
                 to="/case-study-school-using-spin-wheels"

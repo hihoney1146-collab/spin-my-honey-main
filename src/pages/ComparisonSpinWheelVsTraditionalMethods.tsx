@@ -1,583 +1,300 @@
 import { Card } from "@/components/ui/card";
 import { Helmet } from "react-helmet";
-import {
-  GitCompare,
-  CheckCircle2,
-  XCircle,
-  ArrowRight,
-  Sparkles,
-} from "lucide-react";
 import { Link } from "react-router-dom";
-import { SITE_ORIGIN, RAJA_AUTHOR, siteIdentityJsonLd, articleJsonLd, breadcrumbListJsonLd } from "@/lib/schema";
+import {
+  SITE_ORIGIN,
+  siteIdentityJsonLd,
+  articleJsonLd,
+  breadcrumbListJsonLd,
+  RAJA_AUTHOR,
+} from "@/lib/schema";
 import { ComparisonFeatureTable } from "@/components/ComparisonFeatureTable";
+import { AuthorByline } from "@/components/AuthorByline";
+import { getRouteLastmod } from "@/lib/routeLastmod";
+
+const PATH = "/comparison-spin-wheel-vs-traditional-methods";
+const PAGE_URL = `${SITE_ORIGIN}${PATH}`;
+const TITLE = "Wheel vs Hat Draw vs Number Generator | Online Spin Wheel";
+const DESCRIPTION =
+  "When to use a spin wheel, a hat draw or a random number generator: how each one picks, a worked 30-name example, and the limits of each method.";
+
+const faqs = [
+  {
+    q: "Is a spin wheel fairer than drawing names from a hat?",
+    a: "It can be easier to trust, because everyone sees the same list and the result, and a secure random generator makes the choice instead of a hand. A hat draw with identical, well-mixed slips is fair too. The difference is how easy it is for other people to check.",
+  },
+  {
+    q: "Can a spin wheel be rigged?",
+    a: "Any tool can be rigged by whoever controls it. On this site the wheel runs in your own browser and the odds are the equal slices you set. Nothing on our side chooses the winner. If trust matters, show the list before you spin and record the screen.",
+  },
+  {
+    q: "Should I use a random number generator for a raffle?",
+    a: "If the tickets are numbered, yes, it is the direct way. Set the lowest and highest ticket number, draw, and match the number to a ticket. Use the wheel when names matter more to the room than numbers.",
+  },
+  {
+    q: "Does Remove after pick make the draw fairer?",
+    a: "It changes the rules, not the fairness. Without it, someone can win twice. With it, each person can win once. Decide which rule you want before the draw and tell people.",
+  },
+  {
+    q: "How many names can I put on a wheel?",
+    a: "The page has no fixed limit, but beyond about a dozen slices the labels get small. For a long roster, paste the list into the random name picker and turn on Remove after pick.",
+  },
+];
 
 const ComparisonSpinWheelVsTraditionalMethods = () => {
+  const lastUpdatedIso = getRouteLastmod(PATH);
+  const lastUpdatedLabel = new Date(`${lastUpdatedIso}T12:00:00`).toLocaleDateString(
+    "en-US",
+    { year: "numeric", month: "long", day: "numeric" },
+  );
+
   return (
     <>
       <Helmet>
-        <title>
-          Spin Wheel vs Traditional Selection Methods | Online Spin Wheel
-        </title>
-        <meta
-          name="description"
-          content="Compare spin wheels with traditional selection methods like drawing names, picking straws, and coin flips. Discover why digital spin wheels offer superior fairness and transparency."
-        />
-        <meta
-          name="keywords"
-          content="spin wheel vs traditional methods, name drawing comparison, fair selection methods, random selection comparison, traditional vs digital selection"
-        />
-        <link
-          rel="canonical"
-          href="https://onlinespinwheel.fun/comparison-spin-wheel-vs-traditional-methods"
-        />
+        <title>{TITLE}</title>
+        <meta name="description" content={DESCRIPTION} />
+        <link rel="canonical" href={PAGE_URL} />
         <script type="application/ld+json">
           {JSON.stringify([
             ...siteIdentityJsonLd(),
             breadcrumbListJsonLd([
               { name: "Home", url: `${SITE_ORIGIN}/` },
-              { name: "Comparisons", url: `${SITE_ORIGIN}/` },
-              { name: "Spin Wheel vs Traditional Selection Methods" },
+              { name: "Wheel vs hat draw vs number generator" },
             ]),
             articleJsonLd({
-              title: "Spin Wheel vs Traditional Selection Methods: Complete Comparison | Hi Honey",
-              description: "Compare spin wheels with traditional selection methods like drawing names, picking straws, and coin flips. Discover why digital spin wheels offer superior fairness and transparency.",
-              url: "https://onlinespinwheel.fun/comparison-spin-wheel-vs-traditional-methods",
-              dateModified: "2026-05-10",
+              title: "Spin wheel vs hat draw vs random number generator",
+              description: DESCRIPTION,
+              url: PAGE_URL,
+              dateModified: lastUpdatedIso,
               authorName: RAJA_AUTHOR.name,
             }),
           ])}
         </script>
       </Helmet>
 
-      <article className="container mx-auto px-4 py-8 md:py-12 max-w-5xl">
-        <div className="text-center mb-8 md:mb-12">
-          <div className="flex justify-center mb-4">
-            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
-              <GitCompare className="h-8 w-8 text-primary" />
-            </div>
-          </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 dark:text-white">
-            Spin Wheel vs Traditional Selection Methods
+      <article className="container mx-auto px-4 py-8 md:py-12 max-w-4xl">
+        <header className="mb-8">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+            Spin wheel, hat draw or number generator: which one fits?
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground">
-            Why Digital Random Selection Outperforms Classic Methods
+          <p className="text-lg text-muted-foreground leading-relaxed mb-4">
+            Picking a name, a winner or an order sounds simple until someone
+            asks whether it was fair. A hat, a prize wheel, a number generator
+            and an online spin wheel can all be fair. They fail in different
+            ways and they suit different rooms. This page compares them by how
+            they actually pick, what each one needs, and where each one runs
+            into trouble.
           </p>
-        </div>
+          <p className="text-lg text-muted-foreground leading-relaxed mb-4">
+            The short version: use a spin wheel when people need to see the
+            options and the result together, a number generator when the
+            choices are already numbered, a hat or straws when there is no
+            screen, and a coin when it is only between two.
+          </p>
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <AuthorByline className="mb-2" variant="maintained" />
+            <p className="text-sm text-muted-foreground mb-2">
+              Last updated: <time dateTime={lastUpdatedIso}>{lastUpdatedLabel}</time>
+            </p>
+          </div>
+        </header>
 
-        <Card className="p-6 md:p-8 mb-6 md:mb-8">
+        <Card className="p-6 md:p-8 mb-8">
           <ComparisonFeatureTable
-            title="Spin wheel vs hat / straws / coins"
-            caption="Digital spin wheel compared with classic physical selection methods"
-            columns={["Feature", "Digital spin wheel", "Hat / straws / coins"]}
+            title="Which method fits which situation"
+            caption="Best fit by situation"
+            columns={["Situation", "Best fit", "Why"]}
             rows={[
-              ["Equal odds when slices are equal size", "Yes, geometry + crypto RNG", "Yes if items identical"],
-              ["Audience sees every option", "Yes, on screen", "Often hidden in container"],
-              ["Risk of duplicate slips or bias", "Low, software list", "Possible if slips differ"],
-              ["Setup time for 30+ names", "Paste list, seconds", "Write/cut slips, minutes"],
-              ["Reusable without printing", "Yes", "Often requires new materials"],
-              ["Works on Zoom / hybrid", "Yes, screen share", "Awkward remotely"],
-              ["Audit trail / proof link", "Yes, on this site", "Manual video only"],
-              ["Storage between events", "Browser or URL share", "Physical space"],
+              ["Live class, meeting or stream where everyone should see the list", "Spin wheel", "The options and the result are on the same screen"],
+              ["Raffle tickets numbered 1 to 500", "Number generator", "The choice is already a number, so no mapping is needed"],
+              ["Deciding between two people or two options", "Coin flip", "Two outcomes and no setup"],
+              ["Outdoor event with no power or screen", "Hat draw or straws", "Needs nothing but paper"],
+              ["A stall where visitors walk up and spin", "Physical prize wheel", "People like a tangible prop"],
+              ["Remote or hybrid call", "Online wheel with screen share", "Everyone sees the same spin"],
+              ["You need a record afterwards", "Online wheel plus a screen recording", "The recording shows the draw, the proof link stores the result"],
             ]}
           />
         </Card>
 
-        <Card className="p-6 md:p-8 lg:p-10 mb-6 md:mb-8 space-y-8">
-          <section>
-            <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p className="text-lg">
-                For centuries, people have used traditional methods for random
-                selection: drawing names from a hat, picking straws, flipping
-                coins, rolling dice, and similar physical techniques. These
-                methods work, but digital spin wheels offer significant
-                advantages in fairness, transparency, efficiency, and
-                engagement.
-              </p>
-              <p>
-                This comparison examines how modern spin wheels compare to
-                traditional selection methods, highlighting the benefits of
-                digital tools while acknowledging situations where traditional
-                methods might still be appropriate. Understanding these
-                differences helps you choose the best method for your specific
-                needs.
-              </p>
-            </div>
-          </section>
-
-          <section>
+        <div className="space-y-8">
+          <Card className="p-6 md:p-8">
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Fairness and Randomness
+              How each method picks a result
             </h2>
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-xl md:text-2xl font-semibold mb-3 text-foreground">
-                  Traditional Methods: Human Error Risks
-                </h3>
-                <p className="text-muted-foreground mb-3 leading-relaxed">
-                  Traditional methods rely on physical manipulation, which can
-                  introduce bias through unintentional human actions. Drawing
-                  names from a hat might favor certain positions, picking straws
-                  could involve subconscious selection, and physical methods
-                  leave room for doubt about randomness.
-                </p>
-                <div className="bg-muted/50 rounded-lg p-4 mt-3">
-                  <p className="font-semibold mb-2 text-foreground">
-                    Potential Issues:
-                  </p>
-                  <ul className="space-y-2 text-sm text-muted-foreground ml-4">
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>
-                        Unintentional bias in how items are mixed or drawn
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>
-                        Positional bias (items on top/bottom of container)
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>Difficulty verifying true randomness</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>Susceptibility to manipulation or cheating</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
 
-              <div>
-                <h3 className="text-xl md:text-2xl font-semibold mb-3 text-foreground">
-                  Spin Wheels: Verified Randomness
-                </h3>
-                <p className="text-muted-foreground mb-3 leading-relaxed">
-                  Digital spin wheels use algorithms that generate
-                  mathematically verified random outcomes. The selection process
-                  is transparent, reproducible in principle (though not
-                  predictable), and eliminates human bias from the selection
-                  mechanism itself.
-                </p>
-                <div className="grid md:grid-cols-2 gap-4 mt-4">
-                  <Card className="p-4 bg-primary/5 border border-primary/20">
-                    <div className="flex items-center gap-3 mb-2">
-                      <CheckCircle2 className="h-5 w-5 text-primary" />
-                      <h3 className="font-semibold">Advantages</h3>
-                    </div>
-                    <ul className="space-y-2 text-sm text-muted-foreground ml-4">
-                      <li className="flex items-start gap-2">
-                        <span className="text-primary mt-1">•</span>
-                        <span>Mathematically verifiable randomness</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-primary mt-1">•</span>
-                        <span>No human manipulation possible</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-primary mt-1">•</span>
-                        <span>Eliminates positional or selection bias</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-primary mt-1">•</span>
-                        <span>Consistent fairness across all selections</span>
-                      </li>
-                    </ul>
-                  </Card>
-                  <Card className="p-4 bg-primary/5 border border-primary/20">
-                    <div className="flex items-center gap-3 mb-2">
-                      <XCircle className="h-5 w-5 text-destructive" />
-                      <h3 className="font-semibold">Considerations</h3>
-                    </div>
-                    <ul className="space-y-2 text-sm text-muted-foreground ml-4">
-                      <li className="flex items-start gap-2">
-                        <span className="text-primary mt-1">•</span>
-                        <span>Requires device or screen access</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-primary mt-1">•</span>
-                        <span>Dependent on technology functioning</span>
-                      </li>
-                    </ul>
-                  </Card>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Transparency and Trust
-            </h2>
-            <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>
-                Both methods can be transparent, but digital spin wheels provide
-                clearer visibility and documentation.
-              </p>
-              <div className="grid md:grid-cols-2 gap-4 mt-4">
-                <Card className="p-4 border-l-4 border-primary">
-                  <h3 className="font-semibold mb-2 text-foreground">
-                    Traditional Methods
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-2">
-                    Transparency depends on process visibility:
-                  </p>
-                  <ul className="space-y-1 text-xs text-muted-foreground ml-4">
-                    <li>• Requires careful demonstration</li>
-                    <li>• May be hard to see from distance</li>
-                    <li>• Difficult to record or document</li>
-                    <li>• Susceptible to "magic trick" doubts</li>
-                  </ul>
-                </Card>
-                <Card className="p-4 border-l-4 border-primary">
-                  <h3 className="font-semibold mb-2 text-foreground">
-                    Spin Wheels
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-2">
-                    Inherent transparency and documentation:
-                  </p>
-                  <ul className="space-y-1 text-xs text-muted-foreground ml-4">
-                    <li>• Visible on screens for all to see</li>
-                    <li>• Can be projected for large audiences</li>
-                    <li>• Easy to record or screenshot</li>
-                    <li>• Clear visual process builds trust</li>
-                  </ul>
-                </Card>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Efficiency and Convenience
-            </h2>
-            <div className="space-y-4">
-              <Card className="p-4 border-l-4 border-primary">
-                <h3 className="font-semibold mb-2 text-foreground">
-                  Setup Time
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  <strong>Traditional:</strong> Requires gathering physical
-                  materials (hat, paper, containers), writing names, cutting or
-                  preparing items. Setup can take 10-30 minutes depending on
-                  complexity.
-                  <br />
-                  <strong>Spin Wheels:</strong> Digital entry takes 2-5 minutes.
-                  No physical materials needed. Can be prepared in advance and
-                  reused instantly.
-                </p>
-              </Card>
-
-              <Card className="p-4 border-l-4 border-primary">
-                <h3 className="font-semibold mb-2 text-foreground">
-                  Selection Speed
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  <strong>Traditional:</strong> Each selection requires physical
-                  action (drawing, picking, mixing). Can take 10-30 seconds per
-                  selection with setup between rounds.
-                  <br />
-                  <strong>Spin Wheels:</strong> Instant spinning with results in
-                  2-5 seconds. No physical preparation needed between
-                  selections. Can make multiple selections rapidly.
-                </p>
-              </Card>
-
-              <Card className="p-4 border-l-4 border-primary">
-                <h3 className="font-semibold mb-2 text-foreground">
-                  Cleanup and Maintenance
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  <strong>Traditional:</strong> Requires cleanup after use
-                  (disposing of papers, returning materials). Must recreate
-                  materials for reuse.
-                  <br />
-                  <strong>Spin Wheels:</strong> No cleanup needed. Save and
-                  reuse configurations instantly. No physical waste.
-                </p>
-              </Card>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Engagement and Visual Appeal
-            </h2>
-            <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>
-                Visual engagement varies significantly between methods,
-                affecting participant experience and event atmosphere.
-              </p>
-              <div className="bg-muted/50 rounded-lg p-4 mt-4">
-                <p className="font-semibold mb-2 text-foreground">
-                  Comparison:
-                </p>
-                <ul className="space-y-2 text-sm text-muted-foreground ml-4">
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">•</span>
-                    <span>
-                      <strong>Traditional Methods:</strong> Functional but often
-                      plain. Drawing from a hat or picking straws provides
-                      results but limited visual excitement. May feel routine or
-                      unremarkable.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">•</span>
-                    <span>
-                      <strong>Spin Wheels:</strong> Colorful, animated, and
-                      visually engaging. The spinning motion creates
-                      anticipation and excitement. More memorable and shareable
-                      experiences. Better for public events or when engagement
-                      matters.
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Accessibility and Scalability
-            </h2>
-            <div className="space-y-4">
-              <Card className="p-4 border-l-4 border-primary">
-                <h3 className="font-semibold mb-2 text-foreground">
-                  Large Group Handling
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  <strong>Traditional:</strong> Large groups require more
-                  physical materials and setup time. Managing 50+ names becomes
-                  cumbersome. Difficult to handle very large groups efficiently.
-                  <br />
-                  <strong>Spin Wheels:</strong> Handle any group size equally
-                  well. 10 names or 200 names take similar setup time. Scales
-                  easily to large groups without proportional increase in
-                  effort.
-                </p>
-              </Card>
-
-              <Card className="p-4 border-l-4 border-primary">
-                <h3 className="font-semibold mb-2 text-foreground">
-                  Remote or Hybrid Events
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  <strong>Traditional:</strong> Require physical presence.
-                  Cannot be used for remote participants. Limited to
-                  in-person-only events.
-                  <br />
-                  <strong>Spin Wheels:</strong> Work perfectly for remote or
-                  hybrid events. Can be shared via screen sharing, embedded in
-                  video calls, or accessed online. Participants can watch
-                  selections live from anywhere.
-                </p>
-              </Card>
-
-              <Card className="p-4 border-l-4 border-primary">
-                <h3 className="font-semibold mb-2 text-foreground">
-                  Distance Visibility
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  <strong>Traditional:</strong> Small items (straws, papers) may
-                  be hard to see from distance. Requires participants to be
-                  close or results to be announced verbally.
-                  <br />
-                  <strong>Spin Wheels:</strong> Can be displayed on large
-                  screens or projectors. Visible from distance. Options are
-                  clearly displayed before and after selection. Better for large
-                  venues or audiences.
-                </p>
-              </Card>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Cost and Resource Requirements
-            </h2>
-            <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <div className="grid md:grid-cols-2 gap-4">
-                <Card className="p-4 bg-primary/5 border border-primary/20">
-                  <h3 className="font-semibold mb-2 text-foreground">
-                    Traditional Methods
-                  </h3>
-                  <ul className="space-y-2 text-sm text-muted-foreground ml-4">
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>
-                        Require physical materials (paper, containers, etc.)
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>Ongoing material costs for repeated use</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>Time cost for preparation and cleanup</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>May require storage space for materials</span>
-                    </li>
-                  </ul>
-                </Card>
-                <Card className="p-4 bg-primary/5 border border-primary/20">
-                  <h3 className="font-semibold mb-2 text-foreground">
-                    Spin Wheels
-                  </h3>
-                  <ul className="space-y-2 text-sm text-muted-foreground ml-4">
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>
-                        No physical materials needed (free digital tools
-                        available)
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>No ongoing material costs</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>Minimal time investment</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>No storage requirements</span>
-                    </li>
-                  </ul>
-                </Card>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              When Traditional Methods Might Still Work
-            </h2>
-            <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>
-                While spin wheels offer many advantages, traditional methods
-                might still be appropriate in certain situations:
-              </p>
-              <div className="bg-primary/5 border-l-4 border-primary p-4 rounded-r-lg mt-4">
-                <p className="font-semibold mb-2 text-foreground">
-                  Traditional Methods May Be Better When:
-                </p>
-                <ul className="space-y-2 text-sm text-muted-foreground ml-4">
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">•</span>
-                    <span>
-                      Technology is unavailable or unreliable (outdoor events,
-                      power outages)
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">•</span>
-                    <span>
-                      Small, informal groups where simplicity matters more than
-                      engagement
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">•</span>
-                    <span>
-                      Educational contexts teaching probability or traditional
-                      methods
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">•</span>
-                    <span>
-                      Participants prefer physical, tangible selection processes
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">•</span>
-                    <span>
-                      Quick, one-time selections where setup isn't worth the
-                      effort
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          <section className="bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 rounded-lg p-6 border border-primary/20">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Modernize Your Selection Process
-            </h2>
-            <p className="text-muted-foreground mb-4 leading-relaxed">
-              While traditional selection methods have served us well for
-              centuries, digital spin wheels offer superior fairness,
-              transparency, efficiency, and engagement for most modern use
-              cases. The advantages in transparency, scalability, and visual
-              appeal make them the better choice for most contexts.
+            <h3 className="text-xl font-semibold mt-2 mb-2">Hat draw, straws and dice</h3>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              These rely on your hands and on the objects. A draw is only as
+              fair as the slips are alike and as well mixed as they are. Slips
+              folded differently, a name written on thicker paper, or a hand
+              that reaches for the top of the pile can tilt the result. The
+              tilt is usually small, but nobody in the room can check it. That
+              is the real weakness: the fairness has to be taken on trust.
             </p>
-            <p className="text-muted-foreground mb-6 leading-relaxed">
-              Consider upgrading from traditional methods to spin wheels for
-              improved fairness, better participant experiences, and more
-              efficient processes. The minimal learning curve is worth the
-              significant benefits.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link
-                to="/"
-                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
-              >
-                Try Digital Spin Wheels
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                to="/#spin-wheel-seo-content"
-                className="inline-flex items-center gap-2 border-2 border-primary text-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary/10 transition-colors"
-              >
-                More Comparisons
-                <GitCompare className="h-4 w-4" />
-              </Link>
-            </div>
-          </section>
-        </Card>
 
-        {/* Related Articles */}
-        <div className="grid md:grid-cols-2 gap-4 mt-8">
-          <Card className="p-6 bg-primary/5 border border-primary/20">
-            <div className="flex items-center gap-3 mb-3">
-              <Sparkles className="h-6 w-6 text-primary" />
-              <h3 className="text-xl font-bold">More Comparisons</h3>
-            </div>
-            <p className="text-sm text-muted-foreground mb-4">
-              Explore more comparisons to help you choose the best selection
-              method.
+            <h3 className="text-xl font-semibold mt-6 mb-2">Physical prize wheel</h3>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              A physical wheel picks by where friction and momentum leave the
+              pointer. Equal sections only give equal odds if the wheel is
+              balanced and level and the pointer does not catch more on some
+              pegs than others. A wheel that is slightly off can favour some
+              sections, and a worn one can drift over time. It makes a good
+              prop and a poor measuring instrument.
             </p>
-            <Link
-              to="/#spin-wheel-seo-content"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
-            >
-              Browse Comparisons
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+
+            <h3 className="text-xl font-semibold mt-6 mb-2">Random number generator</h3>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              A generator picks a whole number inside a range. The fairness
+              question is how the number is made. A browser&apos;s secure
+              generator is a sound source. A common shortcut, taking a random
+              value and reducing it with a remainder, is very slightly uneven,
+              but for ranges up to 1,000 the unevenness is smaller than one in
+              four million, which no one will ever notice. The practical limit
+              is different: you get a bare number. To pick a person you need a
+              numbered list, and the audience sees nothing happen.
+            </p>
+
+            <h3 className="text-xl font-semibold mt-6 mb-2">The spin wheel on this site</h3>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              When you press the button, the wheel draws a random total
+              rotation from the browser&apos;s secure random generator
+              (crypto.getRandomValues, with Math.random only if that is
+              missing) and plays it out. The slice under the pointer wins.
+              Slices are equal in size, so every entry has the same chance
+              unless you list a name more than once on purpose. The animation
+              is the selection, so it cannot be changed after the fact, and
+              earlier spins never influence later ones.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              The draw runs on your own device. That has a consequence: nobody
+              else can audit it unless they watch it or you record it. Our{" "}
+              <Link to="/how-randomness-works" className="text-primary underline underline-offset-2">
+                How Randomness Works
+              </Link>{" "}
+              page and the{" "}
+              <Link to="/spin-wheel-fairness-study" className="text-primary underline underline-offset-2">
+                fairness study
+              </Link>{" "}
+              go into more detail. The study publishes aggregate counts from
+              simulated spins, not a log of every spin.
+            </p>
           </Card>
 
-          <Card className="p-6 bg-primary/5 border border-primary/20">
-            <div className="flex items-center gap-3 mb-3">
-              <CheckCircle2 className="h-6 w-6 text-primary" />
-              <h3 className="text-xl font-bold">Get Help</h3>
-            </div>
-            <p className="text-sm text-muted-foreground mb-4">
-              Questions about selection methods? We're here to help!
+          <Card className="p-6 md:p-8">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              A worked example: three prizes among 30 names
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              Say 30 people are in the draw and three prizes are given out. The
+              rule you choose changes the odds more than the method does.
             </p>
-            <Link
-              to="/contact-us"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
-            >
-              Contact Us
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+            <ul className="space-y-3 text-muted-foreground leading-relaxed mb-4 list-disc pl-6">
+              <li>
+                <strong className="text-foreground">Each name leaves after it wins.</strong>{" "}
+                This is a hat where you keep the drawn slip out, or the wheel
+                with Remove after pick on. Each person has a 3 in 30 chance,
+                exactly 10 percent, of winning a prize, and nobody wins twice.
+              </li>
+              <li>
+                <strong className="text-foreground">Every spin uses all 30 names.</strong>{" "}
+                A given person has about a 9.7 percent chance of winning at
+                least once. The catch is repeats: in about one draw in ten,
+                somebody wins two prizes.
+              </li>
+            </ul>
+            <p className="text-muted-foreground leading-relaxed">
+              The same arithmetic applies to a hat if you put the slip back
+              each time. If repeat winners are not acceptable, say so before
+              the draw and switch Remove after pick on.
+            </p>
+          </Card>
+
+          <Card className="p-6 md:p-8">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              Remote calls and big groups
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              On a video call, a hat or a physical wheel only works if everyone
+              trusts the camera angle. An online wheel shared on screen shows
+              the same list to everyone, and the pointer lands in view.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              For big groups the slow part is entering the names, not the draw.
+              Pasting a list is quicker than writing slips. The wheel itself is
+              hard to read once it has more than about a dozen slices, so for a
+              long roster use the{" "}
+              <Link to="/random-name-picker-wheel" className="text-primary underline underline-offset-2">
+                random name picker
+              </Link>{" "}
+              with Remove after pick, or number the tickets and use the{" "}
+              <Link to="/random-number-wheel" className="text-primary underline underline-offset-2">
+                random number wheel
+              </Link>
+              .
+            </p>
+          </Card>
+
+          <Card className="p-6 md:p-8">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              Proof, records and trust
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              A hat draw leaves no record unless someone films it. On the{" "}
+              <Link to="/winner-picker-wheel" className="text-primary underline underline-offset-2">
+                winner picker
+              </Link>{" "}
+              and name picker pages, the proof link stores the winner, the
+              number of entries, the time and the method label inside the link
+              itself. It is a convenient record to post, not a certificate,
+              because anyone can build a link of the same shape.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              When trust matters, show the list before you spin, state the
+              rules in advance and record the screen.
+            </p>
+          </Card>
+
+          <Card className="p-6 md:p-8">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              When the older ways are the better choice
+            </h2>
+            <ul className="space-y-3 text-muted-foreground leading-relaxed list-disc pl-6">
+              <li>There is no power, no screen or no signal, as at some outdoor events.</li>
+              <li>
+                It is a two-way tie. A{" "}
+                <Link to="/coin-flip-wheel" className="text-primary underline underline-offset-2">
+                  coin flip
+                </Link>{" "}
+                needs no setup at all.
+              </li>
+              <li>You are teaching probability and want children to handle the dice, the slips or the spinner themselves.</li>
+              <li>The point is the ceremony, such as a prize wheel at a stall or a party.</li>
+              <li>It is a one-off pick that is not worth setting up anything for.</li>
+            </ul>
+          </Card>
+
+          <Card className="p-6 md:p-8">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              What this comparison does not claim
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              It does not say one method is fairer in every case, and it does
+              not compare other websites. It describes how these methods work
+              and where this site&apos;s tools fit. What it says about hats and
+              physical wheels is general and depends on the equipment you use.
+            </p>
+          </Card>
+
+          <Card className="p-6 md:p-8">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">Questions people ask</h2>
+            <div className="space-y-5">
+              {faqs.map((f) => (
+                <div key={f.q}>
+                  <h3 className="text-lg font-semibold mb-1 text-foreground">{f.q}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{f.a}</p>
+                </div>
+              ))}
+            </div>
           </Card>
         </div>
       </article>
