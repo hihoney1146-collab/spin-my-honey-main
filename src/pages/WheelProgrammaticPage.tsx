@@ -90,7 +90,10 @@ const WheelProgrammaticPage = () => {
   });
   const absorbedSections = getAbsorbedSections(page.slug);
   const relatedBlogs = getRelatedBlogPosts(enriched.relatedBlogSlugs);
-  const howToSteps = parseHowToSteps(page.howToUse);
+  const hasWrittenHowTo = enriched.howToSteps.length > 0;
+  const howToSteps = hasWrittenHowTo
+    ? enriched.howToSteps
+    : parseHowToSteps(page.howToUse);
   const modeFeatures = WHEEL_MODE_FEATURES[page.slug];
   const showStreamerCallout =
     page.slug === "winner-picker-wheel" ||
@@ -198,7 +201,7 @@ const WheelProgrammaticPage = () => {
           {enriched.directAnswer}
         </p>
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-          <AuthorByline className="mb-2" />
+          <AuthorByline className="mb-2" variant="maintained" />
           <p className="text-sm text-muted-foreground mb-2">
             Last updated:{" "}
             <time dateTime={lastUpdatedIso}>{lastUpdatedLabel}</time>
@@ -347,9 +350,17 @@ const WheelProgrammaticPage = () => {
             <h2 className="text-xl md:text-2xl font-bold mb-4">
               How to Use the {page.keywordPrimary || page.h1}
             </h2>
-            <p className="text-base md:text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
-              {page.howToUse}
-            </p>
+            {hasWrittenHowTo ? (
+              <ol className="list-decimal space-y-3 pl-6 text-base md:text-lg text-muted-foreground leading-relaxed">
+                {howToSteps.map((step, i) => (
+                  <li key={i}>{step}</li>
+                ))}
+              </ol>
+            ) : (
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
+                {page.howToUse}
+              </p>
+            )}
           </Card>
 
           {absorbedSections.map((section, si) => (

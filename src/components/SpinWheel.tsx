@@ -554,9 +554,19 @@ export const SpinWheel = ({
     };
   }, []);
 
+  // Report each result exactly once. Editing the entries after a spin must not re-announce the winner
+  // (that duplicated session-history rows and re-removed same-named entries).
+  const lastSpinEntryCountRef = useRef(lastSpinEntryCount);
+  lastSpinEntryCountRef.current = lastSpinEntryCount;
   useEffect(() => {
     if (!winner || !winnerId) return;
-    onWinnerSelectedRef.current?.(winner, { entryCount: lastSpinEntryCount });
+    onWinnerSelectedRef.current?.(winner, {
+      entryCount: lastSpinEntryCountRef.current,
+    });
+  }, [winner, winnerId]);
+
+  useEffect(() => {
+    if (!winner || !winnerId) return;
     if (autoRemoveWinner && entries.length > 2) {
       const timer = window.setTimeout(() => {
         commitEntries((prev) => prev.filter((entry) => entry.id !== winnerId));
@@ -567,7 +577,7 @@ export const SpinWheel = ({
       }, 1200);
       return () => window.clearTimeout(timer);
     }
-  }, [winner, winnerId, autoRemoveWinner, entries.length, lastSpinEntryCount]);
+  }, [winner, winnerId, autoRemoveWinner, entries.length]);
 
   useEffect(() => {
     if (!storageReady) return;

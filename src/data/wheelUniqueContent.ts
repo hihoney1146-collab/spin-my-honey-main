@@ -10,6 +10,8 @@ export type WheelUniqueContent = {
   relatedWheels: { slug: string; anchor: string }[];
   /** Optional extra SSR/content blocks (e.g. buyer-intent sections). */
   supplementalSections?: WheelUseCase[];
+  /** Optional step-by-step instructions; replaces the one-line "How to use" text from the CSV. */
+  howToSteps?: string[];
 };
 
 export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
@@ -22,19 +24,48 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
     useCases: [
       {
         heading: "Morning micro-decisions",
-        body: "Should you hit snooze, grab coffee to go, or walk to work? One spin replaces three rounds of second-guessing before your alarm wins again.",
+        body: "Turn the dilemma into a question with a yes or no answer, such as \"Do I take the earlier train?\", and set Maybe to 0 so there is no fence-sitting slice. One spin ends the loop so you can get on with your morning. The wheel does not know better than you; it simply stops the second-guessing.",
       },
       {
         heading: "Roommate chore standoffs",
-        body: "List who handles dishes versus trash, spin once, and whoever lands on the slice owns the task tonight, no passive-aggressive sticky notes required.",
+        body: "Ask \"Is it my turn to take out the trash tonight?\" and agree on the rule before anyone spins: Yes means the person who asked does it, No means the other person does. Settling the rule first matters, because a result nobody agreed to honour is just another argument.",
       },
       {
         heading: "Group lunch votes",
-        body: "When four coworkers each want a different spot, map each option to Yes or No slices and spin until one meal plan sticks.",
+        body: "Offer one restaurant at a time as a yes or no question. A Yes ends the debate; a No moves the group on to the next option. To let the first suggestion win a little more often, set Yes 3, No 2 and Maybe 0, which gives Yes a 60% chance.",
       },
       {
         heading: "Creative permission slips",
-        body: "Writers and artists spin before deleting a paragraph or posting a draft, turning perfectionism into a quick ritual instead of a stall.",
+        body: "Writers and artists spin before deleting a paragraph or posting a draft, turning perfectionism into a quick ritual instead of a stall. If the answer makes you wince, that reaction is useful information too.",
+      },
+      {
+        heading: "Teaching basic probability",
+        body: "Ask a class to predict how often Yes will come up in ten spins, then compare the result with the percentages shown under \"On the wheel now\". Short runs rarely match those percentages exactly, which makes a good starting point for talking about why small samples look uneven.",
+      },
+    ],
+    howToSteps: [
+      "Decide on a question you can answer with yes or no, and agree what each answer will mean before you spin. The wheel does not store questions, so nothing you think or write about the dilemma is saved.",
+      "Set the odds. The defaults are Yes 2, No 2 and Maybe 1, which puts five slices on the wheel: 40% Yes, 40% No and 20% Maybe. Each weight can be any whole number from 0 to 10, and a weight of 0 removes that answer, so Maybe 0 gives a strict Yes or No wheel.",
+      "Check the \"On the wheel now\" list under the weights. It shows how many slices each answer has and its percentage chance before you spin.",
+      "Press SPIN THE WHEEL. The spin timer is 7 seconds by default and can be set anywhere from 3 seconds to 1 minute. The slice under the pointer when the wheel stops is your answer.",
+      "For a tie-breaker, switch on Best of 3. The page keeps your last three results and reports the majority, or \"tie\" if all three answers are different. Use Reset run when you start a new question.",
+    ],
+    supplementalSections: [
+      {
+        heading: "How the weights change your odds",
+        body: "Every answer gets as many equal slices as its weight, and your chance of landing on an answer is its slices divided by the total number of slices. Yes 2, No 2 and Maybe 1 makes five slices, so 40%, 40% and 20%. Yes 3, No 1 and Maybe 0 makes four slices, so Yes has a 75% chance and No 25%. Yes 1, No 1 and Maybe 0 makes two equal slices, a plain 50/50 choice. The percentages shown on the page are rounded to whole numbers, and the wheel never has fewer than two slices.",
+      },
+      {
+        heading: "Worked example: Best of 3 with the default weights",
+        body: "With the default weights each spin gives Yes 40%, No 40% and Maybe 20%. Over three spins, Yes wins the majority 35.2% of the time, No wins it 35.2% of the time, and Maybe wins it 10.4% of the time. In the remaining 19.2% of runs you get one Yes, one No and one Maybe, which the page reports as a tie. If you want Best of 3 to give a clear winner every time, set Maybe to 0: with only two possible answers, three spins always produce a majority.",
+      },
+      {
+        heading: "How each spin is decided",
+        body: "When you press the button, the wheel chooses a random total rotation using your browser's cryptographic random number generator (crypto.getRandomValues, with Math.random only as a fallback in browsers that lack it). The animation then plays that rotation out, and the slice at the pointer is the result, so the animation is the selection rather than a decoration. The spin timer only changes how long the spin takes, and earlier results never influence the next one. Our How Randomness Works page and the spin wheel fairness study explain the method in more depth.",
+      },
+      {
+        heading: "When a Yes or No wheel is the wrong tool",
+        body: "Use it for low-stakes choices where either answer would be fine. Medical, legal, financial and safety decisions deserve real advice. A simple test: if you would be upset by one of the answers, do not spin, because you already know which result you are hoping for.",
       },
     ],
     faqs: [
@@ -46,12 +77,22 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "How do the Yes / No / Maybe weights work?",
         answer:
-          "Each weight is how many equal slices that answer gets. Yes 3 and No 1 means Yes has three times the chance of No. The On the wheel now list shows slice counts and percentages before you spin.",
+          "Each weight, from 0 to 10, is how many equal slices that answer gets. Yes 3 and No 1 means Yes has three times the chance of No. The On the wheel now list shows slice counts and percentages before you spin.",
+      },
+      {
+        question: "Is the wheel biased towards Yes?",
+        answer:
+          "No. With the default weights Yes and No each take 40% of the wheel and Maybe takes 20%. Any bias is one you set yourself with the weights.",
       },
       {
         question: "What is Best of 3?",
         answer:
-          "Turn on Best of 3 to track three spins and show the majority (or a tie). Reset the run when you start a new question.",
+          "Turn on Best of 3 to keep your last three results and show the majority. Switching it on or off clears the run, and the Reset run button clears it too.",
+      },
+      {
+        question: "Why did Best of 3 say tie?",
+        answer:
+          "A tie appears only when the three results are all different: one Yes, one No and one Maybe. With the default weights that happens in about 19% of runs. Set Maybe to 0 and a tie becomes impossible.",
       },
       {
         question: "Should I type my question on the wheel?",
@@ -61,12 +102,12 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Is every spin independent?",
         answer:
-          "Each spin uses fresh randomness in your browser. Prior results do not change the odds of the next landing, so a streak of No answers does not mean Yes is due.",
+          "Yes. Each spin uses fresh randomness from your browser's random number generator. Prior results do not change the odds of the next landing, so a streak of No answers does not mean Yes is due.",
       },
       {
         question: "Can couples use this for date-night choices?",
         answer:
-          "Absolutely. Replace the default labels with two restaurant names or two movie genres, spin once, and commit to the outcome before you talk yourselves out of it.",
+          "Yes. Phrase the choice as a question such as \"Do we order Thai tonight?\" and spin once, or rename the entries in the list under the wheel. Your edits to that list stay until you change a weight, which rebuilds the wheel. Agree to honour the outcome before you spin.",
       },
       {
         question: "Will this replace professional advice?",
@@ -621,36 +662,72 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
     useCases: [
       {
         heading: "Classroom participation",
-        body: "Teachers paste rosters, enable remove-after-pick, and work through the list until everyone has a turn.",
+        body: "Paste the roster, keep Remove after pick on (it is on by default), and work through the list until everyone has had a turn. The wheel never drops below two names, so when only two students are left, call the second one yourself.",
       },
       {
         heading: "Meeting speaker order",
-        body: "Managers randomize who presents first so the same volunteer does not always go last.",
+        body: "Paste the attendees and spin repeatedly with Remove after pick on, so the same volunteer does not always go last. The numbered Session history under the wheel doubles as the speaking order: 1 is the first name drawn, 2 the second, and so on.",
       },
       {
         heading: "Baby shower and party hat draws",
-        body: "Hosts load gift-giver names like slips in a hat and spin to decide who opens the next present.",
+        body: "Type each gift-giver once and spin to decide who opens the next present, the way you would draw slips from a hat. Copy link opens the wheel with the same names filled in, which helps if a guest joins by video call and wants to see the list.",
       },
       {
         heading: "Weighted livestream shoutouts",
-        body: "Creators give subscribers extra weight (Name:3) while still spinning live with a proof link.",
+        body: "Creators can give subscribers extra chances by writing a weight after the name, such as Alex:3. With four other names at weight 1, Alex holds 3 of 7 slices, about a 43% chance. Use Streamer mode for a plain background that is easy to capture in OBS.",
+      },
+      {
+        heading: "Giveaway rules everyone can follow",
+        body: "Write the rules before you draw: one entry per person, who is eligible, and how many winners. Then paste the final list, spin on camera, and share the proof link so entrants can see the winner, the number of entries and the time of the draw.",
+      },
+    ],
+    howToSteps: [
+      "Type or paste one name per line in the Names box. You need at least two names, and the wheel updates as you type.",
+      "Decide whether winners should leave the wheel. Remove after pick is on by default, which works like keeping drawn slips out of the hat. Switch it off if the same name may win more than once.",
+      "Optional: switch on Weighted entries and add a weight after a name, for example Alex:3. A colon, asterisk, vertical bar or the letter x all work as the separator. Weights run from 1 to 20, and a name without a weight counts as 1.",
+      "Look at the duplicate notice under the box. If a name appears twice, the page says so and each copy gets its own slice. With Remove after pick on, a winning name removes every copy of it, so give two people with the same first name different labels, such as Sam K. and Sam R.",
+      "Press SPIN THE WHEEL. The spin timer is 7 seconds by default and can be set from 3 seconds to 1 minute. The name under the pointer when the wheel stops is the winner, and it is added to Session history.",
+      "To show the result to others, use Copy link to open the wheel with the same names, Streamer mode for a plain background layout, or Get proof link after a spin. Links you copy contain the names in the address itself, so only share them with people who are allowed to see the list.",
+    ],
+    supplementalSections: [
+      {
+        heading: "How weighted entries change the odds",
+        body: "A weight is the number of equal slices a name gets, so its chance is its slices divided by all slices on the wheel. Five names at weight 1 give everyone 20%. If one of them is written as Alex:3, there are seven slices and Alex has a 3 in 7 chance, about 43%, while each other name has 1 in 7, about 14%. Large weights add many slices, so keep them modest on a long list.",
+      },
+      {
+        heading: "How each spin is decided",
+        body: "When you press the button, the wheel chooses a random total rotation using your browser's cryptographic random number generator (crypto.getRandomValues, with Math.random only as a fallback in browsers that lack it). The animation plays that rotation out, and the name at the pointer is the winner. The spin timer only changes how long the spin takes, and with equal slices every name has the same chance on every spin. Our How Randomness Works page and the spin wheel fairness study explain the method in more depth.",
+      },
+      {
+        heading: "What the proof link shows, and what it does not",
+        body: "The proof link records the winner, the number of entries, the time of the draw and the method label inside the link itself. It is a convenient record to post in a chat or a story, not a tamper-proof certificate, because anyone can build a link of the same shape. For giveaways where trust matters, screen-record the whole draw, show the list before you spin, and keep the rules public.",
       },
     ],
     faqs: [
       {
         question: "What is remove-after-pick?",
         answer:
-          "When enabled, the chosen name drops from the pool after each spin so later rounds only include remaining people, the same fairness rule as emptying a hat.",
+          "When enabled, the chosen name drops from the pool after each spin so later rounds only include remaining people, the same fairness rule as emptying a hat. The wheel never drops below two names, so the last two stay on the wheel.",
       },
       {
         question: "How do weighted entries work?",
         answer:
-          "Toggle Weighted entries and write Name:weight on a line (Alex:3). That name gets three equal slices. Leave the toggle off for classic equal chances.",
+          "Toggle Weighted entries and write Name:weight on a line (Alex:3). That name gets three equal slices. Weights run from 1 to 20. Leave the toggle off for classic equal chances.",
+      },
+      {
+        question: "Can the same name be picked twice?",
+        answer:
+          "Only if Remove after pick is off. With it on, a winning name leaves the wheel, including every copy of the same name, so label two people with the same name differently. The one exception is the final pair: the wheel never drops below two names, so once two remain they both stay and either can be drawn again.",
       },
       {
         question: "Where is session history?",
         answer:
-          "Every completed spin appends to the Session history list under the wheel so you can see who already went without guessing.",
+          "Every completed spin appends to the Session history list under the wheel, numbered in the order the names were drawn, so you can see who already went without guessing. Clear history empties the list.",
+      },
+      {
+        question: "Are my names saved or uploaded?",
+        answer:
+          "The page does not upload your list. When you spin, it sends an anonymous spin counter request that contains no names. Links you copy, such as the share link or the proof link, carry the names inside the address, so treat them like the list itself.",
       },
       {
         question: "Is this the same as a pick-out-of-a-hat generator?",
@@ -660,7 +737,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Can I prove the spin for a raffle?",
         answer:
-          "Use the proof link after a spin and screen-record if auditors want timestamped evidence of the random selection.",
+          "Use the proof link after a spin, which records the winner, entry count and time. It is a record rather than a tamper-proof certificate, so screen-record the draw as well if others will want evidence.",
       },
     ],
     relatedWheels: [
@@ -1406,16 +1483,41 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
     metaDescription:
       "Lock A-D for quiz call-outs, remove letters after each pick, and use projector fullscreen so the whole class can see the spin.",
     useCases: [
-      { heading: "SAT practice games", body: "Tutors spin when students freeze on elimination questions, then discuss why the letter was or was not correct." },
-      { heading: "Projector review days", body: "Fullscreen classroom mode puts a large tap-to-spin control on the board while remove-after-pick cycles through leftover letters." },
-      { heading: "Workshop polling", body: "Facilitators map A-D to four discussion topics and spin to pick which breakout question starts." },
-      { heading: "Session logging", body: "The answers-called list shows which letters already appeared so you do not argue about repeats mid-period." },
+      { heading: "SAT practice games", body: "Tutors spin when a student is stuck between two choices, then discuss why the letter that came up was or was not correct. The aim is the discussion about the reasoning, not the guess itself." },
+      { heading: "Projector review days", body: "Fullscreen classroom mode puts a large TAP TO SPIN control on the board. With Remove letter after pick on, letters that have already been called drop off the wheel, so a review round does not keep repeating the same answer." },
+      { heading: "Workshop polling", body: "Write four discussion topics on the board, label them A to D, and spin to pick which breakout question starts. With Remove letter after pick on, the first two topics called drop away, and the final two can be settled with one more spin." },
+      { heading: "Session logging", body: "The Answers called list shows which letters already came up, newest first and numbered from 1, so nobody has to argue about repeats halfway through the period." },
+      { heading: "Placing the correct answer in a quiz", body: "When you write multiple-choice questions, spin to decide which letter holds the correct answer so your answer key does not fall into a pattern. Write the correct option in the spun letter's position, then fill in the other three." },
+    ],
+    howToSteps: [
+      "Open the page. The wheel loads with four equal slices labelled A, B, C and D.",
+      "Choose how letters repeat. Leave Remove letter after pick off if any letter may come up again, or switch it on to take each called letter off the wheel.",
+      "For a classroom screen, press Projector fullscreen. The spin button becomes a large TAP TO SPIN control, and Exit projector returns to the normal layout.",
+      "Spin the wheel. The spin timer is 7 seconds by default and can be set from 3 seconds to 1 minute. The slice under the pointer when the wheel stops is the letter.",
+      "Read the Answers called list under the wheel. It shows every letter spun in this session, newest first, with numbers counting from the first spin.",
+      "To start a fresh round, reload the page. The wheel returns to all four letters and the list is cleared.",
+    ],
+    supplementalSections: [
+      {
+        heading: "How the odds work",
+        body: "Each letter has an equal slice. With all four letters on the wheel, each has a 25% chance. If Remove letter after pick is on, three letters left means about 33.3% each, and two letters left means 50% each. The wheel stops removing at two letters, so it never runs out of options, and the final pair stays on the wheel.",
+      },
+      {
+        heading: "How each spin is decided",
+        body: "When you press the button, the wheel chooses a random total rotation using your browser's cryptographic random number generator (crypto.getRandomValues, with Math.random only as a fallback in browsers that lack it). The animation plays that rotation out, and the letter at the pointer is the result. The spin timer only changes how long the spin takes, and earlier letters never influence the next one. Our How Randomness Works page explains the method in more depth.",
+      },
+      {
+        heading: "What a random letter can and cannot do",
+        body: "A random letter is not a clue about the right answer. It works well for call-outs, warm-ups and discussion prompts, and for placing answers in a quiz you are writing. It is not a way to grade a test, and for true or false questions the Yes or No Wheel is a closer fit.",
+      },
     ],
     faqs: [
-      { question: "Are the letters locked to A-D?", answer: "Yes. This mode always seeds four slices labeled A through D for multiple-choice call-outs." },
-      { question: "What does remove letter after pick do?", answer: "After a spin, that letter drops from the pool so the next spin only chooses among remaining options until you reload." },
-      { question: "What is projector fullscreen?", answer: "It expands the wheel to a full-screen classroom layout with a large tap-to-spin button meant for smartboards and projectors." },
-      { question: "Where do I see past answers?", answer: "The Answers called list under the wheel keeps an ordered history of every letter spun this session." },
+      { question: "Does the wheel always show A to D?", answer: "Yes. Each time the page loads it starts with four slices labelled A, B, C and D, ready for multiple-choice call-outs." },
+      { question: "Are all four letters equally likely?", answer: "Yes. The four slices are the same size, so each letter has a 25% chance on a fresh wheel. If you remove letters after each pick, the remaining letters share the odds equally." },
+      { question: "What does remove letter after pick do?", answer: "After a spin, that letter drops from the wheel so the next spin only chooses among the remaining letters. It stops at two letters, so the wheel always has at least two options, and reloading the page restores all four." },
+      { question: "What is projector fullscreen?", answer: "It expands the wheel to a full-screen classroom layout with a large TAP TO SPIN button meant for smartboards and projectors. Exit projector returns to the normal page." },
+      { question: "Where do I see past answers?", answer: "The Answers called list under the wheel keeps an ordered history of every letter spun this session, newest first. Reloading the page clears it." },
+      { question: "Does a random letter tell me the correct answer?", answer: "No. The letter is random and carries no information about which option is right, so use it for call-outs and discussion rather than for answering questions." },
     ],
     relatedWheels: [
       { slug: "alphabet-spinner-wheel", anchor: "Full alphabet A-Z spinner" },

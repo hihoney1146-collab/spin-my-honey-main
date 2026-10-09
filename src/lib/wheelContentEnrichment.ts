@@ -14,6 +14,8 @@ export type EnrichedContent = {
   directAnswer: string;
   useCaseSections: WheelUseCase[];
   supplementalSections: WheelUseCase[];
+  /** Hand-written steps for this wheel; empty means fall back to the page's CSV "how to use" text. */
+  howToSteps: string[];
   faqs: { question: string; answer: string }[];
   relatedBlogSlugs: string[];
   hasUniqueContent: boolean;
@@ -799,6 +801,7 @@ export function getEnrichedContent(page: WheelPageRecord): EnrichedContent {
       directAnswer: unique.directAnswer,
       useCaseSections: unique.useCases,
       supplementalSections: unique.supplementalSections ?? [],
+      howToSteps: unique.howToSteps ?? [],
       faqs: unique.faqs,
       relatedBlogSlugs,
       hasUniqueContent: true,
@@ -814,6 +817,7 @@ export function getEnrichedContent(page: WheelPageRecord): EnrichedContent {
       body,
     })),
     supplementalSections: [],
+    howToSteps: [],
     faqs: page.faqs,
     relatedBlogSlugs,
     hasUniqueContent: false,
