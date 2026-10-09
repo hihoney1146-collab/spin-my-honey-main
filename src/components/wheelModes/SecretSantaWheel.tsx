@@ -108,7 +108,10 @@ export function SecretSantaWheel() {
             <Textarea
               id="santa-names"
               value={namesText}
-              onChange={(e) => setNamesText(e.target.value)}
+              onChange={(e) => {
+                setNamesText(e.target.value);
+                setAssignments(null);
+              }}
               rows={6}
             />
             {duplicateMessage ? (

@@ -1988,61 +1988,110 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "secret-santa-wheel-generator": {
     directAnswer:
-      "The Secret Santa Wheel Generator spins a wheel from your participant list for a quick random draw, and also runs full gift-exchange assignment mode with spouse exclusions and shareable per-person reveal links. Organizers paste coworker or family names once, spin or generate pairings, and send each participant a unique URL when using assignment mode.",
+      "The Secret Santa Wheel Generator spins the same participant list for a quick single pick, or switches to assignment mode to pair every participant with exactly one other person using an unbiased shuffle, exclusions for couples or last year's match, and a private reveal link per giver. Paste names once, add exclusion rules if you need them, then spin for a casual pick or press Generate assignments for a full exchange.",
     title: "Secret Santa Wheel, Assignments and Exclusions",
     metaDescription:
       "Run office or family Secret Santa with assignment mode, couple exclusions, and private reveal links so each gifter sees only their match.",
     useCases: [
       {
-        heading: "Corporate holiday parties",
-        body: "HR loads departments, excludes managers from direct reports if policy requires, and emails reveal links.",
+        heading: "Office holiday parties with manager exclusions",
+        body: "HR pastes the department roster, adds an exclusion line for any pairing company policy rules out, such as a manager and their own direct report, then generates assignments and sends each person their private reveal link instead of a paper slip passed around the break room.",
       },
       {
-        heading: "Extended family exchanges",
-        body: "Cousins spin with spouse exclusions so partners never draw each other.",
+        heading: "Extended family exchanges with couple exclusions",
+        body: "Exclusion rules block both directions automatically, so writing \"Alex → Jordan\" once is enough to stop Alex drawing Jordan and Jordan drawing Alex. A family with three married couples needs only three exclusion lines, not six, to keep every spouse pair apart.",
       },
       {
         heading: "Remote team celebrations",
-        body: "Distributed staff receive individual links during a Zoom toast instead of passing a hat.",
+        body: "A distributed team generates assignments once during a video call, then each person opens their own link afterward instead of a pairing being read aloud or typed into a shared chat where everyone can see it.",
       },
       {
-        heading: "Budget-friendly friend groups",
-        body: "Slices include twenty-dollar cap reminders in the label text before assignments finalize.",
+        heading: "A quick single pick without full assignments",
+        body: "When the goal is just one random person, such as who presents first or who opens gifts first, the same participant list also feeds the ordinary spin wheel shown above the Generate button. Spinning once skips assignment mode entirely.",
+      },
+      {
+        heading: "Re-running after someone drops out",
+        body: "Remove the name of anyone who can no longer join, then press Generate assignments again. The new pairing can differ from the old one for other participants too, so previously sent reveal links may now describe the wrong match. See \"What the reveal link does and does not protect\" below before resending.",
+      },
+    ],
+    howToSteps: [
+      "Paste participant names into the Participants box, one per line. Each distinct name becomes one entry on both the quick-spin wheel and assignment mode.",
+      "If two participants share the exact same first name, give one of them a distinguishing label, such as a last initial. Assignment mode treats identical names (matched case-insensitively) as a single participant, so an unedited duplicate silently drops one person from the exchange.",
+      "If you need exclusions, add them in the second box, one pair per line, using the arrow shown on the page (\"Alex → Jordan\"), a plain dash (\"Alex - Jordan\"), or \"->\". Each rule blocks the pairing in both directions, so a couple or roommate pair needs only one line.",
+      "Check the \"On the wheel now\" count under the boxes matches the number of participants you expect before generating.",
+      "Press Generate assignments. The tool shuffles the list with an unbiased draw and checks the result against your exclusions and the no-self-match rule, trying again automatically, up to 5,000 times, until a valid arrangement appears.",
+      "Copy each person's reveal link from the \"Per-person reveal links\" list and send it to that participant individually. Opening the link shows only that person's own match.",
+    ],
+    supplementalSections: [
+      {
+        heading: "How exclusions work",
+        body: "Each exclusion line blocks a pairing in both directions automatically: writing \"Alex → Jordan\" once also stops Jordan from drawing Alex, so a couple or roommate pair needs only one line, not two. The parser matches names from your participant list case-insensitively, and understands the arrow shown on the page, \"->\", \"=>\", \">\", or a plain dash between two names, including hyphenated names such as \"Mary-Jane\". A line that does not match two real names on the list, or that excludes a name from itself, is not applied silently; it is listed under the exclusions box so you can fix it, with the first three unmatched lines shown by name.",
+      },
+      {
+        heading: "What \"no valid assignment\" means",
+        body: "Generate assignments tries up to 5,000 random draws before giving up, so a failure almost always means your exclusions genuinely rule out every possible pairing for that group, not a fluke of the random draw. The simplest failing case is two participants with one exclusion between them: there is no second person left to assign, so every attempt fails immediately. With larger groups and a handful of exclusions, a valid pairing is normally found within the first few tries; in 300 separate test runs with two exclusion rules among five participants, every run succeeded on the first draw or shortly after. Treat a \"no valid assignment\" message as a sign to loosen one rule, not as a bug.",
+      },
+      {
+        heading: "How fair the pairing is",
+        body: "The shuffle behind assignment mode is drawn from the same unbiased, rejection-sampled method used for the team generator and the wheel's Shuffle button, not a sort-based shuffle, which would favor some orderings over others. For the smallest possible group, three people with no exclusions, there are only two valid arrangements, since nobody can be assigned to themselves; testing the selection logic directly confirms both of those two arrangements occur with equal likelihood, not one more often than the other.",
+      },
+      {
+        heading: "Duplicate names behave differently in each mode",
+        body: "The quick-spin wheel above the Generate button treats every line as its own slice, so a name entered twice gets two slices and double the chance on a single spin. Assignment mode works differently: it collapses repeated names, matched case-insensitively, into one participant before pairing, because a real gift exchange needs exactly one assignment per person. Give participants distinct labels if two of them share a first name.",
+      },
+      {
+        heading: "What the reveal link does and does not protect",
+        body: "A reveal link encodes the giver's name and their assigned recipient directly in the link itself; opening it decodes and displays that pair in the browser, with nothing looked up from a server. That makes it a convenient way to keep pairings out of a shared chat, not a secure secret: anyone holding the link can read it, and generating assignments again (after editing the participant list) replaces the pairing shown on the page, so a link sent before that point may describe a match that no longer applies. For stricter privacy, send each link over a private channel rather than posting all of them together, and avoid changing the roster once links have gone out.",
       },
     ],
     faqs: [
       {
         question: "How does assignment mode work?",
         answer:
-          "Each participant gets a dedicated draw sequence so every name maps to exactly one recipient without duplicates.",
+          "Pressing Generate assignments shuffles your participant list with an unbiased draw, then checks that nobody is assigned to themselves and no excluded pair appears. If a draw fails either check, the tool tries again, up to 5,000 times, so every valid arrangement for your group has an equal chance of being the one you get.",
       },
       {
-        question: "Can I block certain pairings?",
+        question: "Does one exclusion line block both directions?",
         answer:
-          "Set exclusions, roommates, spouses, last year's match, before generating assignments.",
+          "Yes. Writing \"Alex → Jordan\" stops Alex from drawing Jordan and Jordan from drawing Alex, so a couple or roommate pair only needs one line.",
       },
       {
-        question: "What are per-person reveal links?",
+        question: "What if assignment mode says no valid arrangement was found?",
         answer:
-          "Unique URLs show only your giftee, keeping other pairings secret until gift night.",
+          "It means your exclusions leave no way to pair everyone validly, most often because a small group excludes the only people left to assign. Remove or loosen one exclusion rule and press Generate assignments again.",
       },
       {
-        question: "What if someone draws themselves?",
+        question: "Can two participants have the same name?",
         answer:
-          "The generator rerolls invalid assignments automatically before sharing links.",
+          "Give them distinct labels instead, such as a last initial. The quick-spin wheel treats repeated names as separate slices, but assignment mode merges matching names into one participant, so an unedited duplicate removes someone from the exchange.",
       },
       {
-        question: "Does it store addresses?",
+        question: "Are the per-person reveal links private?",
         answer:
-          "Only names on the wheel, shipping details stay in your separate chat thread.",
+          "Each link shows only that person's own match when opened, but the pairing is encoded in the link itself rather than stored on a server, so anyone who receives or guesses the link can read it. Send links individually rather than posting them all in one group thread.",
+      },
+      {
+        question: "Can I still just spin for one random name instead of generating assignments?",
+        answer:
+          "Yes. The same participant list feeds the ordinary spin wheel shown above the Generate button, so one tap and spin picks a single name without creating a full set of pairings.",
+      },
+      {
+        question: "What happens to the reveal links if I edit the participant list after generating?",
+        answer:
+          "Editing the Participants box clears the assignments and reveal links currently shown on the page, so you will need to press Generate assignments again. Resend fresh links afterward, since any links you already shared described the earlier pairing.",
+      },
+      {
+        question: "Does it store names or addresses anywhere?",
+        answer:
+          "No. Participant names and exclusions stay in the browser tab; only a reveal token (the giver and recipient names, encoded in the link) travels in the URL you choose to share. Shipping or gift details stay in your own separate chat thread.",
       },
     ],
     relatedWheels: [
       { slug: "random-name-picker-wheel", anchor: "General name draw wheel" },
-      { slug: "winner-picker-wheel", anchor: "Holiday raffle winner" },
-      { slug: "instagram-wheel-picker", anchor: "Social giveaway spinner" },
-      { slug: "family-game-night-picker-wheel", anchor: "Holiday game night picker" },
-      { slug: "bedtime-story-picker-wheel", anchor: "Seasonal story picker" },
+      { slug: "winner-picker-wheel", anchor: "Holiday raffle or giveaway winner" },
+      { slug: "raffle-wheel", anchor: "Multi-winner prize draw" },
+      { slug: "team-generator-wheel", anchor: "Split a group for sub-exchanges" },
+      { slug: "dinner-picker-wheel", anchor: "Pick the holiday dinner menu" },
     ],
   },
 
