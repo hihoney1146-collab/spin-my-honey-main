@@ -31,3 +31,6 @@ docs/SEO_AUDIT_*.md
 docs/SEO_BASELINE_*.md
 docs/SEO_EXPERIMENTS.md
 .claude/skills/onlinespinwheel-seo/
+
+# Temporary Chrome profile created by Lighthouse runs
+.tmp-lh/
