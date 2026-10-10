@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -53,6 +53,10 @@ export function RaffleWheel({ presetOptionLabels }: RaffleWheelProps) {
   const [winnerCount, setWinnerCount] = useState(1);
   const [winners, setWinners] = useState<string[]>([]);
   const [entryCountAtDraw, setEntryCountAtDraw] = useState(0);
+  // Set right after a winner is recorded, consumed by the very next labels-change event.
+  // Lets handleLabelsChange tell "SpinWheel auto-removed the entry we just won" (keep the
+  // in-progress draw) apart from a real edit to the list (reset the draw). See B16/B18.
+  const lastWinnerRef = useRef<string | null>(null);
 
   const ticketParsed = useMemo(() => {
     const pasted = parseEntryLines(ticketPaste);
@@ -95,11 +99,13 @@ export function RaffleWheel({ presetOptionLabels }: RaffleWheelProps) {
       const next = [...prev, name];
       return next.slice(0, winnerCount);
     });
+    lastWinnerRef.current = name;
   };
 
   const resetDraw = () => {
     setWinners([]);
     setEntryCountAtDraw(0);
+    lastWinnerRef.current = null;
   };
 
   const setModeAndReset = (next: DrawMode) => {
@@ -108,10 +114,22 @@ export function RaffleWheel({ presetOptionLabels }: RaffleWheelProps) {
   };
 
   const handleLabelsChange = (labels: string[]) => {
+    // With more than one winner requested, SpinWheel removes the picked entry on its own a
+    // moment after each spin and reports the shorter list here. That is expected progress,
+    // not a list edit, so do not clear the winners collected so far when it happens.
+    const justAutoRemovedTheWinner =
+      lastWinnerRef.current !== null &&
+      entryLabels.length - labels.length === 1 &&
+      entryLabels.includes(lastWinnerRef.current) &&
+      !labels.includes(lastWinnerRef.current);
     if (mode === "tickets") setTicketPaste(labelsToMultiline(labels));
     else if (mode === "names") setNamePaste(labelsToMultiline(labels));
     else setPrizePaste(labelsToMultiline(labels));
-    resetDraw();
+    if (justAutoRemovedTheWinner) {
+      lastWinnerRef.current = null;
+    } else {
+      resetDraw();
+    }
   };
 
   return (

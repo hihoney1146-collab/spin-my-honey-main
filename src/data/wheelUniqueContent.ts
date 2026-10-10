@@ -1784,53 +1784,102 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "random-student-picker": {
     directAnswer:
-      "The Random Student Picker helps US teachers call on learners fairly using remove-after-pick mode, session history, and fullscreen classroom mode designed for projectors. Paste your roster, spin, and the chosen name can drop from the pool automatically so every student participates before repeats. History logs who went already, which subs trust on day one.",
+      "The Random Student Picker helps teachers call on learners fairly, with remove-after-pick mode on by default, a running session history, and a fullscreen classroom mode that hides the rest of the site for projectors. Paste your roster, spin, and the chosen name drops off the wheel automatically so every student is called once before anyone repeats. History logs who already went, which substitute teachers can trust on day one without asking.",
     title: "Random Student Picker, Classroom Fair Call",
     metaDescription:
       "Paste your class roster, spin in fullscreen mode, auto-remove picked students, and review session history so every kid gets a turn.",
     useCases: [
       {
         heading: "Cold-call reading rounds",
-        body: "ELA teachers spin before each paragraph so shy readers know the wheel, not favoritism, decides.",
+        body: "ELA teachers spin before each paragraph so shy readers know the wheel, not favoritism, decides who reads next. With Remove after pick on, nobody is called twice until the whole class has had a turn.",
       },
       {
         heading: "Lab partner assignment",
-        body: "Science classes spin twice per table group and pair students who have not appeared in history yet.",
+        body: "Science teachers spin once per table group needed. The wheel only names one student at a time, so pairing is a judgment call the teacher makes from the order spun, not something the wheel calculates.",
       },
       {
         heading: "Substitute teacher handoff",
-        body: "Session history shows who already answered so guest teachers continue fair rotation.",
+        body: "Session history shows who already answered, numbered from the first call of the period, so a guest teacher picking up mid-lesson can see at a glance who is left without asking the class.",
       },
       {
         heading: "Reward seat picker",
-        body: "Positive behavior classes spin for flexible seating passes once homework checks finish.",
+        body: "Positive behavior classes spin for flexible seating passes once homework checks finish, using the same roster already loaded for the day.",
+      },
+      {
+        heading: "Building a fresh roster each term",
+        body: "Paste up to 400 names at once, one per line, replacing the 8 placeholder names. Pasted names are added on top of whatever is already on the wheel rather than swapped in, so press Clear all first if a new term's list should fully replace the last one.",
+      },
+      {
+        heading: "Running the wheel on a classroom projector",
+        body: "Press Fullscreen classroom before you spin. It hides the site header, navigation and footer entirely and leaves only the wheel and entry list filling the screen for back-row visibility.",
+      },
+    ],
+    howToSteps: [
+      "The wheel starts loaded with 8 placeholder names, Student 1 through Student 8. Paste your real roster to add to them, or press Clear all first to remove the placeholders.",
+      "Use Bulk add entries to paste up to 400 names at once, one per line. Names longer than 20 characters are trimmed. Pasted names are added on top of the current list, not swapped in for it.",
+      "Leave Remove after pick on, the default, so a called student drops off the wheel automatically after each spin. Turn it off if repeat picks are fine for your activity.",
+      "Press Spin the wheel, or press Fullscreen classroom first for a projector view, where the spin button reads Tap to spin.",
+      "Each pick is added to Session history at the top of the list, numbered so the most recent call has the highest number and the first call of the period is numbered 1.",
+      "Press Exit fullscreen to return to the normal page, or Reset in the entries panel to restore the full roster if you turned Remove after pick on and want to start the rotation over.",
+    ],
+    supplementalSections: [
+      {
+        heading: "Bulk-pasted names add to the wheel, they do not replace it",
+        body: "Pasting a new list through Bulk add entries appends those names to whatever is already loaded. Tested directly: starting from the 8 default placeholder names and pasting 2 more produced 10 total entries, not 2. To fully swap in a new class roster, press Clear all before pasting the new list.",
+      },
+      {
+        heading: "How session history numbering works",
+        body: "The most recent pick appears at the top of Session history, but the number next to each name counts up from the first pick of the session, so the newest entry carries the highest number and the oldest sits at the bottom labelled 1. A class with 5 names called so far shows the fifth pick at the top as \"5.\" and the very first call at the bottom as \"1.\"",
+      },
+      {
+        heading: "Fullscreen mode hides the whole site around the wheel",
+        body: "Pressing Fullscreen classroom covers the site header, the top navigation links and the footer with an opaque panel holding just the Classroom mode controls, the wheel and the entries list, confirmed by comparing a screenshot before and after. The rest of the page stays loaded behind that panel rather than being removed, so this is a visual overlay rather than a separate stripped-down layout, but the effect for anyone looking at the projector is the same: only the wheel and its controls are visible.",
+      },
+      {
+        heading: "Remove after pick stops at the same two-entry floor as other tools",
+        body: "With Remove after pick on, called students drop off the wheel until exactly two remain, then removal stops, the same rule the Random Name Picker Wheel and Winner Picker Wheel use. For a class that needs every single student called with none left over, plan on the last two names being drawn from a shrinking pair rather than the wheel ever reaching zero or one name on its own.",
       },
     ],
     faqs: [
       {
         question: "What is remove-after-pick mode?",
         answer:
-          "When enabled, the selected student leaves the active wheel automatically after each spin until you reset the roster.",
+          "When enabled, the default setting, the selected student leaves the active wheel automatically after each spin, down to the last two remaining, until you reset the roster.",
       },
       {
-        question: "Where does session history appear?",
+        question: "Does pasting a new roster replace the old one?",
         answer:
-          "A running list shows names picked during the current class period so you never lose track mid-lesson.",
+          "No. Bulk add entries adds the pasted names on top of whatever is already loaded. Press Clear all first if you want a completely new roster rather than a combined one.",
+      },
+      {
+        question: "Where does session history appear, and how is it numbered?",
+        answer:
+          "A running list below the wheel shows names picked during the current class period, most recent at the top. The number next to each name counts up from the first pick, so the newest entry has the highest number and the first call of the period is numbered 1.",
       },
       {
         question: "How do I use fullscreen classroom mode?",
         answer:
-          "Expand the wheel to fill the projector or smartboard so back-row students see slices clearly.",
+          "Press Fullscreen classroom to hide the site header, navigation and footer and fill the screen with just the wheel and entry list, so back-row students on a projector can read the slices clearly. Press Exit fullscreen to return.",
+      },
+      {
+        question: "How many names can I paste at once?",
+        answer:
+          "Up to 400 lines in one paste, with any name longer than 20 characters trimmed to fit a slice label.",
+      },
+      {
+        question: "What happens once only two students are left with Remove after pick on?",
+        answer:
+          "Removal stops there. The wheel keeps the last two names available rather than shrinking to one or zero, so either of them can still be drawn.",
       },
       {
         question: "Can I import from Google Classroom?",
         answer:
-          "Copy names from your gradebook and bulk paste, no direct LMS sync yet.",
+          "Not directly. Copy names from your gradebook or class list and bulk paste them in; there is no LMS sync yet.",
       },
       {
         question: "Does it work offline after loading?",
         answer:
-          "Spins run locally once the page caches, handy when school Wi-Fi drops briefly.",
+          "Spins run locally in your browser once the page has loaded, which helps when school Wi-Fi drops briefly mid-lesson.",
       },
     ],
     relatedWheels: [
@@ -2122,21 +2171,91 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "self-care-wheel": {
     directAnswer:
-      "The Self Care Wheel rebuilds its pool from filter chips: 5-minute, no-spend, evening, or movement. Tap a chip, spin once, and take the highlighted ritual during a break when deciding feels harder than resting.",
+      "The Self Care Wheel rebuilds its pool from four filter chips, 5 minutes, No spend, Evening, and Movement, each loading 6 prompts the moment you tap it. Pick a chip, spin for a random pick or just read the list and choose, and take the highlighted ritual during a break when deciding feels harder than resting. Edits to the slice text stick as long as you stay on the same filter, and are replaced the moment you switch to a different one.",
     title: "Self Care Wheel, Daily Wellness Nudge",
     metaDescription:
       "Filter self-care prompts by 5-minute, no-spend, evening, or movement, then spin a matching wellness action for your break.",
     useCases: [
-      { heading: "Pomodoro breaks", body: "After focus sprints, choose the 5-minute chip and spin for a quick reset." },
-      { heading: "Budget burnout days", body: "No-spend filters keep suggestions free when money stress is already high." },
-      { heading: "Evening wind-down", body: "Evening chips favor low-light rituals before bed instead of another scroll session." },
-      { heading: "Movement snacks", body: "Movement chips rebuild the wheel with walks, mobility, and short circuits." },
+      {
+        heading: "Pomodoro breaks",
+        body: "After a focus sprint, tap 5 minutes and spin for a quick reset from its 6 prompts, things like a box-breathing minute or stepping outside for fresh air, nothing that eats into the next sprint.",
+      },
+      {
+        heading: "Budget burnout days",
+        body: "No spend swaps in 6 free-only prompts, a walk around the block, a library browse, cooking with what is already in the kitchen, so money stress is not added to decision stress.",
+      },
+      {
+        heading: "Evening wind-down",
+        body: "Evening favors low-light rituals before bed, such as dimming screens thirty minutes early or herbal tea with a chapter of a book, instead of another scroll session.",
+      },
+      {
+        heading: "Movement snacks",
+        body: "Movement rebuilds the wheel with a ten-minute walk, a bodyweight circuit, or stairs instead of the elevator, short enough to fit between meetings.",
+      },
+      {
+        heading: "Personalizing one filter without losing it on the next visit",
+        body: "Edit any of the 6 slices under a filter to your own activity, then keep spinning that same chip across the session. Re-selecting the same already-active chip does not reset your edits, only switching to a different filter does.",
+      },
+      {
+        heading: "A quick read instead of a spin",
+        body: "Tapping a filter alone already shows all 6 of its prompts in the entries list under the wheel, so reading the list and picking one by hand is a valid way to use the tool without spinning at all.",
+      },
+    ],
+    howToSteps: [
+      "Tap a filter chip, 5 minutes, No spend, Evening, or Movement. Its 6 prompts load onto the wheel immediately, before you spin.",
+      "Spin for a random pick, or skip spinning and read the 6 prompts listed under the wheel to choose one yourself.",
+      "Edit any slice's text if a built-in prompt does not fit, for a personal coping strategy or a ritual specific to your routine.",
+      "Keep spinning the same filter as much as you like; your edits stay in place as long as you do not switch chips.",
+      "Switch to a different filter chip only when you want a different type of prompt. Doing so replaces the entire list, including any edits you made, with that filter's own 6 prompts.",
+      "There is no built-in streak or completion tracker, so note what you actually did in a journal or habit app if tracking matters to you.",
+    ],
+    supplementalSections: [
+      {
+        heading: "What is on each filter, in exact counts",
+        body: "Each of the 4 filters loads exactly 6 prompts, 24 prompts in the full dataset. 5 minutes: a glass of water, a minute of box breathing, a neck and shoulder stretch, stepping outside, a kind text to someone, tidying one surface. No spend: a walk around the block, a library browse or ebook, cooking with what is on hand, journaling three gratitudes, calling a friend, a free stretch video. Evening: dimming screens thirty minutes early, a warm shower and stretch, prepping tomorrow's clothes, herbal tea with a chapter, a five-minute tidy, a lights-out playlist. Movement: a ten-minute walk, a bodyweight circuit, dancing to two songs, yoga sun salutations, taking the stairs, hip mobility work.",
+      },
+      {
+        heading: "Edits stick only until you change filters",
+        body: "Tested directly: editing a slice's text, then pressing the same already-selected filter chip again, left the edit in place. Pressing a different chip immediately replaced it with that filter's own prompt. The rule is simple: the filter you are currently on keeps whatever you typed, the moment you leave it the edit is gone.",
+      },
+      {
+        heading: "Filters replace the pool, they do not combine",
+        body: "Only one filter's 6 prompts are on the wheel at a time. There is no way to mix, for example, 2 Evening prompts with 4 Movement prompts in a single spin; selecting a filter always loads that filter's full list and nothing from another one. Build a combined list by editing the 6 slices under any one filter to whatever mix you want instead.",
+      },
+      {
+        heading: "What this wheel is not",
+        body: "The prompts are everyday wellness nudges, not a treatment plan, and nothing here screens for or responds to a mental health crisis. If you are dealing with more than an ordinary rough day, a real person, whether a friend, a doctor, or a crisis line, is the right next step, not a spin.",
+      },
     ],
     faqs: [
-      { question: "What do the filter chips do?", answer: "Each chip swaps the entire wheel pool from a structured dataset (5-minute, no-spend, evening, or movement)." },
-      { question: "Can I still customize slices?", answer: "Yes. After a filter loads, you can edit the wheel entries like any other spinner if you need personal coping strategies." },
-      { question: "Are activities clinical treatment?", answer: "These are gentle suggestions, not medical advice. Follow your care team for serious needs." },
-      { question: "Does it track streaks?", answer: "No built-in habit tracker. Mark completions in your journal or habit app." },
+      {
+        question: "What do the filter chips do?",
+        answer: "Each chip replaces the entire wheel pool with that filter's own 6 prompts: 5 minutes, No spend, Evening, or Movement.",
+      },
+      {
+        question: "How many prompts are in each filter?",
+        answer: "Exactly 6 per filter, 24 across all 4 filters combined, though only one filter's 6 are on the wheel at any time.",
+      },
+      {
+        question: "Can I still customize slices?",
+        answer: "Yes. After a filter loads, edit any slice's text for a personal coping strategy, the same as any other spinner on this site.",
+      },
+      {
+        question: "Does re-clicking the same filter undo my edits?",
+        answer: "No. Edits only reset when you switch to a different filter chip. Pressing the filter you are already on leaves your edits exactly as you left them.",
+      },
+      {
+        question: "Can I combine two filters at once, like Evening and Movement?",
+        answer: "Not automatically. Only one filter's prompts load at a time. Edit the slices under one filter by hand if you want a custom mix.",
+      },
+      {
+        question: "Are activities clinical treatment?",
+        answer: "No. These are gentle, everyday suggestions, not medical advice or a crisis response. Follow your own care team or a crisis line for anything more serious than an ordinary rough day.",
+      },
+      {
+        question: "Does it track streaks?",
+        answer: "No built-in habit tracker. Mark completions in your own journal or habit app if you want to track a streak.",
+      },
     ],
     relatedWheels: [
       { slug: "date-night-wheel", anchor: "Couples recharge date" },
@@ -2150,21 +2269,91 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "pokemon-randomizer-wheel": {
     directAnswer:
-      "The Pokemon Randomizer Wheel rebuilds challenge pools with filters for starters, types, nuzlocke-style rules, and generation vibe. Labels stay generic-safe for licensing, focusing on run rules rather than a character name dump.",
+      "The Pokemon Randomizer Wheel rebuilds its pool from four challenge chips, Starters, Types, Nuzlocke-style, and Generation vibe, each loading 6 rule labels the moment you tap it. Pick a pool, spin for a random run constraint or read the 6 options and choose by hand, and the labels stay generic, run rules rather than licensed character or creature names, so there is nothing to keep updated as new games release. Edits to the slice text stick as long as you stay on the same pool, and are replaced the moment you switch to a different one.",
     title: "Pokemon Randomizer, Challenge Rules Wheel",
     metaDescription:
       "Filter starter, type, nuzlocke-style, or generation-vibe challenge rules, then spin a fair constraint for your next run or stream.",
     useCases: [
-      { heading: "Nuzlocke rule nights", body: "Spin the nuzlocke-style pool for first-encounter, nickname, or permadeath constraints." },
-      { heading: "Starter locks", body: "Starter filters force grass, fire, water, or no-evolve rules before the run begins." },
-      { heading: "Type challenges", body: "Type filters load mono-type, dual-type, or ban rules for creative teams." },
-      { heading: "Generation vibe sessions", body: "Generation chips set a ruleset feel without requiring licensed creature names on the wheel." },
+      {
+        heading: "Nuzlocke rule nights",
+        body: "Tap Nuzlocke-style and spin for one of 6 constraints, first encounter only, nickname everything, permadeath on faint, dupes clause on, set mode battles, or no items in battle, to lock in before the run starts.",
+      },
+      {
+        heading: "Starter locks",
+        body: "Starters loads 6 rules such as a grass, fire, or water starter run, a random starter only, or a rule that the starter never evolves, deciding the run's opening constraint before anyone picks a game.",
+      },
+      {
+        heading: "Type challenges",
+        body: "Types loads 6 rules, mono-type, dual-type only, no shared types, a random type ban, weekly type roulette, or resisting the gym's own type, for teams built around a creative restriction instead of raw power.",
+      },
+      {
+        heading: "Generation vibe sessions",
+        body: "Generation vibe sets a ruleset feel, such as a Gen 1 pace or a Gen 3 Emerald vibe, without putting any licensed creature or game names on the wheel itself.",
+      },
+      {
+        heading: "Keeping one house rule for an entire run",
+        body: "Edit a slice under whichever pool matches tonight's run, then keep spinning that same pool across the whole session. Re-pressing the same already-active chip does not undo the edit, only switching to a different pool does.",
+      },
+      {
+        heading: "Checking the rule set without spinning",
+        body: "Tapping a pool chip alone already lists all 6 of its rules under the wheel, so reading them and agreeing on one by hand works as well as spinning for groups that just want to see the options.",
+      },
+    ],
+    howToSteps: [
+      "Tap a challenge pool chip: Starters, Types, Nuzlocke-style, or Generation vibe. Its 6 rule labels load onto the wheel immediately, before you spin.",
+      "Spin for a random constraint, or skip spinning and read the 6 rules listed under the wheel to agree on one as a group.",
+      "Edit any slice's text if your house rules need different wording or an extra constraint the built-in label does not cover.",
+      "Keep spinning the same pool as much as you like; your edits stay in place as long as you do not switch chips.",
+      "Switch to a different pool chip only when you want a different category of rule. Doing so replaces the whole list, including any edits, with that pool's own 6 rules.",
+      "No Pokemon names or game-specific data appear anywhere on the page, by design, so there is nothing tied to a particular game's roster to keep current.",
+    ],
+    supplementalSections: [
+      {
+        heading: "The exact rules in each pool",
+        body: "Each of the 4 pools loads exactly 6 rule labels, 24 in the full dataset. Starters: grass, fire, or water starter run, random starter only, no starter evolves, starter stays in party always. Types: mono-type challenge, dual-type only, no shared types, random type ban, weekly type roulette, resist the gym type. Nuzlocke-style: first encounter only, nickname everything, permadeath on faint, dupes clause on, set mode battles, no items in battle. Generation vibe: Gen 1 ruleset feel, Gen 2 pairing night, Gen 3 Emerald vibe, Gen 4 Sinnoh pace, Gen 5 story focus, modern catch rules.",
+      },
+      {
+        heading: "Edits stick only until you change pools",
+        body: "Tested directly: editing a slice's text, then pressing the same already-selected pool chip again, left the edit in place. Pressing a different chip immediately replaced it with that pool's own rule. The current pool keeps whatever you typed; the moment you leave it, the edit is gone.",
+      },
+      {
+        heading: "Pools replace the wheel, they do not combine",
+        body: "Only one pool's 6 rules are on the wheel at a time. There is no way to mix a Types rule with a Nuzlocke-style rule in the same spin; selecting a pool always loads that pool's full list and nothing from another one. Build a combined house ruleset by editing the 6 slices under one pool to whatever mix your group wants instead.",
+      },
+      {
+        heading: "Why there are no character or creature names",
+        body: "Every label describes a run rule rather than naming a specific Pokemon, move, or game, which keeps the tool usable across generations without tracking licensed names or needing updates when a new game releases. The trade-off is explicit: this is a challenge-rule generator, not a roster randomizer, and it has no connection to any Nintendo game or account.",
+      },
     ],
     faqs: [
-      { question: "What do the challenge filters change?", answer: "Each chip reloads a fixed dataset of rule labels (starters, types, nuzlocke-style, or generation vibe) onto the wheel." },
-      { question: "Why are there no character names?", answer: "The utility is the filter UX with generic-safe challenge labels to avoid licensing issues while still randomizing run constraints." },
-      { question: "Does it connect to Nintendo games?", answer: "No game integration. It is a planning and challenge tool only." },
-      { question: "Can I customize after filtering?", answer: "Yes. Edit slices after a pool loads if your house rules need extra constraints." },
+      {
+        question: "What do the challenge filters change?",
+        answer: "Each chip replaces the entire wheel pool with that pool's own 6 rule labels: Starters, Types, Nuzlocke-style, or Generation vibe.",
+      },
+      {
+        question: "How many rules are in each pool?",
+        answer: "Exactly 6 per pool, 24 across all 4 pools combined, though only one pool's 6 are on the wheel at any time.",
+      },
+      {
+        question: "Why are there no character names?",
+        answer: "The tool generates generic, licensing-safe run rules instead of naming specific Pokemon, moves, or games, so it stays usable across generations without tracking a roster.",
+      },
+      {
+        question: "Does re-clicking the same pool undo my edits?",
+        answer: "No. Edits only reset when you switch to a different pool chip. Pressing the pool you are already on leaves your edits exactly as you left them.",
+      },
+      {
+        question: "Can I combine two pools at once, like Types and Nuzlocke-style?",
+        answer: "Not automatically. Only one pool's rules load at a time. Edit the slices under one pool by hand if your group wants a custom mix.",
+      },
+      {
+        question: "Does it connect to Nintendo games?",
+        answer: "No game integration of any kind. It is a planning and challenge-rule tool only, with no account or save-data connection.",
+      },
+      {
+        question: "Can I customize after filtering?",
+        answer: "Yes. Edit any slice after a pool loads if your house rules need extra or different constraints.",
+      },
     ],
     relatedWheels: [
       { slug: "team-generator-wheel", anchor: "Multiplayer team split" },
@@ -2172,7 +2361,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       { slug: "yes-or-no-wheel", anchor: "Keep or reroll challenge" },
       { slug: "random-name-picker-wheel", anchor: "Pick who chooses the rule" },
       { slug: "coin-flip-wheel", anchor: "Fifty-fifty tiebreaker" },
-      { slug: "what-to-draw-wheel", anchor: "General art prompt wheel" },
+      { slug: "random-number-wheel", anchor: "Dice-roll challenge generator" },
     ],
   },
 
@@ -2805,62 +2994,108 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "raffle-wheel": {
     directAnswer:
-      "The Raffle Wheel runs prize draws and ticket raffles in one tool: paste entrant names, switch to ticket-number mode, or load labeled prize slices (Grand Prize, gift card, bonus entry) for game-show-style spins. Draw multiple winners without replacement, screen-record the animation, and copy a timestamped proof link followers can verify after the live stream ends.",
-    title: "Raffle Wheel — Prize Draws, Tickets & Multi-Winner Picks",
+      "The Raffle Wheel runs prize draws and ticket raffles from three independent data sources, auto-generated or pasted ticket numbers, pasted entrant names, or labeled prize slices such as Grand Prize and gift card, picked with the same free spin either way. Draw one winner or several without repeats, screen-record the spin, and copy a timestamped proof link entrants can check after the draw. Choose a mode, paste your list or set a count, and spin.",
+    title: "Raffle Wheel, Tickets, Names or Prize Slices",
     metaDescription:
       "Run prize-wheel style giveaways or ticket raffles: labeled prizes, ticket numbers, multi-winner draws, and a shareable proof link for streams and school events.",
-    h1: "Raffle Wheel — Prize Draws & Multi-Winner Raffles",
+    h1: "Raffle Wheel: Draw Tickets, Names or Prizes",
     useCases: [
       {
         heading: "School carnival ticket stubs",
-        body: "PTA volunteers paste Ticket #001 through #200, spin live on the gym projector, and remove each winning stub so the next round cannot repeat a holder.",
+        body: "Leave the ticket paste box empty and set the count to 200; the wheel auto-generates #001 through #200. Spin live on the gym projector, and each winning stub is removed automatically so the next round cannot repeat a holder.",
       },
       {
         heading: "Labeled prize-wheel promos",
-        body: "Retail and stream giveaways load Grand Prize, gift card, free merch, and Try Again slices—the same prize-wheel job—then spin once per customer or subscriber while the audience watches the landing label.",
+        body: "Switch to Prize labels and load Grand Prize, gift card, free merch and Try Again slices, the same prize-wheel job this page absorbed from the old prize-wheel URL, then spin once per customer while the audience watches the landing label.",
       },
       {
         heading: "Church raffle nights",
-        body: "Youth groups sell numbered tickets for gift baskets; the wheel lands on one stub at a time while the audience watches the pointer stop.",
+        body: "Youth groups sell numbered tickets for gift baskets. Paste the sold ticket numbers directly rather than using the auto-generated range, since not every number in a block necessarily sold, and spin while the audience watches the pointer stop.",
       },
       {
         heading: "Instagram live giveaways",
-        body: "Creators paste @handles, set three winners, record the spin, and post the proof URL in Stories so commenters see the draw was fair.",
+        body: "Switch to Entrant names, paste handles, set three winners, record the spin, and post the proof URL in Stories so commenters see the draw was fair.",
       },
       {
         heading: "Trade-show booth draws",
-        body: "Exhibitors collect business cards, assign each a ticket number on-site, and spin hourly for branded swag without a physical drum.",
+        body: "Exhibitors collect business cards, assign each a ticket number on-site, and spin hourly for branded swag. A pasted custom ticket list is not limited to a plain numeric range, so booth and badge numbers work as typed.",
       },
       {
         heading: "Nonprofit silent auctions",
-        body: "Volunteers load paid raffle entries as numbers, draw the grand prize live, and archive the proof link for board records.",
+        body: "Volunteers load paid raffle entries as numbers, draw the grand prize live, and archive the proof link for board records. Switching modes to double check a name against a ticket number starts a fresh draw, so finish the current draw first.",
+      },
+    ],
+    howToSteps: [
+      "Choose a mode above the controls: Ticket numbers, Entrant names, or Prize labels. Switching modes always starts a fresh draw and clears any winners already picked.",
+      "In Ticket numbers mode, either set Auto-generate ticket count (clamped between 2 and 400) to generate a padded range such as #001 through #200, or paste your own ticket text, which replaces the auto-generated range entirely while the paste box has anything in it.",
+      "In Entrant names or Prize labels mode, paste one entry per line. Names and tickets are deduplicated without case sensitivity, keeping whichever spelling appeared first; prize labels are not deduplicated, so repeating a label on purpose gives it a bigger share of the wheel.",
+      "Set Winners to draw. A single winner needs just one spin; more than one removes each picked entry automatically, stopping once only two entries remain.",
+      "Keep spinning until the winners or prizes list reaches the number you set. The proof and share controls appear once it does.",
+      "Press Reset draw to clear the current result and spin the same pool again, or change mode to start over with a different data source.",
+    ],
+    supplementalSections: [
+      {
+        heading: "Three independent data sources, one wheel",
+        body: "Ticket numbers, Entrant names and Prize labels each keep their own separate text, so switching modes does not merge or lose anything, the previous mode's list is simply not on the wheel while another mode is active. Within Ticket numbers mode specifically, typing anything into the paste box fully replaces the auto-generated range; clear the paste box to return to the count-based range.",
+      },
+      {
+        heading: "The 400-ticket cap is enforced, not only shown in the field",
+        body: "Auto-generated ticket ranges are clamped between 2 and 400, enforced in the number itself rather than only shown as a field hint the way some other number fields on this site work. Typing a number above 400 or a negative number both clamp correctly; typing exactly 0 is the one exception, since the field treats 0 as an empty value and falls back to its own default of 20 instead. Padding always uses at least 3 digits: a count of 20 generates #001 through #020, and a count of 400 generates #001 through #400, both padded to 3 digits since neither needs more.",
+      },
+      {
+        heading: "Duplicate handling is different for prizes than for tickets or names",
+        body: "Ticket numbers and entrant names are deduplicated case-insensitively as soon as you paste them, with a count of how many were removed. Prize labels are not deduplicated at all, so typing \"Try Again\" on three separate lines gives that outcome three slices instead of one, a deliberate way to weight a common result without a separate weighting control.",
+      },
+      {
+        heading: "Multi-winner draws and the two-entry floor",
+        body: "With Winners to draw above 1, each picked entry is removed from the wheel automatically, but removal stops once exactly two entries remain, the same rule used on the Winner Picker Wheel and Random Name Picker Wheel. Asking for more winners than you have tickets, names or prize labels means the draw can never finish, since the pool cannot shrink past two and an already-picked entry is not counted twice.",
       },
     ],
     faqs: [
       {
         question: "Can I spin ticket numbers instead of names?",
         answer:
-          "Yes. Toggle ticket-number mode, paste stubs like #047, or auto-generate a numbered range. The wheel treats each ticket as its own slice.",
+          "Yes. Switch to Ticket numbers mode, paste stubs such as #047, or auto-generate a padded numbered range. The wheel treats each ticket as its own slice.",
       },
       {
         question: "Is this also a prize wheel?",
         answer:
-          "Yes. Use labeled prize slices (Grand Prize, discounts, merch) for classic prize-wheel giveaways, or switch to ticket/name mode for numbered raffles. One page covers both intents after we merged the old prize-wheel URL here.",
+          "Yes. Switch to Prize labels for classic prize-wheel giveaways such as Grand Prize, discounts or merch, or use Ticket numbers or Entrant names for a numbered or named raffle. One page covers all three after the old prize-wheel URL was merged here.",
+      },
+      {
+        question: "How many tickets can I auto-generate?",
+        answer:
+          "Between 2 and 400, and the generated numbers are padded to at least 3 digits. A negative number clamps up to 2. Typing exactly 0 is the one exception: it falls back to the default of 20 rather than clamping down to 2, since the field treats 0 the same as an empty value.",
+      },
+      {
+        question: "What happens if I paste my own ticket numbers after setting a count?",
+        answer:
+          "The pasted text takes over completely and the count field is ignored while anything is pasted. Clear the paste box to go back to the auto-generated range.",
+      },
+      {
+        question: "Are duplicate prize labels removed like duplicate names?",
+        answer:
+          "No. Names and ticket numbers are deduplicated automatically, but prize labels are not, so you can repeat a label on purpose to give it more slices on the wheel.",
       },
       {
         question: "How do multi-winner raffle draws work?",
         answer:
-          "Set how many winners you need. Each spin removes the prior winner from the pool when drawing multiple prizes in one session.",
+          "Set how many winners you need, then keep spinning. Each pick is removed from the pool automatically, stopping once two entries remain, until the winners list reaches the number you set.",
+      },
+      {
+        question: "What if I ask for more winners than I have tickets, names or prizes?",
+        answer:
+          "The draw cannot complete. Removal stops at two remaining entries, so the winners list can never reach a target higher than your total entry count, and the proof controls will not appear.",
       },
       {
         question: "What is the raffle proof link for?",
         answer:
-          "After the final winner, copy the proof URL with timestamp and results. Post it beside your live recording so entrants can verify the outcome.",
+          "Once the draw is complete, copy the proof URL, which records the result and a timestamp. Post it beside your live recording so entrants can check the outcome.",
       },
       {
         question: "Do I need accounts or uploads?",
         answer:
-          "No. Entries stay in your browser. Paste names, tickets, or prize labels, spin, and optionally record the screen—nothing is sent to our servers.",
+          "No. Entries stay in your browser. Paste names, tickets or prize labels, spin, and optionally record the screen. Nothing is sent to our servers.",
       },
     ],
     relatedWheels: [
@@ -2945,7 +3180,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "classroom-spinner": {
     directAnswer:
-      "The Classroom Spinner is a teacher hub with three tabs: random student selection (spin wheel with remove-after-pick), balanced team creation from the same roster style, and a fullscreen countdown timer. Call on learners fairly, split groups for lab days, and run think-pair-share timers without juggling three separate apps, built for US K–12 classrooms and subs who need obvious controls on day one.",
+      "The Classroom Spinner is a teacher hub with three tabs built from the site's own standalone tools: Student picker (the same Random Student Picker, remove-after-pick on by default), Teams (the same Team Generator, unbiased shuffle dealt round-robin), and a Timer tab with a 0 to 59 minute and second countdown that genuinely pauses and resumes, it no longer restarts from the top when you press Start again after Pause. One Fullscreen classroom toggle covers all three tabs for a projector, and the countdown keeps running in the background even while you are on a different tab.",
     title: "Classroom Spinner, Teacher Wheel Hub",
     metaDescription:
       "Teacher hub with three tabs: student spinner, team maker, and countdown timer, plus fullscreen mode for smartboards.",
@@ -2953,50 +3188,90 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
     useCases: [
       {
         heading: "Cold-calling in middle school ELA",
-        body: "Teachers paste period-two rosters on the Student picker tab, enable remove-after-pick, and spin so every reader shares analysis before anyone repeats.",
+        body: "Teachers paste period-two rosters on the Student picker tab, keep Remove after pick on (the default), and spin so every reader shares analysis before anyone repeats, down to the last two names on the roster.",
       },
       {
         heading: "PE squads on field day",
-        body: "Coaches switch to the Teams tab, paste 28 names, choose four teams, and send balanced groups to stations in under a minute.",
+        body: "Coaches switch to the Teams tab, paste 28 names, choose four teams, and get four balanced groups (7 each, since 28 divides evenly) sent to stations in under a minute.",
       },
       {
         heading: "Think-pair-share timing",
-        body: "Open the Timer tab, set three minutes, fullscreen the hub, and students see the countdown.",
+        body: "Open the Timer tab, set three minutes, press Fullscreen classroom, and students watch the countdown fill the screen. Pausing to give a verbal reminder and pressing Start timer again resumes from where it paused instead of restarting the full three minutes.",
       },
       {
         heading: "Substitute teacher plans",
-        body: "Session history on the student picker shows who was already called, so guest teachers continue fair participation without a paper roster.",
+        body: "Session history on the Student picker tab shows who was already called, numbered from the first pick of the period, so a guest teacher can see at a glance who is left without asking the class.",
       },
       {
         heading: "ESL small-group rotations",
-        body: "Lead teachers spin for table leaders on the student tab, generate teams of four on the Teams tab, and run five-minute speaking drills with the timer.",
+        body: "Lead teachers spin for table leaders on the Student picker tab, generate teams of four on the Teams tab, then start a five-minute Timer for each speaking drill, all three tabs sharing one Fullscreen classroom toggle.",
+      },
+      {
+        heading: "Running a timer while you take attendance on another tab",
+        body: "Start the countdown on the Timer tab, then switch to Student picker or Teams to get the next activity ready. The countdown keeps running in the background and shows the correct remaining time the moment you switch back.",
+      },
+    ],
+    howToSteps: [
+      "Choose a tab: Student picker for calling on individuals, Teams for splitting the class into groups, or Timer for a countdown, all three share one roster-free interface, so set each one up independently.",
+      "On Student picker, paste the roster and leave Remove after pick on (the default) so a called student drops off the wheel until only two remain; turn it off if repeat picks are fine.",
+      "On Teams, paste the roster and set the number of teams, then press Generate teams for an unbiased, round-robin split where team sizes differ by at most one person.",
+      "On Timer, set minutes and seconds with the sliders (0 to 59 each, disabled while the timer is running), then press Start timer.",
+      "Press Pause at any point and the remaining time holds exactly where it stopped. Pressing Start timer again resumes the countdown from that paused time, it does not restart from the full duration.",
+      "Press Fullscreen classroom to cover the site header, navigation and footer with just the active tab's controls, for any of the three tabs, and Exit fullscreen to return.",
+    ],
+    supplementalSections: [
+      {
+        heading: "The Student picker and Teams tabs are the exact standalone tools",
+        body: "This hub embeds the same Random Student Picker and Team Generator Wheel used on their own pages, not a simplified copy. Every verified behavior from those tools carries over directly: remove-after-pick stops once exactly two names remain, bulk-pasted rosters add to the existing list rather than replacing it (paste up to 400 lines, names trimmed to 20 characters), and team splits divide a roster of n people into k teams so n mod k teams get one extra person and the rest split evenly, for example 7 people into 3 teams gives 3, 2 and 2.",
+      },
+      {
+        heading: "Pause now genuinely resumes instead of restarting",
+        body: "Pressing Pause freezes the display at the exact remaining time. Pressing Start timer afterward continues the countdown from that paused value rather than resetting to the configured minutes and seconds, confirmed by running a 3 minute countdown down to 2:57, pausing, waiting, and resuming: the display read 2:57 immediately after pressing Start timer again, then kept counting down normally. The timer only resets to the full configured duration when you press Reset, or the first time you press Start timer on a fresh countdown.",
+      },
+      {
+        heading: "The countdown keeps running if you switch tabs",
+        body: "Starting the Timer and then switching to Student picker or Teams does not pause or stop it. Tested directly: starting a countdown, switching to Student picker for about 2.5 seconds, then switching back to Timer showed the display had kept counting down the whole time, within normal rounding. Use this to set a timer running and get the next activity ready on another tab without losing time.",
+      },
+      {
+        heading: "One Fullscreen toggle covers whichever tab is active",
+        body: "Fullscreen classroom is a single control in the top card, shared across all three tabs rather than a separate toggle per tab. Pressing it while on the Timer tab shows a large countdown with the site header, navigation and footer covered; switching to Student picker or Teams while still fullscreen keeps that same covered layout for the newly active tab.",
       },
     ],
     faqs: [
       {
         question: "Does this replace the random student picker?",
         answer:
-          "It includes the same student-picker behavior plus team generation and a timer, one bookmark for daily classroom routines.",
+          "It includes the exact same Student picker behavior, plus a Teams tab and a Timer tab, as one bookmark for daily classroom routines instead of three separate tabs.",
       },
       {
         question: "How does fullscreen classroom mode work?",
         answer:
-          "Tap fullscreen to expand the hub for smartboards. The Student picker and Teams tabs include a spin wheel; the Timer tab is a countdown only.",
+          "Press Fullscreen classroom to cover the site header, navigation and footer and fill the screen with the active tab's controls, Student picker and Teams both show a spin wheel, Timer shows just the countdown. Press Exit fullscreen to return.",
+      },
+      {
+        question: "If I pause the timer, does Start timer resume it or restart it?",
+        answer:
+          "It resumes. Pressing Start timer after Pause continues from the exact remaining time shown when you paused, not from the full configured duration. Only Reset, or starting a fresh countdown, goes back to the full time.",
+      },
+      {
+        question: "Does the timer keep running if I switch to another tab?",
+        answer:
+          "Yes. The countdown runs independently of which tab is visible, so starting it on the Timer tab and switching to Student picker or Teams does not pause it.",
       },
       {
         question: "Can I see who was already picked?",
         answer:
-          "Yes. Session history on the Student picker tab logs each selected student during the period so you can balance participation before the bell.",
+          "Yes. Session history on the Student picker tab logs each selected student during the period, numbered from the first pick, so you can balance participation before the bell.",
       },
       {
         question: "Is student data stored online?",
         answer:
-          "No. Rosters and history stay in your browser session on that device, nothing is uploaded to our servers.",
+          "No. Rosters and session history stay in your browser on that device; nothing is uploaded to our servers.",
       },
       {
         question: "Does the team maker balance sizes?",
         answer:
-          "Teams shuffle randomly and distribute names round-robin so counts stay within one person even with odd class sizes.",
+          "Yes. Teams are dealt round-robin after an unbiased shuffle, so sizes differ by at most one person even with a roster that does not divide evenly by the team count.",
       },
     ],
     relatedWheels: [

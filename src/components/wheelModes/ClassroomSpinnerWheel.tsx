@@ -24,7 +24,9 @@ export function ClassroomSpinnerWheel({
   const totalMs = (timerMinutes * 60 + timerSeconds) * 1000;
 
   const startTimer = useCallback(() => {
-    setRemaining(totalMs);
+    // Resume from where Pause left off; only reset to the configured duration when
+    // starting fresh (remaining is null) or after the countdown already finished (0).
+    setRemaining((prev) => (prev === null || prev <= 0 ? totalMs : prev));
     setTimerRunning(true);
   }, [totalMs]);
 

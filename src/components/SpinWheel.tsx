@@ -1808,7 +1808,7 @@ export const SpinWheel = ({
                       Page {entriesPageIndex + 1} of {entriesTotalPages}
                       <span className="text-muted-foreground/70 font-normal">
                         {" "}
-                        · {entriesPageIndex * ENTRIES_PAGE_SIZE + 1}–
+                        · {entriesPageIndex * ENTRIES_PAGE_SIZE + 1} to{" "}
                         {Math.min(
                           (entriesPageIndex + 1) * ENTRIES_PAGE_SIZE,
                           entries.length,

@@ -78,7 +78,7 @@ export function SelfCareWheel({ presetOptionLabels: _presetOptionLabels }: SelfC
           ))}
         </div>
         <p className="text-xs text-muted-foreground">
-          Custom list edits stick until you switch filters — then the new chip&apos;s
+          Custom list edits stick until you switch filters. Then the new chip&apos;s
           list replaces them.
         </p>
         <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">

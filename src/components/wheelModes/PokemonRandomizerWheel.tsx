@@ -63,8 +63,8 @@ export function PokemonRandomizerWheel({
         </div>
         <p className="text-sm text-muted-foreground">
           Filters rebuild the wheel from challenge rulesets (starters, types,
-          nuzlocke-style rules, generation vibe)—not a character name dump. Custom
-          edits stick until you switch pools — then the new chip&apos;s list replaces
+          nuzlocke-style rules, generation vibe), not a character name dump. Custom
+          edits stick until you switch pools. Then the new chip&apos;s list replaces
           them.
         </p>
         <div className="flex flex-wrap gap-2" role="group" aria-label="Challenge pool">
