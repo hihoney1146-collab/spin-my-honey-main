@@ -1930,12 +1930,12 @@ export const SpinWheel = ({
                         } ${!entry.active ? "opacity-50 cursor-not-allowed" : ""
                         }`}
                       title={entry.imageUrl ? "Change image" : "Add image"}
-                      aria-label={
-                        entry.imageUrl
-                          ? `Change image for ${entry.text || "untitled"}`
-                          : `Add image for ${entry.text || "untitled"}`
-                      }
                     >
+                      <span className="sr-only">
+                        {entry.imageUrl
+                          ? `Change image for ${entry.text || "untitled"}`
+                          : `Add image for ${entry.text || "untitled"}`}
+                      </span>
                       <ImageIcon className="h-3 w-3 lg:h-3.5 lg:w-3.5" aria-hidden="true" />
                     </label>
                   </div>

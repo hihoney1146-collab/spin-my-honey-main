@@ -206,6 +206,7 @@ function CoinFaceUpload({
             type="file"
             accept="image/png,image/jpeg,image/webp"
             className="sr-only"
+            aria-label={`Side ${sideName} face image upload`}
             data-testid={`coin-face-input-${side}`}
             onChange={(e) => {
               const file = e.target.files?.[0];
@@ -774,6 +775,7 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
               id="toss-mode"
               checked={tossMode}
               onCheckedChange={setTossMode}
+              aria-label="Match toss mode"
               data-testid="toss-mode"
             />
           </div>

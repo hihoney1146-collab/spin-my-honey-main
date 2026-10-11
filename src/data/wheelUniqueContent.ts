@@ -61,7 +61,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       },
       {
         heading: "How each spin is decided",
-        body: "When you press the button, the wheel chooses a random total rotation using your browser's cryptographic random number generator (crypto.getRandomValues, with Math.random only as a fallback in browsers that lack it). The animation then plays that rotation out, and the slice at the pointer is the result, so the animation is the selection rather than a decoration. The spin timer only changes how long the spin takes, and earlier results never influence the next one. Our How Randomness Works page and the spin wheel fairness study explain the method in more depth.",
+        body: "As soon as you press spin, your browser's cryptographic random number generator, crypto.getRandomValues, determines the stopping rotation, with Math.random used only as a fallback on browsers that lack it. The animation is that rotation playing out, so what you watch is the actual selection, not a decoration layered over one already made. The spin timer only changes how long the spin takes, and earlier results never influence the next one. Our How Randomness Works page and the spin wheel fairness study cover the method in more depth.",
       },
       {
         heading: "When a Yes or No wheel is the wrong tool",
@@ -171,7 +171,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       },
       {
         heading: "How each spin is decided",
-        body: "When you press the button, the wheel chooses a random total rotation using your browser's cryptographic random number generator (crypto.getRandomValues, with Math.random only as a fallback in browsers that lack it). The animation plays that rotation out, and the slice at the pointer is the result. The spin timer only changes how long the spin takes, and earlier results never influence the next one. Our How Randomness Works page explains the method in more depth.",
+        body: "Your browser's cryptographic random number generator, crypto.getRandomValues, picks the stopping rotation the moment you press spin; Math.random only steps in as a fallback on browsers that lack that API. What you see animate is that number playing out, not a separate decision happening behind the scenes. Every dinner option sits in an equal-sized slice, so the order you typed them in has no effect on the odds, and finishing one spin does not influence the next. The full mechanism is documented on our How Randomness Works page.",
       },
       {
         heading: "What this wheel does not do",
@@ -266,7 +266,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       },
       {
         heading: "How each spin is decided",
-        body: "When you press the button, the wheel chooses a random total rotation using your browser's cryptographic random number generator (crypto.getRandomValues, with Math.random only as a fallback in browsers that lack it). The animation plays that rotation out, and the slice at the pointer is the result. The spin timer only changes how long the spin takes, and earlier results never influence the next one. Our How Randomness Works page explains the method in more depth.",
+        body: "The instant you hit spin, your browser's built-in cryptographic generator, crypto.getRandomValues, determines how far the wheel turns; Math.random is only a backup on browsers missing that API. The spin you watch is the real selection running, not a visual effect layered on top of an already-made choice. Every title on the wheel occupies an equal slice, so genre or runtime never tilts the odds, and one spin carries no memory into the next. See our How Randomness Works page for the full breakdown.",
       },
       {
         heading: "What this wheel does not do",
@@ -346,7 +346,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       },
       {
         heading: "How each spin is decided",
-        body: "When you press the button, the wheel chooses a random total rotation using your browser's cryptographic random number generator (crypto.getRandomValues, with Math.random only as a fallback in browsers that lack it). The animation plays that rotation out, and the slice at the pointer is the result. The spin timer only changes how long the spin takes, and earlier results never influence the next one. Our How Randomness Works page explains the method in more depth.",
+        body: "Pressing spin hands the decision to your browser's cryptographic random number generator, crypto.getRandomValues, with Math.random used only if that API is not available. The wheel's animation is the outcome unfolding in real time, not a show staged after the real pick already happened. Every option on a given wheel sits in an equal slice, so the odds hold steady no matter how many times you spin, and whatever landed last time has zero pull on what lands next. Read the full mechanism on our How Randomness Works page.",
       },
       {
         heading: "What this wheel is for, and what it is not",
@@ -399,7 +399,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       },
       {
         heading: "How each spin is decided",
-        body: "When you press the button, the wheel chooses a random total rotation using your browser's cryptographic random number generator (crypto.getRandomValues, with Math.random only as a fallback in browsers that lack it). The animation plays that rotation out, and the slice at the pointer is the result. Every look on the wheel has the same size slice, so the same chance, and earlier spins never influence the next one. Our How Randomness Works page explains the method in more depth.",
+        body: "Press spin, and your browser's cryptographic random number generator, crypto.getRandomValues, immediately settles the stopping rotation, with Math.random stepping in only on browsers that lack it. That rotation is what the animation shows you, not a separate choice made afterward. Every look on the wheel has the same size slice, so the same chance, and earlier spins never influence the next one. Our How Randomness Works page covers the mechanism in full.",
       },
       {
         heading: "What this wheel cannot do",
@@ -466,7 +466,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       },
       {
         heading: "How each spin is decided",
-        body: "When you press the button, the wheel chooses a random total rotation using your browser's cryptographic random number generator (crypto.getRandomValues, with Math.random only as a fallback in browsers that lack it). The animation plays that rotation out, and the slice at the pointer is the result. Every plan has an equal chance, so with the full list of 23 each plan has about a 4.3% chance, and with At home and Treat night each of the 2 plans has 50%. Earlier spins never influence the next one. Our How Randomness Works page explains the method in more depth.",
+        body: "Your browser's cryptographic random number generator, crypto.getRandomValues, settles the rotation as soon as you press spin, falling back to Math.random only where that API is unavailable. The animation is that result playing out, not a preview of a decision made elsewhere. Every plan has an equal chance, so with the full list of 23 each plan has about a 4.3% chance, and with At home and Treat night each of the 2 plans has 50%. Earlier spins never influence the next one. The full mechanism is covered on our How Randomness Works page.",
       },
       {
         heading: "What this wheel does not do",
@@ -938,7 +938,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       },
       {
         heading: "How each spin is decided",
-        body: "When you press the button, the wheel chooses a random total rotation using your browser's cryptographic random number generator (crypto.getRandomValues, with Math.random only as a fallback in browsers that lack it). The animation plays that rotation out, and the name at the pointer is the winner. The spin timer only changes how long the spin takes, and with equal slices every name has the same chance on every spin. Our How Randomness Works page and the spin wheel fairness study explain the method in more depth.",
+        body: "The browser's cryptographic random number generator, crypto.getRandomValues, is what actually picks the rotation the instant you press spin, with Math.random used only as a fallback. The animation plays that rotation out, and the name at the pointer is the winner. The spin timer only changes how long the spin takes, and with equal slices every name has the same chance on every spin. Our How Randomness Works page and the spin wheel fairness study go into the method in more depth.",
       },
       {
         heading: "What the proof link shows, and what it does not",
@@ -1464,7 +1464,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       },
       {
         heading: "How each spin is decided",
-        body: "When you press the button, the wheel chooses a random total rotation using your browser's cryptographic random number generator (crypto.getRandomValues, with Math.random only as a fallback in browsers that lack it). The animation plays that rotation out, and the letter at the pointer is the result. The spin timer only changes how long the spin takes, and earlier letters never influence the next one. Our How Randomness Works page explains the method in more depth.",
+        body: "Your browser's cryptographic random generator, crypto.getRandomValues, decides the rotation the instant spin is pressed, falling back to Math.random only on browsers without that API. The spin itself is the outcome being revealed, not a cosmetic delay before one gets picked separately. Every active letter occupies an equal-sized slice, so none is favoured over another, and each spin stands entirely on its own regardless of what landed before. The full explanation is on our How Randomness Works page.",
       },
       {
         heading: "What this wheel does not do",
@@ -1976,7 +1976,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       },
       {
         heading: "How each spin is decided",
-        body: "When you press the button, the wheel chooses a random total rotation using your browser's cryptographic random number generator (crypto.getRandomValues, with Math.random only as a fallback in browsers that lack it). The animation plays that rotation out, and the letter at the pointer is the result. The spin timer only changes how long the spin takes, and earlier letters never influence the next one. Our How Randomness Works page explains the method in more depth.",
+        body: "Spin triggers your browser's cryptographic random number generator, crypto.getRandomValues, to pick the stopping point, with Math.random stepping in only when that API is missing. What plays out on screen is the real selection, not a staged reveal of a choice already made. A, B, C and D each take an equal-sized slice, so no answer letter is favoured over another, and removing a letter after use only shrinks the pool, it does not change the odds for what remains. More detail is on our How Randomness Works page.",
       },
       {
         heading: "What a random letter can and cannot do",

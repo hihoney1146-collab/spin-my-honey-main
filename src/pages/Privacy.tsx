@@ -207,12 +207,10 @@ const Privacy = () => {
               Google Analytics, Consent Mode, and Google AdSense
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              We use Google Analytics for aggregated traffic insight. Online Spin Wheel
-              has integrated Google AdSense. Advertisements will be displayed once our
-              AdSense account is approved and ad serving is enabled. When ads are served,
-              Google and its advertising partners may use cookies or similar technologies
-              for advertising, measurement, fraud prevention and, where permitted,
-              personalization.
+              We rely on three Google products, described one by one below. When ads are
+              served, Google and its advertising partners may use cookies or similar
+              technologies for advertising, measurement, fraud prevention and, where
+              permitted, personalization.
             </p>
             <ul className="space-y-3 text-muted-foreground ml-1 mb-4">
               <li className="flex items-start gap-2">

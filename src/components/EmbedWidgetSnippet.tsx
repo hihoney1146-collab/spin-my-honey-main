@@ -42,7 +42,7 @@ export function EmbedWidgetSnippet({ slug, wheelTitle }: EmbedWidgetSnippetProps
 
   return (
     <div className="rounded-xl border border-border bg-muted/30 p-5 md:p-6 space-y-3">
-      <h3 className="text-lg font-bold">Embed this wheel</h3>
+      <h2 className="text-lg font-bold">Embed this wheel</h2>
       <p className="text-sm text-muted-foreground">
         Paste this iframe on your site. The attribution link below credits{" "}
         <a

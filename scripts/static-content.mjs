@@ -333,11 +333,11 @@ ${exploreNav()}`);
 
 function contactContent() {
   return mainWrap(`<h1>Contact Online Spin Wheel</h1>
-<p>We'd love to hear from you. Whether you have a question about a specific spin wheel, found a bug, want to suggest a new feature, or are exploring a partnership, our team reads every message. Send us a note and we'll respond as soon as possible, most support, privacy, and business emails receive a reply within 24–48 hours, and we aim to acknowledge editorial corrections even faster.</p>
+<p>We'd love to hear from you. Whether you have a question about a specific spin wheel, found a bug, want to suggest a new feature, or are exploring a partnership, our team reads every message. Send us a note and we'll respond as soon as possible, most support, privacy, and business emails receive a reply within 24 to 48 hours, and we aim to acknowledge editorial corrections even faster.</p>
 
 <section>
   <h2>Email us</h2>
-  <p>For general inquiries, feedback, or support, email <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>. We read every message and respond as soon as possible, most support, privacy, and business emails receive a reply within 24–48 hours. Your feedback directly shapes which wheels, guides, and features we build next.</p>
+  <p>For general inquiries, feedback, or support, email <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>. We read every message and respond as soon as possible, most support, privacy, and business emails receive a reply within 24 to 48 hours. Your feedback directly shapes which wheels, guides, and features we build next.</p>
 </section>
 
 <section>
@@ -356,7 +356,7 @@ function contactContent() {
   <ul>
     <li><strong>Operator:</strong> ${ORG_NAME}, a small team dedicated solely to this website. Data controller: ${ORG_NAME} (site owner: confirm registered legal entity name if applicable).</li>
     <li><strong>Based in:</strong> Islamabad, Pakistan. Serving users worldwide online.</li>
-    <li><strong>Response time:</strong> typically within 24–48 hours on business days.</li>
+    <li><strong>Response time:</strong> typically within 24 to 48 hours on business days.</li>
   </ul>
 </section>
 
@@ -696,7 +696,7 @@ function comparisonRngContent() {
 <tr><td>Shows all options before the draw</td><td>Yes, labeled slices</td><td>No, one number only</td></tr>
 <tr><td>Group can watch the selection</td><td>Yes, spin animation</td><td>Only if you show the screen</td></tr>
 <tr><td>Works with names without numbering</td><td>Yes, paste labels</td><td>Requires mapping names to IDs</td></tr>
-<tr><td>Typical speed</td><td>3–60 seconds per spin</td><td>Instant</td></tr>
+<tr><td>Typical speed</td><td>3 to 60 seconds per spin</td><td>Instant</td></tr>
 <tr><td>Crypto RNG (this site)</td><td>Yes</td><td>Yes, on our number wheel</td></tr>
 <tr><td>Shareable proof link</td><td>Yes, winner/raffle wheels</td><td>Not built-in</td></tr>
 </tbody>
@@ -758,7 +758,7 @@ function comparisonPhysicalContent() {
 <table>
 <thead><tr><th>Feature</th><th>Online spin wheel</th><th>Physical prize wheel</th></tr></thead>
 <tbody>
-<tr><td>Upfront cost</td><td>Free</td><td>Often $50–$500+</td></tr>
+<tr><td>Upfront cost</td><td>Free</td><td>Often $50 to $500+</td></tr>
 <tr><td>Change options between rounds</td><td>Type new list, seconds</td><td>Repaint or re-label</td></tr>
 <tr><td>Remote / hybrid events</td><td>Screen share or embed</td><td>Camera on booth only</td></tr>
 <tr><td>Equal slice probability</td><td>Crypto RNG + equal arcs</td><td>Can drift with wear</td></tr>
@@ -1132,7 +1132,7 @@ const WHEEL_MODE_FEATURES = {
   "secret-santa-wheel-generator":
     "Paste participants once to drive both the spin wheel (quick random draw) and full Secret Santa assignment mode with optional exclusion pairs. Each participant can get a private reveal link so they see only their match.",
   "random-number-wheel":
-    "Set minimum and maximum; the wheel reloads those integers instantly when the range has 30 values or fewer. Toggle no-repeat to share one used pool between the quick-pick button and the spin wheel—drawn numbers leave both until reset. Wider ranges skip the wheel graphic and show a bold numeric result.",
+    "Set minimum and maximum; the wheel reloads those integers instantly when the range has 30 values or fewer. Toggle no-repeat to share one used pool between the quick-pick button and the spin wheel, drawn numbers leave both until reset. Wider ranges skip the wheel graphic and show a bold numeric result.",
   "random-student-picker":
     "Built for US classrooms: enable remove-after-pick so called-on students drop from the pool, review session history for subs, and switch to fullscreen classroom mode with large tap-to-spin controls for projectors.",
   "winner-picker-wheel":
@@ -1148,7 +1148,7 @@ const WHEEL_MODE_FEATURES = {
   "random-name-picker-wheel":
     "Name picker (Wheel of Names / digital hat draw) with remove-after-pick, session history, optional Name:weight entries that multiply slices, proof link, and streamer-mode controls.",
   "abcd-spin-wheel":
-    "Locks the wheel to A–D for multiple-choice call-outs, optional remove-after-pick, projector fullscreen, and a session list of answers already called.",
+    "Locks the wheel to A, B, C and D for multiple-choice call-outs, optional remove-after-pick, projector fullscreen, and a session list of answers already called.",
   "should-i-text-him-wheel":
     "Context chips (casual / mixed signals / high emotion) swap the outcome pool, then a one-minute cooldown after each spin slows impulsive re-rolls.",
   "chinese-zodiac-wheel":

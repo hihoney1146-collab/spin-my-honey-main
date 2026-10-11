@@ -441,9 +441,9 @@ const BlogPost = () => {
                   ))}
                   {block.checklist?.items?.length ? (
                     <div className="my-8 rounded-xl border border-primary/20 bg-primary/5 p-6">
-                      <h4 className="text-lg font-bold mb-4 text-foreground">
+                      <h3 className="text-lg font-bold mb-4 text-foreground">
                         {block.checklist.title}
-                      </h4>
+                      </h3>
                       <ul className="space-y-2 list-none p-0 m-0">
                         {block.checklist.items.map((item, k) => (
                           <li
