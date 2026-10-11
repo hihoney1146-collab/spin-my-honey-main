@@ -431,8 +431,10 @@ Disallow: /*?*utm_medium=
 Disallow: /*?*utm_campaign=
 Disallow: /*?*fbclid=
 Disallow: /*?*gclid=
-Disallow: /*?*e=
-Disallow: /*?*d=
+Disallow: /*?e=
+Disallow: /*&e=
+Disallow: /*?d=
+Disallow: /*&d=
 Disallow: /*?*stream=
 
 Sitemap: ${SITE}/sitemap.xml

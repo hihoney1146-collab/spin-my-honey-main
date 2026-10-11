@@ -2,7 +2,7 @@
 
 > Free browser spin wheels for fair random picks: names, numbers, teams, giveaways, classrooms, and decisions.
 
-Last updated: 2026-10-09
+Last updated: 2026-10-11
 
 ## Identity
 - Canonical site: https://onlinespinwheel.fun/
@@ -70,7 +70,7 @@ https://onlinespinwheel.fun/pokemon-randomizer-wheel, Pokemon Randomizer Wheel: 
 
 ## Utilities & Tools (4)
 https://onlinespinwheel.fun/random-name-picker-wheel, Random Name Picker Wheel: Paste names, spin a fair Wheel of Names, remove winners after each pick, add optional weights, and keep session history for class or stream giveaways.
-https://onlinespinwheel.fun/random-number-wheel, Random Number Wheel: Set min and max—the wheel reloads instantly for ranges ≤30. No-repeat shares one pool between the quick-pick button and the spin wheel.
+https://onlinespinwheel.fun/random-number-wheel, Random Number Wheel: Set minimum and maximum and the wheel reloads instantly for ranges of 30 or fewer. No-repeat mode shares one pool between the quick-pick button and the spin wheel.
 https://onlinespinwheel.fun/team-generator-wheel, Team Generator Wheel: Split PE classes, office workshops, or gaming lobbies into balanced teams from one name list, spin for a quick pick or generate squads.
 https://onlinespinwheel.fun/winner-picker-wheel, Winner Picker Wheel: Paste commenter @handles, remove duplicate entries, spin live, and screen-record proof for Instagram or TikTok giveaway winners.
 
