@@ -117,7 +117,7 @@ export function DateNightWheel({
         <p className="text-sm text-muted-foreground">
           Both filters rebuild the plan list from a tagged dataset (
           {wheelSync.entryLabels.length} plans match). Custom edits stick until you
-          switch filters — then the new chip&apos;s list replaces them.
+          switch filters. Then the new chip&apos;s list replaces them.
         </p>
         <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
           On the wheel now ({wheelSync.entryLabels.length})

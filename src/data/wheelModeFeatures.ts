@@ -5,7 +5,7 @@ export const WHEEL_MODE_FEATURES: Record<string, string> = {
   "secret-santa-wheel-generator":
     "Paste participants once to drive both the spin wheel (quick random draw) and full Secret Santa assignment mode with optional exclusion pairs. Each participant can get a private reveal link so they see only their match.",
   "random-number-wheel":
-    "Set minimum and maximum; the wheel reloads those integers instantly when the range has 30 values or fewer. Toggle no-repeat to share one used pool between the quick-pick button and the spin wheel—drawn numbers leave both until reset. Wider ranges skip the wheel graphic and show a bold numeric result.",
+    "Set minimum and maximum; the wheel reloads those integers instantly when the range has 30 values or fewer. Toggle no-repeat to share one used pool between the quick-pick button and the spin wheel, drawn numbers leave both until reset. Wider ranges skip the wheel graphic and show a bold numeric result.",
   "random-student-picker":
     "Built for US classrooms: enable remove-after-pick so called-on students drop from the pool, review session history for subs, and switch to fullscreen classroom mode with large tap-to-spin controls for projectors.",
   "winner-picker-wheel":
@@ -21,7 +21,7 @@ export const WHEEL_MODE_FEATURES: Record<string, string> = {
   "random-name-picker-wheel":
     "Name picker (Wheel of Names / digital hat draw) with remove-after-pick, session history, optional Name:weight entries that multiply slices, proof link, and streamer-mode controls.",
   "abcd-spin-wheel":
-    "Locks the wheel to A–D for multiple-choice call-outs, optional remove-after-pick, projector fullscreen, and a session list of answers already called.",
+    "Locks the wheel to A, B, C and D for multiple-choice call-outs, optional remove-after-pick, projector fullscreen, and a session list of answers already called.",
   "should-i-text-him-wheel":
     "Context chips (casual / mixed signals / high emotion) swap the outcome pool, then a one-minute cooldown after each spin slows impulsive re-rolls.",
   "chinese-zodiac-wheel":

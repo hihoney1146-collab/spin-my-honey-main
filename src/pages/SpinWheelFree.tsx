@@ -131,34 +131,16 @@ const SpinWheelFree = () => {
               <Card className="p-8 md:p-10 bg-white dark:bg-slate-800/50 shadow-xl rounded-3xl border border-slate-200 dark:border-slate-700">
                 <div className="space-y-6 text-muted-foreground leading-relaxed">
                   <p>
-                    Onlinespinwheel.fun is run by just two people who built the tool from scratch:
+                    Onlinespinwheel.fun is built and maintained by a small, independent team dedicated
+                    solely to this product: Armghana Zeeshan (CEO), Zoha Zeeshan (Co-Founder), Raja
+                    Jahangir (SEO Specialist), and Faisal Zahir (Digital Marketing). Meet the team on our{" "}
+                    <Link to="/about-us" className="text-primary underline underline-offset-2 font-medium">
+                      About Us
+                    </Link>{" "}
+                    page.
                   </p>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <Card className="p-6 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950/20 dark:to-cyan-950/20 border-l-4 border-blue-500">
-                      <div className="flex items-start gap-4">
-                        <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-600 text-white">
-                          <Code className="h-6 w-6" />
-                        </div>
-                        <div>
-                          <h3 className="font-bold text-foreground mb-2">Full-Stack Developer</h3>
-                          <p className="text-sm">One full‑stack developer with 4 years of experience creating fast, stable web apps.</p>
-                        </div>
-                      </div>
-                    </Card>
-                    <Card className="p-6 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/20 border-l-4 border-purple-500">
-                      <div className="flex items-start gap-4">
-                        <div className="p-3 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 text-white">
-                          <TrendingUp className="h-6 w-6" />
-                        </div>
-                        <div>
-                          <h3 className="font-bold text-foreground mb-2">SEO and WordPress Specialist</h3>
-                          <p className="text-sm">One SEO and WordPress specialist with 3 years of experience growing websites and improving user experience.</p>
-                        </div>
-                      </div>
-                    </Card>
-                  </div>
                   <p className="mt-6">
-                    Together, we noticed many spin wheel free tools were full of distractions, heavy ads, or confusing controls. Our
+                    We noticed many spin wheel free tools were full of distractions, heavy ads, or confusing controls. Our
                     goal was to create a clean, lightweight online spin wheel that anyone can open in a few seconds, understand
                     instantly, and trust for transparent, fair picks.
                   </p>

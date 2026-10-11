@@ -68,18 +68,18 @@ const AuthorRajaJahangir = () => {
         a real use case, links to the live wheel, and does not overpromise what the software does.
       </p>
       <p>
-        Fairness is measured, not assumed. Before any wheel goes live, I run automated checks across
-        10,000 spins to confirm each equal-sized segment wins at the same rate. Randomness comes from
-        the browser&apos;s secure generator, not a simple predictable formula, and entries you type
-        stay on your device. I document that mechanism on the{" "}
+        Fairness is measured, not assumed. Every spin uses the browser&apos;s secure random
+        generator, not a simple predictable formula, and entries you type stay on your device. I
+        also keep an automated fairness simulation running on every build, 100,000 spins across the
+        common wheel sizes our tools use, published openly on the{" "}
+        <Link to="/spin-wheel-fairness-study" className="font-medium text-primary underline underline-offset-2">
+          fairness study
+        </Link>{" "}
+        page. I document the randomness mechanism itself on the{" "}
         <Link to="/how-randomness-works" className="font-medium text-primary underline underline-offset-2">
           how randomness works
         </Link>{" "}
-        page and in our{" "}
-        <Link to="/spin-wheel-fairness-study" className="font-medium text-primary underline underline-offset-2">
-          fairness study
-        </Link>
-        .
+        page.
       </p>
       <p>
         When I update a tool page or guide, I refresh its visible last-updated date so you always know

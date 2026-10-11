@@ -150,7 +150,7 @@ export const bestIcebreakerGamesOfficeMeetings: BlogPost = {
       heading: "5. Related wheels for facilitators",
       paragraphs: [
         "Bookmark these tools for recurring meetings: the team generator for breakout groups, the random name picker for who speaks first, the yes-or-no wheel for binary polls and debates, and the winner picker for chain-style prompt picks. All are free, browser-based, and built for screen share on US corporate laptops.",
-        "Pair remove-after-pick with name wheels when you run multiple spins in one huddle. Use session history after workshops to confirm everyone had a chance to introduce themselves before you dive into slides.",
+        "Pair remove-after-pick with name wheels when you run multiple spins in one huddle. Use session history after workshops to confirm everyone had a chance to introduce themselves before the slides start.",
       ],
     },
     {

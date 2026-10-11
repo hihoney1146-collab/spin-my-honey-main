@@ -3,10 +3,8 @@ import { Helmet } from "react-helmet";
 import {
   PlayCircle,
   CheckCircle2,
-  Sparkles,
   ArrowRight,
   Gift,
-  Users,
   Zap,
 } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -97,7 +95,7 @@ const TutorialCreatingYourFirstSpinWheel = () => {
                 unbiased result that everyone can trust.
               </p>
               <p>
-                This guide explains what a free spin wheel is, the best ways to use it, and how our small two-person team built a
+                This guide explains what a free spin wheel is, the best ways to use it, and how our small team built a
                 simple, reliable tool you can use every day.
               </p>
             </div>
@@ -131,28 +129,14 @@ const TutorialCreatingYourFirstSpinWheel = () => {
             </h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                Online Spin Wheel is run by just two people who built the tool from scratch:
+                Online Spin Wheel is built and maintained by a small, independent team dedicated solely
+                to this product: Armghana Zeeshan (CEO), Zoha Zeeshan (Co-Founder), Raja Jahangir (SEO
+                Specialist), and Faisal Zahir (Digital Marketing). Meet the team on our{" "}
+                <Link to="/about-us" className="text-primary underline underline-offset-2 font-medium">
+                  About Us
+                </Link>{" "}
+                page.
               </p>
-              <div className="grid md:grid-cols-2 gap-4 mt-4">
-                <Card className="p-4 bg-primary/5 border border-primary/20">
-                  <div className="flex items-center gap-3 mb-2">
-                    <Users className="h-5 w-5 text-primary" />
-                    <h3 className="font-semibold">Full-Stack Developer</h3>
-                  </div>
-                  <p className="text-sm text-muted-foreground">
-                    4 years of experience creating fast, stable web apps.
-                  </p>
-                </Card>
-                <Card className="p-4 bg-primary/5 border border-primary/20">
-                  <div className="flex items-center gap-3 mb-2">
-                    <Sparkles className="h-5 w-5 text-primary" />
-                    <h3 className="font-semibold">SEO Specialist</h3>
-                  </div>
-                  <p className="text-sm text-muted-foreground">
-                    3 years of experience growing websites and improving user experience.
-                  </p>
-                </Card>
-              </div>
               <p className="mt-4">
                 Together, we noticed many spin wheel free tools were full of distractions, heavy ads, or confusing controls. Our
                 goal was to create a clean, lightweight online spin wheel that anyone can open in a few seconds, understand

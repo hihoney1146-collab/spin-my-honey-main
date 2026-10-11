@@ -517,8 +517,8 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "coin-flip-wheel": {
     directAnswer:
-      "The Coin Flip Wheel is a digital heads-or-tails toss with CSS 3D animation, variable flip physics, and a rare edge landing (about 1 in 6,000). Tap the coin or press FLIP THE COIN; upload local face images per side; use match toss mode for cricket or football kickoffs; track a session journal; toggle Web Audio sound (off by default); and share proof links. Outcomes are chosen with crypto.getRandomValues before the animation plays—physics and sound never change the result.",
-    title: "Coin Flip Wheel — Heads or Tails Online",
+      "The Coin Flip Wheel is a digital heads-or-tails toss with CSS 3D animation, variable flip physics, and a rare edge landing (about 1 in 6,000). Tap the coin or press FLIP THE COIN; upload local face images per side; use match toss mode for cricket or football kickoffs; track a session journal; toggle Web Audio sound (off by default); and share proof links. Outcomes are chosen with crypto.getRandomValues before the animation plays, so physics and sound never change the result.",
+    title: "Coin Flip Wheel, Heads or Tails Online",
     metaDescription:
       "Flip a 3D coin online: tap to flip, match toss mode, edge landings, local face images, session journal, optional sound, weighted odds, and proof links.",
     useCases: [
@@ -579,17 +579,17 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "What is match toss mode?",
         answer:
-          "Enable Match toss mode to name both sides, pick who calls, and choose heads or tails before the flip. The page announces who wins the toss—ideal for cricket, football, or playground kickoffs—and includes toss details in proof links.",
+          "Enable Match toss mode to name both sides, pick who calls, and choose heads or tails before the flip. The page announces who wins the toss, useful for cricket, football, or playground kickoffs, and includes toss details in proof links.",
       },
       {
         question: "Can the coin land on its edge?",
         answer:
-          "Rarely—about 1 in 6,000 flips, matching real-world physics. An edge result shows the coin standing upright, offers Flip again, and does not count toward either side's tally or weighted odds.",
+          "Rarely, about 1 in 6,000 flips, matching real-world physics. An edge result shows the coin standing upright, offers Flip again, and does not count toward either side's tally or weighted odds.",
       },
       {
         question: "How does randomness work on this page?",
         answer:
-          "Each flip draws from crypto.getRandomValues before the animation starts. Weighted odds only change the side probabilities among heads and tails—edge landings are separate. Animation length and spin count are visual only. Read more at /how-randomness-works and our /spin-wheel-fairness-study.",
+          "Each flip draws from crypto.getRandomValues before the animation starts. Weighted odds only change the side probabilities among heads and tails; edge landings are separate. Animation length and spin count are visual only. Read more at /how-randomness-works and our /spin-wheel-fairness-study.",
       },
       {
         question: "How does weighted flip work?",
@@ -599,12 +599,12 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "Does the coin make sound?",
         answer:
-          "Optional Web Audio toss and landing sounds are generated in-browser—no large downloads. Sound defaults off for classrooms and offices; use the Sound off/on toggle next to the flip button after your first click.",
+          "Optional Web Audio toss and landing sounds are generated in-browser, no large downloads. Sound defaults off for classrooms and offices; use the Sound off/on toggle next to the flip button after your first click.",
       },
       {
         question: "What is the session journal?",
         answer:
-          "An in-memory list of this tab's flips: question, both labels, winner, toss winner if applicable, and time. Copy it as plain text or clear it anytime. Nothing is saved to disk or uploaded—refresh clears it.",
+          "An in-memory list of this tab's flips: question, both labels, winner, toss winner if applicable, and time. Copy it as plain text or clear it anytime. Nothing is saved to disk or uploaded; refresh clears it.",
       },
       {
         question: "What is on the downloadable result image?",
@@ -614,7 +614,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         question: "What does the proof link contain?",
         answer:
-          "Question, both labels, winner, toss caller/call/winner when match toss mode was used, UTC time, crypto RNG method, and odds if weighted—encoded in the URL with no server lookup. Proof pages are noindex.",
+          "Question, both labels, winner, toss caller/call/winner when match toss mode was used, UTC time, crypto RNG method, and odds if weighted, encoded in the URL with no server lookup. Proof pages are noindex.",
       },
     ],
     relatedWheels: [

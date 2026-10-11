@@ -61,8 +61,8 @@ const TutorialAddingImagesToSpinWheels = () => {
               <p className="text-lg">
                 Adding images to your spin wheel entries transforms a basic
                 wheel into a visually engaging tool that's perfect for
-                classrooms, branding, or visual learning. Whether you're adding
-                logos, product images, or educational graphics, images make
+                classrooms, branding, or visual learning. Logos, product
+                images, and educational graphics all work, and images make
                 wheels more memorable and easier to identify.
               </p>
               <p>
@@ -429,9 +429,9 @@ const TutorialAddingImagesToSpinWheels = () => {
             </h2>
             <p className="text-muted-foreground mb-4 leading-relaxed">
               Adding images to your spin wheel is a simple way to create more
-              engaging, memorable, and visually appealing experiences. Whether
-              you're enhancing classroom activities, branding corporate events,
-              or creating educational tools, images make your wheels stand out.
+              engaging, memorable, and visually appealing experiences. Classroom
+              activities, corporate branding, and educational tools all benefit,
+              and images make your wheels stand out.
             </p>
             <p className="text-muted-foreground mb-6 leading-relaxed">
               Remember to prepare your images properly, choose appropriate

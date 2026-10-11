@@ -71,8 +71,9 @@ const AuthorZohaZeeshan = () => (
       must earn its place by making the core product more useful or more trustworthy.
     </p>
     <p>
-      Trust is built through visible mechanics and team discipline. We test wheels for even segment
-      distribution across 10,000 automated spins before launch, document how randomness works on our{" "}
+      Trust is built through visible mechanics and team discipline. Every spin uses the browser&apos;s
+      secure random generator, we run an automated fairness simulation on every build and publish the
+      results openly, document how randomness works on our{" "}
       <Link to="/how-randomness-works" className="font-medium text-primary underline underline-offset-2">
         how randomness works
       </Link>{" "}

@@ -225,7 +225,7 @@ function CoinFaceUpload({
             Use your own image
           </Button>
           <p className="text-xs text-muted-foreground">
-            PNG, JPEG, or WebP under 5 MB — stays on your device only.
+            PNG, JPEG, or WebP under 5 MB. Stays on your device only.
           </p>
         </>
       )}
@@ -550,7 +550,7 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
         maybePlaySound(() => playCoinEdgeLandSound());
         setOnEdge(false);
         setTiltDeg(0);
-        setAnnouncement("Edge landing — not counted in batch.");
+        setAnnouncement("Edge landing. Not counted in batch.");
         continue;
       }
       outcomes.push(outcome.sideIndex);
@@ -607,7 +607,7 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
         .toISOString()
         .replace("T", " ")
         .replace(/\.\d{3}Z$/, " UTC");
-      const q = e.question ? `"${e.question}" — ` : "";
+      const q = e.question ? `"${e.question}": ` : "";
       const toss = e.tossWinner ? ` (toss: ${e.tossWinner})` : "";
       return `${time}: ${q}${e.labels[0]} vs ${e.labels[1]} → ${e.winner}${toss}`;
     });
@@ -673,7 +673,7 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
     : lastTossWinner
       ? `${lastTossWinner} wins the toss!`
       : lastResult !== null
-        ? `${trimmedQuestion ? `${trimmedQuestion} — ` : ""}${sideLabels[lastResult]}`
+        ? `${trimmedQuestion ? `${trimmedQuestion}: ` : ""}${sideLabels[lastResult]}`
         : "Tap the coin or flip button to start";
 
   return (
@@ -767,7 +767,7 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
             <div>
               <p className="font-medium">Match toss mode</p>
               <p className="text-xs text-muted-foreground">
-                One team calls before the flip — cricket, football, or kickoff.
+                One team calls before the flip. For cricket, football, or kickoff.
               </p>
             </div>
             <Switch
@@ -896,7 +896,7 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
             disabled={flipDisabled}
             aria-label={
               onEdge
-                ? "Coin landed on edge — flip again"
+                ? "Coin landed on edge, flip again"
                 : lastResult !== null
                   ? `Coin showing ${sideLabels[lastResult]}. Flip again.`
                   : "Flip the coin"
@@ -1066,7 +1066,7 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
                     .slice(11, 19)}{" "}
                   UTC
                 </span>
-                {" — "}
+                {" · "}
                 {entry.question ? (
                   <span className="italic">{entry.question}: </span>
                 ) : null}
@@ -1183,7 +1183,7 @@ export function CoinFlipWheel({ presetOptionLabels }: CoinFlipWheelProps) {
         <Card className="p-4 md:p-5">
           <h3 className="font-bold mb-3">Multi-flip sequence</h3>
           <p className="text-sm text-muted-foreground mb-2">
-            {sequence.length} flips — {sideLabels[0]}:{" "}
+            {sequence.length} flips, {sideLabels[0]}:{" "}
             {sequence.filter((s) => s === 0).length}, {sideLabels[1]}:{" "}
             {sequence.filter((s) => s === 1).length}
           </p>

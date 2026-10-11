@@ -54,7 +54,7 @@ export const spinWheelTeamBuildingActivities: BlogPost = {
     {
       heading: "5. A 20-minute facilitation run sheet",
       paragraphs: [
-        "Minute 0–2: paste the roster on the name picker and test one spin off-camera. Minute 2–8: standup rotation with remove-after-pick. Minute 8–15: team generator for a 12-minute breakout. Minute 15–20: one yes-or-no spin to pick the wrap-up question.",
+        "Minute 0 to 2: paste the roster on the name picker and test one spin off-camera. Minute 2 to 8: standup rotation with remove-after-pick. Minute 8 to 15: team generator for a 12-minute breakout. Minute 15 to 20: one yes-or-no spin to pick the wrap-up question.",
         "If the room is skeptical, show the slices before you spin and keep every name the same size. Equal arcs plus a visible animation is the whole fairness story; you do not need a lecture on cryptography in a team meeting.",
       ],
       checklist: {

@@ -80,8 +80,8 @@ export function DinnerPickerWheel({
         </div>
         <p className="text-sm text-muted-foreground">
           Each chip loads its own meal list. Fast-casual / chains is the old
-          fast-food wheel dataset. Custom edits stick until you switch filters —
-          then the new chip&apos;s list replaces them.
+          fast-food wheel dataset. Custom edits stick until you switch filters.
+          Then the new chip&apos;s list replaces them.
         </p>
         <div className="flex flex-wrap gap-2" role="group" aria-label="Dinner filter">
           {(Object.keys(POOLS) as Key[]).map((key) => (
@@ -97,7 +97,7 @@ export function DinnerPickerWheel({
           ))}
         </div>
         <p className="text-xs text-muted-foreground">
-          Custom list edits stick until you switch filters — then the new chip&apos;s
+          Custom list edits stick until you switch filters. Then the new chip&apos;s
           list replaces them.
         </p>
         <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">

@@ -53,7 +53,7 @@ export const classroomSpinnerBeyondNamePicking: BlogPost = {
     {
       heading: "4. Review without a new worksheet",
       paragraphs: [
-        "Lock the ABCD spin wheel to four letters and project it. Ask a multiple-choice question, spin, and have the class show the letter with fingers or mini whiteboards. Remove-after-pick is optional when you want letters to repeat; turn it on when you are cycling through A–D once each for a warm-up.",
+        "Lock the ABCD spin wheel to four letters and project it. Ask a multiple-choice question, spin, and have the class show the letter with fingers or mini whiteboards. Remove-after-pick is optional when you want letters to repeat; turn it on when you are cycling through A, B, C and D once each for a warm-up.",
         "The alphabet spinner still belongs in phonics and spelling. Exclude letters already used that week so the wheel only holds fresh glyphs. That is a real exclude panel, not a new word list you rewrite by hand.",
         "Use the random number wheel for fact families and timers: set a range, spin a problem, then spin a second number as a challenge add-on. Small ranges show on the visual wheel; large ranges still return a number.",
       ],
@@ -84,7 +84,7 @@ export const classroomSpinnerBeyondNamePicking: BlogPost = {
     },
     {
       q: "Can I use ABCD for more than four answer choices?",
-      a: "The ABCD wheel is locked to A–D for multiple-choice call-outs. For more options, paste custom labels on the classroom spinner instead.",
+      a: "The ABCD wheel is locked to A, B, C and D for multiple-choice call-outs. For more options, paste custom labels on the classroom spinner instead.",
     },
     {
       q: "Do students need Chromebooks?",

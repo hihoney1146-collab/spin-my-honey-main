@@ -173,7 +173,7 @@ export const bestSpinWheelGamesForStudents: BlogPost = {
   faqs: [
     {
       q: "What are the best spin the wheel games for students in US classrooms?",
-      a: "The twelve activities in this guide, Random Volunteer Spin, Vocabulary Lightning Round, Math Minute Generator, and nine more, cover K–12 participation, review, and rewards. Each names a grade band and how to set up the wheel.",
+      a: "The twelve activities in this guide, Random Volunteer Spin, Vocabulary Lightning Round, Math Minute Generator, and nine more, cover kindergarten through grade 12 participation, review, and rewards. Each names a grade band and how to set up the wheel.",
     },
     {
       q: "Do I need an account to use classroom spinner games?",
@@ -193,7 +193,7 @@ export const bestSpinWheelGamesForStudents: BlogPost = {
     },
     {
       q: "Are these games appropriate for middle and high school?",
-      a: "Yes. Games like ABCD Review Categories, First-Week Would You Rather, and Group Captain Picker are written for grades 6–12. Adjust prompts to your subject and school culture.",
+      a: "Yes. Games like ABCD Review Categories, First-Week Would You Rather, and Group Captain Picker are written for grades 6 to 12. Adjust prompts to your subject and school culture.",
     },
   ],
 };

@@ -72,7 +72,7 @@ export function FaqAccordion({
           >
             {faq.question}
           </AccordionTrigger>
-          <AccordionContent className="text-sm sm:text-base">
+          <AccordionContent className="text-sm sm:text-base" forceMount>
             <div
               {...(includeSchema
                 ? {

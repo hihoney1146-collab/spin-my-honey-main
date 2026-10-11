@@ -143,18 +143,19 @@ const About = () => {
           </div>
           <div className="space-y-4 text-muted-foreground leading-relaxed">
             <p className="text-base md:text-lg">
-              Fairness is a team practice, not a marketing line. Every wheel is tested for uniform
-              distribution across 10,000 automated spins before launch. If any equal-sized segment
-              wins noticeably more or less often than the rest, the wheel is not published until the
-              distribution is even.
+              Fairness is a team practice, not a marketing line. Every spin picks its result using
+              your browser&apos;s built-in secure random generator, the same kind of randomness used
+              for encryption keys, never a simple predictable formula.
             </p>
             <p className="text-base md:text-lg">
-              Randomness comes from your browser&apos;s built-in secure generator, the same kind of randomness used for encryption keys, never a simple
-              predictable formula. Read the full explanation on our{" "}
+              We also run an automated fairness check on every build: 100,000 simulated spins across
+              the common wheel sizes our tools use, from 2 to 36 segments, tested with a chi-square
+              test for uniform distribution. The results are published openly, including any
+              configuration that would need review. Read the full explanation on our{" "}
               <Link to="/how-randomness-works" className="text-primary underline underline-offset-2 font-medium">
                 how randomness works
               </Link>{" "}
-              page and our{" "}
+              page and the real numbers in our{" "}
               <Link to="/spin-wheel-fairness-study" className="text-primary underline underline-offset-2 font-medium">
                 100,000-spin fairness study
               </Link>

@@ -174,7 +174,7 @@ const Contact = () => {
                   <CheckCircle2 className="h-4 w-4 text-primary" />
                   <AlertTitle>Message sent</AlertTitle>
                   <AlertDescription>
-                    Thanks — we'll get back to you within 24–48 hours.
+                    Thanks. We'll get back to you within 24 to 48 hours.
                   </AlertDescription>
                 </Alert>
               )}
