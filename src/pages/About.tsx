@@ -252,7 +252,8 @@ const About = () => {
                 {CONTACT_EMAIL}
               </a>{" "}
               with the page URL, your device and browser, and what happened versus what you expected.
-              Reports are reviewed and, where valid, fixed and re-dated within 48 hours.
+              Reports are reviewed within 24 to 48 hours, and where valid, fixed and re-dated as soon
+              as we can verify and ship the fix.
             </p>
           </div>
         </Card>

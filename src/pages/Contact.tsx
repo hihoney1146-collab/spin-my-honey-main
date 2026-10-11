@@ -356,7 +356,7 @@ const Contact = () => {
                   <Clock className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                   <div>
                     <p className="font-medium text-foreground">Response time</p>
-                    <p>Most support, privacy, and business emails receive a reply within 24-48 hours.</p>
+                    <p>Most support, privacy, and business emails receive a reply within 24 to 48 hours.</p>
                   </div>
                 </div>
               </div>
@@ -367,7 +367,7 @@ const Contact = () => {
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>• Be as specific as possible when reporting issues</li>
                 <li>• Include your device type and browser if relevant</li>
-                <li>• We typically respond within 24-48 hours</li>
+                <li>• We typically respond within 24 to 48 hours</li>
                 <li>
                   • Check our{" "}
                   <Link to="/#homepage-faq" className="text-primary underline underline-offset-2 font-medium">

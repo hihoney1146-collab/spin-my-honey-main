@@ -41,8 +41,8 @@ const AuthorArmghanaZeeshan = () => (
     <p>
       We are a small independent team dedicated solely to Online Spin Wheel, not a multi-property
       agency. That means every decision ties back to users who need a fair pick in front of a class,
-      a livestream, or a comment section. When we add a specialty wheel or publish a guide, it is
-      because real hosts and teachers asked for something we could verify works.
+      a livestream, or a comment section. When we add a specialty wheel or publish a guide, we ship
+      it only after we can verify it works as described.
     </p>
     <p>
       Fairness is a team practice here. Every spin draws its result from the browser&apos;s secure
