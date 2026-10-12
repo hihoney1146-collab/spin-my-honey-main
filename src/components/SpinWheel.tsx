@@ -48,7 +48,39 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { getWheelBulkPlaceholder } from "@/data/wheelBulkPlaceholders";
-import { contrastForeground, readableOnSurface } from "@/lib/contrastColor";
+
+/**
+ * Manage Entries contains several controls that keep their own opaque
+ * surface (textarea, outline buttons, the spin timer box, entry rows) so
+ * they stay readable no matter which chroma color is picked. Streamer mode
+ * otherwise makes text on this card follow the chroma background's
+ * contrast-adaptive color, which these controls must not inherit since
+ * their own background never changes with the chroma color. Applying this
+ * (the site's real, un-adapted theme colors) on each of those controls
+ * restores their normal, always-correct theme contrast. Values mirror
+ * src/index.css's :root and .dark tokens.
+ */
+const REAL_THEME_FOREGROUND_STYLE: Record<"light" | "dark", React.CSSProperties> = {
+  light: {
+    color: "hsl(240 10% 15%)",
+    "--foreground": "240 10% 15%",
+    "--card-foreground": "240 10% 15%",
+    "--popover-foreground": "240 10% 15%",
+    "--muted-foreground": "240 4% 46%",
+  } as React.CSSProperties,
+  dark: {
+    color: "hsl(0 0% 98%)",
+    "--foreground": "0 0% 98%",
+    "--card-foreground": "0 0% 98%",
+    "--popover-foreground": "0 0% 98%",
+    "--muted-foreground": "240 5% 70%",
+  } as React.CSSProperties,
+};
+import {
+  contrastForeground,
+  contrastForegroundHslTriplet,
+  readableOnSurface,
+} from "@/lib/contrastColor";
 import {
   playSpinWheelClickSound,
   playSpinWheelSliderSound,
@@ -352,6 +384,25 @@ export const SpinWheel = ({
   const shareFromUrl = shareEnabled ? parseWheelShareParams(location.search) : null;
   const streamerMode =
     streamerToggle && (Boolean(shareFromUrl?.stream) || streamFromUrl);
+  // Scoped to controls that keep their own opaque background (textarea,
+  // outline buttons, spin timer box, entry rows) so they stay on the real
+  // theme colors instead of the chroma-adaptive ones. See the constant above.
+  const opaqueThemeStyle = streamerMode
+    ? REAL_THEME_FOREGROUND_STYLE[resolvedTheme === "light" ? "light" : "dark"]
+    : undefined;
+  // Chroma-adaptive foreground for text that sits directly on the
+  // transparent Manage Entries card (labels, headings), scoped to the card
+  // itself rather than inherited as a blanket `color`, so it does not leak
+  // into the opaque controls above that must keep opaqueThemeStyle instead.
+  const chromaCardStyle = streamerMode
+    ? ({
+        borderColor: "var(--stream-fg)",
+        "--foreground": contrastForegroundHslTriplet(streamBg),
+        "--card-foreground": contrastForegroundHslTriplet(streamBg),
+        "--muted-foreground": contrastForegroundHslTriplet(streamBg),
+        "--popover-foreground": contrastForegroundHslTriplet(streamBg),
+      } as React.CSSProperties)
+    : undefined;
 
   const [entries, setEntries] = useState<WheelEntry[]>(() => {
     if (shareFromUrl?.entries?.length) {
@@ -1564,10 +1615,10 @@ export const SpinWheel = ({
         <Card
           className={`p-4 lg:p-6 border shadow-xl relative overflow-hidden w-full flex flex-col rounded-2xl ${
             streamerMode
-              ? "bg-transparent [&_*]:text-[var(--stream-fg)] [&_input]:text-[var(--stream-fg)] [&_textarea]:text-[var(--stream-fg)]"
+              ? "bg-transparent"
               : "bg-card/95 border-border/50 backdrop-blur-xl"
           }`}
-          style={streamerMode ? { color: "var(--stream-fg)", borderColor: "var(--stream-fg)" } : undefined}
+          style={chromaCardStyle}
         >
           {/* Header */}
           <div className="mb-4 relative z-10 flex-shrink-0">
@@ -1612,6 +1663,7 @@ export const SpinWheel = ({
               rows={5}
               className="min-h-[120px] lg:min-h-[160px] text-xs lg:text-sm border-2 border-border focus-visible:border-primary bg-background/80 backdrop-blur-sm resize-y font-medium leading-relaxed placeholder:text-muted-foreground/70"
               aria-label="Paste multiple wheel entries, one per line"
+              style={opaqueThemeStyle}
             />
             <Button
               type="button"
@@ -1620,6 +1672,7 @@ export const SpinWheel = ({
               variant="outline"
               size="sm"
               className="mt-2 w-full h-9 lg:h-10 text-xs lg:text-sm font-semibold border-2 border-primary/35 bg-background text-foreground shadow-sm hover:bg-primary/10 hover:text-foreground hover:border-primary/55 [&_svg]:text-foreground dark:border-border dark:hover:border-primary/40"
+              style={opaqueThemeStyle}
             >
               <ListPlus className="h-3.5 w-3.5 lg:h-4 lg:w-4 mr-1.5" />
               Add all lines to wheel
@@ -1640,6 +1693,7 @@ export const SpinWheel = ({
                 variant="outline"
                 size="sm"
                 className="h-8 lg:h-9 text-[10px] lg:text-[11px] font-bold hover:bg-blue-50 hover:border-blue-500 hover:text-blue-600 transition-all border-2 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+                style={opaqueThemeStyle}
               >
                 <Shuffle className="h-3 w-3 lg:h-3.5 lg:w-3.5 mr-0.5 lg:mr-1" />
                 Shuffle
@@ -1650,6 +1704,7 @@ export const SpinWheel = ({
                 variant="outline"
                 size="sm"
                 className="h-8 lg:h-9 text-[10px] lg:text-[11px] font-bold hover:bg-purple-50 hover:border-purple-500 hover:text-purple-600 transition-all border-2 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+                style={opaqueThemeStyle}
               >
                 <ArrowUpDown className="h-3 w-3 lg:h-3.5 lg:w-3.5 mr-0.5 lg:mr-1" />
                 Sort
@@ -1660,6 +1715,7 @@ export const SpinWheel = ({
                 variant="outline"
                 size="sm"
                 className="h-8 lg:h-9 text-[10px] lg:text-[11px] font-bold hover:bg-amber-50 hover:border-amber-500 hover:text-amber-700 transition-all border-2 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+                style={opaqueThemeStyle}
               >
                 <RotateCcw className="h-3 w-3 lg:h-3.5 lg:w-3.5 mr-0.5 lg:mr-1" />
                 Reset
@@ -1670,6 +1726,7 @@ export const SpinWheel = ({
                 variant="outline"
                 size="sm"
                 className="h-8 lg:h-9 text-[10px] lg:text-[11px] font-bold hover:bg-red-50 hover:border-red-500 hover:text-red-600 transition-all border-2 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+                style={opaqueThemeStyle}
               >
                 <ListX className="h-3 w-3 lg:h-3.5 lg:w-3.5 mr-0.5 lg:mr-1" />
                 Clear all
@@ -1686,7 +1743,10 @@ export const SpinWheel = ({
               <div className="w-1 h-1 rounded-full bg-primary" />
               Spin timer
             </label>
-            <div className="rounded-xl border-2 border-border bg-background/80 px-3 py-2.5 shadow-sm">
+            <div
+              className="rounded-xl border-2 border-border bg-background/80 px-3 py-2.5 shadow-sm"
+              style={opaqueThemeStyle}
+            >
               <p
                 className="mb-2 text-center text-xl font-bold tabular-nums text-primary"
                 aria-live="polite"
@@ -1732,7 +1792,10 @@ export const SpinWheel = ({
                 <div className="w-1 h-1 rounded-full bg-primary" />
                 Entries List
               </span>
-              <span className="text-muted-foreground font-bold text-[9px] bg-muted px-1.5 py-0.5 rounded-full">
+              <span
+                className="text-muted-foreground font-bold text-[9px] bg-muted px-1.5 py-0.5 rounded-full"
+                style={opaqueThemeStyle}
+              >
                 {entries.length} Total
               </span>
             </div>
@@ -1757,7 +1820,10 @@ export const SpinWheel = ({
                 </span>
               </span>
               <span className="flex items-center gap-1.5 flex-shrink-0">
-                <span className="text-muted-foreground font-bold text-[10px] bg-muted px-2 py-0.5 rounded-full">
+                <span
+                  className="text-muted-foreground font-bold text-[10px] bg-muted px-2 py-0.5 rounded-full"
+                  style={opaqueThemeStyle}
+                >
                   {entries.length} Total
                 </span>
                 <ChevronDown
@@ -1801,6 +1867,7 @@ export const SpinWheel = ({
                       disabled={entriesPageIndex <= 0}
                       onClick={() => setEntriesPageIndex((p) => Math.max(0, p - 1))}
                       aria-label="Previous page of entries"
+                      style={opaqueThemeStyle}
                     >
                       <ChevronLeft className="h-4 w-4" />
                     </Button>
@@ -1827,6 +1894,7 @@ export const SpinWheel = ({
                         )
                       }
                       aria-label="Next page of entries"
+                      style={opaqueThemeStyle}
                     >
                       <ChevronRight className="h-4 w-4" />
                     </Button>
@@ -1841,6 +1909,7 @@ export const SpinWheel = ({
                     ? "bg-card border-border/50 hover:border-primary/30 hover:shadow-sm"
                     : "bg-muted/30 border-transparent opacity-60 hover:opacity-80"
                     }`}
+                  style={opaqueThemeStyle}
                 >
                   {/* Entry Number (global index) */}
                   <div className="flex items-center justify-center min-w-[20px] lg:min-w-[24px] h-5 lg:h-6 rounded-md bg-muted border border-border flex-shrink-0">

@@ -37,7 +37,6 @@ import {
 } from "@/lib/siteInternalLinks";
 import { SITE_SOCIAL_LINKS } from "@/lib/teamLinks";
 import { openCookieSettings } from "@/lib/cookieConsentEvents";
-import { useEffect } from "react";
 import { contrastForeground, contrastForegroundHslTriplet } from "@/lib/contrastColor";
 import { useStreamerMode } from "@/lib/useStreamerMode";
 import { CONTACT_EMAIL } from "@/lib/schema";
@@ -47,30 +46,18 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { streamerMode, streamBg } = useStreamerMode();
   const streamFg = streamerMode ? contrastForeground(streamBg) : undefined;
-
-  useEffect(() => {
-    const root = document.documentElement.style;
-    if (!streamerMode) {
-      root.removeProperty("--stream-bg");
-      root.removeProperty("--stream-fg");
-      root.removeProperty("--foreground");
-      root.removeProperty("--card-foreground");
-      root.removeProperty("--muted-foreground");
-      root.removeProperty("--popover-foreground");
-      return;
-    }
-    root.setProperty("--stream-bg", streamBg);
-    root.setProperty("--stream-fg", streamFg!);
-    // Every Tailwind text-foreground / text-muted-foreground utility under
-    // the chroma background reads these variables, so overriding them here
-    // keeps all of that text readable against whatever color is picked,
-    // instead of patching each label's className individually.
-    const fgTriplet = contrastForegroundHslTriplet(streamBg);
-    root.setProperty("--foreground", fgTriplet);
-    root.setProperty("--card-foreground", fgTriplet);
-    root.setProperty("--muted-foreground", fgTriplet);
-    root.setProperty("--popover-foreground", fgTriplet);
-  }, [streamerMode, streamBg, streamFg]);
+  // Every Tailwind text-foreground / text-muted-foreground utility under
+  // the chroma background reads these CSS variables, so overriding them
+  // keeps all of that text readable against whatever color is picked,
+  // instead of patching each label's className individually. Set as an
+  // inline style on the chroma wrapper below (not on document.documentElement)
+  // so the override stays scoped to the wheel page and does not leak into
+  // fixed overlays mounted outside it, like the cookie consent banner, which
+  // keep their own real theme background and must keep reading the real
+  // theme foreground.
+  const streamFgTriplet = streamerMode
+    ? contrastForegroundHslTriplet(streamBg)
+    : undefined;
 
   const isActive = (path: string) => {
     if (path === BLOG_INDEX_PATH) {
@@ -138,7 +125,16 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
         data-stream-layout
         data-stream-bg={streamBg}
         data-stream-fg={streamFg}
-        style={{ backgroundColor: streamBg, color: streamFg }}
+        style={{
+          backgroundColor: streamBg,
+          color: streamFg,
+          "--stream-bg": streamBg,
+          "--stream-fg": streamFg,
+          "--foreground": streamFgTriplet,
+          "--card-foreground": streamFgTriplet,
+          "--muted-foreground": streamFgTriplet,
+          "--popover-foreground": streamFgTriplet,
+        } as React.CSSProperties}
       >
         <a
           href="#main-content"
