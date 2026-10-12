@@ -38,7 +38,7 @@ import {
 import { SITE_SOCIAL_LINKS } from "@/lib/teamLinks";
 import { openCookieSettings } from "@/lib/cookieConsentEvents";
 import { useEffect } from "react";
-import { contrastForeground } from "@/lib/contrastColor";
+import { contrastForeground, contrastForegroundHslTriplet } from "@/lib/contrastColor";
 import { useStreamerMode } from "@/lib/useStreamerMode";
 import { CONTACT_EMAIL } from "@/lib/schema";
 
@@ -49,13 +49,27 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   const streamFg = streamerMode ? contrastForeground(streamBg) : undefined;
 
   useEffect(() => {
+    const root = document.documentElement.style;
     if (!streamerMode) {
-      document.documentElement.style.removeProperty("--stream-bg");
-      document.documentElement.style.removeProperty("--stream-fg");
+      root.removeProperty("--stream-bg");
+      root.removeProperty("--stream-fg");
+      root.removeProperty("--foreground");
+      root.removeProperty("--card-foreground");
+      root.removeProperty("--muted-foreground");
+      root.removeProperty("--popover-foreground");
       return;
     }
-    document.documentElement.style.setProperty("--stream-bg", streamBg);
-    document.documentElement.style.setProperty("--stream-fg", streamFg!);
+    root.setProperty("--stream-bg", streamBg);
+    root.setProperty("--stream-fg", streamFg!);
+    // Every Tailwind text-foreground / text-muted-foreground utility under
+    // the chroma background reads these variables, so overriding them here
+    // keeps all of that text readable against whatever color is picked,
+    // instead of patching each label's className individually.
+    const fgTriplet = contrastForegroundHslTriplet(streamBg);
+    root.setProperty("--foreground", fgTriplet);
+    root.setProperty("--card-foreground", fgTriplet);
+    root.setProperty("--muted-foreground", fgTriplet);
+    root.setProperty("--popover-foreground", fgTriplet);
   }, [streamerMode, streamBg, streamFg]);
 
   const isActive = (path: string) => {

@@ -47,6 +47,18 @@ export function contrastForeground(bgHex: string): "#000000" | "#FFFFFF" {
   return onWhite >= onBlack ? "#FFFFFF" : "#000000";
 }
 
+/**
+ * The same choice as contrastForeground, expressed as an "H S% L%" triplet
+ * (no hsl() wrapper) so it can override this app's --foreground-style theme
+ * variables directly. Every Tailwind color utility (text-foreground,
+ * text-muted-foreground, etc.) reads color: hsl(var(--foreground)), so
+ * overriding the variable itself fixes every descendant at once instead of
+ * fighting individual utility classes on CSS specificity.
+ */
+export function contrastForegroundHslTriplet(bgHex: string): "0 0% 100%" | "0 0% 0%" {
+  return contrastForeground(bgHex) === "#FFFFFF" ? "0 0% 100%" : "0 0% 0%";
+}
+
 const WCAG_AA_NORMAL = 4.5;
 
 /**
