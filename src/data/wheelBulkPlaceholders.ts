@@ -94,6 +94,10 @@ export const WHEEL_BULK_PLACEHOLDERS: Record<string, WheelBulkPlaceholder> = {
     sample: "Aries\nTaurus\nGemini\nCancer\nLeo\nVirgo",
     hint: "Paste sign names or custom labels, one per line.",
   },
+  "exercise-picker-wheel": {
+    sample: "Pushups\nSquats\nCardio\nPlanks\nLunges\nBurpees",
+    hint: "Paste exercises or workout moves to spin for, one per line.",
+  },
 };
 
 export function slugFromWheelPath(pathname: string): string | undefined {

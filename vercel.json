@@ -248,7 +248,7 @@
       ]
     },
     {
-      "source": "/(exercise-picker-wheel|nfl-team-picker-wheel|random-word-generator-wheel|random-country-wheel|random-animal-picker-wheel|random-day-picker-wheel|what-to-draw-wheel|twister-spinner-online|random-color-wheel|family-game-night-picker-wheel|bedtime-story-picker-wheel|fortnite-drop-location-wheel|roblox-game-picker-wheel|truth-or-dare-spinner-online|random-travel-destination-wheel|random-hobby-generator-wheel)",
+      "source": "/(nfl-team-picker-wheel|random-word-generator-wheel|random-country-wheel|random-animal-picker-wheel|random-day-picker-wheel|what-to-draw-wheel|twister-spinner-online|random-color-wheel|family-game-night-picker-wheel|bedtime-story-picker-wheel|fortnite-drop-location-wheel|roblox-game-picker-wheel|truth-or-dare-spinner-online|random-travel-destination-wheel|random-hobby-generator-wheel)",
       "headers": [
         {
           "key": "X-Robots-Tag",

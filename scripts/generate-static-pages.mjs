@@ -367,6 +367,33 @@ function webApplicationJsonLd(route, name) {
   };
 }
 
+/** Mirrors src/lib/schema.ts's parseHowToSteps, for the build-time/Node context. */
+function parseHowToSteps(howToUse) {
+  if (!howToUse) return [];
+  return String(howToUse)
+    .split(/\n+/)
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .map((line) => line.replace(/^\d+\.\s*/, "").trim())
+    .filter(Boolean);
+}
+
+/** Mirrors src/lib/schema.ts's howToJsonLd, for the build-time/Node context. */
+function howToJsonLd({ name, description, steps }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name,
+    description,
+    step: steps.map((text, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      name: text.length > 72 ? `${text.slice(0, 69)}...` : text,
+      text,
+    })),
+  };
+}
+
 function enrichRoute(route, wheels, blogRoutes, blogPosts) {
   const title = pageTitle(route);
   const label = routeHeading({ ...route, title });
@@ -391,6 +418,19 @@ function enrichRoute(route, wheels, blogRoutes, blogPosts) {
     jsonLd.push(...siteIdentityJsonLd());
     jsonLd.push(wheelBreadcrumbJsonLd(route.wheel));
     jsonLd.push(webApplicationJsonLd(route, route.wheel.h1 || wheelLabel(route.wheel)));
+    const howToSteps =
+      Array.isArray(route.wheel.howToSteps) && route.wheel.howToSteps.length > 0
+        ? route.wheel.howToSteps
+        : parseHowToSteps(route.wheel.howToUse);
+    if (howToSteps.length > 0) {
+      jsonLd.push(
+        howToJsonLd({
+          name: `How to use the ${route.wheel.keywordPrimary || route.wheel.h1 || wheelLabel(route.wheel)}`,
+          description: route.wheel.metaDescription || route.wheel.h1 || "",
+          steps: howToSteps,
+        }),
+      );
+    }
     const faqLd = faqJsonLd(
       route.wheel.faqs,
       canonicalUrl(route.path),

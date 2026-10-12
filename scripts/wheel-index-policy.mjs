@@ -4,7 +4,6 @@
  * are excluded from sitemaps / llms.txt / IndexNow.
  */
 export const NOINDEX_WHEEL_SLUGS = [
-  "exercise-picker-wheel",
   "nfl-team-picker-wheel",
   "random-word-generator-wheel",
   "random-country-wheel",
@@ -42,7 +41,7 @@ export function isWheelIndexableSlug(slug) {
   return true;
 }
 
-export const INDEXED_WHEEL_COUNT = 21;
+export const INDEXED_WHEEL_COUNT = 22;
 
 export function wheelRobotsDirective(slug) {
   if (NOINDEX_WHEEL_SET.has(slug)) return "noindex, follow";

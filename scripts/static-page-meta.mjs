@@ -257,7 +257,7 @@ export const fixedRouteMeta = [
     path: "/wheel-of-names-alternative",
     title: "Wheel of Names Alternative, No Account | Online Spin Wheel",
     description:
-      "Wheel of Names alternative: compare Online Spin Wheel with other free pickers. No account, browser-only entries, 21 specialty wheels and raffle proof links.",
+      "Wheel of Names alternative: compare Online Spin Wheel with other free pickers. No account, browser-only entries, 22 specialty wheels and raffle proof links.",
     jsonLd: [
       {
         "@context": "https://schema.org",
@@ -284,7 +284,7 @@ export const fixedRouteMeta = [
             acceptedAnswer: {
               "@type": "Answer",
               "@id": `${SITE}/wheel-of-names-alternative#faq-q2-answer`,
-              text: "Besides a free name picker, we publish 21 indexed specialty tools with real controls: raffles with prize-draw and ticket modes, classroom hubs, weighted yes/no, dinner and movie filters, plus multi-winner proof links.",
+              text: "Besides a free name picker, we publish 22 indexed specialty tools with real controls: raffles with prize-draw and ticket modes, classroom hubs, weighted yes/no, dinner and movie filters, plus multi-winner proof links.",
             },
           },
           {

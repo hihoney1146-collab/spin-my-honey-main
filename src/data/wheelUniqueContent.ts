@@ -672,6 +672,20 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
           "Bookmark two customized URLs after editing slices; each page keeps its own list in browser storage.",
       },
     ],
+    howToSteps: [
+      "Open the page. The wheel loads with 8 default moves, Pushups, Squats, Cardio, Planks, Lunges, Burpees, Yoga, and Weight Lifting, each with an equal 12.5% chance.",
+      "Edit the list to match your equipment, injury limits, or workout split: type over any entry, press Remove next to one, or use Bulk Add Entries to paste up to 400 lines at once.",
+      "Use Shuffle to reorder the list, Sort to alphabetize it, or Clear all to start from an empty wheel.",
+      "Press SPIN THE WHEEL. The spin timer is 7 seconds by default and can be set from 3 seconds to 1 minute.",
+      "The move under the pointer when the wheel stops is your next set. Spin again between sets to build a full circuit.",
+      "Press Copy link once you have edited the list to bookmark or share that exact set of moves; the entries are encoded directly in the link.",
+    ],
+    supplementalSections: [
+      {
+        heading: "How each spin is decided",
+        body: "Your browser's cryptographic random number generator, crypto.getRandomValues, settles the rotation the moment you press spin, with Math.random stepping in only on browsers that lack that API. The spin itself is the real pick playing out, not a preview of a decision made elsewhere. Every move on the wheel takes an equal-sized slice, so with the default 8 moves each has about a 12.5% chance, and trimming the list to 4 moves would give each a 25% chance instead. Earlier spins have no effect on the next one. The full mechanism is documented on our How Randomness Works page.",
+      },
+    ],
     relatedWheels: [
       { slug: "self-care-wheel", anchor: "Recovery self-care wheel" },
       { slug: "random-number-wheel", anchor: "Rep count number wheel" },
@@ -1198,8 +1212,8 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       { slug: "random-name-picker-wheel", anchor: "Name picker for captains" },
       { slug: "classroom-spinner", anchor: "Classroom spinner hub" },
       { slug: "winner-picker-wheel", anchor: "Tournament winner draw" },
+      { slug: "exercise-picker-wheel", anchor: "Team warm-up exercise picker" },
       { slug: "secret-santa-wheel-generator", anchor: "Holiday gift assignments" },
-      { slug: "pokemon-randomizer-wheel", anchor: "Challenge run for game nights" },
     ],
   },
 
@@ -2262,7 +2276,7 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       { slug: "yes-or-no-wheel", anchor: "Take a break yes-no" },
       { slug: "outfit-picker-wheel", anchor: "Outfit for a walk outside" },
       { slug: "should-i-text-him-wheel", anchor: "Pause before texting" },
-      { slug: "movie-picker-wheel", anchor: "Cozy movie night" },
+      { slug: "exercise-picker-wheel", anchor: "Movement break workout picker" },
       { slug: "dinner-picker-wheel", anchor: "Simple dinner decision" },
     ],
   },

@@ -19,7 +19,7 @@ const FAQS = [
   },
   {
     q: "How is Online Spin Wheel different from a generic name spinner?",
-    a: "Besides a free name picker, we publish 21 indexed specialty tools with real controls (raffles with prize-draw and ticket modes, classroom hubs, weighted yes/no, dinner and movie filters, multi-winner proof links), not dozens of clone spinners.",
+    a: "Besides a free name picker, we publish 22 indexed specialty tools with real controls (raffles with prize-draw and ticket modes, classroom hubs, weighted yes/no, dinner and movie filters, multi-winner proof links), not dozens of clone spinners.",
   },
   {
     q: "Do my names get uploaded to a server?",
@@ -59,7 +59,7 @@ const TABLE_ROWS: Row[] = [
   },
   {
     feature: "Focused specialty tools",
-    ours: "Yes, 21 indexed tools with real controls (filters, weights, calculators)",
+    ours: "Yes, 22 indexed tools with real controls (filters, weights, calculators)",
     others: "Typically a single generic wheel",
   },
   {
@@ -109,7 +109,7 @@ const WheelOfNamesAlternative = () => {
         <title>{title}</title>
         <meta
           name="description"
-          content="Wheel of Names alternative: compare Online Spin Wheel with other free pickers. No account, browser-only entries, 21 specialty wheels and raffle proof links."
+          content="Wheel of Names alternative: compare Online Spin Wheel with other free pickers. No account, browser-only entries, 22 specialty wheels and raffle proof links."
         />
         <link rel="canonical" href={canonical} />
         <script type="application/ld+json">
@@ -160,7 +160,7 @@ const WheelOfNamesAlternative = () => {
         <Card className="p-6 md:p-8 mb-8">
           <p className="text-muted-foreground leading-relaxed mb-4">
             Online Spin Wheel is a free browser spinner for classrooms, meetings,
-            and giveaways. Beyond a basic name list, we ship 21 indexed specialty
+            and giveaways. Beyond a basic name list, we ship 22 indexed specialty
             tools, including{" "}
             <Link to="/raffle-wheel" className="text-primary font-medium hover:underline">
               raffles

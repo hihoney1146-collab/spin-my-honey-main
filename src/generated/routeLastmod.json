@@ -1,12 +1,12 @@
 {
   "routes": {
     "/": {
-      "hash": "d237ce5967c55af0",
-      "lastmod": "2026-09-21"
+      "hash": "e0f0df94636ba9e1",
+      "lastmod": "2026-10-12"
     },
     "/all-spin-wheels": {
-      "hash": "8f3d4c922f8522d1",
-      "lastmod": "2026-09-03"
+      "hash": "b04c37c601a16823",
+      "lastmod": "2026-10-12"
     },
     "/blog": {
       "hash": "776f3155f24f0ec8",
@@ -73,8 +73,8 @@
       "lastmod": "2026-10-09"
     },
     "/wheel-of-names-alternative": {
-      "hash": "1c88efff618dcdb9",
-      "lastmod": "2026-09-03"
+      "hash": "46ab40af81ee4d7d",
+      "lastmod": "2026-10-12"
     },
     "/spin-wheel-fairness-study": {
       "hash": "3132dc1d421dc35a",
@@ -129,8 +129,8 @@
       "lastmod": "2026-10-11"
     },
     "/exercise-picker-wheel": {
-      "hash": "322dc11bf5faecfe",
-      "lastmod": "2026-09-03"
+      "hash": "3225bd22913e0494",
+      "lastmod": "2026-10-12"
     },
     "/zodiac-sign-wheel": {
       "hash": "1f9be39100c7a646",
@@ -153,8 +153,8 @@
       "lastmod": "2026-10-11"
     },
     "/team-generator-wheel": {
-      "hash": "701a316aa9015047",
-      "lastmod": "2026-10-09"
+      "hash": "9798b56092b23ed6",
+      "lastmod": "2026-10-12"
     },
     "/winner-picker-wheel": {
       "hash": "31c06a1c588af8e1",
@@ -185,8 +185,8 @@
       "lastmod": "2026-09-03"
     },
     "/random-day-picker-wheel": {
-      "hash": "7ca7915a96a38fe0",
-      "lastmod": "2026-09-03"
+      "hash": "414a6cdc91c76a3c",
+      "lastmod": "2026-10-12"
     },
     "/random-student-picker": {
       "hash": "376c447c65d6a8c7",
@@ -201,8 +201,8 @@
       "lastmod": "2026-10-11"
     },
     "/twister-spinner-online": {
-      "hash": "599f484c377d06ef",
-      "lastmod": "2026-09-03"
+      "hash": "a4c6b7b8da355e7d",
+      "lastmod": "2026-10-12"
     },
     "/fast-food-wheel": {
       "hash": "f4ef7aad8dc08f5d",
@@ -213,8 +213,8 @@
       "lastmod": "2026-09-03"
     },
     "/self-care-wheel": {
-      "hash": "bd363c92bb80c61f",
-      "lastmod": "2026-10-10"
+      "hash": "4f0de599f9b691b0",
+      "lastmod": "2026-10-12"
     },
     "/pokemon-randomizer-wheel": {
       "hash": "7c33684e4902f626",
@@ -257,8 +257,8 @@
       "lastmod": "2026-09-03"
     },
     "/random-hobby-generator-wheel": {
-      "hash": "49c6b113c65d0f1f",
-      "lastmod": "2026-09-03"
+      "hash": "f2cfe6a9cfe76e86",
+      "lastmod": "2026-10-12"
     },
     "/raffle-wheel": {
       "hash": "09cf6c46e53d5632",

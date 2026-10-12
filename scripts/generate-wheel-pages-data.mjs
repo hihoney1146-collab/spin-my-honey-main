@@ -102,6 +102,7 @@ const records = (parsed.data || [])
       h1: row["H1_Heading"] || "",
       introduction: row["Introduction Text"] || "",
       howToUse: row["How To Use"] || "",
+      howToSteps: [],
       category: row["Category"] || "",
       wheelOptions: parseWheelOptions(row["Wheel Options"]),
       faqs: parseFaqsBlock(row["FAQs"]),
@@ -115,6 +116,9 @@ const records = (parsed.data || [])
       if (unique.metaDescription) base.metaDescription = unique.metaDescription;
       if (unique.h1) base.h1 = unique.h1;
       if (Array.isArray(unique.faqs) && unique.faqs.length) base.faqs = unique.faqs;
+      if (Array.isArray(unique.howToSteps) && unique.howToSteps.length) {
+        base.howToSteps = unique.howToSteps;
+      }
     }
     return base;
   })

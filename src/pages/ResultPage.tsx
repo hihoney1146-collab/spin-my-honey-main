@@ -18,9 +18,9 @@ const ResultPage = () => {
 
   const title = proof
     ? isCoinFlip
-      ? `Verified coin flip, ${proof.w.join(", ")} | Online Spin Wheel`
-      : `Verified spin result, ${proof.w.join(", ")} | Online Spin Wheel`
-    : "Spin result verification | Online Spin Wheel";
+      ? `Coin flip result record, ${proof.w.join(", ")} | Online Spin Wheel`
+      : `Spin result record, ${proof.w.join(", ")} | Online Spin Wheel`
+    : "Spin result record | Online Spin Wheel";
 
   const description = proof
     ? isCoinFlip
@@ -61,7 +61,7 @@ const ResultPage = () => {
             <div className="flex items-center gap-2 text-primary mb-4">
               <ShieldCheck className="h-6 w-6" />
               <p className="text-sm font-semibold uppercase tracking-wide">
-                {isCoinFlip ? "Verified coin flip" : "Verified spin result"}
+                {isCoinFlip ? "Coin flip record" : "Spin result record"}
               </p>
             </div>
             <h1 className="text-2xl md:text-3xl font-bold mb-6">

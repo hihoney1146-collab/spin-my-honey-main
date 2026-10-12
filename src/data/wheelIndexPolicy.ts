@@ -3,7 +3,6 @@
  * NOINDEX wheels stay routable; MERGE sources are handled via App/vercel redirects.
  */
 export const NOINDEX_WHEEL_SLUGS = [
-  "exercise-picker-wheel",
   "nfl-team-picker-wheel",
   "random-word-generator-wheel",
   "random-country-wheel",
@@ -56,7 +55,7 @@ export function isHubListedWheelSlug(slug: string | undefined): boolean {
 export function isWheelIndexableSlug(slug: string | undefined): boolean {
   return Boolean(slug && !isNoindexWheelSlug(slug) && !isMergedWheelSlug(slug));
 }
-export const INDEXED_WHEEL_COUNT_PHASE_C = 21;
+export const INDEXED_WHEEL_COUNT_PHASE_C = 22;
 
 /** Target after all enrichments (same as post-hat merge). */
-export const INDEXED_WHEEL_COUNT_TARGET = 21;
+export const INDEXED_WHEEL_COUNT_TARGET = 22;
