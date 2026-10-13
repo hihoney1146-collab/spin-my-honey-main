@@ -2,7 +2,7 @@
 
 > Free browser spin wheels for fair random picks: names, numbers, teams, giveaways, classrooms, and decisions.
 
-Last updated: 2026-10-12
+Last updated: 2026-10-13
 
 ## Identity
 - Canonical site: https://onlinespinwheel.fun/
@@ -36,6 +36,7 @@ https://onlinespinwheel.fun/case-study-community-event-using-spin-wheels
 https://onlinespinwheel.fun/case-study-school-using-spin-wheels
 https://onlinespinwheel.fun/comparison-spin-wheel-vs-traditional-methods
 https://onlinespinwheel.fun/how-randomness-works
+https://onlinespinwheel.fun/press-kit
 https://onlinespinwheel.fun/spin-wheel-fairness-study
 https://onlinespinwheel.fun/tutorial-adding-images-to-spin-wheels
 https://onlinespinwheel.fun/wheel-of-names-alternative

@@ -35,6 +35,10 @@ export const originalContentLinks: SiteLinkItem[] = [
     label: "Fairness study (100k spins)",
   },
   {
+    to: "/press-kit",
+    label: "Press kit and resources",
+  },
+  {
     to: "/how-randomness-works",
     label: "How randomness works",
   },

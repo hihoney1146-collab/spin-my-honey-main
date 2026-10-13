@@ -359,6 +359,19 @@ const Contact = () => {
                     <p>Most support, privacy, and business emails receive a reply within 24 to 48 hours.</p>
                   </div>
                 </div>
+                <div className="flex items-start gap-3">
+                  <Mail className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                  <div>
+                    <p className="font-medium text-foreground">Press or media</p>
+                    <p>
+                      Writing about the tool or building a lesson around it? Our{" "}
+                      <Link to="/press-kit" className="text-primary underline underline-offset-2 font-medium">
+                        press kit and resources
+                      </Link>{" "}
+                      page has the logo, embed widget, and fairness study in one place.
+                    </p>
+                  </div>
+                </div>
               </div>
             </Card>
 

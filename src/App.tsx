@@ -36,6 +36,7 @@ const WheelOfNamesAlternative = lazy(
 const SpinWheelFairnessStudy = lazy(
   () => import("./pages/SpinWheelFairnessStudy")
 );
+const PressKit = lazy(() => import("./pages/PressKit"));
 const HowRandomnessWorks = lazy(() => import("./pages/HowRandomnessWorks"));
 const Terms = lazy(() => import("./pages/Terms"));
 const Disclaimer = lazy(() => import("./pages/Disclaimer"));
@@ -200,6 +201,14 @@ export const AppTree = ({ Router, routerProps = {} }: AppRouterProps) => {
                 element={
                   <Suspense fallback={<PageLoadingFallback />}>
                     <SpinWheelFairnessStudy />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/press-kit"
+                element={
+                  <Suspense fallback={<PageLoadingFallback />}>
+                    <PressKit />
                   </Suspense>
                 }
               />

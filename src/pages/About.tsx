@@ -159,7 +159,11 @@ const About = () => {
               <Link to="/spin-wheel-fairness-study" className="text-primary underline underline-offset-2 font-medium">
                 100,000-spin fairness study
               </Link>
-              .
+              . Writing about the tool or building a lesson around it? Our{" "}
+              <Link to="/press-kit" className="text-primary underline underline-offset-2 font-medium">
+                press kit and resources
+              </Link>{" "}
+              page has the embed widget, printable, and logo in one place.
             </p>
           </div>
         </Card>

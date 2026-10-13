@@ -330,6 +330,14 @@ export const fixedRouteMeta = [
     ogType: "article",
   },
   {
+    path: "/press-kit",
+    title: "Press Kit and Resources - Online Spin Wheel",
+    h1: "Press Kit and Resources",
+    description:
+      "Free resources for teachers, writers, and streamers covering Online Spin Wheel: an embeddable wheel widget, the 100,000-spin fairness study, a printable classroom PDF, and who built the tool.",
+    ogType: "website",
+  },
+  {
     path: "/result",
     title: "Spin Result Verification | Online Spin Wheel",
     description:

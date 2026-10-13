@@ -198,6 +198,9 @@ const SpinWheelFairnessStudy = () => {
           <Button asChild variant="outline">
             <Link to="/how-randomness-works">How randomness works</Link>
           </Button>
+          <Button asChild variant="outline">
+            <Link to="/press-kit">Press kit and resources</Link>
+          </Button>
           <Button asChild>
             <Link to="/">Try the wheel</Link>
           </Button>
