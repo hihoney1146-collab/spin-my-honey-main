@@ -32,3 +32,4 @@ npm run test:unit  # unit tests
 
 - Page titles, descriptions and structured data per route come from `scripts/seo-routes.mjs` and `scripts/static-page-meta.mjs`.
 - Code that runs during rendering must not touch `window`, `document` or `localStorage` directly; read browser-only state inside `useEffect` so the server HTML and the first client render stay identical.
+- `REAL_THEME_FOREGROUND_STYLE` in `src/components/SpinWheel.tsx` hardcodes the `:root`/`.dark` foreground tokens from `src/index.css` so Streamer Mode's opaque controls (textarea, buttons, entry rows) keep the site's real theme colors instead of the chroma-adaptive ones; update both places together if the theme palette changes.
