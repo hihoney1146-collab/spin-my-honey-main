@@ -1,6 +1,8 @@
 /**
  * Run 100,000 simulated wheel spins (equal slices) and export CSV + JSON summary.
- * Mirrors getCurrentSegment() + crypto.getRandomValues() landing angle.
+ * Runs in Node at build time, so it uses Node's crypto.randomInt (not the
+ * browser's crypto.getRandomValues()) to mirror the same getCurrentSegment()
+ * landing-angle geometry the live wheel uses.
  */
 import fs from "fs";
 import path from "path";
@@ -110,7 +112,7 @@ const payload = {
   generatedAt: new Date().toISOString().slice(0, 10),
   totalSpins: TOTAL_SPINS,
   spinsPerConfig: SPINS_PER_CONFIG,
-  method: "crypto.getRandomValues (Node crypto.randomInt) landing angle → getCurrentSegment geometry",
+  method: "Node crypto.randomInt landing angle (build-time simulation, mirrors the browser's crypto.getRandomValues()) → getCurrentSegment geometry",
   segmentCounts: SEGMENT_COUNTS,
   summaries,
   csvUrl: "/downloads/spin-wheel-fairness-study-100k.csv",

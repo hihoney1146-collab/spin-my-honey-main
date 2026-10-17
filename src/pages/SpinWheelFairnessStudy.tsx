@@ -83,7 +83,10 @@ const SpinWheelFairnessStudy = () => {
           <Link to="/" className="text-primary hover:underline">
             spin wheel
           </Link>
-          . Each configuration passed a chi-square test for uniform distribution at α = 0.05.
+          .{" "}
+          {allPass
+            ? "Each configuration passed a chi-square test for uniform distribution at α = 0.05."
+            : `${studyData.summaries.filter((s) => s.uniformPass).length} of ${studyData.summaries.length} configurations passed a chi-square test for uniform distribution at α = 0.05; see the tables below for the exception, consistent with that test's own 5% false-positive rate rather than a sign of bias.`}{" "}
           Download the CSV to cite or reproduce the results.
         </p>
 
@@ -119,9 +122,11 @@ const SpinWheelFairnessStudy = () => {
           <div className="space-y-4 text-muted-foreground leading-relaxed">
             <p>
               For each segment count k, we simulated {studyData.spinsPerConfig.toLocaleString()}{" "}
-              independent spins. Each spin drew a landing angle with the same secure browser
-              randomness used in production, then mapped the angle to a slice index using the same
-              equal-arc formula as the live wheel (pointer on the right).
+              independent spins. This simulation runs in Node at build time, so each spin drew its
+              landing angle from Node&apos;s cryptographically secure random generator
+              (crypto.randomInt), the server-side equivalent of the browser&apos;s
+              crypto.getRandomValues() used in production, then mapped the angle to a slice index
+              using the same equal-arc formula as the live wheel (pointer on the right).
             </p>
             <p>
               Expected count per slice is n/k. We computed Pearson&apos;s chi-square statistic χ² =

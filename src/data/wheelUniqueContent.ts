@@ -2478,6 +2478,11 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
         answer:
           "No. Participant names and exclusions stay in the browser tab; only a reveal token (the giver and recipient names, encoded in the link) travels in the URL you choose to share. Shipping or gift details stay in your own separate chat thread.",
       },
+      {
+        question: "Is this the same as Kris Kringle, Pollyanna, or White Elephant?",
+        answer:
+          "Kris Kringle and Pollyanna are regional names for the same anonymous one-to-one exchange this tool runs, so assignment mode works for all three. White Elephant (also called Yankee Swap) is a different game: everyone brings one gift, then players take turns opening a new one or stealing an opened one from someone else. There is no anonymous pairing step, so assignment mode does not apply, but the plain spin wheel above Generate can still pick a random turn order for a White Elephant round.",
+      },
     ],
     relatedWheels: [
       { slug: "random-name-picker-wheel", anchor: "General name draw wheel" },
