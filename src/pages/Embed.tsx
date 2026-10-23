@@ -14,7 +14,7 @@ const Embed = () => {
 
   useEffect(() => {
     gtagEvent("embed_view", {
-      event_category: "parasite_seo",
+      event_category: "embed",
       event_label: slug,
       value: 1,
     });
@@ -24,7 +24,7 @@ const Embed = () => {
         const parentUrl = document.referrer;
         if (parentUrl) {
           gtagEvent("embed_parent_domain", {
-            event_category: "parasite_seo",
+            event_category: "embed",
             event_label: new URL(parentUrl).hostname,
           });
         }

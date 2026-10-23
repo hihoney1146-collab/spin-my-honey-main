@@ -34,7 +34,7 @@ export function EmbedWidgetSnippet({ slug, wheelTitle }: EmbedWidgetSnippetProps
     setCopied(true);
     toast.success("Embed code copied.");
     gtagEvent("embed_code_generated", {
-      event_category: "parasite_seo",
+      event_category: "embed",
       event_label: slug,
     });
     window.setTimeout(() => setCopied(false), 2000);
