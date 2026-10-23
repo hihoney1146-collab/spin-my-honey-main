@@ -48,7 +48,7 @@ export const WHEEL_BULK_PLACEHOLDERS: Record<string, WheelBulkPlaceholder> = {
   },
   "abcd-spin-wheel": {
     sample: "A\nB\nC\nD",
-    hint: "MC answers lock to A, B, C and D; paste custom labels if needed.",
+    hint: "Use the Letters buttons for AB to ABCDE, or paste custom labels here.",
   },
   "should-i-text-him-wheel": {
     sample: "Send it\nWait till morning\nAsk a friend\nSleep on it\nCall instead",

@@ -60,7 +60,7 @@ export function WheelBySlug({
         <ClassroomSpinnerWheel presetOptionLabels={presetOptionLabels} />
       );
     case "abcd-spin-wheel":
-      return <AbcdSpinWheel presetOptionLabels={presetOptionLabels} />;
+      return <AbcdSpinWheel />;
     case "should-i-text-him-wheel":
       return <ShouldITextHimWheel presetOptionLabels={presetOptionLabels} />;
     case "chinese-zodiac-wheel":

@@ -148,9 +148,9 @@ export const fixedRouteMeta = [
   },
   {
     path: "/all-spin-wheels",
-    title: "All 21 Free Specialty Spin Wheels | Online Spin Wheel",
+    title: "All 22 Free Specialty Spin Wheels | Online Spin Wheel",
     description:
-      "Browse 21 free specialty spin wheels: raffles, classrooms, weighted yes/no, dinner and movie filters, and more. Extra bookmark-only tools sit in a separate list.",
+      "Browse 22 free specialty spin wheels: raffles, classrooms, weighted yes/no, dinner and movie filters, and more. Extra bookmark-only tools sit in a separate list.",
   },
   {
     path: "/blog",

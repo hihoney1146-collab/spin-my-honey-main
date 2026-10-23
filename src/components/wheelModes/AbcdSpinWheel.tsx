@@ -7,19 +7,21 @@ import { SpinWheel } from "@/components/SpinWheel";
 import { Maximize2, Minimize2, History, ListChecks } from "lucide-react";
 import { useControlledWheelLabels } from "@/lib/useControlledWheelLabels";
 
-type AbcdSpinWheelProps = {
-  presetOptionLabels?: string[];
-};
+const LETTER_POOL = ["A", "B", "C", "D", "E"];
+const LETTER_COUNTS = [2, 3, 4, 5];
 
-const ABCD = ["A", "B", "C", "D"];
-
-export function AbcdSpinWheel({ presetOptionLabels }: AbcdSpinWheelProps) {
-  const labels =
-    presetOptionLabels?.length === 4 ? presetOptionLabels : ABCD;
+export function AbcdSpinWheel() {
+  const [letterCount, setLetterCount] = useState(4);
+  const labels = LETTER_POOL.slice(0, letterCount);
   const wheelSync = useControlledWheelLabels(labels);
   const [removeAfterPick, setRemoveAfterPick] = useState(false);
   const [history, setHistory] = useState<string[]>([]);
   const [fullscreen, setFullscreen] = useState(false);
+
+  const chooseLetterCount = (count: number) => {
+    setLetterCount(count);
+    setHistory([]);
+  };
 
   return (
     <div
@@ -35,6 +37,27 @@ export function AbcdSpinWheel({ presetOptionLabels }: AbcdSpinWheelProps) {
           <span>Multiple-choice quiz mode</span>
         </div>
         <div className="flex flex-wrap items-center gap-4">
+          <div className="flex items-center gap-2">
+            <span className="text-sm font-medium">Letters</span>
+            <div
+              className="flex flex-wrap gap-1"
+              role="group"
+              aria-label="How many answer letters are on the wheel"
+            >
+              {LETTER_COUNTS.map((count) => (
+                <Button
+                  key={count}
+                  type="button"
+                  variant={letterCount === count ? "default" : "outline"}
+                  size="sm"
+                  aria-pressed={letterCount === count}
+                  onClick={() => chooseLetterCount(count)}
+                >
+                  {LETTER_POOL.slice(0, count).join("")}
+                </Button>
+              ))}
+            </div>
+          </div>
           <div className="flex items-center gap-2">
             <Switch
               id="abcd-remove"

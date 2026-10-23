@@ -1964,29 +1964,31 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "abcd-spin-wheel": {
     directAnswer:
-      "The ABCD Spin Wheel locks to A, B, C, and D for multiple-choice call-outs. Teachers enable remove-after-pick so used letters drop out, open projector fullscreen for the smartboard, and review the answers-called list under the wheel. Equal letter slices keep blind-guess games fair during quiz review.",
+      "The ABCD Spin Wheel picks a random answer letter for multiple-choice call-outs. The Letters buttons set the wheel to AB, ABC, ABCD or ABCDE, so a two option question gets two slices and a five option question gets five. Teachers enable remove-after-pick so used letters drop out, open projector fullscreen for the smartboard, and review the answers-called list under the wheel. Equal letter slices keep blind-guess games fair during quiz review.",
     title: "ABCD Spin Wheel, Multiple Choice Picker",
     metaDescription:
-      "Lock A-D for quiz call-outs, remove letters after each pick, and use projector fullscreen so the whole class can see the spin.",
+      "Spin a random answer letter for 2, 3, 4 or 5 choice questions. Remove letters after each pick and use projector fullscreen for the class.",
     useCases: [
       { heading: "SAT practice games", body: "Tutors spin when a student is stuck between two choices, then discuss why the letter that came up was or was not correct. The aim is the discussion about the reasoning, not the guess itself." },
       { heading: "Projector review days", body: "Fullscreen classroom mode puts a large TAP TO SPIN control on the board. With Remove letter after pick on, letters that have already been called drop off the wheel, so a review round does not keep repeating the same answer." },
       { heading: "Workshop polling", body: "Write four discussion topics on the board, label them A to D, and spin to pick which breakout question starts. With Remove letter after pick on, the first two topics called drop away, and the final two can be settled with one more spin." },
       { heading: "Session logging", body: "The Answers called list shows which letters already came up, newest first and numbered from 1, so nobody has to argue about repeats halfway through the period." },
-      { heading: "Placing the correct answer in a quiz", body: "When you write multiple-choice questions, spin to decide which letter holds the correct answer so your answer key does not fall into a pattern. Write the correct option in the spun letter's position, then fill in the other three." },
+      { heading: "Placing the correct answer in a quiz", body: "When you write multiple-choice questions, spin to decide which letter holds the correct answer so your answer key does not fall into a pattern. Write the correct option in the spun letter's position, then fill in the rest." },
+      { heading: "Questions with two or three options", body: "Set the wheel to AB when a question is down to two candidates, ABC for a three option item, or ABCDE when there are five. The slices resize so each letter still gets an equal share, and the Answers called list clears when you change the count so a new round starts from nothing." },
     ],
     howToSteps: [
       "Open the page. The wheel loads with four equal slices labelled A, B, C and D.",
+      "Match the wheel to your question. The Letters buttons switch between AB, ABC, ABCD and ABCDE. Changing the count rebuilds the wheel and clears the Answers called list.",
       "Choose how letters repeat. Leave Remove letter after pick off if any letter may come up again, or switch it on to take each called letter off the wheel.",
       "For a classroom screen, press Projector fullscreen. The spin button becomes a large TAP TO SPIN control, and Exit projector returns to the normal layout.",
       "Spin the wheel. The spin timer is 7 seconds by default and can be set from 3 seconds to 1 minute. The slice under the pointer when the wheel stops is the letter.",
       "Read the Answers called list under the wheel. It shows every letter spun in this session, newest first, with numbers counting from the first spin.",
-      "To start a fresh round, reload the page. The wheel returns to all four letters and the list is cleared.",
+      "To start a fresh round, reload the page. The wheel returns to A, B, C and D and the list is cleared.",
     ],
     supplementalSections: [
       {
         heading: "How the odds work",
-        body: "Each letter has an equal slice. With all four letters on the wheel, each has a 25% chance. If Remove letter after pick is on, three letters left means about 33.3% each, and two letters left means 50% each. The wheel stops removing at two letters, so it never runs out of options, and the final pair stays on the wheel.",
+        body: "Each letter on the wheel gets an equal slice, so the chance of any one letter is one divided by how many are showing. That is 50% each on AB, about 33.3% on ABC, 25% on ABCD and 20% on ABCDE. If Remove letter after pick is on, every called letter leaves the wheel and the rest share the odds again, so a five letter wheel runs 20%, then 25%, then 33.3%, then 50%. Removal stops at two letters, so the wheel never runs out of options and the final pair always stays.",
       },
       {
         heading: "How each spin is decided",
@@ -1998,11 +2000,13 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       },
     ],
     faqs: [
-      { question: "Does the wheel always show A to D?", answer: "Yes. Each time the page loads it starts with four slices labelled A, B, C and D, ready for multiple-choice call-outs." },
-      { question: "Are all four letters equally likely?", answer: "Yes. The four slices are the same size, so each letter has a 25% chance on a fresh wheel. If you remove letters after each pick, the remaining letters share the odds equally." },
-      { question: "What does remove letter after pick do?", answer: "After a spin, that letter drops from the wheel so the next spin only chooses among the remaining letters. It stops at two letters, so the wheel always has at least two options, and reloading the page restores all four." },
+      { question: "Can I use fewer than four letters?", answer: "Yes. The Letters buttons set the wheel to AB, ABC, ABCD or ABCDE. The page opens on ABCD, and changing the count rebuilds the wheel and clears the Answers called list." },
+      { question: "Can it pick between just A and B?", answer: "Yes. Tap AB and the wheel drops to two equal slices, each with a 50% chance. Remove letter after pick has no effect at two letters, because the wheel never goes below two options." },
+      { question: "Is there an ABC wheel without D?", answer: "Tap ABC. The wheel rebuilds with three equal slices at about 33.3% each. If Remove letter after pick is on, the first call leaves two letters and removal then stops." },
+      { question: "Are the letters equally likely?", answer: "Yes. Every slice is the same size, so each letter has an equal chance: 50% on AB, about 33.3% on ABC, 25% on ABCD and 20% on ABCDE. If you remove letters after each pick, the ones left share the odds equally." },
+      { question: "What does remove letter after pick do?", answer: "After a spin, that letter drops from the wheel so the next spin only chooses among the letters left. It stops at two letters, so the wheel always has at least two options, and reloading the page restores the full set." },
       { question: "What is projector fullscreen?", answer: "It expands the wheel to a full-screen classroom layout with a large TAP TO SPIN button meant for smartboards and projectors. Exit projector returns to the normal page." },
-      { question: "Where do I see past answers?", answer: "The Answers called list under the wheel keeps an ordered history of every letter spun this session, newest first. Reloading the page clears it." },
+      { question: "Where do I see past answers?", answer: "The Answers called list under the wheel keeps an ordered history of every letter spun this session, newest first. Reloading the page or changing the letter count clears it." },
       { question: "Does a random letter tell me the correct answer?", answer: "No. The letter is random and carries no information about which option is right, so use it for call-outs and discussion rather than for answering questions." },
     ],
     relatedWheels: [

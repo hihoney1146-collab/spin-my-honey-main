@@ -1148,7 +1148,7 @@ const WHEEL_MODE_FEATURES = {
   "random-name-picker-wheel":
     "Name picker (Wheel of Names / digital hat draw) with remove-after-pick, session history, optional Name:weight entries that multiply slices, proof link, and streamer-mode controls.",
   "abcd-spin-wheel":
-    "Locks the wheel to A, B, C and D for multiple-choice call-outs, optional remove-after-pick, projector fullscreen, and a session list of answers already called.",
+    "Sets the wheel to AB, ABC, ABCD or ABCDE for multiple-choice call-outs, optional remove-after-pick, projector fullscreen, and a session list of answers already called.",
   "should-i-text-him-wheel":
     "Context chips (casual / mixed signals / high emotion) swap the outcome pool, then a one-minute cooldown after each spin slows impulsive re-rolls.",
   "chinese-zodiac-wheel":

@@ -2,7 +2,7 @@
 
 > Free browser spin wheels for fair random picks: names, numbers, teams, giveaways, classrooms, and decisions.
 
-Last updated: 2026-10-13
+Last updated: 2026-10-23
 
 ## Identity
 - Canonical site: https://onlinespinwheel.fun/
@@ -56,7 +56,7 @@ https://onlinespinwheel.fun/yes-or-no-wheel, Yes or No Wheel: Weighing a simple 
 
 ## Education & Learning (4)
 https://onlinespinwheel.fun/alphabet-spinner-wheel, Alphabet Spinner Wheel: Spin an A to Z alphabet wheel for phonics, word games, and letter-of-the-day picks. Exclude used letters and call the random letter on a smartboard.
-https://onlinespinwheel.fun/abcd-spin-wheel, ABCD Spin Wheel: Lock A-D for quiz call-outs, remove letters after each pick, and use projector fullscreen so the whole class can see the spin.
+https://onlinespinwheel.fun/abcd-spin-wheel, ABCD Spin Wheel: Spin a random answer letter for 2, 3, 4 or 5 choice questions. Remove letters after each pick and use projector fullscreen for the class.
 https://onlinespinwheel.fun/classroom-spinner, Classroom Spinner: Teacher hub with three tabs: student spinner, team maker, and countdown timer, plus fullscreen mode for smartboards.
 https://onlinespinwheel.fun/random-student-picker, Random Student Picker: Paste your class roster, spin in fullscreen mode, auto-remove picked students, and review session history so every kid gets a turn.
 
