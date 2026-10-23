@@ -80,13 +80,20 @@ export const comparisonLinks: SiteLinkItem[] = [
   },
 ];
 
+/**
+ * The six indexed wheels people actually reach, newest ranking first.
+ * Chosen from measured Search Console clicks, not from guesswork: over the 28 days
+ * from 2026-09-23 to 2026-10-20 these six took 127 of the site's clicks, while the
+ * six listed here before took 0 between them. Re-check this list against a fresh
+ * export every few months rather than leaving it to drift.
+ */
 const FEATURED_WHEEL_SLUGS = [
-  "random-name-picker-wheel",
-  "yes-or-no-wheel",
-  "random-student-picker",
-  "team-generator-wheel",
-  "winner-picker-wheel",
-  "dinner-picker-wheel",
+  "abcd-spin-wheel",
+  "should-i-text-him-wheel",
+  "secret-santa-wheel-generator",
+  "outfit-picker-wheel",
+  "alphabet-spinner-wheel",
+  "self-care-wheel",
 ] as const;
 
 /** Featured indexed wheels; full lists live on WHEEL_HUB_PATH. */

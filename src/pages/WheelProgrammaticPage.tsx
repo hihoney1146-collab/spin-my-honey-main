@@ -253,17 +253,7 @@ const WheelProgrammaticPage = () => {
                 All specialty wheels
               </Link>
             </li>
-            {tutorialLinks.map((l) => (
-              <li key={l.to}>
-                <Link
-                  to={l.to}
-                  className="font-medium text-primary underline underline-offset-2"
-                >
-                  {l.label}
-                </Link>
-              </li>
-            ))}
-            {comparisonLinks.slice(0, 2).map((l) => (
+            {relatedGuides.map((l) => (
               <li key={l.to}>
                 <Link
                   to={l.to}
@@ -275,24 +265,6 @@ const WheelProgrammaticPage = () => {
             ))}
           </ul>
         </Card>
-
-        {relatedGuides.length > 0 ? (
-          <Card className="p-5 md:p-6 mb-8">
-            <h2 className="text-lg font-bold mb-3">Related guides</h2>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
-              {relatedGuides.map((g) => (
-                <li key={g.to}>
-                  <Link
-                    to={g.to}
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    {g.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </Card>
-        ) : null}
 
         {related.length > 0 ? (
           <Card className="p-5 md:p-6 mb-8">
