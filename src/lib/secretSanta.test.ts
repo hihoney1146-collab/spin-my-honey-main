@@ -1,9 +1,13 @@
 import { describe, expect, it } from "vitest";
 import {
   assignSecretSanta,
+  buildRevealLinks,
   decodeRevealToken,
   encodeRevealToken,
   parseExclusions,
+  revealLinksToCsv,
+  revealLinksToText,
+  uniqueParticipants,
 } from "./secretSanta";
 
 const names = ["Alex", "Jordan", "Sam", "Mary-Jane", "علی"];
@@ -75,6 +79,63 @@ describe("assignSecretSanta", () => {
     }
     expect(counts.size).toBe(2);
     expect([...counts.values()]).toEqual([1, 1]);
+  });
+});
+
+describe("uniqueParticipants", () => {
+  it("treats names differing only in case as one person and keeps the first spelling", () => {
+    expect(uniqueParticipants(["Alex", "alex", "Sam", "ALEX"])).toEqual(["Alex", "Sam"]);
+  });
+
+  it("agrees with parseExclusions, which also matches names without regard to case", () => {
+    const people = uniqueParticipants(["Alex", "alex", "Jordan", "Sam"]);
+    const { pairs, ignored } = parseExclusions("alex → jordan", people);
+    expect(people).toEqual(["Alex", "Jordan", "Sam"]);
+    expect(ignored).toEqual([]);
+    expect(pairs.has("Alex→Jordan")).toBe(true);
+  });
+
+  it("leaves genuinely different names alone", () => {
+    expect(uniqueParticipants(["Mary-Jane", "Mary", "علی", "Ali"])).toHaveLength(4);
+  });
+});
+
+describe("reveal link export", () => {
+  const origin = "https://example.test";
+  const assignments = new Map([
+    ["Alex", "Jordan"],
+    ["Jordan", "Sam"],
+    ["Sam", "Alex"],
+  ]);
+
+  it("builds one link per giver, in listed order, that decodes back to the pair", () => {
+    const links = buildRevealLinks(assignments, origin);
+    expect(links.map((l) => l.giver)).toEqual(["Alex", "Jordan", "Sam"]);
+    for (const l of links) {
+      const token = new URL(l.url).searchParams.get("reveal") as string;
+      expect(decodeRevealToken(token)).toEqual({ g: l.giver, r: l.receiver });
+    }
+  });
+
+  it("writes one Name: link line per giver", () => {
+    const lines = revealLinksToText(buildRevealLinks(assignments, origin)).split("\n");
+    expect(lines).toHaveLength(3);
+    expect(lines[0].startsWith("Alex: https://example.test/secret-santa-wheel-generator?reveal=")).toBe(true);
+  });
+
+  it("writes a CSV with a header and never writes the recipient down", () => {
+    const csv = revealLinksToCsv(buildRevealLinks(assignments, origin));
+    const rows = csv.split("\r\n");
+    expect(rows[0]).toBe("Name,Reveal link");
+    expect(rows).toHaveLength(4);
+    expect(csv).not.toMatch(/,Jordan|,Sam\b/);
+  });
+
+  it("quotes a name that would otherwise break the CSV", () => {
+    const csv = revealLinksToCsv([
+      { giver: 'Sam "Sammy" Lee', receiver: "Jo", url: "https://example.test/x" },
+    ]);
+    expect(csv.split("\r\n")[1].startsWith('"Sam ""Sammy"" Lee",')).toBe(true);
   });
 });
 

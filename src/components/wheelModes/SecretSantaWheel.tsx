@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Gift, Link2, Copy } from "lucide-react";
+import { Gift, Link2, Copy, ClipboardList, Download } from "lucide-react";
 import { toast } from "sonner";
 import { SITE_ORIGIN } from "@/lib/schema";
 import { SpinWheel } from "@/components/SpinWheel";
@@ -14,9 +14,13 @@ import {
 } from "@/lib/wheelEntryLabels";
 import {
   assignSecretSanta,
+  buildRevealLinks,
   decodeRevealToken,
   encodeRevealToken,
   parseExclusions,
+  revealLinksToCsv,
+  revealLinksToText,
+  uniqueParticipants,
 } from "@/lib/secretSanta";
 
 function parseNames(raw: string): string[] {
@@ -35,7 +39,7 @@ export function SecretSantaWheel() {
   const parsedNames = useMemo(() => parseNames(namesText), [namesText]);
 
   const parsedExclusions = useMemo(
-    () => parseExclusions(exclusionText, [...new Set(parsedNames)]),
+    () => parseExclusions(exclusionText, uniqueParticipants(parsedNames)),
     [exclusionText, parsedNames],
   );
   const exclusions = parsedExclusions.pairs;
@@ -58,7 +62,7 @@ export function SecretSantaWheel() {
 
   const generate = () => {
     const names = parsedNames;
-    const unique = [...new Set(names)];
+    const unique = uniqueParticipants(names);
     if (unique.length < 2) {
       toast.error("Add at least two unique names.");
       return;
@@ -83,6 +87,34 @@ export function SecretSantaWheel() {
     } catch {
       toast.error("Could not copy automatically. Select the link and copy it by hand.");
     }
+  };
+
+  const copyAllLinks = async () => {
+    if (!assignments) return;
+    const links = buildRevealLinks(assignments, SITE_ORIGIN);
+    try {
+      await navigator.clipboard.writeText(revealLinksToText(links));
+      toast.success(
+        `Copied ${links.length} links, one per line. Send each person only their own.`,
+      );
+    } catch {
+      toast.error("Could not copy automatically. Copy each link by hand instead.");
+    }
+  };
+
+  const downloadCsv = () => {
+    if (!assignments) return;
+    const links = buildRevealLinks(assignments, SITE_ORIGIN);
+    const blob = new Blob([revealLinksToCsv(links)], {
+      type: "text/csv;charset=utf-8",
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "secret-santa-reveal-links.csv";
+    a.click();
+    URL.revokeObjectURL(url);
+    toast.success(`Downloaded a CSV with ${links.length} rows.`);
   };
 
   const handleLabelsChange = (labels: string[]) => {
@@ -164,6 +196,21 @@ export function SecretSantaWheel() {
           <p className="text-sm text-muted-foreground mb-4">
             Send each giver their private link. Recipients see only who they
             draw, not the full list.
+          </p>
+          <div className="flex flex-wrap gap-2 mb-4">
+            <Button variant="secondary" size="sm" onClick={copyAllLinks}>
+              <ClipboardList className="mr-2 h-3.5 w-3.5" />
+              Copy all {assignments.size} links
+            </Button>
+            <Button variant="secondary" size="sm" onClick={downloadCsv}>
+              <Download className="mr-2 h-3.5 w-3.5" />
+              Download CSV
+            </Button>
+          </div>
+          <p className="text-xs text-muted-foreground mb-4">
+            Both options list every giver and their link together, so whoever
+            runs the exchange can see all the links. Send each line to one
+            person rather than posting the whole list.
           </p>
           <ul className="space-y-3">
             {[...assignments.keys()].map((giver) => (

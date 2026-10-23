@@ -1130,7 +1130,7 @@ const WHEEL_MODE_FEATURES = {
   "team-generator-wheel":
     "Paste participant names once to drive both the spin wheel (quick random pick) and balanced team generation. Choose how many teams you need; the generator shuffles and distributes names round-robin so squad sizes stay within one person.",
   "secret-santa-wheel-generator":
-    "Paste participants once to drive both the spin wheel (quick random draw) and full Secret Santa assignment mode with optional exclusion pairs. Each participant can get a private reveal link so they see only their match.",
+    "Paste participants once to drive both the spin wheel (quick random draw) and full Secret Santa assignment mode with optional exclusion pairs. Each participant can get a private reveal link so they see only their match, and the whole set can be copied at once or downloaded as a CSV for a large exchange.",
   "random-number-wheel":
     "Set minimum and maximum; the wheel reloads those integers instantly when the range has 30 values or fewer. Toggle no-repeat to share one used pool between the quick-pick button and the spin wheel, drawn numbers leave both until reset. Wider ranges skip the wheel graphic and show a bold numeric result.",
   "random-student-picker":

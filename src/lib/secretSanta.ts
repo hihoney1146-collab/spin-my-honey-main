@@ -91,6 +91,52 @@ export function assignSecretSanta(
   return null;
 }
 
+/**
+ * One participant per person, matched case-insensitively, keeping the first spelling typed.
+ * A gift exchange needs exactly one assignment per person, and `parseExclusions` already matches
+ * names without regard to case, so the two must agree: "Alex" and "alex" are the same person here.
+ */
+export function uniqueParticipants(names: string[]): string[] {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const name of names) {
+    const key = name.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(name);
+  }
+  return out;
+}
+
+export type RevealLink = { giver: string; receiver: string; url: string };
+
+/** Giver, receiver and reveal URL for every assignment, in the order the givers were listed. */
+export function buildRevealLinks(
+  assignments: Map<string, string>,
+  origin: string,
+): RevealLink[] {
+  return [...assignments.entries()].map(([giver, receiver]) => ({
+    giver,
+    receiver,
+    url: `${origin}/secret-santa-wheel-generator?reveal=${encodeRevealToken(giver, receiver)}`,
+  }));
+}
+
+/** One "Name: link" line per giver, for pasting into a chat or a document. */
+export function revealLinksToText(links: RevealLink[]): string {
+  return links.map((l) => `${l.giver}: ${l.url}`).join("\n");
+}
+
+function csvCell(value: string): string {
+  return /[",\r\n]/.test(value) ? `"${value.replace(/"/g, '""')}"` : value;
+}
+
+/** Two columns, Name and Reveal link, with a header row. The recipient is never written down. */
+export function revealLinksToCsv(links: RevealLink[]): string {
+  const rows = [["Name", "Reveal link"], ...links.map((l) => [l.giver, l.url])];
+  return rows.map((r) => r.map(csvCell).join(",")).join("\r\n");
+}
+
 export function encodeRevealToken(giver: string, receiver: string): string {
   return utf8ToBase64Url(JSON.stringify({ g: giver, r: receiver }));
 }

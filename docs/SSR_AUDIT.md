@@ -22,7 +22,7 @@ Generated 2026-10-23 from built `dist/` HTML, the exact bytes served to a no-JS 
 | `/blog/best-spin-wheel-games-for-students` | 2273 | PASS |
 | `/blog/classroom-spinner-beyond-name-picking` | 1188 | PASS |
 | `/blog/fair-raffle-without-paper-tickets` | 1654 | PASS |
-| `/blog/spin-wheel-team-building-activities` | 1243 | PASS |
+| `/blog/spin-wheel-team-building-activities` | 1248 | PASS |
 | `/case-study-community-event-using-spin-wheels` | 617 | PASS |
 | `/case-study-school-using-spin-wheels` | 623 | PASS |
 | `/chinese-zodiac-wheel` | 1319 | PASS |
@@ -45,7 +45,7 @@ Generated 2026-10-23 from built `dist/` HTML, the exact bytes served to a no-JS 
 | `/random-name-picker-wheel` | 1652 | PASS |
 | `/random-number-wheel` | 1576 | PASS |
 | `/random-student-picker` | 1721 | PASS |
-| `/secret-santa-wheel-generator` | 2034 | PASS |
+| `/secret-santa-wheel-generator` | 2443 | PASS |
 | `/self-care-wheel` | 1497 | PASS |
 | `/should-i-text-him-wheel` | 1524 | PASS |
 | `/spin-wheel-fairness-study` | 1370 | PASS |

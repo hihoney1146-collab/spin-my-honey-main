@@ -2385,10 +2385,10 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
 
   "secret-santa-wheel-generator": {
     directAnswer:
-      "The Secret Santa Wheel Generator spins the same participant list for a quick single pick, or switches to assignment mode to pair every participant with exactly one other person using an unbiased shuffle, exclusions for couples or last year's match, and a private reveal link per giver. Paste names once, add exclusion rules if you need them, then spin for a casual pick or press Generate assignments for a full exchange.",
+      "The Secret Santa Wheel Generator spins the same participant list for a quick single pick, or switches to assignment mode to pair every participant with exactly one other person using an unbiased shuffle, exclusions for couples or last year's match, and a private reveal link per giver. Paste names once, add exclusion rules if you need them, then spin for a casual pick or press Generate assignments for a full exchange. For a large group, Copy all links and Download CSV hand out every link in one step. No account and no email address is needed at any point.",
     title: "Secret Santa Wheel, Assignments and Exclusions",
     metaDescription:
-      "Run office or family Secret Santa with assignment mode, couple exclusions, and private reveal links so each gifter sees only their match.",
+      "Draw Secret Santa names with no signup and no email addresses. Set exclusions for couples, then copy every private reveal link at once or download a CSV.",
     useCases: [
       {
         heading: "Office holiday parties with manager exclusions",
@@ -2417,7 +2417,8 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       "If you need exclusions, add them in the second box, one pair per line, using the arrow shown on the page (\"Alex → Jordan\"), a plain dash (\"Alex - Jordan\"), or \"->\". Each rule blocks the pairing in both directions, so a couple or roommate pair needs only one line.",
       "Check the \"On the wheel now\" count under the boxes matches the number of participants you expect before generating.",
       "Press Generate assignments. The tool shuffles the list with an unbiased draw and checks the result against your exclusions and the no-self-match rule, trying again automatically, up to 5,000 times, until a valid arrangement appears.",
-      "Copy each person's reveal link from the \"Per-person reveal links\" list and send it to that participant individually. Opening the link shows only that person's own match.",
+      "Send the links out. Copy them one at a time from the \"Per-person reveal links\" list, or press \"Copy all links\" to put every giver and their link on its own line, or \"Download CSV\" for a two-column Name and Reveal link file you can open in a spreadsheet or mail merge from.",
+      "Give each person only their own line. Opening a reveal link shows that one person's match and nothing else.",
     ],
     supplementalSections: [
       {
@@ -2439,6 +2440,10 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
       {
         heading: "What the reveal link does and does not protect",
         body: "A reveal link encodes the giver's name and their assigned recipient directly in the link itself; opening it decodes and displays that pair in the browser, with nothing looked up from a server. That makes it a convenient way to keep pairings out of a shared chat, not a secure secret: anyone holding the link can read it, and generating assignments again (after editing the participant list) replaces the pairing shown on the page, so a link sent before that point may describe a match that no longer applies. For stricter privacy, send each link over a private channel rather than posting all of them together, and avoid changing the roster once links have gone out.",
+      },
+      {
+        heading: "Sending links to a large group",
+        body: "Copying links one at a time is fine for six people and tedious for twenty. \"Copy all links\" puts the whole set on the clipboard as one \"Name: link\" line per giver, ready to paste into a document or a mail-merge field. \"Download CSV\" writes the same thing as a two-column file, Name and Reveal link, with a header row, so it opens straight into a spreadsheet. Neither output puts the recipient in a column of its own, so a spreadsheet open on screen does not read as a list of who buys for whom. That is a readability detail and not protection: each recipient's name is still encoded inside their giver's link, and opening the link shows it, exactly as described above. Anyone holding the full list therefore holds the whole exchange, which is unavoidable when one person organises it. Whoever that is should send each line to one person rather than pasting the whole list into a group chat. If you want nobody at all to see the full set, hand out links from the per-person list instead and close the page afterwards.",
       },
     ],
     faqs: [
@@ -2481,6 +2486,16 @@ export const WHEEL_UNIQUE_CONTENT: Record<string, WheelUniqueContent> = {
         question: "Does it store names or addresses anywhere?",
         answer:
           "No. Participant names and exclusions stay in the browser tab; only a reveal token (the giver and recipient names, encoded in the link) travels in the URL you choose to share. Shipping or gift details stay in your own separate chat thread.",
+      },
+      {
+        question: "Can I copy all the reveal links at once?",
+        answer:
+          "Yes. \"Copy all links\" puts one \"Name: link\" line per giver on the clipboard, and \"Download CSV\" saves the same set as a Name and Reveal link file with a header row, which opens in any spreadsheet. Both are meant for a large exchange where copying twenty links one at a time is painful. Send each person only their own line.",
+      },
+      {
+        question: "Do I need to give anyone an email address to use this?",
+        answer:
+          "No. There is no account, no signup, and no email field anywhere in this tool. Assignments are worked out in your own browser tab and the reveal links are ordinary URLs you hand out however you like, by chat, by text, or on paper.",
       },
       {
         question: "Is this the same as Kris Kringle, Pollyanna, or White Elephant?",

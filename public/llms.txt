@@ -62,7 +62,7 @@ https://onlinespinwheel.fun/random-student-picker, Random Student Picker: Paste 
 
 ## Events & Parties (2)
 https://onlinespinwheel.fun/raffle-wheel, Raffle Wheel: Run prize-wheel style giveaways or ticket raffles: labeled prizes, ticket numbers, multi-winner draws, and a shareable proof link for streams and school events.
-https://onlinespinwheel.fun/secret-santa-wheel-generator, Secret Santa Wheel Generator: Run office or family Secret Santa with assignment mode, couple exclusions, and private reveal links so each gifter sees only their match.
+https://onlinespinwheel.fun/secret-santa-wheel-generator, Secret Santa Wheel Generator: Draw Secret Santa names with no signup and no email addresses. Set exclusions for couples, then copy every private reveal link at once or download a CSV.
 
 ## Food & Lifestyle (1)
 https://onlinespinwheel.fun/self-care-wheel, Self Care Wheel: Filter self-care prompts by 5-minute, no-spend, evening, or movement, then spin a matching wellness action for your break.
