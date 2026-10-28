@@ -818,7 +818,9 @@ export function getEnrichedContent(page: WheelPageRecord): EnrichedContent {
     })),
     supplementalSections: [],
     howToSteps: [],
-    faqs: page.faqs,
+    // Build-only field, absent from the browser index. Every slug currently has
+    // unique content, so this branch is unreachable in practice.
+    faqs: page.faqs ?? [],
     relatedBlogSlugs,
     hasUniqueContent: false,
   };

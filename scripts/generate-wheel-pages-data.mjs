@@ -145,5 +145,56 @@ fs.mkdirSync(outDir, { recursive: true });
 const outFile = path.join(outDir, "wheelPages.json");
 fs.writeFileSync(outFile, JSON.stringify(records, null, 0), "utf8");
 
-console.log(`✅ Wrote ${records.length} wheel pages → ${path.relative(root, outFile)}`);
+/*
+ * The browser bundle gets two smaller files instead of wheelPages.json.
+ *
+ * wheelPages.json stays whole because the build scripts read faqs, howToSteps and
+ * introduction from it to write the static HTML and the FAQ and HowTo structured data.
+ * The browser never reads those three: every slug has an entry in wheelUniqueContent,
+ * so the page renders from there instead. Shipping them anyway put 86 KB of the file's
+ * 113 KB into the main bundle for nothing.
+ */
+const CLIENT_FIELDS = [
+  "slug",
+  "keywordPrimary",
+  "keywordSecondary",
+  "title",
+  "metaDescription",
+  "h1",
+  "category",
+  "wheelOptions",
+  "lastUpdated",
+  // 21 slugs have no written howToSteps and fall back to rendering howToUse,
+  // so this one has to stay in the browser copy.
+  "howToUse",
+];
+const indexRecords = records.map((rec) => {
+  const light = {};
+  for (const key of CLIENT_FIELDS) {
+    if (rec[key] !== undefined) light[key] = rec[key];
+  }
+  return light;
+});
+const indexFile = path.join(outDir, "wheelIndex.json");
+fs.writeFileSync(indexFile, JSON.stringify(indexRecords, null, 0), "utf8");
+
+/*
+ * Related-wheel anchors, pulled out of wheelUniqueContent so that lib/wheelPages.ts
+ * no longer has to import that 222 KB module just to read six anchor strings per slug.
+ */
+const relatedLinks = {};
+for (const rec of records) {
+  const unique = getWheelUniqueContent(rec.slug);
+  const links = Array.isArray(unique?.relatedWheels) ? unique.relatedWheels : [];
+  if (links.length) {
+    relatedLinks[rec.slug] = links.map(({ slug, anchor }) => ({ slug, anchor }));
+  }
+}
+const relatedFile = path.join(outDir, "wheelRelatedLinks.json");
+fs.writeFileSync(relatedFile, JSON.stringify(relatedLinks, null, 0), "utf8");
+
+const kb = (p) => Math.round(fs.statSync(p).size / 1024);
+console.log(`✅ Wrote ${records.length} wheel pages → ${path.relative(root, outFile)} (${kb(outFile)} KB, build only)`);
+console.log(`   ↳ browser index  → ${path.relative(root, indexFile)} (${kb(indexFile)} KB)`);
+console.log(`   ↳ related links  → ${path.relative(root, relatedFile)} (${kb(relatedFile)} KB)`);
 console.log(`   Source: ${path.relative(root, csvPath)}`);

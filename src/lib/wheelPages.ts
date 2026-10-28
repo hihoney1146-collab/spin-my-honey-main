@@ -1,5 +1,15 @@
-import wheelPagesData from "@/generated/wheelPages.json";
-import { getWheelUniqueContent } from "@/data/wheelUniqueContent";
+/*
+ * The browser gets wheelIndex.json, not wheelPages.json.
+ *
+ * wheelPages.json carries faqs, howToSteps and introduction for the build scripts, which
+ * read them to write the static HTML and the FAQ and HowTo structured data. The browser
+ * renders those from wheelUniqueContent instead, so shipping them twice cost 81 KB in the
+ * main bundle. Related-wheel anchors come from their own generated map for the same reason:
+ * reading six anchor strings per slug used to pull all 222 KB of wheelUniqueContent into
+ * every page, including pages with no wheel on them.
+ */
+import wheelIndexData from "@/generated/wheelIndex.json";
+import relatedLinksData from "@/generated/wheelRelatedLinks.json";
 import { isHubListedWheelSlug, isWheelIndexableSlug } from "@/data/wheelIndexPolicy";
 
 export type WheelFaq = {
@@ -14,12 +24,13 @@ export type WheelPageRecord = {
   title: string;
   metaDescription: string;
   h1: string;
-  introduction: string;
   howToUse: string;
   category: string;
   wheelOptions: string[];
-  faqs: WheelFaq[];
   lastUpdated?: string;
+  /** Build-only fields. Present in wheelPages.json, absent from the browser index. */
+  introduction?: string;
+  faqs?: WheelFaq[];
 };
 
 /**
@@ -29,7 +40,11 @@ export type WheelPageRecord = {
  */
 export const WHEEL_CONTENT_LAST_UPDATED = "2026-07-08";
 
-const pages = wheelPagesData as WheelPageRecord[];
+const pages = wheelIndexData as WheelPageRecord[];
+const relatedBySlug = relatedLinksData as Record<
+  string,
+  { slug: string; anchor: string }[]
+>;
 
 const bySlug = new Map<string, WheelPageRecord>();
 for (const p of pages) {
@@ -61,9 +76,9 @@ export function getRelatedWheelLinks(
   slug: string,
   limit = 6,
 ): RelatedWheelLink[] {
-  const unique = getWheelUniqueContent(slug);
-  if (unique?.relatedWheels?.length) {
-    return unique.relatedWheels
+  const related = relatedBySlug[slug];
+  if (related?.length) {
+    return related
       .filter((l) => l.slug !== slug && isWheelIndexableSlug(l.slug))
       .slice(0, limit)
       .map(({ slug: relatedSlug, anchor }) => {
