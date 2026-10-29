@@ -20,6 +20,7 @@ const AuthorFaisalZahir = () => (
     jobTitle={FAISAL_AUTHOR.jobTitle}
     personId={FAISAL_PERSON_ID}
     initials="FZ"
+    ogImage={FAISAL_AUTHOR.image}
     linkedIn={TEAM_LINKEDIN.faisalZahir}
     showBrandSocial
     brandSocialLinks={SITE_SOCIAL_LINKS}

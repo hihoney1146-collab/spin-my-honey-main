@@ -14,6 +14,7 @@ const AuthorArmghanaZeeshan = () => (
     jobTitle={ARMGHANA_AUTHOR.jobTitle}
     personId={ARMGHANA_PERSON_ID}
     initials="AZ"
+    ogImage={ARMGHANA_AUTHOR.image}
     linkedIn={TEAM_LINKEDIN.armghanaZeeshan}
   >
     <p>

@@ -14,6 +14,8 @@ export const ARMGHANA_AUTHOR = {
   path: "/author/armghana-zeeshan",
   url: `${SITE_ORIGIN}/author/armghana-zeeshan`,
   linkedIn: "https://www.linkedin.com/in/armghana-zeeshan-bb157924a/",
+  /** Branded initials card, not a photo: no real photo is on file for this person. */
+  image: `${SITE_ORIGIN}/og/author-armghana-zeeshan.png`,
 } as const;
 
 export const ZOHA_AUTHOR = {
@@ -25,6 +27,8 @@ export const ZOHA_AUTHOR = {
   path: "/author/zoha-zeeshan",
   url: `${SITE_ORIGIN}/author/zoha-zeeshan`,
   linkedIn: "https://www.linkedin.com/in/zoha-zeeshan-7b9957352/",
+  /** Branded initials card, not a photo: no real photo is on file for this person. */
+  image: `${SITE_ORIGIN}/og/author-zoha-zeeshan.png`,
 } as const;
 
 export const RAJA_AUTHOR = {
@@ -51,6 +55,8 @@ export const FAISAL_AUTHOR = {
   path: "/author/faisal-zahir",
   url: `${SITE_ORIGIN}/author/faisal-zahir`,
   linkedIn: "https://www.linkedin.com/in/faisal-zahir/",
+  /** Branded initials card, not a photo: no real photo is on file for this person. */
+  image: `${SITE_ORIGIN}/og/author-faisal-zahir.png`,
 } as const;
 
 export const TEAM_AUTHOR_PAGES = [

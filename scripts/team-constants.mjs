@@ -26,6 +26,8 @@ export const TEAM_AUTHORS = {
     url: `${SITE}/author/armghana-zeeshan`,
     personId: `${SITE}/author/armghana-zeeshan#person`,
     linkedIn: "https://www.linkedin.com/in/armghana-zeeshan-bb157924a/",
+    // Branded initials card, not a photo: no real photo is on file for this person.
+    image: `${SITE}/og/author-armghana-zeeshan.png`,
   },
   zoha: {
     slug: "co-founder",
@@ -37,6 +39,8 @@ export const TEAM_AUTHORS = {
     url: `${SITE}/author/zoha-zeeshan`,
     personId: `${SITE}/author/zoha-zeeshan#person`,
     linkedIn: "https://www.linkedin.com/in/zoha-zeeshan-7b9957352/",
+    // Branded initials card, not a photo: no real photo is on file for this person.
+    image: `${SITE}/og/author-zoha-zeeshan.png`,
   },
   raja: {
     slug: "content",
@@ -63,6 +67,8 @@ export const TEAM_AUTHORS = {
     url: `${SITE}/author/faisal-zahir`,
     personId: `${SITE}/author/faisal-zahir#person`,
     linkedIn: "https://www.linkedin.com/in/faisal-zahir/",
+    // Branded initials card, not a photo: no real photo is on file for this person.
+    image: `${SITE}/og/author-faisal-zahir.png`,
   },
 };
 

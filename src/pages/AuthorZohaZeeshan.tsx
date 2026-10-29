@@ -14,6 +14,7 @@ const AuthorZohaZeeshan = () => (
     jobTitle={ZOHA_AUTHOR.jobTitle}
     personId={ZOHA_PERSON_ID}
     initials="ZZ"
+    ogImage={ZOHA_AUTHOR.image}
     linkedIn={TEAM_LINKEDIN.zohaZeeshan}
     extraSections={
       <section className="mt-8">
