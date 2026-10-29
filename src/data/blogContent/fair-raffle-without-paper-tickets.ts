@@ -11,6 +11,11 @@ export const fairRaffleWithoutPaperTickets: BlogPost = {
   updated: "2026-09-03",
   published: "2026-09-03",
   indexed: true,
+  tryItLink: {
+    sentence:
+      "To run a draw the way this guide describes, with the entry count visible and the result on screen, open",
+    anchor: "the free spin wheel on our homepage",
+  },
   relatedWheels: [
     "raffle-wheel",
     "winner-picker-wheel",

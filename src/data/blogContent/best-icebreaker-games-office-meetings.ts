@@ -11,6 +11,11 @@ export const bestIcebreakerGamesOfficeMeetings: BlogPost = {
   updated: "2026-07-14",
   published: "2026-05-05",
   indexed: true,
+  tryItLink: {
+    sentence:
+      "If you want one of these ready before your next call, build it in a minute on",
+    anchor: "the wheel spinner on the homepage",
+  },
   relatedWheels: [
     "team-generator-wheel",
     "random-name-picker-wheel",

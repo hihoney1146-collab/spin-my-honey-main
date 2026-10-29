@@ -11,6 +11,11 @@ export const spinWheelTeamBuildingActivities: BlogPost = {
   updated: "2026-08-15",
   published: "2026-08-15",
   indexed: true,
+  tryItLink: {
+    sentence:
+      "Pick one activity, paste the roster, and run it today on",
+    anchor: "our main wheel",
+  },
   relatedWheels: [
     "team-generator-wheel",
     "random-name-picker-wheel",

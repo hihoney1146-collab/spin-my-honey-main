@@ -11,6 +11,11 @@ export const bestSpinWheelGamesForStudents: BlogPost = {
   updated: "2026-07-14",
   published: "2026-05-05",
   indexed: true,
+  tryItLink: {
+    sentence:
+      "Every game on this list runs on the same wheel, so you can paste your first set of names or prompts straight into",
+    anchor: "the spin wheel on our homepage",
+  },
   relatedWheels: [
     "random-student-picker",
     "classroom-spinner",

@@ -12,6 +12,11 @@ export const classroomSpinnerBeyondNamePicking: BlogPost = {
   updated: "2026-08-15",
   published: "2026-08-15",
   indexed: true,
+  tryItLink: {
+    sentence:
+      "Each routine above needs labels and a projector, nothing else, so you can set the first one up on",
+    anchor: "the main spin wheel",
+  },
   relatedWheels: [
     "classroom-spinner",
     "random-student-picker",

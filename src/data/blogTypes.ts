@@ -44,4 +44,12 @@ export type BlogPost = {
   faqs?: BlogFaq[];
   /** Related wheel slugs for internal links (min 3 on indexed posts). */
   relatedWheels?: string[];
+  /**
+   * One contextual link to the main wheel, shown after the article.
+   * Indexed posts ran 1,000 to 2,100 words with no link to the tool at all,
+   * so a reader who finished the piece had no way to go and use it. Write a
+   * sentence that fits the post and an anchor that describes where it goes,
+   * not a repeated keyword.
+   */
+  tryItLink?: { sentence: string; anchor: string };
 };

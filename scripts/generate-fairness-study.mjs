@@ -3,6 +3,14 @@
  * Runs in Node at build time, so it uses Node's crypto.randomInt (not the
  * browser's crypto.getRandomValues()) to mirror the same getCurrentSegment()
  * landing-angle geometry the live wheel uses.
+ *
+ * It does NOT re-run on an ordinary build. The draw is unseeded, so rebuilding used to
+ * publish different chi-square values and a different CSV every deploy: the repo held
+ * 0.9216 for the two-segment wheel while the live page showed 3.0276, and anyone who
+ * cited a number or downloaded the dataset got something else the following week. A
+ * published study reports one experiment, so the committed files are the experiment.
+ * Re-run it deliberately with `node scripts/generate-fairness-study.mjs --force`, then
+ * commit the new CSV and JSON and check the page's wording still matches the results.
  */
 import fs from "fs";
 import path from "path";
@@ -12,6 +20,15 @@ import { randomInt } from "node:crypto";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const outCsv = path.join(root, "public", "downloads", "spin-wheel-fairness-study-100k.csv");
 const outJson = path.join(root, "src", "generated", "fairnessStudy.json");
+
+const force = process.argv.includes("--force");
+if (!force && fs.existsSync(outCsv) && fs.existsSync(outJson)) {
+  const existing = JSON.parse(fs.readFileSync(outJson, "utf8"));
+  console.log(
+    `↩ Fairness study already published (run of ${existing.generatedAt}); keeping it. Use --force to re-run.`,
+  );
+  process.exit(0);
+}
 
 const TOTAL_SPINS = 100_000;
 const SEGMENT_COUNTS = [2, 3, 4, 6, 8, 10, 12, 16, 20, 36];

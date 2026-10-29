@@ -483,6 +483,19 @@ const BlogPost = () => {
           })}
         </div>
 
+        {post.tryItLink ? (
+          <p className="mt-2 mb-8 text-base md:text-lg leading-[1.6] text-muted-foreground">
+            {post.tryItLink.sentence}{" "}
+            <Link
+              to="/"
+              className="font-medium text-primary underline underline-offset-2"
+            >
+              {post.tryItLink.anchor}
+            </Link>
+            .
+          </p>
+        ) : null}
+
         {post.faqs && post.faqs.length > 0 ? (
           <section
             id="frequently-asked-questions"
